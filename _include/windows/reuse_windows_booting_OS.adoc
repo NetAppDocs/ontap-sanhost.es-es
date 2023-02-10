@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+Hay dos opciones para arrancar el sistema operativo: Mediante el arranque local o el arranque SAN. Para el arranque local, instala el sistema operativo en el disco duro local (SSD, SATA, RAID, etc.). Para el arranque DE SAN, consulte las instrucciones que se indican a continuación.

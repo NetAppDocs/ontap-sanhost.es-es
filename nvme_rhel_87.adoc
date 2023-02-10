@@ -1,0 +1,598 @@
+---
+sidebar: sidebar 
+permalink: nvme_rhel_87.html 
+keywords: nvme, linux, rhel, red hat, enterprise 
+summary: Cómo configurar NVMe-of Host para RHEL 8.7 con ONTAP 
+---
+= Configuración del host NVMe-of para RHEL 8.7 con ONTAP
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:source-highlighter: highlighter.js
+:toc-position: content
+
+
+
+
+== Compatibilidad
+
+RHEL 8.7 admite NVMe over Fabrics o NVMe-of (incluidos NVMe/FC y otros transportes) con ANA (acceso de espacio de nombres asimétrico). ANA es el equivalente ALUA en el entorno NVMe-of y actualmente se implementa con NVMe multivía en el kernel. En este tema, se incluyen detalles para habilitar NVMe-of con NVMe multivía en el kernel mediante ANA en RHEL 8.7 y ONTAP como destino.
+
+
+NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este documento para configurar los clientes de cloud conectados a. link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
+
+
+
+== Funciones
+
+RHEL 8.7 incluye compatibilidad con NVMe/TCP (como función de vista previa de tecnología), además de NVMe/FC. El plugin de NetApp en el paquete nvme-cli nativo puede mostrar detalles de ONTAP para espacios de nombres NVMe/FC y NVMe/TCP.
+
+
+
+== Limitaciones conocidas
+
+* Para RHEL 8.7, la función multivía de NVMe en el kernel sigue deshabilitada de forma predeterminada. Por lo tanto, debe habilitarla manualmente.
+* NVMe/TCP en RHEL 8.7 sigue siendo una función de vista previa de la tecnología debido a problemas abiertos. Consulte la link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.7_release_notes/index["Notas de la versión de RHEL 8.7"^] para obtener más detalles.
+
+
+
+
+== Requisitos de configuración
+
+Consulte la link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener información precisa sobre las configuraciones compatibles.
+
+
+
+== Habilite NVMe multivía en el kernel
+
+.Pasos
+. Instale RHEL 8.7 en el servidor.
+. Una vez finalizada la instalación, compruebe que está ejecutando el kernel RHEL 8.7 especificado. Consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones compatibles.
++
+Ejemplo:
+
++
+[listing]
+----
+# uname -r
+4.18.0-425.3.1.el8.x86_64
+----
+. Instale el `nvme-cli` paquete:
++
+Ejemplo:
+
++
+[listing]
+----
+# rpm -qa|grep nvme-cli
+nvme-cli-1.16-5.el8.x86_64
+----
+. Habilitar multivía en el kernel NVMe:
++
+[listing]
+----
+# grubby --args=nvme_core.multipath=Y --update-kernel /boot/vmlinuz-4.18.0-425.3.1.el8.x86_64
+----
+. En el host, compruebe la cadena NQN del host en `/etc/nvme/hostnqn` Y verifique que coincida con la cadena del host NQN para el subsistema correspondiente en la cabina de ONTAP. Ejemplo:
++
+[listing]
+----
+
+# cat /etc/nvme/hostnqn
+
+          nqn.2014-08.org.nvmexpress:uuid:a7f7a1d4-311a-11e8-b634-            7ed30aef10b7
+
+::> vserver nvme subsystem host show -vserver vs_nvme167
+Vserver     Subsystem       Host NQN
+----------- --------------- ----------------
+vs_nvme167 rhel_167_LPe35002  nqn.2014-08.org.nvmexpress:uuid: a7f7a1d4-311a-11e8-b634-7ed30aef10b7
+
+----
++
+
+NOTE: Si las cadenas del host NQN no coinciden, se debe usar `vserver modify` Comando para actualizar la cadena NQN del host en el subsistema NVMe de ONTAP correspondiente para que coincidan con la cadena NQN del host `/etc/nvme/hostnqn` en el host.
+
+. Reinicie el host.
++
+[NOTE]
+====
+Si piensa ejecutar tráfico coexistente NVMe y SCSI en el mismo host, se recomienda usar la multivía en el kernel NVMe para espacios de nombres de ONTAP y dm-multipath para las LUN de ONTAP respectivamente. Esto significa que los espacios de nombres ONTAP deben excluirse de dm-multipath para evitar que dm-multipath reclamen estos dispositivos de espacio de nombres. Esto se puede hacer agregando la configuración enable_Foreign a la `/etc/multipath.conf` archivo:
+
+[listing]
+----
+# cat /etc/multipath.conf
+defaults {
+        enable_foreign     NONE
+}
+----
+====
+. Reinicie el daemon multipathd ejecutando un `systemctl restart multipathd` comando para permitir que la nueva configuración surta efecto.
+
+
+
+
+== Configure NVMe/FC
+
+
+
+=== Broadcom/Emulex
+
+.Pasos
+. Compruebe que está utilizando el adaptador compatible. Consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de adaptadores compatibles.
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/modelname
+LPe35002-M2
+LPe35002-M2
+# cat /sys/class/scsi_host/host*/modeldesc
+Emulex LightPulse LPe35002-M2 2-Port 32Gb Fibre Channel Adapter
+Emulex LightPulse LPe35002-M2 2-Port 32Gb Fibre Channel Adapter
+----
+. Compruebe que está utilizando el firmware de Broadcom lpfc y el controlador de bandeja de entrada recomendados. Consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones de firmware y controladores de adaptador compatibles.
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/fwrev
+14.0.505.12, sli-4:6:d
+14.0.505.12, sli-4:6:d
+# cat /sys/module/lpfc/version
+0:14.0.0.15
+----
+. Compruebe que `lpfc_enable_fc4_type` se establece en 3
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
+3
+----
+. Compruebe que los puertos iniciador están en funcionamiento y que puede ver las LIF de destino.
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/port_name
+0x100000109b95467c
+0x100000109b95467b
+# cat /sys/class/fc_host/host*/port_state
+Online
+Online
+# cat /sys/class/scsi_host/host*/nvme_info
+NVME Initiator Enabled
+XRI Dist lpfc1 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc1 WWPN x100000109b95467c WWNN x200000109b95467c DID x0a1500 ONLINE
+NVME RPORT       WWPN x2071d039ea36a105 WWNN x206ed039ea36a105 DID x0a0907 TARGET DISCSRVC ONLINE
+NVME RPORT       WWPN x2072d039ea36a105 WWNN x206ed039ea36a105 DID x0a0805 TARGET DISCSRVC ONLINE
+
+NVME Statistics
+LS: Xmt 00000001c7 Cmpl 00000001c7 Abort 00000000
+LS XMIT: Err 00000000  CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 0000000004909837 Issue 0000000004908cfc OutIO fffffffffffff4c5
+abort 0000004a noxri 00000000 nondlp 00000458 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00000061 Err 00017f43
+
+NVME Initiator Enabled
+XRI Dist lpfc0 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc0 WWPN x100000109b95467b WWNN x200000109b95467b DID x0a1100 ONLINE
+NVME RPORT       WWPN x2070d039ea36a105 WWNN x206ed039ea36a105 DID x0a1007 TARGET DISCSRVC ONLINE
+NVME RPORT       WWPN x206fd039ea36a105 WWNN x206ed039ea36a105 DID x0a0c05 TARGET DISCSRVC ONLINE
+
+NVME Statistics
+LS: Xmt 00000001c7 Cmpl 00000001c7 Abort 00000000
+LS XMIT: Err 00000000  CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 0000000004909464 Issue 0000000004908531 OutIO fffffffffffff0cd
+abort 0000004f noxri 00000000 nondlp 00000361 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 0000006b Err 00017f99
+----
+
+
+
+
+==== Activar tamaño de I/o de 1 MB (opcional)
+
+ONTAP informa de UN MDT (Tamaño de transferencia MAX Data) de 8 en los datos de identificación del controlador, lo que significa que el tamaño máximo de la solicitud de E/S debe ser de hasta 1 MB. Sin embargo, para emitir solicitudes de I/o de tamaño 1 MB para el host NVMe/FC de Broadcom, el parámetro lpfc `lpfc_sg_seg_cnt` también se debe hacer una bontap de hasta 256 desde el valor predeterminado de 64. Utilice las siguientes instrucciones para ello:
+
+.Pasos
+. Añada el valor `256` en las respectivas `modprobe lpfc.conf` archivo:
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_sg_seg_cnt=256
+----
+. Ejecute un `dracut -f` y reinicie el host.
+. Tras reiniciar, compruebe que se ha aplicado el ajuste anterior comprobando el correspondiente `sysfs` valor:
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+256
+----
++
+Ahora el host FC-NVMe de Broadcom debe enviar hasta 1 MB de solicitudes de I/o en los dispositivos de espacio de nombres de ONTAP.
+
+
+
+
+
+=== Marvell/QLogic
+
+La bandeja de entrada nativa `qla2xxx` El controlador incluido en el kernel de RHEL 8.7 incluye los últimos parches básicos para la compatibilidad con ONTAP.
+
+. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles mediante el siguiente comando:
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/symbolic_name
+QLE2772 FW:v9.08.02 DVR:v10.02.07.400-k-debug
+QLE2772 FW:v9.08.02 DVR:v10.02.07.400-k-debug
+----
+. Verificación `ql2xnvmeenable` Is set, que permite que el adaptador Marvell funcione como iniciador de NVMe/FC usando el siguiente comando:
++
+[listing]
+----
+# cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
+1
+----
+
+
+
+
+== Configure NVMe/TCP
+
+A diferencia de NVMe/FC, NVMe/TCP no tiene una funcionalidad de conexión automática. Esto manifiesta dos limitaciones principales en el host NVMe/TCP de Linux:
+
+* *No hay reconexión automática después de que las rutas se restablezcan* NVMe/TCP no puede volver a conectarse automáticamente a una ruta que se reinstala más allá de la predeterminada `ctrl-loss-tmo` temporizador de 10 minutos después de una ruta hacia abajo.
+* *Sin conexión automática durante el arranque del host* NVMe/TCP no se puede conectar automáticamente durante el arranque del host también.
+
+
+Es necesario configurar el periodo de reintento para eventos de conmutación por error en al menos 30 minutos para evitar los tiempos de espera. Puede aumentar el período de reintento aumentando el valor del temporizador ctrl_loss_tmo. A continuación se muestran los detalles:
+
+.Pasos
+. Compruebe si el puerto iniciador puede recuperar los datos de la página de registro de detección en las LIF NVMe/TCP admitidas:
++
+[listing]
+----
+# nvme discover -t tcp -w 192.168.211.5 -a 192.168.211.14
+
+Discovery Log Number of Records 8, Generation counter 10
+
+=====Discovery Log Entry 0======
+trtype:  tcp
+adrfam:  ipv4
+subtype: unrecognized
+treq:    not specified
+portid:  0
+trsvcid: 8009
+subnqn:  nqn.199208.com.netapp:sn.154a5833c78c11ecb069d039ea359e4b:discovery
+traddr:  192.168.211.15
+sectype: none
+=====Discovery Log Entry 1======
+trtype:  tcp
+adrfam:  ipv4
+subtype: unrecognized
+treq:    not specified
+portid:  1
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.154a5833c78c11ecb069d039ea359e4b:discovery
+traddr:  192.168.111.15
+sectype: none
+=====Discovery Log Entry 2======
+trtype:  tcp
+adrfam:  ipv4
+subtype: unrecognized
+treq:    not specified
+portid:  2
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.154a5833c78c11ecb069d039ea359e4b:discovery
+traddr:  192.168.211.14
+sectype: none
+=====Discovery Log Entry 3======
+trtype:  tcp
+adrfam:  ipv4
+subtype: unrecognized
+treq:    not specified
+portid:  3
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.154a5833c78c11ecb069d039ea359e4b:discovery
+traddr:  192.168.111.14
+sectype: none
+=====Discovery Log Entry 4======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  0
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.154a5833c78c11ecb069d039ea359e4b:subsystem.rhel_tcp_165
+traddr:  192.168.211.15
+sectype: none
+=====Discovery Log Entry 5======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  1
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.154a5833c78c11ecb069d039ea359e4b:subsystem.rhel_tcp_165
+traddr:  192.168.111.15
+sectype: none
+=====Discovery Log Entry 6======
+
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  2
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.154a5833c78c11ecb069d039ea359e4b:subsystem.rhel_tcp_165
+traddr:  192.168.211.14
+sectype: none
+
+=====Discovery Log Entry 7======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+
+   portid:  3
+
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.154a5833c78c11ecb069d039ea359e4b:subsystem.rhel_tcp_165
+traddr:  192.168.111.14
+sectype: none
+[root@R650-13-79 ~]#
+----
+. Compruebe que otros combinados de LIF iniciador-objetivo NVMe/TCP pueden recuperar correctamente los datos de la página de registro de detección. Por ejemplo:
++
+[listing]
+----
+# nvme discover -t tcp -w 192.168.211.5 -a 192.168.211.14
+# nvme discover -t tcp -w 192.168.211.5 -a 192.168.211.15
+# nvme discover -t tcp -w 192.168.111.5 -a 192.168.111.14
+# nvme discover -t tcp -w 192.168.111.5 -a 192.168.111.15
+
+----
+. Ejecución `nvme connect-all` Command entre todas las LIF de iniciador NVMe/TCP admitidas en los nodos. Asegúrese de establecer un valor más largo `ctrl_loss_tmo` período de reintento del temporizador (por ejemplo, 30 minutos, que se puede establecer a través de `-l 1800`) durante la conexión-todo para que vuelva a intentarlo durante un período más largo en caso de una pérdida de ruta. Por ejemplo:
++
+[listing]
+----
+# nvme connect-all -t tcp -w 192.168.211.5-a 192.168.211.14 -l 1800
+# nvme connect-all -t tcp -w 192.168.211.5 -a 192.168.211.15 -l 1800
+# nvme connect-all -t tcp -w 192.168.111.5 -a 192.168.111.14 -l 1800
+# nvme connect-all -t tcp -w 192.168.111.5 -a 192.168.111.15 -l 1800
+----
+
+
+
+
+== Valide NVMe-of
+
+.Pasos
+. Compruebe que el acceso multivía de NVMe en el kernel esté habilitado realmente mediante la comprobación:
++
+[listing]
+----
+# cat /sys/module/nvme_core/parameters/multipath
+Y
+----
+. Compruebe que la configuración de NVMe-of adecuada (como, `model` establezca en `NetApp ONTAP Controller` y equilibrio de carga `iopolicy` establezca en `round-robin`) Para los respectivos espacios de nombres ONTAP se reflejan correctamente en el host:
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys*/model
+NetApp ONTAP Controller
+NetApp ONTAP Controller
+
+# cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+round-robin
+round-robin
+----
+. Compruebe que los espacios de nombres de ONTAP se reflejan correctamente en el host. Por ejemplo:
++
+[listing]
+----
+# nvme list
+Node           SN                    Model                   Namespace
+------------   --------------------- ---------------------------------
+/dev/nvme0n1   81Gx7NSiKSRNAAAAAAAB   NetApp ONTAP Controller   1
+
+Usage                Format         FW Rev
+-------------------  -----------    --------
+21.47  GB /  21.47  GB  4 KiB + 0 B    FFFFFFFF
+----
+. Compruebe que el estado de la controladora de cada ruta sea activo y que tenga el estado de ANA adecuado. Por ejemplo:
++
+[listing, subs="+quotes"]
+----
+# nvme list-subsys /dev/nvme1n1
+
+nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.154a5833c78c11ecb069d039ea359e4b:subsystem.rhel_tcp_165
+
+\
+
+ +- nvme0 tcp traddr=192.168.211.15 trsvcid=4420 host_traddr=192.168.211.5 live non-optimized
+
+ +- nvme1 tcp traddr=192.168.211.14 trsvcid=4420 host_traddr=192.168.211.5 live optimized
+
+ +- nvme2 tcp traddr=192.168.111.15 trsvcid=4420 host_traddr=192.168.111.5 live non-optimized
+
+ +- nvme3 tcp traddr=192.168.111.14 trsvcid=4420 host_traddr=192.168.111.5 live optimized
+----
+. Confirmar que el complemento de NetApp muestra los valores adecuados para cada dispositivo de espacio de nombres ONTAP. Por ejemplo:
++
+[listing]
+----
+# nvme netapp ontapdevices -o column
+Device       Vserver          Namespace Path
+---------    -------          --------------------------------------------------
+/dev/nvme0n1 vs_tcp79     /vol/vol1/ns1 
+
+NSID  UUID                                   Size
+----  ------------------------------         ------
+1     79c2c569-b7fa-42d5-b870-d9d6d7e5fa84  21.47GB
+
+
+# nvme netapp ontapdevices -o json
+{
+
+  "ONTAPdevices" : [
+  {
+
+      "Device" : "/dev/nvme0n1",
+      "Vserver" : "vs_tcp79",
+      "Namespace_Path" : "/vol/vol1/ns1",
+      "NSID" : 1,
+      "UUID" : "79c2c569-b7fa-42d5-b870-d9d6d7e5fa84",
+      "Size" : "21.47GB",
+      "LBA_Data_Size" : 4096,
+      "Namespace_Size" : 5242880
+    },
+
+]
+
+}
+----
+
+
+
+
+== Problemas conocidos
+
+[cols="10,30,30,10"]
+|===
+| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+
+
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"] | Los hosts NVMe-of de RHEL 8.7 crean controladoras de detección persistente duplicadas | En los hosts NVMe over Fabrics (NVMe-of), es posible utilizar el comando "nvme Discover -p" para crear controladoras de detección persistente (PDCs). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta ONTAP 9.10.1 y Red Hat Enterprise Linux (RHEL) 8.7 con un host NVMe-of, se crea un PDC duplicado cada vez que se ejecuta "nvme Discover -p". Esto lleva a un uso innecesario de recursos tanto en el host como en el destino. | 2087000 
+|===
+
+
+== Resolución de problemas
+
+Antes de comenzar a solucionar cualquier fallo de NVMe/FC, asegúrese de ejecutar una configuración que cumpla con las especificaciones de la herramienta de matriz de interoperabilidad (IMT) y siga estos pasos para depurar cualquier problema en el lado del host.
+
+
+
+=== registro detallado lpfc
+
+.Pasos
+. Ajuste la `lpfc_log_verbose` Configuración del controlador en cualquiera de los siguientes valores para registrar los eventos de NVMe/FC.
++
+[listing]
+----
+#define LOG_NVME 0x00100000 /* NVME general events. */
+#define LOG_NVME_DISC 0x00200000 /* NVME Discovery/Connect events. */
+#define LOG_NVME_ABTS 0x00400000 /* NVME ABTS events. */
+#define LOG_NVME_IOERR 0x00800000 /* NVME IO Error events. */
+----
+. Después de ajustar los valores, ejecute la `dracut-f` command y reinicie el host.
+. Compruebe la configuración.
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_log_verbose=0xf00083
+
+# cat /sys/module/lpfc/parameters/lpfc_log_verbose
+15728771
+----
+
+
+
+
+=== qla2xxx registro detallado
+
+No hay ningún registro qla2xxx específico similar para NVMe/FC que para el `lpfc` controlador. Por lo tanto, puede establecer el nivel de registro general qla2xxx mediante los pasos siguientes:
+
+.Pasos
+. Añada el `ql2xextended_error_logging=0x1e400000` valor para el correspondiente `modprobe qla2xxx conf` archivo.
+. Vuelva a crear el `initramfs` ejecutando `dracut -f` reinicie el host.
+. Después de reiniciar, compruebe que el registro detallado se ha aplicado de la siguiente forma:
++
+[listing]
+----
+# cat /etc/modprobe.d/qla2xxx.conf
+options qla2xxx ql2xnvmeenable=1 ql2xextended_error_logging=0x1e400000
+# cat /sys/module/qla2xxx/parameters/ql2xextended_error_logging
+507510784
+----
+
+
+
+
+=== Errores y soluciones alternativas comunes de nvme-cli
+
+Los errores mostrados por `nvme-cli` durante `nvme discover`, `nvme connect`, o. `nvme connect-all` las operaciones y las soluciones alternativas se muestran en la siguiente tabla:
+
+[cols="20, 20, 50"]
+|===
+| Errores mostrados por `nvme-cli` | Causa probable | Solución alternativa 
+
+
+| `Failed to write to /dev/nvme-fabrics: Invalid argument` | Sintaxis incorrecta | Compruebe que está utilizando la sintaxis correcta para el `nvme discover`, `nvme connect`, y. `nvme connect-all` comandos. 
+
+
+| `Failed to write to /dev/nvme-fabrics: No such file or directory` | Varios problemas pueden desencadenar esto, por ejemplo, proporcionar argumentos incorrectos en los comandos NVMe es una de las causas comunes.  a| 
+* Verifique que haya pasado los argumentos correctos (como, una cadena WWNN, una cadena WWPN correcta y otros) a los comandos.
+* Si los argumentos son correctos, pero sigue viendo este error, compruebe si `/sys/class/scsi_host/host*/nvme_info` El resultado del comando es correcto, el iniciador de NVMe se muestra como `Enabled`, Y las LIF de destino NVMe/FC se muestran correctamente bajo las secciones de puertos remotos. Ejemplo:
++
+[listing]
+----
+
+# cat /sys/class/scsi_host/host*/nvme_info
+NVME Initiator Enabled
+NVME LPORT lpfc0 WWPN x10000090fae0ec9d WWNN x20000090fae0ec9d DID x012000 ONLINE
+NVME RPORT WWPN x200b00a098c80f09 WWNN x200a00a098c80f09 DID x010601 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000000000006 Cmpl 0000000000000006
+FCP: Rd 0000000000000071 Wr 0000000000000005 IO 0000000000000031
+Cmpl 00000000000000a6 Outstanding 0000000000000001
+NVME Initiator Enabled
+NVME LPORT lpfc1 WWPN x10000090fae0ec9e WWNN x20000090fae0ec9e DID x012400 ONLINE
+NVME RPORT WWPN x200900a098c80f09 WWNN x200800a098c80f09 DID x010301 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000000000006 Cmpl 0000000000000006
+FCP: Rd 0000000000000073 Wr 0000000000000005 IO 0000000000000031
+Cmpl 00000000000000a8 Outstanding 0000000000000001
+----
+* Si las LIF de destino no se muestran como arriba en la `nvme_info` resultado del comando, compruebe el `/var/log/messages` y.. `dmesg` Genera comandos para cualquier fallo sospechoso de NVMe/FC, y estos informan o corrigen la como corresponda.
+
+
+
+
+| `No discovery log entries to fetch`  a| 
+Generalmente observado cuando `/etc/nvme/hostnqn` No se ha añadido la cadena al subsistema correspondiente en la cabina de NetApp o una incorrecta `hostnqn` la cadena se ha agregado al subsistema correspondiente.
+ a| 
+Compruebe que el valor es exacto `/etc/nvme/hostnqn` La cadena se añade al subsistema correspondiente en la cabina de NetApp (compruebe mediante la `vserver nvme subsystem host show` ).
+
+
+
+| `Failed to write to /dev/nvme-fabrics: Operation already in progress`  a| 
+Se observa cuando las asociaciones de controladores o la operación especificada ya se han creado o se está creando. Esto podría suceder como parte de los scripts de conexión automática instalados anteriormente.
+ a| 
+Ninguno. Intente ejecutar el `nvme discover` comando de nuevo después de un tiempo. Para `nvme connect` y.. `connect-all`, ejecute el `nvme list` comando para verificar que los dispositivos de espacio de nombres ya se han creado y se muestran en el host.
+
+|===
+
+
+=== Cuándo ponerse en contacto con el soporte técnico
+
+Si aún tiene problemas, recopile los siguientes archivos y resultados de comandos y póngase en contacto con el soporte técnico para realizar una evaluación más próxima:
+
+[listing]
+----
+cat /sys/class/scsi_host/host*/nvme_info
+/var/log/messages
+dmesg
+nvme discover output as in:
+nvme discover --transport=fc --traddr=nn-0x200a00a098c80f09:pn-0x200b00a098c80f09 --host-traddr=nn-0x20000090fae0ec9d:pn-0x10000090fae0ec9d
+nvme list
+nvme list-subsys /dev/nvmeXnY
+----

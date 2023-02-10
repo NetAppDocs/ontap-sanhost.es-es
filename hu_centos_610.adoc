@@ -1,0 +1,305 @@
+---
+sidebar: sidebar 
+permalink: hu_centos_610.html 
+keywords: host utilities, cent, os, 6.10, netapp, ontap 
+summary: Describe cómo utilizar CentOS 6.10 con ONTAP 
+---
+= Mediante CentOS 6.10 con ONTAP de NetApp
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+
+
+== Instalar las utilidades unificadas de host de Linux
+
+El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host+Utilities+-+SAN&platform=Linux["Sitio de soporte de NetApp"^] en un archivo .rpm de 32 y 64 bits. Si no sabe cuál es el archivo adecuado para su configuración, utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar cuál necesita.
+
+Se recomienda encarecidamente instalar Unified Host Utilities de Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
+
+.Lo que necesitará
+Si tiene una versión de Linux Unified Host Utilities instalada actualmente, debe actualizarla o, debe eliminarla y seguir los pasos siguientes para instalar la versión más reciente.
+
+. Descargue el paquete de software Linux Unified Host Utilities de 32 o 64 bits del link:https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host+Utilities+-+SAN&platform=Linux["Sitio de soporte de NetApp"^] Sitio a su anfitrión.
+. Use el siguiente comando para instalar el paquete de software:
++
+`rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
+
+
+
+
+NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este documento para configurar los clientes de cloud conectados a. link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
+
+
+
+== Kit de herramientas SAN
+
+El kit de herramientas se instala automáticamente cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar LUN y HBA. La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
+
+.Ejemplo
+En el siguiente ejemplo, la `sanlun lun show` Command muestra información de LUN.
+
+[listing]
+----
+# sanlun lun show all
+controller(7mode/E-Series)/            device     host               lun
+vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
+-------------------------------------------------------------------------
+data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
+data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
+data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
+data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDOT
+----
+
+
+== Arranque San
+
+.Lo que necesitará
+Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://mysupport.netapp.com/matrix/imt.jsp?components=84158;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
+
+.Pasos
+. Asignar el LUN de arranque SAN al host.
+. Verifique que haya varias rutas disponibles.
++
+Recuerde que solo habrá varias rutas disponibles después de que el sistema operativo del host esté en funcionamiento en las rutas.
+
+. Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
++
+Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
+
+. Reinicie el host para verificar que el arranque se haya realizado correctamente.
+
+
+
+
+== Accesos múltiples
+
+Para CentOS 6.10 el `/etc/multipath.conf` el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 6.10 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
+
+Para habilitar ALUA Handler, realice los siguientes pasos:
+
+.Pasos
+. Cree una copia de seguridad de la imagen initrd.
+. Para que ALUA y no ALUA funcionen, anexe el siguiente valor del parámetro al kernel:
+`rdloaddriver=scsi_dh_alua`
++
+....
+kernel /vmlinuz-2.6.32-358.6.1.el6.x86_64 ro root=/dev/mapper/ vg_ibmx355021082-lv_root rd_NO_LUKS rd_LVM_LV=vg_ibmx355021082/ lv_root LANG=en_US.UTF-8 rd_LVM_LV=vg_ibmx355021082/lv_swap rd_NO_MD SYSFONT=latarcyrheb-sun16 crashkernel=auto KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM rhgb quiet rdloaddriver=scsi_dh_alua
+....
+. Utilice la `mkinitrd` comando para volver a crear la imagen initrd. CentOS 6x y versiones posteriores utilizan: El comando: `mkinitrd -f /boot/ initrd-"uname -r".img uname -r`O el comando: `dracut -f`
+. Reinicie el host.
+. Compruebe el resultado del `cat /proc/cmdline` comando para garantizar que la configuración se ha completado.
+
+
+Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP. Las siguientes secciones proporcionan una salida multivía de muestra para una LUN asignada a personas ASA y no ASA.
+
+
+
+=== Configuración de cabina All SAN
+
+En las configuraciones de cabina All SAN (ASA), todas las rutas a una unidad lógica (LUN) dada están activas y optimizadas. Esto significa que la I/o se puede ofrecer a través de todas las rutas al mismo tiempo y, de este modo, se mejora el rendimiento.
+
+.Ejemplo
+En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:
+
+[listing]
+----
+# multipath -ll
+3600a0980383034466b2b4a3775474859 dm-3 NETAPP,LUN C-Mode
+size=20G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
+|-+- policy='round-robin 0' prio=50 status=active
+|- 1:0:8:1  sdb 8:16 active ready running
+|- 2:0:8:1  sdd 8:48 active ready running
+|- 1:0:9:1  sdc 8:32 active ready running
+|- 2:0:9:1  sde 8:64 active ready running
+----
+
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de 4 rutas. Más de 8 rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+
+
+
+=== Configuración no ASA
+
+Para la configuración que no sea ASA debe haber dos grupos de rutas con prioridades diferentes. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+
+.Ejemplo
+En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
+
+[listing]
+----
+# multipath -ll
+3600a0980383034466b2b4a3775474859 dm-3 NETAPP,LUN C-Mode
+size=20G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
+|-+- policy='round-robin 0' prio=50 status=active
+| |- 1:0:8:1  sdb 8:16 active ready running
+| `- 2:0:8:1  sdd 8:48 active ready running
+`-+- policy='round-robin 0' prio=10 status=enabled
+  |- 1:0:9:1  sdc 8:32 active ready running
+  `- 2:0:9:1  sde 8:64 active ready running
+----
+
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de 4 rutas. Más de 8 rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+
+
+
+== Configuración recomendada
+
+CentOS 6.10 se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente tanto para la configuración ASA como para la que no es ASA.
+
+La `multipath.conf` el archivo debe existir para que se inicie el daemon multipath, pero puede crear un archivo vacío de cero bytes con el comando:
+`touch /etc/multipath.conf`
+
+La primera vez que se crea este archivo, es posible que deba habilitar e iniciar los servicios multivía.
+
+[listing]
+----
+# systemctl enable multipathd
+# systemctl start multipathd
+----
+No es necesario añadir nada directamente al `multipath.conf` archivo, a menos que tenga dispositivos que no desea gestionar mediante multivía o que tenga la configuración existente que anula los valores predeterminados.
+
+Puede añadir la siguiente sintaxis al `multipath.conf` archivo para excluir los dispositivos no deseados.
+
+Sustituya el `<DevId>` Con la cadena WWID del dispositivo que desea excluir. Se debe usar el siguiente comando para determinar el WWID:
+
+....
+blacklist {
+        wwid <DevId>
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+....
+.Ejemplo
+En este ejemplo: `sda` Es el disco SCSI local que necesitamos agregar a la lista negra.
+
+.Pasos
+. Ejecute el siguiente comando para determinar el WWID:
++
+....
+# /lib/udev/scsi_id -gud /dev/sda
+360030057024d0730239134810c0cb833
+....
+. Añada este WWID a la sección de la lista negra del `/etc/multipath.conf`:
++
+....
+blacklist {
+     wwid   360030057024d0730239134810c0cb833
+     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+     devnode "^hd[a-z]"
+     devnode "^cciss.*"
+}
+....
+
+
+Siempre debe comprobar su `/etc/multipath.conf` archivo para la configuración heredada, especialmente en la sección de valores predeterminados, que puede estar reemplazando la configuración predeterminada.
+
+La siguiente tabla muestra el valor crítico `multipathd` Parámetros para las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y alguno de estos parámetros se anula, deberán corregirse posteriormente stanzas en el `multipath.conf` Archivo que se aplica específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Estos valores predeterminados solo se deben anular consultando con NetApp o con el proveedor de sistemas operativos y únicamente cuando se haya comprendido completamente el impacto.
+
+[cols="2*"]
+|===
+| Parámetro | Ajuste 
+
+
+| detect_prio | sí 
+
+
+| dev_loss_tmo | "infinito" 
+
+
+| conmutación tras recuperación | inmediata 
+
+
+| fast_io_fail_tmo | 5 
+
+
+| funciones | "3 queue_if_no_path pg_init_retries 50" 
+
+
+| flush_on_last_del | "sí" 
+
+
+| manipulador_hardware | "0" 
+
+
+| no_path_retry | cola 
+
+
+| comprobador_de_rutas | "tur" 
+
+
+| política_agrupación_ruta | "group_by_prio" 
+
+
+| selector_de_rutas | "operación por turnos 0" 
+
+
+| intervalo_sondeo | 5 
+
+
+| prioridad | "ONTAP" 
+
+
+| producto | LUN.* 
+
+
+| retain_attached_hw_handler | sí 
+
+
+| rr_weight | "uniforme" 
+
+
+| nombres_descriptivos_usuario | no 
+
+
+| proveedor | NETAPP 
+|===
+.Ejemplo
+El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este caso, el `multipath.conf` el archivo define los valores para `path_checker` y.. `no_path_retry` Que no son compatibles con las LUN de ONTAP. Si no se pueden quitar debido a que aún hay otras cabinas SAN conectadas al host, estos parámetros pueden corregirse específicamente para LUN de ONTAP con una sección de dispositivo.
+
+[listing]
+----
+defaults {
+   path_checker      readsector0
+   no_path_retry      fail
+}
+
+devices {
+   device {
+      vendor         "NETAPP  "
+      product         "LUN.*"
+      no_path_retry     queue
+      path_checker      tur
+   }
+}
+----
+
+
+=== Configuración de KVM
+
+También puede utilizar los ajustes recomendados para configurar la máquina virtual basada en kernel (KVM). No es necesario realizar cambios para configurar KVM a medida que la LUN está asignada al hipervisor.
+
+
+
+== Problemas y limitaciones conocidos
+
+Para conocer los problemas conocidos de CentOS (kernel compatible con Red Hat), consulte link:hu_rhel_610.html#known-problems-and-limitations["problemas conocidos"] Para Red Hat Enterprise Linux (RHEL) 6.10.
+
+
+
+== Notas de la versión
+
+
+
+=== Mirroring de ASM
+
+El mirroring de ASM puede requerir cambios en la configuración multivía de Linux para permitir que ASM reconozca un problema y conmute a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://www.netapp.com/us/media/tr-3633.pdf["Bases de datos de Oracle en ONTAP"^] para obtener más información.

@@ -1,0 +1,15 @@
+= 
+:allow-uri-read: 
+
+
+. Descargue las correcciones urgentes del sitio de soporte de Microsoft.
+
+
+
+NOTE: Algunas revisiones no están disponibles para descarga directa. En estos casos, deberá solicitar una revisión determinada al personal de soporte técnico de Microsoft.
+
+. Siga las instrucciones proporcionadas por Microsoft para instalar las revisiones.
+
+
+
+TIP: Muchas correcciones urgentes requieren un reinicio del host de Windows, pero puede optar por esperar a reiniciar el host hasta _after_ que instale o actualice las utilidades de host.

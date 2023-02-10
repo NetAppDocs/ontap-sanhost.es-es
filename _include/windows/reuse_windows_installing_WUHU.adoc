@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+Las utilidades unificadas de host de Windows (WUHU) son un conjunto de programas de software con documentación que le permite conectar equipos host a discos virtuales (LUN) en UNA SAN de NetApp. Recomendamos descargar e instalar el kit de utilidades más reciente. Para obtener información e instrucciones sobre la configuración DE WUHU, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71.html["Documentación de WUHU 7.1"].

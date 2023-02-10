@@ -1,0 +1,150 @@
+---
+sidebar: sidebar 
+permalink: hu_windows_2019.html 
+keywords: windows, enterprise 
+summary: Uso de Windows Server 2019 con ONTAP 
+---
+= Uso de Windows Server 2019 con ONTAP
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+
+
+== Arrancar el SO
+
+Hay dos opciones para arrancar el sistema operativo: Mediante el arranque local o el arranque SAN. Para el arranque local, instala el sistema operativo en el disco duro local (SSD, SATA, RAID, etc.). Para el arranque DE SAN, consulte las instrucciones que se indican a continuación.
+
+
+
+=== Arranque SAN
+
+Si decide utilizar el arranque SAN, su configuración debe ser compatible. Es posible usar la herramienta de matriz de interoperabilidad de NetApp para verificar que el sistema operativo, HBA, el firmware de HBA y la versión de arranque de HBA y ONTAP son compatibles.
+
+. Asignar el LUN de arranque SAN al host.
+. Verifique que haya varias rutas disponibles. Recuerde que solo habrá varias rutas disponibles después de que el sistema operativo del host esté en funcionamiento en las rutas.
+. Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN. Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
+. Reinicie el host para verificar que el arranque se haya realizado correctamente.
+
+
+
+NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este documento para configurar los clientes de cloud conectados a. link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
+
+
+
+== Instalación de revisiones de Windows
+
+Sugerimos el uso de *última actualización acumulativa* para instalarse en el servidor.
+
+
+NOTE: Vaya a la link:https://www.catalog.update.microsoft.com/Search.aspx?q=Update+Windows+Server+2019["Catálogo de Microsoft Update 2019"^] Sitio web para obtener e instalar las revisiones de Windows necesarias para su versión de Windows.
+
+. Descargue las correcciones urgentes del sitio de soporte de Microsoft.
+
+
+
+NOTE: Algunas revisiones no están disponibles para descarga directa. En estos casos, deberá solicitar una revisión determinada al personal de soporte técnico de Microsoft.
+
+. Siga las instrucciones proporcionadas por Microsoft para instalar las revisiones.
+
+
+
+TIP: Muchas correcciones urgentes requieren un reinicio del host de Windows, pero puede optar por esperar a reiniciar el host hasta _after_ que instale o actualice las utilidades de host.
+
+
+
+== Instalar las utilidades unificadas de host de Windows
+
+Las utilidades unificadas de host de Windows (WUHU) son un conjunto de programas de software con documentación que le permite conectar equipos host a discos virtuales (LUN) en UNA SAN de NetApp. Recomendamos descargar e instalar el kit de utilidades más reciente. Para obtener información e instrucciones sobre la configuración DE WUHU, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71.html["Documentación de WUHU 7.1"].
+
+
+
+== Accesos múltiples
+
+Debe instalar el software MPIO y tener configurado el acceso multivía si el host de Windows tiene más de una ruta para el sistema de almacenamiento. Sin el software MPIO, es posible que el sistema operativo vea cada ruta como un disco independiente, lo que podría dañar los datos. El software MPIO presenta un único disco al sistema operativo para todas las rutas, y un módulo específico de cada dispositivo (DSM) gestiona la recuperación tras fallos de rutas.
+
+En un sistema Windows, los dos componentes principales de cualquier solución MPIO son DSM y Windows MPIO. MPIO no es compatible con Windows XP o Windows Vista en una máquina virtual Hyper- V.
+
+
+NOTE: Si selecciona la compatibilidad con MPIO, las utilidades unificadas de host de Windows habilitan la función MPIO incluida de Windows Server 2019.
+
+
+
+== Configuración de SAN
+
+
+
+=== Configuración no ASA
+
+Para la configuración que no sea ASA debe haber dos grupos de rutas con prioridades diferentes.
+
+Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio.
+
+Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora.
+
+
+NOTE: Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+
+.Ejemplo
+En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/sin optimizar.
+
+image::nonasa.png[no asa]
+
+
+
+=== Configuración de cabina All SAN
+
+Para la configuración de cabina All SAN (ASA), debe haber un grupo de rutas con prioridades únicas. Todas las rutas son activas/optimizadas; es decir, la controladora recibe servicio y la controladora envía I/o a todas las rutas activas.
+
+image::asa.png[ASA]
+
+
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+
+
+
+== Configuración recomendada
+
+En sistemas que utilizan FC, se requieren los siguientes valores de tiempo de espera para los HBA de Emulex y QLogic FC cuando se selecciona MPIO.
+
+Para HBA Fibre Channel de Emulex:
+
+[cols="2*"]
+|===
+| Tipo de propiedad | Valor de propiedad 
+
+
+| LinkTimeOut | 1 
+
+
+| NodeTimeOut | 10 
+|===
+Para los HBA Fibre Channel de QLogic:
+
+[cols="2*"]
+|===
+| Tipo de propiedad | Valor de propiedad 
+
+
+| LinkDownTimeOut | 1 
+
+
+| PortDownRetryCount | 10 
+|===
+
+NOTE: La utilidad Unified Host de Windows configurará estos valores. Para obtener información detallada sobre los ajustes recomendados, consulte link:https://library.netapp.com/ecmdocs/ECMLP2789202/html/index.html["Guía de instalación de Windows 7.1 Host Utilities"^].
+
+
+
+== Limitaciones conocidas
+
+No hay problemas conocidos para Windows Server 2019.

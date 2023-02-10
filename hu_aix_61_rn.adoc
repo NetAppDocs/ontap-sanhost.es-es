@@ -1,0 +1,103 @@
+---
+sidebar: sidebar 
+permalink: hu_aix_61_rn.html 
+keywords: host utilities, aix, 6.1 netapp, ontap, powervm 
+summary: Notas de la versión de AIX Host Utilities 6.1 
+---
+= Notas de la versión de AIX Host Utilities 6.1
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Este documento de notas de la versión contiene la información más reciente de la versión 6.1 de AIX Host Utilities, incluidas las actualizaciones sobre problemas conocidos, limitaciones, configuración y gestión del sistema de almacenamiento de ONTAP.
+
+El documento Notas de la versión se actualiza cuando haya disponible nueva información sobre cómo utilizar AIX Host Utilities.
+
+
+
+== Acerca de la versión AIX Host Utilities 6.1
+
+Las utilidades del host AIX permiten conectar un host AIX al almacenamiento de NetApp. Las utilidades de host AIX son compatibles con varios entornos, así como con los protocolos FC, FCoE e iSCSI. Los entornos admitidos son AIX MPIO (sistema operativo nativo) y PowerVM.
+
+[NOTE]
+====
+Para obtener información específica acerca de las versiones del sistema operativo y las actualizaciones que admiten las utilidades de host, consulte link:https://mysupport.netapp.com/matrix/imt.jsp?components=85803;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^].
+
+Para obtener más información acerca de la característica PowerVM, consulte el libro rojo de movilidad de particiones activas de IBM PowerVM.
+
+====
+El software Host Utilities se suministra como un único archivo comprimido. Puede descargar el archivo comprimido y la documentación de en el link:https://mysupport.netapp.com/site/["Sitio de soporte de NetApp"^]. La configuración de host SAN de ONTAP ofrece instrucciones para instalar y configurar las utilidades de host para que funcionen con su entorno y protocolo.
+
+
+NOTE: Debe habilitar el seguimiento dinámico para todos los iniciadores de FC y FCoE para implementaciones de Clustered Data ONTAP.
+
+
+
+== Mejoras en AIX Host Utilities 6.1
+
+* AIX Host Utilities 6.1 añadió compatibilidad con el problema de fallo de memoria que se produjo en versiones anteriores del sistema operativo host AIX. Con AIX Host Utilities 6.1, sólo ha cambiado el binario sanlun. MPIO y ODM relacionados no se han modificado.
+
+
+
+
+== Problema solucionado
+
+[cols="3"]
+|===
+| BugID | Título | Descripción 
+
+
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/872113["872113"^] | `sanlun lun show –p` El comando puede provocar un error en la memoria de algunas versiones del sistema operativo del host AIX | Se notifican instancias intermitentes de coredump de AIX durante la ejecución del `sanlun lun show -p` comando. El de Sanlun `lun show -p` La opción proporciona información multivía para todas las LUN detectadas en un host. Ordena esta información para presentar el dispositivo SCSI que se obtiene de qué LUN, el estado de la ruta (principal o secundario) y otros detalles. Sin embargo, en algunos hosts AIX que ejecutan `sanlun lun show -p` el comando puede provocar un error en la memoria. Este problema se observa solo cuando se ejecuta el comando sanlun con el `-p` opción. 
+|===
+
+
+== Problemas y limitaciones conocidos
+
+Para usar las utilidades de host de manera eficiente, debe tener en cuenta que el rendimiento puede verse afectado por problemas conocidos sobre una función particular, como una red, o por funciones que las utilidades de host no son compatibles, como una versión específica de un sistema operativo.
+
+[cols="3"]
+|===
+| ID. De error | Título | Descripción 
+
+
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1069147["1069147"^] | HU Sanlun de AIX informa de una velocidad de HBA incorrecta | Se informan instancias de un sanlun que muestran velocidades de HBA incorrectas al ejecutar el `sanlun fcp show adapter –v` comando. La `sanlun fcp show adapter –v` Comando muestra información de las tarjetas HBA, como las velocidades admitidas y negociadas de los adaptadores. Esto parece ser sólo una cuestión de presentación de informes. Para identificar la velocidad real, utilice `fcstat fcsx` comando. 
+|===
+link:https://mysupport.netapp.com/site/["NetApp Bugs Online"] proporciona información completa sobre la mayoría de los problemas conocidos, incluidas las soluciones alternativas sugeridas cuando sea posible. Algunas combinaciones de palabras clave y tipos de errores que puede que desee utilizar son los siguientes:
+
+* FCP General: Muestra los errores de FC y HBA que no están asociados con un host específico.
+* FCP: AIX
+
+
+
+
+== Acerca de la documentación de configuración de host SAN
+
+Se incluye la documentación para utilidades del host SAN en la link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Configuración de host SAN ONTAP"] documentación. La documentación de configuración DE HOSTS SAN de ONTAP es acumulativa, para todas las versiones de HOSTS SAN actuales. En contexto, se indican las diferencias funcionales entre las versiones.
+
+
+
+== Dónde encontrar documentación de producto y otra información
+
+Puede acceder a la documentación de todos los productos de NetApp y buscar otros recursos de información de productos, como informes técnicos y whitepapers en la página de documentación de productos del sitio corporativo de NetApp.
+
+.Información relacionada
+*Configuración y administración del sistema de almacenamiento ONTAP*
+
+* La link:https://docs.netapp.com/us-en/ontap/setup-upgrade/index.html["Guía de configuración de software ONTAP"^] Para su versión de ONTAP
+* La link:https://docs.netapp.com/us-en/ontap/san-management/index.html["Guía de administración de San de ONTAP"^] Para su versión de ONTAP
+* La link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["Notas de la versión de ONTAP"^] Para su versión de ONTAP
+* link:https://imt.netapp.com/matrix/#welcome["Matriz de interoperabilidad de NetApp"^]
+* link:https://hwu.netapp.com/["Hardware Universe"^] (Anteriormente la Guía de configuración del sistema)
+* link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Topologías SAN Fibre Channel compatibles"^]
+* link:https://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61343["Configurar el host para utilidades de host"^]
+

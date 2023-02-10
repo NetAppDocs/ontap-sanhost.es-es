@@ -1,0 +1,35 @@
+= 
+:allow-uri-read: 
+
+
+. Instale link:link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71.html["Kit de utilidades de host de Windows 7.1"] Para configurar los parámetros de controlador que son comunes a FC y NVMe.
+. Abra las propiedades de MPIO.
+. En la pestaña *Discover Multi-paths*, agregue el identificador de dispositivo indicado para NVMe.
++
+MPIO detecta los dispositivos NVMe, que se ven bajo la gestión de discos.
+
+. Abra *Administración de discos* y vaya a *Propiedades de disco*.
+. En la ficha *MPIO*, haga clic en *Detalles*.
+. Establezca los siguientes valores de MSDSM:
++
+** PathVerifiedPeriod: *10*
+** PathVerifyEnabled: *Habilitar*
+** Número de retryCount: *6*
+** RetryInterval: *1*
+** PDORemovedPeriod: *130*
+
+
+. Seleccione la directiva MPIO *Round Robin with Subset*.
+. Cambie los valores del Registro:
++
+[listing]
+----
+HKLM\SYSTEM\CurrentControlSet\Services\mpio\Parameters\PathRecoveryInterval DWORD -> 30
+
+HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\ UseCustomPathRecoveryInterval  DWORD-> 1
+----
+. Reinicie el host.
++
+La configuración de NVMe ahora se completa en el host Windows.
+
+

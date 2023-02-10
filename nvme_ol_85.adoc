@@ -1,0 +1,22 @@
+---
+sidebar: sidebar 
+permalink: nvme_ol_85.html 
+keywords: nvme, linux, oracle, 
+summary:  
+---
+= Configuración de host de NVMe/FC para Oracle Linux 8.5 con ONTAP
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Se publicarán los detalles de configuración del host de NVMe/FC para Oracle 8.5 cuando la compatibilidad de Oracle con NVMe/FC está totalmente calificada para esta versión de sistema operativo host.
