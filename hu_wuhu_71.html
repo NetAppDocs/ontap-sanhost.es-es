@@ -1,0 +1,4077 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head class="at-element-marker">
+  <title>Utilidades unificadas de host de Windows 7.1</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Utilidades unificadas de host de Windows 7.1" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/es-es/ontap-sanhost/hu_wuhu_71.html" />
+	<meta property="og:description" content="Las utilidades unificadas de host de Windows incluyen un programa de instalación que establece el registro de Windows y los parámetros de HBA necesarios para..." />
+  <meta property="og:image" content="https://docs.netapp.com/es-es/ontap-sanhost/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Las utilidades unificadas de host de Windows incluyen un programa de instalación que establece el registro de Windows y los parámetros de HBA necesarios para...">
+  <meta name="keywords" content=" windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform"><!-- Icons -->
+  <link rel="icon" href="/es-es/ontap-sanhost/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/es-es/ontap-sanhost/css/netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/es-es/ontap-sanhost/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/es-es/ontap-sanhost/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/es-es/ontap-sanhost/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    function addAdobeLaunch(adobeId) {
+      var head = document.getElementsByTagName('head')[0];
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/"+adobeId+".min.js";
+      head.appendChild(adobe);
+    }
+
+    function addGoogleAnalytics(gtagId) {
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id="+gtagId;
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gtagId);
+    }
+
+    function addConsent(consentId) {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/"+consentId+"/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = consentId;
+      head.appendChild(onetrustScript);
+    }addConsent("72570c5c-fe30-465f-b0e0-b77f7fb4ae34");
+    addAdobeLaunch("launch-e9ff3acac59f");
+    addGoogleAnalytics("UA-81697994-3");function OptanonWrapper() { }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/es-es/ontap-sanhost/js/na-search.js'></script><script src='/es-es/ontap-sanhost/js/na-pagenav.js'></script><script src='/es-es/ontap-sanhost/js/na-utility.js'></script>
+  <script src='/es-es/ontap-sanhost/js/clouddocs.js'></script>
+  <script src='/es-es/ontap-sanhost/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/es-es/ontap-sanhost/js/toc.js'></script>
+  <script src='/es-es/ontap-sanhost/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+          $(".sidebar-nav-container").on("scroll", function() {
+            $.cookie("sidebarScroll", $(".sidebar-nav-container").scrollTop(), {
+              path    : "/es-es/ontap-sanhost"  
+            });
+          });
+          $(function() {
+            if ($.cookie("sidebarScroll")) {
+              $(".sidebar-nav-container").scrollTop($.cookie("sidebarScroll"));
+            }
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/es-es/ontap-sanhost/js/custom-dropdown.js'></script>
+  <script src='/es-es/ontap-sanhost/js/FileSaver.min.js'></script>
+  <script src='/es-es/ontap-sanhost/js/jszip-utils.min.js'></script>
+  <script src='/es-es/ontap-sanhost/js/jszip.min.js'></script>
+  <script src='/es-es/ontap-sanhost/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/ontap-sanhost/issues/new?body=Page%3A%20[Utilidades unificadas de host de Windows 7.1](https://docs.netapp.com/es-es/ontap-sanhost/hu_wuhu_71.html)&template=public-issue-template.md" class="page-nav-contribute-link" role="button"><img src="/es-es/ontap-sanhost/images/discuss-sm.svg" alt="" class="github-icon" />Solicitar cambios en el documento</a><a target="_blank" href="https://github.com/NetAppDocs/ontap-sanhost/blob/main/hu_wuhu_71.adoc" class="page-nav-contribute-link" role="button"><img src="/es-es/ontap-sanhost/images/edit-sm.svg" alt="" class="github-icon" />Editar en GitHub</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/es-es/ontap-sanhost/images/article-sm.svg" alt="" class="github-icon" />Guía del colaborador</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">EN ESTA PÁGINA</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">Producto y soluciones</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">Asistencia y capacitación</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">Comunidad</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">Blog</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">Historias de clientes</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/company/contact-us/" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/es-es/ontap-sanhost/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/es-es/ontap-sanhost/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/es-es/ontap-sanhost/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/es-es/ontap-sanhost/search.html"
+          data-type="widget" 
+          data-placeholder="Buscar documentación"
+          data-no-results-found="No se encontraron resultados para {query}"
+          data-did-you-mean="Buscar {suggestion}."
+          data-no-results-found-did-you-mean="No se encontraron resultados para {query}. ¿Quiso decir {suggestion}?"
+          data-results-found="{hitCount} resultados encontrados"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/es-es/ontap-sanhost/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+      <div class="custom-dropdown-select custom-dropdown-select-lang">
+      <span class="lang-name">Español</span>
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/es-es/ontap-sanhost/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+
+      <ul class="custom-dropdown-menu"><li>
+          <a href="https://docs.netapp.com/es-es/ontap-sanhost/hu_wuhu_71.html" target="_self"><span translate="no" class="notranslate">Español</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ja-jp/ontap-sanhost/hu_wuhu_71.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ko-kr/ontap-sanhost/hu_wuhu_71.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-cn/ontap-sanhost/hu_wuhu_71.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-tw/ontap-sanhost/hu_wuhu_71.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/de-de/ontap-sanhost/hu_wuhu_71.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/fr-fr/ontap-sanhost/hu_wuhu_71.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
+        </li></ul>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <button id="btn-sidebar-collapse" onclick="hideSidebar()"><img src="/es-es/ontap-sanhost/images/collapse.png" alt="Contraer panel de navegación"></button>
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>PDFs disponibles<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/es-es/ontap-sanhost/pdfs/fullsite-sidebar/Hosts_SAN_y_clientes_cloud.pdf" >
+          <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>PDF de este sitio de documentos</a>
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Utilidades_host_SAN.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Utilidades host SAN
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Utilidades_de_host_AIX.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Utilidades de host AIX
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Utilidades_host_de_HP_UX.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Utilidades host de HP-UX
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Utilidades_de_host_unificadas_de_Linux.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Utilidades de host unificadas de Linux
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Utilidades_de_host_Solaris.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Utilidades de host Solaris
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Utilidades_unificadas_de_host_de_Windows.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Utilidades unificadas de host de Windows
+          </a>
+          
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Configuraciones_host_de_NVMe_of.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Configuraciones host de NVMe-of
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/ESXi_con_NVMeoF.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            ESXi
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Oracle_Linux.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Oracle Linux
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Vol__NVMF.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            OL 8
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/OL_7.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            OL 7
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/RHEL_NVMeoF.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            RHEL
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/RHEL_9.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            RHEL 9
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/RHEL_8.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            RHEL 8
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/SLES_NVMeoF.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            SLES
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/SLES_15.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            SLES 15
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Windows.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Windows
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Configuraciones_de_host_iSCSI_y_FCP.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Configuraciones de host iSCSI y FCP
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/AIX_y_PowerVM_VIOS.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            AIX y PowerVM/VIOS
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/CentOS.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            CentOS
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/CentOS_8.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            CentOS 8
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/CentOS_7.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            CentOS 7
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/CentOS_6.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            CentOS 6
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Citrix.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Citrix
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/ESXi.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            ESXi
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/HP_UX.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            HP-UX
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/OL_FCP.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Oracle Linux
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/OL_8_FCP.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            OL 8
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/OL_7_FCP.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            OL 7
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/OL_6_FCP.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            OL 6
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/RHEL.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            RHEL
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/RHEL_9_FCP.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            RHEL 9
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/RHEL_8_FCP.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            RHEL 8
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/RHEL_7_FCP.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            RHEL 7
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/RHEL_6_FCP.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            RHEL 6
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Solaris.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Solaris
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/SLES.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            SLES
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/SLES_15_FCP.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            SLES 15
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/SLES_12.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            SLES 12
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/Veritas.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Veritas
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/es-es/ontap-sanhost/pdfs/sidebar/FCP_para_Windows.pdf" 
+            
+          >
+            <img src="/es-es/ontap-sanhost/images/pdf.png" alt="" width="16" height="16"/>
+            Windows
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/es-es/ontap-sanhost/images/pdf-zip.png" alt="" width="16" height="16"/>
+      <pre>Colección de documentos PDF separados<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="prod-nav" id="product-nav">
+  <a target="_self" class="prod-fam-nav" href="https://docs.netapp.com/es-es/ontap-family/"><img src="/es-es/ontap-sanhost/images/left_arrow.png" alt=""><pre>Documentación de productos All ONTAP</pre></a>
+</div><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuración de los hosts SAN y los clientes de cloud"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/index.html">
+        Configuración de los hosts SAN y los clientes de cloud
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Descripción general"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/overview.html">
+        Descripción general
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Utilidades host SAN"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Utilidades host SAN</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Utilidades de host AIX"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Utilidades de host AIX</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale AIX HU 6.1"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_aix_61.html">
+        Instale AIX HU 6.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notas de la versión"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_aix_61_rn.html">
+        Notas de la versión
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Utilidades host de HP-UX"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Utilidades host de HP-UX</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="INSTALE HP-UX HU 6.0"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_hpux_60.html">
+        INSTALE HP-UX HU 6.0
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notas de la versión"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_hpux_60_rn.html">
+        Notas de la versión
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Utilidades de host unificadas de Linux"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Utilidades de host unificadas de Linux</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale LUHU 7.1"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_luhu_71.html">
+        Instale LUHU 7.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notas de la versión"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_luhu_71_rn.html">
+        Notas de la versión
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Utilidades de host Solaris"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Utilidades de host Solaris</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale Solaris HU 6.2"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_solaris_62.html">
+        Instale Solaris HU 6.2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notas de la versión"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_solaris_62_rn.html">
+        Notas de la versión
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Utilidades unificadas de host de Windows"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Utilidades unificadas de host de Windows</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale WUHU 7.1"
+      data-li-level="3#" 
+      class="  active "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_wuhu_71.html">
+        Instale WUHU 7.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notas de la versión"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_wuhu_71_rn.html">
+        Notas de la versión
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuraciones host de NVMe-of"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Configuraciones host de NVMe-of</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="ESXi con NVMeoF"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> ESXi</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="VMware vSphere 7"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_esxi_7.html">
+        VMware vSphere 7
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Oracle Linux"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Oracle Linux</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Vol. NVMF"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> OL 8</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_ol_82.html">
+        8.2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_ol_81.html">
+        8.1
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="OL 7"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> OL 7</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.9"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_ol_79.html">
+        7.9
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.8"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_ol_78.html">
+        7.8
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.7"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_ol_77.html">
+        7.7
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="RHEL NVMeoF"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> RHEL</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="RHEL 9"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> RHEL 9</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="9.1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_rhel_91.html">
+        9.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="9.0"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_rhel_90.html">
+        9.0
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="RHEL 8"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> RHEL 8</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.7"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_rhel_87.html">
+        8.7
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.6"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_rhel_86.html">
+        8.6
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.5"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_rhel_85.html">
+        8.5
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_rhel_84.html">
+        8.4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_rhel_83.html">
+        8.3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_rhel_82.html">
+        8.2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_rhel_81.html">
+        8.1
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SLES NVMeoF"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> SLES</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SLES 15"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> SLES 15</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="15 SP4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_sles15_sp4.html">
+        15 SP4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="15 SP3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_sles15_sp3.html">
+        15 SP3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="15 SP2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_sles15_sp2.html">
+        15 SP2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="15 SP1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_sles15_sp1.html">
+        15 SP1
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Windows"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Windows</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="2022"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_windows_2022.html">
+        2022
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="2019"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_windows_2019.html">
+        2019
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="2016"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_windows_2016.html">
+        2016
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="2012 R2"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_windows_2012r2.html">
+        2012 R2
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuraciones de host iSCSI y FCP"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Configuraciones de host iSCSI y FCP</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AIX y PowerVM/VIOS"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> AIX y PowerVM/VIOS</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.2/3.1"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_aix_72.html">
+        7.2/3.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.1"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_aix_71.html">
+        7.1
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="CentOS"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> CentOS</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="CentOS 8"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> CentOS 8</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.5"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_85.html">
+        8.5
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_84.html">
+        8.4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_83.html">
+        8.3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_82.html">
+        8.2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_81.html">
+        8.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.0"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_80.html">
+        8.0
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="CentOS 7"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> CentOS 7</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.9"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_79.html">
+        7.9
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.8"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_78.html">
+        7.8
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.7"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_77.html">
+        7.7
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.6"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_76.html">
+        7.6
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.5"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_75.html">
+        7.5
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_74.html">
+        7.4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_73.html">
+        7.3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_72.html">
+        7.2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_71.html">
+        7.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.0"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_70.html">
+        7.0
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="CentOS 6"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> CentOS 6</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.10"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_610.html">
+        6.10
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.9"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_69.html">
+        6.9
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.8"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_68.html">
+        6.8
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.7"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_67.html">
+        6.7
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.6"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_66.html">
+        6.6
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.5"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_65.html">
+        6.5
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_centos_64.html">
+        6.4
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Citrix"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Citrix</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Hipervisor 8"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_citrix_8x.html">
+        Hipervisor 8
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="XenServer 7"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_citrix_7x.html">
+        XenServer 7
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="ESXi"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> ESXi</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="VMware vSphere 7"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_vsphere_7.html">
+        VMware vSphere 7
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="VMware vSphere 6.5 y 6.7"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_vsphere_6.html">
+        VMware vSphere 6.5 y 6.7
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="HP-UX"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> HP-UX</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="11i v3"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_hpux_11iv3.html">
+        11i v3
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="OL-FCP"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Oracle Linux</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="OL-8-FCP"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> OL 8</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.6"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_86.html">
+        8.6
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.5"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_85.html">
+        8.5
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_84.html">
+        8.4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_83.html">
+        8.3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_82.html">
+        8.2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_81.html">
+        8.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.0"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_80.html">
+        8.0
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="OL-7-FCP"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> OL 7</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.9"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_79.html">
+        7.9
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.8"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_78.html">
+        7.8
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.7"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_77.html">
+        7.7
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.6"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_76.html">
+        7.6
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.5"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_75.html">
+        7.5
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_74.html">
+        7.4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_73.html">
+        7.3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_72.html">
+        7.2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_71.html">
+        7.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.0"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_70.html">
+        7.0
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="OL-6-FCP"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> OL 6</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.10"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_610.html">
+        6.10
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.9"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_69.html">
+        6.9
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.8"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_68.html">
+        6.8
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.7"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_67.html">
+        6.7
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.6"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_66.html">
+        6.6
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.5"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_65.html">
+        6.5
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_ol_64.html">
+        6.4
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="RHEL"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> RHEL</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="RHEL-9-FCP"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> RHEL 9</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="9.1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_91.html">
+        9.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="9.0"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_90.html">
+        9.0
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="RHEL-8-FCP"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> RHEL 8</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.7"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_87.html">
+        8.7
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.6"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_86.html">
+        8.6
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.5"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_85.html">
+        8.5
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_84.html">
+        8.4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_83.html">
+        8.3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_82.html">
+        8.2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_81.html">
+        8.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.0"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_80.html">
+        8.0
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="RHEL-7-FCP"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> RHEL 7</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.9"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_79.html">
+        7.9
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.8"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_78.html">
+        7.8
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.7"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_77.html">
+        7.7
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.6"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_76.html">
+        7.6
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.5"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_75.html">
+        7.5
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_74.html">
+        7.4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_73.html">
+        7.3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_72.html">
+        7.2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_71.html">
+        7.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="7.0"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_70.html">
+        7.0
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="RHEL-6-FCP"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> RHEL 6</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.10"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_610.html">
+        6.10
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.9"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_69.html">
+        6.9
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.8"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_68.html">
+        6.8
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.7"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_67.html">
+        6.7
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.6"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_66.html">
+        6.6
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.5"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_65.html">
+        6.5
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="6.4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_rhel_64.html">
+        6.4
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Solaris"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Solaris</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="11.4"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_solaris_114.html">
+        11.4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="11.3"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_solaris_113.html">
+        11.3
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SLES"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> SLES</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SLES-15-FCP"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> SLES 15</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="15 SP4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_sles_15SP4.html">
+        15 SP4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="15 SP3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_sles_15SP3.html">
+        15 SP3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="15 SP2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_sles_15SP2.html">
+        15 SP2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="15 SP1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_sles_15SP1.html">
+        15 SP1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="15"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_sles_15.html">
+        15
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SLES 12"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> SLES 12</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="12 SP 5"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_sles_12SP5.html">
+        12 SP 5
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="12 SP 4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_sles_12SP4.html">
+        12 SP 4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="12 SP 3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_sles_12SP3.html">
+        12 SP 3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="12 SP 2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_sles_12SP2.html">
+        12 SP 2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="12 SP 1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_sles_12SP1.html">
+        12 SP 1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="12"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_sles_12.html">
+        12
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Veritas"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Veritas</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Infocale 8"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_veritas_8x.html">
+        Infocale 8
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Infocale 7"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_veritas_7x.html">
+        Infocale 7
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Base de almacenamiento 6"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_veritas_6x.html">
+        Base de almacenamiento 6
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="FCP para Windows"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Windows</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="2022"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_windows_2022.html">
+        2022
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="2019"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_windows_2019.html">
+        2019
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="2016"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_windows_2016.html">
+        2016
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="2012 R2"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_windows_2012r2.html">
+        2012 R2
+      </a></li></ul></li></ul></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+<script>$("#mysidebar li.active").parents('ul').css("display","block");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <div class="ie-utility">
+  <button id="btn-sidebar-expand" onclick="showSidebar()"><img src="/es-es/ontap-sanhost/images/expand.png" alt="Expandir panel de navegación"></button>
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com/es-es/ontap-family/">ONTAP</a>
+        </li>
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/es-es/ontap-sanhost/">SAN&nbsp;hosts&nbsp;and&nbsp;cloud&nbsp;clients</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/es-es/ontap-sanhost/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> Se proporciona el idioma español mediante traducción automática para su comodidad. En caso de alguna inconsistencia, el inglés precede al español. </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">Utilidades unificadas de host de Windows 7.1</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2023-02-20 18:51:24 +0000">02/20/2023</time>
+    
+  
+
+<span>Colaboradores
+</span>
+
+
+</p>
+
+<div id="toc" class="toc">
+<div id="toctitle">Tabla de Contenido</div>
+<ul class="sectlevel1">
+<li><a href="#qué-es-windows-host-utilities">Qué es Windows Host Utilities</a></li>
+<li><a href="#configuraciones-compatibles-con-host-utilities">Configuraciones compatibles con Host Utilities</a></li>
+<li><a href="#verificar-la-configuración-del-host-y-del-sistema-de-almacenamiento">Verificar la configuración del host y del sistema de almacenamiento</a></li>
+<li><a href="#configurar-switches-y-hba-de-fc">Configurar switches y HBA de FC</a></li>
+<li><a href="#instale-las-utilidades-de-host">Instale las utilidades de host</a></li>
+<li><a href="#actualice-las-utilidades-de-host">Actualice las utilidades de host</a></li>
+<li><a href="#reparar-y-quitar-las-utilidades-de-host-de-windows">Reparar y quitar las utilidades de host de Windows</a></li>
+<li><a href="#información-general-de-la-configuración-que-utilizan-las-utilidades-de-host">Información general de la configuración que utilizan las utilidades de host</a></li>
+<li><a href="#valores-del-registro-definidos-por-windows-unified-host-utilities">Valores del Registro definidos por Windows Unified Host Utilities</a></li>
+<li><a href="#valores-de-fc-hba-establecidos-por-windows-host-utilities">Valores de FC HBA establecidos por Windows Host Utilities</a></li>
+<li><a href="#resolución-de-problemas">Resolución de problemas</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="qué-es-windows-host-utilities">Qué es Windows Host Utilities</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Windows Unified Host Utilities incluye un programa de instalación que establece los parámetros necesarios para el registro y el adaptador de bus de host (HBA) de Windows de modo que el host de Windows gestione correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP y E-Series de NetApp.</p>
+</div>
+<div class="paragraph">
+<p>Al instalar el software de Host Utilities, el instalador establece los parámetros necesarios del registro de Windows y del adaptador de bus de host (HBA).</p>
+</div>
+<div class="paragraph">
+<p>Los siguientes programas y archivos se instalan en el equipo host de Windows. El directorio predeterminado es <code>C:\Program Files\NetApp\Windows Host Utilities</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Programa</th>
+<th class="tableblock halign-left valign-top">Específico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>emulexhba.reg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Programa de solución de problemas; ejecute este programa solo si el personal de soporte técnico le indica hacerlo.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\NetAppQCLI\fcconfig.exe</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Utilizado por el programa de instalación para ajustar los parámetros del HBA.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\NetAppQCLI\fcconfig.ini</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Utilizado por el programa de instalación para ajustar los parámetros del HBA.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\NetAppQCLI*.*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lo utiliza el programa de instalación para establecer los parámetros del HBA Fibre Channel de QLogic.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>san_version.exe</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Muestra la versión de los HBA de Host Utilities y Fibre Channel.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuraciones-compatibles-con-host-utilities">Configuraciones compatibles con Host Utilities</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Las utilidades del host admiten distintas configuraciones de host de Windows, protocolos y opciones de múltiples rutas. Para obtener más información, consulte <a href="https://mysupport.netapp.com/matrix/" target="_blank" rel="noopener">"Herramienta de matriz de interoperabilidad de NetApp"</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="verificar-la-configuración-del-host-y-del-sistema-de-almacenamiento">Verificar la configuración del host y del sistema de almacenamiento</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Antes de instalar las utilidades de host, debe comprobar que la versión de utilidades de host admite la configuración del sistema de almacenamiento y host para que el software se instale correctamente.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Compruebe la configuración compatible en la <a href="http://mysupport.netapp.com/matrix" target="_blank" rel="noopener">"Herramienta de matriz de interoperabilidad de NetApp"</a>.</p>
+</li>
+<li>
+<p>Compruebe las revisiones necesarias para el host correspondiente del <a href="https://docs.netapp.com/us-en/ontap-sanhost/index.html">"Documentación para Windows del host SAN"</a>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-sanhost/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+<a href="https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html">"Uso de Windows Server 2022 con ONTAP"</a> proporciona instrucciones sobre <a href="https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html#installing-windows-hotfixes">"Instalación de revisiones de Windows"</a> Para Windows Server 2022. Consulte los documentos de Windows de la categoría configuraciones de host para encontrar la información de revisión correspondiente para versiones anteriores de Windows Server.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Añada la licencia iSCSI o FCP e inicie el servicio de destino.</p>
+<div class="paragraph">
+<p>Los protocolos Fibre Channel e iSCSI no requieren licencias en los sistemas de almacenamiento E-Series mediante el Administrador de almacenamiento de SANtricity.</p>
+</div>
+</li>
+<li>
+<p>Compruebe el cableado</p>
+<div class="paragraph">
+<p>Consulte <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html?cp=14_7" target="_blank" rel="noopener">"Guía de configuración de SAN"</a> Para su versión de ONTAP o. <a href="https://mysupport.netapp.com/ecm/ecm_get_file/ECMLP2773533" target="_blank" rel="noopener">"Guía de cableado de hardware E-Series"</a> para obtener información detallada sobre el cableado y la configuración.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configurar-switches-y-hba-de-fc">Configurar switches y HBA de FC</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Instalar y configurar uno o varios adaptadores de bus de host (HBA) Fibre Channel compatibles para las conexiones Fibre Channel al sistema de almacenamiento.</p>
+</div>
+<div class="paragraph">
+<p>El instalador de Windows Host Utilities establece los ajustes de HBA de Fibre Channel necesarios.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-sanhost/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+No cambie manualmente la configuración de HBA.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Instalar uno o varios adaptadores de bus de host (HBA) Fibre Channel admitidos según las instrucciones del proveedor de HBA.</p>
+</li>
+<li>
+<p>Obtenga los controladores HBA admitidos y las utilidades de administración e instálelos según las instrucciones proporcionadas por el proveedor de HBA.</p>
+</li>
+<li>
+<p>Conecte los HBA a los switches de Fibre Channel o directamente al sistema de almacenamiento.</p>
+</li>
+<li>
+<p>Cree zonas en el switch Fibre Channel de acuerdo con la documentación del switch Fibre Channel.</p>
+</li>
+<li>
+<p>Para ONTAP, dividir el switch de acuerdo con WWPN. Asegúrese de utilizar el WWPN de las LIF y no de los puertos físicos en las controladoras de almacenamiento. Para obtener más información, consulte <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html?cp=14_7" target="_blank" rel="noopener">"Guía de configuración de SAN"</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="instale-las-utilidades-de-host">Instale las utilidades de host</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>El programa de instalación instala el paquete de utilidades de host y establece el registro de Windows y la configuración de HBA.</p>
+</div>
+<div class="paragraph">
+<p>Debe especificar si desea incluir la compatibilidad con multivía al instalar el paquete de software de Windows Unified Host Utilities. El instalador le solicita la siguiente opción. También puede ejecutar una instalación silenciosa (desatendida) desde el símbolo del sistema de Windows.</p>
+</div>
+<div class="ulist">
+<div class="title">Compatibilidad con accesos múltiples</div>
+<ul>
+<li>
+<p>Elija MPIO si tiene más de una ruta desde el host de Windows o la máquina virtual hasta el sistema de almacenamiento.</p>
+</li>
+<li>
+<p>Elija no MPIO solo si utiliza una única ruta para el sistema de almacenamiento.</p>
+</li>
+<li>
+<p>La selección MPIO no está disponible para los sistemas Windows XP y Windows Vista; las operaciones de I/o multivía no son compatibles con estos sistemas operativos invitados.</p>
+</li>
+<li>
+<p>Para los huéspedes de Hyper-V, los discos sin formato (de paso) no aparecen en el sistema operativo invitado si elige compatibilidad con accesos múltiples. Puede usar discos sin configurar o MPIO, pero no es posible usar ambos en el sistema operativo invitado.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="instale-las-utilidades-de-host-de-forma-interactiva">Instale las utilidades de host de forma interactiva</h3>
+<div class="paragraph">
+<p>Para instalar el paquete de software de Host Utilities de forma interactiva, debe ejecutar el programa de instalación de Host Utilities y seguir las instrucciones.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Descargue el archivo ejecutable desde <a href="https://mysupport.netapp.com/site/" target="_blank" rel="noopener">"Sitio de soporte de NetApp"</a>.</p>
+</li>
+<li>
+<p>Cambie al directorio desde el que descargó el archivo ejecutable.</p>
+</li>
+<li>
+<p>Ejecute el <code>netapp_windows_host_utilities_7.1_x64</code> archivar y seguir las instrucciones en pantalla.</p>
+</li>
+<li>
+<p>Reinicie el host de Windows cuando se le solicite.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="instale-las-utilidades-del-host-desde-una-línea-de-comandos">Instale las utilidades del host desde una línea de comandos</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Puede realizar una instalación silenciosa (desatendida) de las utilidades de host introduciendo los comandos apropiados en el símbolo del sistema de Windows.</p>
+</li>
+<li>
+<p>El paquete de instalación de utilidades de host debe estar en una ruta a la que pueda acceder el host de Windows.</p>
+</li>
+<li>
+<p>Siga las instrucciones para instalar las utilidades de host de forma interactiva para obtener el paquete de instalación.</p>
+</li>
+<li>
+<p>El sistema se reinicia automáticamente cuando finaliza la instalación.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Introduzca el siguiente comando en un símbolo del sistema de Windows:</p>
+<div class="paragraph">
+<p><code>msiexec /i installer.msi /quiet MULTIPATHING= {0 | 1} [INSTALLDIR=inst_path]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>donde instalador es el nombre de <code>.msi</code> Archivo para su arquitectura de CPU;</p>
+</li>
+<li>
+<p>MULTIPATHING especifica si está instalado la compatibilidad con MPIO. Los valores permitidos son 0 para no, 1 para yes</p>
+</li>
+<li>
+<p><code>inst_path</code> Es la ruta en la que se instalan los archivos de utilidades de host. La ruta predeterminada es <code>C:\Program Files\NetApp\Windows Host Utilities\</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-sanhost/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Para ver las opciones estándar de Microsoft Installer (MSI) para el registro y otras funciones, introduzca <code>msiexec /help</code> En un símbolo del sistema de Windows. Por ejemplo:<br>
+<code>msiexec /i install.msi /quiet /l*v &lt;install.log&gt; LOGVERBOSE=1</code>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="actualice-las-utilidades-de-host">Actualice las utilidades de host</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>El nuevo paquete de instalación de utilidades de host debe estar en una ruta a la que pueda acceder el host de Windows. Siga las instrucciones para instalar las utilidades de host de forma interactiva para obtener el paquete de instalación.</p>
+</div>
+<div class="sect2">
+<h3 id="actualice-las-utilidades-de-host-de-forma-interactiva">Actualice las utilidades de host de forma interactiva</h3>
+<div class="paragraph">
+<p>Para instalar el paquete de software de Host Utilities de forma interactiva, debe ejecutar el programa de instalación de Host Utilities y seguir las instrucciones.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Cambie al directorio desde el que descargó el archivo ejecutable.</p>
+</li>
+<li>
+<p>Ejecute el archivo ejecutable y siga las instrucciones que aparecen en pantalla.</p>
+</li>
+<li>
+<p>Reinicie el host de Windows cuando se le solicite.</p>
+</li>
+<li>
+<p>Compruebe la versión de la utilidad de host después del reinicio:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Abra <strong>Panel de control</strong>.</p>
+</li>
+<li>
+<p>Vaya a <strong>Programa y funciones</strong> y compruebe la versión de la utilidad del sistema principal.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="actualice-las-utilidades-del-host-desde-la-línea-de-comandos">Actualice las utilidades del host desde la línea de comandos</h3>
+<div class="paragraph">
+<p>Puede realizar una instalación silenciosa (desatendida) de las nuevas utilidades de host introduciendo los comandos apropiados en el símbolo del sistema de Windows. El paquete de instalación de nuevas utilidades de host debe estar en una ruta a la que pueda acceder el host de Windows. Siga las instrucciones para instalar las utilidades de host de forma interactiva para obtener el paquete de instalación.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Introduzca el siguiente comando en un símbolo del sistema de Windows:</p>
+<div class="paragraph">
+<p><code>msiexec /i installer.msi /quiet MULTIPATHING= {0 | 1} [INSTALLDIR=inst_path]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>donde <code>installer</code> es el nombre de <code>.msi</code> Archivo para su arquitectura de CPU.</p>
+</li>
+<li>
+<p>MULTIPATHING especifica si está instalado la compatibilidad con MPIO. Los valores permitidos son 0 para no, 1 para yes</p>
+</li>
+<li>
+<p><code>inst_path</code> Es la ruta en la que se instalan los archivos de utilidades de host. La ruta predeterminada es <code>C:\Program Files\NetApp\Windows Host Utilities\</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-sanhost/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Para ver las opciones estándar de Microsoft Installer (MSI) para el registro y otras funciones, introduzca <code>msiexec /help</code> En un símbolo del sistema de Windows. Por ejemplo:<br>
+<code>msiexec /i install.msi /quiet /l*v &lt;install.log&gt; LOGVERBOSE=1</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El sistema se reinicia automáticamente cuando finaliza la instalación.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="reparar-y-quitar-las-utilidades-de-host-de-windows">Reparar y quitar las utilidades de host de Windows</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Puede utilizar la opción Repair del programa de instalación de Host Utilities para actualizar la configuración del Registro de Windows y HBA. Puede quitar completamente las utilidades de host, de forma interactiva o desde la línea de comandos de Windows.</p>
+</div>
+<div class="sect2">
+<h3 id="repare-o-quite-windows-host-utilities-de-forma-interactiva">Repare o quite Windows Host Utilities de forma interactiva</h3>
+<div class="paragraph">
+<p>La opción Repair actualiza el registro de Windows y los HBA Fibre Channel con la configuración necesaria. También puede quitar completamente las utilidades de host.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Abra Windows <strong>programas y características</strong> (Windows Server 2012 R2, Windows Server 2016, Windows Server 2019).</p>
+</li>
+<li>
+<p>Seleccione <strong>NetApp Windows Unified Host Utilities</strong>.</p>
+</li>
+<li>
+<p>Haga clic en <strong>Cambiar</strong>.</p>
+</li>
+<li>
+<p>Haga clic en <strong>reparar</strong> o en <strong>Quitar</strong>, según sea necesario.</p>
+</li>
+<li>
+<p>Siga las instrucciones que aparecen en pantalla.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="repare-o-quite-windows-host-utilities-de-la-línea-de-comandos">Repare o quite Windows Host Utilities de la línea de comandos</h3>
+<div class="paragraph">
+<p>La opción Repair actualiza el registro de Windows y los HBA Fibre Channel con la configuración necesaria. También puede quitar todas las utilidades de host de una línea de comandos de Windows.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Introduzca el siguiente comando en la línea de comandos de Windows para reparar Windows Host Utilities:</p>
+<div class="paragraph">
+<p><code>msiexec {/uninstall | /f]installer.msi [/quiet]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>/uninstall</code> Elimina completamente las utilidades de host.</p>
+</li>
+<li>
+<p><code>/f</code> repara la instalación.</p>
+</li>
+<li>
+<p><code>installer.msi</code> Es el nombre del programa de instalación de Windows Host Utilities del sistema.</p>
+</li>
+<li>
+<p><code>/quiet</code> suprime todos los comentarios y reinicia el sistema automáticamente sin preguntar cuando finaliza el comando.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="información-general-de-la-configuración-que-utilizan-las-utilidades-de-host">Información general de la configuración que utilizan las utilidades de host</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Las utilidades de host deben contar con cierta configuración de registro y parámetros para garantizar que el host de Windows gestione correctamente el comportamiento del sistema de almacenamiento.</p>
+</div>
+<div class="paragraph">
+<p>Windows Host Utilities establece los parámetros que afectan a la forma en que el host de Windows responde a una demora o a una pérdida de datos. Se han seleccionado valores particulares para garantizar que el host Windows gestiona correctamente eventos como la conmutación por error de una controladora del sistema de almacenamiento a su otra controladora asociada.</p>
+</div>
+<div class="paragraph">
+<p>No todos los valores se aplican al DSM para el Administrador de almacenamiento de SANtricity; sin embargo, la superposición de valores establecidos por las utilidades de host y los establecidos por DSM para el Administrador de almacenamiento de SANtricity no provoca conflictos. Los adaptadores de bus de host (HBA) Fibre Channel e iSCSI también tienen parámetros que se deben configurar para garantizar el mejor rendimiento y para tratar correctamente los eventos del sistema de almacenamiento.</p>
+</div>
+<div class="paragraph">
+<p>El programa de instalación que se suministra con Windows Unified Host Utilities establece los parámetros de HBA de Windows y Fibre Channel a los valores admitidos.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-sanhost/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Debe configurar manualmente los parámetros de iSCSI HBA.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El instalador establece valores diferentes según si especifica la compatibilidad con I/o multivía (MPIO) al ejecutar el programa de instalación,</p>
+</div>
+<div class="paragraph">
+<p>No debe cambiar estos valores a menos que el soporte técnico le indique que lo haga.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="valores-del-registro-definidos-por-windows-unified-host-utilities">Valores del Registro definidos por Windows Unified Host Utilities</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>El instalador de Windows Unified Host Utilities establece automáticamente los valores del Registro que se basan en las opciones que se toman durante la instalación. Debe conocer estos valores del Registro, la versión del sistema operativo. El instalador de Windows Unified Host Utilities establece los siguientes valores. Todos los valores son decimales a menos que se indique lo contrario. HKLM es la abreviatura de HKEY_LOCAL_MACHINE.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col>
+<col style="width: 10%;">
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Clave de registro</th>
+<th class="tableblock halign-left valign-top">Valor</th>
+<th class="tableblock halign-left valign-top">Cuando se haya configurado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters \DsmMaximumRetryTimeDuringStateTransitition</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">120</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters \DsmMaximumStateTransitionTime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">120</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\DsmSupportedDeviceList</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"NETAPP"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"LUN DE NETAPP", "LUN C-MODE DE NETAPP"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Control\Class {iSCSI_driver_GUID}\ Instance_ID\Parameters \IPSecConfigTimeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Siempre, excepto cuando se detecte DSM Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Control \Class{iSCSI_driver_GUID} \ Instance_ID\Parameters\LinkDownTime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Siempre</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services\ClusDisk \Parameters\ManageDisksOnSystemBuses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Siempre, excepto cuando se detecte DSM Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Control \Class{iSCSI_driver_GUID} \ Instance_ID\Parameters\MaxRequestHoldTime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">120</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando no se selecciona ninguna compatibilidad con MPIO</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Siempre, excepto cuando se detecte DSM Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet \Control\MPDEV\MPIOSupportedDeviceList</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"LUN DE NETAPP"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"LUN DE NETAPP", "LUN C-MODE DE NETAPP"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica que MPIO es compatible, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\PathRecoveryInterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">40</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando el servidor es únicamente Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\PathVerifyEnabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\PathVerifyEnabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters\PathVerifyEnabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services \msiscdsm\Parameters\PathVerifyEnabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2003, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services\vnetapp \Parameters\PathVerifyEnabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\PDORemovePeriod</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">130</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\PDORemovePeriod</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">130</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services\msiscdsm \Parameters\PDORemovePeriod</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">130</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2003, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services \vnetapp \Parameters\PDORemovePeriod</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">130</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services \mpio\Parameters\RetryCount</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\RetryCount</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services \msiscdsm\Parameters\RetryCount</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2003, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services \vnetapp\Parameters\RetryCount</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services \mpio\Parameters\RetryInterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters\RetryInterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services \vnetapp\Parameters\RetryInterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet \Services\Disk\TimeOutValue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">120</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando no se selecciona ninguna compatibilidad con MPIO, excepto si se detecta el DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\UseCustomPathRecoveryInterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuando el servidor es únicamente Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<div class="title">Información relacionada</div>
+<p>Consulte la <a href="https://docs.microsoft.com/en-us/troubleshoot/windows-server/performance/windows-registry-advanced-users" target="_blank" rel="noopener">"Documentos de Microsoft"</a> para obtener los detalles de los parámetros del registro.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="valores-de-fc-hba-establecidos-por-windows-host-utilities">Valores de FC HBA establecidos por Windows Host Utilities</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En sistemas que utilizan Fibre Channel, el instalador de utilidades de host establece los valores de tiempo de espera necesarios para los HBA FC de Emulex y QLogic. Para los HBA Fibre Channel de Emulex, el instalador establece los siguientes parámetros cuando se selecciona MPIO:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Tipo de propiedad</th>
+<th class="tableblock halign-left valign-top">Valor de propiedad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LinkTimeOut</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NodeTimeOut</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Para los HBA Fibre Channel de Emulex, el instalador establece los siguientes parámetros cuando no se selecciona MPIO:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Tipo de propiedad</th>
+<th class="tableblock halign-left valign-top">Valor de propiedad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LinkTimeOut</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NodeTimeOut</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">120</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Para los HBA Fibre Channel de QLogic, el instalador establece los siguientes parámetros cuando se selecciona MPIO:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Tipo de propiedad</th>
+<th class="tableblock halign-left valign-top">Valor de propiedad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LinkDownTimeOut</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PortDownRetryCount</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Para los HBA Fibre Channel de QLogic, el instalador establece los siguientes parámetros cuando no se selecciona MPIO:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Tipo de propiedad</th>
+<th class="tableblock halign-left valign-top">Valor de propiedad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LinkDownTimeOut</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PortDownRetryCount</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">120</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-sanhost/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Los nombres de los parámetros pueden variar ligeramente según el programa. Por ejemplo, en el programa QConverteConsole de QLogic, el parámetro se muestra como <code>Link Down Timeout</code>. Las utilidades del host <code>fcconfig.ini</code> file muestra este parámetro como cualquiera de los dos <code>LinkDownTimeOut</code> o. <code>MpioLinkDownTimeOut</code>, Dependiendo de si se especifica MPIO. Sin embargo, todos estos nombres hacen referencia al mismo parámetro HBA.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Información relacionada</div>
+<p>Consulte <a href="https://www.broadcom.com/support/download-search" target="_blank" rel="noopener">"Emulex"</a> o. <a href="https://driverdownloads.qlogic.com/QLogicDriverDownloads_UI/Netapp_search.aspx" target="_blank" rel="noopener">"QLogic"</a> sitio para obtener más información acerca de los parámetros de tiempo de espera.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="resolución-de-problemas">Resolución de problemas</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En esta sección se describen técnicas generales de solución de problemas para las utilidades de host de Windows. Asegúrese de consultar las notas de la versión más reciente para conocer problemas y soluciones conocidos.</p>
+</div>
+<div class="ulist">
+<div class="title">Diferentes áreas para identificar los posibles problemas de interoperabilidad</div>
+<ul>
+<li>
+<p>Para identificar los posibles problemas de interoperabilidad, debe confirmar que las utilidades de host admiten su combinación de software de sistema operativo del host, hardware de host, software ONTAP y hardware de sistema de almacenamiento.</p>
+</li>
+<li>
+<p>Debe comprobar la matriz de interoperabilidad.</p>
+</li>
+<li>
+<p>Debe verificar que dispone de la configuración de iSCSI correcta.</p>
+</li>
+<li>
+<p>Si los LUN de iSCSI no están disponibles después de un reinicio, debe verificar que el destino aparece como persistente en la pestaña persistent Targets de la interfaz gráfica de usuario del iniciador de iSCSI de Microsoft.</p>
+</li>
+<li>
+<p>Si las aplicaciones que utilizan las LUN muestran errores al iniciar, debe comprobar que las aplicaciones están configuradas para que dependan del servicio iSCSI.</p>
+</li>
+<li>
+<p>Para las rutas Fibre Channel a las controladoras de almacenamiento que ejecutan ONTAP, debe comprobar que los switches FC se dividen mediante los WWPN de los LIF objetivo, no los WWPN de los puertos físicos del nodo.</p>
+</li>
+<li>
+<p>Debe revisar el <a href="https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html">"Notas de la versión de Windows Host Utilities"</a> para comprobar si hay problemas conocidos. Las notas de la versión incluyen una lista de problemas y limitaciones conocidos.</p>
+</li>
+<li>
+<p>Debe revisar la información para la solución de problemas en el <a href="https://docs.netapp.com/ontap-9/index.jsp" target="_blank" rel="noopener">"Guía de administración de SAN"</a> Para su versión de ONTAP.</p>
+</li>
+<li>
+<p>Debe buscar <a href="https://mysupport.netapp.com/site/bugs-online/" target="_blank" rel="noopener">"Errores en línea"</a> para problemas recientemente descubiertos.</p>
+</li>
+<li>
+<p>En el campo Bug Types en Advanced Search, debe seleccionar ISCSI - Windows y, a continuación, hacer clic en Go. Repita la búsqueda para Bug Type FCP -Windows.</p>
+</li>
+<li>
+<p>Debe recopilar información sobre el sistema.</p>
+</li>
+<li>
+<p>Registre los mensajes de error que se muestran en el host o la consola del sistema de almacenamiento.</p>
+</li>
+<li>
+<p>Recoja los archivos de registro del host y del sistema de almacenamiento.</p>
+</li>
+<li>
+<p>Registre los síntomas del problema y todos los cambios realizados en el host o el sistema de almacenamiento justo antes de que se apareciera el problema.</p>
+</li>
+<li>
+<p>Si no puede resolver el problema, puede ponerse en contacto con el soporte técnico de NetApp.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Información relacionada</div>
+<p><a href="http://mysupport.netapp.com/matrix" target="_blank" rel="noopener">"Herramienta de matriz de interoperabilidad de NetApp"</a><br>
+<a href="https://mysupport.netapp.com/portal/documentation" target="_blank" rel="noopener">"Documentación de NetApp"</a><br>
+<a href="https://mysupport.netapp.com/NOW/cgi-bin/bol" target="_blank" rel="noopener">"NetApp Bugs Online"</a></p>
+</div>
+<div class="sect2">
+<h3 id="comprenda-los-cambios-de-las-utilidades-del-host-en-la-configuración-del-controlador-de-hba-de-fc">Comprenda los cambios de las utilidades del host en la configuración del controlador de HBA de FC</h3>
+<div class="paragraph">
+<p>Durante la instalación de los controladores HBA Emulex o QLogic necesarios en un sistema FC, se comprueban varios parámetros y, en algunos casos, se modifican.</p>
+</div>
+<div class="paragraph">
+<p>Si se detecta MS DSM para Windows MPIO, las utilidades de host establecen valores para los siguientes parámetros:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>LinkTimeOut: Define el período de tiempo en segundos que el puerto de host espera antes de reanudar las operaciones de I/o después de que un enlace físico está inactivo.</p>
+</li>
+<li>
+<p>NodeTimeOut: Define el tiempo en segundos antes de que el puerto de host reconozca que una conexión al dispositivo de destino está inactiva.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Al solucionar problemas de HBA, compruebe que estos valores tengan los valores correctos. Los valores correctos dependen de dos factores:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El proveedor de HBA</p>
+</li>
+<li>
+<p>Si utiliza software de accesos múltiples (MPIO)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Puede corregir la configuración de HBA ejecutando la opción Repair del instalador de utilidades de host de Windows.</p>
+</div>
+<div class="sect3">
+<h4 id="comprobar-la-configuración-del-controlador-de-hba-emulex-en-sistemas-fc">Comprobar la configuración del controlador de HBA Emulex en sistemas FC</h4>
+<div class="paragraph">
+<p>Si tiene un sistema Fibre Channel, debe comprobar los ajustes del controlador HBA Emulex. Estos ajustes deben existir para cada puerto en el HBA.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Abra el Administrador de OnCommand.</p>
+</li>
+<li>
+<p>Seleccione el HBA adecuado de la lista y haga clic en la ficha <strong>parámetros del controlador</strong>.</p>
+<div class="paragraph">
+<p>Aparecen los parámetros del conductor.</p>
+</div>
+</li>
+<li>
+<p>Si utiliza el software MPIO, asegúrese de tener las siguientes configuraciones del controlador:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>LinkTimeOut - 1</p>
+</li>
+<li>
+<p>NodeTimeOut - 10</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Si no utiliza el software MPIO, asegúrese de tener la siguiente configuración del controlador:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>LinkTimeOut - 30</p>
+</li>
+<li>
+<p>NodeTimeOut - 120</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="comprobar-la-configuración-del-controlador-hba-qlogic-en-sistemas-fc">Comprobar la configuración del controlador HBA QLogic en sistemas FC</h4>
+<div class="paragraph">
+<p>En sistemas FC, debe comprobar la configuración del controlador HBA QLogic. Estos ajustes deben existir para cada puerto en el HBA.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Abra QConverteConsole y, a continuación, haga clic en <strong>conectar</strong> en la barra de herramientas.</p>
+<div class="paragraph">
+<p>Se muestra el cuadro de diálogo conectarse al host.</p>
+</div>
+</li>
+<li>
+<p>Seleccione el host adecuado de la lista y, a continuación, haga clic en <strong>conectar</strong>.</p>
+<div class="paragraph">
+<p>Se muestra una lista de HBA en el panel FC HBA.</p>
+</div>
+</li>
+<li>
+<p>Seleccione el puerto HBA adecuado de la lista y, a continuación, haga clic en la ficha <strong>Configuración</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>Configuración avanzada del puerto HBA</strong> en la sección <strong>Seleccionar configuración</strong>.</p>
+</li>
+<li>
+<p>Si utiliza el software MPIO, asegúrese de tener las siguientes configuraciones del controlador:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Tiempo de espera de enlace abajo (linkdwnto) - 1</p>
+</li>
+<li>
+<p>Número de reintentos de bajada de puerto (portdwnrc) - 10</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Si no utiliza el software MPIO, asegúrese de tener la siguiente configuración del controlador:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Tiempo de espera de enlace abajo (linkdwnto) - 30</p>
+</li>
+<li>
+<p>Número de reintentos de bajada de puerto (portdwnrc) - 120</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/copyright/">© 2023 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">Términos y condiciones</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Política de privacidad</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Política de Cookies</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Configuración de cookies</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a target="_self" href="javascript:netapp_mailto()">Enviar comentarios sobre esta página</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/ontap-sanhost/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/ontap-sanhost/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/ontap-sanhost/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/ontap-sanhost/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/ontap-sanhost/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/ontap-sanhost/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/es-es/ontap-sanhost/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/es-es/ontap-sanhost/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/es-es/ontap-sanhost/js/prism.js'></script>
+      <script type="text/javascript" src='/es-es/ontap-sanhost/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/es-es/ontap-sanhost/js/www-ntap.js'></script>
+    <script src='/es-es/ontap-sanhost/js/tabbed-blocks.js'></script>
+    <script src='/es-es/ontap-sanhost/js/sidebar.js'></script>
+  </body></html>
