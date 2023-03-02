@@ -35,7 +35,7 @@ NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este d
 * Con Oracle Linux 8.6, `nvme-fc auto-connect` los scripts se incluyen en el nativo `nvme-cli` paquete. Puede confiar en estas secuencias de comandos de conexión automática nativas en lugar de instalar secuencias de comandos de conexión automática proporcionadas por el proveedor externo.
 * Con Oracle Linux 8.6, un nativo `udev` la regla se proporciona como parte de la `nvme-cli` Paquete que permite el equilibrio de carga por turnos para NVMe multivía. Por lo tanto, ya no es necesario crear manualmente esta regla.
 * Con Oracle Linux 8.6, tanto el tráfico NVMe como SCSI pueden ejecutarse en el mismo host coexistente. De hecho, se espera que sea la configuración de host instalada habitualmente. Por lo tanto, puede configurar dm-multipath como suele suceder en los LUN de SCSI, lo que provoca en dispositivos mpath mientras que el multivía de NVMe se puede utilizar para configurar dispositivos multivía de NVMe-of (por ejemplo, `/dev/nvmeXnY`) en el host.
-* Con Oracle Linux 8.6, el complemento de NetApp en el nativo `nvme-cli` El paquete puede mostrar detalles de ONTAP, así como espacios de nombres ONTAP.
+* Con Oracle Linux 8.6, el complemento de NetApp en el sistema nativo `nvme-cli` El paquete puede mostrar detalles de ONTAP, así como espacios de nombres ONTAP.
 
 
 
@@ -62,7 +62,7 @@ Consulte la link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilid
 # uname -r
 5.4.17-2136.307.3.1.el8uek.x86_64
 ----
-. Instale el `nvme-cli` paquete.
+. Instale el `nvme-cli` paquete:
 +
 [listing]
 ----
@@ -82,7 +82,7 @@ vs_ol_nvme  nvme_ss_ol_1    nqn.2014-08.org.nvmexpress:uuid:9ed5b327-b9fc-4cf5-9
 ----
 +
 
-NOTE: Si las cadenas hostnqn no coinciden, debe utilizar `vserver modify` Comando para actualizar la cadena hostnqn en el subsistema de cabina de ONTAP correspondiente para que coincida con la cadena hostnqn de `/etc/nvme/hostnqn` en el host.
+NOTE: Si la `hostnqn` las cadenas no coinciden, debe utilizar `vserver modify` comando para actualizar el `hostnqn` Cadena en el subsistema de matriz ONTAP correspondiente para que coincida con `hostnqn` cadena desde `/etc/nvme/hostnqn` en el host:
 
 . Reinicie el host.
 +
@@ -107,7 +107,7 @@ Reinicie el daemon multipathd ejecutando `systemctl restart multipathd` comando 
 == Configure el adaptador de FC de Broadcom para NVMe/FC
 
 .Pasos
-. Compruebe que está utilizando el adaptador compatible. Para obtener la lista más actual de adaptadores compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] .
+. Compruebe que está utilizando el adaptador compatible. Para obtener la lista más actual de adaptadores compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^]:
 +
 [listing]
 ----
@@ -118,7 +118,7 @@ LPe32002-M2
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 ----
-. Compruebe que está utilizando la Broadcom recomendada `lpfc` controlador de firmware y bandeja de entrada. Para obtener la lista más actual de las versiones de firmware y controladores de adaptador compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] .
+. Compruebe que está utilizando la Broadcom recomendada `lpfc` controlador de firmware y bandeja de entrada. Para obtener la lista más actual de las versiones de firmware y controladores de adaptador compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^]:
 +
 [listing]
 ----
@@ -129,14 +129,14 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 # cat /sys/module/lpfc/version
 0:12.8.0.11
 ----
-. Compruebe que `lpfc_enable_fc4_type` se establece en `3`.
+. Compruebe que `lpfc_enable_fc4_type` se establece en `3`:
 +
 [listing]
 ----
 # cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
 3
 ----
-. Compruebe que los puertos iniciador están en funcionamiento y que puede ver las LIF de destino.
+. Compruebe que los puertos iniciador están en funcionamiento y que puede ver las LIF de destino:
 +
 [listing]
 ----
@@ -201,7 +201,7 @@ options lpfc lpfc_sg_seg_cnt=256
 == Configure el adaptador FC Marvell/QLogic para NVMe/FC
 
 .Pasos
-. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles. El controlador ql2xxx de bandeja de entrada nativo incluido en el kernel OL 8.6 GA tiene las últimas correcciones previas esenciales para la compatibilidad con ONTAP.
+. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles. El controlador ql2xxx de bandeja de entrada nativa incluido en el kernel OL 8.6 GA tiene las últimas correcciones previas esenciales para la compatibilidad con ONTAP:
 +
 [listing]
 ----
@@ -231,7 +231,7 @@ A diferencia de NVMe/FC, NVMe/TCP no tiene una funcionalidad de conexión autom�
 Es necesario configurar el periodo de reintento para eventos de conmutación por error en al menos 30 minutos para evitar los tiempos de espera. Puede aumentar el período de reintento mediante el aumento del valor de `ctrl_loss_tmo` temporizador siguiendo el procedimiento siguiente:
 
 .Pasos
-. Compruebe si el puerto del iniciador puede recuperar datos de la página de registro de detección en las LIF NVMe/TCP admitidas.
+. Compruebe que el puerto del iniciador pueda recuperar los datos de la página de registro de detección en las LIF NVMe/TCP admitidas:
 +
 [listing]
 ----
@@ -294,7 +294,7 @@ sectype: none
 == Valide NVMe/FC
 
 .Pasos
-. Verificar la siguiente configuración de NVMe/FC en el host de Oracle Linux 8.6.
+. Verifique la siguiente configuración de NVMe/FC en el host de Oracle Linux 8.6:
 +
 [listing]
 ----
@@ -307,7 +307,7 @@ NetApp ONTAP Controller
 round-robin
 round-robin
 ----
-. Compruebe que los espacios de nombres se crean y se detectarán correctamente en el host.
+. Verifique que los espacios de nombres se hayan creado y detectado correctamente en el host:
 +
 [listing]
 ----
@@ -325,7 +325,7 @@ Namespace Usage    Format             FW             Rev
 2                 85.90 GB / 85.90 GB  24 KiB + 0 B  FFFFFFFF
 3                 85.90 GB / 85.90 GB  4 KiB + 0 B   FFFFFFFF
 ----
-. Compruebe que el estado de la controladora de cada ruta sea activo y que tenga el estado de ANA correcto.
+. Compruebe que el estado de la controladora de cada ruta sea activo y que tenga el estado de ANA correcto:
 +
 [listing]
 ----
@@ -337,7 +337,7 @@ nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.5f5f2c4aa73b11e9967e00a098df41bd:su
 +- nvme2 fc traddr=nn-0x203700a098dfdd91:pn-0x203a00a098dfdd91 host_traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live optimized
 +- nvme3 fc traddr=nn-0x203700a098dfdd91:pn-0x203d00a098dfdd91 host_traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live optimized
 ----
-. Compruebe que el plugin de NetApp muestra los valores correctos para cada dispositivo de espacio de nombres ONTAP.
+. Confirmar que el complemento de NetApp muestra los valores correctos para cada dispositivo de espacio de nombres ONTAP:
 +
 [listing]
 ----
