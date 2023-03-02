@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
   <head class="at-element-marker">
-  <title>Uso de Veritas Storage Foundation 6 para Linux con ONTAP de NetApp</title>
+  <title>Configuración de host de NVMe/FC para Oracle Linux 8.4 con ONTAP</title>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
   <meta http-equiv="language" content="en">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Uso de Veritas Storage Foundation 6 para Linux con ONTAP de NetApp" />
+  <meta property="og:title" content="Configuración de host de NVMe/FC para Oracle Linux 8.4 con ONTAP" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://docs.netapp.com/es-es/ontap-sanhost/hu_veritas_6x.html" />
-	<meta property="og:description" content="Proporciona orientación sobre los ajustes de configuración del host SAN de ONTAP para el lanzamiento de la serie Veritas Infoscale 6" />
+	<meta property="og:url" content="https://docs.netapp.com/es-es/ontap-sanhost/nvme_ol_84.html" />
+	<meta property="og:description" content="Configurar la configuración de host de VME/FC para Oracle Linux 8.4 con ONTAP, con ejemplos" />
   <meta property="og:image" content="https://docs.netapp.com/es-es/ontap-sanhost/images/logo-tophat-social.png" />
   <meta property="og:image:alt" content="NetApp Logo" />
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="encoding" content="utf-8">
   <meta http-equiv="nss-type" content="Product Documentation"/>
-  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Proporciona orientación sobre los ajustes de configuración del host SAN de ONTAP para el lanzamiento de la serie Veritas Infoscale 6">
-  <meta name="keywords" content=" host utilities, veritas, infoscale, 6.x, netapp, ontap, san, lun, multipathing, iscsi"><!-- Icons -->
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Configurar la configuración de host de VME/FC para Oracle Linux 8.4 con ONTAP, con ejemplos">
+  <meta name="keywords" content=" nvme, linux, oracle, 8.4"><!-- Icons -->
   <link rel="icon" href="/es-es/ontap-sanhost/images/favicon.ico" type="image/x-icon">
 
   <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
@@ -166,7 +166,7 @@
   
   <!-- Start Page Toolbar -->
   
-  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/ontap-sanhost/issues/new?body=Page%3A%20[Uso de Veritas Storage Foundation 6 para Linux con ONTAP de NetApp](https://docs.netapp.com/es-es/ontap-sanhost/hu_veritas_6x.html)&template=public-issue-template.md" class="page-nav-contribute-link" role="button"><img src="/es-es/ontap-sanhost/images/discuss-sm.svg" alt="" class="github-icon" />Solicitar cambios en el documento</a><a target="_blank" href="https://github.com/NetAppDocs/ontap-sanhost/blob/main/hu_veritas_6x.adoc" class="page-nav-contribute-link" role="button"><img src="/es-es/ontap-sanhost/images/edit-sm.svg" alt="" class="github-icon" />Editar en GitHub</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/es-es/ontap-sanhost/images/article-sm.svg" alt="" class="github-icon" />Guía del colaborador</a></div>
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/ontap-sanhost/issues/new?body=Page%3A%20[Configuración de host de NVMe/FC para Oracle Linux 8.4 con ONTAP](https://docs.netapp.com/es-es/ontap-sanhost/nvme_ol_84.html)&template=public-issue-template.md" class="page-nav-contribute-link" role="button"><img src="/es-es/ontap-sanhost/images/discuss-sm.svg" alt="" class="github-icon" />Solicitar cambios en el documento</a><a target="_blank" href="https://github.com/NetAppDocs/ontap-sanhost/blob/main/nvme_ol_84.adoc" class="page-nav-contribute-link" role="button"><img src="/es-es/ontap-sanhost/images/edit-sm.svg" alt="" class="github-icon" />Editar en GitHub</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/es-es/ontap-sanhost/images/article-sm.svg" alt="" class="github-icon" />Guía del colaborador</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">EN ESTA PÁGINA</div>
@@ -286,21 +286,21 @@
       </div>
 
       <ul class="custom-dropdown-menu"><li>
-          <a href="https://docs.netapp.com/es-es/ontap-sanhost/hu_veritas_6x.html" target="_self"><span translate="no" class="notranslate">Español</span></a>
+          <a href="https://docs.netapp.com/es-es/ontap-sanhost/nvme_ol_84.html" target="_self"><span translate="no" class="notranslate">Español</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/us-en/ontap-sanhost/hu_veritas_6x.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+          <a href="https://docs.netapp.com/us-en/ontap-sanhost/nvme_ol_84.html" target="_self"><span translate="no" class="notranslate">English</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/ja-jp/ontap-sanhost/hu_veritas_6x.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+          <a href="https://docs.netapp.com/ja-jp/ontap-sanhost/nvme_ol_84.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/ko-kr/ontap-sanhost/hu_veritas_6x.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+          <a href="https://docs.netapp.com/ko-kr/ontap-sanhost/nvme_ol_84.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/zh-cn/ontap-sanhost/hu_veritas_6x.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+          <a href="https://docs.netapp.com/zh-cn/ontap-sanhost/nvme_ol_84.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/zh-tw/ontap-sanhost/hu_veritas_6x.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+          <a href="https://docs.netapp.com/zh-tw/ontap-sanhost/nvme_ol_84.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/de-de/ontap-sanhost/hu_veritas_6x.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+          <a href="https://docs.netapp.com/de-de/ontap-sanhost/nvme_ol_84.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/fr-fr/ontap-sanhost/hu_veritas_6x.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
+          <a href="https://docs.netapp.com/fr-fr/ontap-sanhost/nvme_ol_84.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
         </li></ul>
     </div><!-- End Language Selector -->
 
@@ -569,6 +569,8 @@
 
 
 
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
 
 
 
@@ -1506,8 +1508,6 @@
 
 
 
-    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
-  
 
 
         </li>
@@ -1792,7 +1792,7 @@
       data-pdf-exists="true" 
       data-pdf-filename="8.4"
       data-li-level="4#" 
-      class=" "
+      class="  active "
     ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_ol_84.html">
         8.4
       </a></li><li 
@@ -2902,7 +2902,7 @@
       data-pdf-exists="true" 
       data-pdf-filename="Base de almacenamiento 6"
       data-li-level="3#" 
-      class="  active "
+      class=" "
     ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/hu_veritas_6x.html">
         Base de almacenamiento 6
       </a></li></ul></li><li 
@@ -3002,14 +3002,14 @@
     </div>
   </span>
 </div><div class="n-doc__component-detail-heading-wrap">
-  <h1 class="n-doc__component-detail-heading">Uso de Veritas Storage Foundation 6 para Linux con ONTAP de NetApp</h1>
+  <h1 class="n-doc__component-detail-heading">Configuración de host de NVMe/FC para Oracle Linux 8.4 con ONTAP</h1>
 </div>
 
 
 <p class="page-details">
   
     
-    <time datetime="2023-02-20 18:51:24 +0000">02/20/2023</time>
+    <time datetime="2023-03-02 12:50:47 +0000">03/02/2023</time>
     
   
 
@@ -3022,197 +3022,114 @@
 <div id="toc" class="toc">
 <div id="toctitle">Tabla de Contenido</div>
 <ul class="sectlevel1">
-<li><a href="#introducción">Introducción</a></li>
-<li><a href="#instalar-las-utilidades-unificadas-de-host-de-linux">Instalar las utilidades unificadas de host de Linux</a></li>
-<li><a href="#kit-de-herramientas-san">Kit de herramientas SAN</a></li>
-<li><a href="#arranque-san">Arranque San</a></li>
-<li><a href="#accesos-múltiples">Accesos múltiples</a></li>
-<li><a href="#coexistencia-de-múltiples-rutas">Coexistencia de múltiples rutas</a></li>
-<li><a href="#problemas-y-limitaciones-conocidos">Problemas y limitaciones conocidos</a></li>
+<li><a href="#compatibilidad">Compatibilidad</a></li>
+<li><a href="#funciones">Funciones</a></li>
+<li><a href="#limitaciones-conocidas">Limitaciones conocidas</a></li>
+<li><a href="#requisitos-de-configuración">Requisitos de configuración</a></li>
+<li><a href="#habilite-nvmefc">Habilite NVMe/FC</a></li>
+<li><a href="#configurar-el-adaptador-de-fc-de-broadcom-para-nvmefc">Configurar el adaptador de FC de Broadcom para NVMe/FC</a></li>
+<li><a href="#configure-el-adaptador-marvellqlogic-fc-para-nvmefc">Configure el adaptador Marvell/QLogic FC para NVMe/FC</a></li>
+<li><a href="#configure-nvmetcp">Configure NVMe/TCP</a></li>
+<li><a href="#valide-nvmefc">Valide NVMe/FC</a></li>
+<li><a href="#problemas-conocidos">Problemas conocidos</a></li>
+<li><a href="#resolución-de-problemas">Resolución de problemas</a></li>
 </ul>
 </div>
 <div class="sect1">
-<h2 id="introducción">Introducción</h2>
+<h2 id="compatibilidad">Compatibilidad</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Este documento proporciona directrices sobre los ajustes de configuración de host SAN de ONTAP para la versión de Veritas Storage Foundation 6 para plataformas Red Hat Enterprise Linux y Oracle Linux (basadas en RHCK) con protocolos FC, FCoE e iSCSI.</p>
+<p>NVMe over Fabrics o NVMe-of (incluidos NVMe/FC y NVMe/TCP) es compatible con Oracle Linux 8.4 con acceso asimétrico de espacio de nombres (ANA), lo cual se requiere para sobrevivir a las recuperaciones tras fallos de almacenamiento (SFO) en la cabina ONTAP. ANA es el equivalente de acceso asimétrico de unidad lógica (ALUA) en el entorno NVMe-of y, actualmente, se implementa con NVMe Multipath en el kernel. En este tema, se describe cómo habilitar NVMe-of con NVMe multivía en el kernel mediante ANA en Oracle Linux 8.4 con ONTAP como destino.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-sanhost/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Puede utilizar los ajustes de configuración que se proporcionan en este documento para configurar los clientes de cloud conectados a. <a href="https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html" target="_blank" rel="noopener">"Cloud Volumes ONTAP"</a> y.. <a href="https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html" target="_blank" rel="noopener">"Amazon FSX para ONTAP"</a>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="instalar-las-utilidades-unificadas-de-host-de-linux">Instalar las utilidades unificadas de host de Linux</h2>
+<h2 id="funciones">Funciones</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Oracle Linux 8.4 tiene NVMe multivía en el kernel habilitado de forma predeterminada para nombres NVMe.</p>
+</li>
+<li>
+<p>Con Oracle Linux 8.4, <code>nvme-fc auto-connect</code> los scripts se incluyen en el nativo <code>nvme-cli</code> paquete. Puede confiar en estas secuencias de comandos de conexión automática nativas en lugar de instalar secuencias de comandos de conexión automática proporcionadas por el proveedor externo.</p>
+</li>
+<li>
+<p>Con Oracle Linux 8.4, un nativo <code>udev</code> la regla se proporciona como parte de la <code>nvme-cli</code> Paquete que permite el equilibrio de carga por turnos para NVMe multivía. Por lo tanto, ya no es necesario crear manualmente esta regla.</p>
+</li>
+<li>
+<p>Con Oracle Linux 8.4, tanto el tráfico NVMe como SCSI pueden ejecutarse en el mismo host coexistente. De hecho, se espera que sea la configuración de host instalada habitualmente. Por lo tanto, puede configurar dm-multipath como suele suceder en los LUN de SCSI, lo que provoca en dispositivos mpath mientras que el multivía de NVMe se puede utilizar para configurar dispositivos multivía de NVMe-of (por ejemplo, <code>/dev/nvmeXnY</code>) en el host.</p>
+</li>
+<li>
+<p>Con Oracle Linux 8.4, el complemento de NetApp en el nativo <code>nvme-cli</code> El paquete puede mostrar detalles de ONTAP, así como espacios de nombres ONTAP.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="limitaciones-conocidas">Limitaciones conocidas</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>El paquete de software NetApp Linux Unified Host Utilities está disponible en la <a href="https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab" target="_blank" rel="noopener">"Sitio de soporte de NetApp"</a> en un archivo .rpm de 64 bits.</p>
+<p>Ninguno.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="requisitos-de-configuración">Requisitos de configuración</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Se recomienda encarecidamente instalar Unified Host Utilities de Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.</p>
+<p>Consulte la <a href="https://mysupport.netapp.com/matrix/" target="_blank" rel="noopener">"Matriz de interoperabilidad de NetApp (IMT)"</a> para obtener información exacta sobre las configuraciones compatibles.</p>
 </div>
-<div class="paragraph">
-<div class="title">Lo que necesitará</div>
-<p>Si tiene una versión de Linux Unified Host Utilities instalada actualmente, debe actualizarla o, debe eliminarla y seguir los pasos siguientes para instalar la versión más reciente.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="habilite-nvmefc">Habilite NVMe/FC</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <div class="title">Pasos</div>
 <ol class="arabic">
 <li>
-<p>Descargue el paquete de software Linux Unified Host Utilities de 64 bits de <a href="https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab" target="_blank" rel="noopener">"Sitio de soporte de NetApp"</a> al host.</p>
-</li>
-<li>
-<p>Use el siguiente comando para instalar el paquete de software:</p>
-<div class="paragraph">
-<p><code>rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64</code></p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="kit-de-herramientas-san">Kit de herramientas SAN</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>El kit de herramientas se instala automáticamente cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la <code>sanlun</code> Utilidad, que le ayuda a gestionar LUN y HBA. La <code>sanlun</code> Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.</p>
-</div>
-<div class="paragraph">
-<div class="title">Ejemplo</div>
-<p>En la siguiente ilustración, el <code>sanlun show</code> Command muestra información de LUN.</p>
-</div>
+<p>Instale Oracle Linux 8.4 GA en el servidor. Una vez finalizada la instalación, compruebe que está ejecutando el kernel de Oracle Linux 8.4 GA especificado. Consulte <a href="https://mysupport.netapp.com/matrix/" target="_blank" rel="noopener">"Matriz de interoperabilidad de NetApp"</a> para obtener la lista más actual de versiones compatibles.</p>
 <div class="listingblock">
 <div class="content">
-<pre># sanlun show -p -v SFRAC:/vol/fen1/lun1
+<pre># uname -r
+5.4.17-2102.206.1.el8uek.x86_64</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Instale el <code>nvme-cli</code> paquete.</p>
+<div class="listingblock">
+<div class="content">
+<pre># rpm -qa|grep nvme-cli
+nvme-cli-1.12-3.el8.x86_64</pre>
+</div>
+</div>
+</li>
+<li>
+<p>En el host Oracle Linux 8.4, compruebe la cadena hostnqn en <code>/etc/nvme/hostnqn</code> Y verifique que coincida con la cadena hostnqn para el subsistema correspondiente en la matriz ONTAP.</p>
+<div class="listingblock">
+<div class="content">
+<pre># cat /etc/nvme/hostnqn
+nqn.2014-08.org.nvmexpress:uuid:8b43c7c6-e98d-4cc7-a699-d66a69aa714e
+::&gt; vserver nvme subsystem host show -vserver vs_coexistance_2
 
-              ONTAP Path: SFRAC:/vol/fen1/lun1
-                     LUN: 0
-                LUN Size: 10g
-                 Product: cDOT
-                DMP NODE: sfrac0_47
-      Multipath Provider: Veritas
-----------  ------  ---------  ------  -------------------------------------
-Veritas     host    vserver    host:
-path        path    path     /dev/   chan:     vserver           major:
-state       state   type     node    id:lun    LIF                   minor
-----------  ------  ---------  ------  -------------------------------------
-enabled     up      active/non-optimized sdea   14:0:1:0   lif_10    128:32
-enabled (a) up      active/optimized     sdcj   14:0:0:0   lif_2      69:112
-enabled (a) up      active/optimized     sdb    13:0:0:0   lif_1       8:16
-enabled     up      active/non-optimized sdas   13:0:1:0   lif_9      66:192</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="arranque-san">Arranque San</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<div class="title">Lo que necesitará</div>
-<p>Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el <a href="https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&amp;solution=1&amp;isHWU&amp;src=IMT" target="_blank" rel="noopener">"Herramienta de matriz de interoperabilidad de NetApp"</a> Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.</p>
-</div>
-<div class="paragraph">
-<p>Consulte el portal de soporte de Veritas (matriz de productos, búsqueda de plataformas, matriz de HCL) para verificar la compatibilidad de la configuración DE arranque SAN y las advertencias conocidas.</p>
-</div>
-<div class="olist arabic">
-<div class="title">Pasos</div>
-<ol class="arabic">
-<li>
-<p>Asignar el LUN de arranque SAN al host.</p>
-</li>
-<li>
-<p>Verifique que haya varias rutas disponibles.</p>
-<div class="paragraph">
-<p>Recuerde que solo habrá varias rutas disponibles después de que el sistema operativo del host esté en funcionamiento en las rutas.</p>
-</div>
-</li>
-<li>
-<p>Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.</p>
-<div class="paragraph">
-<p>Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.</p>
-</div>
-</li>
-<li>
-<p>Reinicie el host para verificar que el arranque se haya realizado correctamente.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="accesos-múltiples">Accesos múltiples</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Debe verificar que la configuración cumple los requisitos del sistema. Para obtener más información, consulte <a href="https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&amp;solution=1&amp;isHWU&amp;src=IMT" target="_blank" rel="noopener">"Herramienta de matriz de interoperabilidad de NetApp"</a> Y la matriz Veritas HCL.</p>
-</div>
-<div class="paragraph">
-<div class="title">Ejemplo</div>
-<p>En este ejemplo, la <code>vxdmpadm</code> Se utiliza el comando para verificar que VxDMP Multipath tiene conectada la cabina de destino de ONTAP.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre># vxdmpadm listenclosure
-ENCLR_NAME   ENCLR_TYPE  ENCLR_SNO     STATUS      ARRAY_TYPE    LUN_COUNT    FIRMWARE
-=====================================================================================
-sfrac0       SFRAC       804Xw$PqE52h  CONNECTED   ALUA          43           9800</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre># vxdmpadm getdmpnode
-NAME       STATE    ENCLR-TYPE  PATHS  ENBL  DSBL ENCLR-NAME
-===================================================================
-sfrac0_47  ENABLED  SFRAC       4      4     0    sfrac0</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Con Veritas Dynamic Multipathing (VxDMP), debe realizar tareas de configuración para reclamar las LUN de NetApp como dispositivos Veritas Multipath. Debe tener instalados la Biblioteca de soporte de cabinas (ASL) y los paquetes de módulo de políticas de cabinas (APM) que Veritas proporciona para los sistemas de almacenamiento de NetApp. Aunque la instalación del software Veritas carga los paquetes ASL APM predeterminados junto con el producto, se recomienda utilizar los paquetes admitidos más recientes que se enumeran en el portal de asistencia de Veritas.</p>
-</div>
-<div class="paragraph">
-<div class="title">Ejemplo</div>
-<p>En el siguiente ejemplo se muestra la biblioteca de soporte de Veritas (ASL) y la configuración del módulo de políticas de matriz (APM).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre># vxdmpadm list dmpnode dmpnodename=sfrac0_47 | grep asl
-asl        = libvxnetapp.so</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre># vxddladm listversion |grep libvxnetapp.so
-libvxnetapp.so              vm-7.4-rev-1    6.1
-
-# rpm -qa |grep VRTSaslapm
-VRTSaslapm-x.x.x.0000-RHEL8.X86_64</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>vxddladm listsupport libname=libvxnetapp.so
-ATTR_NAME   ATTR_VALUE
-=========================================
-LIBNAME     libvxnetapp.so
-VID         NETAPP
-PID         All
-ARRAY_TYPE  ALUA, A/A</pre>
-</div>
-</div>
-<div class="sect2">
-<h3 id="configuración-no-asa">Configuración no ASA</h3>
-<div class="paragraph">
-<p>Para la configuración que no sea ASA debe haber dos grupos de rutas con prioridades diferentes. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.</p>
-</div>
-<div class="paragraph">
-<div class="title">Ejemplo</div>
-<p>En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre># vxdmpadm getsubpaths dmpnodename-sfrac0_47
-NAME  STATE[A]   PATH-TYPE[M]   CTLR-NAME   ENCLR-TYPE  ENCLR-NAME  ATTRS  PRIORITY
-===================================================================================
-sdas  ENABLED     Active/Non-Optimized c13   SFRAC       sfrac0     -      -
-sdb   ENABLED(A)  Active/Optimized     c14   SFRAC       sfrac0     -      -
-sdcj  ENABLED(A)  Active/Optimized     c14   SFRAC       sfrac0     -      -
-sdea  ENABLED     Active/Non-Optimized c14   SFRAC       sfrac0     -      -</pre>
+Vserver         Subsystem Host NQN
+------- --------------------------------------------------------------------
+vs_coexistance_2 nvme_1   nqn.2014-08.org.nvmexpress:uuid:753881b6-3163-46f9-8145-0d1653d99389</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -3222,154 +3139,604 @@ sdea  ENABLED     Active/Non-Optimized c14   SFRAC       sfrac0     -      -</pr
 <img src="/us-en/ontap-sanhost/images/note.svg" alt="Nota">
 </td>
 <td class="content">
-No utilice un número excesivo de rutas a una única LUN. No se necesitan más de 4 rutas. Más de 8 rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+Si las cadenas hostnqn no coinciden, debe utilizar <code>vserver modify</code> Comando para actualizar la cadena hostnqn en el subsistema de cabina de ONTAP correspondiente para que coincida con la cadena hostnqn de <code>/etc/nvme/hostnqn</code> en el host.
 </td>
 </tr>
 </table>
 </div>
+</li>
+<li>
+<p>Reinicie el host.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-sanhost/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Si planea ejecutar el tráfico NVMe y SCSI en el mismo host coexistente de Oracle Linux 8.4, NetApp recomienda usar la multivía NVMe en el kernel para espacios de nombres de ONTAP y dm-multipath para LUN de ONTAP respectivamente. Esto también significa que los espacios de nombres ONTAP deben estar en la lista negra en dm-multipath para evitar que dm-multipath reclamen estos dispositivos de espacio de nombres. Esto se puede hacer agregando la <code>enable_foreign</code> ajuste en la <code>/etc/multipath.conf</code> archivo:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>#cat /etc/multipath.conf
+defaults {
+    enable_foreign  NONE
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Reinicie el daemon multipathd ejecutando <code>systemctl restart multipathd</code> comando para permitir que la nueva configuración tenga efecto.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configurar-el-adaptador-de-fc-de-broadcom-para-nvmefc">Configurar el adaptador de FC de Broadcom para NVMe/FC</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Compruebe que está utilizando el adaptador compatible. Para obtener la lista más actual de adaptadores compatibles, consulte <a href="https://mysupport.netapp.com/matrix/" target="_blank" rel="noopener">"Herramienta de matriz de interoperabilidad de NetApp"</a>.</p>
+<div class="listingblock">
+<div class="content">
+<pre># cat /sys/class/scsi_host/host*/modelname
+LPe32002-M2
+LPe32002-M2</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># cat /sys/class/scsi_host/host*/modeldesc
+Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
+Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Compruebe que está utilizando el firmware de Broadcom lpfc y el controlador de bandeja de entrada recomendados. Para obtener la lista más actual de las versiones de firmware y controladores de adaptador compatibles, consulte <a href="https://mysupport.netapp.com/matrix/" target="_blank" rel="noopener">"Herramienta de matriz de interoperabilidad de NetApp"</a>.</p>
+<div class="listingblock">
+<div class="content">
+<pre># cat /sys/class/scsi_host/host*/fwrev
+14.0.505.11, sli-4:2:c
+14.0.505.11, sli-4:2:c</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># cat /sys/module/lpfc/version
+0:12.8.0.5</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Compruebe que <code>lpfc_enable_fc4_type</code> se establece en 3.</p>
+<div class="listingblock">
+<div class="content">
+<pre># cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
+3</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Compruebe que los puertos iniciador están en funcionamiento y que puede ver las LIF de destino.</p>
+<div class="listingblock">
+<div class="content">
+<pre># cat /sys/class/fc_host/host*/port_name
+0x100000109b213a00
+0x100000109b2139ff
+
+# cat /sys/class/fc_host/host*/port_state
+Online
+Online
+
+# cat /sys/class/scsi_host/host*/nvme_info
+NVME Initiator Enabled
+XRI Dist lpfc1 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc1 WWPN x100000109b213a00 WWNN x200000109b213a00 DID x031700     ONLINE
+NVME RPORT WWPN x208cd039ea243510 WWNN x208bd039ea243510 DID x03180a TARGET DISCSRVC ONLINE
+NVME RPORT WWPN x2090d039ea243510 WWNN x208bd039ea243510 DID x03140a TARGET DISCSRVC ONLINE
+
+NVME Statistics
+LS: Xmt 000000000e Cmpl 000000000e Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 0000000000079efc Issue 0000000000079eeb OutIO ffffffffffffffef
+abort 00000002 noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err   00000000
+FCP CMPL: xb 00000002 Err 00000004
+
+NVME Initiator Enabled
+XRI Dist lpfc0 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc0 WWPN x100000109b2139ff WWNN x200000109b2139ff DID x031300 ONLINE
+NVME RPORT WWPN x208ed039ea243510 WWNN x208bd039ea243510 DID x03230c TARGET DISCSRVC ONLINE
+NVME RPORT WWPN x2092d039ea243510 WWNN x208bd039ea243510 DID x03120c TARGET DISCSRVC ONLINE
+
+NVME Statistics
+LS: Xmt 000000000e Cmpl 000000000e Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 0000000000029ba0 Issue 0000000000029ba2 OutIO 0000000000000002
+abort 00000002 noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00000002 Err 00000004</pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 <div class="sect2">
-<h3 id="configuración-recomendada">Configuración recomendada</h3>
-<div class="sect3">
-<h4 id="configuración-de-veritas-multipath">Configuración de Veritas Multipath</h4>
+<h3 id="activando-un-tamaño-de-io-de-1-mb">Activando un tamaño de I/o de 1 MB</h3>
 <div class="paragraph">
-<p>NetApp recomienda los siguientes ajustes de Veritas VxDMP para las operaciones de recuperación tras fallos de almacenamiento óptimas.</p>
+<p>La <code>lpfc_sg_seg_cnt</code> El parámetro debe estar establecido en 256 para que el host emita I/o de 1 MB</p>
 </div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Ajuste la <code>lpfc_sg_seg_cnt</code> parámetro a 256.</p>
+<div class="listingblock">
+<div class="content">
+<pre># cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_sg_seg_cnt=256</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Ejecute un <code>dracut -f</code> y reinicie el host.</p>
+</li>
+<li>
+<p>Compruebe que <code>lpfc_sg_seg_cnt</code> tiene 256.</p>
+<div class="listingblock">
+<div class="content">
+<pre># cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+256</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configure-el-adaptador-marvellqlogic-fc-para-nvmefc">Configure el adaptador Marvell/QLogic FC para NVMe/FC</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles. El controlador ql2xxx de bandeja de entrada nativo incluido en el kernel OL 8.4 GA tiene las últimas correcciones previas esenciales para la compatibilidad con ONTAP.</p>
+<div class="listingblock">
+<div class="content">
+<pre># cat /sys/class/fc_host/host*/symbolic_name
+QLE2742 FW:v9.08.02 DVR:v10.02.00.103-k
+QLE2742 FW:v9.08.02 DVR:v10.02.00.103-k</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Compruebe que el <code>ql2xnvmeenable</code> Se configura el parámetro que permite que el adaptador Marvell funcione como iniciador NVMe/FC.</p>
+<div class="listingblock">
+<div class="content">
+<pre># cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
+1</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configure-nvmetcp">Configure NVMe/TCP</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A diferencia de NVMe/FC, NVMe/TCP no tiene una funcionalidad de conexión automática. Esto manifiesta dos limitaciones principales en el host NVMe/TCP de Linux:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>No hay reconexión automática después de que se restablezcan las rutas</strong> - NVMe/TCP no puede volver a conectarse automáticamente a una ruta que se reinstala más allá de la predeterminada <code>ctrl-loss-tmo</code> temporizador de 10 minutos después de una ruta hacia abajo.</p>
+</li>
+<li>
+<p><strong>No hay conexión automática durante el arranque del host</strong> - NVMe/TCP no se puede conectar automáticamente durante el arranque del host.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Es necesario configurar el periodo de reintento para eventos de conmutación por error en al menos 30 minutos para evitar los tiempos de espera. Puede aumentar el período de reintento mediante el aumento del valor de <code>ctrl_loss_tmo</code> temporizador siguiendo el procedimiento siguiente:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Compruebe que el puerto del iniciador pueda recuperar datos de la página de registro de detección en las LIF NVMe/TCP admitidas:</p>
+<div class="listingblock">
+<div class="content">
+<pre># nvme discover -t tcp -w 192.168.1.8 -a 192.168.1.51
+Discovery Log Number of Records 10, Generation counter 119
+=====Discovery Log Entry 0======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 0
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.56e362e9bb4f11ebbaded039ea165abc:subsystem.nvme_118_tcp_1
+traddr: 192.168.2.56
+sectype: none
+=====Discovery Log Entry 1======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 1
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.56e362e9bb4f11ebbaded039ea165abc:subsystem.nvme_118_tcp_1
+traddr: 192.168.1.51
+sectype: none
+=====Discovery Log Entry 2======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 0
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.56e362e9bb4f11ebbaded039ea165abc:subsystem.nvme_118_tcp_2
+traddr: 192.168.2.56
+sectype: none
+...</pre>
+</div>
+</div>
+</li>
+<li>
+<p>De igual modo, compruebe que otras combinaciones de LIF iniciador-destino NVMe/TCP puedan recuperar correctamente los datos de la página del registro de detección. Ejemplo:</p>
+<div class="listingblock">
+<div class="content">
+<pre># nvme discover -t tcp -w 192.168.1.8 -a 192.168.1.51
+#nvme discover -t tcp -w 192.168.1.8 -a 192.168.1.52
+# nvme discover -t tcp -w 192.168.2.9 -a 192.168.2.56
+# nvme discover -t tcp -w 192.168.2.9 -a 192.168.2.57</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Ahora ejecute el <code>nvme connect-all</code> Command entre todas las LIF de iniciador NVMe/TCP admitidas en los nodos. Asegúrese de proporcionar un tiempo más <code>ctrl_loss_tmo</code> período del temporizador (30 minutos o más, que se puede ajustar la adición <code>-l 1800</code>) durante <code>connect-all</code> de modo que se reintente durante un período más largo en caso de una pérdida de ruta. Ejemplo:</p>
+<div class="listingblock">
+<div class="content">
+<pre># nvme connect-all -t tcp -w 192.168.1.8 -a 192.168.1.51 -l 1800
+# nvme connect-all -t tcp -w 192.168.1.8 -a 192.168.1.52 -l 1800
+# nvme connect-all -t tcp -w 192.168.2.9 -a 192.168.2.56 -l 1800
+# nvme connect-all -t tcp -w 192.168.2.9 -a 192.168.2.57 -l 1800</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="valide-nvmefc">Valide NVMe/FC</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Verifique la siguiente configuración de NVMe/FC en el host de Oracle Linux 8.4:</p>
+<div class="listingblock">
+<div class="content">
+<pre># cat /sys/module/nvme_core/parameters/multipath
+Y</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># cat /sys/class/nvme-subsystem/nvme-subsys*/model
+NetApp ONTAP Controller
+NetApp ONTAP Controller</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+round-robin
+round-robin</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Compruebe que los espacios de nombres se crean y se detectarán correctamente en el host:</p>
+<div class="listingblock">
+<div class="content">
+<pre># nvme list
+Node                  SN              Model                                   Namespace
+-----------------------------------------------------------------------------------------
+/dev/nvme0n1     814vWBNRwf9HAAAAAAAB  NetApp ONTAP Controller                1
+/dev/nvme0n2     814vWBNRwf9HAAAAAAAB  NetApp ONTAP Controller                2
+/dev/nvme0n3     814vWBNRwf9HAAAAAAAB  NetApp ONTAP Controller                3
+
+Usage      Format         FW Rev
+------------------------------------------------------
+85.90 GB / 85.90 GB     4 KiB + 0 B   FFFFFFFF
+85.90 GB / 85.90 GB     4 KiB + 0 B   FFFFFFFF
+85.90 GB / 85.90 GB     4 KiB + 0 B   FFFFFFFF</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Compruebe que el estado de la controladora de cada ruta sea activo y que tenga el estado de ANA correcto.</p>
+<div class="listingblock">
+<div class="content">
+<pre># nvme list-subsys /dev/nvme0n1
+nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.5f5f2c4aa73b11e9967e00a098df41bd:subsystem.nvme_ss_ol_1
+\
++- nvme0 fc traddr=nn-0x203700a098dfdd91:pn-0x203800a098dfdd91 host_traddr=nn-0x200000109b1c1204:pn-0x100000109b1c1204 live non-optimized
++- nvme1 fc traddr=nn-0x203700a098dfdd91:pn-0x203900a098dfdd91 host_traddr=nn-0x200000109b1c1204:pn-0x100000109b1c1204 live non-optimized
++- nvme2 fc traddr=nn-0x203700a098dfdd91:pn-0x203a00a098dfdd91 host_traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live optimized
++- nvme3 fc traddr=nn-0x203700a098dfdd91:pn-0x203d00a098dfdd91 host_traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live optimized</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Confirmar que el plugin de NetApp muestra los valores correctos para cada dispositivo de espacio de nombres ONTAP.</p>
+<div class="listingblock">
+<div class="content">
+<pre># nvme netapp ontapdevices -o column
+Device                 Vserver          Namespace Path
+----------------------- ------------------------------ ----------------------------------------------------------------------- --------- --
+/dev/nvme0n1      vs_ol_nvme            /vol/ol_nvme_vol_1_1_0/ol_nvme_ns
+/dev/nvme0n2      vs_ol_nvme            /vol/ol_nvme_vol_1_0_0/ol_nvme_ns
+/dev/nvme0n3      vs_ol_nvme            /vol/ol_nvme_vol_1_1_1/ol_nvme_ns
+
+NSID        UUID                                  Size
+--------------------------------------------------------------
+1          72b887b1-5fb6-47b8-be0b-33326e2542e2   85.90GB
+2          04bf9f6e-9031-40ea-99c7-a1a61b2d7d08   85.90GB
+3          264823b1-8e03-4155-80dd-e904237014a4   85.90GB</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># nvme netapp ontapdevices -o json
+{
+"ONTAPdevices" : [
+    {
+        "Device" : "/dev/nvme0n1",
+        "Vserver" : "vs_ol_nvme",
+        "Namespace_Path" : "/vol/ol_nvme_vol_1_1_0/ol_nvme_ns",
+        "NSID" : 1,
+        "UUID" : "72b887b1-5fb6-47b8-be0b-33326e2542e2",
+        "Size" : "85.90GB",
+        "LBA_Data_Size" : 4096,
+        "Namespace_Size" : 20971520
+    },
+    {
+        "Device" : "/dev/nvme0n2",
+        "Vserver" : "vs_ol_nvme",
+        "Namespace_Path" : "/vol/ol_nvme_vol_1_0_0/ol_nvme_ns",
+        "NSID" : 2,
+        "UUID" : "04bf9f6e-9031-40ea-99c7-a1a61b2d7d08",
+        "Size" : "85.90GB",
+        "LBA_Data_Size" : 4096,
+        "Namespace_Size" : 20971520
+      },
+      {
+         "Device" : "/dev/nvme0n3",
+         "Vserver" : "vs_ol_nvme",
+         "Namespace_Path" : "/vol/ol_nvme_vol_1_1_1/ol_nvme_ns",
+         "NSID" : 3,
+         "UUID" : "264823b1-8e03-4155-80dd-e904237014a4",
+         "Size" : "85.90GB",
+         "LBA_Data_Size" : 4096,
+         "Namespace_Size" : 20971520
+       },
+  ]
+}</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="problemas-conocidos">Problemas conocidos</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parámetro</th>
-<th class="tableblock halign-left valign-top">Ajuste</th>
+<th class="tableblock halign-left valign-top">ID de error de NetApp</th>
+<th class="tableblock halign-left valign-top">Título</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+<th class="tableblock halign-left valign-top">ID Bugzilla</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dmp_lun_retry_timeout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">60</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dmp_path_age</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">120</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dmp_restore_interval</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">60</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1517321</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Los hosts Oracle Linux 8.4 NVMe-of crean controladoras de detección persistente duplicadas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">En los hosts Oracle Linux 8.4 NVMe over Fabrics (NVMe-of), puede usar el comando "nvme Discover -p" para crear controladoras de detección persistente (CMC). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta ONTAP 9.10.1 y Oracle Linux 8.4 con un host NVMe-of, se crea un PDC duplicado cada vez que se ejecuta "nvme Discover -p". Esto lleva a un uso innecesario de recursos tanto en el host como en el destino.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2087000</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>Los ajustes de DMP se establecen en línea mediante el <code>vxdmpadm</code> comando de la siguiente manera:</p>
 </div>
-<div class="paragraph">
-<p><code># vxdmpadm settune dmp_tunable=value</code></p>
 </div>
+<div class="sect1">
+<h2 id="resolución-de-problemas">Resolución de problemas</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Los valores de estos ajustables pueden verificarse dinámicamente mediante el uso <code>#vxdmpadm gettune</code>.</p>
+<p>Antes de comenzar a solucionar cualquier fallo de NVMe/FC, asegúrese de ejecutar una configuración que cumpla con las especificaciones de IMT y siga estos pasos para depurar cualquier problema con el lado del host.</p>
 </div>
-<div class="paragraph">
-<div class="title">Ejemplo</div>
-<p>En el ejemplo siguiente se muestran los elementos optimizables de VxDMP eficaces en el host SAN.</p>
-</div>
+<div class="sect2">
+<h3 id="registro-detallado-lpfc">Registro detallado LPFC</h3>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Ajuste la <code>lpfc_log_verbose</code> Configuración del controlador en cualquiera de los siguientes valores para registrar los eventos de NVMe/FC.</p>
 <div class="listingblock">
 <div class="content">
-<pre># vxdmpadm gettune
+<pre>#define LOG_NVME 0x00100000 /* NVME general events. */
+#define LOG_NVME_DISC 0x00200000 /* NVME Discovery/Connect events. */
+#define LOG_NVME_ABTS 0x00400000 /* NVME ABTS events. */
+#define LOG_NVME_IOERR 0x00800000 /* NVME IO Error events. */</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Después de ajustar los valores, ejecute la <code>dracut-f</code> command y reinicie el host.</p>
+</li>
+<li>
+<p>Compruebe la configuración.</p>
+<div class="listingblock">
+<div class="content">
+<pre># cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_log_verbose=0xf00083
 
-Tunable                    Current Value    Default Value
-dmp_cache_open                      on                on
-dmp_daemon_count                    10                10
-dmp_delayq_interval                 15                15
-dmp_display_alua_states             on                on
-dmp_fast_recovery                   on                on
-dmp_health_time                     60                60
-dmp_iostats_state              enabled           enabled
-dmp_log_level                        1                 1
-dmp_low_impact_probe                on                on
-dmp_lun_retry_timeout               60                30
-dmp_path_age                       120               300
-dmp_pathswitch_blks_shift            9                 9
-dmp_probe_idle_lun                  on                on
-dmp_probe_threshold                  5                 5
-dmp_restore_cycles                  10                10
-dmp_restore_interval                60               300
-dmp_restore_policy         check_disabled   check_disabled
-dmp_restore_state              enabled           enabled
-dmp_retry_count                      5                 5
-dmp_scsi_timeout                    20                20
-dmp_sfg_threshold                    1                 1
-dmp_stat_interval                    1                 1
-dmp_monitor_ownership               on                on
-dmp_monitor_fabric                  on                on
-dmp_native_support                 off               off</pre>
+# cat /sys/module/lpfc/parameters/lpfc_log_verbose
+15728771</pre>
 </div>
 </div>
+</li>
+</ol>
 </div>
-<div class="sect3">
-<h4 id="configuración-por-protocolo">Configuración por protocolo</h4>
-<div class="ulist">
+</div>
+<div class="sect2">
+<h3 id="qla2xxx-registro-detallado">qla2xxx registro detallado</h3>
+<div class="paragraph">
+<p>No hay ningún registro qla2xxx específico similar para NVMe/FC que para el <code>lpfc</code> controlador. Por lo tanto, puede establecer el nivel de registro general qla2xxx mediante los pasos siguientes:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Añada el <code>ql2xextended_error_logging=0x1e400000</code> valor para el correspondiente <code>modprobe qla2xxx conf</code> archivo.</p>
+</li>
+<li>
+<p>Vuelva a crear el <code>initramfs</code> ejecutando <code>dracut -f</code> reinicie el host.</p>
+</li>
+<li>
+<p>Después de reiniciar, compruebe que el registro detallado se ha aplicado de la siguiente forma:</p>
+<div class="listingblock">
+<div class="content">
+<pre># cat /etc/modprobe.d/qla2xxx.conf
+options qla2xxx ql2xnvmeenable=1 ql2xextended_error_logging=0x1e400000
+# cat /sys/module/qla2xxx/parameters/ql2xextended_error_logging
+507510784</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="errores-y-soluciones-alternativas-comunes-de-nvme-cli">Errores y soluciones alternativas comunes de nvme-cli</h3>
+<div class="paragraph">
+<p>Los errores mostrados por <code>nvme-cli</code> durante <code>nvme discover</code>, <code>nvme connect</code>, o. <code>nvme connect-all</code> las operaciones y las soluciones alternativas se muestran en la siguiente tabla:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 22.2222%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Errores mostrados por <code>nvme-cli</code></th>
+<th class="tableblock halign-left valign-top">Causa probable</th>
+<th class="tableblock halign-left valign-top">Solución alternativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Failed to write to /dev/nvme-fabrics: Invalid argument</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sintaxis incorrecta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compruebe que está utilizando la sintaxis correcta para el <code>nvme discover</code>, <code>nvme connect</code>, y. <code>nvme connect-all</code> comandos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Failed to write to /dev/nvme-fabrics: No such file or directory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Varios problemas pueden desencadenar esto, por ejemplo, proporcionar argumentos incorrectos en los comandos NVMe es una de las causas comunes.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
 <li>
-<p>Para FC/FCoE únicamente: Utilice los valores de tiempo de espera predeterminados.</p>
+<p>Verifique que haya pasado los argumentos correctos (como, una cadena WWNN, una cadena WWPN correcta y otros) a los comandos.</p>
 </li>
 <li>
-<p>Solo para iSCSI: Configure el <code>replacement_timeout</code> valor del parámetro a 120.</p>
-<div class="paragraph">
-<p>ISCSI <code>replacement_timeout</code> Parámetro controla cuánto tiempo debe esperar la capa iSCSI a que se restablezca una ruta de tiempo de espera o una sesión antes de que falle ningún comando. Ajuste del valor de <code>replacement_timeout</code> Se recomienda utilizar el valor 120 en el archivo de configuración iSCSI.</p>
+<p>Si los argumentos son correctos, pero sigue viendo este error, compruebe si <code>/sys/class/scsi_host/host*/nvme_info</code> El resultado del comando es correcto, el iniciador de NVMe se muestra como <code>Enabled</code>, Y las LIF de destino NVMe/FC se muestran correctamente bajo las secciones de puertos remotos. Ejemplo:</p>
+<div class="listingblock">
+<div class="content">
+<pre># cat /sys/class/scsi_host/host*/nvme_info
+NVME Initiator Enabled
+NVME LPORT lpfc0 WWPN x10000090fae0ec9d WWNN x20000090fae0ec9d DID x012000 ONLINE
+NVME RPORT WWPN x200b00a098c80f09 WWNN x200a00a098c80f09 DID x010601 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000000000006 Cmpl 0000000000000006
+FCP: Rd 0000000000000071 Wr 0000000000000005 IO 0000000000000031
+Cmpl 00000000000000a6 Outstanding 0000000000000001
+NVME Initiator Enabled
+NVME LPORT lpfc1 WWPN x10000090fae0ec9e WWNN x20000090fae0ec9e DID x012400 ONLINE
+NVME RPORT WWPN x200900a098c80f09 WWNN x200800a098c80f09 DID x010301 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000000000006 Cmpl 0000000000000006
+FCP: Rd 0000000000000073 Wr 0000000000000005 IO 0000000000000031
+Cmpl 00000000000000a8 Outstanding 0000000000000001</pre>
+</div>
 </div>
 </li>
+<li>
+<p>Si las LIF de destino no se muestran como arriba en la <code>nvme_info</code> resultado del comando, compruebe el <code>/var/log/messages</code> y.. <code>dmesg</code> Genera comandos para cualquier fallo sospechoso de NVMe/FC, y estos informan o corrigen la como corresponda.</p>
+</li>
 </ul>
-</div>
-<div class="listingblock">
-<div class="title">Ejemplo</div>
-<div class="content">
-<pre># grep replacement_timeout /etc/iscsi/iscsid.conf
-node.session.timeo.replacement_timeout = 120</pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="configuración-por-plataformas-de-sistema-operativo">Configuración por plataformas de sistema operativo</h4>
-<div class="paragraph">
-<p>Para las series Red Hat Enterprise Linux 7 y 8, debe configurar <code>udev rport</code> Valores para respaldar el entorno de Veritas Infocale en situaciones de recuperación tras fallos de almacenamiento. Cree el archivo <code>/etc/udev/rules.d/40-rport.rules</code> con el siguiente contenido del archivo:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre># cat /etc/udev/rules.d/40-rport.rules
-KERNEL=="rport-*", SUBSYSTEM=="fc_remote_ports", ACTION=="add", RUN+=/bin/sh -c 'echo 20 &gt; /sys/class/fc_remote_ports/%k/fast_io_fail_tmo;echo 864000 &gt;/sys/class/fc_remote_ports/%k/dev_loss_tmo'"</pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="/us-en/ontap-sanhost/images/note.svg" alt="Nota">
-</td>
-<td class="content">
-Para cualquier otra configuración específica de Veritas, consulte la documentación estándar sobre el producto Veritas Infoscale.
-</td>
+</div></div></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>No discovery log entries to fetch</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Generalmente observado cuando <code>/etc/nvme/hostnqn</code> No se ha añadido la cadena al subsistema correspondiente en la cabina de NetApp o una incorrecta <code>hostnqn</code> la cadena se ha agregado al subsistema correspondiente.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Compruebe que el valor es exacto <code>/etc/nvme/hostnqn</code> La cadena se añade al subsistema correspondiente en la cabina de NetApp (compruebe mediante la <code>vserver nvme subsystem host show</code> ).</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Failed to write to /dev/nvme-fabrics: Operation already in progress</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Se observa cuando las asociaciones de controladores o la operación especificada ya se han creado o se está creando. Esto podría suceder como parte de los scripts de conexión automática instalados anteriormente.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Ninguno. Intente ejecutar el <code>nvme discover</code> comando de nuevo después de un tiempo. Para <code>nvme connect</code> y.. <code>connect-all</code>, ejecute el <code>nvme list</code> comando para verificar que los dispositivos de espacio de nombres ya se han creado y se muestran en el host.</p>
+</div></div></td>
+</tr>
+</tbody>
 </table>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="coexistencia-de-múltiples-rutas">Coexistencia de múltiples rutas</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="cuándo-ponerse-en-contacto-con-el-soporte-técnico">Cuándo ponerse en contacto con el soporte técnico</h3>
 <div class="paragraph">
-<p>Si tiene un entorno multivía heterogéneo, que incluye Veritas Infoscale, Linux Native Device Mapper y LVM volume Manager, consulte la guía de administración de productos de Veritas para conocer los ajustes de configuración.</p>
+<p>Si aún tiene problemas, recopile los siguientes archivos y resultados de comandos y póngase en contacto con el soporte técnico para realizar una evaluación más próxima:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>cat /sys/class/scsi_host/host*/nvme_info
+/var/log/messages
+dmesg
+nvme discover output as in:
+nvme discover --transport=fc --traddr=nn-0x200a00a098c80f09:pn-0x200b00a098c80f09 --host-traddr=nn-0x20000090fae0ec9d:pn-0x10000090fae0ec9d
+nvme list
+nvme list-subsys /dev/nvmeXnY</pre>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="problemas-y-limitaciones-conocidos">Problemas y limitaciones conocidos</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>No existen problemas y limitaciones conocidas.</p>
 </div>
 </div>
 </div>

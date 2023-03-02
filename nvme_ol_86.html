@@ -573,6 +573,12 @@
 
 
 
+
+
+
+
+
+
         </li>
       </ul>
     
@@ -1775,6 +1781,27 @@
       class="  active "
     ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_ol_86.html">
         8.6
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.5"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_ol_85.html">
+        8.5
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.4"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_ol_84.html">
+        8.4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="8.3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/es-es/ontap-sanhost/nvme_ol_83.html">
+        8.3
       </a></li><li 
       data-pdf-exists="true" 
       data-pdf-filename="8.2"
@@ -2982,7 +3009,7 @@
 <p class="page-details">
   
     
-    <time datetime="2023-03-01 19:31:14 +0000">03/01/2023</time>
+    <time datetime="2023-03-02 12:50:47 +0000">03/02/2023</time>
     
   
 
@@ -3046,7 +3073,7 @@ Puede utilizar los ajustes de configuración que se proporcionan en este documen
 <p>Con Oracle Linux 8.6, tanto el tráfico NVMe como SCSI pueden ejecutarse en el mismo host coexistente. De hecho, se espera que sea la configuración de host instalada habitualmente. Por lo tanto, puede configurar dm-multipath como suele suceder en los LUN de SCSI, lo que provoca en dispositivos mpath mientras que el multivía de NVMe se puede utilizar para configurar dispositivos multivía de NVMe-of (por ejemplo, <code>/dev/nvmeXnY</code>) en el host.</p>
 </li>
 <li>
-<p>Con Oracle Linux 8.6, el complemento de NetApp en el nativo <code>nvme-cli</code> El paquete puede mostrar detalles de ONTAP, así como espacios de nombres ONTAP.</p>
+<p>Con Oracle Linux 8.6, el complemento de NetApp en el sistema nativo <code>nvme-cli</code> El paquete puede mostrar detalles de ONTAP, así como espacios de nombres ONTAP.</p>
 </li>
 </ul>
 </div>
@@ -3084,7 +3111,7 @@ Puede utilizar los ajustes de configuración que se proporcionan en este documen
 </div>
 </li>
 <li>
-<p>Instale el <code>nvme-cli</code> paquete.</p>
+<p>Instale el <code>nvme-cli</code> paquete:</p>
 <div class="listingblock">
 <div class="content">
 <pre># rpm -qa|grep nvme-cli
@@ -3111,7 +3138,7 @@ vs_ol_nvme  nvme_ss_ol_1    nqn.2014-08.org.nvmexpress:uuid:9ed5b327-b9fc-4cf5-9
 <img src="/us-en/ontap-sanhost/images/note.svg" alt="Nota">
 </td>
 <td class="content">
-Si las cadenas hostnqn no coinciden, debe utilizar <code>vserver modify</code> Comando para actualizar la cadena hostnqn en el subsistema de cabina de ONTAP correspondiente para que coincida con la cadena hostnqn de <code>/etc/nvme/hostnqn</code> en el host.
+Si la <code>hostnqn</code> las cadenas no coinciden, debe utilizar <code>vserver modify</code> comando para actualizar el <code>hostnqn</code> Cadena en el subsistema de matriz ONTAP correspondiente para que coincida con <code>hostnqn</code> cadena desde <code>/etc/nvme/hostnqn</code> en el host:
 </td>
 </tr>
 </table>
@@ -3156,7 +3183,7 @@ defaults {
 <div class="title">Pasos</div>
 <ol class="arabic">
 <li>
-<p>Compruebe que está utilizando el adaptador compatible. Para obtener la lista más actual de adaptadores compatibles, consulte <a href="https://mysupport.netapp.com/matrix/" target="_blank" rel="noopener">"Matriz de interoperabilidad de NetApp"</a> .</p>
+<p>Compruebe que está utilizando el adaptador compatible. Para obtener la lista más actual de adaptadores compatibles, consulte <a href="https://mysupport.netapp.com/matrix/" target="_blank" rel="noopener">"Matriz de interoperabilidad de NetApp"</a>:</p>
 <div class="listingblock">
 <div class="content">
 <pre># cat /sys/class/scsi_host/host*/modelname
@@ -3169,7 +3196,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter</pre>
 </div>
 </li>
 <li>
-<p>Compruebe que está utilizando la Broadcom recomendada <code>lpfc</code> controlador de firmware y bandeja de entrada. Para obtener la lista más actual de las versiones de firmware y controladores de adaptador compatibles, consulte <a href="https://mysupport.netapp.com/matrix/" target="_blank" rel="noopener">"Matriz de interoperabilidad de NetApp"</a> .</p>
+<p>Compruebe que está utilizando la Broadcom recomendada <code>lpfc</code> controlador de firmware y bandeja de entrada. Para obtener la lista más actual de las versiones de firmware y controladores de adaptador compatibles, consulte <a href="https://mysupport.netapp.com/matrix/" target="_blank" rel="noopener">"Matriz de interoperabilidad de NetApp"</a>:</p>
 <div class="listingblock">
 <div class="content">
 <pre># cat /sys/class/scsi_host/host*/fwrev
@@ -3182,7 +3209,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter</pre>
 </div>
 </li>
 <li>
-<p>Compruebe que <code>lpfc_enable_fc4_type</code> se establece en <code>3</code>.</p>
+<p>Compruebe que <code>lpfc_enable_fc4_type</code> se establece en <code>3</code>:</p>
 <div class="listingblock">
 <div class="content">
 <pre># cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
@@ -3191,7 +3218,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter</pre>
 </div>
 </li>
 <li>
-<p>Compruebe que los puertos iniciador están en funcionamiento y que puede ver las LIF de destino.</p>
+<p>Compruebe que los puertos iniciador están en funcionamiento y que puede ver las LIF de destino:</p>
 <div class="listingblock">
 <div class="content">
 <pre># cat /sys/class/fc_host/host*/port_name
@@ -3269,7 +3296,7 @@ options lpfc lpfc_sg_seg_cnt=256</pre>
 <div class="title">Pasos</div>
 <ol class="arabic">
 <li>
-<p>Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles. El controlador ql2xxx de bandeja de entrada nativo incluido en el kernel OL 8.6 GA tiene las últimas correcciones previas esenciales para la compatibilidad con ONTAP.</p>
+<p>Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles. El controlador ql2xxx de bandeja de entrada nativa incluido en el kernel OL 8.6 GA tiene las últimas correcciones previas esenciales para la compatibilidad con ONTAP:</p>
 <div class="listingblock">
 <div class="content">
 <pre># cat /sys/class/fc_host/host*/symbolic_name
@@ -3314,7 +3341,7 @@ QLE2742 FW:v9.08.02 DVR:v10.02.00.106-k</pre>
 <div class="title">Pasos</div>
 <ol class="arabic">
 <li>
-<p>Compruebe si el puerto del iniciador puede recuperar datos de la página de registro de detección en las LIF NVMe/TCP admitidas.</p>
+<p>Compruebe que el puerto del iniciador pueda recuperar los datos de la página de registro de detección en las LIF NVMe/TCP admitidas:</p>
 <div class="listingblock">
 <div class="content">
 <pre># nvme discover -t tcp -w 192.168.1.8 -a 192.168.1.51
@@ -3386,7 +3413,7 @@ sectype: none
 <div class="title">Pasos</div>
 <ol class="arabic">
 <li>
-<p>Verificar la siguiente configuración de NVMe/FC en el host de Oracle Linux 8.6.</p>
+<p>Verifique la siguiente configuración de NVMe/FC en el host de Oracle Linux 8.6:</p>
 <div class="listingblock">
 <div class="content">
 <pre># cat /sys/module/nvme_core/parameters/multipath
@@ -3401,7 +3428,7 @@ round-robin</pre>
 </div>
 </li>
 <li>
-<p>Compruebe que los espacios de nombres se crean y se detectarán correctamente en el host.</p>
+<p>Verifique que los espacios de nombres se hayan creado y detectado correctamente en el host:</p>
 <div class="listingblock">
 <div class="content">
 <pre># nvme list
@@ -3421,7 +3448,7 @@ Namespace Usage    Format             FW             Rev
 </div>
 </li>
 <li>
-<p>Compruebe que el estado de la controladora de cada ruta sea activo y que tenga el estado de ANA correcto.</p>
+<p>Compruebe que el estado de la controladora de cada ruta sea activo y que tenga el estado de ANA correcto:</p>
 <div class="listingblock">
 <div class="content">
 <pre># nvme list-subsys /dev/nvme0n1
@@ -3435,7 +3462,7 @@ nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.5f5f2c4aa73b11e9967e00a098df41bd:su
 </div>
 </li>
 <li>
-<p>Compruebe que el plugin de NetApp muestra los valores correctos para cada dispositivo de espacio de nombres ONTAP.</p>
+<p>Confirmar que el complemento de NetApp muestra los valores correctos para cada dispositivo de espacio de nombres ONTAP:</p>
 <div class="listingblock">
 <div class="content">
 <pre># nvme netapp ontapdevices -o column
