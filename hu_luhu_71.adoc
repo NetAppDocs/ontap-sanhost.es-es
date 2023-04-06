@@ -54,6 +54,11 @@ En el siguiente ejemplo, la `sanlun lun show` Command muestra información de LU
 [listing]
 ----
 # sanlun lun show all
+----
+Resultado de ejemplo:
+
+[listing]
+----
 controller(7mode/E-Series)/            device     host               lun
 vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
 -------------------------------------------------------------------------

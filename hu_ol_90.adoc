@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_ol_85.html 
-keywords: host utilities, oracle, linux, 8.5, netapp, ontap 
-summary: Describe cómo usar Oracle Linux 8.5 con ONTAP 
+permalink: hu_ol_90.html 
+keywords: host utilities, oracle, linux, 9.0, netapp, ontap 
+summary: Describe cómo usar Oracle Linux 9,0 con ONTAP 
 ---
-= Uso de Oracle Linux 8.5 con NetApp ONTAP
+= Uso de Oracle Linux 9,0 con ONTAP de NetApp
 :toc: macro
 :hardbreaks:
 :toclevels: 1P
@@ -20,7 +20,7 @@ summary: Describe cómo usar Oracle Linux 8.5 con ONTAP
 
 
 
-== Instalar las utilidades unificadas de host de Linux
+== Instale las utilidades unificadas de host de Linux
 
 El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^] en un archivo .rpm de 64 bits.
 
@@ -38,16 +38,12 @@ Si tiene una versión de Linux Unified Host Utilities instalada actualmente, deb
 
 
 
-NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este documento para configurar los clientes de cloud conectados a. link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
-
-
 
 == Kit de herramientas SAN
 
-El kit de herramientas se instala automáticamente cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar LUN y HBA. La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
+El kit de herramientas se instala automáticamente cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la utilidad sanlun, que le ayuda a gestionar LUN y HBA. El comando sanlun muestra información acerca de las LUN asignadas al host, la multivía y la información necesaria para crear iGroups.
 
-.Ejemplo
-En el siguiente ejemplo, la `sanlun lun show` Command muestra información de LUN.
+En el ejemplo siguiente, el comando sanlun lun show muestra información de las LUN.
 
 [listing]
 ----
@@ -60,14 +56,14 @@ Resultado de ejemplo:
 controller(7mode/E-Series)/            device     host               lun
 vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
 -------------------------------------------------------------------------
-data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
-data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
-data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
-data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDOT
+data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       80.0g  cDOT
+data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       80.0g  cDOT
+data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       80.0g  cDOT
+data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       80.0g  cDOT
 ----
 
 
-== Arranque San
+== Arranque SAN
 
 .Lo que necesitará
 Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://mysupport.netapp.com/matrix/imt.jsp?components=91863;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
@@ -89,35 +85,11 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 == Accesos múltiples
 
-Para Oracle Linux (OL) 8.5 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. OL 8.5 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
+Para Oracle Linux (OL) 9,0 `/etc/multipath.conf` el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. OL 9,0 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
 
 Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP.
 
-Las siguientes secciones proporcionan salida multivía de muestra para un LUN asignado que no es personal ASA.
-
-
-
-=== Configuración no ASA
-
-Para la configuración que no sea ASA debe haber dos grupos de rutas con prioridades diferentes. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
-
-.Ejemplo
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
-
-[listing]
-----
-# multipath -ll
-3600a098038303634722b4d59646c4436 dm-28 NETAPP,LUN C-Mode
-size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
-|-+- policy='service-time 0' prio=50 status=active
-| |- 16:0:6:35 sdwb 69:624 active ready running
-| |- 16:0:5:35 sdun 66:752 active ready running
-|-+- policy='service-time 0' prio=10 status=enabled
-|- 15:0:0:35 sdaj 66:48 active ready running
-|- 15:0:1:35 sdbx 68:176 active ready running
-----
-
-NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de 4 rutas. Más de 8 rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+Las siguientes secciones proporcionan una salida multivía de muestra para una LUN asignada a personas ASA y no ASA.
 
 
 
@@ -144,9 +116,33 @@ NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan 
 
 
 
+=== Configuración no ASA
+
+Para la configuración que no sea ASA debe haber dos grupos de rutas con prioridades diferentes. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+
+.Ejemplo
+En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
+
+[listing]
+----
+# multipath -ll
+3600a0980383036347ffb4d59646c4436 dm-28 NETAPP,LUN C-Mode
+size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 16:0:6:35 sdwb  69:624  active ready running
+| |- 16:0:5:35 sdun  66:752  active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+  |- 15:0:0:35 sdaj  66:48   active ready running
+  |- 15:0:1:35 sdbx  68:176  active ready running
+----
+
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de 4 rutas. Más de 8 rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+
+
+
 == Configuración recomendada
 
-El sistema operativo Oracle Linux 8.5 se compila para reconocer las LUN ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA.
+El sistema operativo Oracle Linux 9,0 se compila para reconocer los LUN de ONTAP y definir automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA.
 
 La `multipath.conf` el archivo debe existir para que se inicie el daemon multipath, pero puede crear un archivo vacío de cero bytes con el comando:
 `touch /etc/multipath.conf`
@@ -275,7 +271,7 @@ devices {
 }
 ----
 
-NOTE: Para configurar Oracle Linux 8.5 RedHat Enterprise Kernel (RHCK), utilice link:hu_rhel_85.html#recommended-settings["configuración recomendada"] Para Red Hat Enterprise Linux (RHEL) 8.5.
+NOTE: Para configurar Oracle Linux 9,0 RedHat Enterprise Kernel (RHCK), utilice link:hu_rhel_86.html#recommended-settings["configuración recomendada"] Para Red Hat Enterprise Linux (RHEL) 9,0.
 
 
 
@@ -285,9 +281,16 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 
 
-== Problemas y limitaciones conocidos
+== Problemas conocidos
 
-No existen problemas conocidos para Oracle Linux 8.5.
+No hay problemas conocidos para Oracle Linux 9,0.
 
 
-NOTE: Para ver los problemas conocidos de Oracle Linux (kernel compatible con Red Hat), consulte link:hu_rhel_85.html#known-problems-and-limitations["problemas conocidos"] En la documentación correspondiente de la versión de Red Hat Enterprise Linux.
+
+== Notas de la versión
+
+
+
+=== Mirroring de ASM
+
+El mirroring de ASM puede requerir cambios en la configuración multivía de Linux para permitir que ASM reconozca un problema y conmute a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte Oracle Databases on ONTAP para obtener más información.

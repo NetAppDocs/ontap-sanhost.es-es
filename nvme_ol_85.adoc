@@ -227,13 +227,7 @@ QLE2742 FW:v9.06.02 DVR:v10.02.00.106-k
 
 == Configure NVMe/TCP
 
-A diferencia de NVMe/FC, NVMe/TCP no tiene una funcionalidad de conexión automática. Esto manifiesta dos limitaciones principales en el host NVMe/TCP de Linux:
-
-* *No hay reconexión automática después de que se restablezcan las rutas* - NVMe/TCP no puede volver a conectarse automáticamente a una ruta que se reinstala más allá de la predeterminada `ctrl-loss-tmo` temporizador de 10 minutos después de una ruta hacia abajo.
-* *No hay conexión automática durante el arranque del host* - NVMe/TCP no se puede conectar automáticamente durante el arranque del host.
-
-
-Es necesario configurar el periodo de reintento para eventos de conmutación por error en al menos 30 minutos para evitar los tiempos de espera. Puede aumentar el período de reintento mediante el aumento del valor de `ctrl_loss_tmo` temporizador siguiendo el procedimiento siguiente:
+NVMe/TCP no tiene la funcionalidad de conexión automática. Por lo tanto, si una ruta deja de funcionar y no se restablece en el tiempo de espera predeterminado de 10 minutos, no se puede volver a conectar automáticamente NVMe/TCP. Para evitar que se agote el tiempo de espera, debe definir el período de reintento para los eventos de conmutación por error en al menos 30 minutos.
 
 .Pasos
 . Compruebe si el puerto del iniciador puede recuperar datos de la página de registro de detección en las LIF NVMe/TCP admitidas.

@@ -54,6 +54,11 @@ sidebar:
         url: "/nvme_esxi_7.html"
     - title: Oracle Linux
       entries:
+      - title: VOL. 9
+        pdf-filename: Vol. NVMF
+        entries:
+        - title: '9.0'
+          url: "/nvme_ol_90.html"
       - title: OL 8
         pdf-filename: Vol. NVMF
         entries:
@@ -206,6 +211,10 @@ sidebar:
     - title: Oracle Linux
       pdf-filename: OL-FCP
       entries:
+      - title: VOL. 9
+        entries:
+        - title: '9.0'
+          url: "/hu_ol_90.html"
       - title: OL 8
         pdf-filename: OL-8-FCP
         entries:
