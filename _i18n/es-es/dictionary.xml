@@ -2859,4 +2859,26 @@
   <block id="2777856007ced53036238eb6ac77a35c" category="cell">Los hosts Oracle Linux 8.5 NVMe-of crean controladoras de detección persistente duplicadas</block>
   <block id="2f0abad3e4805563c626305c7ea008ba" category="cell">En los hosts Oracle Linux 8.5 NVMe over Fabrics (NVMe-of), puede usar el<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block> Comando para crear controladores de descubrimiento persistente (PDCs). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta ONTAP 9.10.1 y Oracle Linux 8.5 con un host NVMe-of, se crea un PDC duplicado cada vez<block ref="70c9b2fe3469aa88746a29ccc6fe9d7a" prefix=" " category="inline-code"></block> se ejecuta. Esto lleva a un uso innecesario de recursos tanto en el host como en el destino.</block>
   <block id="049cf7a01c96a6039648d00060516545" category="paragraph">Antes de solucionar problemas para cualquier fallo de NVMe/FC, asegúrese de ejecutar una configuración que cumpla con las especificaciones de IMT y siga estos pasos para corregir cualquier problema en el lado del host.</block>
+  <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="summary">Los avisos legales proporcionan acceso a las declaraciones de copyright, marcas comerciales, patentes y mucho más.</block>
+  <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">Avisos legales</block>
+  <block id="6016a2b341113bf496b719905398ecd2" category="section-title">Derechos de autor</block>
+  <block id="de6edae22bc37b97b38a15c7f8af62e2" category="paragraph"><block ref="de6edae22bc37b97b38a15c7f8af62e2" category="inline-link-rx"></block></block>
+  <block id="126a02652da6de02962cf1b654fd6376" category="section-title">Marcas comerciales</block>
+  <block id="c4ce4761e466527d26b3e3d5ed1006fd" category="paragraph">NETAPP, el logotipo de NETAPP y las marcas enumeradas en la página de marcas comerciales de NetApp son marcas comerciales de NetApp, Inc. Los demás nombres de empresas y productos son marcas comerciales de sus respectivos propietarios.</block>
+  <block id="a93bc0a57623c2facaa010825c808507" category="paragraph"><block ref="a93bc0a57623c2facaa010825c808507" category="inline-link-rx"></block></block>
+  <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">Estadounidenses</block>
+  <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">Puede encontrar una lista actual de las patentes propiedad de NetApp en:</block>
+  <block id="547ea2e305891e64d8e744949b0aca2c" category="paragraph"><block ref="547ea2e305891e64d8e744949b0aca2c" category="inline-link-rx"></block></block>
+  <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">Política de privacidad</block>
+  <block id="50921fca0d376fca62102a5e608994e2" category="paragraph"><block ref="50921fca0d376fca62102a5e608994e2" category="inline-link-rx"></block></block>
+  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">Código abierto</block>
+  <block id="6de6f1db3c6d9273da9d8e254b666753" category="paragraph">Proporciona información acerca de los derechos de autor y las licencias de terceros utilizados en este producto.</block>
+  <block id="b3299575ec25f288b8a86816f1af45af" category="inline-link-macro">Aviso para AIX</block>
+  <block id="052ed5f67b081d47dbc2b3895228d738" category="list-text"><block ref="052ed5f67b081d47dbc2b3895228d738" category="inline-link-macro-rx"></block></block>
+  <block id="427a239761c886d37a93bd4b61520766" category="inline-link-macro">Aviso para Linux</block>
+  <block id="a9e1c34a219d92c373cbc90dfdb82cf1" category="list-text"><block ref="a9e1c34a219d92c373cbc90dfdb82cf1" category="inline-link-macro-rx"></block></block>
+  <block id="cacc0e75410f25ef36bc2b6e76334eca" category="inline-link-macro">Aviso para Solaris</block>
+  <block id="acad552cc1f69d130b13381f823afd65" category="list-text"><block ref="acad552cc1f69d130b13381f823afd65" category="inline-link-macro-rx"></block></block>
+  <block id="c44700394b9a4063439bc92ea42d5e41" category="inline-link-macro">Aviso para Windows</block>
+  <block id="9d9a9c7064b8193ac433a5365fe1afdb" category="list-text"><block ref="9d9a9c7064b8193ac433a5365fe1afdb" category="inline-link-macro-rx"></block></block>
 </blocks>

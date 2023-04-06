@@ -1,0 +1,51 @@
+---
+permalink: legal_notice.html 
+sidebar: sidebar 
+keywords: legal, notices, copyright, trademarks, patents 
+summary: Los avisos legales proporcionan acceso a las declaraciones de copyright, marcas comerciales, patentes y mucho más. 
+---
+= Avisos legales
+:allow-uri-read: 
+
+
+Los avisos legales proporcionan acceso a las declaraciones de copyright, marcas comerciales, patentes y mucho más.
+
+
+
+== Derechos de autor
+
+http://www.netapp.com/us/legal/copyright.aspx[]
+
+
+
+== Marcas comerciales
+
+NETAPP, el logotipo de NETAPP y las marcas enumeradas en la página de marcas comerciales de NetApp son marcas comerciales de NetApp, Inc. Los demás nombres de empresas y productos son marcas comerciales de sus respectivos propietarios.
+
+http://www.netapp.com/us/legal/netapptmlist.aspx[]
+
+
+
+== Estadounidenses
+
+Puede encontrar una lista actual de las patentes propiedad de NetApp en:
+
+https://www.netapp.com/us/media/patents-page.pdf[]
+
+
+
+== Política de privacidad
+
+https://www.netapp.com/us/legal/privacypolicy/index.aspx[]
+
+
+
+== Código abierto
+
+Proporciona información acerca de los derechos de autor y las licencias de terceros utilizados en este producto.
+
+* link:./media/Notices-AIX61-2023.pdf["Aviso para AIX"^]
+* link:./media/Linux_Unified_Host_Utilities.pdf["Aviso para Linux"^]
+* link:./media/Solaris_Host_Utilities-2017.09.12-01.25.35.pdf["Aviso para Solaris"^]
+* link:./media/Windows_Unified_Host_Utilities_(WUHU)Notice.pdf["Aviso para Windows"^]
+
