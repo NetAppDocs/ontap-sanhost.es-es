@@ -19,7 +19,7 @@ summary:
 
 
 [role="lead"]
-NVMe over Fabrics (NVMe-oF), incluidos NVMe/FC y otros transportes, es compatible con Oracle Linux 9,0 con acceso al espacio de nombres asimétrico (ANA). En entornos de NVMe-oF, ANA es el equivalente a la multivía ALUA en entornos iSCSI y FC y se implementa con NVMe multivía en kernel.
+NVMe over Fabrics (NVMe-oF), incluidos NVMe/FC y otros transportes, es compatible con Oracle Linux (OL) 9,0 con acceso asimétrico al espacio de nombres (ANA). En entornos de NVMe-oF, ANA es el equivalente a la multivía ALUA en entornos iSCSI y FC y se implementa con NVMe multivía en kernel.
 
 Si quiere más información sobre las configuraciones compatibles, consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
 
@@ -43,7 +43,7 @@ No hay limitaciones conocidas.
 Puede validar las versiones mínimas de software OL 9,0 admitidas mediante el siguiente procedimiento.
 
 .Pasos
-. Instale Oracle Linux 9,0 GA en el servidor. Una vez finalizada la instalación, compruebe que está ejecutando el núcleo GA de Oracle Linux 9,0 especificado.
+. Instale OL 9,0 GA en el servidor. Una vez finalizada la instalación, compruebe que está ejecutando el kernel OL 9,0 GA especificado.
 +
 [listing]
 ----
@@ -353,7 +353,7 @@ options lpfc lpfc_sg_seg_cnt=256
 == Valide NVMe-of
 
 .Pasos
-. Verifique la siguiente configuración de NVMe/FC en el host Oracle Linux 9,0:
+. Compruebe la siguiente configuración de NVMe/FC en el host OL 9,0:
 +
 [listing]
 ----
@@ -497,7 +497,7 @@ Antes de solucionar problemas con cualquier fallo de NVMe/FC, compruebe que est�
 
 === Active el registro detallado
 
-Si tiene algún problema con la configuración, el registro detallado puede proporcionar información valiosa esencial para la solución de problemas.
+Si tiene algún problema con la configuración, el registro detallado puede proporcionar información esencial para la solución de problemas.
 
 .Pasos
 El procedimiento para establecer el registro detallado para Qlogic (qla2xxx) es diferente del procedimiento para establecer el registro verbose LPFC.

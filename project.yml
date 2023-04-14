@@ -41,6 +41,8 @@ sidebar:
         url: "/hu_solaris_62_rn.html"
     - title: Utilidades unificadas de host de Windows
       entries:
+      - title: Instale WUHU 7,2
+        url: "/hu_wuhu_72.html"
       - title: Instale WUHU 7.1
         url: "/hu_wuhu_71.html"
       - title: Notas de la versión

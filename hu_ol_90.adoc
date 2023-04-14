@@ -41,9 +41,9 @@ Si tiene una versión de Linux Unified Host Utilities instalada actualmente, deb
 
 == Kit de herramientas SAN
 
-El kit de herramientas se instala automáticamente cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la utilidad sanlun, que le ayuda a gestionar LUN y HBA. El comando sanlun muestra información acerca de las LUN asignadas al host, la multivía y la información necesaria para crear iGroups.
+El kit de herramientas se instala automáticamente cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar LUN y HBA. La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
 
-En el ejemplo siguiente, el comando sanlun lun show muestra información de las LUN.
+En el siguiente ejemplo, la `sanlun lun show` Command muestra información de LUN.
 
 [listing]
 ----
@@ -277,7 +277,7 @@ NOTE: Para configurar Oracle Linux 9,0 RedHat Enterprise Kernel (RHCK), utilice 
 
 == Configuración de KVM
 
-También puede utilizar los ajustes recomendados para configurar la máquina virtual basada en kernel (KVM). No es necesario realizar cambios para configurar KVM a medida que la LUN está asignada al hipervisor.
+También puede utilizar la configuración recomendada para configurar la máquina virtual basada en kernel (KVM). No es necesario realizar cambios para configurar KVM a medida que la LUN está asignada al hipervisor.
 
 
 
@@ -293,4 +293,4 @@ No hay problemas conocidos para Oracle Linux 9,0.
 
 === Mirroring de ASM
 
-El mirroring de ASM puede requerir cambios en la configuración multivía de Linux para permitir que ASM reconozca un problema y conmute a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte Oracle Databases on ONTAP para obtener más información.
+La duplicación de ASM puede requerir cambios en la configuración multivía de Linux para permitir que ASM reconozca un problema y cambie a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte Oracle Databases on ONTAP para obtener más información.
