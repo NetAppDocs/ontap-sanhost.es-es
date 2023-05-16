@@ -24,7 +24,7 @@ summary: Describe cómo usar las utilidades unificadas de host de Linux 7.1 con 
 
 * Para lograr un funcionamiento fiable, es necesario verificar que se admite toda la configuración de iSCSI, FC o FCoE.
 +
-Puede utilizar el https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar la configuración.
+Puede utilizar el https://["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar la configuración.
 
 * Debe instalar los paquetes de administración de HBA proporcionados por los proveedores en sus sitios web.
 +

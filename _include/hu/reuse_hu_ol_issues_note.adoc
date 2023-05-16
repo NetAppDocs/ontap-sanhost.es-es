@@ -3,4 +3,4 @@
 
 
 
-NOTE: Para problemas conocidos de Oracle Linux (kernel compatible con Red Hat), consulte la sección problemas conocidos en el correspondiente https://mysupport.netapp.com/documentation/productlibrary/index.html?productID=63146["Versión de Red Hat Enterprise Linux"^] documentación.
+NOTE: Para problemas conocidos de Oracle Linux (kernel compatible con Red Hat), consulte la sección problemas conocidos en el correspondiente https://["Versión de Red Hat Enterprise Linux"^] documentación.

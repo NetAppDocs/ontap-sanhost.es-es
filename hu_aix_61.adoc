@@ -21,7 +21,7 @@ summary: Describe cómo utilizar IBM AIX 7.2 y/o PowerVM VIOS 3.1 con ONTAP
 .Lo que necesitará
 * Para lograr un funcionamiento fiable, es necesario verificar que se admite toda la configuración de iSCSI, FC o FCoE.
 +
-Puede utilizar el https://mysupport.netapp.com/matrix/imt.jsp?components=65623%3B64703%3B&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar la configuración.
+Puede utilizar el https://["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar la configuración.
 
 
 
@@ -58,7 +58,7 @@ NOTE: El kit DE herramientas SAN es compatible con las versiones de sistema oper
 
 == Instale AIX Host Utilities
 
-El paquete de software AIX Host Utilities de NetApp está disponible en la https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host%2BUtilities%2B-%2BSAN&platform=Linux["Sitio de soporte de NetApp"^] en un archivo comprimido tar.gz.
+El paquete de software AIX Host Utilities de NetApp está disponible en la https://["Sitio de soporte de NetApp"^] en un archivo comprimido tar.gz.
 
 Debe instalar el kit de utilidades de host de AIX mientras utiliza AIX MPIO con almacenamiento ONTAP de NetApp.
 

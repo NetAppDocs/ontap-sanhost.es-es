@@ -29,7 +29,7 @@ En este documento se proporcionan directrices sobre los ajustes de configuració
 == Arranque SAN de hipervisores
 
 .Lo que necesitará
-Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
+Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el https://["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
 
 .Pasos
 . Asignar el LUN de arranque SAN al host.
@@ -188,13 +188,13 @@ Al usar vVols, se aplican los requisitos estándar y las prácticas recomendadas
 
 
 
-NOTE: Para habilitar el proveedor VASA, debe implementar herramientas de ONTAP para VMware vSphere. El proveedor VASA gestionará toda su configuración de igroup, por lo que no es necesario crear o gestionar grupos en un entorno vVols.
+NOTE: Para habilitar el proveedor VASA, debe implementar herramientas de ONTAP para VMware vSphere. VASA Provider gestionará todas las configuraciones de los igroups por usted, por lo que no es necesario crear ni gestionar iGroups en un entorno vVols.
 
 NetApp no recomienda cambiar los ajustes de vVols de forma predeterminada en estos momentos.
 
-Consulte la https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para conocer las versiones específicas de las herramientas de ONTAP o el proveedor VASA heredado para las versiones específicas de vSphere y ONTAP.
+Consulte la https://["Herramienta de matriz de interoperabilidad de NetApp"^] Para conocer las versiones específicas de las herramientas de ONTAP o el proveedor VASA heredado para las versiones específicas de vSphere y ONTAP.
 
-Para obtener información detallada sobre el aprovisionamiento y la gestión de vVols, consulte también la documentación sobre herramientas de ONTAP para VMware vSphere link:https://docs.netapp.com/us-en/netapp-solutions/hybrid-cloud/vsphere_ontap_ontap_for_vsphere.html["TR-4597"^] y.. link:https://www.netapp.com/pdf.html?item=/media/13555-tr4400pdf.pdf["TR-4400."^]
+Para obtener información detallada sobre el aprovisionamiento y la gestión de vVols, consulte también la documentación sobre herramientas de ONTAP para VMware vSphere https://["TR-4597"^] y.. link:https://www.netapp.com/pdf.html?item=/media/13555-tr4400pdf.pdf["TR-4400."^]
 
 
 
@@ -220,7 +220,7 @@ El bloqueo ATS es *obligatorio* para almacenamiento compatible con VAAI y VMFS5 
 | Disco/QFullSampleSize | 0 | 32 | El recuento de condiciones DE COLA LLENA o DE ACTIVIDAD que se tarda antes de que ESXi comience a tope. 
 |===
 
-NOTE: Habilite la configuración Space-alloc para que funcione LA FUNCIÓN UNMAP en todas las LUN asignadas a VMware vSphere. Para obtener información detallada, consulte https://docs.netapp.com/ontap-9/index.jsp["Documentación de ONTAP"^].
+NOTE: Habilite la configuración Space-alloc para que funcione LA FUNCIÓN UNMAP en todas las LUN asignadas a VMware vSphere. Para obtener información detallada, consulte https://["Documentación de ONTAP"^].
 
 
 
@@ -323,7 +323,7 @@ Utilice el siguiente comando para verificar QFullSampleSize:
 
 == Enlaces relacionados
 
-* Para acceder a TR-4597-VMware vSphere con ONTAP, consulte link:https://cert.vmware.com/caas/support/case/00088028["Caso de cliente 00088028"^] y.. link:https://cert.vmware.com/caas/support/case/00088029["Caso de cliente 00088029"^]
+* link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597-VMware vSphere con ONTAP"^]
 * link:https://kb.vmware.com/s/article/2031038["Compatibilidad de VMware vSphere 5.x, 6.x y 7.x con MetroCluster de NetApp (2031038)"^]
 * link:https://kb.vmware.com/s/article/83370["ONTAP de NetApp con continuidad empresarial de SnapMirror de NetApp (SM-BC) con VMware vSphere Metro Storage Cluster (VMSC)"^]
 

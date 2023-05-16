@@ -52,4 +52,4 @@ indexpage:
     - title: Administración de SAN
       url: https://docs.netapp.com/us-en/ontap/san-admin/index.html
     - title: Configuración de SAN
-      url: https://docs.netapp.com/us-en/ontap-metrocluster/
+      url: https://docs.netapp.com/us-en/ontap/san-config/index.html

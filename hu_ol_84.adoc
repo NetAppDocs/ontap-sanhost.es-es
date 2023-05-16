@@ -30,7 +30,7 @@ Se recomienda encarecidamente instalar Unified Host Utilities de Linux, pero no 
 Si tiene una versión de Linux Unified Host Utilities instalada actualmente, debe actualizarla o, debe eliminarla y seguir los pasos siguientes para instalar la versión más reciente.
 
 .Pasos
-. Descargue el paquete de software Linux Unified Host Utilities de 64 bits de https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^] al host.
+. Descargue el paquete de software Linux Unified Host Utilities de 64 bits de https://["Sitio de soporte de NetApp"^] al host.
 . Use el siguiente comando para instalar el paquete de software:
 +
 `rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`

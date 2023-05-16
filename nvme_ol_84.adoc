@@ -420,7 +420,7 @@ NSID        UUID                                  Size
 | ID de error de NetApp | Título | Descripción | ID Bugzilla 
 
 
-| 1517321 | Los hosts Oracle Linux 8.4 NVMe-of crean controladoras de detección persistente duplicadas | En los hosts Oracle Linux 8.4 NVMe over Fabrics (NVMe-of), puede usar el comando "nvme Discover -p" para crear controladoras de detección persistente (CMC). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta ONTAP 9.10.1 y Oracle Linux 8.4 con un host NVMe-of, se crea un PDC duplicado cada vez que se ejecuta "nvme Discover -p". Esto lleva a un uso innecesario de recursos tanto en el host como en el destino. | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118"^] 
+| 1517321 | Los hosts Oracle Linux 8.4 NVMe-of crean controladoras de detección persistente duplicadas | En los hosts Oracle Linux 8.4 NVMe over Fabrics (NVMe-of), puede usar el comando "nvme Discover -p" para crear controladoras de detección persistente (CMC). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta ONTAP 9.10.1 y Oracle Linux 8.4 con un host NVMe-of, se crea un PDC duplicado cada vez que se ejecuta "nvme Discover -p". Esto lleva a un uso innecesario de recursos tanto en el host como en el destino. | https://["18118"^] 
 |===
 
 

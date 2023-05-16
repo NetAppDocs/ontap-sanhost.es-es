@@ -50,7 +50,7 @@ Los siguientes programas y archivos se instalan en el equipo host de Windows. El
 
 == Configuraciones compatibles con Host Utilities
 
-Las utilidades del host admiten distintas configuraciones de host de Windows, protocolos y opciones de múltiples rutas. Para obtener más información, consulte https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
+Las utilidades del host admiten distintas configuraciones de host de Windows, protocolos y opciones de múltiples rutas. Para obtener más información, consulte https://["Herramienta de matriz de interoperabilidad de NetApp"^].
 
 
 
@@ -59,7 +59,7 @@ Las utilidades del host admiten distintas configuraciones de host de Windows, pr
 Antes de instalar las utilidades de host, debe comprobar que la versión de utilidades de host admite la configuración del sistema de almacenamiento y host para que el software se instale correctamente.
 
 .Pasos
-. Compruebe la configuración compatible en la http://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^].
+. Compruebe la configuración compatible en la http://["Herramienta de matriz de interoperabilidad de NetApp"^].
 . Compruebe las revisiones necesarias para el host correspondiente del link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Documentación para Windows del host SAN"].
 +
 
@@ -71,7 +71,7 @@ Los protocolos Fibre Channel e iSCSI no requieren licencias en los sistemas de a
 
 . Compruebe el cableado
 +
-Consulte https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html?cp=14_7["Guía de configuración de SAN"^] Para su versión de ONTAP o. https://mysupport.netapp.com/ecm/ecm_get_file/ECMLP2773533["Guía de cableado de hardware E-Series"^] para obtener información detallada sobre el cableado y la configuración.
+Consulte https://["Guía de configuración de SAN"^] Para su versión de ONTAP o. https://["Guía de cableado de hardware E-Series"^] para obtener información detallada sobre el cableado y la configuración.
 
 
 
@@ -91,7 +91,7 @@ NOTE: No cambie manualmente la configuración de HBA.
 . Obtenga los controladores HBA admitidos y las utilidades de administración e instálelos según las instrucciones proporcionadas por el proveedor de HBA.
 . Conecte los HBA a los switches de Fibre Channel o directamente al sistema de almacenamiento.
 . Cree zonas en el switch Fibre Channel de acuerdo con la documentación del switch Fibre Channel.
-. Para ONTAP, dividir el switch de acuerdo con WWPN. Asegúrese de utilizar el WWPN de las LIF y no de los puertos físicos en las controladoras de almacenamiento. Para obtener más información, consulte https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html?cp=14_7["Guía de configuración de SAN"^].
+. Para ONTAP, dividir el switch de acuerdo con WWPN. Asegúrese de utilizar el WWPN de las LIF y no de los puertos físicos en las controladoras de almacenamiento. Para obtener más información, consulte https://["Guía de configuración de SAN"^].
 
 
 
@@ -116,7 +116,7 @@ Debe especificar si desea incluir la compatibilidad con multivía al instalar el
 Para instalar el paquete de software de Host Utilities de forma interactiva, debe ejecutar el programa de instalación de Host Utilities y seguir las instrucciones.
 
 .Pasos
-. Descargue el archivo ejecutable desde https://mysupport.netapp.com/site/["Sitio de soporte de NetApp"^].
+. Descargue el archivo ejecutable desde https://["Sitio de soporte de NetApp"^].
 . Cambie al directorio desde el que descargó el archivo ejecutable.
 . Ejecute el `netapp_windows_host_utilities_7.1_x64` archivar y seguir las instrucciones en pantalla.
 . Reinicie el host de Windows cuando se le solicite.
@@ -361,7 +361,7 @@ El instalador de Windows Unified Host Utilities establece automáticamente los v
 | HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\UseCustomPathRecoveryInterval | 1 | Cuando el servidor es únicamente Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016 
 |===
 .Información relacionada
-Consulte la https://docs.microsoft.com/en-us/troubleshoot/windows-server/performance/windows-registry-advanced-users["Documentos de Microsoft"^] para obtener los detalles de los parámetros del registro.
+Consulte la https://["Documentos de Microsoft"^] para obtener los detalles de los parámetros del registro.
 
 
 
@@ -415,7 +415,7 @@ Para los HBA Fibre Channel de QLogic, el instalador establece los siguientes par
 NOTE: Los nombres de los parámetros pueden variar ligeramente según el programa. Por ejemplo, en el programa QConverteConsole de QLogic, el parámetro se muestra como `Link Down Timeout`. Las utilidades del host `fcconfig.ini` file muestra este parámetro como cualquiera de los dos `LinkDownTimeOut` o. `MpioLinkDownTimeOut`, Dependiendo de si se especifica MPIO. Sin embargo, todos estos nombres hacen referencia al mismo parámetro HBA.
 
 .Información relacionada
-Consulte https://www.broadcom.com/support/download-search["Emulex"^] o. https://driverdownloads.qlogic.com/QLogicDriverDownloads_UI/Netapp_search.aspx["QLogic"^] sitio para obtener más información acerca de los parámetros de tiempo de espera.
+Consulte https://["Emulex"^] o. https://["QLogic"^] sitio para obtener más información acerca de los parámetros de tiempo de espera.
 
 
 
@@ -431,8 +431,8 @@ En esta sección se describen técnicas generales de solución de problemas para
 * Si las aplicaciones que utilizan las LUN muestran errores al iniciar, debe comprobar que las aplicaciones están configuradas para que dependan del servicio iSCSI.
 * Para las rutas Fibre Channel a las controladoras de almacenamiento que ejecutan ONTAP, debe comprobar que los switches FC se dividen mediante los WWPN de los LIF objetivo, no los WWPN de los puertos físicos del nodo.
 * Debe revisar el link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Notas de la versión de Windows Host Utilities"] para comprobar si hay problemas conocidos. Las notas de la versión incluyen una lista de problemas y limitaciones conocidos.
-* Debe revisar la información para la solución de problemas en el https://docs.netapp.com/ontap-9/index.jsp["Guía de administración de SAN"^] Para su versión de ONTAP.
-* Debe buscar https://mysupport.netapp.com/site/bugs-online/["Errores en línea"^] para problemas recientemente descubiertos.
+* Debe revisar la información para la solución de problemas en el https://["Guía de administración de SAN"^] Para su versión de ONTAP.
+* Debe buscar https://["Errores en línea"^] para problemas recientemente descubiertos.
 * En el campo Bug Types en Advanced Search, debe seleccionar ISCSI - Windows y, a continuación, hacer clic en Go. Repita la búsqueda para Bug Type FCP -Windows.
 * Debe recopilar información sobre el sistema.
 * Registre los mensajes de error que se muestran en el host o la consola del sistema de almacenamiento.
@@ -442,9 +442,9 @@ En esta sección se describen técnicas generales de solución de problemas para
 
 
 .Información relacionada
-http://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^]
-https://mysupport.netapp.com/portal/documentation["Documentación de NetApp"^]
-https://mysupport.netapp.com/NOW/cgi-bin/bol["NetApp Bugs Online"^]
+http://["Herramienta de matriz de interoperabilidad de NetApp"^]
+https://["Documentación de NetApp"^]
+https://["NetApp Bugs Online"^]
 
 
 

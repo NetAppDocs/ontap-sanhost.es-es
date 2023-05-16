@@ -48,14 +48,14 @@ Ninguno.
 
 == Requisitos de configuración
 
-Consulte la http://mysupport.netapp.com/matrix3["Herramienta de matriz de interoperabilidad de NetApp (IMT)"^] para obtener la lista actual de configuraciones compatibles.
+Consulte la http://["Herramienta de matriz de interoperabilidad de NetApp (IMT)"^] para obtener la lista actual de configuraciones compatibles.
 
 
 
 == Habilite NVMe/FC con Oracle Linux 8.3
 
 .Pasos
-. Instale Oracle Linux 8.3 GA en el servidor. Una vez finalizada la instalación, compruebe que está ejecutando el kernel de Oracle Linux 8.3 GA especificado. Consulte https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones compatibles.
+. Instale Oracle Linux 8.3 GA en el servidor. Una vez finalizada la instalación, compruebe que está ejecutando el kernel de Oracle Linux 8.3 GA especificado. Consulte https://["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones compatibles.
 +
 [listing]
 ----
@@ -109,7 +109,7 @@ Reinicie el daemon multipathd ejecutando el comando _systemctl restart multipath
 == Configure el adaptador de FC de Broadcom para NVMe/FC
 
 .Pasos
-. Compruebe que está utilizando el adaptador compatible. Para obtener la lista más actual de adaptadores compatibles, consulte https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
+. Compruebe que está utilizando el adaptador compatible. Para obtener la lista más actual de adaptadores compatibles, consulte https://["Herramienta de matriz de interoperabilidad de NetApp"^].
 +
 [listing]
 ----
@@ -124,7 +124,7 @@ LPe36002-M2
 Emulex LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 Emulex LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 ----
-. Compruebe que está utilizando el firmware de Broadcom lpfc y el controlador de bandeja de entrada recomendados. Para obtener la lista más actual de las versiones de firmware y controladores de adaptador compatibles, consulte https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
+. Compruebe que está utilizando el firmware de Broadcom lpfc y el controlador de bandeja de entrada recomendados. Para obtener la lista más actual de las versiones de firmware y controladores de adaptador compatibles, consulte https://["Herramienta de matriz de interoperabilidad de NetApp"^].
 +
 [listing]
 ----
@@ -397,7 +397,7 @@ Device      Vserver         Namespace Path             NSID UUID                
 | ID de error de NetApp | Título | Descripción | Bugzilla de Oracle 
 
 
-| 1517321 | Los hosts Oracle Linux 8.3 NVMe-of crean controladoras de detección persistente duplicadas | En los hosts Oracle Linux 8.3 NVMe over Fabrics (NVMe-of), puede usar el `nvme discover -p` Comando para crear controladores de descubrimiento persistente (PDCs). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta ONTAP 9.10.1 y Oracle Linux 8.3 con un host NVMe-of, se crea un PDC duplicado cada vez `nvme discover -p` se ejecuta. Esto lleva a un uso innecesario de recursos tanto en el host como en el destino. | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118"^] 
+| 1517321 | Los hosts Oracle Linux 8.3 NVMe-of crean controladoras de detección persistente duplicadas | En los hosts Oracle Linux 8.3 NVMe over Fabrics (NVMe-of), puede usar el `nvme discover -p` Comando para crear controladores de descubrimiento persistente (PDCs). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta ONTAP 9.10.1 y Oracle Linux 8.3 con un host NVMe-of, se crea un PDC duplicado cada vez `nvme discover -p` se ejecuta. Esto lleva a un uso innecesario de recursos tanto en el host como en el destino. | https://["18118"^] 
 |===
 
 

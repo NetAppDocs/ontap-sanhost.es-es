@@ -113,4 +113,4 @@ Puede acceder a la documentación de todos los productos de NetApp y buscar otro
 * Las notas de la versión de SANtricity Storage Manager para su versión de SANtricity.
 
 
-Consulte link:https://docs.netapp.com/us-en/e-series/getting-started/index.html["Documentación de E-Series"^] Para encontrar documentación relacionada de SANtricity.
+Consulte link:https://docs.netapp.com/us-en/e-series-family/["Documentación de E-Series"^] Para encontrar documentación relacionada de SANtricity.

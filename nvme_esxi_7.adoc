@@ -271,7 +271,7 @@ tcp.vmnic3:34:80:Od:30:ca:el-tcp.unknown-uuid.400bf333abf74ab8b96dc18ffadc3f99
 
 == Problema conocido
 
-* La compatibilidad con ESXi 7.0 U3 (y posterior) con NVMe/FC está disponible a partir de ONTAP 9.9.1 P3 y versiones posteriores debido a que las correcciones principales de NVMe abortado (emitidas por ESXi 7.0 U3 y posteriores) están disponibles a partir de ONTAP 9.9.1 P3. Consulte el informe público burt correspondiente en https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1420654[] para obtener más detalles.
+* La compatibilidad con ESXi 7.0 U3 (y posterior) con NVMe/FC está disponible a partir de ONTAP 9.9.1 P3 y versiones posteriores debido a que las correcciones principales de NVMe abortado (emitidas por ESXi 7.0 U3 y posteriores) están disponibles a partir de ONTAP 9.9.1 P3. Consulte el informe público burt correspondiente en https://[] para obtener más detalles.
 
 
 

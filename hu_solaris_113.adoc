@@ -22,7 +22,7 @@ summary: Describe cómo instalar las utilidades de host de solaris
 
 == Instalar Solaris Host Utilities
 
-Puede descargar el archivo comprimido que contiene los paquetes de software de utilidades de host en el sitio de soporte de NetApp. Después de tener el archivo, debe extraerlo para obtener los paquetes de software que necesita para instalar las utilidades de host.
+Puede descargar el archivo comprimido que contiene los paquetes de software de Utilidades de host en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^]. Después de tener el archivo, debe extraerlo para obtener los paquetes de software que necesita para instalar las utilidades de host.
 
 .Pasos
 . Descargue una copia del archivo comprimido que contiene las utilidades de host de en link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^] a un directorio del host.
@@ -46,7 +46,7 @@ En el ejemplo siguiente se descomprimen archivos de un sistema SPARC. Para plata
 Los paquetes se agregan a la `/opt/NTAP/SANToolkit/bin` directorio.
 
 +
-Para completar la instalación, debe configurar los parámetros del host para el entorno (MPxIO en este caso) con  `host_config` comando.
+Para completar la instalación, debe configurar los parámetros de host para su entorno (MPxIO en este caso) mediante el `host_config` comando.
 
 +
 La `host_config` el comando tiene el siguiente formato:
@@ -58,7 +58,7 @@ La `host_config` el comando tiene el siguiente formato:
 La `host_config` el comando hace lo siguiente:
 
 +
-** Realiza cambios de configuración para los controladores Fibre Channel y SCSI para sistemas X86 y SPARC
+** Cambia la configuración de los controladores de canal de fibra y SCSI para los sistemas x86 y SPARC
 ** Proporciona la configuración de tiempo de espera SCSI para las dos configuraciones MPxIO
 ** Establece la información vid/PID
 ** Habilita o deshabilita ALUA
@@ -96,7 +96,7 @@ Si decide utilizar el arranque SAN, debe ser compatible con su configuración. P
 
 El arranque SAN es el proceso de configurar un disco conectado a SAN (un LUN) como dispositivo de arranque para un host Solaris.
 
-Puede configurar un LUN de arranque SAN para que funcione en un entorno MPxIO de Solaris con el protocolo FC y ejecutar las utilidades de host de Solaris. El método que utilice para configurar un LUN DE arranque SAN puede variar en función del gestor de volúmenes y el sistema de archivos. Consulte link:https://library.netapp.com/ecmdocs/ECMLP2748974/html/frameset.html["Guía de instalación y configuración de Solaris Host Utilities"^] Para obtener información detallada sobre el inicio de LUN EN SAN en un entorno Solaris MPIO.
+Puede configurar un LUN de arranque SAN para que funcione en un entorno MPxIO de Solaris con el protocolo FC y ejecutar las utilidades de host de Solaris. El método que utilice para configurar un LUN DE arranque SAN puede variar en función del gestor de volúmenes y el sistema de archivos. Consulte https://["Instale Solaris Host Utilities"^] Para obtener más información sobre el inicio de LUN de SAN en un entorno Solaris MPIO.
 
 
 
@@ -178,7 +178,7 @@ A continuación se enumeran algunos parámetros de configuración recomendados p
 
 === Configuración recomendada para MetroCluster
 
-De forma predeterminada, el sistema operativo Solaris fallará las operaciones de I/o transcurridos 20 segundos si se pierden todas las rutas a una LUN. Esto es controlado por `fcp_offline_delay` parámetro. El valor predeterminado para `fcp_offline_delay` Es adecuado para clústeres ONTAP estándar. Sin embargo, en las configuraciones de MetroCluster, el valor de `fcp_offline_delay` Debe aumentarse a *120s* para garantizar que la E/S no se agota prematuramente durante las operaciones, incluidas las recuperaciones tras fallos no planificadas. Si quiere más información y necesita los cambios recomendados en la configuración predeterminada, consulte NetApp https://kb.netapp.com/app/answers/answer_view/a_id/1001373/loc/en_US["KB1001373"^].
+De forma predeterminada, el sistema operativo Solaris fallará las operaciones de I/o transcurridos 20 segundos si se pierden todas las rutas a una LUN. Esto es controlado por `fcp_offline_delay` parámetro. El valor predeterminado para `fcp_offline_delay` Es adecuado para clústeres ONTAP estándar. Sin embargo, en las configuraciones de MetroCluster, el valor de `fcp_offline_delay` Debe aumentarse a *120s* para garantizar que la E/S no se agota prematuramente durante las operaciones, incluidas las recuperaciones tras fallos no planificadas. Para obtener información adicional y cambios recomendados en la configuración predeterminada, consulte el artículo de la base de conocimientos de NetApp https://["Consideraciones de compatibilidad de host Solaris en una configuración de MetroCluster"^].
 
 
 
@@ -186,8 +186,8 @@ De forma predeterminada, el sistema operativo Solaris fallará las operaciones d
 
 * Entre las opciones de virtualización de Solaris se incluyen los dominios lógicos de Solaris (también llamados LDOM o Oracle VM Server para SPARC), los dominios dinámicos de Solaris, las zonas de Solaris y los contenedores de Solaris. Por lo general, estas tecnologías se han remarcado como "Oracle Virtual Machines", a pesar de que se basan en arquitecturas muy diferentes.
 * En algunos casos, se pueden utilizar varias opciones, como un contenedor Solaris dentro de un dominio lógico de Solaris en particular.
-* NetApp suele admitir el uso de estas tecnologías de virtualización, donde Oracle admite la configuración general y cualquier partición con acceso directo a las LUN se muestra en la https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["Matriz de interoperabilidad de NetApp"^] en una configuración compatible. Esto incluye contenedores raíz, dominios de IO de LDOM y LDOM mediante NPIV para acceder a las LUN.
-* Particiones y/o máquinas virtuales que solo utilizan recursos de almacenamiento virtualizados, como por ejemplo `vdsk`, No necesita cualificación específica porque no tienen acceso directo a las LUN de NetApp. Sólo se debe encontrar en la la partición/VM que tiene acceso directo a la LUN subyacente, como un dominio de E/S de LDOM https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["Matriz de interoperabilidad de NetApp"^].
+* NetApp suele admitir el uso de estas tecnologías de virtualización, donde Oracle admite la configuración general y cualquier partición con acceso directo a las LUN se muestra en la https://["Matriz de interoperabilidad de NetApp"^] en una configuración compatible. Esto incluye contenedores raíz, dominios de IO de LDOM y LDOM mediante NPIV para acceder a las LUN.
+* Particiones y/o máquinas virtuales que solo utilizan recursos de almacenamiento virtualizados, como por ejemplo `vdsk`, No necesita cualificación específica porque no tienen acceso directo a las LUN de NetApp. Sólo se debe encontrar en la la partición/VM que tiene acceso directo a la LUN subyacente, como un dominio de E/S de LDOM https://["Matriz de interoperabilidad de NetApp"^].
 
 
 
@@ -198,6 +198,7 @@ Cuando se usan las LUN como dispositivos de disco virtual dentro de una LDOM, el
 
 Para verificar el parche, haga lo siguiente:
 
+.Pasos
 . Cree un zpool.
 . Ejecución `zdb -C` contra el zpool y verifique que el valor de *ashift* es 12.
 +
@@ -244,7 +245,7 @@ svl_fops_name = 0xa00298d69e0 "conf f_tpgs"
 
 
 
-NOTE: Después `scsi-vhci-failover-override` se ha aplicado, `conf` se agrega a. `svl_fops_name`. Para obtener información adicional y los cambios recomendados en la configuración predeterminada, consulte el artículo de la base de conocimientos de NetApp https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/Solaris_Host_support_recommended_settings_in_SnapMirror_Business_Continuity_(SM-BC)_configuration["Ajustes recomendados para el soporte de host Solaris en la configuración de continuidad empresarial de SnapMirror (SM-BC)"^].
+NOTE: Después `scsi-vhci-failover-override` se ha aplicado, `conf` se agrega a. `svl_fops_name`. Para obtener información adicional y los cambios recomendados en la configuración predeterminada, consulte el artículo de la base de conocimientos de NetApp https://["Ajustes recomendados para el soporte de host Solaris en la configuración de continuidad empresarial de SnapMirror (SM-BC)"^].
 
 
 
@@ -258,5 +259,5 @@ NOTE: Después `scsi-vhci-failover-override` se ha aplicado, `conf` se agrega a.
 | 1366780 | Problema con LIF Solaris durante GB con HBA Emulex 32G en x86 Arch | Visto con Emulex versión de firmware 12.6.x y posterior en la plataforma x86_64 | SR 3-24746803021 
 
 
-| 1368957 | "Solaris 11.x "cfgadm -c configure", que produce un error de E/S con la configuración de Emulex de extremo a extremo" | Si se ejecuta “cfgadm -c configure” en las configuraciones de extremo a extremo de Emulex, se producirá un error de E/S. Esto se fija en 9.5P17, 9.6P14, 9.7P13 y 9.8P2 | NA 
+| 1368957 | Solaris 11.x 'cfgadm -c configure' que produce un error de E/S con la configuración Emulex de extremo a extremo | Ejecutando `cfgadm -c configure` En las configuraciones integrales de Emulex, se producen errores de I/O. Esto se fija en 9.5P17, 9.6P14, 9.7P13 y 9.8P2 | No aplicable 
 |===

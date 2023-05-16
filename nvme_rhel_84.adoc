@@ -43,7 +43,7 @@ NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este d
 == Limitaciones conocidas
 
 * Para RHEL 8.4, la función multivía de NVMe en el kernel sigue deshabilitada de forma predeterminada. Por lo tanto, debe habilitarla manualmente.
-* NVMe/TCP en RHEL 8.4 sigue siendo una función de vista previa de la tecnología debido a problemas abiertos. Consulte la https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/8.4_release_notes/index#technology-preview_file-systems-and-storage["Notas de la versión de RHEL 8.4"^] para obtener más detalles.
+* NVMe/TCP en RHEL 8.4 sigue siendo una función de vista previa de la tecnología debido a problemas abiertos. Consulte la https://["Notas de la versión de RHEL 8.4"^] para obtener más detalles.
 
 
 
