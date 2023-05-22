@@ -58,7 +58,7 @@ La `host_config` el comando tiene el siguiente formato:
 La `host_config` el comando hace lo siguiente:
 
 +
-** Cambia la configuración de los controladores de canal de fibra y SCSI para los sistemas x86 y SPARC
+** Cambia la configuración del controlador de canal de fibra y SCSI para los sistemas x86 y SPARC
 ** Proporciona la configuración de tiempo de espera SCSI para las dos configuraciones MPxIO
 ** Establece la información vid/PID
 ** Habilita o deshabilita ALUA
@@ -178,7 +178,7 @@ A continuación se enumeran algunos parámetros de configuración recomendados p
 
 === Configuración recomendada para MetroCluster
 
-De forma predeterminada, el sistema operativo Solaris fallará las operaciones de I/o transcurridos 20 segundos si se pierden todas las rutas a una LUN. Esto es controlado por `fcp_offline_delay` parámetro. El valor predeterminado para `fcp_offline_delay` Es adecuado para clústeres ONTAP estándar. Sin embargo, en las configuraciones de MetroCluster, el valor de `fcp_offline_delay` Debe aumentarse a *120s* para garantizar que la E/S no se agota prematuramente durante las operaciones, incluidas las recuperaciones tras fallos no planificadas. Para obtener información adicional y cambios recomendados en la configuración predeterminada, consulte el artículo de la base de conocimientos de NetApp https://["Consideraciones de compatibilidad de host Solaris en una configuración de MetroCluster"^].
+De forma predeterminada, el sistema operativo Solaris fallará las operaciones de I/o transcurridos 20 segundos si se pierden todas las rutas a una LUN. Esto es controlado por `fcp_offline_delay` parámetro. El valor predeterminado para `fcp_offline_delay` Es adecuado para clústeres ONTAP estándar. Sin embargo, en las configuraciones de MetroCluster, el valor de `fcp_offline_delay` Debe aumentarse a *120s* para garantizar que la E/S no se agota prematuramente durante las operaciones, incluidas las recuperaciones tras fallos no planificadas. Para obtener información adicional y cambios recomendados en la configuración predeterminada, consulte el artículo de Knowledge Base https://["Consideraciones de compatibilidad de host Solaris en una configuración de MetroCluster"^].
 
 
 
@@ -259,5 +259,5 @@ NOTE: Después `scsi-vhci-failover-override` se ha aplicado, `conf` se agrega a.
 | 1366780 | Problema con LIF Solaris durante GB con HBA Emulex 32G en x86 Arch | Visto con Emulex versión de firmware 12.6.x y posterior en la plataforma x86_64 | SR 3-24746803021 
 
 
-| 1368957 | Solaris 11.x 'cfgadm -c configure' que produce un error de E/S con la configuración Emulex de extremo a extremo | Ejecutando `cfgadm -c configure` En las configuraciones integrales de Emulex, se producen errores de I/O. Esto se fija en 9.5P17, 9.6P14, 9.7P13 y 9.8P2 | No aplicable 
+| 1368957 | Solaris 11.x 'cfgadm -c configure' que produce un error de E/S con la configuración Emulex de extremo a extremo | Ejecutando `cfgadm -c configure` En las configuraciones integrales de Emulex, se producen errores de I/O. Esto se fija en ONTAP 9.5P17, 9.6P14, 9.7P13 y 9.8P2 | No aplicable 
 |===

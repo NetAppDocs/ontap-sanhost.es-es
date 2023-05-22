@@ -58,7 +58,7 @@ La `host_config` el comando tiene el siguiente formato:
 La `host_config` el comando hace lo siguiente:
 
 +
-** Cambia la configuración de los controladores de canal de fibra y SCSI para los sistemas x86 y SPARC
+** Cambia la configuración del controlador de canal de fibra y SCSI para los sistemas x86 y SPARC
 ** Proporciona la configuración de tiempo de espera SCSI para las dos configuraciones MPxIO
 ** Establece la información vid/PID
 ** Habilita o deshabilita ALUA
@@ -96,7 +96,7 @@ Si decide utilizar el arranque SAN, debe ser compatible con su configuración. P
 
 El arranque SAN es el proceso de configurar un disco conectado a SAN (un LUN) como dispositivo de arranque para un host Solaris.
 
-Puede configurar un LUN de arranque SAN para que funcione en un entorno MPxIO de Solaris con el protocolo FC y ejecutar las utilidades de host de Solaris. El método que utilice para configurar un LUN DE arranque SAN puede variar en función del gestor de volúmenes y el sistema de archivos. Consulte https://["Instale Solaris Host Utilities"^] Para obtener más información sobre el inicio de LUN de SAN en un entorno Solaris MPIO.
+Puede configurar un LUN de arranque SAN para que funcione en un entorno MPxIO de Solaris con el protocolo FC y ejecutar las utilidades de host de Solaris. El método que utilice para configurar un LUN DE arranque SAN puede variar en función del gestor de volúmenes y el sistema de archivos. Consulte https://["Instale Solaris Host Utilities"] Para obtener más información sobre el inicio de LUN de SAN en un entorno Solaris MPIO.
 
 
 
@@ -178,13 +178,13 @@ A continuación se enumeran algunos parámetros de configuración recomendados p
 
 === Configuración recomendada para MetroCluster
 
-De forma predeterminada, el sistema operativo Solaris fallará las operaciones de I/o transcurridos 20 segundos si se pierden todas las rutas a una LUN. Esto es controlado por `fcp_offline_delay` parámetro. El valor predeterminado para `fcp_offline_delay` Es adecuado para clústeres ONTAP estándar. Sin embargo, en MetroCluster se puede configurar el valor de `fcp_offline_delay` Debe aumentarse a *120s* para garantizar que la E/S no se agota prematuramente durante las operaciones, incluidas las recuperaciones tras fallos no planificadas. Para obtener información adicional y los cambios recomendados en la configuración predeterminada, consulte el artículo de la base de conocimientos de NetApp https://["Consideraciones de compatibilidad de host Solaris en una configuración de MetroCluster"^].
+De forma predeterminada, el sistema operativo Solaris fallará las operaciones de I/o transcurridos 20 segundos si se pierden todas las rutas a una LUN. Esto es controlado por `fcp_offline_delay` parámetro. El valor predeterminado para `fcp_offline_delay` Es adecuado para clústeres ONTAP estándar. Sin embargo, en MetroCluster se puede configurar el valor de `fcp_offline_delay` Debe aumentarse a *120s* para garantizar que la E/S no se agota prematuramente durante las operaciones, incluidas las recuperaciones tras fallos no planificadas. Para obtener información adicional y cambios recomendados en la configuración predeterminada, consulte el artículo de Knowledge Base https://["Consideraciones de compatibilidad de host Solaris en una configuración de MetroCluster"^].
 
 
 
 == Virtualización Oracle Solaris
 
-* Entre las opciones de virtualización de Solaris se incluyen los dominios lógicos de Solaris (también llamados LDOM o Oracle VM Server para SPARC), los dominios dinámicos de Solaris, las zonas de Solaris y los contenedores de Solaris. Estas tecnologías han sido renombradas generalmente como “Oracle Virtual Machines” a pesar de que están basadas en una arquitectura diferente.
+* Entre las opciones de virtualización de Solaris se incluyen los dominios lógicos de Solaris (también llamados LDOM o Oracle VM Server para SPARC), los dominios dinámicos de Solaris, las zonas de Solaris y los contenedores de Solaris. Estas tecnologías han sido renombradas generalmente como “Oracle Virtual Machines” a pesar de que están basadas en diferentes arquitecturas.
 * En algunos casos, se pueden utilizar varias opciones, como un contenedor Solaris dentro de un dominio lógico de Solaris en particular.
 * NetApp suele admitir el uso de estas tecnologías de virtualización, donde Oracle admite la configuración general y cualquier partición con acceso directo a las LUN se muestra en la link:https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["Matriz de interoperabilidad de NetApp"^] en una configuración compatible. Esto incluye contenedores raíz, dominios de IO de LDOM y LDOM mediante NPIV para acceder a las LUN.
 * Las particiones y/o equipos virtuales que solo utilizan recursos de almacenamiento virtualizados, como vdsk, no necesitan cualificación específica porque no tienen acceso directo a las LUN de NetApp. Sólo se debe encontrar en la la partición/VM que tiene acceso directo a la LUN subyacente, como un dominio de E/S de LDOM link:https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["Matriz de interoperabilidad de NetApp"^].

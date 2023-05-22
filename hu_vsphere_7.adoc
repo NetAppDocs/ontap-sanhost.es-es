@@ -216,7 +216,7 @@ NetApp no recomienda cambiar los ajustes de vVols de los predeterminados en este
 
 Consulte la https://["Herramienta de matriz de interoperabilidad de NetApp"^] Para conocer las versiones específicas de las herramientas de ONTAP o el proveedor VASA heredado para las versiones específicas de vSphere y ONTAP.
 
-Para obtener información detallada sobre el aprovisionamiento y la gestión de vVols, consulte también la documentación sobre herramientas de ONTAP para VMware vSphere link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597-VMware vSphere con ONTAP"^] y.. link:https://www.netapp.com/pdf.html?item=/media/13555-tr4400pdf.pdf["TR-4400."^]
+Para obtener información detallada sobre el aprovisionamiento y la gestión de vVols, consulte también la documentación sobre herramientas de ONTAP para VMware vSphere link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597-VMware vSphere con ONTAP"^] y.. link:https://www.netapp.com/pdf.html?item=/media/13555-tr4400pdf.pdf["TR-4400"^].
 
 
 
