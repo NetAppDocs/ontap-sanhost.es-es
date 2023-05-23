@@ -69,7 +69,7 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 == Arranque San
 
 .Lo que necesitará
-Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el https://["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
+Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el https://mysupport.netapp.com/matrix/imt.jsp?components=68625;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
 
 .Pasos
 . Asignar el LUN de arranque SAN al host.

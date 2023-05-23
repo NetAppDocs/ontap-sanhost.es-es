@@ -26,7 +26,7 @@ Es posible configurar los ajustes del host SAN de ONTAP para la versión de VMwa
 == Arranque SAN del hipervisor
 
 .Lo que necesitará
-Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el https://["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
+Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
 
 .Pasos
 . Asignar el LUN de arranque SAN al host.
@@ -233,7 +233,7 @@ NOTE: Para habilitar el proveedor VASA, debe implementar herramientas de ONTAP p
 
 NetApp no recomienda cambiar los ajustes de vVols de forma predeterminada en estos momentos.
 
-Consulte la https://["Herramienta de matriz de interoperabilidad de NetApp"^] Para conocer las versiones específicas de las herramientas de ONTAP o el proveedor VASA heredado para las versiones específicas de vSphere y ONTAP.
+Consulte la https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para conocer las versiones específicas de las herramientas de ONTAP o el proveedor VASA heredado para las versiones específicas de vSphere y ONTAP.
 
 Si quiere información detallada sobre el aprovisionamiento y la gestión de vVols, consulte la documentación de las herramientas de ONTAP para VMware vSphere, link:https://docs.netapp.com/us-en/netapp-solutions/hybrid-cloud/vsphere_ontap_ontap_for_vsphere.html["TR-4597"^], y. link:https://www.netapp.com/pdf.html?item=/media/13555-tr4400pdf.pdf["TR-4400"^].
 

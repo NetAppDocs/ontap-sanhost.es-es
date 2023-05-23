@@ -45,7 +45,7 @@ Los siguientes programas y archivos se instalan en el equipo host de Windows. El
 
 == Configuraciones compatibles con las utilidades host
 
-Las utilidades de host admiten diferentes configuraciones de host, protocolos y opciones multivía de Windows. Para obtener más información, consulte https://["Herramienta de matriz de interoperabilidad de NetApp"^].
+Las utilidades de host admiten diferentes configuraciones de host, protocolos y opciones multivía de Windows. Para obtener más información, consulte https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
 
 
 
@@ -54,7 +54,7 @@ Las utilidades de host admiten diferentes configuraciones de host, protocolos y 
 Antes de instalar las utilidades de host, debe comprobar que la versión de utilidades del host sea compatible con la configuración del host y del sistema de almacenamiento para que el software se instale correctamente.
 
 .Pasos
-. Compruebe la configuración compatible en la http://["Herramienta de matriz de interoperabilidad de NetApp"^].
+. Compruebe la configuración compatible en la http://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^].
 . Compruebe las revisiones necesarias para el host correspondiente en el link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Documentación para Windows del host SAN"].
 +
 
@@ -66,7 +66,7 @@ Los protocolos FC e iSCSI no requieren licencias en los sistemas de almacenamien
 
 . Compruebe el cableado.
 +
-Consulte https://["Guía de configuración de SAN"^] Para la versión de ONTAP o el https://["Guía de cableado de hardware E-Series"^] para obtener información detallada sobre el cableado y la configuración.
+Consulte https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html?cp=14_7["Guía de configuración de SAN"^] Para la versión de ONTAP o el https://mysupport.netapp.com/ecm/ecm_get_file/ECMLP2773533["Guía de cableado de hardware E-Series"^] para obtener información detallada sobre el cableado y la configuración.
 
 
 
@@ -86,7 +86,7 @@ CAUTION: No cambie la configuración del adaptador de bus de host manualmente.
 . Obtenga los controladores HBA admitidos y las utilidades de administración e instálelos según las instrucciones proporcionadas por el proveedor de HBA.
 . Conecte los HBA a sus switches FC o directamente al sistema de almacenamiento.
 . Cree zonas en el switch FC según la documentación del switch FC.
-. Para ONTAP, divida el switch por el WWPN. Asegúrese de utilizar el nombre de puerto WWPN de las interfaces lógicas (LIF) y no el nombre de puerto WWPN de los puertos físicos en las controladoras de almacenamiento. Para obtener más información, consulte https://["Guía de configuración de SAN"^].
+. Para ONTAP, divida el switch por el WWPN. Asegúrese de utilizar el nombre de puerto WWPN de las interfaces lógicas (LIF) y no el nombre de puerto WWPN de los puertos físicos en las controladoras de almacenamiento. Para obtener más información, consulte https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html?cp=14_7["Guía de configuración de SAN"^].
 
 
 
@@ -111,7 +111,7 @@ La selección MPIO no está disponible para los sistemas Windows XP y Windows Vi
 Para instalar el paquete de software de utilidades del host de forma interactiva, debe ejecutar el programa de instalación de utilidades del host y seguir las indicaciones.
 
 .Pasos
-. Descargue el archivo ejecutable de la https://["Sitio de soporte de NetApp"^].
+. Descargue el archivo ejecutable de la https://mysupport.netapp.com/site/["Sitio de soporte de NetApp"^].
 . Cambie al directorio en el que descargó el archivo ejecutable.
 . Ejecute el `netapp_windows_host_utilities_7.2_x64` archivar y seguir las instrucciones en pantalla.
 . Reinicie el host de Windows cuando se le solicite.
@@ -432,14 +432,14 @@ Es posible utilizar las técnicas generales de solución de problemas para utili
 === Diferentes áreas para identificar los posibles problemas de interoperabilidad
 
 * Para identificar posibles problemas de interoperabilidad, debe confirmar que las utilidades de host admiten la combinación de software del sistema operativo host, hardware de host, software ONTAP y hardware del sistema de almacenamiento.
-* Debe comprobar el http://["Herramienta de matriz de interoperabilidad de NetApp"^].
+* Debe comprobar el http://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^].
 * Debe verificar que dispone de la configuración de iSCSI correcta.
 * Si los LUN iSCSI no están disponibles después de un reinicio, debe verificar que el destino se muestra como persistente en la pestaña *Destinos persistentes* de la GUI del iniciador iSCSI de Microsoft.
 * Si las aplicaciones que utilizan las LUN muestran errores al iniciar, debe comprobar que las aplicaciones están configuradas para que dependan del servicio iSCSI.
 * Para las rutas de FC a controladoras de almacenamiento que ejecutan ONTAP, debe comprobar que los switches de FC están divididos mediante los WWPN de las LIF de destino, no los WWPN de los puertos físicos del nodo.
 * Debe revisar el link:hu_wuhu_71_rn.html["Notas de la versión"] Para las utilidades de host de Windows que compruebe los problemas conocidos. Las notas de la versión incluyen una lista de problemas conocidos y limitaciones.
 * Debe revisar la información de solución de problemas en la Guía de administración de SAN para la versión de ONTAP.
-* Debe buscar https://["NetApp Bugs Online"^] para problemas descubiertos recientemente.
+* Debe buscar https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^] para problemas descubiertos recientemente.
 +
 ** En el campo Tipo de error en Búsqueda avanzada, debe seleccionar *iSCSI - Windows* y luego seleccionar *Ir*. Debe repetir la búsqueda de Bug Type *FCP -Windows*.
 

@@ -485,7 +485,7 @@ NSID       UUID                                   Size
 | ID de error de NetApp | Título | Descripción | ID Bugzilla 
 
 
-| 1517321 | Los hosts NVMe-oF de Oracle Linux 9,0 crean controladores de detección persistente duplicados | En los hosts Oracle Linux 9,0 NVMe over Fabrics (NVMe-oF), es posible usar el `nvme discover -p` Comando para crear controladores de descubrimiento persistente (PDCs). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta ONTAP 9.10.1 y Oracle Linux 9,0 con un host NVMe-oF, se crea un PDC duplicado cada vez `nvme discover -p` se ejecuta. Esto lleva a un uso innecesario de recursos tanto en el host como en el destino. | https://["18118"^] 
+| 1517321 | Los hosts NVMe-oF de Oracle Linux 9,0 crean controladores de detección persistente duplicados | En los hosts Oracle Linux 9,0 NVMe over Fabrics (NVMe-oF), es posible usar el `nvme discover -p` Comando para crear controladores de descubrimiento persistente (PDCs). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta ONTAP 9.10.1 y Oracle Linux 9,0 con un host NVMe-oF, se crea un PDC duplicado cada vez `nvme discover -p` se ejecuta. Esto lleva a un uso innecesario de recursos tanto en el host como en el destino. | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118"^] 
 |===
 
 
