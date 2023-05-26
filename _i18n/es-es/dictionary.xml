@@ -3114,4 +3114,81 @@
   <block id="6900c94ed3bcf3920ffd579cf50e5209" category="paragraph">Puede utilizar el siguiente comando para verificar QFullSampleSize.</block>
   <block id="7cdbf4845592ad7b5cdb4ccc2c4e2638" category="paragraph"><block ref="d6c304a8136df005fd734e2f1889954c" prefix="" category="inline-code"></block></block>
   <block id="8d0e68de728c46da62cafb173eb4dabc" category="sidebar">VMware vSphere 8</block>
+  <block id="2e920bc4fea58a11c2cd8f0900ced25a" category="summary">Cómo configurar el host NVMe/FC para AIX con ONTAP</block>
+  <block id="ef44b1520fc219818110cbb848b83d4c" category="doc">Configuración de host NVMe/FC para AIX con ONTAP</block>
+  <block id="8ab281bb60ad999625aaf3de3c38fb65" category="paragraph">Puede habilitar NVMe/FC en hosts IBM AIX y VIOS/PowerVM utilizando almacenamiento ONTAP como destino. Si quiere más información sobre las configuraciones compatibles, consulte <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block>.</block>
+  <block id="3f30b3d0388d2e37b9eab09266e88352" category="paragraph">La siguiente compatibilidad está disponible para la configuración de host de NVMe/FC para un host AIX con ONTAP:</block>
+  <block id="0ea2a32c53bc6cd3ea3534dccecb8603" category="list-text">A partir de ONTAP 9.13.1, se añade compatibilidad con NVMe over Fibre Channel (NVMe/FC) para las versiones IBM AIX 7,2 TL5 SP6, AIX 7,3 TL1 SP2 y VIOS 3.1.4.21 con soporte de arranque SAN para pilas físicas y virtuales. Consulte la documentación de IBM para obtener más información sobre la configuración del soporte de arranque SAN.</block>
+  <block id="870666297c802760e0f740c23ba0f86a" category="list-text">NVMe/FC solo es compatible con los servidores Power9 y Power10 IBM.</block>
+  <block id="2cbe79c2517f134493f44b09d5cbb74f" category="list-text">No se requiere ningún PCM (módulo de control de ruta) separado, como la compatibilidad con HUK para AIX, SCSI MPIO, para los dispositivos NVMe.</block>
+  <block id="4eb7ab60a4431529679ce25f0492c7af" category="list-text">Se incluye la compatibilidad con la virtualización de NetApp (VIOS/PowerVM) con VIOS 3,1.4,21. Se admite _ONLY_ a través del modo de virtualización del almacenamiento NPIV (virtualización N_portID) utilizando el servidor IBM Power10.</block>
+  <block id="3f11c6032647a5818c534829ca2b2ee0" category="list-text">Compruebe que tiene 32GB adaptadores FC Emulex (EN1A, EN1B, EN1L, EN1M) o adaptadores FC de 64GB Gb (EN1N, EN1P) con firmware del adaptador 12.4.257.30 y versiones posteriores.</block>
+  <block id="8bd787dd7b428233f651ee1c46e21ee9" category="list-text">Si tiene una configuración de MetroCluster, NetApp recomienda cambiar el tiempo de APD (All Path Down) predeterminado de NVMe/FC de AIX para admitir eventos de conmutación de sitios no planificados de MetroCluster y evitar que el sistema operativo AIX aplique un tiempo de espera de I/O más corto. Para obtener más información y los cambios recomendados en la configuración predeterminada, consulte el informe público 1553249.</block>
+  <block id="0e7e32cf18062ea2f0711c507e314b8a" category="list-text">De manera predeterminada, el valor ANATT para el SO host AIX es 30 segundos. IBM proporciona una solución provisional (ifix) que limita el valor ANATT a 60 segundos; debe instalar un ifix desde el sitio web de IBM para asegurarse de que todos los flujos de trabajo de ONTAP no sean disruptivos.</block>
+  <block id="feea0cbb465b6caacbe6b2e93f04da1d" category="admonition">Para la compatibilidad con NVMe/FC AIX, necesita instalar un ifix en las versiones GA del sistema operativo AIX. Esto no es necesario para el sistema operativo VIOS/PowerVM.</block>
+  <block id="c07e427521a4c5ceb9704138566e124e" category="paragraph">Los detalles de ifix son los siguientes:</block>
+  <block id="e1fa9920a353e14604b971646734d9ad" category="list-text">Para AIX nivel 72-TL5-SP6-2320, instale el<block ref="f896e07534b8a3b773955f68065d246e" prefix=" " category="inline-code"></block> paquete.</block>
+  <block id="532cbcbb7aad95ce1f00e4e3fb4b03f6" category="list-text">Para AIX nivel 73-TL1-SP2-2320, instale el<block ref="9b3ffcc15ca4d75da623901d3832fc42" prefix=" " category="inline-code"></block> paquete.</block>
+  <block id="f17bfdf5999401bcdd6897f6d5dd675b" category="inline-link-macro">Gestión de correcciones provisionales en AIX</block>
+  <block id="bcdcf815cb913fe205982051fea55f20" category="paragraph">Para obtener más información sobre la gestión de ifixes, consulte <block ref="d0c56d52e1733062faaa4c2667974f7c" category="inline-link-macro-rx"></block>.</block>
+  <block id="fe969132e8cace79306a9789cbb1baf4" category="admonition">Debe instalar los ifixes en una versión de AIX sin ifixes previamente instalados relacionados con<block ref="ed3d677bd9df1c532cefdc326b4fb80e" prefix=" " category="inline-code"></block> en el sistema. Si estos ifixes están presentes, entrarán en conflicto con la nueva instalación.</block>
+  <block id="940130be22cd59a60c9c2a5671450753" category="paragraph">En la siguiente tabla se muestran los HBA asignados a la pila AIX LPAR (partición lógica AIX) o física/nativa en modo no virtualizado:</block>
+  <block id="0437eec9c1ba5909642a99ee90c5a546" category="cell">SO del host</block>
+  <block id="11b3050b36fe4bf65551c9379e74cac7" category="cell">Arco de potencia</block>
+  <block id="807dd41b75918d70b41f7722ef76ddcb" category="cell">Versión FW de alimentación</block>
+  <block id="650be61892bf690026089544abbd9d26" category="cell">Modo</block>
+  <block id="8413c683b4b27cc3f4dbd4c90329d8ba" category="cell">Comentarios</block>
+  <block id="7b9eb3515c255f26f173af0f1d02ca10" category="cell">AIX 7,2 TL5 SP6</block>
+  <block id="89832886f2c91d14b5ea95e8c8b2efc3" category="cell">Power9</block>
+  <block id="fdcfefc0dd4d47b4775e7a895353b298" category="cell">FW 950 o posterior</block>
+  <block id="da032935d38f58f2a80e85824e285a21" category="cell">Pila física</block>
+  <block id="948c847302bfad6875962089bd70b8eb" category="cell">ifix disponible a través de TS012877410.</block>
+  <block id="ef68d757b6bda6ddbe9888cee04ed83e" category="cell">Power10</block>
+  <block id="491f480bd25135b61af1898f4382d024" category="cell">FW 1010 o posterior</block>
+  <block id="e7cda58d3cb375f2860722871215ea51" category="cell">Es compatible con arranque SAN. ifix disponible a través de TS012877410.</block>
+  <block id="307b80695029d3fb204f358d595aa521" category="cell">AIX 7,3 TL1 SP2</block>
+  <block id="bfbb073807eefa21522d9a2da6f6143e" category="cell">Pila física y virtual</block>
+  <block id="2169ce752df21260967f4168dcd448df" category="paragraph">En la siguiente tabla se muestran los HBA asignados a VIOS con compatibilidad con NPIV en modo virtualizado:</block>
+  <block id="c31bfee70971bfd9d23d0e828b31f576" category="cell">VIOS/PowerVM 3.1.4.21</block>
+  <block id="8ed3cb67c40a76fb7e1d9cf52f588283" category="cell">Pila virtual</block>
+  <block id="ffe61e892c57af1c7ba6edcf6cd43164" category="cell">El soporte comienza desde AIX 7,3 TL1 SP2 para VIOCc</block>
+  <block id="7497bca195bb082ae940f34297194a2d" category="paragraph">La configuración de host de NVMe/FC para AIX con ONTAP tiene las siguientes limitaciones conocidas:</block>
+  <block id="e210d5a356038b64a9864c04f6066b20" category="list-text">Los HBA FC de QLogic/Marvel 32G en un host AIX no admiten NVMe/FC.</block>
+  <block id="0addf2aa980ae0c0697b70236083a535" category="list-text">No se admite el arranque SAN para dispositivos NVMe/FC que utilizan el servidor IBM de Power9.</block>
+  <block id="108d929e2d13a7291d4c2a75f9607cb3" category="paragraph">IBM MPIO (Multi Path I/O), utilizado para la multivía NVMe, se proporciona de forma predeterminada cuando se instala el sistema operativo AIX .</block>
+  <block id="55bd8b08aa29008e531a080aa61ecdb8" category="paragraph">Puede utilizar el para comprobar que la multivía de NVMe está habilitada para un host AIX<block ref="d4911144bc4ed6672c49d5124ec36d0d" prefix=" " category="inline-code"></block> comando:</block>
+  <block id="6ca857f7a44a21cfffda914cf9549710" category="paragraph">*Ejemplo de salida*</block>
+  <block id="befb82eb50a6a0cc76543fdb7fa81b05" category="paragraph">Es posible usar el siguiente procedimiento para configurar NVMe/FC para adaptadores Broadcom/Emulex.</block>
+  <block id="869544161f77927dc1a5671f65d62425" category="list-text">Compruebe que está utilizando el adaptador compatible. Para obtener la lista más actual de adaptadores compatibles, consulte <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block>.</block>
+  <block id="ce2df3d84c39fdb894251f18b0f706c8" category="list-text">De forma predeterminada, la compatibilidad con el protocolo NVMe/FC está habilitada en el FC físico; sin embargo, la compatibilidad con el protocolo NVMe/FC está deshabilitada en Virtual Fibre Channel (VFC) en Virtual I/O Server (VIOS). Recupere una lista de los adaptadores donde se deshabilita la compatibilidad con NVMe/FC:</block>
+  <block id="955736fca778773f397bfff3fb13554e" category="list-text">Habilite la compatibilidad con el protocolo NVMe/FC en un adaptador ejecutando el<block ref="298944b0d52065fb6d4009e722898415" prefix=" " category="inline-code"></block> Comando en el VIOS:</block>
+  <block id="6cd5c80cb797f1e2d35f1d580ffe6d20" category="list-text">Compruebe que el soporte se ha activado en el adaptador:</block>
+  <block id="8efc24b1df9bc9f173cfba2079a3ac11" category="list-text">Habilitar el protocolo NVMe/FC para todos los adaptadores actuales o los adaptadores seleccionados:</block>
+  <block id="84b3e0604b5f47c082acaf2ab109e481" category="list-text">Habilite el protocolo NVMe/FC para todos los adaptadores:</block>
+  <block id="af34ce57ad4def33e18653786afd224e" category="list-text">Cambie el<block ref="f554e1472be57a017a09b8e72df7e0b2" prefix=" " category="inline-code"></block> valor de atributo de<block ref="6366faad0ce9db50ad4ec0b944e6804f" prefix=" " category="inline-code"></block> pseudo dispositivo a.<block ref="a6105c0a611b41b08f1209506350279e" prefix=" " category="inline-code"></block>.</block>
+  <block id="1e51be8d7b5e359a2e676b1786aa6f7c" category="list-text">Ajuste la<block ref="29869abeb6a28a2a0c3dcbf38108e625" prefix=" " category="inline-code"></block> valor de atributo a.<block ref="a6105c0a611b41b08f1209506350279e" prefix=" " category="inline-code"></block> Para todos los dispositivos host VFC.</block>
+  <block id="6ea83948bb41db592f1dd144bab617d5" category="list-text">Habilite el protocolo NVMe/FC para los adaptadores seleccionados cambiando el<block ref="29869abeb6a28a2a0c3dcbf38108e625" prefix=" " category="inline-code"></block> Valor del atributo de dispositivo host de VFC a.<block ref="a6105c0a611b41b08f1209506350279e" prefix=" " category="inline-code"></block>.</block>
+  <block id="2b7b658346d3fa52c5363c17cfe2b64f" category="list-text">Compruebe que<block ref="fb697c2845ab4f6877db5fb0f162a140" prefix=" " category="inline-code"></block> se ha creado en el servidor:</block>
+  <block id="9ca965cb8c1f3cc98538fd9fe17ee462" category="paragraph">* Exmaple salida *</block>
+  <block id="6205e6a8adf00a039a76f80fba751d5d" category="list-text">Registre el NQN del host desde el servidor:</block>
+  <block id="5609ae4308e7e13b571a4609a80ca28c" category="list-text">Visualice el UUID de partición:</block>
+  <block id="46fb92f9d8bcac6d074199517bcfd9da" category="list-text">Compruebe el NQN del host y compruebe que coincide con la cadena NQN del host correspondiente al subsistema correspondiente en la cabina de ONTAP:</block>
+  <block id="da208fb575db2ac57ff1319036af2a6f" category="list-text">Compruebe que los puertos del iniciador están en funcionamiento y puede ver los LIF de destino.</block>
+  <block id="413d1a842341ac8491856d35085746ac" category="paragraph">Es necesario verificar que los espacios de nombres de las ONTAP se reflejen correctamente en el host. Ejecute el siguiente comando para hacerlo:</block>
+  <block id="c4815a9e7bab07d952f3a16f2d250f1f" category="paragraph">Puede comprobar el estado de la multivía:</block>
+  <block id="b1460fc99f40abf0e4777c0ef83f9340" category="paragraph">La configuración de host de NVMe/FC para AIX con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="31c5b0de25b168798dceb058bef8a7f6" category="cell">ID de Burt</block>
+  <block id="42dcdffc46f5810bfaac54d46fbf50ef" category="cell">1553249</block>
+  <block id="650a7c31a67a66d1f1f10b3eccb13db4" category="cell">Tiempo de APD predeterminado de NVMe/FC de AIX que se modificará para admitir eventos de conmutación de sitios no planificados de MCC</block>
+  <block id="9f84e76956bfe4d716d3866a854ef57e" category="cell">De manera predeterminada, los sistemas operativos AIX utilizan un valor de tiempo de espera APD (all path down) de 20 segundos para NVMe/FC.  Sin embargo, los flujos de trabajo de conmutación por error automática no planificada (AUSO) de ONTAP MetroCluster y los flujos de trabajo de conmutación iniciados por tiebreaker pueden tardar un poco más que la ventana de tiempo de espera APD, lo cual produce errores de I/O.</block>
+  <block id="5f6372d1d8f487ae80b5feed7e441420" category="cell">1546017</block>
+  <block id="24f2a7ff1a2835519ea571d3e22b1a36" category="cell">NVMe/FC de AIX limita ANATT a 60s, en lugar de 120s, como anuncia ONTAP</block>
+  <block id="16c567932b89582ab5042df30072ca4e" category="cell">ONTAP anuncia el tiempo de espera de transición de ANA (acceso asimétrico al espacio de nombres) en la identificación de la controladora en 120sec. Actualmente, con ifix, AIX lee el tiempo de espera de transición ANA desde el controlador Identify, pero lo sujeta efectivamente a 60sec si está por encima de ese límite.</block>
+  <block id="9539a7ea940559ecdced176b2592b5d3" category="cell">1541386</block>
+  <block id="7dcc9f5201e7653745b04540dfb62afa" category="cell">NVMe/FC de AIX detecta EIO después de la caducidad de ANATT</block>
+  <block id="005bc828fe1c9102500705a406202e5c" category="cell">En cualquier evento de conmutación al nodo de respaldo de almacenamiento (SFO), si la transición ANA(acceso asimétrico al espacio de nombres) supera el límite de tiempo de espera de transición de ANA en una ruta determinada, el host NVMe/FC de AIX produce un error de I/O a pesar de tener rutas alternativas disponibles en buen estado para el espacio de nombres.</block>
+  <block id="51febd786dec93062cef9cfc8123006f" category="cell">1541380</block>
+  <block id="875f8b6e43bcfbc9770e44865a0aed5c" category="cell">AIX NVMe/FC espera a que el ANATT medio/completo caduque antes de reanudar las operaciones de I/O después de ANA AEN</block>
+  <block id="656b00a7eb6f6aa3f9eb9c87cb124f32" category="cell">NVMe/FC de IBM AIX no admite algunas notificaciones asíncronas (AENs) que publica ONTAP. Este manejo de ANA no óptimo dará como resultado un rendimiento subóptimo durante las operaciones de SFO.</block>
+  <block id="7e6bb0931a72759d39514aa924b420bc" category="sidebar">AIX</block>
 </blocks>
