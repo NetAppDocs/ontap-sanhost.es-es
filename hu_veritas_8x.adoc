@@ -47,7 +47,7 @@ Si tiene una versión de Linux Unified Host Utilities actualmente instalada, deb
 
 == Kit de herramientas SAN
 
-El kit de herramientas se instala automáticamente cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar LUN y HBA. La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
+El kit de herramientas se instala automáticamente al instalar el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar LUN y HBA. La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
 
 .Ejemplo
 En la siguiente ilustración, el `sanlun show` Command muestra información de LUN.

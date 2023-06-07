@@ -57,7 +57,7 @@ Al descomprimir el archivo se crea el siguiente directorio: `ntap_aix_host_utili
 
 == Kit de herramientas SAN
 
-El kit de herramientas se instala automáticamente cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar LUN y HBA. La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
+El kit de herramientas se instala automáticamente al instalar el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar LUN y HBA. La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
 
 .Ejemplo
 En el siguiente ejemplo, la `sanlun lun show` Command muestra información de LUN.
