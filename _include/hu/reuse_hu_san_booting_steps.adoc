@@ -6,11 +6,12 @@
 . Asignar el LUN de arranque SAN al host.
 . Verifique que haya varias rutas disponibles.
 +
-Recuerde que solo habrá varias rutas disponibles después de que el sistema operativo del host esté en funcionamiento en las rutas.
+
+NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
 
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Reinicie el host para verificar que el arranque se haya realizado correctamente.
+. Reinicie el host para verificar que el inicio se haya realizado correctamente.
 

@@ -75,13 +75,14 @@ Si decide utilizar el arranque SAN, debe ser compatible con su configuración. P
 . Asignar el LUN de arranque SAN al host.
 . Verifique que haya varias rutas disponibles.
 +
-Recuerde que solo habrá varias rutas disponibles después de que el sistema operativo del host esté en funcionamiento en las rutas.
+
+NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
 
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Reinicie el host para verificar que el arranque se haya realizado correctamente.
+. Reinicie el host para verificar que el inicio se haya realizado correctamente.
 
 
 
@@ -107,9 +108,9 @@ Puede utilizar el `multipath -ll` Comando para verificar la configuración de la
 
 
 
-=== Configuración de cabina All SAN
+=== Configuraciones de cabinas All SAN
 
-En las configuraciones de cabina All SAN (ASA), todas las rutas a una unidad lógica (LUN) dada están activas y optimizadas. Esto significa que la I/o se puede ofrecer a través de todas las rutas al mismo tiempo y, de este modo, se mejora el rendimiento.
+En las configuraciones de ASA, todas las rutas a un LUN determinado son activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
 .Ejemplo
 En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:
@@ -126,13 +127,13 @@ size=20G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_hand
 |- 2:0:9:1  sde 8:64 active ready running
 ----
 
-NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de 4 rutas. Más de 8 rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
 
 
 
 === Configuración no ASA
 
-Para la configuración que no sea ASA debe haber dos grupos de rutas con prioridades diferentes. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
 
 .Ejemplo
 En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
@@ -150,7 +151,7 @@ size=20G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_hand
   `- 2:0:9:1  sde 8:64 active ready running
 ----
 
-NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de 4 rutas. Más de 8 rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
 
 
 
@@ -172,7 +173,7 @@ No es necesario añadir nada directamente al `multipath.conf` archivo, a menos q
 
 Puede añadir la siguiente sintaxis al `multipath.conf` archivo para excluir los dispositivos no deseados.
 
-Sustituya el `<DevId>` Con la cadena WWID del dispositivo que desea excluir. Se debe usar el siguiente comando para determinar el WWID:
+Sustituya el `<DevId>` Con la cadena WWID del dispositivo que desea excluir:
 
 ....
 blacklist {
@@ -313,4 +314,4 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 === Mirroring de ASM
 
-El mirroring de ASM puede requerir cambios en la configuración multivía de Linux para permitir que ASM reconozca un problema y conmute a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://www.netapp.com/us/media/tr-3633.pdf["Bases de datos de Oracle en ONTAP"^] para obtener más información.
+El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://www.netapp.com/us/media/tr-3633.pdf["Bases de datos de Oracle en ONTAP"^] para obtener más información.

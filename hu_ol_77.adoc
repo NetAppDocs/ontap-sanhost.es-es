@@ -75,13 +75,14 @@ Si decide utilizar el arranque SAN, debe ser compatible con su configuración. P
 . Asignar el LUN de arranque SAN al host.
 . Verifique que haya varias rutas disponibles.
 +
-Recuerde que solo habrá varias rutas disponibles después de que el sistema operativo del host esté en funcionamiento en las rutas.
+
+NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
 
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Reinicie el host para verificar que el arranque se haya realizado correctamente.
+. Reinicie el host para verificar que el inicio se haya realizado correctamente.
 
 
 
@@ -108,7 +109,7 @@ size=80G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_hand
 |- 12:0:0:0 sdz 65:144 active ready running
 ----
 
-NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de 4 rutas. Más de 8 rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
 
 
 
@@ -128,7 +129,7 @@ No es necesario añadir nada directamente al `multipath.conf` archivo, a menos q
 
 Puede añadir la siguiente sintaxis al `multipath.conf` archivo para excluir los dispositivos no deseados.
 
-Sustituya el `<DevId>` Con la cadena WWID del dispositivo que desea excluir. Se debe usar el siguiente comando para determinar el WWID:
+Sustituya el `<DevId>` Con la cadena WWID del dispositivo que desea excluir:
 
 ....
 blacklist {

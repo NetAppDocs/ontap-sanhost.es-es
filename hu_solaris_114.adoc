@@ -108,7 +108,7 @@ La función multivía le permite configurar varias rutas de red entre el host y 
 
 === Configuración no ASA
 
-Para la configuración que no sea ASA debe haber dos grupos de rutas con prioridades diferentes. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
 
 .Ejemplo
 En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
@@ -117,9 +117,9 @@ Las prioridades de la ruta de acceso se muestran en la sección *Estado de acces
 
 
 
-=== Configuración de cabina All SAN
+=== Configuraciones de cabinas All SAN
 
-En las configuraciones de cabina All SAN (ASA), todas las rutas a una unidad lógica (LUN) dada están activas y optimizadas. Esto significa que la I/o se puede ofrecer a través de todas las rutas al mismo tiempo y, de este modo, se mejora el rendimiento.
+En las configuraciones de ASA, todas las rutas a un LUN determinado son activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
 .Ejemplo
 En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:

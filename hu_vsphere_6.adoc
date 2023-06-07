@@ -35,13 +35,14 @@ Si decide utilizar el arranque SAN, debe ser compatible con su configuración. P
 . Asignar el LUN de arranque SAN al host.
 . Verifique que haya varias rutas disponibles.
 +
-Recuerde que solo habrá varias rutas disponibles después de que el sistema operativo del host esté en funcionamiento en las rutas.
+
+NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
 
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Reinicie el host para verificar que el arranque se haya realizado correctamente.
+. Reinicie el host para verificar que el inicio se haya realizado correctamente.
 
 
 
@@ -69,9 +70,9 @@ system        tpgs_on          MW_PSP_RR 	      NetApp arrays with ALUA support
 ----
 
 
-=== Configuración de cabina All SAN
+=== Configuraciones de cabinas All SAN
 
-En las configuraciones de cabina All SAN (ASA), todas las rutas a una unidad lógica (LUN) dada están activas y optimizadas. Esto significa que la I/o se puede ofrecer a través de todas las rutas al mismo tiempo y, de este modo, se mejora el rendimiento.
+En las configuraciones de ASA, todas las rutas a un LUN determinado son activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
 .Ejemplo
 En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:
@@ -122,7 +123,7 @@ En el ejemplo anterior, se ha asignado la LUN del almacenamiento de NetApp con 4
 
 === Configuración no ASA
 
-Para la configuración que no sea ASA debe haber dos grupos de rutas con prioridades diferentes. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
 
 .Ejemplo
 En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:

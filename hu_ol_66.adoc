@@ -75,13 +75,14 @@ Si decide utilizar el arranque SAN, debe ser compatible con su configuración. P
 . Asignar el LUN de arranque SAN al host.
 . Verifique que haya varias rutas disponibles.
 +
-Recuerde que solo habrá varias rutas disponibles después de que el sistema operativo del host esté en funcionamiento en las rutas.
+
+NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
 
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Reinicie el host para verificar que el arranque se haya realizado correctamente.
+. Reinicie el host para verificar que el inicio se haya realizado correctamente.
 
 
 
@@ -119,7 +120,7 @@ size=80G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_hand
   |- 0:0:19:37 sddu 71:192  active ready running
 ----
 
-NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de 4 rutas. Más de 8 rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
 
 
 
@@ -127,18 +128,20 @@ NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan 
 
 El sistema operativo Oracle Linux 6.6 se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente.
 
-El archivo multipath.conf debe existir para que se inicie el daemon de multivía, pero puede crear un archivo vacío de cero bytes con el comando:
-`touch /etc/multipath.conf`La primera vez que se crea este archivo, es posible que deba habilitar e iniciar los servicios multivía.
+* La `multipath.conf` el archivo debe existir para que se inicie el daemon multivía, pero puede crear un archivo vacío de cero bytes mediante el siguiente comando:
+`touch /etc/multipath.conf`.
+* La primera vez que se crea este archivo, es posible que deba habilitar e iniciar los servicios multivía.
+
 
 [listing]
 ----
 # chkconfig multipathd on
 # /etc/init.d/multipathd start
 ----
-No es necesario añadir nada directamente a multipath.conf, a menos que disponga de dispositivos que no desee gestionar mediante multivía o de una configuración existente que anule los valores predeterminados. Puede agregar la siguiente sintaxis al archivo multipath.conf para excluir los dispositivos no deseados.
+* No es necesario añadir nada directamente al `multipath.conf` archivo a menos que tenga dispositivos que no desee gestionar la función de acceso multivía o que tenga una configuración existente que anula los valores predeterminados.
+* Puede añadir la siguiente sintaxis al `multipath.conf` archivo para excluir los dispositivos no deseados.
+* Reemplace la <DevId> por la cadena WWID del dispositivo que desea excluir:
 
-
-NOTE: Reemplace el <DevId> por la cadena WWID del dispositivo que desea excluir. Se debe usar el siguiente comando para determinar el WWID:
 
 ....
 blacklist {
@@ -149,14 +152,15 @@ blacklist {
 }
 ....
 .Ejemplo
-En este ejemplo, sda es el disco SCSI local que necesitamos agregar a la lista negra.
+En este ejemplo: `sda` Es el disco SCSI local que necesitamos agregar a la lista negra.
 
 . Ejecute el siguiente comando para determinar el WWID:
 +
-....
+[listing]
+----
 # /lib/udev/scsi_id -gud /dev/sda
 360030057024d0730239134810c0cb833
-....
+----
 . Añada este WWID a la stanza "blacklist" en /etc/multipath.conf:
 +
 ....
@@ -169,7 +173,9 @@ blacklist {
 ....
 
 
-Siempre debe comprobar su `/etc/multipath.conf` archivo para la configuración heredada, especialmente en la sección de valores predeterminados, que puede estar reemplazando la configuración predeterminada. La siguiente tabla muestra el valor crítico `multipathd` Parámetros para las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y alguno de estos parámetros se anula, deberán corregirse posteriormente stanzas en `multipath.conf` Que se aplican específicamente a LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Estos valores predeterminados solo se deben anular consultando con NetApp o con el proveedor de sistemas operativos y únicamente cuando se haya comprendido completamente el impacto.
+Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría estar anulando los valores predeterminados.
+
+La siguiente tabla muestra el valor crítico `multipathd` Parámetros para las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse con estrofas más adelante en el `multipath.conf` Archivo que se aplica específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe anular estos valores predeterminados en consulta con NetApp y/o el proveedor de SO y solo cuando comprenda completamente el impacto.
 
 [cols="2*"]
 |===
@@ -267,4 +273,4 @@ NOTE: Para ver los problemas conocidos de Oracle Linux (kernel compatible con Re
 
 === Mirroring de ASM
 
-El mirroring de ASM puede requerir cambios en la configuración multivía de Linux para permitir que ASM reconozca un problema y conmute a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://www.netapp.com/us/media/tr-3633.pdf["Bases de datos de Oracle en ONTAP"^] para obtener más información.
+El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://www.netapp.com/us/media/tr-3633.pdf["Bases de datos de Oracle en ONTAP"^] para obtener más información.

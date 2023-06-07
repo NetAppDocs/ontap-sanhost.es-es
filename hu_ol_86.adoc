@@ -24,14 +24,14 @@ summary: Describe cómo usar Oracle Linux 8.6 con ONTAP
 
 El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^] en un archivo .rpm de 64 bits.
 
-Se recomienda encarecidamente instalar Unified Host Utilities de Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
+NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
 .Lo que necesitará
-Si tiene una versión de Linux Unified Host Utilities instalada actualmente, debe actualizarla o, debe eliminarla y seguir los pasos siguientes para instalar la versión más reciente.
+Si tiene una versión de Linux Unified Host Utilities actualmente instalada, debe actualizarla o quitarla y luego usar los siguientes pasos para instalar la versión más reciente.
 
 .Pasos
 . Descargue el paquete de software Linux Unified Host Utilities de 64 bits de https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^] al host.
-. Use el siguiente comando para instalar el paquete de software:
+. Instale el paquete de software:
 +
 `rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
 
@@ -76,13 +76,14 @@ Si decide utilizar el arranque SAN, debe ser compatible con su configuración. P
 . Asignar el LUN de arranque SAN al host.
 . Verifique que haya varias rutas disponibles.
 +
-Recuerde que solo habrá varias rutas disponibles después de que el sistema operativo del host esté en funcionamiento en las rutas.
+
+NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
 
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Reinicie el host para verificar que el arranque se haya realizado correctamente.
+. Reinicie el host para verificar que el inicio se haya realizado correctamente.
 
 
 
@@ -99,7 +100,7 @@ Las siguientes secciones proporcionan salida multivía de muestra para un LUN as
 
 === Configuración no ASA
 
-Para la configuración que no sea ASA debe haber dos grupos de rutas con prioridades diferentes. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
 
 .Ejemplo
 En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
@@ -117,13 +118,13 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 |- 15:0:1:35 sdbx 68:176 active ready running
 ----
 
-NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de 4 rutas. Más de 8 rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
 
 
 
-=== Configuración de cabina All SAN
+=== Configuraciones de cabinas All SAN
 
-En las configuraciones de cabina All SAN (ASA), todas las rutas a una unidad lógica (LUN) dada están activas y optimizadas. Esto significa que la I/o se puede ofrecer a través de todas las rutas al mismo tiempo y, de este modo, se mejora el rendimiento.
+En las configuraciones de ASA, todas las rutas a un LUN determinado son activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
 .Ejemplo
 En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:
@@ -162,7 +163,7 @@ No es necesario añadir nada directamente al `multipath.conf` archivo, a menos q
 
 Puede añadir la siguiente sintaxis al `multipath.conf` archivo para excluir los dispositivos no deseados.
 
-Sustituya el `<DevId>` Con la cadena WWID del dispositivo que desea excluir. Se debe usar el siguiente comando para determinar el WWID:
+Sustituya el `<DevId>` Con la cadena WWID del dispositivo que desea excluir:
 
 ....
 blacklist {
