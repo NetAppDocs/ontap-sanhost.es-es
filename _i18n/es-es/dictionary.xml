@@ -2801,7 +2801,6 @@
   <block id="2722dd408e2c6dddce120893d4c5c0a7" category="paragraph">El sistema operativo Oracle Linux 9,0 se compila para reconocer los LUN de ONTAP y definir automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA.</block>
   <block id="834ccc84967581d1336062ada79c9a0e" category="admonition">Para configurar Oracle Linux 9,0 RedHat Enterprise Kernel (RHCK), utilice <block ref="db48836fc998d5e9210c21f83870f464" category="inline-link-macro-rx"></block> Para Red Hat Enterprise Linux (RHEL) 9,0.</block>
   <block id="2de4eb9b3af281c4790a039cf2f92eb7" category="section-title">Configuración de KVM</block>
-  <block id="fdf71d22ca12e1b94c3cffe88a22f330" category="paragraph">No hay problemas conocidos para Oracle Linux 9,0.</block>
   <block id="678b361384466d6bf28f930dd514a9a8" category="doc">Configuración de host NVMe/FC para Oracle Linux 9,0 con ONTAP</block>
   <block id="2cbaf680f82c54fd6fb7778f0101ab88" category="paragraph">Si quiere más información sobre las configuraciones compatibles, consulte <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block>.</block>
   <block id="55fb7862f01474277c3620f9debfb3d5" category="list-text">Oracle Linux 9,0 tiene habilitada la multivía NVMe en el núcleo para espacios de nombres NVMe de forma predeterminada, por lo tanto, no es necesario realizar configuraciones explícitas.</block>
@@ -3324,7 +3323,6 @@ La<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code
   <block id="533f5c2e4bcf35d9cefe9c97046f7654" category="summary">Describe cómo usar Oracle Linux 9,1 con ONTAP</block>
   <block id="83b6364b5fed0880c85b1a8caf70b15f" category="doc">Uso de Oracle Linux 9,1 con NetApp ONTAP</block>
   <block id="c6951501d0b58604dc509284a2398484" category="admonition">Para configurar Oracle Linux 9,1 RedHat Enterprise Kernel (RHCK), utilice <block ref="972cf8eba53bcbbce4fc47d6efe3d4ad" category="inline-link-macro-rx"></block> Para Red Hat Enterprise Linux (RHEL) 9,1.</block>
-  <block id="1c50fcd4efa065aedf6e2667df8523f3" category="paragraph">Oracle Linux 9,1 con la versión NetApp ONTAP tiene los siguientes problemas conocidos:</block>
   <block id="da80aa62fc6cf6b66539a5a3933874a8" category="cell"><block ref="da80aa62fc6cf6b66539a5a3933874a8" category="inline-link-rx"></block></block>
   <block id="20e1c7fed64a39ad5334f26be4f4d8c7" category="paragraph">Cuando ejecuta el comando CLI de Linux Unified Host Utilities: «Sanlun fcp show adapter -v» en un host SAN, el comando genera un mensaje de error que muestra que las dependencias de la biblioteca necesarias para una detección de adaptador de bus de host (HBA) no se pueden encontrar:</block>
   <block id="945ae6ecd5de8145a44bcea8e9d26556" category="summary">Describe cómo utilizar Red Hat Enterprise Linux 8,8 con ONTAP</block>
@@ -3377,4 +3375,7 @@ La<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code
   <block id="beb55dba3ba1d2be4056c146cb0bf458" category="paragraph">El sistema operativo Oracle Linux 9,2 se compila para reconocer los LUN de ONTAP y definir automáticamente todos los parámetros de configuración correctamente para configuraciones ASA y no ASA. Puede optimizar aún más el rendimiento de la configuración del host con los siguientes ajustes recomendados.</block>
   <block id="a706283e3f8c7062e0c4c4b423b93965" category="admonition">Para configurar Oracle Linux 9,2 RedHat Enterprise Kernel (RHCK), utilice <block ref="972cf8eba53bcbbce4fc47d6efe3d4ad" category="inline-link-macro-rx"></block> Para Red Hat Enterprise Linux (RHEL) 9,2.</block>
   <block id="01ae493ab1dc24745cd1c1e47aa25447" category="paragraph">Oracle Linux 9,2 con la versión NetApp ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="02b2bcdfe73b2cce057d7b84806fa6ed" category="paragraph">La versión Oracle Linux 9,1 con NetApp ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="5890aebb0489382354458498eb36394e" category="paragraph">Cuando ejecuta el comando CLI de Linux Unified Host Utilities: «Sanlun fcp show adapter -v» en un host SAN, el comando genera un mensaje de error que muestra que las dependencias de la biblioteca necesarias para una detección del adaptador de bus de host (HBA) no se pueden encontrar:</block>
+  <block id="cc40ed991073c638cc114ee18ad15d8c" category="paragraph">La versión Oracle Linux 9,0 con NetApp ONTAP tiene los siguientes problemas conocidos:</block>
 </blocks>

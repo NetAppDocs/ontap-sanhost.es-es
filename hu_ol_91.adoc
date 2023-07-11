@@ -290,7 +290,7 @@ También puede utilizar la configuración recomendada para configurar la máquin
 
 == Problemas conocidos
 
-Oracle Linux 9,1 con la versión NetApp ONTAP tiene los siguientes problemas conocidos:
+La versión Oracle Linux 9,1 con NetApp ONTAP tiene los siguientes problemas conocidos:
 
 [cols="10,30,30,10"]
 |===
@@ -298,7 +298,7 @@ Oracle Linux 9,1 con la versión NetApp ONTAP tiene los siguientes problemas con
 
 
 | https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1508554["1508554"^] | La utilidad de SAN LUN con HBA de Emulex necesita enlaces simbólicos de paquetes de la biblioteca  a| 
-Cuando ejecuta el comando CLI de Linux Unified Host Utilities: «Sanlun fcp show adapter -v» en un host SAN, el comando genera un mensaje de error que muestra que las dependencias de la biblioteca necesarias para una detección de adaptador de bus de host (HBA) no se pueden encontrar:
+Cuando ejecuta el comando CLI de Linux Unified Host Utilities: «Sanlun fcp show adapter -v» en un host SAN, el comando genera un mensaje de error que muestra que las dependencias de la biblioteca necesarias para una detección del adaptador de bus de host (HBA) no se pueden encontrar:
 
 [listing]
 ----
