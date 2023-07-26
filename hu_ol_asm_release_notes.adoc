@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: hu_ol_asm_release_notes.html 
+keywords:  
+summary:  
+---
+= Notas de la versión
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+
+
+=== Mirroring de ASM
+
+El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://www.netapp.com/us/media/tr-3633.pdf["Bases de datos de Oracle en ONTAP"^] para obtener más información.

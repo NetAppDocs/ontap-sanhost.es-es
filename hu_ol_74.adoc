@@ -4,7 +4,7 @@ permalink: hu_ol_74.html
 keywords: host utilities, oracle, linux, 7.4, netapp, ontap 
 summary: Describe cómo usar Oracle Linux 7.4 con ONTAP 
 ---
-= Uso de Oracle Linux 7.4 con NetApp ONTAP
+= Utilice Oracle Linux 7,4 con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -20,11 +20,11 @@ summary: Describe cómo usar Oracle Linux 7.4 con ONTAP
 
 
 
-== Instalar las utilidades unificadas de host de Linux
+== Instale las utilidades unificadas de host de Linux
 
 El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host+Utilities+-+SAN&platform=Linux["Sitio de soporte de NetApp"^] en un archivo .rpm de 32 y 64 bits. Si no sabe cuál es el archivo adecuado para su configuración, utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar cuál necesita.
 
-Se recomienda encarecidamente instalar Unified Host Utilities de Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
+NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
 .Lo que necesitará
 Si tiene una versión de Linux Unified Host Utilities instalada actualmente, debe actualizarla o, debe eliminarla y seguir los pasos siguientes para instalar la versión más reciente.
@@ -262,12 +262,3 @@ NOTE: Para configurar Oracle Linux 7.4 RedHat Enterprise Kernel (RHCK), utilice 
 
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1109468["1109468"^] | Volcados de firmware observados en un hipervisor OL7.4 con tarjeta QLE8362 | Durante las operaciones de conmutación por error del almacenamiento en un hipervisor OL7.4 con tarjeta QLE8362, se observan ocasionalmente volcados de firmware. Los volcados de firmware pueden provocar una interrupción de la actividad de I/o en el host, que puede alcanzar los 500 segundos. Una vez que el adaptador completa el volcado de firmware, la operación de I/o se reanuda de forma normal. No se requiere ningún otro procedimiento de recuperación en el host. Para indicar el volcado de firmware, se muestra el siguiente mensaje en el archivo /var/log/message: Qla2xxx [0000:0c:00.3]-d001:8: Volcado de firmware guardado en búfer temporal (8/fffffc90008901000), indicadores de estado de volcado (0x3f) | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=16039["16039"^] 
 |===
-
-
-== Notas de la versión
-
-
-
-=== Mirroring de ASM
-
-El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://www.netapp.com/us/media/tr-3633.pdf["Bases de datos de Oracle en ONTAP"^] para obtener más información.

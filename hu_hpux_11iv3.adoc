@@ -4,7 +4,7 @@ permalink: hu_hpux_11iv3.html
 keywords: host utilities, hp_ux, 11iv3, netapp, ontap 
 summary: Describe cómo utilizar IBM AIX 7.2 y/o PowerVM VIOS 3.1 con ONTAP 
 ---
-= Uso de HP-UX 11i v3 con ONTAP de NetApp
+= Utilice HP-UX 11i v3 con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -20,7 +20,7 @@ summary: Describe cómo utilizar IBM AIX 7.2 y/o PowerVM VIOS 3.1 con ONTAP
 
 
 
-== Instalación de HP-UX Host Utilities
+== Instale HP-UX Host Utilities
 
 Puede descargar el archivo comprimido que contiene los paquetes de software de utilidades de host en el sitio de soporte de NetApp. Después de disponer del archivo, debe descomprimirlo para obtener los paquetes de software que necesita instalar las utilidades de host.
 

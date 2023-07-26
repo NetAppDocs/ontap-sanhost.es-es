@@ -4,7 +4,7 @@ permalink: hu_sles_12SP3.html
 keywords: host utilities, suse linux enterprise server 12 SP3, suse, linux, 12 SP3, netapp, ontap 
 summary: Describe cómo utilizar SUSE Linux Enterprise Server 12 SP3 con ONTAP 
 ---
-= Uso de SUSE Linux Enterprise Server 12 SP3 con ONTAP de NetApp
+= Utilice SUSE Linux Enterprise Server 12 SP3 con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -20,11 +20,11 @@ summary: Describe cómo utilizar SUSE Linux Enterprise Server 12 SP3 con ONTAP
 
 
 
-== Instalar las utilidades unificadas de host de Linux
+== Instale las utilidades unificadas de host de Linux
 
 El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host+Utilities+-+SAN&platform=Linux["Sitio de soporte de NetApp"^] en un archivo .rpm de 32 y 64 bits. Si no sabe cuál es el archivo adecuado para su configuración, utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar cuál necesita.
 
-Se recomienda encarecidamente instalar Unified Host Utilities de Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
+NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
 .Lo que necesitará
 Si tiene una versión de Linux Unified Host Utilities instalada actualmente, debe actualizarla o, debe eliminarla y seguir los pasos siguientes para instalar la versión más reciente.
@@ -301,12 +301,3 @@ devices {
 
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1117274["1117274"^] | Se observó una interrupción del kernel en SLES12SP3 con Emulex LPe16002 16 GB FC durante las operaciones de recuperación tras fallos de almacenamiento | Durante las operaciones de conmutación por error del almacenamiento en el kernel Sles12sp3 (kernel-default-4.4.87-3.1) con HBA Emulex LPe16002, es posible que observe una interrupción del kernel. Esto indica un reinicio del sistema operativo que provoca la interrupción de la aplicación. La interrupción del kernel genera un archivo vmcore en el directorio /var/crash/ si se configura kdump. El archivo vmcore se puede usar para comprender la causa del fallo. Ejemplo: En este caso, se observó una interrupción del núcleo en el módulo “RAW_spin_lock_irqsave+30” y se registra en el archivo vmcore con la siguiente cadena: – Exception RIP: _RAW_spin_lock_irqsave+30. Tras la interrupción del kernel, se puede recuperar el sistema operativo reiniciando el sistema operativo host y reiniciando la aplicación según sea necesario. | link:http://bugzilla.suse.com/show_bug.cgi?id=1062514["1062514"^] 
 |===
-
-
-== Notas de la versión
-
-
-
-=== Mirroring de ASM
-
-El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://www.netapp.com/us/media/tr-3633.pdf["Bases de datos de Oracle en ONTAP"^] para obtener más información.

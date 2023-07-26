@@ -4,7 +4,7 @@ permalink: hu_rhel_76.html
 keywords: host utilities, red hat, rhel, linux, 7.6, netapp, ontap 
 summary: Describe cómo utilizar Red Hat Enterprise Linux 7.6 con ONTAP 
 ---
-= Uso de Red Hat Enterprise Linux 7.6 con ONTAP de NetApp
+= Utilice Red Hat Enterprise Linux 7,6 con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -20,11 +20,11 @@ summary: Describe cómo utilizar Red Hat Enterprise Linux 7.6 con ONTAP
 
 
 
-== Instalar las utilidades unificadas de host de Linux
+== Instale las utilidades unificadas de host de Linux
 
 El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host+Utilities+-+SAN&platform=Linux["Sitio de soporte de NetApp"^] en un archivo .rpm de 32 y 64 bits. Si no sabe cuál es el archivo adecuado para su configuración, utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar cuál necesita.
 
-Se recomienda encarecidamente instalar Unified Host Utilities de Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
+NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
 .Lo que necesitará
 Si tiene una versión de Linux Unified Host Utilities instalada actualmente, debe actualizarla o, debe eliminarla y seguir los pasos siguientes para instalar la versión más reciente.
@@ -282,12 +282,3 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1190698["1190698"^] | El estado del puerto remoto en RHEL7U6 con el host QLE2672 de QLogic podría estar bloqueado durante las operaciones de conmutación por error de almacenamiento | Es posible que los puertos remotos FC queden bloqueados en Red Hat Enterprise Linux (RHEL) 7U6 con el host QLE2672 de QLogic durante las operaciones de conmutación al nodo de respaldo de almacenamiento. Como las interfaces lógicas se reducen cuando un nodo de almacenamiento está inactivo, los puertos remotos establecen el estado del nodo de almacenamiento como bloqueado. Cuando el nodo de almacenamiento vuelve a su estado óptimo, las interfaces lógicas también se activa y los puertos remotos deben estar en línea. Sin embargo, el portsmitage remoto sigue bloqueado. Este estado bloqueado se registra como defectuoso en LAS LUN, en la capa multivía. Puede comprobar el estado de los puertos remotos con el siguiente comando:# cat /sys/class/fc_remote_ports/rport-*/Port_state | link:https://bugzilla.redhat.com/show_bug.cgi?id=1643459["1643459"^] 
 |===
-
-
-== Notas de la versión
-
-
-
-=== Mirroring de ASM
-
-El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://www.netapp.com/us/media/tr-3633.pdf["Bases de datos de Oracle en ONTAP"^] para obtener más información.

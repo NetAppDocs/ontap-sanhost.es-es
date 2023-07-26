@@ -4,7 +4,7 @@ permalink: hu_vsphere_6.html
 keywords: host utilities, veritas, infoscale, 6.5. 6.7, netapp, ontap 
 summary: Describe cómo utilizar Veritas Infocale 6.5 y 6.7 para Linux con ONTAP 
 ---
-= Usar VMware vSphere 6.5 y 6.7 con ONTAP de NetApp
+= Utilice VMware vSphere 6,5 y 6,7 con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1

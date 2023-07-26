@@ -4,7 +4,7 @@ permalink: hu_vsphere_8.html
 keywords: host utilities, veritas, infoscale, 8.x, netapp, ontap, vmware, vspehere 
 summary: Es posible configurar los ajustes del host SAN de ONTAP para la versión de VMware vSphere 8.x con protocolos FC, FCoE e iSCSI. 
 ---
-= Usando VMware vSphere 8.x con ONTAP de NetApp
+= Utilice VMware vSphere 8.x con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1

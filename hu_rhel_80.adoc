@@ -4,7 +4,7 @@ permalink: hu_rhel_80.html
 keywords: host utilities, red hat, rhel, linux, 8.0, netapp, ontap 
 summary: Describe cómo utilizar Red Hat Enterprise Linux 8.0 con ONTAP 
 ---
-= Uso de Red Hat Enterprise Linux 8.0 con ONTAP de NetApp
+= Utilice Red Hat Enterprise Linux 8,0 con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -20,7 +20,7 @@ summary: Describe cómo utilizar Red Hat Enterprise Linux 8.0 con ONTAP
 
 
 
-== Instalar las utilidades unificadas de host de Linux
+== Instale las utilidades unificadas de host de Linux
 
 El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^] en un archivo .rpm de 64 bits.
 
@@ -311,12 +311,3 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231098["1231098"^] | Los puertos remotos transitan al estado bloqueado en RHEL8 con Emulex LPe32002 32 GB FC durante las operaciones de recuperación tras fallos de almacenamiento | Los puertos remotos pasan a un estado bloqueado en RHEL8 con Emulex LPe32002 32 GBFibre Channel (FC) durante las operaciones de recuperación tras fallos de almacenamiento. Cuando el nodo de almacenamiento vuelve a su estado óptimo, también se up las LIF y el estado del puerto remoto debe leer "en línea". En ocasiones, es posible que el estado del puerto remoto siga siendo "bloqueado" o "no presente". Este estado puede llevar a una ruta "defectuosa" para las LUN en la capa multivía. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1705573["1705573"^] 
 |===
-
-
-== Notas de la versión
-
-
-
-=== Mirroring de ASM
-
-El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://www.netapp.com/us/media/tr-3633.pdf["Bases de datos de Oracle en ONTAP"^] para obtener más información.

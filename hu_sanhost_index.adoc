@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: hu_sanhost_index.html 
+keywords:  
+summary:  
+---
+= Descripción general
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+Detecte la información más reciente sobre las versiones de la utilidad host SAN y acceda al procedimiento de instalación para la configuración del host.
+
+
+NOTE: Para un funcionamiento fiable después de la instalación, utilice el https://mysupport.netapp.com/matrix/imt.jsp?components=65623%3B64703%3B&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar que el host admite la configuración completa de NVMe over Fabrics (incluidos NVMe over TCP y NVMe over Fibre Channel), iSCSI, FC o FCoE.

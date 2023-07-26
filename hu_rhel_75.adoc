@@ -4,7 +4,7 @@ permalink: hu_rhel_75.html
 keywords: host utilities, red hat, rhel, linux, 7.5, netapp, ontap 
 summary: Describe cómo utilizar Red Hat Enterprise Linux 7.5 con ONTAP 
 ---
-= Uso de Red Hat Enterprise Linux 7.5 con ONTAP de NetApp
+= Utilice Red Hat Enterprise Linux 7,5 con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -20,11 +20,11 @@ summary: Describe cómo utilizar Red Hat Enterprise Linux 7.5 con ONTAP
 
 
 
-== Instalar las utilidades unificadas de host de Linux
+== Instale las utilidades unificadas de host de Linux
 
 El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host+Utilities+-+SAN&platform=Linux["Sitio de soporte de NetApp"^] en un archivo .rpm de 32 y 64 bits. Si no sabe cuál es el archivo adecuado para su configuración, utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar cuál necesita.
 
-Se recomienda encarecidamente instalar Unified Host Utilities de Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
+NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
 .Lo que necesitará
 Si tiene una versión de Linux Unified Host Utilities instalada actualmente, debe actualizarla o, debe eliminarla y seguir los pasos siguientes para instalar la versión más reciente.
@@ -308,12 +308,3 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1146898["1146898"^] | La interrupción del kernel se produce en RHEL 7.5 con HBA de Emulex durante las operaciones de conmutación por error de almacenamiento | Durante las operaciones de conmutación por error del almacenamiento en un sistema Red Hat Enterprise Linux (RHEL) 7.5 con adaptadores de bus de host (HBA) Emulex LPe32002-m2 de 32 GB, se produce una interrupción en el kernel. La interrupción del kernel provoca un reinicio del sistema operativo, lo que a su vez provoca una interrupción de las aplicaciones. Si configura kdump, la interrupción del kernel genera el archivo vmcore en el directorio /var/crash/. Puede usar el archivo vmcore para determinar la causa del error. En el siguiente ejemplo, puede ver la interrupción en el módulo "lpfc_hba_clean_txcmplq+368". Esta interrupción se registra en el archivo vmcore con la siguiente cadena: " [Exception RIP: Lpfc_hba_clean_txcmplq+368]" después de la interrupción del kernel, reinicie el sistema operativo host para recuperar el sistema operativo. Reinicie la aplicación según sea necesario. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1554777["1554777"^] 
 |===
-
-
-== Notas de la versión
-
-
-
-=== Mirroring de ASM
-
-El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://www.netapp.com/us/media/tr-3633.pdf["Bases de datos de Oracle en ONTAP"^] para obtener más información.

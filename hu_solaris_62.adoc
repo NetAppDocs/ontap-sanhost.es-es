@@ -18,12 +18,6 @@ summary: Describe cómo usar las utilidades unificadas de host de Linux 7.1 con 
 :toc-position: content
 
 
-.Lo que necesitará
-* Para lograr un funcionamiento fiable, es necesario comprobar que se admite toda la configuración de iSCSI, FC o FCoE.
-
-
-Puede utilizar el link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar la configuración.
-
 
 
 == Kit de herramientas SAN

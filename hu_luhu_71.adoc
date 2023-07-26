@@ -22,10 +22,6 @@ summary: Describe cómo usar las utilidades unificadas de host de Linux 7.1 con 
 
 == Requisitos previos
 
-* Para lograr un funcionamiento fiable, es necesario verificar que se admite toda la configuración de iSCSI, FC o FCoE.
-+
-Puede utilizar el https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar la configuración.
-
 * Debe instalar los paquetes de administración de HBA proporcionados por los proveedores en sus sitios web.
 +
 El software de gestión permite que los comandos del kit de herramientas DE SAN reúnan información acerca de los HBA de FC, como sus WWPN. Para que el adaptador sanlun fcp show funcione, asegúrese de que están instalados los siguientes paquetes:
@@ -79,7 +75,7 @@ NOTE: El kit DE herramientas SAN no es compatible con Citrix XenServer, Oracle V
 
 El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host+Utilities+-+SAN&platform=Linux["Sitio de soporte de NetApp"^] en un archivo .rpm de 32 bits o 64 bits.
 
-Se recomienda encarecidamente instalar Unified Host Utilities de Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
+NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
 .Pasos
 . Si tiene una versión de Linux Unified Host Utilities instalada actualmente, utilice el siguiente comando para eliminarla:

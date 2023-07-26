@@ -4,7 +4,7 @@ permalink: hu_rhel_71.html
 keywords: host utilities, red hat, rhel, linux, 7.1, netapp, ontap 
 summary: Describe cómo utilizar Red Hat Enterprise Linux 7.1 con ONTAP 
 ---
-= Uso de Red Hat Enterprise Linux 7.1 con ONTAP de NetApp
+= Utilice Red Hat Enterprise Linux 7,1 con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -20,11 +20,11 @@ summary: Describe cómo utilizar Red Hat Enterprise Linux 7.1 con ONTAP
 
 
 
-== Instalar las utilidades unificadas de host de Linux
+== Instale las utilidades unificadas de host de Linux
 
 El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/NOW/cgi-bin/software/?product=Host+Utilities+-+SAN&platform=Linux["Sitio de soporte de NetApp"^] en un archivo .rpm de 32 y 64 bits. Si no sabe cuál es el archivo adecuado para su configuración, utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar cuál necesita.
 
-Se recomienda encarecidamente instalar Unified Host Utilities de Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
+NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
 .Lo que necesitará
 Si tiene una versión de Linux Unified Host Utilities instalada actualmente, debe actualizarla o, debe eliminarla y seguir los pasos siguientes para instalar la versión más reciente.
@@ -299,12 +299,3 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=836875["836875"^] | Las direcciones IP no siempre se asignan durante el arranque de un sistema operativo RHEL 7.0 instalado en un LUN multivía iSCSI | Al instalar root(/) en un LUN multipath de iSCSI, la dirección IP de las interfaces Ethernet se especifica en la línea de comandos del núcleo para que las direcciones IP se asignen antes de que se inicie el servicio iSCSI. Sin embargo, dracut no puede asignar direcciones IP a todos los puertos Ethernet durante el arranque, antes de que se inicie el servicio iSCSI. Esto provoca errores en el inicio de sesión de iSCSI en las interfaces sin direcciones IP. Verá que el servicio iSCSI intenta iniciar sesión varias veces, lo que provoca un retraso en el tiempo de arranque del sistema operativo. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1114966["1114966"^] 
 |===
-
-
-== Notas de la versión
-
-
-
-=== Mirroring de ASM
-
-El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM en ONTAP utilizan redundancia externa, lo que significa que la cabina externa ofrece protección de datos y ASM no refleja datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://www.netapp.com/us/media/tr-3633.pdf["Bases de datos de Oracle en ONTAP"^] para obtener más información.
