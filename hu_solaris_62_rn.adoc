@@ -68,18 +68,6 @@ link:https://mysupport.netapp.com/site/["NetApp Bugs Online"^] proporciona infor
 * FCP: Solaris
 
 
-
-
-== Acerca de la documentación de configuración de host SAN
-
-Se incluye la documentación para utilidades del host SAN en la link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Configuración de host SAN ONTAP"] documentación. La documentación de configuración DE HOSTS SAN de ONTAP es acumulativa, para todas las versiones de HOSTS SAN actuales. En contexto, se indican las diferencias funcionales entre las versiones.
-
-
-
-== Dónde encontrar documentación de producto y otra información
-
-Puede acceder a la documentación de todos los productos de NetApp y buscar otros recursos de información de productos, como informes técnicos y whitepapers en la página de documentación de productos del sitio corporativo de NetApp.
-
 .Información relacionada
 *Configuración y administración del sistema de almacenamiento ONTAP*
 

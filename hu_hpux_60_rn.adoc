@@ -49,18 +49,6 @@ Las notas de la versión se actualizan entre versiones de productos a medida que
 
 No hay problemas conocidos para la versión 6.0 de HP-UX.
 
-
-
-== Acerca de la documentación de configuración de host SAN
-
-Se incluye la documentación para utilidades del host SAN en la link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Documentación de configuración de host SAN de ONTAP."] La documentación de configuración de host SAN de ONTAP es acumulativa, para todas las versiones actuales de hosts SAN. En contexto, se indican las diferencias funcionales entre las versiones.
-
-
-
-== Dónde encontrar documentación de producto y otra información
-
-Puede acceder a la documentación de todos los productos de NetApp y buscar otros recursos de información de productos, como informes técnicos y whitepapers en la página de documentación de productos del sitio corporativo de NetApp.
-
 .Información relacionada
 *Configuración y administración del sistema de almacenamiento ONTAP*
 

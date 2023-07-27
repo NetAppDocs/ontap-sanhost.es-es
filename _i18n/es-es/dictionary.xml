@@ -459,9 +459,6 @@
   <block id="63f871187249b3071dc36a54982c1e17" category="cell">Cuando se utiliza un arranque de software iSCSI con varias conexiones iSCSI por sesión (MCS), no se puede proteger la conexión inicial de arranque iSCSI. Esto puede provocar la desconexión del LUN de arranque, lo que provoca el fallo del host.</block>
   <block id="a77cd68a790d44f2359fe8a4dd45b1dc" category="cell">Microsoft no es compatible con MCS para los hosts arrancados por el software iSCSI. Utilice MPIO como solución de alta disponibilidad. Tenga en cuenta que no se admite la combinación de MPIO y MCS.</block>
   <block id="05aa4f4bc5b51efef2c52f4fb2ddc55f" category="paragraph"><block ref="06c8d471f4d0311b3446a94e54fc8a82" category="inline-link-macro-rx"></block> proporciona información completa sobre la mayoría de los problemas conocidos, incluidas las soluciones alternativas sugeridas cuando sea posible.</block>
-  <block id="398a7031b2f8b7650a0d5fa0fd16f3f8" category="section-title">Acerca de la documentación de configuración de host SAN</block>
-  <block id="cd0071277804a942902cc16cb5e9cda4" category="inline-link-macro">Documentación de configuración de host SAN de ONTAP</block>
-  <block id="04dc63ffa7a6d95f3385a8886f05dc01" category="paragraph">Se incluye la documentación para utilidades del host SAN en la <block ref="bb9994c78007f3d6549ad9b3eb7dd244" category="inline-link-macro-rx"></block>. La documentación de configuración DE HOSTS SAN de ONTAP es acumulativa, para todas las versiones de HOSTS SAN actuales. En contexto, se indican las diferencias funcionales entre las versiones.</block>
   <block id="7431f7a183aa9cfe2910bb761205485d" category="section-title">Dónde encontrar documentación de producto y otra información</block>
   <block id="c5079a4f9245d0085178c5ad194bac89" category="paragraph">Puede acceder a la documentación de todos los productos de NetApp y buscar otros recursos de información de productos, como informes técnicos y whitepapers en la página de documentación de productos del sitio corporativo de NetApp.</block>
   <block id="30f60d67f457bb040dffde52197a54da" category="paragraph-title">Información relacionada</block>
@@ -476,7 +473,6 @@
   <block id="027a98b335c07e30bf607b1f1bca9a1f" category="list-text">La Guía exprés de configuración y aprovisionamiento de SANtricity Storage Manager para Windows adecuada para su protocolo</block>
   <block id="1dd312da5024844045e50a58abaf9db6" category="list-text">La guía exprés de configuración y aprovisionamiento de SANtricity Storage Manager para el sistema operativo, el protocolo y la versión de SANtricity.</block>
   <block id="353be7c67f0bea9221f8808465816d0c" category="list-text">La referencia de instalación del software de Administrador de almacenamiento de SANtricity específica para su versión de SANtricity.</block>
-  <block id="adacfb21d59059a5b9d11b1957fbacb1" category="list-text">La Guía del controlador multivía de SANtricity Storage Manager específica para su versión de SANtricity.</block>
   <block id="eb6dfbdfc2c6cfdacfb27a9630c40334" category="list-text">Las notas de la versión de SANtricity Storage Manager para su versión de SANtricity.</block>
   <block id="5f93f381aa8df330451fa5b834f54def" category="inline-link-macro">Documentación de E-Series</block>
   <block id="230a02b4afeea5b0d97c6a68a6530da3" category="summary">Notas de la versión de HPUX Host Utilities 6.0</block>
@@ -492,8 +488,6 @@
   <block id="c7c7e4d1fc8a47f946a88914900694c3" category="list-text">HP-UX 11iv2</block>
   <block id="4feac8845db3a6b1f4e4ead570b6b3ad" category="list-text">HP-UX 11iv3</block>
   <block id="7a1ba2e6d3a8198d5626f5d4e55d2293" category="paragraph">No hay problemas conocidos para la versión 6.0 de HP-UX.</block>
-  <block id="24fd1012a719e6b6977b3715ecf0b77d" category="inline-link-macro">Documentación de configuración de host SAN de ONTAP.</block>
-  <block id="7ab7d878b8d563f012f51b55009390ab" category="paragraph">Se incluye la documentación para utilidades del host SAN en la <block ref="63739903ee7032df0e31764cc24a819c" category="inline-link-macro-rx"></block> La documentación de configuración de host SAN de ONTAP es acumulativa, para todas las versiones actuales de hosts SAN. En contexto, se indican las diferencias funcionales entre las versiones.</block>
   <block id="5f5628241e19b1175cc4bdd9c398f5b7" category="inline-link-macro">Guía de configuración de software de ONTAP para su versión de ONTAP</block>
   <block id="3b0fe6f7d254eb266d210040bae111f5" category="list-text">La <block ref="18f02cc408dbe2e94ae9ae202c089ef8" category="inline-link-macro-rx"></block></block>
   <block id="29ecce87abc03f76c20d3fe564e26dbe" category="inline-link-macro">Guía de administración de San de ONTAP para su versión de ONTAP</block>
@@ -1038,8 +1032,6 @@
   <block id="f83b431a86f1d264a4fc51c9a667a1ee" category="paragraph"><block ref="2f247b6bc715dd3b3f556a7c1dea26c9" category="inline-link-macro-rx"></block> proporciona información completa sobre la mayoría de los problemas conocidos, incluidas las soluciones alternativas sugeridas cuando sea posible. Algunas combinaciones de palabras clave y tipos de errores que puede que desee utilizar son los siguientes:</block>
   <block id="31dade612c24301b89dad4a9747ed73e" category="list-text">FCP General: Muestra los errores de FC y HBA que no están asociados con un host específico.</block>
   <block id="09244b95824d6e702b6eaab2034bdeec" category="list-text">FCP: AIX</block>
-  <block id="79e721357e358d77c4700c25c863fc37" category="inline-link-macro">Configuración de host SAN ONTAP</block>
-  <block id="bba7946c172f683f15783fc909c9d5cf" category="paragraph">Se incluye la documentación para utilidades del host SAN en la <block ref="257925f1258b094e61a79b35ac8d3a5c" category="inline-link-macro-rx"></block> documentación. La documentación de configuración DE HOSTS SAN de ONTAP es acumulativa, para todas las versiones de HOSTS SAN actuales. En contexto, se indican las diferencias funcionales entre las versiones.</block>
   <block id="e01ab2a4280a36b99ef1be4dac2123ef" category="inline-link-macro">Guía de administración de San de ONTAP</block>
   <block id="e8db03fc399918672bed8132e0d8ea35" category="list-text">La <block ref="0f33c30ae119203ebbfd38575ad3015e" category="inline-link-macro-rx"></block> Para su versión de ONTAP</block>
   <block id="15b39b3049d63d1b09b2b4d4ddc115a4" category="list-text"><block ref="15b39b3049d63d1b09b2b4d4ddc115a4" category="inline-link-macro-rx"></block></block>
@@ -1202,7 +1194,6 @@
   <block id="929c9a7053ca6d930b0835cb93342235" category="inline-link-macro">ONTAP de NetApp con continuidad empresarial de SnapMirror de NetApp (SM-BC) con VMware vSphere Metro Storage Cluster (VMSC)</block>
   <block id="5306229c164cfe6b066f8442f64d8268" category="list-text"><block ref="5306229c164cfe6b066f8442f64d8268" category="inline-link-macro-rx"></block></block>
   <block id="33fb3916b5bbccadc7502b97d2b47e0a" category="summary">Describe cómo usar Citrix XenServer 7.x con ONTAP</block>
-  <block id="b46a43d1dd4c2f14b94228f8a8b1e193" category="paragraph">En este documento se ofrecen directrices sobre los ajustes de configuración de host SAN de ONTAP para versiones de sistema operativo Citrix XenServer serie 7 con protocolos FC, FCoE e iSCSI.</block>
   <block id="a51e3210f96458fa393e6f4bf88caabc" category="paragraph">La compatibilidad con varias rutas en Citrix XenServer se basa en los componentes de Device Mapper Multipathd. Los nodos de asignación de dispositivos no se crean automáticamente para todas las LUN presentadas a XenServer y solo se aprovisionan cuando el nivel de gestión de almacenamiento (API) utiliza los LUN de forma activa. El complemento de API de Citrix XenServer Storage Manager controla la activación y desactivación de nodos multivía automáticamente.</block>
   <block id="614673c0b1eeb91e8ffc86cde6faa93b" category="paragraph">Debido a las incompatibilidades de la arquitectura de gestión multivía integrada, Citrix recomienda utilizar la aplicación Citrix XenCenter para gestionar la configuración de almacenamiento. Si es necesario consultar el estado de las tablas de Device Mapper manualmente o enumerar los nodos multivía activos del asignador de dispositivos en el sistema, puede utilizar el<block ref="933a1510d6585bc60786b9db6910db56" prefix=" " category="inline-code"></block> Comando para verificar la configuración de las LUN de ONTAP. Para obtener más información, consulte la documentación estándar del proveedor para Citrix XenServer.</block>
   <block id="c03432d938277a67cb7c8ce5d783b2ca" category="paragraph">En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con las cuatro rutas activas/optimizadas:</block>
@@ -1374,7 +1365,6 @@
   <block id="98baefaf33f7b1a7340fecca79b121d7" category="section-title">Enumere todas las LUN asignadas al host</block>
   <block id="db8b5cb66e41a6692e5280271b55feb6" category="section-title">Enumere todas las LUN asignadas al host desde una SVM determinada</block>
   <block id="475c20ed4a6682ddf4e29696ef0600f4" category="section-title">Enumere todos los atributos de una LUN asignada al host</block>
-  <block id="7b9797972142cfc5839e6afb2cfe2e15" category="section-title">Enumere los atributos de la LUN de ONTAP por nombre del archivo del dispositivo host</block>
   <block id="e562a7759abbf518b77dba4c6bf7b87d" category="section-title">Enumere todos los WWPN de LIF de destino de SVM asociados al host</block>
   <block id="5be7338acb62c4947afb236f2acac6f7" category="summary">Describe cómo configurar NVMe/FC para Oracle Linux 7.7 con ONTAP</block>
   <block id="eb40a1520d522d20939a9321ce7560a9" category="doc">Configuración de host de NVMe/FC para Oracle Linux 7.7 con ONTAP</block>
@@ -1926,10 +1916,6 @@
   <block id="6d7f9adf0bf7944b1d3ff491429c9aa3" category="admonition">Para ver los problemas conocidos de Oracle Linux (kernel compatible con Red Hat), consulte <block ref="6381fe6a72f9bd9f067a0ec390d2a8fb" category="inline-link-macro-rx"></block> Para Red Hat Enterprise Linux (RHEL) 6.9.</block>
   <block id="870d3ab5f8bca6f13651e1aa38ee6783" category="summary">Notas de la versión de Linux Unified Host Utilities 7.1</block>
   <block id="7a14880cd1144b4db863930b81a2f16e" category="doc">Notas de la versión de Linux Unified Host Utilities 7.1</block>
-  <block id="ac5c0d1e2c9f556405ba5d0ebcee7448" category="paragraph">Este documento de notas de la versión contiene la información más reciente de la versión 7.1 de Linux Unified Host Utilities, incluidas las actualizaciones sobre problemas y limitaciones conocidos, cualquier precaución importante, nuevas funciones y mejoras. También describe cualquier problema que pueda haberse detectado desde la publicación de las utilidades de host.</block>
-  <block id="114f5567a26fcd42b3a2049490c5f4b2" category="section-title">Acerca de la versión 7.1 de Linux Unified Host Utilities</block>
-  <block id="fcb3d433efb9ae3f476517ca8e33cd39" category="paragraph">Las utilidades unificadas de host de Linux admiten varios sistemas operativos Linux. Las utilidades de host permiten conectar un host Linux a sistemas de almacenamiento de NetApp.</block>
-  <block id="2c4f9a2d7ffae41716c3bea741995926" category="paragraph">El Linux Unified Host Utilities 7.1 sigue siendo compatible con las siguientes versiones de Linux:</block>
   <block id="c73bbd3786350b0a8d3577d82afdf489" category="list-text">Red Hat Enterprise Linux</block>
   <block id="4ae0b3e9c82d7212e106b8d937d888f9" category="list-text">SUSE Linux Enterprise Server</block>
   <block id="fdcd362ac5f5f9817e70642dd2a48bfd" category="list-text">Oracle Linux</block>
@@ -1937,41 +1923,17 @@
   <block id="12d3f37fc10bb62fe3297b7457e90417" category="list-text">Citrix XenServer</block>
   <block id="27467eebfd85deae554fa659c40d5f50" category="list-text">Veritas</block>
   <block id="6c670cc4f12f5e52c8291d35c3932068" category="admonition">Para obtener información específica acerca de las versiones del sistema operativo y las actualizaciones que admiten las utilidades de host, consulte <block ref="454ffc53fb26d285d765b8fbe8c25a5d" category="inline-link-macro-rx"></block>.</block>
-  <block id="fb30f31b8baeae42f69695791942e3a3" category="paragraph">El software Host Utilities se proporciona como archivos .rpm de 32 bits y 64 bits. Puede descargar el archivo .rpm correcto para la arquitectura host y la documentación desde el <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>.</block>
-  <block id="838cc8ab1454bd7f8f1150dacfe96313" category="inline-link-macro">Guía de instalación de Linux Unified Host Utilities 7.1</block>
-  <block id="cbdbfecfc2f9103a31c93551a8ca2169" category="paragraph">Para obtener instrucciones sobre la instalación y configuración, consulte <block ref="060c9cd2a0a348a800de9ed8d9bd6071" category="inline-link-macro-rx"></block>.</block>
-  <block id="41984fe104ed2a03ac98e13699db0858" category="section-title">Novedades de la versión 7.1</block>
-  <block id="43ec90f5f7e8651a9ba069c9d5119a36" category="paragraph">Las utilidades de host de Linux ahora se denominan _Linux Unified Host Utilities_ porque admite sistemas de almacenamiento E-Series de NetApp que ejecutan SANtricity y sistemas AFF y FAS que ejecutan ONTAP.</block>
   <block id="3401add29441e486a87e080c062d2319" category="admonition">Cualquier mención de utilidades de host o utilidades de host de Linux en este documento hace referencia a las utilidades de host unificadas de Linux.</block>
-  <block id="4209f01684e986e98bd7db997f06ed37" category="list-text">Esta versión de Linux Unified Host Utilities es compatible con un paquete adaptado para establecer perfiles de servidor y mejorar el rendimiento de I/o en hosts de Red Hat Enterprise Linux 6 y 7.</block>
-  <block id="bf82089ceffc1db6d2dda7875edaa5e4" category="list-text">El sistema Linux Unified Host Utilities 7.1 sigue admitiendo versiones de las siguientes características:</block>
-  <block id="3a1e716823ca631a43c0c3de405a1e4b" category="list-text">Red Hat Enterprise Linux 6 y 7 ahora tienen un paquete ajustado con un<block ref="44559c6617511944fd997c63b107ee6b" prefix=" " category="inline-code"></block> comando para establecer diferentes perfiles de servidor en el host en función del entorno.</block>
-  <block id="30b4768014d8a013f1f593b8afe6fb38" category="list-text">Esto incluye un perfil de almacenamiento empresarial para configuraciones en las que se utilizan las LUN de cabinas de almacenamiento empresarial. También puede utilizar el perfil de invitado virtual para Red Hat Enterprise Linux como máquina virtual invitada. El uso de estos paquetes ajustados puede provocar una importante mejora en el rendimiento y la latencia en ONTAP.</block>
   <block id="df9acd1db1992fc307ada4549840fbbd" category="admonition">NetApp sigue trabajando con las utilidades de host para añadir compatibilidad con las funciones después de la versión inicial. Para obtener la información más reciente acerca de las características compatibles y las nuevas funciones que se han agregado, consulte <block ref="454ffc53fb26d285d765b8fbe8c25a5d" category="inline-link-macro-rx"></block>.</block>
-  <block id="94648c6bfe4e5f155249afe8baa0af7c" category="section-title">Nuevas funciones y mejoras</block>
   <block id="4cdb57a14ff056cba74062a20d5038e4" category="paragraph">Las notas de la versión se actualizan entre versiones de productos a medida que hay nueva información disponible.</block>
-  <block id="98f0e8f6ac68ca9ce5c40038e9c315fc" category="section-title">7.1 mejoras</block>
-  <block id="a3ccaa134ff70292247596c1510e2f49" category="list-text">Esta versión incluye soporte para lo siguiente:</block>
   <block id="9085058ee40c6aea4b4062d815f10796" category="list-text">SUSE Linux Enterprise Server serie 15</block>
   <block id="9644255060b40cdfcd8ea1615fe043fa" category="list-text">Oracle VM serie 3.2</block>
   <block id="5658a750ca0f24bc92094b686b6258d0" category="list-text">Oracle Linux series 6 y 7</block>
   <block id="d216058d64b318d5b9cf23cae02c1ab3" category="list-text">Red Hat Enterprise Linux serie 6 y 7</block>
   <block id="bb45e555ad5e8fd7b39ad7055ae2fee5" category="list-text">SUSE Linux Enterprise Server 11 SP4</block>
   <block id="5f8af70f22329002dbdbc795c806cfc6" category="list-text">KVM y XEN, RHEV 6.4 y 6.5</block>
-  <block id="49a50d4f58561eda25bfce1e3b33701a" category="list-text">Parámetros de Citrix XenServer</block>
-  <block id="e3084fdb2d5ea6f0f2ce41358fd37dbd" category="list-text">Agrega compatibilidad con adaptadores Fibre Channel de 32 GB de Emulex y Qlogic.</block>
-  <block id="931f0d754b7a3bfa5cb9a801cdf5a87c" category="list-text">Soluciones<block ref="fbaf3439861b3928c1fcba20aa7c0047" prefix=" " category="inline-code"></block> En SLES12SP1, OL7.2, RHEL7.2 y RHEL 6.8.</block>
-  <block id="de1ff84cb81890d47939fb29d21e29d4" category="list-text">Amplía la compatibilidad con los sistemas operativos Red Hat Linux 6.8, Oracle Linux 6.8, XenServer 7.0, Oracle VM 3.3 y Oracle VM 3.4 Series.</block>
   <block id="8b777dc32f2f743eb513fca0bfd52348" category="cell">1457017</block>
   <block id="0078173d6c66e3e11217e80e4ecc1d1b" category="cell"><block ref="3a8e4afa851609127d534b04e7d29c08" prefix="" category="inline-code"></block> la instalación emite mensajes de advertencia relacionados con<block ref="6bbfa21cc363f3f43fa45e0fee1ab78c" prefix=" " category="inline-code"></block> y..<block ref="c4e8c1a43552f3f4b93665bea2f8ccd3" prefix=" " category="inline-code"></block> bibliotecas. Estas advertencias no afectan a la funcionalidad de<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> kit.</block>
-  <block id="fa43a065e595f68c9747ec1c332db0fe" category="paragraph"><block ref="830162a7c9ab7fc626354bdc7e06a36f" category="inline-link-macro-rx"></block> proporciona información completa sobre la mayoría de los problemas conocidos, incluidas las soluciones alternativas sugeridas cuando sea posible.</block>
-  <block id="25fca6d5f6b8d10f692a7f66ee2eee3c" category="paragraph">Algunas combinaciones de palabras clave y tipos de errores que puede que desee utilizar son los siguientes:</block>
-  <block id="c47c6ba2c86eeee1e865b8ee90c66641" category="list-text">FCP: Linux</block>
-  <block id="6dd1573a0335bb03fdc0c8231d802e5a" category="list-text">ISCSI: Linux</block>
-  <block id="5787cd6f0fbd05d03decbef0348d1b18" category="paragraph">Consulte la <block ref="bb9994c78007f3d6549ad9b3eb7dd244" category="inline-link-macro-rx"></block> Para obtener más información acerca de la configuración y configuración del sistema operativo host.</block>
-  <block id="0f68b904e33d9ac04605aecc958bcf52" category="section-title">Información adicional</block>
-  <block id="45f46864d42785de56264eca6e97bee1" category="section-title">Valores predeterminados recomendados al utilizar controladores incluidos con el kernel de Linux</block>
-  <block id="987c26774efa908312fb01ff50e7e858" category="paragraph">Al configurar un entorno FC que utiliza los controladores de bandeja de entrada nativos que se incluyen con el kernel de Linux, puede utilizar los valores predeterminados para los controladores. En entornos iSCSI donde se utiliza un software de soluciones iSCSI, es necesario establecer manualmente ciertos valores recomendados según la versión del sistema operativo que se esté utilizando.</block>
   <block id="04dff1447143c8e4e6195f792be9979e" category="summary">Describe cómo utilizar Red Hat Enterprise Linux 6.8 con ONTAP</block>
   <block id="aeb75138ac824554509c3b3d36b308ba" category="paragraph">Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el <block ref="516e9c81d2e1659fb212fdf2d79e1e5b" category="inline-link-macro-rx"></block> Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.</block>
   <block id="d58ee726eea2726eefac984fb7e051d6" category="paragraph">Para Red Hat Enterprise Linux (RHEL) 6.8 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. RHEL 6.8 se ha compilado con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP. Para habilitar ALUA Handler, realice los siguientes pasos:</block>
@@ -2236,23 +2198,10 @@
   <block id="360ef025710e08a61d1403840b1b7d2f" category="list-text">Una vez finalizada la instalación, compruebe que está ejecutando el kernel de Red Hat Enterprise Linux especificado.</block>
   <block id="72e702431882de8ed92aa1c2e3726dea" category="list-text">En el host RHEL 8.2, compruebe la cadena de NQN del host en /etc/nvme/hostnqn y verifique que coincide con la cadena de NQN del host para el subsistema correspondiente en la cabina de ONTAP.</block>
   <block id="ce420cebd9b134c2ee33ae6a490c31ba" category="paragraph">Si piensa ejecutar el tráfico NVMe y SCSI en el mismo host coexistente de RHEL 8.2, le recomendamos que utilice la multivía de NVMe en el kernel para espacios de nombres de ONTAP y dm-multipath para LUN de ONTAP, respectivamente. También debe incluir una lista negra de los espacios de nombres ONTAP en dm-multipath para evitar que dm-multipath reclamen estos dispositivos de espacio de nombres. Para ello, añada la<block ref="cb2f8f6f16be615751b5bbd73928d197" prefix=" " category="inline-code"></block> la configuración en /etc/multipath.conf, tal como se muestra a continuación.</block>
-  <block id="87adc74f7e5083adf88fa77a4e7aaa7b" category="doc">Utilidades unificadas de host 7.1 de Linux</block>
-  <block id="e11da9afe91d381489a365c86cc614ab" category="section-title">Requisitos previos</block>
-  <block id="67d2c540b82f607f8c9d3201f2309ec6" category="list-text">Debe instalar los paquetes de administración de HBA proporcionados por los proveedores en sus sitios web.</block>
-  <block id="d361b7136a02633fc7c5b4ea205655d8" category="paragraph">El software de gestión permite que los comandos del kit de herramientas DE SAN reúnan información acerca de los HBA de FC, como sus WWPN. Para que el adaptador sanlun fcp show funcione, asegúrese de que están instalados los siguientes paquetes:</block>
-  <block id="a12eee609318f789b110fe7492bac976" category="list-text">HBA de QLogic: Interfaz de línea de comandos de QConverteConsole</block>
-  <block id="59b271fe18b45209cf86bc956dfb5f7e" category="list-text">HBA Emulex: CLI de aplicación principal de OneCommand Manager</block>
-  <block id="5ab8738b15e4372e4fe9670449a5b820" category="list-text">Brocade HBA: Interfaz de línea de comandos de Brocade Command Utility</block>
-  <block id="a667026321ffb956d941d648c0ad659f" category="paragraph">RPM Packages "libhbaapi" y "libhbalinux" disponibles para cada distribución Linux deben instalarse en el sistema operativo host.</block>
   <block id="ffdedbe1187a1ddb0d5c60a0ac382630" category="paragraph">Linux Unified Host Utilities es un software de host de NetApp que proporciona un kit de herramientas de línea de comandos para el host Linux.</block>
-  <block id="00c00a19ea488ceb63e99f408a6b6118" category="admonition">Este kit de herramientas es común en todas las configuraciones y protocolos de Host Utilities. Como resultado, parte de su contenido se aplica a una configuración, pero no a otra. El hecho de tener componentes sin utilizar no afecta al rendimiento del sistema.</block>
   <block id="7f239a97a66cea4e3bb767698099b430" category="admonition">El kit DE herramientas SAN no es compatible con Citrix XenServer, Oracle VM y Red Hat Enterprise Virtualization Hypervisor.</block>
-  <block id="6332394e52d860951e446b20a9580794" category="section-title">Instale Linux Unified Host Utilities</block>
   <block id="97b1d501c6990b34b9d8e6c6a3bd4c72" category="section-title">Enumere la identidad de la SVM de la ONTAP a partir de la que se asigna una LUN determinada al host</block>
   <block id="ccf6dcaf9d267935d140bb63387e1b16" category="section-title">Enumere las LUN de ONTAP que se ven en el host de un determinado WWPN de LIF de destino de SVM</block>
-  <block id="6bf77654a8e211c90c63557c6541b3a2" category="section-title">Archivo de aviso</block>
-  <block id="d67213454856023fc9b29996cb21f0d6" category="inline-link-macro">Archivo de aviso de utilidades unificadas de host de Linux</block>
-  <block id="c38f9cb37e7246171df1cd59fb277c46" category="paragraph"><block ref="c38f9cb37e7246171df1cd59fb277c46" category="inline-link-macro-rx"></block></block>
   <block id="666e694f580810d83f5f40c26c2bb04c" category="summary">Describe cómo utilizar Red Hat Enterprise Linux 9.1 con ONTAP</block>
   <block id="61487574b79af0e445bb9b6a2353e6f4" category="paragraph">El paquete de software NetApp Linux Unified Host Utilities está disponible en la <block ref="79a5efacdd8155d1c0d2f7284cc3f087" category="inline-link-macro-rx"></block> en un archivo .rpm de 64 bits.</block>
   <block id="a19e7b541def6d38087c1a02b106bef9" category="paragraph">Si tiene una versión de Linux Unified Host Utilities instalada actualmente, debe actualizar o quitar la versión y usar los siguientes pasos para instalar la versión más reciente.</block>
@@ -2367,7 +2316,6 @@
   <block id="41e7560cde89e1cd58f68637cb85187c" category="summary">Describe cómo utilizar CentOS 7.6 con ONTAP</block>
   <block id="13875804930272cb7e31a51605d09c65" category="doc">Utilidades de host Solaris 6.2</block>
   <block id="8f3b9d0cc42d20c0623a5f0990c4181e" category="paragraph">Solaris Host Utilities es un software de host de NetApp que proporciona un kit de herramientas de la línea de comandos en el host de Oracle Solaris. El kit de herramientas se instala cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> Utilidad que le ayuda a gestionar LUN y HBA. La<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.</block>
-  <block id="ad13fbfcd593d66a0a805929eb221e19" category="section-title">Instalación de Solaris Host Utilities</block>
   <block id="03b4fa4e47ce5a6711a2ad9d886d63b4" category="paragraph">Solaris Host Utilities 6.2 admite varios entornos Solaris y varios protocolos. Los entornos primarios de utilidades de host son:</block>
   <block id="62f9b54c9ec5d04b22835a93b9aa1fa6" category="admonition">El paquete de software NetApp Solaris Host Utilities está disponible en la <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> en un formato de archivo comprimido para su procesador. Puede descargar el paquete de software de utilidades de host para su entorno en el sitio de soporte.</block>
   <block id="fea59de608f0d3ad102d8ee095187049" category="list-text">Inicie sesión en el host como root.</block>
@@ -2863,7 +2811,6 @@
   <block id="5a3b86e99232b3604afe4db20db45884" category="cell">Se produce un error de I/O cuando las máquinas virtuales de Linux que utilizan adaptadores vNVMe encuentran una ventana larga Todas las rutas inactivas (APD)</block>
   <block id="9c72461f3069d27216e1faab60848be8" category="paragraph">Las máquinas virtuales de Linux que ejecutan vSphere 8.x y versiones posteriores, y que utilizan adaptadores NVMe virtuales (vNVME) encuentran un error de I/O porque la operación de reintento de vNVMe está deshabilitada de forma predeterminada. Para evitar una interrupción en las VM de Linux que ejecutan kernels antiguos durante una parada de todas las rutas (APD) o una carga de I/O pesada, VMware ha introducido un «VSCSIDisableNvmeRetry» ajustable para deshabilitar la operación de reintento de vNVMe.</block>
   <block id="03d0e633810a3de10e61ce29a7d4abb0" category="cell">Compruebe y rectifique los problemas de red en la estructura de host. Si esto no sirve de ayuda, actualice a un parche que solucione este problema.</block>
-  <block id="d9dd0dcd952b59a8a387ef9beb4c00f2" category="paragraph">Consulte <block ref="655b517a7a97afe4ca5d1c4eeafd2bfe" category="inline-link-macro-rx"></block> Para encontrar documentación relacionada de SANtricity.</block>
   <block id="dad160104969c39365dd2cd4c98dd300" category="inline-link-macro">TR-4400</block>
   <block id="a36f49fe4436012bee1d9977a9ab9b95" category="paragraph">Para obtener información detallada sobre el aprovisionamiento y la gestión de vVols, consulte también la documentación sobre herramientas de ONTAP para VMware vSphere <block ref="ec1f030f0caddb932644a46761f74630" category="inline-link-macro-rx"></block> y.. <block ref="bcecf0e9ae9f2444b66065a431138ac6" category="inline-link-macro-rx"></block>.</block>
   <block id="ec28bcc44a923317b69c457e0afb81a2" category="summary">Es posible configurar los ajustes del host SAN de ONTAP para la versión de VMware vSphere 8.x con protocolos FC, FCoE e iSCSI.</block>
@@ -3318,48 +3265,113 @@ La<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code
   <block id="069c43556e66148f1f1eeabd7e9e7872" category="sidebar">Utilidades del host AIX</block>
   <block id="2cac689df6b99782e23a143c9bfa2346" category="sidebar">Utilidades del host HP-UX</block>
   <block id="a4d5754af636a6318ee2ffcd80c52e27" category="sidebar">Utilidades unificadas de host de Linux</block>
-  <block id="289d4a224c51f2aeb418b081093d4d1e" category="sidebar">Utilidades de host Solaris</block>
   <block id="8557e53cdfdd197b67dd8b986e602bf0" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para la base de almacenamiento de Veritas Infoscale, versión de la serie 7 para plataformas Red Hat Enterprise Linux y Oracle Linux (basada en RHCK) con protocolos FC, FCoE e iSCSI.</block>
-  <block id="2748559fa3f480a739ce5c8aa1fb9f04" category="paragraph">La versión Oracle Linux 9,2 con NetApp ONTAP tiene los siguientes problemas conocidos:</block>
   <block id="1bbb67631847a06bbd9b2e9dafec2134" category="section-title">Instale Solaris Host Utilities</block>
-  <block id="3b6d73c1a990f96b5a1195998cefcf0a" category="paragraph">La configuración de host de NVMe-oF para ESXi 7.x con la versión ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="7d2ac39702ab406c53e1e589396dc20a" category="paragraph">Es posible configurar NVMe over Fibre Channel (NVMe/FC) en hosts que ejecutan Windows Server 2019 y ONTAP como destino.</block>
   <block id="3f20da7f97c0948dba60855f74d8feb3" category="paragraph">Es posible configurar NVMe over Fibre Channel (NVMe/FC) en hosts que ejecutan SUSE Linux Enterprise Server 15 SP1 y ONTAP como destino.</block>
   <block id="c783ac9d690ea6f6744d8edf596a145a" category="list-text">Las secuencias de comandos de conexión automática NVMe/FC nativas se incluyen en el paquete nvme-cli. Puede utilizar el controlador lpfc nativo de la bandeja de entrada en SLES15 SP1.</block>
   <block id="c5572eca1bd94cf7d7a382167c292395" category="paragraph">== Problemas conocidos</block>
   <block id="04e8d5a4c40a30787e3a35e62dfd0c1e" category="paragraph">Establezca el controlador lpfc para NVMe/FC.</block>
   <block id="9f988f6d1200dcd570b84c8116f6eecd" category="paragraph">Puede configurar los ajustes de configuración del host SAN ONTAP para versiones del sistema operativo Citrix Hypervisor serie 8 con protocolos FC, FCoE e iSCSI.</block>
-  <block id="58778ead591330ae1dd8f24f2549fc34" category="paragraph">La configuración de host de NVMe-oF para OL 8,4 con la versión ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="7b3bf1d8eef841f0a31f40eb5d332ced" category="paragraph">Es posible configurar NVMe over Fibre Channel (NVMe/FC) en hosts que ejecutan Windows Server 2012 R2 y ONTAP como destino.</block>
-  <block id="838ed30bf9830d174974818ad89ac4c7" category="paragraph">La configuración de host de NVMe-oF para RHEL 8,6 con la versión ONTAP tiene los siguientes problemas conocidos:</block>
   <block id="e62de6043f25aae2915aa8c10fbaec9d" category="cell"><block ref="e62de6043f25aae2915aa8c10fbaec9d" category="inline-link-macro-rx"></block></block>
   <block id="fad1bada1216764738043e879ec198a9" category="paragraph">== Problemas conocidos
 No hay problemas conocidos.</block>
-  <block id="c29b12d2cc17f9149a97f1cf82a6c263" category="paragraph">La configuración de host de NVMe-oF para OL 8,6 con la versión ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="f5c1b43cd99bf5053de182854bd7e76a" category="paragraph">La configuración de host de NVMe-oF para RHEL 9,1 con la versión ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="1341add2fe573f7064d22ce6afde8495" category="paragraph">Es posible configurar NVMe over Fibre Channel (NVMe/FC) en hosts que ejecutan Windows Server 2016 y ONTAP como destino.</block>
   <block id="6dbaaee7c23e43374599aa43c101fa0b" category="paragraph">No hay problemas conocidos para RHEL 8,7.</block>
   <block id="0ea1561176c96894fb977d38bd38f871" category="section-title">Habilitar el tamaño de I/O de 1MB KB para Broadcom NVMe/FC</block>
   <block id="624e2520b17b79e6e7312aaab546e064" category="section-title">Habilite un tamaño de I/O de 1MB KB para NVMe/FC de Broadcom</block>
-  <block id="794c839c1ce38d3e3fe9ddbfd7d3ee62" category="paragraph">La configuración de host de NVMe-oF para RHEL 9,0 con la versión ONTAP tiene los siguientes problemas conocidos:</block>
   <block id="7ed61b389d995a259f689087e9ac7cbf" category="paragraph">No hay problemas conocidos para RHEL 8,8.</block>
-  <block id="0fcb153a09cf9f735fd10ea86aa03c38" category="paragraph">Es posible configurar NVMe over Fibre Channel (NVMe/FC) en hosts que ejecutan Windows Server 2022 y ONTAP como destino.</block>
-  <block id="eeb65ac9a4f35e659e92b61cc21d24b5" category="paragraph">La configuración de host de NVMe-oF para RHEL 8,7 con la versión ONTAP tiene los siguientes problemas conocidos:</block>
   <block id="a597507af40f2b893bf64299ba506a89" category="doc">Utilice Veritas Storage Foundation 6 para Linux con ONTAP</block>
   <block id="f1ae093ec47cacaea6fabc35758d35f7" category="paragraph">Puede utilizar los ajustes de configuración del host de SAN de ONTAP para la versión de la serie Veritas Storage Foundation 6 para plataformas Red Hat Enterprise Linux y Oracle Linux (basado en RHCK) con los protocolos FC, FCoE e iSCSI.</block>
-  <block id="7766164b38459bfd3947f7747d94760a" category="paragraph">Es posible usar las opciones de configuración del host de SAN de ONTAP para las versiones vSphere 6,5.x y 6,7.x con los protocolos FC, FCoE y iSCSI.</block>
   <block id="d60c463bb4096f3ed4bd1618626dfe10" category="doc">Solucionar problemas</block>
   <block id="e1cd8c01047ab9aa65fc1c931ccdb0a8" category="paragraph">Antes de solucionar problemas de NVMe-oF para hosts RHEL, OL y SLES, compruebe que esté ejecutando una configuración que cumpla con las especificaciones de la herramienta de matriz de interoperabilidad (IMT) y continúe con los siguientes pasos para depurar cualquier problema en el host.</block>
   <block id="4a446daa2697df931fbab571c023baef" category="admonition">Las instrucciones de solución de problemas no son aplicables en hosts AIX, Windows y ESXi.</block>
   <block id="96050aafb2fca1409b0f952e7597fd11" category="paragraph">No hay ningún registro qla2xxx específico para NVMe/FC similar al para el<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block> controlador. En su lugar, defina el nivel de registro general de qla2xxx.</block>
   <block id="0659d428df833a806e29e65e632d380a" category="inline-link-macro">Soporte de NetApp</block>
   <block id="b3303f1e3e1d5672f6b839c968637989" category="paragraph">Si todavía tiene problemas, recopile los siguientes archivos y salidas de comandos y póngase en contacto <block ref="39332fc74dd50b9d9a8e9919506502c0" category="inline-link-macro-rx"></block> para una clasificación adicional:</block>
-  <block id="678a8f2b559ba91fc985c5641c2d8f28" category="paragraph">La configuración de host de NVMe-oF para Oracle Linux 9,0 con ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="b9e735e8617edf1ba79d42cb4c76dd1b" category="paragraph">La configuración de host de NVMe-oF para OL 8,5 con la versión ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="78186bcc2bcf3016d00a067d67064dea" category="paragraph">La configuración de host de NVMe-oF para OL 8,3 con la versión ONTAP tiene los siguientes problemas conocidos:</block>
   <block id="8e2fe53ccb05734b777fbcc2363d25ab" category="paragraph">Puede usar las opciones de configuración del host SAN de ONTAP para la versión vSphere 7.x con los protocolos FC, FCoE e iSCSI.</block>
-  <block id="bb8697c974d608376ec4f0aa538c9a50" category="paragraph">La configuración de host NVMe/FC para AIX con la versión ONTAP tiene los siguientes problemas conocidos:</block>
   <block id="d9a42f0deac96b98dbebf2e560cd7f5c" category="paragraph">Antes de solucionar problemas de algún fallo de NVMe/FC, compruebe que ejecute una configuración que cumpla con las especificaciones de la herramienta de matriz de interoperabilidad (IMT). Si sigue teniendo problemas, póngase en contacto con <block ref="39332fc74dd50b9d9a8e9919506502c0" category="inline-link-macro-rx"></block> para una clasificación adicional.</block>
   <block id="3a4b11723a00030809010d89daf7ebe2" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para la base de almacenamiento de Veritas Infoscale, versión de la serie 8 para plataformas Red Hat Enterprise Linux y Oracle Linux (basado en RHCK) con los protocolos FC, FCoE e iSCSI.</block>
-  <block id="eaf39d9dce68a53c6bc9882062e6b8ac" category="paragraph">La configuración de host de NVMe-oF para ESXi 8.x con la versión ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="4a09c73fa303eedb14779e29343fb862" category="paragraph">Puede configurar las opciones de configuración del host SAN ONTAP para versiones del sistema operativo Citrix XenServer serie 7 con protocolos FC, FCoE e iSCSI.</block>
+  <block id="699ba12cc1ac820e7a663632b3cd6500" category="doc">Referencia de comandos de Solaris 6,2</block>
+  <block id="0dfb15ad6e48119187bdf68b2798b551" category="paragraph">Puede utilizar la referencia de comandos de ejemplo de Solaris Host Utilities 6,2 para una validación integral de la configuración de almacenamiento de NetApp mediante la herramienta de utilidades de host.</block>
+  <block id="16739062558f135a2a67b7745e31e80d" category="paragraph">Puede recuperar una lista de todos los iniciadores de host asignados a un host.</block>
+  <block id="416012ceac18a0ac6c16db45563c9298" category="paragraph">Puede recuperar una lista de todas las LUN asignadas a un host.</block>
+  <block id="34f24f66e929234e4a25705afbec0a62" category="paragraph">Puede recuperar una lista de todas las LUN asignadas a un host de una determinada SVM.</block>
+  <block id="5fa98009978b8534f94887b150f76e94" category="section-title">Muestra los atributos de los LUN de ONTAP por nombre de archivo del dispositivo host</block>
+  <block id="bd9053d2f5cfa60e3884b5bf2dcdc78f" category="paragraph">Puede recuperar una lista de todos los atributos de LUN de ONTAP especificando un nombre de archivo de dispositivo host.</block>
+  <block id="51b13e2ba8873a4272d5a6e2a0ed4515" category="paragraph">Oracle Linux 9,2 con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="8d4478de8c42ac77a687fe1b9da495db" category="paragraph">La configuración de host de NVMe-oF para ESXi 7.x con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="34eb69c2ca284db87777cb75cdcf0dd9" category="paragraph">Es posible configurar NVMe over Fibre Channel (NVMe/FC) en hosts que ejecutan Windows Server 2019 usando ONTAP como destino.</block>
+  <block id="07e49dbbfe229f5428866384db02e329" category="paragraph">En las notas de la versión, se describen las nuevas funciones y mejoras, los problemas conocidos y las limitaciones, y las precauciones importantes para configurar y gestionar el host específico con el sistema de almacenamiento de ONTAP.</block>
+  <block id="91770f038cd944a1d3b9b347edeb2b10" category="section-title">Novedades</block>
+  <block id="47851fc857cb6267d67c526211828e1e" category="paragraph">La versión de Linux Host Utilities 7,1 contiene las siguientes funciones y mejoras nuevas:</block>
+  <block id="92d4f2c8b053dc173575e4ac46223415" category="list-text">Las utilidades de host de Linux ahora se denominan _Linux Unified Host Utilities_ porque son compatibles con los sistemas de almacenamiento E-Series de NetApp que ejecutan SANtricity, así como sistemas AFF, FAS y ASA que ejecutan ONTAP.</block>
+  <block id="640086d83a51b4fd5839f3bf24d824ea" category="list-text">Ahora se admiten los siguientes sistemas operativos:</block>
+  <block id="c7756454768a1c1d608d1a4ac749006d" category="list-text">En hosts Red Hat Enterprise Linux (RHEL) 6 y RHEL 7, ahora se admite un paquete adaptado para configurar perfiles de servidor. Puede utilizar el<block ref="44559c6617511944fd997c63b107ee6b" prefix=" " category="inline-code"></block> comando para definir diferentes perfiles, según el entorno.  Por ejemplo, también puede usar el perfil de invitado virtual como equipo virtual de invitado y puede usar el perfil de almacenamiento empresarial para configuraciones donde se utilizan las LUN de cabinas de almacenamiento empresarial.  El uso de estos paquetes ajustados puede mejorar el rendimiento y la latencia en ONTAP.</block>
+  <block id="d047bdc1dea99bd9c686408f783b1571" category="list-text">Añade compatibilidad con adaptadores Fibre Channel de 32 Gb de Broadcom Emulex y Marvell Qlogic.</block>
+  <block id="7636f503a3339c628c780594076ebb17" category="section-title">Solucionados en esta versión</block>
+  <block id="977dc544e187df2c36b93ee4767972aa" category="paragraph">El problema de error intermitente del sistema operativo del host que se produce al ejecutar el<block ref="41dc2c94e82e1c56ba876085acf5a974" prefix=" " category="inline-code"></block> El comando en SLES12SP1, OL7,2, RHEL7,2 y RHEL 6,8 se corrige en esta versión.</block>
+  <block id="d2eefe458609a5477d08446697ea1261" category="paragraph">La versión Linux Host Utilities 7,1 tiene los siguientes problemas y limitaciones conocidos.</block>
+  <block id="bb49904ee226b5b028402a9c2c228bf2" category="cell">Cuando se ejecuta el comando CLI de Linux Unified Host Utilities: Sanlun fcp show adapter -v en un host SAN, el comando genera un mensaje de error que muestra que las dependencias de la biblioteca necesarias para una detección del adaptador de bus de host (HBA) no pueden ser
+ubicado:
+
+[root@hostname ~]# sanlun fcp show adapter -v
+No se ha encontrado la biblioteca /usr/lib64/libHBAAPI.so
+Asegúrese de que el paquete que instala la biblioteca está instalado y cargado
+Consulte el informe público 1508554.</block>
+  <block id="7d21aae7a58430ed491d0dcc91fdc835" category="paragraph">La configuración de host de NVMe-oF para OL 8,4 con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="9de20e72ce939c2312bbc9e7045ded44" category="paragraph">Es posible configurar NVMe over Fibre Channel (NVMe/FC) en hosts que ejecutan Windows Server 2012 R2 usando ONTAP como destino.</block>
+  <block id="e7183ec32fe608cc18cd79de6aab8c7f" category="inline-link-macro">Configuración de SAN ONTAP</block>
+  <block id="cc6e8a4a2f07710826a02b4f65f6a5e1" category="list-text">La <block ref="485c36565f137f93d02f76d27f04f03a" category="inline-link-macro-rx"></block> Para su versión de ONTAP</block>
+  <block id="0b164430bc41bc5bbfb75f5976b0512b" category="list-text">La <block ref="655b517a7a97afe4ca5d1c4eeafd2bfe" category="inline-link-macro-rx"></block> Para encontrar documentación relacionada de SANtricity.</block>
+  <block id="9139a77e42fad6b63368eea822f35757" category="paragraph">La configuración de host de NVMe-oF para RHEL 8,6 con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="13dea42e38aa7f2230bd74fcabf6b0e8" category="paragraph">La configuración de host de NVMe-oF para OL 8,6 con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="4036ce7f5249110346ac2f0ee1325460" category="paragraph">La configuración de host de NVMe-oF para RHEL 9,1 con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="e3a71b9db068cf6781abb11924ac42ee" category="paragraph">Es posible configurar NVMe over Fibre Channel (NVMe/FC) en hosts que ejecutan Windows Server 2016 usando ONTAP como destino.</block>
+  <block id="4b77bef763b0a08b9a3c110c9751ca31" category="paragraph">Puede utilizar la referencia de comando AIX Host Utilities 6,1 para realizar una validación integral de la configuración del almacenamiento NetApp con la herramienta de utilidades de host.</block>
+  <block id="2007c4c5bd8a037f1d8e640cb7e961c0" category="paragraph">Puede recuperar una lista de iniciadores de host asignados a un host.</block>
+  <block id="0f72498039f4dd70eff202dff74b269e" category="paragraph">Puede recuperar una lista de todas las LUN asignadas a un host de una SVM especificada.</block>
+  <block id="f7f35aac075a8552952158a8b905355f" category="paragraph">Puede recuperar una lista de todos los atributos de una LUN especificada asignada a un host.</block>
+  <block id="25883c6c721d98b3c3502375f5c20f24" category="paragraph">Puede recuperar una lista de atributos de LUN de ONTAP especificando un nombre de archivo de dispositivo host.</block>
+  <block id="80d8d00dcd94a7fcd829f2d6c8b653c6" category="paragraph">Puede recuperar una lista de todos los WWPN de LIF de destino de SVM que están conectados a un host.</block>
+  <block id="2f12dfeb4a5bed92ee267747f7900ab5" category="doc">Referencia de comandos de Linux Unified Host Utilities 7,1</block>
+  <block id="f411129ea6b2f79a27e85ad2a3ae2631" category="paragraph">Puede usar la referencia de comando de muestra de Linux Unified Host Utilities 7,1 para una validación integral de la configuración del almacenamiento NetApp con la herramienta de utilidades de host.</block>
+  <block id="91850f3f0f263bdc6419d0b75872055e" category="paragraph">Puede recuperar una lista de todas las LUN asignadas a un host de una máquina virtual de almacenamiento específica (SVM).</block>
+  <block id="13e387e56dad32828893527e0d3a3105" category="paragraph">Puede recuperar una lista de identidad de ONTAP SVM de la que se asigne un LUN concreto a un hist.</block>
+  <block id="e1cd7b537be6453e906049c111d7b248" category="paragraph">Puede recuperar una lista de atributos de LUN de ONTAP por nombre de archivo de dispositivo host.</block>
+  <block id="364c9974898b89845661be07a4997db2" category="paragraph">Puede recuperar una lista de LUN de ONTAP detectados en un host por un WWPN de LIF de destino de SVM especificado.</block>
+  <block id="e214de5ea0b1a8eb765598cf4b80a404" category="summary">Es posible configurar ciertos hosts SAN para el protocolo NVMe over Fabrics (NVMe-oF).</block>
+  <block id="b27a9cd7f027cd14587ddd1e70ef495c" category="paragraph">Las utilidades unificadas de host de HP-UX le ayudan a gestionar el almacenamiento de NetApp ONTAP conectado a un host de HP-UX.</block>
+  <block id="d69b9e8da5c44e4373c2c6a01013adc0" category="paragraph">Las utilidades unificadas de host de Solaris le ayudan a gestionar el almacenamiento de NetApp ONTAP conectado a un host Solaris.</block>
+  <block id="b1199565b654a20a5acee144d68ae4cb" category="paragraph">La configuración de host de NVMe-oF para RHEL 9,0 con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="b6351e6ceb9609fde0ff665d6ec8e551" category="paragraph">Es posible configurar NVMe over Fibre Channel (NVMe/FC) en hosts que ejecutan Windows Server 2022 usando ONTAP como destino.</block>
+  <block id="71451af1b87baede129f9469cc138039" category="paragraph">La configuración de host de NVMe-oF para RHEL 8,7 con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="b60765d8f92876a00ce6e78cf806ab00" category="paragraph">Las utilidades unificadas de host de AIX le ayudan a gestionar el almacenamiento de NetApp ONTAP conectado a un host AIX.</block>
+  <block id="5196c04a99b765f6b853ef816161d88a" category="paragraph">Es posible usar las opciones de configuración del host de SAN de ONTAP para las versiones vSphere 6,5.x y 6,7.x con los protocolos FC, FCoE y iSCSI.</block>
+  <block id="adb402e65bdeaf3ca526f0f9c14f1f04" category="doc">Referencia de comandos de HP-UX Host Utilities 6,0</block>
+  <block id="e765b5786377ea3106b7ae795937e648" category="paragraph">Puede usar la referencia de comandos de ejemplo de HP-UX Unified Host Utilities 6,0 para una validación integral de la configuración del almacenamiento de NetApp a través de la herramienta de utilidades de host.</block>
+  <block id="826d62634f2ee7ee2980c91f852daad7" category="paragraph">Puede recuperar una lista de todas las LUN asignadas al host de una determinada SVM.</block>
+  <block id="f32d1eb76cb18a9746960f090055b17f" category="paragraph">Puede recuperar una lista de atributos de LUN de ONTAP mediante un nombre de archivo de dispositivo host especificado.</block>
+  <block id="844ceca32955aae871407702dd7263d9" category="paragraph">La configuración de host de NVMe-oF para Oracle Linux 9,0 con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="9b55f0ca59df9237a11b8ead77f876a0" category="paragraph">La configuración de host de NVMe-oF para OL 8,5 con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="dc102edbfb2920d2ab25f6e459027828" category="paragraph">La configuración de host de NVMe-oF para OL 8,3 con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="d699daec8de3b69e6a41a8c5e1e7f44e" category="doc">Instale Linux Unified Host Utilities 7,1</block>
+  <block id="2dc8fc387550a2ccc1bb2000d960f6b9" category="paragraph">Las utilidades unificadas de host de Linux le ayudan a gestionar el almacenamiento de NetApp ONTAP conectado a un host Linux. NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.</block>
+  <block id="87bdc01fa1c36611ae8a26730cf85e17" category="paragraph">Se admiten las siguientes distribuciones de Linux:</block>
+  <block id="658ff13533a5ae3caeee521c2a5cc5b2" category="paragraph">El paquete de software NetApp Linux Unified Host Utilities está disponible en la <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> en un archivo .rpm de 32 bits o 64 bits.</block>
+  <block id="43483b029ef264a410a7bccd99e5f66a" category="list-text">Para lograr un funcionamiento fiable, es necesario verificar que se admite toda la configuración de iSCSI, FC o FCoE.</block>
+  <block id="22faa027e7ce368aea785de25ef0414c" category="paragraph">Puede utilizar el<block ref="77ab0bbf377853176c70e55d32dcb81a" category="inline-link-rx"></block> para verificar la configuración.</block>
+  <block id="878062d004d819fd9c7baf0a053ff24e" category="list-text">Debe instalar los paquetes de gestión del adaptador de bus de host (HBA) disponibles en el sitio de soporte del proveedor.</block>
+  <block id="b7123b538e611cba221b58efc57ba250" category="paragraph">El software de gestión permite que los comandos del kit de herramientas de SAN recopilen información acerca de los HBA de FC, como sus WWPN. Para la<block ref="09a10ae06f964cc0f5c0201377e37384" prefix=" " category="inline-code"></block> comando para funcionar, compruebe que los siguientes paquetes están correctamente instalados:</block>
+  <block id="06919499a296a3872634bc2ad7d0def2" category="list-text">Marvell QLogic HBA: CLI de QConvergeConsole</block>
+  <block id="521b9a44f33e48269d6566132ae69b97" category="list-text">HBA de Broadcom Emulex: CLI de aplicación central de OneCommand Manager</block>
+  <block id="23d57c4eccbbcc97c1436c372ff2c351" category="list-text">Marvell Brocade HBA – CLI de la utilidad de comandos de Brocade</block>
+  <block id="36b0297a3927e6ee76842f1712737154" category="list-text">Los paquetes «libhbaapi» y «libhbalinux» disponibles para cada distribución de Linux deben instalarse en el sistema operativo host.</block>
+  <block id="dc0fab98e84d9813bdf2f1747fa94a9f" category="admonition">El software Linux Unified Host Utilities no es compatible con los protocolos de host NVMe over Fibre Channel (NVMe/FC) y NVMe over TCP (NVMe/TCP).</block>
+  <block id="e18f4db9c000cdc92c0a6f5ae79b46d4" category="paragraph">Para versiones anteriores de Linux Host Utilities, vaya al directorio donde está instalado el software de la utilidad de host e introduzca el comando de desinstalación para eliminar el paquete instalado.</block>
+  <block id="5f8061f11c889bcebe7dd76c785f75a7" category="list-text">Descargue el paquete de software Linux Unified Host Utilities de 32 o 64 bits del <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> al host.</block>
+  <block id="88e9fff2ac8cc531b067dfa25e8e2e8c" category="section-title">Configuración de controlador recomendada con el kernel de Linux</block>
+  <block id="684209c8b964ee194fb302d1403a0fc3" category="paragraph">Cuando configura un entorno FC que utiliza controladores de bandeja de entrada nativos que se incluyen en el núcleo de Linux, puede utilizar los valores predeterminados para los controladores.</block>
+  <block id="368bcd2118dd63e80fb399c6feb8f7ec" category="paragraph">La configuración de host NVMe/FC para AIX con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="b666f8343a2e41c88c8766775c8dec12" category="paragraph">La configuración de host de NVMe-oF para ESXi 8.x con ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="c134d5805f93afa1db7c6399465d2bd8" category="sidebar">Utilidades de host Solaris</block>
 </blocks>

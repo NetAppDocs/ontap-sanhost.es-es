@@ -7,7 +7,7 @@ El kit de herramientas se instala automáticamente cuando instala el paquete de 
 .Ejemplo
 En el siguiente ejemplo, la `sanlun lun show` Command muestra información de LUN.
 
-[listing]
+[source, cli]
 ----
 # sanlun lun show all
 ----

@@ -19,7 +19,7 @@ summary: Configuración de host de NVMe/FC para Windows Server 2012 R2 con ONTAP
 
 
 [role="lead"]
-Es posible configurar NVMe over Fibre Channel (NVMe/FC) en hosts que ejecutan Windows Server 2012 R2 y ONTAP como destino.
+Es posible configurar NVMe over Fibre Channel (NVMe/FC) en hosts que ejecutan Windows Server 2012 R2 usando ONTAP como destino.
 
 NVMe/FC es compatible con ONTAP 9.7 o posterior para Windows Server 2012.
 

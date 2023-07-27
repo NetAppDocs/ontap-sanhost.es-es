@@ -290,7 +290,7 @@ También puede utilizar la configuración recomendada para configurar la máquin
 
 == Problemas conocidos
 
-La versión Oracle Linux 9,2 con NetApp ONTAP tiene los siguientes problemas conocidos:
+Oracle Linux 9,2 con ONTAP tiene los siguientes problemas conocidos:
 
 [cols="10,30,30,10"]
 |===

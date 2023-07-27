@@ -405,7 +405,7 @@ NSID    UUID                                   Size
 
 == Problemas conocidos
 
-La configuración de host de NVMe-oF para OL 8,5 con la versión ONTAP tiene los siguientes problemas conocidos:
+La configuración de host de NVMe-oF para OL 8,5 con ONTAP tiene los siguientes problemas conocidos:
 
 [cols=""20"]
 |===
