@@ -289,6 +289,8 @@ NOTE: Esto no es aplicable a los hosts Qlogic NVMe/FC.
 
 == LPFC Verbose Logging
 
+Establezca el controlador lpfc para NVMe/FC.
+
 .Pasos
 . Ajuste la `lpfc_log_verbose` Configuración del controlador en cualquiera de los siguientes valores para registrar los eventos de NVMe/FC.
 +

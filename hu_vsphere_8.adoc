@@ -360,7 +360,7 @@ Puede utilizar el siguiente comando para verificar QFullSampleSize.
 Las máquinas virtuales de Linux que ejecutan vSphere 8.x y versiones posteriores, y que utilizan adaptadores NVMe virtuales (vNVME) encuentran un error de I/O porque la operación de reintento de vNVMe está deshabilitada de forma predeterminada. Para evitar una interrupción en las VM de Linux que ejecutan kernels antiguos durante una parada de todas las rutas (APD) o una carga de I/O pesada, VMware ha introducido un «VSCSIDisableNvmeRetry» ajustable para deshabilitar la operación de reintento de vNVMe.
 
 |===
-.Enlaces relacionados
+.Información relacionada
 * link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597-VMware vSphere con ONTAP"^]
 * link:https://kb.vmware.com/s/article/2031038["Compatibilidad de VMware vSphere 5.x, 6.x y 7.x con MetroCluster de NetApp (2031038)"^]
 * link:https://kb.vmware.com/s/article/83370["ONTAP de NetApp con continuidad empresarial de SnapMirror de NetApp (SM-BC) con VMware vSphere Metro Storage Cluster (VMSC)"^]

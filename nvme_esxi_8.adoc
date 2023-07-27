@@ -275,6 +275,8 @@ tcp.vmnic2:34:80:0d:30:ca:e0-tcp.192.168.100.167:4420-uuid.f4f14337c3ad4a639edf0
 
 == Problemas conocidos
 
+La configuración de host de NVMe-oF para ESXi 8.x con la versión ONTAP tiene los siguientes problemas conocidos:
+
 [cols="10,30,30"]
 |===
 | ID de error de NetApp | Título | Descripción 
@@ -287,7 +289,7 @@ tcp.vmnic2:34:80:0d:30:ca:e0-tcp.192.168.100.167:4420-uuid.f4f14337c3ad4a639edf0
 Las máquinas virtuales de Linux que ejecutan vSphere 8.x y versiones posteriores, y que utilizan adaptadores NVMe virtuales (vNVME) encuentran un error de I/O porque la operación de reintento de vNVMe está deshabilitada de forma predeterminada. Para evitar una interrupción en las VM de Linux que ejecutan kernels antiguos durante una parada de todas las rutas (APD) o una carga de I/O pesada, VMware ha introducido un «VSCSIDisableNvmeRetry» ajustable para deshabilitar la operación de reintento de vNVMe.
 
 |===
-.Enlaces relacionados
+.Información relacionada
 link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597-VMware vSphere con ONTAP"^]
 link:https://kb.vmware.com/s/article/2031038["Compatibilidad de VMware vSphere 5.x, 6.x y 7.x con MetroCluster de NetApp (2031038)"^]
 link:https://kb.vmware.com/s/article/83370["Compatibilidad de VMware vSphere 6.x y 7.x con NetApp® SnapMirror® Business Continuity (SM-BC)"^]

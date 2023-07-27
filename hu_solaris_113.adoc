@@ -20,7 +20,7 @@ summary: Describe cómo instalar las utilidades de host de solaris
 
 
 
-== Instalar Solaris Host Utilities
+== Instale Solaris Host Utilities
 
 Puede descargar el archivo comprimido que contiene los paquetes de software de Utilidades de host en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^]. Después de tener el archivo, debe extraerlo para obtener los paquetes de software que necesita para instalar las utilidades de host.
 

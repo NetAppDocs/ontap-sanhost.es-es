@@ -18,11 +18,8 @@ summary: Describe cómo utilizar Veritas Infocale 7.3 para Linux con ONTAP
 :toc-position: content
 
 
-
-
-== Introducción
-
-En este documento se ofrecen directrices sobre los ajustes de configuración de host DE SAN ONTAP para la versión vSphere 7.x con los protocolos FC, FCoE e iSCSI.
+[role="lead"]
+Puede usar las opciones de configuración del host SAN de ONTAP para la versión vSphere 7.x con los protocolos FC, FCoE e iSCSI.
 
 
 
@@ -334,10 +331,7 @@ Utilice el siguiente comando para verificar QFullSampleSize
 
 No hay problemas conocidos.
 
-
-
-== Enlaces relacionados
-
+.Información relacionada
 * link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597-VMware vSphere con ONTAP"^]
 * link:https://kb.vmware.com/s/article/2031038["Compatibilidad de VMware vSphere 5.x, 6.x y 7.x con MetroCluster de NetApp (2031038)"^]
 * link:https://kb.vmware.com/s/article/83370["ONTAP de NetApp con continuidad empresarial de SnapMirror de NetApp (SM-BC) con VMware vSphere Metro Storage Cluster (VMSC)"^]

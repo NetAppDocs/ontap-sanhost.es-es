@@ -2,7 +2,7 @@
 :allow-uri-read: 
 
 
-Si aún tiene problemas, recopile los siguientes archivos y resultados de comandos y póngase en contacto con el soporte técnico para realizar una evaluación más próxima:
+Si todavía tiene problemas, recopile los siguientes archivos y salidas de comandos y póngase en contacto link:mysupport.netapp.com["Soporte de NetApp"^] para una clasificación adicional:
 
 [listing]
 ----

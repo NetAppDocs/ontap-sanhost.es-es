@@ -4,7 +4,7 @@ permalink: hu_veritas_6x.html
 keywords: host utilities, veritas, infoscale, 6.x, netapp, ontap, san, lun, multipathing, iscsi 
 summary: Proporciona orientación sobre los ajustes de configuración del host SAN de ONTAP para el lanzamiento de la serie Veritas Infoscale 6 
 ---
-= Uso de Veritas Storage Foundation 6 para Linux con ONTAP
+= Utilice Veritas Storage Foundation 6 para Linux con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -18,11 +18,8 @@ summary: Proporciona orientación sobre los ajustes de configuración del host S
 :toc-position: content
 
 
-
-
-== Introducción
-
-Este documento proporciona directrices sobre los ajustes de configuración de host SAN de ONTAP para la versión de Veritas Storage Foundation 6 para plataformas Red Hat Enterprise Linux y Oracle Linux (basadas en RHCK) con protocolos FC, FCoE e iSCSI.
+[role="lead"]
+Puede utilizar los ajustes de configuración del host de SAN de ONTAP para la versión de la serie Veritas Storage Foundation 6 para plataformas Red Hat Enterprise Linux y Oracle Linux (basado en RHCK) con los protocolos FC, FCoE e iSCSI.
 
 
 

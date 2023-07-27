@@ -18,11 +18,8 @@ summary: Describe cómo usar Citrix Hypervisor 8.x con ONTAP
 :toc-position: content
 
 
-
-
-== Introducción
-
-En este documento se ofrecen directrices sobre los ajustes de configuración de host SAN de ONTAP para las versiones de sistema operativo del hipervisor Citrix serie 8 con protocolos FC, FCoE e iSCSI.
+[role="lead"]
+Puede configurar los ajustes de configuración del host SAN ONTAP para versiones del sistema operativo Citrix Hypervisor serie 8 con protocolos FC, FCoE e iSCSI.
 
 
 
