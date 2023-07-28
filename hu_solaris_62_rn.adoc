@@ -19,7 +19,7 @@ summary: Notas de la versión de Solaris Host Utilities 6.2
 
 
 [role="lead"]
-Este documento de notas de la versión contiene la información más reciente de Solaris Host Utilities 6.2, incluidas las actualizaciones sobre problemas conocidos, limitaciones, configuración y gestión de los sistemas de almacenamiento de ONTAP.
+El documento de notas de la versión contiene la información más reciente para Solaris Host Utilities 6,2, incluidas las actualizaciones sobre problemas conocidos, limitaciones, configuración y gestión de los sistemas de almacenamiento de ONTAP.
 
 El documento Notas de la versión se actualiza cuando esté disponible nueva información sobre el uso de Solaris Host Utilities.
 

@@ -27,7 +27,7 @@ NOTE: En un entorno cloud, los hosts se denominan clientes normalmente. Toda la 
 
 Por ejemplo, puede configurar el almacenamiento ONTAP en las instalaciones para conectarse a hosts SAN en las instalaciones o para conectarse a clientes de cloud SAN. También puede configurar link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] o. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^] Para conectarse a hosts SAN en las instalaciones o para conectarse a clientes cloud SAN.
 
-Una configuración adecuada es importante para un mejor rendimiento y para una correcta conmutación por error.
+La configuración correcta es importante para obtener el mejor rendimiento y una correcta recuperación tras fallos.
 
 .Información relacionada
 * La link:https://docs.netapp.com/us-en/ontap/san-config/index.html["Configuración de SAN ONTAP"^] Para su versión de ONTAP

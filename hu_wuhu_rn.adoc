@@ -19,7 +19,7 @@ summary: Notas de la versión para Windows Unified Host Utilities
 
 
 [role="lead"]
-Este documento Notas de la versión contiene la información más reciente de las versiones de Windows Unified Host Utilities 7,2 y 7,1, incluidas actualizaciones sobre funciones nuevas, mejoras y problemas conocidos. El documento se actualiza cuando se dispone de nueva información sobre el uso de las utilidades de host de Windows.
+El documento de notas de la versión contiene la información más reciente de las versiones de Windows Unified Host Utilities 7,2 y 7,1, incluidas actualizaciones sobre funciones nuevas, mejoras y problemas conocidos. El documento se actualiza cuando se dispone de nueva información sobre el uso de las utilidades de host de Windows.
 
 
 
