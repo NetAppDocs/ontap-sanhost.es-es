@@ -21,7 +21,7 @@ summary: Notas de la versión de AIX Host Utilities 6.1
 [role="lead"]
 El documento de notas de la versión contiene la información más reciente de la versión AIX Host Utilities 6,1, incluidas actualizaciones sobre problemas conocidos, limitaciones y configuración y gestión del sistema de almacenamiento de ONTAP.
 
-El documento Notas de la versión se actualiza cuando haya disponible nueva información sobre cómo utilizar AIX Host Utilities.
+El documento de notas de la versión se actualiza cuando está disponible información nueva sobre el uso de AIX Host Utilities.
 
 
 

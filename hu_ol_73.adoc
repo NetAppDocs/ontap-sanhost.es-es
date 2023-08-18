@@ -142,20 +142,23 @@ blacklist {
 +
 Sustituya el `<DevId>` con la `WWID` cadena del dispositivo que desea excluir.
 
-
-
++
 .Ejemplo
-En este ejemplo: `sda` Es el disco SCSI local que necesitamos agregar a la lista negra.
+En este ejemplo, vamos a determinar el WWID de un dispositivo y agregar al `multipath.conf` archivo.
 
++
 .Pasos
-. Ejecute el siguiente comando para determinar el WWID:
+.. Ejecute el siguiente comando para determinar el WWID:
 +
 [listing]
 ----
 # /lib/udev/scsi_id -gud /dev/sda
 360030057024d0730239134810c0cb833
 ----
-. Añada el `WWID` a la lista negra stanza en `/etc/multipath.conf`:
++
+`sda` Es el disco SCSI local que necesitamos para agregarlo a la lista negra.
+
+.. Añada el `WWID` a la lista negra stanza en `/etc/multipath.conf`:
 +
 [listing]
 ----
@@ -166,6 +169,8 @@ blacklist {
      devnode "^cciss.*"
 }
 ----
+
+
 
 
 Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría sustituir la configuración predeterminada.
