@@ -115,7 +115,7 @@ NOTE: Si la `hostnqn` las cadenas no coinciden, puede utilizar el `vserver modif
 +
 [NOTE]
 ====
-Si tiene intención de ejecutar tanto tráfico NVMe como SCSI en el mismo host coexistente de Oracle Linux 8,7, NetApp recomienda utilizar la multivía NVMe dentro del kernel para espacios de nombres de ONTAP y dm-multipath para LUN de ONTAP respectivamente. Esto también significa que los espacios de nombres ONTAP deben estar en la lista negra en dm-multipath para evitar que dm-multipath reclamen estos dispositivos de espacio de nombres. Esto se puede hacer agregando la `enable_foreign` ajuste en la `/etc/multipath.conf` archivo:
+Si tiene intención de ejecutar tanto tráfico NVMe como SCSI en el mismo host coexistente de Oracle Linux 8,7, NetApp recomienda utilizar la multivía NVMe dentro del kernel para espacios de nombres de ONTAP y dm-multipath para LUN de ONTAP respectivamente. Esto también significa que los espacios de nombres ONTAP deben estar en la lista negra en dm-multipath para evitar que dm-multipath reclamen estos dispositivos de espacio de nombres. Puede hacerlo añadiendo el `enable_foreign` ajuste en la `/etc/multipath.conf` archivo:
 
 [listing]
 ----
@@ -124,7 +124,7 @@ defaults {
     enable_foreign  NONE
 }
 ----
-Reinicie el daemon multipathd ejecutando `systemctl restart multipathd` comando para permitir que la nueva configuración tenga efecto.
+Reinicie el daemon multipathd ejecutando `systemctl restart multipathd` comando para aplicar la nueva configuración.
 
 ====
 
