@@ -91,11 +91,35 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 Para Oracle Linux (OL) 7.9 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. OL 7.9 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
 
-Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP. Las siguientes secciones proporcionan ejemplos de salidas multivía para una LUN asignada a personas no ASA y ASA.
+Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP. Las siguientes secciones proporcionan una salida multivía de muestra para una LUN asignada a personas ASA y no ASA.
 
 
 
-=== Configuración no ASA
+=== Configuraciones de cabinas All SAN
+
+En las configuraciones de ASA, todas las rutas a un LUN determinado son activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
+
+.Ejemplo
+En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:
+
+[listing]
+----
+# multipath -ll
+3600a098038303634722b4d59646c4436 dm-28 NETAPP,LUN C-Mode
+size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 11:0:7:1    sdfi   130:64   active ready running
+  |- 11:0:9:1    sdiy   8:288    active ready running
+  |- 11:0:10:1   sdml   69:464   active ready running
+  |- 11:0:11:1   sdpt   131:304  active ready running
+
+----
+
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+
+
+
+=== Configuraciones que no son ASA
 
 En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
 
@@ -113,30 +137,6 @@ size=40G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_hand
 |-+- policy='service-time 0' prio=10 status=enabled
   |- 11:0:8:7   sdck 69:128  active ready running
   |- 11:0:12:7  sddy 128:0   active ready running
-
-----
-
-NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
-
-
-
-=== Configuraciones de cabinas All SAN
-
-En las configuraciones de ASA, todas las rutas a un LUN determinado son activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
-
-.Ejemplo
-En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:
-
-[listing]
-----
-# multipath -ll
-3600a0980383143596f5d514b65507846 dm-7 NETAPP  ,LUN C-Mode
-size=10G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
-|-+- policy='service-time 0' prio=50 status=active
-  |- 11:0:7:6   sdbz 68:208  active ready running
-  |- 11:0:11:6  sddn 71:80   active ready running
-  |- 11:0:15:6  sdfb 129:208 active ready running
-  |- 12:0:1:6   sdgp 132:80  active ready running
 
 ----
 

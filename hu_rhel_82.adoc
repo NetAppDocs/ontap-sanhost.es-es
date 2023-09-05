@@ -38,9 +38,6 @@ Si tiene una versión de Linux Unified Host Utilities actualmente instalada, deb
 
 
 
-NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este documento para configurar los clientes de cloud conectados a. link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
-
-
 
 == Kit de herramientas SAN
 
@@ -90,12 +87,41 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 == Accesos múltiples
 
-Para Red Hat Enterprise Linux (RHEL) 8.2 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. RHEL 8.2 se ha compilado con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
+Para Red Hat Enterprise Linux (RHEL) 8,2 el `/etc/multipath.conf` el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. RHEL 8,2 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
 
-Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP. Debería haber dos grupos de caminos con prioridades diferentes. Las rutas con las mayores prioridades son activo-optimizado, lo que significa que la controladora donde se encuentra el agregado presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP. Las siguientes secciones proporcionan una salida multivía de muestra para una LUN asignada a personas ASA y no ASA.
+
+
+
+=== Configuraciones de cabinas All SAN
+
+En las configuraciones de ASA, todas las rutas a un LUN determinado son activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
 .Ejemplo
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizadas:
+En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:
+
+[listing]
+----
+# multipath -ll
+3600a098038303634722b4d59646c4436 dm-28 NETAPP,LUN C-Mode
+size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 11:0:7:1    sdfi   130:64   active ready running
+  |- 11:0:9:1    sdiy   8:288    active ready running
+  |- 11:0:10:1   sdml   69:464   active ready running
+  |- 11:0:11:1   sdpt   131:304  active ready running
+----
+
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+
+
+
+=== Configuraciones que no son ASA
+
+En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+
+.Ejemplo
+En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
 
 [listing]
 ----
@@ -108,6 +134,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 `-+- policy='service-time 0' prio=10 status=enabled
 |- 15:0:0:35 sdaj 66:48 active ready running
 |- 15:0:1:35 sdbx 68:176 active ready running
+
 ----
 
 NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
@@ -264,6 +291,6 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 
 
-== Problemas y limitaciones conocidos
+== Problemas conocidos
 
 No hay problemas conocidos para RHEL 8.2.
