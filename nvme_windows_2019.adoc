@@ -71,7 +71,7 @@ nqn.2017-01.com.broadcom:ecd:nvmf:fc:100000109b1b9766
 
 === Habilite MPIO para dispositivos NVMe en el host de Windows
 
-. Instale link:link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71.html["Kit de utilidades de host de Windows 7.1"] Para configurar los parámetros de controlador que son comunes a FC y NVMe.
+. Instale link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Kit de utilidades de host de Windows 7.1"] Para configurar los parámetros de controlador que son comunes a FC y NVMe.
 . Abra las propiedades de MPIO.
 . En la pestaña *Discover Multi-paths*, agregue el identificador de dispositivo indicado para NVMe.
 +

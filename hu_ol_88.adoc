@@ -22,7 +22,7 @@ summary: Describe cómo usar Oracle Linux 8,8 con ONTAP
 
 == Instale las utilidades unificadas de host de Linux
 
-El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^] en un archivo .rpm de 64 bits.
+El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] en un archivo .rpm de 64 bits.
 
 NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
@@ -30,7 +30,7 @@ NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilitie
 Si tiene una versión de Linux Unified Host Utilities actualmente instalada, debe actualizarla o quitarla y luego usar los siguientes pasos para instalar la versión más reciente.
 
 .Pasos
-. Descargue el paquete de software Linux Unified Host Utilities de 64 bits de https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^] al host.
+. Descargue el paquete de software Linux Unified Host Utilities de 64 bits de https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] al host.
 . Instale el paquete de software:
 +
 `rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
@@ -90,7 +90,7 @@ Para Oracle Linux (OL) 8,8 `/etc/multipath.conf` el archivo debe existir, pero n
 
 Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP.
 
-En las siguientes secciones se proporcionan ejemplos de salida multivía para una LUN asignada a configuraciones ASA y no ASA.
+En las siguientes secciones, se proporcionan ejemplos de salidas multivía para una LUN asignada a configuraciones ASA y no ASA.
 
 
 
@@ -113,7 +113,7 @@ size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   |- 12:0:1:6   sdgp 132:80  active ready running
 ----
 
-NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de 4 rutas. Más de 8 rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
 
 
 
@@ -283,13 +283,13 @@ devices {
 }
 ----
 
-NOTE: Para configurar Oracle Linux 8,8 RedHat Enterprise Kernel (RHCK), utilice link:hu_rhel_88.html#recommended-settings["configuración recomendada"] Para Red Hat Enterprise Linux (RHEL) 8,8.
+NOTE: Para configurar Oracle Linux 8,8 RedHat Enterprise Kernel, utilice link:hu_rhel_88.html#recommended-settings["configuración recomendada"] Para Red Hat Enterprise Linux (RHEL) 8,8.
 
 
 
 == Configuración de KVM
 
-También puede utilizar la configuración recomendada para configurar la máquina virtual basada en kernel (KVM). No es necesario realizar cambios para configurar KVM a medida que la LUN está asignada al hipervisor.
+También puede utilizar la configuración recomendada para configurar una máquina virtual basada en kernel (KVM). No se necesitan cambios para configurar un KVM, ya que la LUN está asignada al hipervisor.
 
 
 

@@ -24,7 +24,7 @@ NVMe over Fabrics (NVMe-oF), incluido NVMe over Fibre Channel (NVMe/FC) y otros 
 La siguiente compatibilidad está disponible para la configuración del host de NVMe-oF para OL 8,8 con ONTAP:
 
 * Compatibilidad para NVMe sobre TCP (NVMe/TCP) además de NVMe/FC. El plugin de NetApp es en la versión nativa `nvme-cli` El paquete muestra detalles de ONTAP para espacios de nombres NVMe/FC y NVMe/TCP.
-* Tanto el tráfico NVMe como SCSI pueden ejecutarse en el mismo host coexistente. Por lo tanto, para LUN SCSI, es posible configurar dm-multipath para dispositivos SCSI mpath, mientras que NVMe multipath puede utilizarse para configurar dispositivos NVMe-oF espacio de nombres en el host.
+* Tanto el tráfico NVMe como SCSI pueden ejecutarse en el mismo host coexistente. Por lo tanto, para LUN SCSI, es posible configurar dm-multipath para dispositivos SCSI mpath, mientras que se puede utilizar NVMe multipath para configurar dispositivos de espacio de nombres NVMe-oF en el host.
 * No existe compatibilidad alguna con NVMe-of. Por lo tanto, no existe compatibilidad con una utilidad de host para NVMe-oF en un host OL 8,8. Puede confiar en el complemento de NetApp que se incluye en la configuración nativa `nvme-cli` Paquete para todos los transportes NVMe-oF.
 
 
@@ -34,15 +34,13 @@ Si quiere más información sobre las configuraciones compatibles, consulte link
 
 == Funciones
 
-* Oracle Linux 8,8 tiene habilitada la multivía NVMe en el núcleo para espacios de nombres NVMe de forma predeterminada, por lo tanto, no es necesario realizar configuraciones explícitas.
-
+Oracle Linux 8,8 tiene habilitada la multivía NVMe en el núcleo para espacios de nombres NVMe de forma predeterminada, por lo tanto, no es necesario realizar configuraciones explícitas.
 
 
 
 == Limitaciones conocidas
 
-* Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
-
+Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 
 
@@ -127,7 +125,7 @@ defaults {
   enable_foreign     NONE
 }
 ----
-Reinicie el daemon multipathd ejecutando un `systemctl restart multipathd` comando para permitir que la nueva configuración surta efecto.
+Reinicie el daemon multipathd ejecutando un `systemctl restart multipathd` comando. Esto permite que el nuevo ajuste surta efecto.
 
 ====
 
@@ -246,7 +244,7 @@ FCP CMPL: xb 00001f50 Err 0000d9f8
 .Adaptador FC Marvell/QLogic para NVMe/FC
 --
 .Pasos
-. El controlador de la bandeja de entrada nativa qla2xxx que se incluye en el kernel OL 8,8 GA tiene las correcciones de subida más recientes esenciales para la compatibilidad con ONTAP. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
+. El controlador de la bandeja de entrada nativa qla2xxx que se incluye en el kernel OL 8,8 GA tiene las últimas correcciones esenciales para la compatibilidad con ONTAP. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
 +
 [listing]
 ----
@@ -400,7 +398,7 @@ nvme connect-all -t tcp -w host-traddr -a traddr -l 1800
 Puede usar el siguiente procedimiento para validar NVMe-oF.
 
 .Pasos
-. Compruebe que la multivía de NVMe en kernel esté habilitada. Para ello, compruebe lo siguiente:
+. Compruebe que la multivía de NVMe en kernel está habilitada:
 +
 [listing]
 ----
@@ -589,5 +587,5 @@ La configuración de host de NVMe-oF para OL 8,8 con la versión ONTAP tiene los
 | ID de error de NetApp | Título | Descripción | ID Bugzilla 
 
 
-| 1517321 | Los hosts NVMe-oF de Oracle Linux 8,8 crean controladores de detección persistente duplicados | En los hosts OL 8,8 NVMe-oF, las controladoras de detección persistente (PDCs) se crean pasando el `-p` de la `nvme discover` comando. Para una combinación de iniciador-destino determinada, sólo se espera que se cree un PDC con cada invocación del `nvme discover` comando. Sin embargo, a partir de OL 8.x, los hosts NVMe-oF terminan creando PDCs duplicados con cada llamada del `nvme discover` con el `-p` opción. Esto desperdicia recursos tanto en el host como en el destino. | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118"^] 
+| 1517321 | Los hosts NVMe-oF de Oracle Linux 8,8 crean PDCs duplicados | En los hosts OL 8,8 NVMe-oF, las controladoras de detección persistente (PDCs) se crean pasando el `-p` de la `nvme discover` comando. Para una combinación de iniciador-destino determinada, sólo se espera que se cree un PDC con cada invocación del `nvme discover` comando. Sin embargo, a partir de OL 8.x, los hosts NVMe-oF terminan creando PDCs duplicados con cada llamada del `nvme discover` con el `-p` opción. Esto desperdicia recursos tanto en el host como en el destino. | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118"^] 
 |===

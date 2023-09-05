@@ -24,7 +24,7 @@ summary: Describe cómo utilizar IBM AIX 7.2 y/o PowerVM VIOS 3.1 con ONTAP
 
 Debe instalar el kit de utilidades de host de AIX mientras utiliza AIX MPIO con almacenamiento ONTAP de NetApp.
 
-Puede descargar el archivo comprimido que contiene los paquetes de software de utilidades de host en el sitio de soporte de NetApp. Después de disponer del archivo, debe descomprimirlo para obtener los dos paquetes de software que necesita instalar las utilidades de host.
+Puede descargar el archivo comprimido que contiene los paquetes de software de Utilidades de host en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["Sitio de soporte de NetApp"^]. Después de disponer del archivo, debe descomprimirlo para obtener los dos paquetes de software que necesita instalar las utilidades de host.
 
 NetApp AIX Host Utilities 6.1 es la versión más reciente. Esta versión trata el problema de pérdida de memoria que se informó en las versiones anteriores. Consulte la sección Notas de la versión para obtener información adicional.
 

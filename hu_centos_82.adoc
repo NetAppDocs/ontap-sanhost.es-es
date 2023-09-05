@@ -22,7 +22,7 @@ summary: Describe cómo utilizar CentOS 8.2 con ONTAP
 
 == Instale las utilidades unificadas de host de Linux
 
-El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^] en un archivo .rpm de 64 bits.
+El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] en un archivo .rpm de 64 bits.
 
 NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
@@ -30,7 +30,7 @@ NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilitie
 Si tiene una versión de Linux Unified Host Utilities actualmente instalada, debe actualizarla o quitarla y luego usar los siguientes pasos para instalar la versión más reciente.
 
 .Pasos
-. Descargue el paquete de software Linux Unified Host Utilities de 64 bits de https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^] al host.
+. Descargue el paquete de software Linux Unified Host Utilities de 64 bits de https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] al host.
 . Instale el paquete de software:
 +
 `rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
