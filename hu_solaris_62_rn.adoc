@@ -19,63 +19,26 @@ summary: Notas de la versión de Solaris Host Utilities 6.2
 
 
 [role="lead"]
-El documento de notas de la versión contiene la información más reciente para Solaris Host Utilities 6,2, incluidas las actualizaciones sobre problemas conocidos, limitaciones, configuración y gestión de los sistemas de almacenamiento de ONTAP.
+En las notas de la versión se describen las nuevas funciones y mejoras, los problemas solucionados en la versión actual, los problemas y limitaciones conocidos y las precauciones importantes relacionadas con la configuración y gestión del host de Solaris específico con el sistema de almacenamiento de ONTAP.
 
-El documento de notas de la versión se actualiza cuando está disponible la nueva información sobre el uso de Solaris Host Utilities.
-
-
-
-== Acerca de Solaris Host Utilities 6.2
-
-Solaris Host Utilities 6.2 admite varios entornos Solaris y varios protocolos.
-
-Los entornos primarios de utilidades de host son:
-
-* Sistema operativo nativo con MPxIO con el protocolo Fibre Channel (FC) o iSCSI de un sistema que utilice un procesador SPARC o x86/64.
-* Veritas Dynamic Multipathing (DMP) con el protocolo FC o iSCSI en un sistema que utiliza un procesador SPARC y con el protocolo iSCSI en el sistema mediante un procesador x86/64.
-
-
-El software Host Utilities se suministra como un único archivo comprimido. Puede descargar el archivo comprimido y la documentación de en el link:https://mysupport.netapp.com/site/["Sitio de soporte de NetApp"^]. La configuración de host SAN de ONTAP ofrece instrucciones para instalar y configurar las utilidades de host para que funcionen con su entorno y protocolo.
-
-
-
-== Mejoras en Solaris Host Utilities 6.2
-
-Las notas de la versión se actualizan entre versiones de productos a medida que hay nueva información disponible.
-
-Solaris Unified Host Utilities 6.2 sigue siendo compatible con las siguientes versiones de Solaris:
-
-* Solaris serie 11.x.
-* Solaris serie 10.x.
-
+Para obtener información específica acerca de las versiones del sistema operativo y las actualizaciones que admiten las utilidades de host, consulte link:https://mysupport.netapp.com/matrix/imt.jsp?components=85803;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^].
 
 
 
 == Problemas y limitaciones conocidos
 
-Para usar las utilidades de host de manera eficiente, debe tener en cuenta que el rendimiento puede verse afectado por problemas conocidos sobre una función particular, como una red, o por funciones que las utilidades de host no son compatibles, como una versión específica de un sistema operativo.
+Debe conocer los siguientes problemas y limitaciones conocidos que pueden afectar el rendimiento en el host específico.
 
 [cols="3"]
 |===
 | ID. De error | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1385189["1385189"^] | Cambios de enlace de controladores FC Solaris 11.4 requeridos en HUK 6.2 | Recomendaciones para Solaris 11.4 y HUK. Se ha cambiado el enlace al controlador FC de `ssd(4D)` para `sd(4D)`. Mover la configuración que tiene en `ssd.conf` para `sd.conf` Tal como se menciona en Oracle (ID de documento 2595926.1). El comportamiento varía en el sistema Solaris 11.4 recién instalado y actualizado a partir de las versiones 11.3 o anteriores. 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1385189["1385189"^] | Cambios de enlace de controladores FC Solaris 11.4 requeridos en HUK 6.2 | Recomendaciones de Solaris 11,4 y HUK:
+Se ha cambiado el enlace al controlador FC de `ssd(4D)` para `sd(4D)`. Mover la configuración que tiene en `ssd.conf` para `sd.conf` Tal como se menciona en Oracle (ID de documento 2595926.1). El comportamiento varía en los sistemas y sistemas Solaris 11,4 recién instalados actualizados desde versiones 11,3 o anteriores. 
 |===
 link:https://mysupport.netapp.com/site/["NetApp Bugs Online"^] proporciona información completa sobre la mayoría de los problemas conocidos, incluidas las soluciones alternativas sugeridas cuando sea posible. Algunas combinaciones de palabras clave y tipos de errores que puede que desee utilizar son los siguientes:
 
-* FCP General: Muestra los errores de FC y HBA que no están asociados con un host específico
-* FCP: Solaris
-
-
-.Información relacionada
-*Configuración y administración del sistema de almacenamiento ONTAP*
-
-* La link:https://docs.netapp.com/us-en/ontap/setup-upgrade/index.html["Guía de configuración de software ONTAP"^] Para su versión de ONTAP
-* La link:https://docs.netapp.com/us-en/ontap/san-management/index.html["Guía de administración de SAN de ONTAP"^] Para su versión de ONTAP
-* La link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["Notas de la versión de ONTAP"^] Para su versión de ONTAP
-* link:https://imt.netapp.com/matrix/#welcome["Matriz de interoperabilidad de NetApp"^]
-* link:https://hwu.netapp.com/["Hardware Universe"^] (Anteriormente la Guía de configuración del sistema)
-* link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Topologías SAN Fibre Channel compatibles"^]
-* link:https://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61343["Configurar el host para utilidades de host"^]
+* FCP General: Muestra los errores de FC y del adaptador de bus de host (HBA) que no están asociados con un host específico.
+* FCP Solaris
 

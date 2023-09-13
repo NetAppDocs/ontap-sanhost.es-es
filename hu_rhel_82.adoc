@@ -87,7 +87,7 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 == Accesos múltiples
 
-Para Red Hat Enterprise Linux (RHEL) 8,2 el `/etc/multipath.conf` el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. RHEL 8,2 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
+Para Red Hat Enterprise Linux (RHEL) 8,2 el `/etc/multipath.conf` el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. RHEL 8,2 se compila con todas las opciones de configuración necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
 
 Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP. Las siguientes secciones proporcionan una salida multivía de muestra para una LUN asignada a personas ASA y no ASA.
 
