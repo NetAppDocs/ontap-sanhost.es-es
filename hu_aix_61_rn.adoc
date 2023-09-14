@@ -27,9 +27,9 @@ Para obtener información específica acerca de las versiones del sistema operat
 
 == Novedades
 
-La versión 6,1 de AIX host Utilities contiene las siguientes nuevas características y mejoras:
+La versión AIX Host Utilities 6,1 contiene las siguientes nuevas funciones y mejoras:
 
-* AIX Host Utilities 6.1 añadió compatibilidad con el problema de fallo de memoria que se produjo en versiones anteriores del sistema operativo host AIX. Con AIX Host Utilities 6.1, sólo ha cambiado el binario sanlun. MPIO y ODM relacionados no se han modificado.
+* AIX Host Utilities 6,1 añadió compatibilidad con el problema de fallo de memoria que ocurrió en versiones anteriores del sistema operativo del host AIX. Con AIX Host Utilities 6.1, sólo ha cambiado el binario sanlun. MPIO y ODM relacionados no se han modificado.
 
 
 
@@ -59,5 +59,5 @@ Debe conocer los siguientes problemas y limitaciones conocidos que pueden afecta
 link:https://mysupport.netapp.com/site/["NetApp Bugs Online"^] proporciona información completa sobre la mayoría de los problemas conocidos, incluidas las soluciones alternativas sugeridas cuando sea posible. Algunas combinaciones de palabras clave y tipos de errores que puede que desee utilizar son los siguientes:
 
 * FCP General: Muestra los errores de FC y HBA que no están asociados con un host específico.
-* FCP AIX
+* FCP: AIX
 

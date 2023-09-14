@@ -21,14 +21,14 @@ summary: Describe cómo utilizar IBM AIX 7.2 y/o PowerVM VIOS 3.1 con ONTAP
 [role="lead"]
 Las utilidades unificadas de host de AIX le ayudan a gestionar el almacenamiento de NetApp ONTAP conectado a un host AIX.
 
-Se admiten los siguientes protocolos:
+Las utilidades de host de AIX admiten los siguientes protocolos:
 
 * FC
 * FCoE
 * ISCSI
 
 
-Los siguientes son los entornos compatibles:
+Las utilidades de host de AIX son compatibles con los siguientes entornos:
 
 * AIX MPIO (SO NATIVO)
 * PowerVM
@@ -38,7 +38,7 @@ Para obtener más información acerca de PowerVM, consulte el libro rojo de movi
 
 
 .Lo que necesitará
-* Para lograr un funcionamiento fiable, es necesario verificar que se admite toda la configuración de iSCSI, FC o FCoE.
+* Para lograr un funcionamiento fiable, verifique que toda la configuración de iSCSI, FC o FCoE sea compatible.
 +
 Puede utilizar el https://mysupport.netapp.com/matrix/imt.jsp?components=65623%3B64703%3B&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar la configuración.
 
@@ -85,7 +85,7 @@ Al descomprimir el archivo se crea el siguiente directorio: `ntap_aix_host_utili
 
 == Kit de herramientas SAN
 
-AIX Host Utilities es un software de host NetApp que proporciona un kit de herramientas de línea de comandos en su host IBM AIX. El kit de herramientas se instala cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar LUN y HBA. La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
+AIX Host Utilities es un software de host NetApp que proporciona un kit de herramientas de línea de comandos en su host IBM AIX. El kit de herramientas se instala cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar los LUN y los adaptadores de bus de host (HBA). La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
 
 *ejemplo*
 
@@ -109,4 +109,4 @@ data_vserver   /vol/vol3/lun3 hdisk11 fcs0   FCP      20g C
 data_vserver   /vol/vol4/lun4 hdisk14 fcs0   FCP      20g C
 ----
 
-NOTE: Este kit de herramientas es común en todas las configuraciones y protocolos de Host Utilities. Como resultado, parte de su contenido se aplica a una configuración, pero no a otra. El hecho de tener componentes sin utilizar no afecta al rendimiento del sistema. El kit DE herramientas SAN es compatible con las versiones de sistema operativo AIX y PowerVM/VIOS.
+NOTE: Este kit de herramientas es común en todas las configuraciones y protocolos de las utilidades de host. Como resultado, parte de su contenido se aplica a una configuración, pero no a otra. El hecho de tener componentes sin utilizar no afecta al rendimiento del sistema. El kit DE herramientas SAN es compatible con las versiones de sistema operativo AIX y PowerVM/VIOS.

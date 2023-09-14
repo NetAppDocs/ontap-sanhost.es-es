@@ -40,5 +40,5 @@ Se ha cambiado el enlace al controlador FC de `ssd(4D)` para `sd(4D)`. Mover la 
 link:https://mysupport.netapp.com/site/["NetApp Bugs Online"^] proporciona información completa sobre la mayoría de los problemas conocidos, incluidas las soluciones alternativas sugeridas cuando sea posible. Algunas combinaciones de palabras clave y tipos de errores que puede que desee utilizar son los siguientes:
 
 * FCP General: Muestra los errores de FC y del adaptador de bus de host (HBA) que no están asociados con un host específico.
-* FCP Solaris
+* FCP: Solaris
 
