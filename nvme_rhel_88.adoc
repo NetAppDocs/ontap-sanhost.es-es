@@ -35,6 +35,7 @@ Si quiere más información sobre las configuraciones compatibles, consulte link
 
 * La multivía de NVMe en kernel está deshabilitada de forma predeterminada para los hosts RHEL 8,8 NVMe-oF. Por lo tanto, debe habilitarla manualmente.
 * En los hosts RHEL 8,8, NVMe/TCP es una función de vista previa de tecnología debido a problemas abiertos.
+* Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 
 

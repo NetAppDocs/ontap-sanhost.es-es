@@ -41,7 +41,7 @@ Si quiere más información sobre las configuraciones compatibles, consulte link
 
 == Limitaciones conocidas
 
-No hay limitaciones conocidas.
+Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 
 

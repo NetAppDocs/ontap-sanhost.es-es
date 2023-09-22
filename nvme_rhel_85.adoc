@@ -19,10 +19,7 @@ summary: Cómo configurar NVMe-of Host para RHEL 8.5 con ONTAP
 :toc-position: content
 
 
-
-
-== Compatibilidad
-
+[role="lead"]
 RHEL 8.5 admite NVMe over Fabrics o NVMe-of (incluidos NVMe/FC y otros transportes) con ANA (acceso de espacio de nombres asimétrico). ANA es el equivalente ALUA en el entorno NVMe-of y actualmente se implementa con NVMe multivía en el kernel. Los detalles para habilitar NVMe-of con NVMe multivía en el kernel mediante ANA en RHEL 8.5 y ONTAP, ya que el destino se ha documentado aquí.
 
 
@@ -41,6 +38,7 @@ NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este d
 
 * Para RHEL 8.5, la función multivía de NVMe en el kernel sigue deshabilitada de forma predeterminada. Por lo tanto, debe habilitarla manualmente.
 * NVMe/TCP en RHEL 8.5 sigue siendo una función de vista previa de la tecnología debido a problemas abiertos. Consulte la https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/8.5_release_notes/index#technology-preview_file-systems-and-storage["Notas de la versión de RHEL 8.5"^] para obtener más detalles.
+* Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 
 

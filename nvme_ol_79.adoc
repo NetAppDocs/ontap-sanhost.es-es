@@ -34,6 +34,7 @@ NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este d
 * Los scripts nativos de conexión automática NVMe/FC no están disponibles en la `nvme-cli` paquete. Use las secuencias de comandos de conexión automática externas proporcionadas por el proveedor HBA.
 * De forma predeterminada, el equilibrio de carga por turnos no está habilitado en NVMe multivía. Debe escribir una regla udev para habilitar esta funcionalidad. Los pasos se proporcionan en la sección sobre la habilitación de NVMe/FC en Oracle Linux 7.9.
 * No existe compatibilidad alguna con NVMe/FC y, como consecuencia, no hay compatibilidad con Unified Host Utilities (LUHU) de Linux para NVMe/FC en Oracle Linux 7.9. Utilice la salida del comando ONTAP que está disponible como parte del plugin de NetApp que se incluye en la interfaz de línea de comandos nvme nativa.
+* Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 
 

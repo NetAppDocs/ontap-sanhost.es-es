@@ -40,7 +40,7 @@ SLES 15 SP5 tiene la multivía NVMe en kernel habilitada para espacios de nombre
 
 == Limitaciones conocidas
 
-No hay limitaciones conocidas.
+Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 
 

@@ -18,10 +18,7 @@ summary: Cómo configurar el host NVMe/FC para RHEL 8.2 con ONTAP
 :toc-position: content
 
 
-
-
-== Compatibilidad
-
+[role="lead"]
 NVMe/FC es compatible con ONTAP 9.6 o versiones posteriores para RHEL 8.2. El host de RHEL 8.2 ejecuta tráfico NVMe y SCSI a través de los mismos puertos de adaptador de iniciador de Fibre Channel (FC). Consulte link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] Para obtener una lista de controladoras y adaptadores de FC admitidos. Para obtener la lista más actual de configuraciones y versiones compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
 
 
@@ -31,7 +28,9 @@ NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este d
 
 == Limitaciones conocidas
 
-Para RHEL 8.2, la función multivía de NVMe en el kernel sigue deshabilitada de forma predeterminada. Por lo tanto, debe habilitarla manualmente. Los pasos para hacerlo se proporcionan en la siguiente sección, "activación de NVMe/FC en RHEL 8.2".
+* Para RHEL 8.2, la función multivía de NVMe en el kernel sigue deshabilitada de forma predeterminada. Por lo tanto, debe habilitarla manualmente.
+* Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
+
 
 
 

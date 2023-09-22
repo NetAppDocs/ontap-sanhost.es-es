@@ -40,7 +40,7 @@ Consulte la link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilid
 
 == Limitaciones conocidas
 
-No hay limitaciones conocidas.
+Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 
 

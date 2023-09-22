@@ -33,7 +33,7 @@ sidebar:
         url: "/hu_hpux_60.html"
       - title: Referencia de comandos de muestra
         url: "/hu_hpux_60_cmd.html"
-    - title: Utilidades de host unificadas de Linux
+    - title: Utilidades unificadas de host de Linux
       entries:
       - title: Notas de la versión
         url: "/hu_luhu_71_rn.html"

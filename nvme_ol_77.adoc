@@ -42,6 +42,7 @@ NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este d
 
 * Las secuencias de comandos de conexión automática NVMe/FC nativas no están disponibles en el paquete nvme-cli. Puede utilizar el proveedor de HBA proporcionó secuencias de comandos de conexión automática externas.
 * De forma predeterminada, el equilibrio de carga por turnos no está habilitado. Debe escribir una regla udev para habilitar esta funcionalidad. Los pasos se proporcionan en la sección sobre la habilitación de NVMe/FC en OL 7.7.
+* Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 
 
