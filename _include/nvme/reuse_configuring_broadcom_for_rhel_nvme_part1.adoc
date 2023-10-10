@@ -2,7 +2,7 @@
 :allow-uri-read: 
 
 
-Para obtener la lista más actual de adaptadores compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
+Para obtener la lista más actual de adaptadores compatibles, consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
 
 .Pasos
 . Compruebe que está utilizando el adaptador compatible.

@@ -4,7 +4,7 @@ permalink: nvme_rhel_90.html
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: Cómo configurar NVMe-of Host para RHEL 9.0 con ONTAP 
 ---
-= Configuración del host NVMe-of para RHEL 9.0 con ONTAP
+= Configuración de host de NVMe-oF para RHEL 9,0 con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -42,8 +42,10 @@ Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 == Habilite NVMe multivía en el kernel
 
+Es posible utilizar el siguiente procedimiento para habilitar la multivía NVMe in-kernel.
+
 .Pasos
-. Instale RHEL 9.0 en el servidor. Una vez finalizada la instalación, compruebe que está ejecutando el kernel RHEL 9.0 especificado. Consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones compatibles.
+. Instale RHEL 9.0 en el servidor.
 . Una vez finalizada la instalación, compruebe que está ejecutando el kernel RHEL 9.0 especificado. Consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones compatibles.
 +
 [listing]
@@ -84,10 +86,13 @@ NOTE: Si las cadenas del host NQN no coinciden, se debe usar `vserver modify` Co
 
 == Configure NVMe/FC
 
+Puede configurar NVMe/FC para adaptadores Broadcom/Emulex o Marvell/Qlogic.
 
-
-=== Broadcom/Emulex
-
+[role="tabbed-block"]
+====
+.Broadcom/Emulex
+--
+.Pasos
 . Compruebe que está utilizando el adaptador compatible. Para obtener la lista más actual de adaptadores compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
 +
 [listing]
@@ -170,19 +175,49 @@ Total FCP Cmpl 000000002e14f170 Issue 000000002e14f17a OutIO 000000000000000a
 abort 000016bb noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
 FCP CMPL: xb 00001f50 Err 0000d9f8
 ----
-. Habilite un tamaño de I/o de 1 MB.
-+
-La `lpfc_sg_seg_cnt` el parámetro debe configurarse en `256` para la `lpfc` Controlador para emitir solicitudes de E/S de hasta 1 MB de tamaño.
 
+
+--
+.Marvell/QLogic
+--
+El controlador de la bandeja de entrada nativa qla2xxx que se incluye en el kernel RHEL 9,0 tiene las últimas correcciones, esenciales para la compatibilidad con ONTAP.
+
+.Pasos
+. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
+
+
+[listing]
+----
+# cat /sys/class/fc_host/host*/symbolic_name
+QLE2742 FW:v9.06.02 DVR:v10.02.00.200-k
+QLE2742 FW:v9.06.02 DVR:v10.02.00.200-k
+----
+. Verificación `ql2xnvmeenable` Is set que permite que el adaptador Marvell funcione como iniciador NVMe/FC:
+
+
+[listing]
+----
+# cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
+1
+----
+--
+====
+
+
+=== Habilitar 1MB I/O (opcional)
+
+ONTAP informa de un MDT (tamaño de transferencia de MAX Data) de 8 en los datos Identify Controller, lo que significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB. Sin embargo, para emitir solicitudes de I/O de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar el `lpfc` valor del `lpfc_sg_seg_cnt` parámetro a 256 desde el valor predeterminado de 64.
+
+.Pasos
+. Ajuste la `lpfc_sg_seg_cnt` parámetro a 256.
 +
 [listing]
 ----
 # cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
-+
-.. Ejecute un `dracut -f` reinicie el host.
-.. Una vez que se arranca el host, compruebe eso `lpfc_sg_seg_cnt` se establece en `256`.
+. Ejecute un `dracut -f` y reinicie el host.
+. Compruebe que `lpfc_sg_seg_cnt` tiene 256.
 +
 [listing]
 ----
@@ -192,37 +227,13 @@ options lpfc lpfc_sg_seg_cnt=256
 
 
 
+NOTE: Esto no es aplicable a los hosts Qlogic NVMe/FC.
 
-
-
-=== Marvell/QLogic
-
-El controlador qla2xxx de bandeja de entrada nativa incluido en el kernel RHEL 9.0 tiene las correcciones previas más recientes, esenciales para la compatibilidad con ONTAP. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
-
-[listing]
-----
-# cat /sys/class/fc_host/host*/symbolic_name
-QLE2742 FW:v9.06.02 DVR:v10.02.00.200-k
-QLE2742 FW:v9.06.02 DVR:v10.02.00.200-k
-----
-Verificación `ql2xnvmeenable` Is set que permite que el adaptador Marvell funcione como iniciador NVMe/FC:
-
-[listing]
-----
-# cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
-1
-----
 
 
 == Configure NVMe/TCP
 
-A diferencia de NVMe/FC, NVMe/TCP no tiene una funcionalidad de conexión automática. Esto manifiesta dos limitaciones principales en el host NVMe/TCP de Linux:
-
-* *No hay reconexión automática después de que las rutas se restablezcan* NVMe/TCP no puede volver a conectarse automáticamente a una ruta que se reinstala más allá de la predeterminada `ctrl-loss-tmo` temporizador de 10 minutos después de una ruta hacia abajo.
-* *Sin conexión automática durante el arranque del host* NVMe/TCP no se puede conectar automáticamente durante el arranque del host también.
-
-
-Es necesario configurar el periodo de reintento para eventos de conmutación por error en al menos 30 minutos para evitar los tiempos de espera. Puede aumentar el período de reintento aumentando el valor del temporizador ctrl_loss_tmo. A continuación se muestran los detalles:
+NVMe/TCP no tiene la funcionalidad de conexión automática. Por lo tanto, si una ruta deja de funcionar y no se restablece en el tiempo de espera predeterminado de 10 minutos, no se puede volver a conectar automáticamente NVMe/TCP. Para evitar que se agote el tiempo de espera, debe definir el período de reintento para los eventos de conmutación por error en al menos 30 minutos.
 
 .Pasos
 . Compruebe si el puerto del iniciador puede recuperar datos de la página de registro de detección en las LIF NVMe/TCP admitidas:
@@ -286,7 +297,9 @@ sectype: none
 
 
 
-== Validar nVMF
+== Valide NVMe-of
+
+Puede usar el siguiente procedimiento para validar NVMe-oF.
 
 .Pasos
 . Compruebe que el acceso multivía de NVMe en el kernel esté habilitado realmente mediante la comprobación:

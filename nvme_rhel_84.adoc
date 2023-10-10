@@ -20,31 +20,31 @@ summary: Cómo configurar NVMe-of Host para RHEL 8.4 con ONTAP
 
 
 [role="lead"]
-RHEL 8.4 admite NVMe over Fabrics o NVMe-of (incluidos NVMe/FC y otros transportes) con ANA (acceso de espacio de nombres asimétrico). ANA es el equivalente ALUA en el entorno NVMe-of y actualmente se implementa con NVMe multivía en el kernel. Los detalles para habilitar NVMe-of con NVMe multivía en el kernel mediante ANA en RHEL 8.4 y ONTAP, ya que el destino se ha documentado aquí.
+NVMe over Fabrics o NVMe-oF (incluidos NVMe/FC y otros transportes) es compatible con Red Hat Enterprise Linux (RHEL) 8,4 con ANA (Acceso asimétrico al espacio de nombres). ANA es el equivalente de acceso asimétrico de unidad lógica (ALUA) en el entorno NVMe-of y, actualmente, se implementa con NVMe Multipath en el kernel. Puede habilitar NVMe-oF con NVMe Multipath en kernel mediante ANA en RHEL 8,4 y ONTAP como destino.
 
 
-NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este documento para configurar los clientes de cloud conectados a. link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
+
+== Funciones
+
+No hay nuevas funciones en esta versión.
 
 
 
 == Limitaciones conocidas
 
-* Para RHEL 8.4, la función multivía de NVMe en el kernel sigue deshabilitada de forma predeterminada. Por lo tanto, debe habilitarla manualmente.
+* Para RHEL 8,4, la multivía NVMe en kernel está deshabilitada de manera predeterminada. Por lo tanto, debe habilitarla manualmente.
 * NVMe/TCP en RHEL 8.4 sigue siendo una función de vista previa de la tecnología debido a problemas abiertos. Consulte la https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/8.4_release_notes/index#technology-preview_file-systems-and-storage["Notas de la versión de RHEL 8.4"^] para obtener más detalles.
 * Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 
 
 
-== Requisitos de configuración
+== Habilite la función multivía de NVMe en el kernel
 
-Consulte la link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener información precisa sobre las configuraciones compatibles.
+Es posible utilizar el siguiente procedimiento para habilitar la multivía NVMe in-kernel.
 
-
-
-== Habilite NVMe multivía en el kernel
-
-. Instale RHEL 8.4 GA en el servidor. Una vez finalizada la instalación, compruebe que está ejecutando el kernel RHEL 8.4 GA especificado. Consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones compatibles.
+.Pasos
+. Instale RHEL 8,4 GA en el servidor.
 . Una vez finalizada la instalación, compruebe que está ejecutando el kernel RHEL 8.4 especificado. Consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones compatibles.
 +
 Ejemplo:
@@ -101,19 +101,23 @@ defaults {
         enable_foreign     NONE
 }
 ----
+Reinicie el daemon multipathd ejecutando un `systemctl restart multipathd` comando para permitir que la nueva configuración surta efecto.
+
 ====
-. Reinicie el daemon multipathd ejecutando un `systemctl restart multipathd` comando para permitir que la nueva configuración surta efecto.
 
 
 
 
 == Configure NVMe/FC
 
+Puede configurar NVMe/FC para adaptadores Broadcom/Emulex o Marvell/Qlogic.
 
-
-=== Broadcom/Emulex
-
-. Compruebe que está utilizando el adaptador compatible. Consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de adaptadores compatibles.
+[role="tabbed-block"]
+====
+.Broadcom/Emulex
+--
+.Pasos
+. Compruebe que está utilizando el adaptador compatible. Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de adaptadores compatibles.
 +
 [listing]
 ----
@@ -124,7 +128,7 @@ LPe32002-M2
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 ----
-. Compruebe que está utilizando el firmware de Broadcom lpfc y el controlador de bandeja de entrada recomendados. Consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones de firmware y controladores de adaptador compatibles.
+. Compruebe que está utilizando el firmware de Broadcom lpfc y el controlador de bandeja de entrada recomendados. Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones de firmware y controladores de adaptador compatibles.
 +
 [listing]
 ----
@@ -134,7 +138,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 # cat /sys/module/lpfc/version
 0:12.8.0.5
 ----
-. Compruebe que `lpfc_enable_fc4_type` se establece en 3
+. Compruebe que `lpfc_enable_fc4_type` se establece en 3.
 +
 [listing]
 ----
@@ -177,38 +181,12 @@ FCP CMPL: xb 00001f50 Err 0000d9f8
 ----
 
 
+--
+.Adaptador FC Marvell/QLogic para NVMe/FC
+--
+La bandeja de entrada nativa `qla2xxx` El controlador que se incluye en el kernel GA de RHEL 8,4 tiene las últimas correcciones esenciales para la compatibilidad con ONTAP.
 
-
-==== Habilitar tamaño de I/o de 1 MB (opcional)
-
-ONTAP informa de UN MDT (Tamaño de transferencia MAX Data) de 8 en los datos de identificación del controlador, lo que significa que el tamaño máximo de la solicitud de E/S debe ser de hasta 1 MB. Sin embargo, para emitir solicitudes de I/o de tamaño 1 MB para el host NVMe/FC de Broadcom, el parámetro lpfc `lpfc_sg_seg_cnt` también se debe hacer una bontap de hasta 256 desde el valor predeterminado de 64. Utilice las siguientes instrucciones para ello:
-
-. Añada el valor `256` en las respectivas `modprobe lpfc.conf` archivo:
-+
-[listing]
-----
-# cat /etc/modprobe.d/lpfc.conf
-options lpfc lpfc_sg_seg_cnt=256
-----
-. Ejecute un `dracut -f` y reinicie el host.
-. Tras reiniciar, compruebe que se ha aplicado el ajuste anterior comprobando el correspondiente `sysfs` valor:
-+
-[listing]
-----
-# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-256
-----
-+
-Ahora el host FC-NVMe de Broadcom debe enviar hasta solicitudes de I/o de 1 MB en los dispositivos de espacio de nombres de ONTAP.
-
-
-
-
-
-=== Marvell/QLogic
-
-La bandeja de entrada nativa `qla2xxx` El controlador incluido en el kernel RHEL 8.4 GA tiene las últimas correcciones previas que son esenciales para la compatibilidad con ONTAP.
-
+.Pasos
 . Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles mediante el siguiente comando:
 +
 [listing]
@@ -226,17 +204,40 @@ QLE2742 FW:v9.06.02 DVR:v10.02.00.104-k
 ----
 
 
+--
+====
+
+
+=== Habilitar 1MB I/O (opcional)
+
+ONTAP informa de un MDT (tamaño de transferencia de MAX Data) de 8 en los datos Identify Controller, lo que significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB. Sin embargo, para emitir solicitudes de I/O de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar el `lpfc` valor del `lpfc_sg_seg_cnt` parámetro a 256 desde el valor predeterminado de 64.
+
+.Pasos
+. Ajuste la `lpfc_sg_seg_cnt` parámetro a 256.
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_sg_seg_cnt=256
+----
+. Ejecute un `dracut -f` y reinicie el host.
+. Compruebe que `lpfc_sg_seg_cnt` tiene 256.
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+256
+----
+
+
+
+NOTE: Esto no es aplicable a los hosts Qlogic NVMe/FC.
+
 
 
 == Configure NVMe/TCP
 
-A diferencia de NVMe/FC, NVMe/TCP no tiene una funcionalidad de conexión automática. Esto manifiesta dos limitaciones principales en el host NVMe/TCP de Linux:
-
-* *No hay reconexión automática después de que las rutas se restablezcan* NVMe/TCP no puede volver a conectarse automáticamente a una ruta que se reinstala más allá de la predeterminada `ctrl-loss-tmo` temporizador de 10 minutos después de una ruta hacia abajo.
-* *Sin conexión automática durante el arranque del host* NVMe/TCP no se puede conectar automáticamente durante el arranque del host también.
-
-
-Es necesario configurar el periodo de reintento para eventos de conmutación por error en al menos 30 minutos para evitar los tiempos de espera. Puede aumentar el período de reintento aumentando el valor del temporizador ctrl_loss_tmo. A continuación se muestran los detalles:
+NVMe/TCP no tiene la funcionalidad de conexión automática. Por lo tanto, si una ruta deja de funcionar y no se restablece en el tiempo de espera predeterminado de 10 minutos, no se puede volver a conectar automáticamente NVMe/TCP. Para evitar que se agote el tiempo de espera, debe definir el período de reintento para los eventos de conmutación por error en al menos 30 minutos.
 
 .Pasos
 . Compruebe si el puerto iniciador puede recuperar los datos de la página de registro de detección en las LIF NVMe/TCP admitidas:
@@ -300,7 +301,10 @@ sectype: none
 
 == Valide NVMe-of
 
-. Compruebe que el acceso multivía de NVMe en el kernel esté habilitado realmente mediante la comprobación:
+Puede usar el siguiente procedimiento para validar NVMe-oF.
+
+.Pasos
+. Compruebe que la multivía de NVMe en kernel está habilitada:
 +
 [listing]
 ----
@@ -321,6 +325,9 @@ round-robin
 ----
 . Compruebe que los espacios de nombres de ONTAP se reflejan correctamente en el host. Por ejemplo:
 +
+Ejemplo (a):
+
++
 [listing]
 ----
 # nvme list
@@ -333,7 +340,7 @@ Usage                Format         FW Rev
 85.90 GB / 85.90 GB  4 KiB + 0 B    FFFFFFFF
 ----
 +
-Otro ejemplo:
+Ejemplo (b):
 
 +
 [listing]
@@ -349,6 +356,9 @@ Usage                Format         FW Rev
 ----
 . Compruebe que el estado de la controladora de cada ruta sea activo y que tenga el estado de ANA adecuado. Por ejemplo:
 +
+Ejemplo (a):
+
++
 [listing, subs="+quotes"]
 ----
 # nvme list-subsys /dev/nvme1n1
@@ -360,7 +370,7 @@ nvme-subsys1 - NQN=nqn.1992-08.com.netapp:sn.04ba0732530911ea8e8300a098dfdd91:su
 +- nvme6 fc traddr=nn-0x208100a098dfdd91:pn-0x208300a098dfdd91 host_traddr=nn-0x200000109b579d5f:pn-0x100000109b579d5f live *optimized*
 ----
 +
-Otro ejemplo:
+Ejemplo (b):
 
 +
 [listing, subs="+quotes"]
@@ -379,6 +389,9 @@ nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.37ba7d9cbfba11eba35dd039ea165514:su
 ----
 . Confirmar que el complemento de NetApp muestra los valores adecuados para cada dispositivo de espacio de nombres ONTAP. Por ejemplo:
 +
+Ejemplo (a):
+
++
 [listing]
 ----
 # nvme netapp ontapdevices -o column
@@ -387,7 +400,7 @@ Device       Vserver          Namespace Path
 /dev/nvme1n1 vserver_fcnvme_145 /vol/fcnvme_145_vol_1_0_0/fcnvme_145_ns
 
 NSID  UUID                                   Size
-----  ------------------------------         ------
+-------  ------------------------------     --------------------
 1      23766b68-e261-444e-b378-2e84dbe0e5e1  85.90GB
 
 
@@ -408,7 +421,7 @@ NSID  UUID                                   Size
 }
 ----
 +
-Otro ejemplo:
+Ejemplo (b):
 
 +
 [listing]
@@ -419,7 +432,7 @@ Device       Vserver          Namespace Path
 /dev/nvme0n1 vs_tcp_114       /vol/tcpnvme_114_1_0_1/tcpnvme_114_ns
 
 NSID  UUID                                   Size
-----  ------------------------------         ------
+-------  ------------------------------         ---------------
 1      a6aee036-e12f-4b07-8e79-4d38a9165686  85.90GB
 
 
@@ -440,9 +453,10 @@ NSID  UUID                                   Size
 
 }
 ----
-+
+
+
+
+
 == Problemas conocidos
-
-
 
 No hay problemas conocidos.

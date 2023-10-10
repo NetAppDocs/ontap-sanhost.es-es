@@ -4,7 +4,7 @@ permalink: nvme_rhel_82.html
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: Cómo configurar el host NVMe/FC para RHEL 8.2 con ONTAP 
 ---
-= Configuración del host NVMe/FC para RHEL 8.2 con ONTAP
+= Configuración de host de NVMe/FC para RHEL 8,2 con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -19,27 +19,37 @@ summary: Cómo configurar el host NVMe/FC para RHEL 8.2 con ONTAP
 
 
 [role="lead"]
-NVMe/FC es compatible con ONTAP 9.6 o versiones posteriores para RHEL 8.2. El host de RHEL 8.2 ejecuta tráfico NVMe y SCSI a través de los mismos puertos de adaptador de iniciador de Fibre Channel (FC). Consulte link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] Para obtener una lista de controladoras y adaptadores de FC admitidos. Para obtener la lista más actual de configuraciones y versiones compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
+NVMe/FC es compatible con ONTAP 9,6 o posterior para Red Hat Enterprise Linux (RHEL) 8,2. El host de RHEL 8.2 ejecuta tráfico NVMe y SCSI a través de los mismos puertos de adaptador de iniciador de Fibre Channel (FC). Consulte link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] Para obtener una lista de controladoras y adaptadores de FC admitidos.
+
+Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de configuraciones compatibles.
 
 
-NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este documento para configurar los clientes de cloud conectados a. link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
+
+== Funciones
+
+* A partir de RHEL 8,2, `nvme-fc auto-connect` los scripts se incluyen en el nativo `nvme-cli` paquete. Puede confiar en estas secuencias de comandos de conexión automática nativas en lugar de tener que instalar las secuencias de comandos de conexión automática proporcionadas por el proveedor externo.
+* A partir de RHEL 8,2, un nativo `udev` la regla ya se proporciona como parte de la `nvme-cli` Paquete que permite el equilibrio de carga por turnos para NVMe multivía. No es necesario crear esta regla de forma manual ya (como se hizo en RHEL 8.1).
+* A partir de RHEL 8,2, tanto el tráfico NVMe como SCSI se pueden ejecutar en el mismo host coexistente. De hecho, esta es la configuración de host desplegada esperada. Por lo tanto, para SCSI, puede configurar `dm-multipath` Como es habitual en LUN de SCSI, que dan como resultado `mpath` Dispositivos, mientras que NVMe multivía puede utilizarse para configurar dispositivos multivía NVMe-oF en el host.
+* A partir de la versión 8,2 de RHEL, el plugin de NetApp está en el nativo `nvme-cli` El paquete puede mostrar detalles de ONTAP para espacios de nombres de ONTAP.
+
 
 
 
 == Limitaciones conocidas
 
-* Para RHEL 8.2, la función multivía de NVMe en el kernel sigue deshabilitada de forma predeterminada. Por lo tanto, debe habilitarla manualmente.
+* Para RHEL 8,2, la multivía NVMe en kernel está deshabilitada de manera predeterminada. Por lo tanto, debe habilitarla manualmente.
 * Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 
 
 
-== Habilite NVMe/FC en RHEL 8.2
+== Habilite NVMe/FC
 
+Es posible usar el siguiente procedimiento para habilitar NVMe/FC.
+
+.Pasos
 . Instale Red Hat Enterprise Linux 8.2 GA en el servidor.
-+
-Si va a actualizar de RHEL 8.1 a RHEL 8.2 mediante `yum update/upgrade`, el `/etc/nvme/host*` es posible que se pierdan archivos. Para evitar la pérdida de archivos, haga lo siguiente:
-
+. Si va a actualizar de RHEL 8,1 a RHEL 8,2 mediante `yum update/upgrade`, el `/etc/nvme/host*` es posible que se pierdan archivos. Para evitar la pérdida del archivo, haga lo siguiente:
 +
 .. Realice un backup de su `/etc/nvme/host*` archivos.
 .. Si ha editado manualmente `udev` regla, eliminarla:
@@ -72,7 +82,7 @@ yum install nvmecli
 4.18.0-193.el8.x86_64
 ----
 +
-Consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones compatibles.
+Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones compatibles.
 
 . Instale el paquete nvme-cli.
 +
@@ -87,7 +97,7 @@ nvme-cli-1.9.5.el8.x86_64
 ----
 # grubby –args=nvme_core.multipath=Y –update-kernel /boot/vmlinuz-4.18.0-193.el8.x86_64
 ----
-. En el host RHEL 8.2, compruebe la cadena de NQN del host en /etc/nvme/hostnqn y verifique que coincide con la cadena de NQN del host para el subsistema correspondiente en la cabina de ONTAP.
+. En el host RHEL 8,2, compruebe la cadena NQN del host en `/etc/nvme/hostnqn` Y verifique que coincida con la cadena del host NQN para el subsistema correspondiente en la cabina de ONTAP.
 +
 [listing]
 ----
@@ -103,12 +113,12 @@ Vserver      Subsystem        Host           NQN
         nqn.2014-08.org.nvmexpress:uuid:9ed5b327-b9fc-4cf5-97b3-1b5d986345d1
 ----
 +
-Si las cadenas del host NQN no coinciden, utilice `vserver modify` Comando para actualizar la cadena del NQN del host en el subsistema de cabina de ONTAP correspondiente para que coincida con la cadena NQM del host desde /etc/nvme/hostnqn en el host.
+Si las cadenas del host NQN no coinciden, utilice `vserver modify` Comando para actualizar la cadena NQN del host en el subsistema de la cabina ONTAP correspondiente para que coincida con la cadena NQN del host desde `/etc/nvme/hostnqn` en el host.
 
 . Reinicie el host.
 . Actualice el `enable_foreign` ajuste _(opcional)_.
 +
-Si piensa ejecutar el tráfico NVMe y SCSI en el mismo host coexistente de RHEL 8.2, le recomendamos que utilice la multivía de NVMe en el kernel para espacios de nombres de ONTAP y dm-multipath para LUN de ONTAP, respectivamente. También debe incluir una lista negra de los espacios de nombres ONTAP en dm-multipath para evitar que dm-multipath reclamen estos dispositivos de espacio de nombres. Para ello, añada la `enable_foreign` la configuración en /etc/multipath.conf, tal como se muestra a continuación.
+Si tiene intención de ejecutar tanto tráfico NVMe como SCSI en el mismo host coexistente de RHEL 8,2, NetApp recomienda utilizar NVMe multivía in-kernel para espacios de nombres ONTAP y dm-multipath para LUN de ONTAP respectivamente. También debe incluir una lista negra de los espacios de nombres ONTAP en dm-multipath para evitar que dm-multipath reclamen estos dispositivos de espacio de nombres. Puede hacerlo añadiendo el `enable_foreign` ajuste en la `/etc/multipath.conf`, como se muestra a continuación.
 
 +
 [listing]
@@ -125,7 +135,9 @@ defaults {
 
 == Configure el adaptador de FC de Broadcom para NVMe/FC
 
-Para obtener la lista más actual de adaptadores compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
+Puede usar el siguiente procedimiento para configurar un adaptador de FC Broadcom.
+
+Para obtener la lista más actual de adaptadores compatibles, consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
 
 .Pasos
 . Compruebe que está utilizando el adaptador compatible.
@@ -297,6 +309,9 @@ options lpfc lpfc_sg_seg_cnt=256
 
 == Valide NVMe/FC
 
+Es posible usar el siguiente procedimiento para validar NVMe/FC.
+
+.Pasos
 . Verifique la siguiente configuración de NVMe/FC.
 +
 [listing]
@@ -363,34 +378,5 @@ Device   Vserver  Namespace Path             NSID   UUID   Size
          "Namespace_Size" : 13107200
     }
 ]
-----
-
-
-
-
-== LPFC Verbose Logging
-
-Establezca el controlador lpfc para NVMe/FC.
-
-.Pasos
-. Ajuste la `lpfc_log_verbose` Configuración del controlador en cualquiera de los siguientes valores para registrar los eventos de NVMe/FC.
-+
-[listing]
-----
-#define LOG_NVME 0x00100000 /* NVME general events. */
-#define LOG_NVME_DISC 0x00200000 /* NVME Discovery/Connect events. */
-#define LOG_NVME_ABTS 0x00400000 /* NVME ABTS events. */
-#define LOG_NVME_IOERR 0x00800000 /* NVME IO Error events. */
-----
-. Después de ajustar los valores, ejecute la `dracut-f` command y reinicie el host.
-. Compruebe la configuración.
-+
-[listing]
-----
-# cat /etc/modprobe.d/lpfc.conf
-options lpfc lpfc_log_verbose=0xf00083
-
-# cat /sys/module/lpfc/parameters/lpfc_log_verbose
-15728771
 ----
 

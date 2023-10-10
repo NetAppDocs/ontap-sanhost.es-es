@@ -4,7 +4,7 @@ permalink: nvme_rhel_91.html
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: Cómo configurar NVMe-of Host para RHEL 8.7 con ONTAP 
 ---
-= Configuración del host NVMe-of para RHEL 9.1 con ONTAP
+= Configuración de host de NVMe-oF para RHEL 9,1 con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -91,11 +91,12 @@ NOTE: Si las cadenas del host NQN no coinciden, se debe usar `vserver modify` Co
 
 == Configure NVMe/FC
 
+[role="tabbed-block"]
+====
+.Broadcom/Emulex
+--
 
-
-=== Broadcom/Emulex
-
-.Pasos
+--
 . Compruebe que está utilizando el adaptador compatible. Para obtener la lista más actual de adaptadores compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
 +
 [listing]
@@ -180,38 +181,10 @@ FCP CMPL: xb 00000000 Err 00000004
 ----
 
 
+--
 
-
-==== Habilitar tamaño de I/o de 1 MB (opcional)
-
-ONTAP informa de UN MDT (Tamaño de transferencia MAX Data) de 8 en los datos de identificación del controlador, lo que significa que el tamaño máximo de la solicitud de E/S debe ser de hasta 1 MB. Sin embargo, para emitir solicitudes de I/o de tamaño 1 MB para el host Broadcom NVMe/FC, el parámetro lpfc lpfc_sg_seg_cnt también debe ser comprendido hasta 256 del valor predeterminado 64. Utilice las siguientes instrucciones para ello:
-
-.Pasos
-. Añada el valor `256` en las respectivas `modprobe lpfc.conf` archivo:
-+
-[listing]
-----
-# cat /etc/modprobe.d/lpfc.conf
-options lpfc lpfc_sg_seg_cnt=256
-----
-. Ejecute un `dracut -f` y reinicie el host.
-. Tras reiniciar, compruebe que se ha aplicado el ajuste anterior comprobando el correspondiente `sysfs` valor:
-+
-[listing]
-----
-# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-256
-----
-+
-Ahora el host FC-NVMe de Broadcom debe enviar hasta solicitudes de I/o de 1 MB en los dispositivos de espacio de nombres de ONTAP.
-
-
-
-
-
-=== Marvell/QLogic
-
-La bandeja de entrada nativa `qla2xxx` El controlador incluido en el kernel de RHEL 9.1 incluye los últimos parches básicos para la compatibilidad con ONTAP.
+--
+La bandeja de entrada nativa `qla2xxx` El controlador que se incluye en el kernel RHEL 9,1 tiene las últimas correcciones esenciales para la compatibilidad con ONTAP.
 
 .Pasos
 . Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles mediante el siguiente comando:
@@ -231,17 +204,42 @@ QLE2772 FW:v9.08.02 DVR:v10.02.07.400-k-debug
 ----
 
 
+--
+
+--
+====
+
+
+=== Habilitar 1MB I/O (opcional)
+
+ONTAP informa de un MDT (tamaño de transferencia de MAX Data) de 8 en los datos Identify Controller, lo que significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB. Sin embargo, para emitir solicitudes de I/O de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar el `lpfc` valor del `lpfc_sg_seg_cnt` parámetro a 256 desde el valor predeterminado de 64.
+
+.Pasos
+. Ajuste la `lpfc_sg_seg_cnt` parámetro a 256.
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_sg_seg_cnt=256
+----
+. Ejecute un `dracut -f` y reinicie el host.
+. Compruebe que `lpfc_sg_seg_cnt` tiene 256.
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+256
+----
+
+
+
+NOTE: Esto no es aplicable a los hosts Qlogic NVMe/FC.
+
 
 
 == Configure NVMe/TCP
 
-A diferencia de NVMe/FC, NVMe/TCP no tiene una funcionalidad de conexión automática. Esto manifiesta dos limitaciones principales en el host NVMe/TCP de Linux:
-
-* *No hay reconexión automática después de que las rutas se restablezcan* NVMe/TCP no puede volver a conectarse automáticamente a una ruta que se reinstala más allá de la predeterminada `ctrl-loss-tmo` temporizador de 10 minutos después de una ruta hacia abajo.
-* *No hay conexión automática durante el arranque del host* NVMe/TCP no se puede conectar automáticamente durante el arranque del host.
-
-
-Es necesario configurar el periodo de reintento para eventos de conmutación por error en al menos 30 minutos para evitar los tiempos de espera. Puede aumentar el período de reintento mediante el aumento del valor de `ctrl_loss_tmo timer` siguiendo el procedimiento siguiente:
+NVMe/TCP no tiene la funcionalidad de conexión automática. Por lo tanto, si una ruta deja de funcionar y no se restablece en el tiempo de espera predeterminado de 10 minutos, no se puede volver a conectar automáticamente NVMe/TCP. Para evitar que se agote el tiempo de espera, debe definir el período de reintento para los eventos de conmutación por error en al menos 30 minutos.
 
 .Pasos
 . Compruebe si el puerto iniciador puede recuperar los datos de la página de registro de detección en las LIF NVMe/TCP admitidas:
@@ -306,6 +304,8 @@ sectype: none
 
 
 == Valide NVMe-of
+
+Puede usar el siguiente procedimiento para validar NVMe-oF.
 
 .Pasos
 . Compruebe que el acceso multivía de NVMe en el kernel esté habilitado realmente mediante la comprobación:
