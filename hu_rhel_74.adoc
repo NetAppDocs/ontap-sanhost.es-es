@@ -18,6 +18,9 @@ summary: Describe cómo utilizar Red Hat Enterprise Linux 7.4 con ONTAP
 :toc-position: content
 
 
+[role="lead"]
+Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar Red Hat Enterprise Linux 7,4 con ONTAP como destino.
+
 
 
 == Instale las utilidades unificadas de host de Linux
@@ -292,7 +295,9 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 
 
-== Problemas y limitaciones conocidos
+== Problemas conocidos
+
+La versión de RHEL 7,4 con ONTAP tiene los siguientes problemas conocidos:
 
 [cols="4*"]
 |===

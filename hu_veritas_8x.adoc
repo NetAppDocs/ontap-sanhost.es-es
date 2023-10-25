@@ -282,4 +282,4 @@ Si tiene un entorno multivía heterogéneo, que incluye Veritas Infoscale, Linux
 
 == Problemas conocidos
 
-No hay problemas conocidos.
+No existen problemas conocidos para el lanzamiento de Veritas Infoscale 8 para Linux con ONTAP.

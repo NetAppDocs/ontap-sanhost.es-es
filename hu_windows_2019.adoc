@@ -18,6 +18,9 @@ summary: Uso de Windows Server 2019 con ONTAP
 :toc-position: content
 
 
+[role="lead"]
+Es posible usar los ajustes de configuración del host SAN de ONTAP para configurar Windows Server 2019 con ONTAP como destino.
+
 
 
 == Arrancar el SO
@@ -145,6 +148,6 @@ NOTE: La utilidad Unified Host de Windows configurará estos valores. Para obten
 
 
 
-== Limitaciones conocidas
+== Problemas conocidos
 
-No hay problemas conocidos para Windows Server 2019.
+No existen problemas conocidos para la versión de Windows Server 2019 con ONTAP.

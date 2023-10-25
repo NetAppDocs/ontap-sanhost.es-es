@@ -18,6 +18,9 @@ summary: Describe cómo usar Oracle Linux 9,2 con ONTAP
 :toc-position: content
 
 
+[role="lead"]
+Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 9,2 con ONTAP como destino.
+
 
 
 == Instale las utilidades unificadas de host de Linux
@@ -295,7 +298,7 @@ También puede utilizar la configuración recomendada para configurar la máquin
 
 == Problemas conocidos
 
-Oracle Linux 9,2 con ONTAP tiene los siguientes problemas conocidos:
+La versión Oracle Linux 9,2 con ONTAP tiene los siguientes problemas conocidos:
 
 [cols="10,30,30,10"]
 |===

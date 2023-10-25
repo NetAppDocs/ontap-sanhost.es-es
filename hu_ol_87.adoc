@@ -18,6 +18,9 @@ summary: Describe cómo usar Oracle Linux 8,7 con ONTAP
 :toc-position: content
 
 
+[role="lead"]
+Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 8,7 con ONTAP como destino.
+
 
 
 == Instale las utilidades unificadas de host de Linux
@@ -296,4 +299,4 @@ También puede utilizar la configuración recomendada para configurar la máquin
 
 == Problemas conocidos
 
-No hay problemas conocidos para Oracle Linux 8,7.
+No existen problemas conocidos para la versión Oracle Linux 8,7 con ONTAP.

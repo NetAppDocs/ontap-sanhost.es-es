@@ -247,6 +247,6 @@ NOTE: Citrix XenServer recomienda el uso de las herramientas de Citrix VM para t
 
 
 
-== Problemas y limitaciones conocidos
+== Problemas conocidos
 
-No existen problemas y limitaciones conocidas.
+No existen problemas conocidos para el lanzamiento de Citrix XenServer con ONTAP.

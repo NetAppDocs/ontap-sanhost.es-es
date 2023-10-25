@@ -18,6 +18,9 @@ summary: Describe cómo utilizar SUSE Linux Enterprise Server 12 con ONTAP
 :toc-position: content
 
 
+[role="lead"]
+Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar SUSE Linux Enterprise Server 12 con ONTAP como destino.
+
 
 
 == Instale las utilidades unificadas de host de Linux
@@ -282,7 +285,9 @@ devices {
 ----
 
 
-== Problemas y limitaciones conocidos
+== Problemas conocidos
+
+La versión SLES 12 con ONTAP tiene los siguientes problemas conocidos:
 
 [cols="4*"]
 |===

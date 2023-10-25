@@ -329,7 +329,7 @@ Utilice el siguiente comando para verificar QFullSampleSize
 
 == Problemas conocidos
 
-No hay problemas conocidos.
+No existen problemas conocidos para VMware vSphere 7.x con la versión de ONTAP.
 
 .Información relacionada
 * link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597-VMware vSphere con ONTAP"^]

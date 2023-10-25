@@ -65,7 +65,7 @@ Consulte la link:hu_wuhu_72.html["Documentación de Windows Host Utilities"] par
 
 
 
-== Problemas conocidos
+== Problemas y limitaciones conocidos
 
 Algunos comportamientos inesperados y potencialmente no deseados, así como, en algunos casos, soluciones alternativas para evitar estos comportamientos, se han identificado en la versión 7,1.
 

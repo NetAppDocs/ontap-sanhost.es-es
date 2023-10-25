@@ -351,6 +351,8 @@ Puede utilizar el siguiente comando para verificar QFullSampleSize.
 
 == Problemas conocidos
 
+La versión de VMware vSphere 8.x con ONTAP tiene los siguientes problemas conocidos:
+
 [cols="10,30,30"]
 |===
 | ID de error de NetApp | Título | Descripción 

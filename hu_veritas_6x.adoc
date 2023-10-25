@@ -267,6 +267,6 @@ Si tiene un entorno multivía heterogéneo, que incluye Veritas Infoscale, Linux
 
 
 
-== Problemas y limitaciones conocidos
+== Problemas conocidos
 
-No existen problemas y limitaciones conocidas.
+No existen problemas conocidos para la versión de Veritas Storage Foundation 6 para Linux con ONTAP.

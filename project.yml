@@ -13,7 +13,7 @@ sidebar:
     url: "/index.html"
   - title: Descripción general
     url: "/overview.html"
-  - title: Instale las utilidades del host de SAN
+  - title: Instalar las utilidades de host SAN
     entries:
     - title: Descripción general
       url: "/hu_sanhost_index.html"
