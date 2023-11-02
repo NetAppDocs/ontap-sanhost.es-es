@@ -19,29 +19,13 @@ summary: Notas de la versión para Windows Unified Host Utilities
 
 
 [role="lead"]
-El documento de notas de la versión contiene la información más reciente de las versiones de Windows Unified Host Utilities 7,2 y 7,1, incluidas actualizaciones sobre funciones nuevas, mejoras y problemas conocidos. El documento se actualiza cuando se dispone de nueva información sobre el uso de las utilidades de host de Windows.
+En las notas de la versión, se describen las nuevas funciones y mejoras, los problemas solucionados en la versión actual, las limitaciones y los problemas conocidos y las precauciones importantes relacionadas con la configuración y gestión del host específico de Windows con el sistema de almacenamiento de ONTAP.
+
+Para obtener información específica acerca de las versiones del sistema operativo y las actualizaciones que admiten las utilidades de host, consulte link:https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^].
 
 
 
-== Acerca de las utilidades unificadas de host de Windows
-
-Las utilidades unificadas de host de Windows permiten conectar un equipo host de Windows a sistemas de almacenamiento de NetApp. Las utilidades de host unificadas de Windows incluyen un programa de instalación que establece el registro de Windows y los valores de HBA necesarios.
-
-Windows Unified Host Utilities sigue siendo compatible con las siguientes versiones de Windows:
-
-* Windows 2012
-* Windows 2012R2
-* Windows 2016
-* Windows 2019
-* Windows 2022
-
-
-
-NOTE: NetApp califica componentes adicionales entre las versiones del software Host Utilities. Para obtener la información más reciente acerca de los requisitos del sistema, consulte link:https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^].
-
-
-
-== Funciones
+== Novedades
 
 * Windows Unified Host Utilities 7,2 incluye soporte para la configuración de parámetros de controlador NVMe/FC y correcciones de errores para tarjetas de nuevo proveedor.
 * Windows Unified Host Utilities 7.1 incluye compatibilidad con sistemas de almacenamiento E-Series, compatibilidad con ONTAP 9 y versiones posteriores, y tiempos de espera de iSCSI mejorados para acelerar la conmutación al respaldo.
@@ -49,68 +33,21 @@ NOTE: NetApp califica componentes adicionales entre las versiones del software H
 
 
 
-== Precauciones importantes
-
-Antes de implementar la versión más reciente de Windows Host Utilities, debe leer la información disponible para ayudar a identificar y resolver los problemas que pueden afectar el funcionamiento de los sistemas.
-
-Para obtener más información sobre un error individual y explorar otras herramientas relacionadas con errores, consulte link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^].
-
-
-
-=== Instalar las revisiones necesarias
-
-Para garantizar una instalación o actualización correctas de Windows Unified Host Utilities, debe instalar una corrección urgente específica de Windows. Algunas revisiones son un componente de las actualizaciones de Windows.
-
-Consulte la link:hu_wuhu_72.html["Documentación de Windows Host Utilities"] para sus requisitos específicos de revisión de configuración.
-
-
-
 == Problemas y limitaciones conocidos
 
-Algunos comportamientos inesperados y potencialmente no deseados, así como, en algunos casos, soluciones alternativas para evitar estos comportamientos, se han identificado en la versión 7,1.
+Debe conocer los siguientes problemas y limitaciones conocidos que pueden afectar el rendimiento en el host específico. Se han identificado algunos comportamientos inesperados y potencialmente no deseados, y soluciones alternativas para evitar estos comportamientos en la versión Windows Unified Host Utilities 7,1.
 
 [cols="30, 30, 20"]
 |===
 | Título | Descripción | Solución alternativa 
 
 
-| Ejecutando el `linux_gos_timeout-install.sh` Ya no es necesario ejecutar secuencias de comandos en huéspedes de Hyper-V que ejecuten Red Hat Enterprise Linux o SUSE Linux Enterprise Server | Ya no es necesario que ejecute el `linux_gos_timeout-install.sh` Secuencia de comandos para cambiar los tiempos de espera del disco en los invitados de Red Hat Enterprise Linux 5, Red Hat Enterprise Linux 6 o SUSE Linux Enterprise Server 11 Hyper-V porque se está utilizando la configuración de tiempo de espera predeterminada. La `linux_gos_timeout-install.sh` La secuencia de comandos incluida en las versiones anteriores de las utilidades de host ya no se incluye en las utilidades de host unificadas de Windows. Windows Unified Host Utilities 7.1 utiliza la configuración de tiempo de espera de disco predeterminada. | No aplicable 
+| Ejecutando el `linux_gos_timeout-install.sh` Ya no es necesario ejecutar secuencias de comandos en huéspedes de Hyper-V que ejecuten Red Hat Enterprise Linux o SUSE Linux Enterprise Server | Ya no es necesario que ejecute el `linux_gos_timeout-install.sh` Secuencia de comandos para cambiar los tiempos de espera del disco en los invitados de Red Hat Enterprise Linux 5, Red Hat Enterprise Linux 6 o SUSE Linux Enterprise Server 11 Hyper-V porque se está utilizando la configuración de tiempo de espera predeterminada. La `linux_gos_timeout-install.sh` El script incluido en versiones anteriores de Host Utilities ya no se incluye en la versión de Windows Unified Host Utilities 7,1. Windows Unified Host Utilities 7.1 utiliza la configuración de tiempo de espera de disco predeterminada. | No aplicable 
 
 
-| Las sesiones iSCSI no se vuelven a conectar después del reinicio con IPv4 e IPv6 mixtas | En una configuración de I/o multivía (MPIO) o varias conexiones por sesión (MCS) que tienen extremos IPv4 e IPv6, es posible que algunas sesiones iSCSI no puedan volver a conectarse después de reiniciar el host Windows. | Para verificar que todas las rutas iSCSI regresan después de un reinicio, use los extremos de IPv4 o los IPv6. No mezcle IPv4 e IPv6. 
+| Las sesiones iSCSI no se vuelven a conectar después del reinicio con IPv4 e IPv6 mixtas | En una configuración de I/o multivía (MPIO) o varias conexiones por sesión (MCS) que tienen extremos IPv4 e IPv6, es posible que algunas sesiones iSCSI no puedan volver a conectarse después de reiniciar el host Windows. | Utilice todos los puntos finales IPv4 o IPv6. No mezcle IPv4 e IPv6. 
 
 
-| MCS no es compatible con el arranque de software iSCSI | Cuando se utiliza un arranque de software iSCSI con varias conexiones iSCSI por sesión (MCS), no se puede proteger la conexión inicial de arranque iSCSI. Esto puede provocar la desconexión del LUN de arranque, lo que provoca el fallo del host. | Microsoft no es compatible con MCS para los hosts arrancados por el software iSCSI. Utilice MPIO como solución de alta disponibilidad. Tenga en cuenta que no se admite la combinación de MPIO y MCS. 
+| MCS no es compatible con el arranque de software iSCSI | Cuando se utiliza el arranque de software iSCSI con varias conexiones iSCSI por sesión (MCS), no se puede proteger la conexión de inicio iSCSI. Esto puede provocar la desconexión del LUN de arranque, lo que provoca la interrupción del sistema del host. | Microsoft no es compatible con MCS para los hosts arrancados por el software iSCSI. Utilice MPIO como solución de alta disponibilidad. Tenga en cuenta que no se admite la combinación de MPIO y MCS. 
 |===
 link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^] proporciona información completa sobre la mayoría de los problemas conocidos, incluidas las soluciones alternativas sugeridas cuando sea posible.
-
-
-
-== Acerca de la documentación de configuración de hosts SAN
-
-La documentación para utilidades del host SAN se incluye en el link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Documentación de configuración del host SAN de ONTAP"]. La documentación de la configuración del host SAN de ONTAP es acumulativa, cubriendo todas las versiones actuales de los hosts SAN. En contexto, se indican las diferencias funcionales entre las versiones.
-
-
-
-== Dónde encontrar documentación de producto y otra información
-
-Puede acceder a la documentación de todos los productos de NetApp y buscar otros recursos de información de productos, como informes técnicos y whitepapers en la página de documentación de productos del sitio corporativo de NetApp.
-
-.Información relacionada
-*Configuración y administración del sistema de almacenamiento ONTAP*
-
-* La link:https://docs.netapp.com/us-en/ontap/setup-upgrade/index.html["Guía de configuración de software ONTAP"^] Para su versión de ONTAP
-* La link:https://docs.netapp.com/us-en/ontap/san-management/index.html["Guía de administración de SAN de ONTAP"^] Para su versión de ONTAP
-* La link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["Notas de la versión de ONTAP"^] Para su versión de ONTAP
-
-
-*Configuración y administración del sistema de almacenamiento E-Series*
-
-* La Guía exprés de configuración y aprovisionamiento de SANtricity Storage Manager para Windows adecuada para su protocolo
-* La guía exprés de configuración y aprovisionamiento de SANtricity Storage Manager para el sistema operativo, el protocolo y la versión de SANtricity.
-* La referencia de instalación del software de Administrador de almacenamiento de SANtricity específica para su versión de SANtricity.
-* La guía del controlador Multipath de SANtricity Storage Manager específica para su versión de SANtricity.
-* Las notas de la versión de SANtricity Storage Manager para su versión de SANtricity.
-
-
-Consulte link:https://docs.netapp.com/us-en/e-series-family/["Documentación de E-Series"^] Para encontrar documentación relacionada de SANtricity.
