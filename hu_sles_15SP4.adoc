@@ -69,7 +69,7 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 ----
 
 
-== Arranque San
+== Arranque SAN
 
 .Lo que necesitará
 Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://mysupport.netapp.com/matrix/imt.jsp?components=84067;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
@@ -149,16 +149,16 @@ NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan 
 
 SUSE Linux Enterprise Server 15 SP4 OS se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración de ASA y de otro tipo.
 
-La `multipath.conf` el archivo debe existir para que se inicie el daemon multipath, pero puede crear un archivo vacío de cero bytes con el comando:
-`touch /etc/multipath.conf`
+La `multipath.conf` el archivo debe existir para que se inicie el daemon multivía, pero puede crear un archivo vacío de cero bytes con el comando:
+`touch /etc/multipath.conf`.
 
 La primera vez que se crea este archivo, es posible que deba habilitar e iniciar los servicios multivía.
 
-No es necesario añadir nada directamente a. `multipath.conf` archivo, a menos que tenga dispositivos que no desea gestionar mediante multivía o que tenga la configuración existente que anula los valores predeterminados.
+No es necesario añadir nada directamente al `multipath.conf` archivo, a menos que tenga dispositivos que no desea gestionar mediante multivía o que tenga la configuración existente que anula los valores predeterminados.
 
 Puede añadir la siguiente sintaxis al `multipath.conf` archivo para excluir los dispositivos no deseados.
 
-Sustituya el `<DevId>` con la `WWID` cadena del dispositivo que desea excluir. Utilice el siguiente comando para determinar la `WWID`:
+Sustituya `<DevId>` con la `WWID` cadena del dispositivo que desea excluir. Utilice el siguiente comando para determinar la `WWID`:
 
 .Ejemplo
 En este ejemplo: `sda` Es el disco SCSI local que necesitamos agregar a la lista negra.
@@ -171,7 +171,7 @@ En este ejemplo: `sda` Es el disco SCSI local que necesitamos agregar a la lista
 # /usr/lib/udev/scsi_id -gud /dev/sda
 360030057024d0730239134810c0cb833
 ----
-. Añada esto `WWID` a la lista negra stanza en `/etc/multipath.conf`:
+. Añada el `WWID` valor de la estrofa de la lista negra en la `/etc/multipath.conf` archivo:
 +
 [listing]
 ----
@@ -183,7 +183,7 @@ devnode "^cciss.*"
 ----
 
 
-Siempre debe comprobar su `/etc/multipath.conf` archivo para la configuración heredada, especialmente en la sección de valores predeterminados, que puede estar reemplazando la configuración predeterminada.
+Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría estar anulando los valores predeterminados.
 
 La siguiente tabla muestra los parámetros multivía esenciales de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y alguno de estos parámetros se anula, deberán corregirse posteriormente stanzas en `multipath.conf` Que se aplican específicamente a LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Estos valores predeterminados solo se deben anular consultando con NetApp o con el proveedor de sistemas operativos y únicamente cuando se haya comprendido completamente el impacto.
 
@@ -246,7 +246,7 @@ La siguiente tabla muestra los parámetros multivía esenciales de las LUN de ON
 | proveedor | NETAPP 
 |===
 .Ejemplo
-El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este caso, el `multipath.conf` el archivo define los valores para `path_checker` y.. `no_path_retry` Que no son compatibles con las LUN de ONTAP. Si no se pueden quitar debido a que aún hay otras cabinas SAN conectadas al host, estos parámetros pueden corregirse específicamente para LUN de ONTAP con una sección de dispositivo.
+El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este caso, el `multipath.conf` el archivo define los valores para `path_checker` y.. `no_path_retry` Que no son compatibles con las LUN de ONTAP. Si estos parámetros no se pueden quitar porque otras cabinas SAN todavía están conectadas al host, en su lugar se pueden corregir específicamente para LUN de ONTAP con un dispositivo estropeado.
 
 [listing]
 ----

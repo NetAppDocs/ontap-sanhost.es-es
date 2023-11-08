@@ -53,11 +53,9 @@ Establezca el controlador lpfc para NVMe/FC.
 +
 [listing]
 ----
-# cat /etc/modprobe.d/lpfc.conf
-options lpfc lpfc_log_verbose=0xf00083
+# cat /etc/modprobe.d/lpfc.conf options lpfc lpfc_log_verbose=0xf00083
 
-# cat /sys/module/lpfc/parameters/lpfc_log_verbose
-15728771
+# cat /sys/module/lpfc/parameters/lpfc_log_verbose 15728771
 ----
 
 
@@ -68,12 +66,19 @@ No hay ningún registro qla2xxx específico para NVMe/FC similar al para el `lpf
 
 .Pasos
 . Añada el `ql2xextended_error_logging=0x1e400000` valor para el correspondiente `modprobe qla2xxx conf` archivo.
-. Vuelva a crear el `initramfs` ejecutando `dracut -f` reinicie el host.
-. Después de reiniciar, compruebe que el registro detallado se ha aplicado de la siguiente forma:
+. Ejecute el `dracut -f` reinicie el host.
+. Después del reinicio, compruebe que el registro detallado se ha habilitado:
 +
 [listing]
 ----
 # cat /etc/modprobe.d/qla2xxx.conf
+----
++
+Resultado de ejemplo:
+
++
+[listing]
+----
 options qla2xxx ql2xnvmeenable=1 ql2xextended_error_logging=0x1e400000
 # cat /sys/module/qla2xxx/parameters/ql2xextended_error_logging
 507510784
@@ -90,7 +95,7 @@ Los errores mostrados por `nvme-cli` durante `nvme discover`, `nvme connect`, o.
 
 [cols="20, 20, 50"]
 |===
-| Errores mostrados por `nvme-cli` | Causa probable | Solución alternativa 
+| Mensaje de error | Causa probable | Solución alternativa 
 
 
 | `Failed to write to /dev/nvme-fabrics: Invalid argument` | Sintaxis incorrecta | Compruebe que está utilizando la sintaxis correcta para el `nvme discover`, `nvme connect`, y. `nvme connect-all` comandos. 
