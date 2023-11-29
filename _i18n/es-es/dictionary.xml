@@ -431,7 +431,6 @@
   <block id="7fbd0449d14b878cf9b9ba9434075a41" category="paragraph">Si decide utilizar el arranque SAN, su configuración debe ser compatible. Es posible usar la herramienta de matriz de interoperabilidad de NetApp para verificar que el sistema operativo, HBA, el firmware de HBA y la versión de arranque de HBA y ONTAP son compatibles.</block>
   <block id="e6b99fad9f3e47e4b52f44d0b0dac069" category="list-text">Verifique que haya varias rutas disponibles. Recuerde que solo habrá varias rutas disponibles después de que el sistema operativo del host esté en funcionamiento en las rutas.</block>
   <block id="03ed98061513afaf0a716e8d7756931a" category="list-text">Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN. Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.</block>
-  <block id="34fbc6aa2d83f69c8f3d03faf01392c7" category="section-title">Instalación de revisiones de Windows</block>
   <block id="c812232f894e468682a433753368a4f5" category="paragraph">Sugerimos el uso de *última actualización acumulativa* para instalarse en el servidor.</block>
   <block id="8d1d5b8defd8dab28a7e51c7b4ff5d33" category="inline-link-macro">Catálogo de Microsoft Update 2022</block>
   <block id="6ea674183040bb4a5f8bcd1659c019d0" category="admonition">Vaya a la <block ref="47dfbc363030c19b6fccb995dd42bb8c" category="inline-link-macro-rx"></block> Sitio web para obtener e instalar las revisiones de Windows necesarias para su versión de Windows.</block>
@@ -439,9 +438,6 @@
   <block id="623e88bd2085eeb3f49a2784ec97654e" category="admonition">Algunas revisiones no están disponibles para descarga directa. En estos casos, deberá solicitar una revisión determinada al personal de soporte técnico de Microsoft.</block>
   <block id="5a3b43f9090be87b411af7ac82adcb38" category="list-text">Siga las instrucciones proporcionadas por Microsoft para instalar las revisiones.</block>
   <block id="56dd1899b4280d897ff6670fb0968e02" category="admonition">Muchas correcciones urgentes requieren un reinicio del host de Windows, pero puede optar por esperar a reiniciar el host hasta _after_ que instale o actualice las utilidades de host.</block>
-  <block id="36b258cf83367d27741cf0be3d246eca" category="section-title">Instalar las utilidades unificadas de host de Windows</block>
-  <block id="ba490f365e20da97a23546cfe0da8569" category="inline-link-macro">Documentación de WUHU 7.1</block>
-  <block id="47e2092f9d666fc24b67c7da02de84c7" category="paragraph">Las utilidades unificadas de host de Windows (WUHU) son un conjunto de programas de software con documentación que le permite conectar equipos host a discos virtuales (LUN) en UNA SAN de NetApp. Recomendamos descargar e instalar el kit de utilidades más reciente. Para obtener información e instrucciones sobre la configuración DE WUHU, consulte <block ref="f7fe1c204ed60a7e9dd594c09fd7b1a5" category="inline-link-macro-rx"></block>.</block>
   <block id="d25621141f24193488d8ea2276c47e01" category="paragraph">Debe instalar el software MPIO y tener configurado el acceso multivía si el host de Windows tiene más de una ruta para el sistema de almacenamiento. Sin el software MPIO, es posible que el sistema operativo vea cada ruta como un disco independiente, lo que podría dañar los datos. El software MPIO presenta un único disco al sistema operativo para todas las rutas, y un módulo específico de cada dispositivo (DSM) gestiona la recuperación tras fallos de rutas.</block>
   <block id="a0e497cbff11ff2d61625663418c3fc8" category="paragraph">En un sistema Windows, los dos componentes principales de cualquier solución MPIO son DSM y Windows MPIO. MPIO no es compatible con Windows XP o Windows Vista en una máquina virtual Hyper- V.</block>
   <block id="a0ca832c7bbe60482ff7b23217787e1b" category="admonition">Si selecciona la compatibilidad con MPIO, las utilidades unificadas de host de Windows habilitan la función MPIO incluida de Windows Server 2022.</block>
@@ -469,8 +465,6 @@
   <block id="74802e20676d4776b1eea0dca80bcb9a" category="paragraph">Para los HBA Fibre Channel de QLogic:</block>
   <block id="08a7801aadb2d395506d0735d17dcf62" category="cell">LinkDownTimeOut</block>
   <block id="f9c8e6ceed8ad8db75740e78e48a6236" category="cell">PortDownRetryCount</block>
-  <block id="881b9c4cb273bade29a78089e1cf6ee9" category="inline-link-macro">Guía de instalación de Windows 7.1 Host Utilities</block>
-  <block id="c5fac7adc428bbd803e2710cafe09003" category="admonition">La utilidad Unified Host de Windows configurará estos valores. Para obtener información detallada sobre los ajustes recomendados, consulte <block ref="53418a54750628f8c611b4cd8982473c" category="inline-link-macro-rx"></block>.</block>
   <block id="7466d31b9a4018d8f402bd6f92090e59" category="summary">Describe cómo instalar las utilidades de host de solaris</block>
   <block id="88a1748445927988a69d31c53331a565" category="list-text">Extraiga el archivo.</block>
   <block id="f6e9198a006ec354ae70027fd194c6a2" category="paragraph"><block ref="d6bc15cec7eb5baad2fc7449ae4706aa" prefix="" category="inline-code"></block></block>
@@ -2034,7 +2028,6 @@
   <block id="0732474ba551155a9a0983a068b65a4e" category="admonition">Vaya a la <block ref="c91fa8395bb99838be8ab4e7b48666cc" category="inline-link-macro-rx"></block> Sitio web para obtener e instalar las revisiones de Windows necesarias para su versión de Windows.</block>
   <block id="60bdc643bd0e4fed0f4a29dbcd77bc2b" category="admonition">Cuando selecciona la compatibilidad con MPIO, las utilidades unificadas de host de Windows habilitan la función MPIO incluida de Windows Server 2012 R2.</block>
   <block id="c9bbd6792eac761da84ef7d035e5b41c" category="section-title">El disco duro virtual de Hyper-V requiere una alineación para obtener el mejor rendimiento</block>
-  <block id="f4f9ad21012cf66e650af6b1058ce16b" category="section-title">Reinstalación de invitados de GRUB para Linux tras corregir la alineación de MBR con el kit de herramientas PowerShell</block>
   <block id="6ef4ca5514fc3496c82be53f21ea03d2" category="summary">Describe cómo utilizar Red Hat Enterprise Linux 7.3 con ONTAP</block>
   <block id="c0ee48ea1d7622a5cfe5ade7dd37cedc" category="paragraph">Para Red Hat Enterprise Linux (RHEL) 7.3 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. RHEL 7.3 se ha compilado con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="89bd48c55808bc62ab1163663f834231" category="paragraph">El sistema operativo RHEL 7.3 se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración tanto de ASA como de terceros.</block>
@@ -3488,8 +3481,6 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="0b3c2391c446a11bbd0c66a38ea6904b" category="paragraph">La versión CentOS 7,6 con ONTAP tiene los siguientes problemas conocidos:</block>
   <block id="cdf4bf81cf3ee1a54f731160152019cf" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 7,2 con ONTAP como destino.</block>
   <block id="12816f6cc6e072d421258f60c7368dd0" category="paragraph">No existen problemas conocidos para la versión Oracle Linux 7,2 con ONTAP.</block>
-  <block id="1fed0d1f2feda6954357b22995ac7bd0" category="paragraph">Es posible usar los ajustes de configuración del host SAN de ONTAP para configurar Windows Server 2022 con ONTAP como destino.
-== Arrancando el sistema operativo</block>
   <block id="7145b773c01d1ea2262969c3644747a0" category="paragraph">No existen problemas conocidos para la versión de Windows Server 2022 con ONTAP.</block>
   <block id="57175c72c9ec2223e90f7a6f933b0c1b" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 7,6 con ONTAP como destino.</block>
   <block id="a2ad6d83a8574c572c9a8b9c0652127e" category="paragraph">La versión Oracle Linux 7,6 con ONTAP tiene los siguientes problemas conocidos:</block>
@@ -3585,7 +3576,15 @@ En el siguiente ejemplo, se genera una clave dhchap aleatoria con HMAC estableci
   <block id="e20cbb947afcf84cf58de1358ee1068d" category="cell">Mensaje de error</block>
   <block id="8cfe2b11255c36622bc84e4bd2dfb53c" category="list-text">Ejecute el<block ref="eb2bf21d337d5754274973a21f351bbd" prefix=" " category="inline-code"></block> reinicie el host.</block>
   <block id="9688ec84efd5b1cb7c885e598b6ebf4a" category="list-text">Después del reinicio, compruebe que el registro detallado se ha habilitado:</block>
-  <block id="684c45496e08c180fd6b056747c6d7e6" category="cell">No se admiten varias conexiones por segundo (MCS) con el arranque del software iSCSI</block>
   <block id="a22d253913fa8deba78982e6393df807" category="cell">Cuando se utiliza el arranque de software iSCSI con MCS iSCSI, no se puede proteger la conexión de arranque iSCSI. Esto puede provocar la desconexión del LUN de arranque y provocar la interrupción del sistema del host.</block>
   <block id="86891fa05c8b78ad9621085c8abc1fb4" category="paragraph">Puede generar el archivo JSON con<block ref="b2ed43620b7fff2689035f1e99c24ded" prefix=" " category="inline-code"></block> opción. Consulte las páginas del manual NVMe connect-all para obtener más opciones de sintaxis.</block>
+  <block id="0ecfee1e5b63a34e0c870ad349ab2d79" category="section-title">Instale las revisiones de Windows</block>
+  <block id="fa5be5c2e2b86b59c46b48b7021f967f" category="section-title">Instale Windows Unified Host Utilities</block>
+  <block id="7f0107becb6328e412aa5e8712724378" category="inline-link-macro">Documentación de Windows Unified Host Utilities</block>
+  <block id="b4c9abb2b32b490ded389f27627f9510" category="paragraph">Las utilidades unificadas de host de Windows (WUHU) son un conjunto de programas de software con documentación que le permite conectar equipos host a discos virtuales (LUN) en UNA SAN de NetApp. NetApp recomienda descargar e instalar el kit de utilidades más reciente. Para obtener información e instrucciones sobre la configuración de WUHU, consulte <block ref="b25c56f0835abca42f2574922a5bff40" category="inline-link-macro-rx"></block> Y seleccione el procedimiento de instalación para su versión de Windows Unified Host Utilities.</block>
+  <block id="f00aa3de5284bd6ffc1c6eb440a68428" category="inline-link-macro">Documentación de Windows Host Utilities</block>
+  <block id="fc51d3fbe5dd41d133c1f25388a68493" category="admonition">La utilidad Unified Host de Windows configurará estos valores. Para obtener información detallada sobre los ajustes recomendados, consulte <block ref="1035103116c48a69520d80b6269bd2d8" category="inline-link-macro-rx"></block> Y seleccione el procedimiento de instalación para su versión de Windows Unified Host Utilities.</block>
+  <block id="cffc00678708e63d08b03d05ada52624" category="paragraph">Es posible usar los ajustes de configuración del host SAN de ONTAP para configurar Windows Server 2022 con ONTAP como destino.</block>
+  <block id="6f49a4f8a77775eb655aad7d40795d50" category="section-title">Vuelva a instalar GRUB para invitados de Linux después de corregir la alineación de MBR con PowerShell Toolkit</block>
+  <block id="29bdde7506503e06e915420031c09cbf" category="cell">No se admiten varias conexiones por sesión (MCS) con el arranque del software iSCSI</block>
 </blocks>
