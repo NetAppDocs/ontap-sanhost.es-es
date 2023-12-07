@@ -46,7 +46,7 @@ NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este d
 
 == Instale las revisiones de Windows
 
-Sugerimos el uso de *última actualización acumulativa* para instalarse en el servidor.
+NetApp recomienda que la *última actualización acumulativa* esté instalada en el servidor.
 
 
 NOTE: Vaya a la link:https://www.catalog.update.microsoft.com/Search.aspx?q=Update+Windows+Server+2019["Catálogo de Microsoft Update 2019"^] Sitio web para obtener e instalar las revisiones de Windows necesarias para su versión de Windows.
@@ -67,7 +67,7 @@ TIP: Muchas correcciones urgentes requieren un reinicio del host de Windows, per
 
 == Instale Windows Unified Host Utilities
 
-Las utilidades unificadas de host de Windows (WUHU) son un conjunto de programas de software con documentación que le permite conectar equipos host a discos virtuales (LUN) en UNA SAN de NetApp. NetApp recomienda descargar e instalar el kit de utilidades más reciente. Para obtener información e instrucciones sobre la configuración de WUHU, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentación de Windows Unified Host Utilities"] Y seleccione el procedimiento de instalación para su versión de Windows Unified Host Utilities.
+Las utilidades unificadas de host de Windows (WUHU) son un conjunto de programas de software con documentación que le permite conectar equipos host a discos virtuales (LUN) en UNA SAN de NetApp. NetApp recomienda descargar e instalar el kit de utilidades más reciente. Para obtener información e instrucciones sobre la configuración de WUHU, consulte la link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentación de Windows Unified Host Utilities"] Y seleccione el procedimiento de instalación para su versión de Windows Unified Host Utilities.
 
 
 
