@@ -3611,4 +3611,11 @@ En el siguiente ejemplo, se genera una clave dhchap aleatoria con HMAC estableci
   <block id="af1363e13388a6153d5ee5e31361b059" category="list-text">Compruebe que las demás combinaciones de LIF iniciador-destino NVMe/TCP puedan recuperar correctamente los datos de la página de registro de detección:</block>
   <block id="4d2ccda8ed0dd9cdf2d1d56f266ef18c" category="paragraph">No existen problemas conocidos para la configuración de host NVMe-oF para RHEL 9,3 con la versión ONTAP.</block>
   <block id="7391a7cd9aaad0e97cd0084d95a4c0fd" category="sidebar">9,3</block>
+  <block id="9bc6d3e09829b4f5254ca05574123571" category="summary">Describe cómo utilizar Red Hat Enterprise Linux 8,9 con ONTAP</block>
+  <block id="07401b9dd6cd70fd46911f32946adf00" category="doc">Utilice Red Hat Enterprise Linux 8,9 con ONTAP</block>
+  <block id="e501d2dbdb42de58f02c1f3abfe2b8a1" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar Red Hat Enterprise Linux 8,9 con ONTAP como destino.</block>
+  <block id="ae6778e372ba1bd8a8b15c0befa78706" category="paragraph">Para Red Hat Enterprise Linux (RHEL) 8,9, el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. RHEL 8,9 se compila con todas las opciones de configuración necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
+  <block id="b0ba321d68fcbee6d08cb969c6dee835" category="paragraph">El sistema operativo RHEL 8,9 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para configuraciones de ASA y que no son ASA. Puede optimizar aún más el rendimiento de la configuración del host con los siguientes ajustes recomendados.</block>
+  <block id="51856bc21ee60e0edd3d375bda86c100" category="paragraph">No hay problemas conocidos para RHEL 8,9.</block>
+  <block id="4407c95e5daa7102b34d0879e4eb12ed" category="sidebar">8,9</block>
 </blocks>
