@@ -19,7 +19,7 @@ summary: Describe cómo utilizar Red Hat Enterprise Linux 8,9 con ONTAP
 
 
 [role="lead"]
-Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar Red Hat Enterprise Linux 8,9 con ONTAP como destino.
+Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar Red Hat Enterprise Linux (RHEL) 8,9 con ONTAP como destino.
 
 
 
@@ -91,7 +91,7 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 == Accesos múltiples
 
-Para Red Hat Enterprise Linux (RHEL) 8,9, el `/etc/multipath.conf` el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. RHEL 8,9 se compila con todas las opciones de configuración necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
+Para RHEL 8,9, el `/etc/multipath.conf` el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. RHEL 8,9 se compila con todas las opciones de configuración necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
 
 Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP. Las siguientes secciones proporcionan una salida multivía de muestra para una LUN asignada a personas ASA y no ASA.
 
@@ -146,7 +146,7 @@ NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan 
 
 == Configuración recomendada
 
-El sistema operativo RHEL 8,9 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para configuraciones de ASA y que no son ASA. Puede optimizar aún más el rendimiento de la configuración del host con los siguientes ajustes recomendados.
+El sistema operativo RHEL 8,9 reconoce los LUN de ONTAP y establece automáticamente todos los parámetros de configuración correctamente para configuraciones de ASA y no ASA. Puede optimizar aún más el rendimiento de la configuración del host con los siguientes ajustes recomendados.
 
 La `multipath.conf` el archivo debe existir para que se inicie el daemon multivía, pero puede crear un archivo vacío de cero bytes mediante el siguiente comando:
 
