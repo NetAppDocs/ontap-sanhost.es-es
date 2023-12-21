@@ -5,17 +5,14 @@ keywords: ontap, san, host, rhel, red, hat, linux, sles, suse, esxi, nvme, oracl
 summary: Este contenido proporciona una guía específica para la distribución sobre cómo configurar clientes de cloud conectados a Cloud Volumes ONTAP y Amazon FSX para hosts ONTAP y SAN conectados al almacenamiento ONTAP local. 
 ---
 = Información general de la configuración de hosts SAN
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 Este contenido proporciona las prácticas recomendadas específicas para el host y la versión con el fin de configurar rápidamente hosts SAN conectados al almacenamiento de ONTAP.

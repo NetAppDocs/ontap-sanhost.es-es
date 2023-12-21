@@ -5,17 +5,14 @@ keywords: nvme, oracle linux, 9.2, host configuration
 summary: Configuración de host de NVMe-oF para Oracle Linux 9,2 con ONTAP 
 ---
 = Configuración de host de NVMe-oF para Oracle Linux 9,2 con ONTAP
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

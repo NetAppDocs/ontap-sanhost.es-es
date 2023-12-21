@@ -5,17 +5,14 @@ keywords: host utilities, veritas, infoscale, 7.3. 7.3.1, netapp, ontap
 summary: Describe cómo utilizar Veritas Infocale 7.3 para Linux con ONTAP 
 ---
 = Utilice VMware vSphere 7.x con ONTAP
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

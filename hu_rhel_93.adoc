@@ -5,17 +5,14 @@ keywords: host utilities, red hat, rhel, linux, 9.3, netapp, ontap, rhel
 summary: Describe cómo utilizar Red Hat Enterprise Linux 9,3 con ONTAP 
 ---
 = Utilice Red Hat Enterprise Linux 9,3 con ONTAP
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

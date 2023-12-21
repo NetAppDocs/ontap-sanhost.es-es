@@ -5,17 +5,14 @@ keywords:
 summary:  
 ---
 = Descripción general
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 Detecte la información más reciente sobre las versiones de la utilidad host SAN y acceda al procedimiento de instalación para la configuración del host.
