@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: hu_wuhu_troubleshoot.html 
+keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
+summary: Las utilidades unificadas de host de Windows incluyen un programa de instalación que establece el registro de Windows y los parámetros de HBA necesarios para que el host de Windows gestione correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP y E-Series de NetApp. 
+---
+= Solucionar problemas
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Es posible utilizar las técnicas generales de solución de problemas para utilidades de host de Windows. No olvide consultar las notas de la versión más recientes para ver los problemas conocidos y las soluciones.
+
+A continuación, se muestra una lista de las diferentes áreas que puede investigar en busca de posibles problemas de interoperabilidad:
+
+* Para identificar posibles problemas de interoperabilidad, confirme que las utilidades de host admiten la combinación de software del sistema operativo de host, hardware de host, software ONTAP y hardware de sistema de almacenamiento. Consulte http://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^] si quiere más información.
+* Compruebe que tiene la configuración de iSCSI correcta.
+* Si los LUN iSCSI no están disponibles después de un reinicio, verifique que el destino esté listado como persistente en la pestaña *Destinos persistentes* de la GUI del iniciador iSCSI de Microsoft.
+* Si las aplicaciones que utilizan las LUN muestran errores al iniciar, compruebe que las aplicaciones estén configuradas para que dependan del servicio iSCSI.
+* Para las rutas FC a controladoras de almacenamiento que ejecutan ONTAP, compruebe que las zonas de los switches FC están configuradas mediante los WWPN de las LIF de destino, no con los WWPN de los puertos físicos del nodo.
+* Revise la link:hu_wuhu_71_rn.html["Notas de la versión"] Para las utilidades de host de Windows que compruebe los problemas conocidos. Las notas de la versión incluyen una lista de problemas conocidos y limitaciones.
+* Consulte la información de solución de problemas en la Guía de administración de SAN para la versión de ONTAP.
+* Búsqueda https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^] para problemas descubiertos recientemente.
++
+** En el campo Tipo de error en Búsqueda avanzada, seleccione *iSCSI - Windows* y luego seleccione *Ir*. Debe repetir la búsqueda de Bug Type *FCP -Windows*.
+
+
+* Recopila información sobre tu sistema.
+* Registre los mensajes de error que se muestran en el host o la consola del sistema de almacenamiento.
+* Recoja los archivos de registro del host y del sistema de almacenamiento.
+* Registre los síntomas del problema y todos los cambios realizados en el host o el sistema de almacenamiento justo antes de que se apareciera el problema.
+* Si no puede resolver el problema, póngase en contacto con el soporte técnico de NetApp para obtener ayuda.
+

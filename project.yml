@@ -57,6 +57,14 @@ sidebar:
         url: "/hu_wuhu_72.html"
       - title: Instale WUHU 7.1
         url: "/hu_wuhu_71.html"
+      - title: Actualice WUHU
+        url: "/hu_wuhu_upgrade.html"
+      - title: Repare y retire WUHU
+        url: "/hu_wuhu_repair_remove.html"
+      - title: Configure los valores del registro
+        url: "/hu_wuhu_hba_settings.html"
+      - title: Solucionar problemas
+        url: "/hu_wuhu_troubleshoot.html"
   - title: Configurar hosts con FCP e iSCSI
     entries:
     - title: Descripción general
