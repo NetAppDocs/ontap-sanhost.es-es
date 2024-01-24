@@ -504,9 +504,9 @@ nvme list-subsys /dev/<subsystem_name>
 [role="tabbed-block"]
 ====
 .NVMe/FC
+--
 *Ejemplo de salida*
 
---
 [listing, subs="+quotes"]
 ----
 # nvme list-subsys /dev/nvme1n1
