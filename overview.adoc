@@ -15,16 +15,21 @@ summary: Este contenido proporciona una guía específica para la distribución 
 :imagesdir: ./media/
 
 
-Este contenido proporciona las prácticas recomendadas específicas para el host y la versión con el fin de configurar rápidamente hosts SAN conectados al almacenamiento de ONTAP.
+[role="lead"]
+Los hosts SAN deben configurarse para accesos múltiples y con parámetros y ajustes específicos críticos para el correcto funcionamiento con los LUN de ONTAP.  La configuración del host varía según el sistema operativo del host y el protocolo.  La configuración correcta es importante para obtener el mejor rendimiento y una correcta recuperación tras fallos.
+
+Debe configurar los hosts SAN para que usen las utilidades del host SAN de NetApp. Las utilidades de host SAN le ayudan a gestionar y supervisar sus LUN y los adaptadores de bus de host (HBA). Por ejemplo, puede utilizar las utilidades de host SAN para recuperar una lista de todas las LUN asignadas a un host o para ver una lista de todos los atributos de una LUN específica asignada a un host. El soporte al cliente de NetApp también puede usar las utilidades del host SAN para recopilar información sobre la configuración si tiene un problema que requiera ayuda.
+
+NetApp recomienda usar el software de utilidades del host SAN si está disponible para el host SAN.
+
+Si es compatible con su configuración de SAN, también puede configurar su host para que utilice arranque SAN para simplificar la puesta en marcha y mejorar la escalabilidad. Mediante el arranque SAN, puede implementar varios servidores nuevos conectándolos a SAN y configurando los ajustes de inicio adecuados. Esto ahorra tiempo al eliminar la necesidad de instalar el sistema operativo en cada servidor de forma individual.
 
 Sus hosts SAN y el almacenamiento ONTAP pueden residir en las instalaciones, en el cloud, o en ambos.
 
 
 NOTE: En un entorno cloud, los hosts se denominan clientes normalmente. Toda la información específica sobre hosts de este contenido también se aplica a los clientes cloud.
 
-Por ejemplo, puede configurar el almacenamiento ONTAP en las instalaciones para conectarse a hosts SAN en las instalaciones o para conectarse a clientes de cloud SAN. También puede configurar link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] o. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^] Para conectarse a hosts SAN en las instalaciones o para conectarse a clientes cloud SAN.
-
-La configuración correcta es importante para obtener el mejor rendimiento y una correcta recuperación tras fallos.
+Por ejemplo, puede configurar el almacenamiento ONTAP en las instalaciones para conectarse a hosts SAN en las instalaciones o clientes cloud SAN. También puede configurar servicios de almacenamiento que se ejecuten en un entorno cloud como link:https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] o. link:https://docs.netapp.com/us-en/bluexp-fsx-ontap/index.html["Amazon FSX para ONTAP de NetApp"^] Para conectarse con hosts SAN en las instalaciones o clientes cloud SAN.
 
 .Información relacionada
 * La link:https://docs.netapp.com/us-en/ontap/san-config/index.html["Configuración de SAN ONTAP"^] Para su versión de ONTAP
