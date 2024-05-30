@@ -1,0 +1,298 @@
+---
+sidebar: sidebar 
+permalink: hu_rhel_94.html 
+keywords: host utilities, red hat, rhel, linux, 9.4, netapp, ontap, rhel 
+summary: Describe cómo utilizar Red Hat Enterprise Linux 9,4 con ONTAP 
+---
+= Utilice Red Hat Enterprise Linux 9,4 con ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar Red Hat Enterprise Linux 9,4 con ONTAP como destino.
+
+
+
+== Instale las utilidades unificadas de host de Linux
+
+El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] en un archivo .rpm de 64 bits.
+
+NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
+
+.Lo que necesitará
+Si tiene una versión de Linux Unified Host Utilities actualmente instalada, debe actualizarla o quitarla y luego usar los siguientes pasos para instalar la versión más reciente.
+
+.Pasos
+. Descargue el paquete de software Linux Unified Host Utilities de 64 bits de https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] al host.
+. Instale el paquete de software:
++
+`rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
+
+
+
+
+
+== Kit de herramientas SAN
+
+El kit de herramientas se instala automáticamente al instalar el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar LUN y HBA. La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
+
+En el siguiente ejemplo, la `sanlun lun show` Command muestra información de LUN.
+
+[source, cli]
+----
+# sanlun lun show all
+----
+*Ejemplo de salida:*
+
+[listing]
+----
+controller(7mode/E-Series)/            device     host               lun
+vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
+------------------------------------------------------------------------------------
+vs_147_32glpe	         /vol/vol1/lun	 /dev/sdb	Host11  FCP        10g	cDOT
+vs_147_32glpe	         /vol/vol1/lun	 /dev/sdx	Host11  FCP        10g	cDOT
+vs_147_32glpe	         /vol/vol2/lun	 /dev/sdbt  host12 FCP        10g	cDOT
+vs_147_32glpe	         /vol/vol2/lun	 /dev/sdax	host12  FCP        10g	cDOT
+----
+
+
+== Arranque SAN
+
+.Lo que necesitará
+Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para comprobar que el sistema operativo, el adaptador de bus de host, el firmware del adaptador de bus de host y el BIOS de arranque del adaptador de bus de host y la versión de ONTAP son compatibles.
+
+.Pasos
+. Asignar el LUN de arranque SAN al host.
+. Verifique que haya varias rutas disponibles.
++
+
+NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
+
+. Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
++
+Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
+
+. Reinicie el host para verificar que el inicio se haya realizado correctamente.
+
+
+
+
+== Accesos múltiples
+
+Para Red Hat Enterprise Linux (RHEL) 9,4, el `/etc/multipath.conf` el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. RHEL 9,4 se compila con todas las opciones de configuración necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
+
+Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP. Las siguientes secciones proporcionan una salida multivía de muestra para una LUN asignada a personas ASA y no ASA.
+
+
+
+=== Configuraciones de cabinas All SAN
+
+En todas las configuraciones de cabinas SAN (ASA), todas las rutas a un LUN determinado se mantienen activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
+
+.Ejemplo
+En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:
+
+[listing]
+----
+# multipath -ll
+3600a098038314359725d516c69733471 dm-22 NETAPP,LUN C-Mode
+size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+|- 11:0:3:0	sdau 66:224 active ready running
+|- 12:0:4:0	sdco 69:192 active ready running
+|- 12:0:0:0	sdav 66:240 active ready running
+`- 11:0:2:0	sdat 66:208 active ready running
+
+----
+
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+
+
+
+=== Configuraciones que no son ASA
+
+En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+
+.Ejemplo
+En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
+
+[listing]
+----
+# multipath -ll
+3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode
+size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 16:0:3:0  sdcg 69:64  active ready running
+| `- 10:0:0:0  sdb  8:16   active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+  |- 10:0:1:0  sdc  8:32   active ready running
+  `- 16:0:2:0  sdcf 69:48  active ready running
+----
+
+NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+
+
+
+== Configuración recomendada
+
+El sistema operativo RHEL 9,4 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para configuraciones de ASA y que no son ASA. Puede optimizar aún más el rendimiento de la configuración del host con los siguientes ajustes recomendados.
+
+La `multipath.conf` el archivo debe existir para que se inicie el daemon multivía, pero puede crear un archivo vacío de cero bytes mediante el siguiente comando:
+
+`touch /etc/multipath.conf`
+
+La primera vez que cree este archivo, es posible que deba habilitar e iniciar los servicios multivía:
+
+[listing]
+----
+# systemctl enable multipathd
+# systemctl start multipathd
+----
+* No es necesario añadir nada directamente al `multipath.conf` archivo, a menos que tenga dispositivos que no desea gestionar mediante multivía o que tenga la configuración existente que anula los valores predeterminados.
+* Para excluir dispositivos no deseados, agregue la siguiente sintaxis a la `multipath.conf` archivo .
++
+[listing]
+----
+blacklist {
+        wwid <DevId>
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+----
++
+Sustituya el `<DevId>` con la `WWID` cadena del dispositivo que desea excluir.
+
++
+.Ejemplo
+En este ejemplo, vamos a determinar el WWID de un dispositivo y agregar al `multipath.conf` archivo.
+
++
+.Pasos
+.. Ejecute el siguiente comando para determinar el WWID:
++
+[listing]
+----
+# /lib/udev/scsi_id -gud /dev/sda
+360030057024d0730239134810c0cb833
+----
++
+`sda` Es el disco SCSI local que necesitamos para agregarlo a la lista negra.
+
+.. Añada el `WWID` a la lista negra stanza en `/etc/multipath.conf`:
++
+[listing]
+----
+blacklist {
+     wwid   360030057024d0730239134810c0cb833
+     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+     devnode "^hd[a-z]"
+     devnode "^cciss.*"
+}
+----
+
+
+
+
+Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría sustituir la configuración predeterminada.
+
+La siguiente tabla demuestra lo crítico `multipathd` Parámetros para las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y alguno de estos parámetros se anula, deberán corregirse posteriormente stanzas en el `multipath.conf` Archivo que se aplica específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Estos valores predeterminados solo se deben anular en consulta con NetApp o un proveedor de SO y solo cuando se comprenda plenamente el impacto.
+
+[cols="2*"]
+|===
+| Parámetro | Ajuste 
+
+
+| detect_prio | sí 
+
+
+| dev_loss_tmo | "infinito" 
+
+
+| conmutación tras recuperación | inmediata 
+
+
+| fast_io_fail_tmo | 5 
+
+
+| funciones | "2 pg_init_retries 50" 
+
+
+| flush_on_last_del | "sí" 
+
+
+| manipulador_hardware | "0" 
+
+
+| no_path_retry | cola 
+
+
+| comprobador_de_rutas | "tur" 
+
+
+| política_agrupación_ruta | "group_by_prio" 
+
+
+| selector_de_rutas | "tiempo de servicio 0" 
+
+
+| intervalo_sondeo | 5 
+
+
+| prioridad | "ONTAP" 
+
+
+| producto | LUN.* 
+
+
+| retain_attached_hw_handler | sí 
+
+
+| rr_weight | "uniforme" 
+
+
+| nombres_descriptivos_usuario | no 
+
+
+| proveedor | NETAPP 
+|===
+.Ejemplo
+El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este caso, el `multipath.conf` el archivo define los valores para `path_checker` y.. `no_path_retry` Que no son compatibles con las LUN de ONTAP. Si no pueden eliminarse debido a que aún hay otras cabinas SAN conectadas al host, estos parámetros pueden corregirse específicamente para LUN de ONTAP con una stanza de dispositivo.
+
+[listing]
+----
+defaults {
+   path_checker      readsector0
+   no_path_retry     fail
+}
+
+devices {
+   device {
+      vendor         "NETAPP  "
+      product         "LUN.*"
+      no_path_retry    queue
+      path_checker     tur
+   }
+}
+----
+
+
+=== Configuración de KVM
+
+También puede utilizar los ajustes recomendados para configurar la máquina virtual basada en kernel (KVM). No es necesario realizar cambios para configurar KVM a medida que la LUN está asignada al hipervisor.
+
+
+
+== Problemas conocidos
+
+No existen problemas conocidos en la configuración del host FC para RHEL 9,4 con la versión ONTAP.
+
+|===
+|===
