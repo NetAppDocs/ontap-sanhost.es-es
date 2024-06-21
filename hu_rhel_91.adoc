@@ -302,5 +302,5 @@ La versión de RHEL 9,1 con ONTAP tiene los siguientes problemas conocidos:
 | ID de error de NetApp | Título | Descripción | ID Bugzilla 
 
 
-| 1508554 | La CLI de NetApp Linux Host Utilities requiere dependencias de paquetes de biblioteca adicionales para admitir la detección del adaptador de bus de host de Emulex | En RHEL 9.1, la CLI de utilidades host SAN Linux de NetApp `sanlun fcp show adapter -v` Error porque no se pueden encontrar las dependencias del paquete de biblioteca para admitir la detección de HBA. | N.A. 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554"^] | La CLI de NetApp Linux Host Utilities requiere dependencias de paquetes de biblioteca adicionales para admitir la detección del adaptador de bus de host de Emulex | En RHEL 9.1, la CLI de utilidades host SAN Linux de NetApp `sanlun fcp show adapter -v` Error porque no se pueden encontrar las dependencias del paquete de biblioteca para admitir la detección de HBA. | N.A. 
 |===

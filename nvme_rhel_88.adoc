@@ -358,10 +358,10 @@ nvme discover -t tcp -w host-traddr -a traddr
 +
 [listing]
 ----
-# nvme	discovery	-t   tcp    -w	192.168.111.79   -a	192.168.111.14
-# nvme	discovery	-t   tcp    -w	192.168.111.79   -a	192.168.111.15
-# nvme	discovery	-t   tcp    -w	192.168.211.79   -a	192.168.211.14
-# nvme	discovery	-t   tcp    -w	192.168.211.79   -a	192.168.211.15
+# nvme	discover	-t   tcp    -w	192.168.111.79   -a	192.168.111.14
+# nvme	discover	-t   tcp    -w	192.168.111.79   -a	192.168.111.15
+# nvme	discover	-t   tcp    -w	192.168.211.79   -a	192.168.211.14
+# nvme	discover	-t   tcp    -w	192.168.211.79   -a	192.168.211.15
 ----
 . Ejecute el `nvme connect-all` Comando en todos los LIF de destino iniciador NVMe/TCP admitidos en los nodos y establezca el período de tiempo de espera de pérdida de la controladora durante al menos 30 minutos o 1800 segundos:
 +

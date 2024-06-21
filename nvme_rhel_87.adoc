@@ -66,9 +66,13 @@ nvme-cli-1.16-5.el8.x86_64
 ----
 . Habilitar multivía en el kernel NVMe:
 +
+*ejemplo*
+
++
 [listing]
 ----
-# grubby --args=nvme_core.multipath=Y --update-kernel /boot/vmlinuz-4.18.0-425.3.1.el8.x86_64
+# grubby --args=nvme_core.multipath=Y --update-kernel
+/boot/vmlinuz-4.18.0-425.3.1.el8.x86_64
 ----
 . En el host, compruebe la cadena NQN del host en `/etc/nvme/hostnqn` Y verifique que coincida con la cadena del host NQN para el subsistema correspondiente en la cabina de ONTAP. Ejemplo:
 +

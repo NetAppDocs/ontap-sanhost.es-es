@@ -28,7 +28,7 @@ La siguiente compatibilidad está disponible para la configuración de host de N
 
 .Lo que necesitará
 * Compruebe que tiene 32GB adaptadores FC Emulex (EN1A, EN1B, EN1L, EN1M) o adaptadores FC de 64GB Gb (EN1N, EN1P) con firmware del adaptador 12.4.257.30 y versiones posteriores.
-* Si tiene una configuración de MetroCluster, NetApp recomienda cambiar el tiempo del APD (All Path Down) predeterminado NVMe/FC de AIX para admitir eventos de conmutación no planificada de MetroCluster y evitar que el sistema operativo AIX aplique un tiempo de espera de I/O más corto. Para obtener más información y los cambios recomendados en la configuración predeterminada, consulte el informe público 1553249.
+* Si tiene una configuración de MetroCluster, NetApp recomienda cambiar el tiempo de APD predeterminado de NVMe/FC de AIX para admitir eventos de conmutación no planificada de MetroCluster a fin de evitar que el sistema operativo AIX aplique un tiempo de espera de I/O más corto. Para obtener más información y los cambios recomendados en la configuración predeterminada, consulte NetApp Bugs Online - link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1553249["1553249"^].
 * De forma predeterminada, el valor de tiempo de espera de transición de acceso al espacio de nombres asimétrico (ANATT) para el sistema operativo del host AIX es de 30 segundos. IBM proporciona una solución provisional (ifix) que limita el valor ANATT a 60 segundos; debe instalar un ifix desde el sitio web de IBM para asegurarse de que todos los flujos de trabajo de ONTAP no son disruptivos.
 +
 
@@ -323,16 +323,16 @@ La configuración de host NVMe/FC para AIX con ONTAP tiene los siguientes proble
 | ID de Burt | Título | Descripción 
 
 
-| 1553249 | Tiempo de APD predeterminado de NVMe/FC de AIX que se modificará para admitir eventos de conmutación de sitios no planificados de MCC | De manera predeterminada, los sistemas operativos AIX utilizan un valor de tiempo de espera APD de 20sec para NVMe/FC.  Sin embargo, los flujos de trabajo de conmutación por error automática no planificada (AUSO) de ONTAP MetroCluster y los flujos de trabajo de conmutación iniciados por tiebreaker pueden tardar un poco más que la ventana de tiempo de espera APD, lo cual produce errores de I/O. 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1553249["1553249"^] | Tiempo de APD predeterminado de NVMe/FC de AIX que se modificará para admitir eventos de conmutación de sitios no planificados de MCC | De manera predeterminada, los sistemas operativos AIX utilizan un valor de tiempo de espera APD de 20sec para NVMe/FC.  Sin embargo, los flujos de trabajo de conmutación por error automática no planificada (AUSO) de ONTAP MetroCluster y los flujos de trabajo de conmutación iniciados por tiebreaker pueden tardar un poco más que la ventana de tiempo de espera APD, lo cual produce errores de I/O. 
 
 
-| 1546017 | NVMe/FC de AIX limita ANATT a 60s, en lugar de 120s, como anuncia ONTAP | ONTAP anuncia el tiempo de espera de transición de ANA (acceso asimétrico al espacio de nombres) en la identificación de la controladora en 120sec. Actualmente, con ifix, AIX lee el tiempo de espera de transición ANA desde el controlador Identify, pero lo sujeta efectivamente a 60sec si está por encima de ese límite. 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1546017["1546017"^] | NVMe/FC de AIX limita ANATT a 60s, en lugar de 120s, como anuncia ONTAP | ONTAP anuncia el tiempo de espera de transición de ANA (acceso asimétrico al espacio de nombres) en la identificación de la controladora en 120sec. Actualmente, con ifix, AIX lee el tiempo de espera de transición ANA desde el controlador Identify, pero lo sujeta efectivamente a 60sec si está por encima de ese límite. 
 
 
-| 1541386 | NVMe/FC de AIX detecta EIO después de la caducidad de ANATT | En cualquier evento de conmutación al nodo de respaldo de almacenamiento (SFO), si la transición ANA(acceso asimétrico al espacio de nombres) supera el límite de tiempo de espera de transición de ANA en una ruta determinada, el host NVMe/FC de AIX produce un error de I/O a pesar de tener rutas alternativas disponibles en buen estado para el espacio de nombres. 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1541386["1541386"^] | NVMe/FC de AIX detecta EIO después de la caducidad de ANATT | En cualquier evento de conmutación al nodo de respaldo de almacenamiento (SFO), si la transición ANA(acceso asimétrico al espacio de nombres) supera el límite de tiempo de espera de transición de ANA en una ruta determinada, el host NVMe/FC de AIX produce un error de I/O a pesar de tener rutas alternativas disponibles en buen estado para el espacio de nombres. 
 
 
-| 1541380 | AIX NVMe/FC espera a que el ANATT medio/completo caduque antes de reanudar las operaciones de I/O después de ANA AEN | NVMe/FC de IBM AIX no admite algunas notificaciones asíncronas (AENs) que publica ONTAP. Este manejo de ANA no óptimo dará como resultado un rendimiento subóptimo durante las operaciones de SFO. 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1541380["1541380"^] | AIX NVMe/FC espera a que el ANATT medio/completo caduque antes de reanudar las operaciones de I/O después de ANA AEN | NVMe/FC de IBM AIX no admite algunas notificaciones asíncronas (AENs) que publica ONTAP. Este manejo de ANA no óptimo dará como resultado un rendimiento subóptimo durante las operaciones de SFO. 
 |===
 
 

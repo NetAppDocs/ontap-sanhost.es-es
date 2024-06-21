@@ -72,6 +72,6 @@ ubicado:
 [root@hostname ~]# sanlun fcp show adapter -v
 No se ha encontrado la biblioteca /usr/lib64/libHBAAPI.so
 Asegúrese de que el paquete que instala la biblioteca está instalado y cargado
-Consulte el informe público 1508554. 
+Consulte NetApp Bugs Online - link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554"^]. 
 |===
 link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^] proporciona información completa sobre la mayoría de los problemas conocidos, incluidas las soluciones alternativas sugeridas cuando sea posible.

@@ -217,13 +217,13 @@ De forma predeterminada, el sistema operativo AIX aplica un tiempo de espera de 
 
 
 
-== Compatibilidad con AIX con SM-BC
+== Compatibilidad de AIX con sincronización activa de SnapMirror
 
-A partir de ONTAP 9.11.1, AIX es compatible con SM-BC. Con una configuración AIX, el clúster primario es el clúster "activo".
+A partir de ONTAP 9.11.1, AIX es compatible con la sincronización activa de SnapMirror. Con una configuración AIX, el clúster primario es el clúster "activo".
 
 En una configuración AIX, las recuperaciones tras fallos son disruptivas. Con cada conmutación al nodo de respaldo, deberá realizar un nuevo análisis en el host para que se reanuden las operaciones de I/O.
 
-Para configurar AIX para SM-BC, consulte el artículo de la base de conocimientos link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/How_to_configure_an_AIX_host_for_SnapMirror_Business_Continuity_(SM-BC)["Cómo configurar un host AIX para la continuidad del negocio de SnapMirror (SM-BC)"^].
+Para configurar la sincronización activa de AIX para SnapMirror, consulte el artículo de la base de conocimientos link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/How_to_configure_an_AIX_host_for_SnapMirror_Business_Continuity_(SM-BC)["Cómo configurar un host AIX para la sincronización activa de SnapMirror"^].
 
 
 
@@ -236,11 +236,11 @@ IBM AIX 7,2 y/o PowerVM (VIOS 3,1) con la versión ONTAP tienen los siguientes p
 | ID de error de NetApp | Título | Descripción | ID de partner 
 
 
-| 1416221 | AIX 7200-05-01 encontró interrupción de I/o en discos iSCSI virtuales (VIOS 3.1.1.x) durante la recuperación tras fallos de almacenamiento | Se pueden producir interrupciones de E/S durante las operaciones de conmutación por error del almacenamiento en hosts AIX 7.2 TL5 de los discos iSCSI virtuales asignados a través del VIOS 3.1.1.x. De forma predeterminada, la `rw_timeout` El valor de los discos virtuales iSCSI (hdisk) en VIOC será de 45 segundos. Si se produce un retraso de I/o superior a 45 segundos durante la conmutación al respaldo del almacenamiento, es posible que se produzca un fallo de I/O. Para evitar esta situación, consulte la solución alternativa mencionada en BURT. Según IBM, después de aplicar APAR - IJ34739 (próxima versión), podemos cambiar dinámicamente el valor rw_TIMEOUT con `chdev` comando. | NA 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1416221["1416221"^] | AIX 7200-05-01 encontró interrupción de I/o en discos iSCSI virtuales (VIOS 3.1.1.x) durante la recuperación tras fallos de almacenamiento | Se pueden producir interrupciones de E/S durante las operaciones de conmutación por error del almacenamiento en hosts AIX 7.2 TL5 de los discos iSCSI virtuales asignados a través del VIOS 3.1.1.x. De forma predeterminada, la `rw_timeout` El valor de los discos virtuales iSCSI (hdisk) en VIOC será de 45 segundos. Si se produce un retraso de I/o superior a 45 segundos durante la conmutación al respaldo del almacenamiento, es posible que se produzca un fallo de I/O. Para evitar esta situación, consulte la solución alternativa mencionada en BURT. Según IBM, después de aplicar APAR - IJ34739 (próxima versión), podemos cambiar dinámicamente el valor rw_TIMEOUT con `chdev` comando. | NA 
 
 
-| 1414700 | AIX 7.2 TL04 encontró una interrupción de I/o en discos iSCSI virtuales (VIOS 3.1.1.x) durante la recuperación tras fallos de almacenamiento | Se pueden producir interrupciones de E/S durante las operaciones de conmutación por error del almacenamiento en hosts AIX 7.2 TL4 de los discos iSCSI virtuales asignados a través del VIOS 3.1.1.x. De forma predeterminada, la `rw_timeout` El valor del adaptador vSCSI en VIOC es de 45 segundos. Si se produce un retraso de I/o de más de 45 segundos durante una conmutación al respaldo del almacenamiento, es posible que se produzca un fallo de I/O. Para evitar esta situación, consulte la solución alternativa mencionada en BURT. | NA 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1414700["1414700"^] | AIX 7.2 TL04 encontró una interrupción de I/o en discos iSCSI virtuales (VIOS 3.1.1.x) durante la recuperación tras fallos de almacenamiento | Se pueden producir interrupciones de E/S durante las operaciones de conmutación por error del almacenamiento en hosts AIX 7.2 TL4 de los discos iSCSI virtuales asignados a través del VIOS 3.1.1.x. De forma predeterminada, la `rw_timeout` El valor del adaptador vSCSI en VIOC es de 45 segundos. Si se produce un retraso de I/o de más de 45 segundos durante una conmutación al respaldo del almacenamiento, es posible que se produzca un fallo de I/O. Para evitar esta situación, consulte la solución alternativa mencionada en BURT. | NA 
 
 
-| 1307653 | Ver problemas de E/S en VIOS 3.1.1.10 durante fallos SFO y E/S rectas | En los fallos de IO de VIOS 3.1.1 pueden verse en el disco cliente NPIV, que están respaldados por adaptadores FC de 16 GB. También, una `vfchost` El controlador puede llegar a un estado en el que deja de procesar solicitudes de I/o del cliente. La aplicación de IBM APAR IJ22290 IBM APAR IJ23222 solucionará el problema. | NA 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1307653["1307653"^] | Ver problemas de E/S en VIOS 3.1.1.10 durante fallos SFO y E/S rectas | En los fallos de IO de VIOS 3.1.1 pueden verse en el disco cliente NPIV, que están respaldados por adaptadores FC de 16 GB. También, una `vfchost` El controlador puede llegar a un estado en el que deja de procesar solicitudes de I/o del cliente. La aplicación de IBM APAR IJ22290 IBM APAR IJ23222 solucionará el problema. | NA 
 |===

@@ -214,13 +214,13 @@ De forma predeterminada, el sistema operativo AIX aplica un tiempo de espera de 
 
 
 
-== Compatibilidad con AIX con SM-BC
+== Compatibilidad de AIX con sincronización activa de SnapMirror
 
-A partir de ONTAP 9.11.1, AIX es compatible con SM-BC. Con una configuración AIX, el clúster primario es el clúster "activo".
+A partir de ONTAP 9.11.1, AIX es compatible con la sincronización activa de SnapMirror. Con una configuración AIX, el clúster primario es el clúster "activo".
 
 En una configuración AIX, las recuperaciones tras fallos son disruptivas. Con cada conmutación al nodo de respaldo, deberá realizar un nuevo análisis en el host para que se reanuden las operaciones de I/O.
 
-Para configurar AIX para SM-BC, consulte el artículo de la base de conocimientos link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/How_to_configure_an_AIX_host_for_SnapMirror_Business_Continuity_(SM-BC)["Cómo configurar un host AIX para la continuidad del negocio de SnapMirror (SM-BC)"^].
+Para configurar AIX para SM-BC, consulte el artículo de la base de conocimientos link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/How_to_configure_an_AIX_host_for_SnapMirror_Business_Continuity_(SM-BC)["Cómo configurar un host AIX para la sincronización activa de SnapMirror"^].
 
 
 

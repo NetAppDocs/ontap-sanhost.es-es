@@ -21,8 +21,8 @@ NVMe over Fabrics (NVMe-oF), incluido NVMe over Fibre Channel (NVMe/FC) y otros 
 
 Se ofrece la siguiente compatibilidad para la configuración del host de NVMe-oF para RHEL 9,4 con ONTAP:
 
-* Compatibilidad para NVMe sobre TCP (NVMe/TCP) además de NVMe/FC. El plugin de NetApp en el paquete nvme-cli nativo muestra detalles de ONTAP para espacios de nombres NVMe/FC y NVMe/TCP.
-* Uso del tráfico coexistente de NVMe y SCSI en el mismo host en un adaptador de bus de host (HBA) determinado, sin la configuración multivía explícita de dm para evitar la reclamación de espacios de nombres de NVMe.
+* Compatibilidad para NVMe sobre TCP (NVMe/TCP) además de NVMe/FC. El plugin de NetApp es en la versión nativa `nvme-cli` El paquete muestra detalles de ONTAP para espacios de nombres NVMe/FC y NVMe/TCP.
+* Uso del tráfico coexistente de NVMe y SCSI en el mismo host en un adaptador de bus de host (HBA) determinado sin la configuración multivía explícita de dm para evitar la reclamación de espacios de nombres de NVMe.
 
 
 Si quiere más información sobre las configuraciones compatibles, consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
@@ -296,7 +296,7 @@ NOTE: Esto no es aplicable a los hosts Qlogic NVMe/FC.
 
 == Configure NVMe/TCP
 
-NVMe/TCP no tiene una funcionalidad de conexión automática. Por lo tanto, necesitamos ejecutar la funcionalidad de conexión o conexión NVMe/TCP manualmente para detectar los subsistemas y los espacios de nombres NVMe/TCP.
+NVMe/TCP no tiene una funcionalidad de conexión automática. Por lo tanto, es necesario ejecutar la funcionalidad CONNECT o CONNECT-ALL manualmente para detectar los subsistemas y los espacios de nombres NVMe/TCP.
 
 Es posible usar el siguiente procedimiento para configurar NVMe/TCP.
 
@@ -446,7 +446,7 @@ nvme connect-all -t tcp -w host-traddr -a traddr
 
 
 
-NOTE: A partir de RHEL 9,4, la configuración predeterminada para NVMe/TCP `ctrl_loss_tmo` timeout desactivado, lo que significa que no hay límite en el número de reintentos (reintentos indefinidos). Por lo tanto, no es necesario configurar manualmente un determinado `ctrl_loss_tmo` duración de tiempo de espera cuando se utilizan los comandos nvme connect o nvme connect-all (opción -l ). Con este comportamiento predeterminado, las controladoras NVMe/TCP no experimentarán tiempos de espera en caso de un fallo de ruta y permanecerán conectadas de forma indefinida.
+NOTE: A partir de RHEL 9,4, la configuración predeterminada para NVMe/TCP `ctrl_loss_tmo` timeout desactivado, lo que significa que no hay límite en el número de reintentos (reintentos indefinidos). Por lo tanto, no es necesario configurar manualmente un determinado `ctrl_loss_tmo` duración del tiempo de espera al utilizar el `nvme connect` o. `nvme connect-all` comandos (opción -l ). Gracias a este comportamiento predeterminado, las controladoras NVMe/TCP no experimentan tiempos de espera en caso de un fallo de ruta y permanecen conectadas indefinidamente.
 
 
 
