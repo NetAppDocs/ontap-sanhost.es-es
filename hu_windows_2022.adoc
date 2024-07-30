@@ -94,7 +94,7 @@ NOTE: Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disp
 .Ejemplo
 En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/sin optimizar.
 
-image::nonasa.png[no asa]
+image::nonasa.png[Captura de pantalla de un LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas]
 
 
 
@@ -102,7 +102,7 @@ image::nonasa.png[no asa]
 
 Para la configuración de cabina All SAN (ASA), debe haber un grupo de rutas con prioridades únicas. Todas las rutas son activas/optimizadas; es decir, la controladora recibe servicio y la controladora envía I/o a todas las rutas activas.
 
-image::asa.png[ASA]
+image::asa.png[Captura de pantalla de LUN de ONTAP con rutas activas/optimizadas]
 
 
 NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.

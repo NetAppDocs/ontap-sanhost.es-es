@@ -293,6 +293,3 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 == Problemas conocidos
 
 No existen problemas conocidos en la configuración del host FC para RHEL 9,4 con la versión ONTAP.
-
-|===
-|===

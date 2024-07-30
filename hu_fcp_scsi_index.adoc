@@ -15,4 +15,5 @@ summary:
 :imagesdir: ./media/
 
 
-Puede configurar determinados hosts SAN para FCP o iSCSI con ONTAP como destino. Primero debe instalar el paquete de utilidades de host del sistema operativo correspondiente, que incluye el kit de herramientas SAN y, a continuación, verificar la configuración multivía para los LUN de NetApp ONTAP.
+[role="lead"]
+Puede configurar determinados hosts SAN para FCP o iSCSI con ONTAP como destino. Primero se instala el paquete de utilidades del host del sistema operativo correspondiente, que incluye el kit de herramientas SAN. A continuación, se verifica la configuración multivía para los LUN de NetApp ONTAP.

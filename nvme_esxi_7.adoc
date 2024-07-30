@@ -15,6 +15,9 @@ summary: Describe cómo configurar NVMe-of para ESXi 7.x con ONTAP
 :imagesdir: ./media/
 
 
+[role="lead"]
+Es posible configurar NVMe over Fabrics (NVMe-oF) en hosts del iniciador que ejecutan ESXi 7.x y ONTAP como destino.
+
 
 
 == Compatibilidad

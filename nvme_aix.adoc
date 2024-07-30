@@ -338,4 +338,4 @@ La configuración de host NVMe/FC para AIX con ONTAP tiene los siguientes proble
 
 == Solucionar problemas
 
-Antes de solucionar problemas de algún fallo de NVMe/FC, compruebe que ejecute una configuración que cumpla con las especificaciones de la herramienta de matriz de interoperabilidad (IMT). Si sigue teniendo problemas, póngase en contacto con link:mysupport.netapp.com["Soporte de NetApp"^] para una clasificación adicional.
+Antes de solucionar problemas de algún fallo de NVMe/FC, compruebe que ejecute una configuración que cumpla con las especificaciones de la herramienta de matriz de interoperabilidad (IMT). Si aún tiene problemas, póngase en contacto con link:https://mysupport.netapp.com["Soporte de NetApp"^] para obtener más información sobre su clasificación.

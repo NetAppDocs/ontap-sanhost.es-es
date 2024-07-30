@@ -15,6 +15,7 @@ summary: Notas de la versión de HPUX Host Utilities 6.0
 :imagesdir: ./media/
 
 
+[role="lead"]
 En las notas de la versión se describen las nuevas funciones y mejoras, los problemas solucionados en la versión actual, los problemas y limitaciones conocidos y las precauciones importantes relacionadas con la configuración y gestión de su host específico de HP-UX con su sistema de almacenamiento ONTAP.
 
 HP-UX Host Utilities 6,0 sigue siendo compatible con las siguientes versiones:

@@ -13,7 +13,6 @@ summary: Cómo configurar el host NVMe-oF para RHEL 8,9 con ONTAP
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:source-highlighter: highlighter.js
 
 
 [role="lead"]
