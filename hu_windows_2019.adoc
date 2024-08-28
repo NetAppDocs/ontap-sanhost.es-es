@@ -92,7 +92,7 @@ Las rutas con las mayores prioridades son activo/optimizado, lo que significa qu
 Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora.
 
 
-NOTE: Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+NOTE: Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
 
 .Ejemplo
 En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/sin optimizar.

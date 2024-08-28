@@ -120,7 +120,7 @@ NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan 
 
 === Configuraciones que no son ASA
 
-En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
 
 .Ejemplo
 En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
@@ -151,7 +151,7 @@ La `multipath.conf` el archivo debe existir para que se inicie el daemon multiv�
 
 La primera vez que se crea este archivo, es posible que deba habilitar e iniciar los servicios multivía.
 
-No es necesario añadir nada directamente al `multipath.conf` archivo, a menos que tenga dispositivos que no desea gestionar mediante multivía o que tenga la configuración existente que anula los valores predeterminados.
+No es necesario agregar nada directamente al `multipath.conf` archivo, a menos que tenga dispositivos que no desea que se gestionen mediante rutas múltiples o que tenga una configuración existente que anule los valores predeterminados.
 
 Puede añadir la siguiente sintaxis al `multipath.conf` archivo para excluir los dispositivos no deseados.
 
@@ -182,7 +182,7 @@ devnode "^cciss.*"
 
 Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría estar anulando los valores predeterminados.
 
-La siguiente tabla muestra los parámetros multivía esenciales de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y alguno de estos parámetros se anula, deberán corregirse posteriormente stanzas en `multipath.conf` Que se aplican específicamente a LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Estos valores predeterminados solo se deben anular consultando con NetApp o con el proveedor de sistemas operativos y únicamente cuando se haya comprendido completamente el impacto.
+La siguiente tabla muestra los parámetros multivía esenciales de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deberán corregirse con posterioridad en `multipath.conf` el caso concreto a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2"]
 |===

@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: nvme_ol_88.html 
-keywords: nvme, oracle linux, 8.8, host configuration 
-summary: Configuración de host de NVMe-oF para Oracle Linux 8,8 con ONTAP 
+permalink: nvme_ol_89.html 
+keywords: nvme, oracle linux, 8.9, host configuration 
+summary: Configuración de host de NVMe-oF para Oracle Linux 8,9 con ONTAP 
 ---
-= Configuración de host de NVMe-oF para Oracle Linux 8,8 con ONTAP
+= Configuración de host de NVMe-oF para Oracle Linux 8,9 con ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,13 +16,13 @@ summary: Configuración de host de NVMe-oF para Oracle Linux 8,8 con ONTAP
 
 
 [role="lead"]
-NVMe over Fabrics (NVMe-oF), incluido NVMe over Fibre Channel (NVMe/FC) y otros transportes, es compatible con Oracle Linux (OL) 8,8 con acceso asimétrico a espacio de nombres (ANA). En entornos de NVMe-oF, ANA es el equivalente a la multivía ALUA en entornos iSCSI y FC y se implementa con NVMe multivía en kernel.
+NVMe over Fabrics (NVMe-oF), incluido NVMe over Fibre Channel (NVMe/FC) y otros transportes, es compatible con Oracle Linux 8,9 con acceso asimétrico a espacio de nombres (ANA). En entornos de NVMe-oF, ANA es el equivalente a la multivía ALUA en entornos iSCSI y FC y se implementa con NVMe multivía en kernel.
 
-La siguiente compatibilidad está disponible para la configuración del host de NVMe-oF para OL 8,8 con ONTAP:
+Se ofrece la siguiente compatibilidad para la configuración del host de NVMe-oF para Oracle Linux 8,9 con ONTAP:
 
-* Compatibilidad para NVMe sobre TCP (NVMe/TCP) además de NVMe/FC. El plugin de NetApp es en la versión nativa `nvme-cli` El paquete muestra detalles de ONTAP para espacios de nombres NVMe/FC y NVMe/TCP.
-* Tanto el tráfico NVMe como SCSI pueden ejecutarse en el mismo host coexistente. Por lo tanto, para LUN SCSI, es posible configurar dm-multipath para dispositivos SCSI mpath, mientras que se puede utilizar NVMe multipath para configurar dispositivos de espacio de nombres NVMe-oF en el host.
-* No existe compatibilidad alguna con NVMe-of. Por lo tanto, no existe compatibilidad con una utilidad de host para NVMe-oF en un host OL 8,8. Puede confiar en el complemento de NetApp que se incluye en la configuración nativa `nvme-cli` Paquete para todos los transportes NVMe-oF.
+* Compatibilidad para NVMe sobre TCP (NVMe/TCP) además de NVMe/FC. El plugin de NetApp del `nvme-cli` paquete nativo muestra los detalles de ONTAP para espacios de nombres NVMe/FC y NVMe/TCP.
+* Tanto el tráfico NVMe como SCSI pueden ejecutarse en el mismo host coexistente. Por lo tanto, es posible configurar dm-multipath para dispositivos SCSI mpath para LUN SCSI, mientras que se puede utilizar NVMe multivía para configurar dispositivos NVMe-oF espacio de nombres en el host.
+* No existe compatibilidad alguna con NVMe-of. Por lo tanto, no hay compatibilidad de utilidades de host para NVMe-oF en un host Oracle Linux 8,9. Puede confiar en el plugin de NetApp incluido en el `nvme-cli` paquete nativo para todos los transportes NVMe-oF.
 
 
 Si quiere más información sobre las configuraciones compatibles, consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
@@ -31,7 +31,7 @@ Si quiere más información sobre las configuraciones compatibles, consulte link
 
 == Funciones
 
-Oracle Linux 8,8 tiene habilitada la multivía NVMe en el núcleo para espacios de nombres NVMe de forma predeterminada, por lo tanto, no es necesario realizar configuraciones explícitas.
+Oracle Linux 8,9 tiene habilitada la multivía NVMe en el núcleo para espacios de nombres NVMe de forma predeterminada; por lo tanto, no es necesario realizar configuraciones explícitas.
 
 
 
@@ -43,10 +43,10 @@ Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 == Validación de versiones de software
 
-Puede utilizar el siguiente procedimiento para validar las versiones mínimas de software OL 8,8 admitidas.
+Validar las versiones mínimas de software Oracle Linux 8,9 admitidas.
 
 .Pasos
-. Instale OL 8,8 GA en el servidor. Una vez finalizada la instalación, compruebe que está ejecutando el kernel OL 8,8 GA especificado.
+. Instale Oracle Linux 8,9 GA en el servidor. Una vez finalizada la instalación, compruebe que está ejecutando el núcleo GA de Oracle Linux 8,9 especificado:
 +
 [listing]
 ----
@@ -58,7 +58,7 @@ Puede utilizar el siguiente procedimiento para validar las versiones mínimas de
 +
 [listing]
 ----
-5.15.0-101.103.2.1.el8uek.x86_64
+5.15.0-200.131.27.el8uek.x86_64
 ----
 . Instale el `nvme-cli` paquete:
 +
@@ -72,9 +72,9 @@ Puede utilizar el siguiente procedimiento para validar las versiones mínimas de
 +
 [listing]
 ----
-nvme-cli-1.16-7.el8.x86_64
+nvme-cli-1.16-9.el8.x86_64
 ----
-. En el host Oracle Linux 8,8, compruebe el `hostnqn` cadena en `/etc/nvme/hostnqn`:
+. En el host Oracle Linux 8,9, compruebe `hostnqn` la cadena en `/etc/nvme/hostnqn`:
 +
 [listing]
 ----
@@ -86,13 +86,13 @@ nvme-cli-1.16-7.el8.x86_64
 +
 [listing]
 ----
-nqn.2014-08.org.nvmexpress:uuid:bc59d14c-47f3-11eb-b93c-3a68dd48673f
+nqn.2014-08.org.nvmexpress:uuid:edd38060-00f7-47aa-a9dc-4d8ae0cd969a
 ----
 . Compruebe que el `hostnqn` la cadena coincide con `hostnqn` Cadena para el subsistema correspondiente en la cabina de ONTAP:
 +
 [listing]
 ----
-::> vserver nvme subsystem host show -vserver vs_ol_nvme
+::> vserver nvme subsystem host show -vserver vs_nvme177
 ----
 +
 *Ejemplo de salida:*
@@ -102,7 +102,7 @@ nqn.2014-08.org.nvmexpress:uuid:bc59d14c-47f3-11eb-b93c-3a68dd48673f
 ----
 Vserver     Subsystem          Host NQN
 ----------- --------------- ----------------------------------------------------------
-vs_nvme207   nvme_ss_ol_1    nqn.2014-08.org.nvmexpress:uuid:bc59d14c-47f3-11eb-b93c-3a68dd48673f
+vs_nvme177  nvme_ss_ol_1       nqn.2014-08.org.nvmexpress:uuid:edd38060-00f7-47aa-a9dc-4d8ae0cd969a
 ----
 +
 
@@ -131,7 +131,7 @@ Reinicie el daemon multipathd ejecutando un `systemctl restart multipathd` coman
 
 == Configure NVMe/FC
 
-Puede configurar NVMe/FC para adaptadores Broadcom/Emulex o adaptadores Marvell/Qlogic.
+Configure NVMe/FC para adaptadores Broadcom/Emulex o adaptadores Marvell/Qlogic.
 
 [role="tabbed-block"]
 ====
@@ -208,6 +208,9 @@ Online
 Online
 ----
 +
+.Muestra el ejemplo
+[%collapsible]
+=====
 [listing]
 ----
 # cat /sys/class/scsi_host/host*/nvme_info
@@ -233,15 +236,15 @@ LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
 Total FCP Cmpl 000000002e14f170 Issue 000000002e14f17a OutIO 000000000000000a
 abort 000016bb noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
 FCP CMPL: xb 00001f50 Err 0000d9f8
-
 ----
+=====
 
 
 --
 .Adaptador FC Marvell/QLogic para NVMe/FC
 --
 .Pasos
-. El controlador de la bandeja de entrada nativa qla2xxx que se incluye en el kernel OL 8,8 GA tiene las últimas correcciones esenciales para la compatibilidad con ONTAP. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
+. El controlador de bandeja de entrada nativa qla2xxx incluido en el kernel GA de Oracle Linux 8,9 tiene las últimas correcciones esenciales para la compatibilidad con ONTAP. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
 +
 [listing]
 ----
@@ -291,7 +294,7 @@ NOTE: Esto no es aplicable a los hosts Qlogic NVMe/FC.
 
 == Configure NVMe/TCP
 
-NVMe/TCP no tiene la funcionalidad de conexión automática. Por lo tanto, si una ruta deja de funcionar y no se restablece en el tiempo de espera predeterminado de 10 minutos, no se puede volver a conectar automáticamente NVMe/TCP. Para evitar que se agote el tiempo de espera, debe definir el período de reintento para los eventos de conmutación por error en al menos 30 minutos.
+NVMe/TCP no tiene la funcionalidad de conexión automática. Por lo tanto, si una ruta deja de funcionar y no se restablece en el tiempo de espera predeterminado de 10 minutos, no se puede volver a conectar automáticamente NVMe/TCP. Para evitar esta situación, debe establecer el período de reintento para los eventos de conmutación por error del almacenamiento mediante el siguiente procedimiento.
 
 .Pasos
 . Compruebe que el puerto del iniciador pueda recuperar los datos de la página de registro de detección en las LIF NVMe/TCP admitidas:
@@ -301,9 +304,9 @@ NVMe/TCP no tiene la funcionalidad de conexión automática. Por lo tanto, si un
 nvme discover -t tcp -w host-traddr -a traddr
 ----
 +
-*Ejemplo de salida:*
-
-+
+.Muestra el resultado de ejemplo
+[%collapsible]
+====
 [listing]
 ----
 #  nvme discover -t tcp -w 192.168.6.13 -a 192.168.6.15
@@ -349,9 +352,8 @@ subnqn: nqn.1992-08.com.netapp:sn.1c6ac66338e711eda41dd039ea3ad566:subsystem.hos
 traddr: 192.168.6.17
 sectype: none
 ..........
-
-
 ----
+====
 . Compruebe que las otras combinaciones de LIF iniciador-objetivo NVMe/TCP puedan recuperar correctamente los datos de la página del registro de detección:
 +
 [listing]
@@ -364,16 +366,16 @@ nvme discover -t tcp -w host-traddr -a traddr
 +
 [listing]
 ----
-# nvme discover -t tcp -w 192.168.5.13 -a 192.168.5.15
-# nvme discover -t tcp -w 192.168.5.13 -a 192.168.5.17
-# nvme discover -t tcp -w 192.168.6.13 -a 192.168.6.15
-# nvme discover -t tcp -w 192.168.6.13 -a 192.168.6.17
+# nvme discover -t tcp -w 192.168.6.1 -a 192.168.6.10
+# nvme discover -t tcp -w 192.168.6.1 -a 192.168.6.11
+# nvme discover -t tcp -w 192.168.5.1 -a 192.168.5.10
+# nvme discover -t tcp -w 192.168.5.1 -a 192.168.5.11
 ----
-. Ejecute el `nvme connect-all` Comando en todos los LIF de destino iniciador NVMe/TCP admitidos en los nodos y establezca el período de tiempo de espera de pérdida de la controladora durante al menos 30 minutos o 1800 segundos:
+. Ejecute el `nvme connect-all` Comando en todos los LIF objetivo iniciador NVMe/TCP admitidos entre los nodos:
 +
 [listing]
 ----
-nvme connect-all -t tcp -w host-traddr -a traddr -l 1800
+nvme connect-all -t tcp -w host-traddr -a traddr -l <ctrl_loss_timeout_in_seconds>
 ----
 +
 *Ejemplo de salida:*
@@ -381,11 +383,15 @@ nvme connect-all -t tcp -w host-traddr -a traddr -l 1800
 +
 [listing]
 ----
-# nvme connect-all -t tcp -w 192.168.5.13 -a 192.168.5.15 -l 1800
-# nvme connect-all -t tcp -w 192.168.5.13 -a 192.168.5.17 -l 1800
-# nvme connect-all -t tcp -w 192.168.6.13 -a 192.168.6.15 -l 1800
-# nvme connect-all -t tcp -w 192.168.6.13 -a 192.168.6.17 -l 1800
+#	nvme	connect-all	-t	tcp	-w	192.168.5.1	-a	192.168.5.10	-l -1
+#	nvme	connect-all	-t	tcp	-w	192.168.5.1	-a	192.168.5.11 	-l -1
+#	nvme	connect-all	-t	tcp	-w	192.168.6.1	-a	192.168.6.10	-l -1
+#	nvme	connect-all	-t	tcp	-w	192.168.6.1	-a	192.168.6.11	-l -1
 ----
++
+
+NOTE: NetApp recomienda configurar el `ctrl-loss-tmo` opción a. `-1` De este modo, el iniciador NVMe/TCP intenta volver a conectarse de forma indefinida en caso de pérdida de ruta.
+
 
 
 
@@ -479,12 +485,13 @@ nvme list-subsys /dev/nvme1n22
 
 [listing]
 ----
-nvme-subsys1 - NQN=nqn.1992-   08.com.netapp:sn.68c036aaa3cf11edbb95d039ea243511:subsystem.tcp
+nvme-subsys0 - NQN=nqn.1992- 08.com.netapp: sn.44986b09cadc11eeb309d039eab31e9d:subsystem.ol_nvme
 \
-+- nvme2 tcp traddr=192.168.8.49,trsvcid=4420,host_traddr=192.168.8.1 live non-optimized
-+- nvme3 tcp traddr=192.168.8.48,trsvcid=4420,host_traddr=192.168.8.1 live non-optimized
-+- nvme6 tcp traddr=192.168.9.49,trsvcid=4420,host_traddr=192.168.9.1 live optimized
-+- nvme7 tcp traddr=192.168.9.48,trsvcid=4420,host_traddr=192.168.9.1 live optimized
++- nvme1 tcp traddr=192.168.5.11 trsvcid=4420 host_traddr=192.168.5.1 src_addr=192.168.5.1 live non-optimized
++- nvme2 tcp traddr=192.168.5.10 trsvcid=4420 host_traddr=192.168.5.1 src_addr=192.168.5.1 live optimized
++- nvme3 tcp traddr=192.168.6.11 trsvcid=4420 host_traddr=192.168.6.1 src_addr=192.168.6.1 live non-optimized
++- nvme4 tcp traddr=192.168.6.10 trsvcid=4420 host_traddr=192.168.6.1 src_addr=192.168.6.1 live  optimized
+
 
 ----
 --
@@ -503,21 +510,19 @@ nvme-subsys1 - NQN=nqn.1992-   08.com.netapp:sn.68c036aaa3cf11edbb95d039ea243511
 
 [listing]
 ----
-Device        Vserver   Namespace Path
------------------------ ------------------------------
-/dev/nvme0n1   vs_ol_nvme  /vol/ol_nvme_vol_1_1_0/ol_nvme_ns
-/dev/nvme0n2   vs_ol_nvme  /vol/ol_nvme_vol_1_0_0/ol_nvme_ns
-/dev/nvme0n3   vs_ol_nvme  /vol/ol_nvme_vol_1_1_1/ol_nvme_ns
+Device        Vserver     Namespace Path
+------------  ----------  -----------------
+/dev/nvme0n1	vs_nvme177	/vol/vol1/ns1
+/dev/nvme0n2	vs_nvme177	/vol/vol2/ns2
+/dev/nvme0n3	vs_nvme177	/vol/vol3/ns3
 
 
 
-
-
-NSID       UUID                                   Size
-------------------------------------------------------------
-1          72b887b1-5fb6-47b8-be0b-33326e2542e2   85.90GB
-2          04bf9f6e-9031-40ea-99c7-a1a61b2d7d08   85.90GB
-3          264823b1-8e03-4155-80dd-e904237014a4   85.90GB
+NSID     UUID                                   Size
+-------- -------------------------------------- -----------
+1	       72b887b1-5fb6-47b8-be0b-33326e2542e2	  85.90GB
+2	       04bf9f6e-9031-40ea-99c7-a1a61b2d7d08	  85.90GB
+3	       264823b1-8e03-4155-80dd-e904237014a4	  85.90GB
 
 
 
@@ -535,38 +540,33 @@ NSID       UUID                                   Size
 ----
 {
 "ONTAPdevices" : [
-    {
-        "Device" : "/dev/nvme0n1",
-        "Vserver" : "vs_ol_nvme",
-        "Namespace_Path" : "/vol/ol_nvme_vol_1_1_0/ol_nvme_ns",
-        "NSID" : 1,
-        "UUID" : "72b887b1-5fb6-47b8-be0b-33326e2542e2",
-        "Size" : "85.90GB",
-        "LBA_Data_Size" : 4096,
-        "Namespace_Size" : 20971520
-    },
-    {
-        "Device" : "/dev/nvme0n2",
-        "Vserver" : "vs_ol_nvme",
-        "Namespace_Path" : "/vol/ol_nvme_vol_1_0_0/ol_nvme_ns",
-        "NSID" : 2,
-        "UUID" : "04bf9f6e-9031-40ea-99c7-a1a61b2d7d08",
-        "Size" : "85.90GB",
-        "LBA_Data_Size" : 4096,
-        "Namespace_Size" : 20971520
-      },
-      {
-         "Device" : "/dev/nvme0n3",
-         "Vserver" : "vs_ol_nvme",
-         "Namespace_Path" : "/vol/ol_nvme_vol_1_1_1/ol_nvme_ns",
-         "NSID" : 3,
-         "UUID" : "264823b1-8e03-4155-80dd-e904237014a4",
-         "Size" : "85.90GB",
-         "LBA_Data_Size" : 4096,
-         "Namespace_Size" : 20971520
-       },
-  ]
+{
+"Device" : "/dev/nvme0n1", "Vserver" : "vs_nvme177",
+"Namespace_Path" : "/vol/vol1/ns1",
+"NSID" : 1,
+"UUID" : "72b887b1-5fb6-47b8-be0b-33326e2542e2", "Size" : "85.90GB",
+"LBA_Data_Size" : 4096,
+"Namespace_Size" : 5242880
+},
+{
+"Device" : "/dev/nvme0n2", "Vserver" : "vs_nvme177",
+"Namespace_Path" : "/vol/vol2/ns2",
+ "NSID" : 2,
+"UUID" : "04bf9f6e-9031-40ea-99c7-a1a61b2d7d08", "Size" : "85.90GB",
+"LBA_Data_Size" : 4096,
+"Namespace_Size" : 20971520
+},
+{
+"Device" : "/dev/nvme0n3", "Vserver" : "vs_nvme177",
+"Namespace_Path" : "/vol/vol3/ns3",
+ "NSID" : 3,
+"UUID" : "264823b1-8e03-4155-80dd-e904237014a4", "Size" : "85.90GB",
+"LBA_Data_Size" : 4096,
+"Namespace_Size" : 20971520
+},
+]
 }
+
 
 ----
 --
@@ -577,12 +577,30 @@ NSID       UUID                                   Size
 
 == Problemas conocidos
 
-La configuración de host de NVMe-oF para OL 8,8 con la versión ONTAP tiene los siguientes problemas conocidos:
+La configuración de host de NVMe-oF para Oracle Linux 8,9 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols=""20"]
+[cols="1a, 2a, 6a, 1a, options="]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
 
 
-| 1517321 | Los hosts NVMe-oF de Oracle Linux 8,8 crean PDCs duplicados | En los hosts OL 8,8 NVMe-oF, se crean las controladoras de detección persistente (PDCs) pasando `-p` la opción al `nvme discover` comando. Para una combinación de iniciador-destino determinada, `nvme discover` se espera que cada ejecución del comando cree un PDC. Sin embargo, a partir de OL 8.x, los hosts NVMe-oF crean PDCs duplicados. Esto desperdicia recursos tanto en el host como en el destino. | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118"^] 
+ a| 
+ID de error de NetApp
+ a| 
+Título
+ a| 
+Descripción
+ a| 
+ID Bugzilla
+
+
+
+ a| 
+link:https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1517321["1517321"^]
+ a| 
+Los hosts NVMe-oF de Oracle Linux 8,9 crean PDCs duplicados
+ a| 
+En los hosts NVMe-oF de Oracle Linux 8,9, las controladoras de detección persistente (PDCs) se crean pasando `-p` la opción al `nvme discover` comando. Para una combinación de iniciador-destino determinada, `nvme discover` se espera que cada ejecución del comando cree un PDC. Sin embargo, a partir de Oracle Linux 8.x, los hosts NVMe-oF crean duplicados. Esto desperdicia recursos tanto en el host como en el destino.
+ a| 
+https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118"^]
+
 |===

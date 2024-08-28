@@ -2,7 +2,7 @@
 :allow-uri-read: 
 
 
-Debería haber dos grupos de caminos con prioridades diferentes. Las rutas con las mayores prioridades son activo-optimizado, lo que significa que la controladora donde se encuentra el agregado presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+Debería haber dos grupos de caminos con prioridades diferentes. Las rutas con las mayores prioridades son activo-optimizado, lo que significa que la controladora donde se encuentra el agregado presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
 
 .Ejemplo
 En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizadas:

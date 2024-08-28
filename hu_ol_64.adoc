@@ -101,7 +101,7 @@ kernel /vmlinuz-3.8.13-68.1.2.el6uek.x86_64 ro root=/dev/mapper/vg_ibmx3550m4210
 ....
 . Utilice la `mkinitrd` comando para volver a crear la imagen initrd. Las versiones 6x y posteriores de Oracle utilizan el comando: `mkinitrd -f /boot/ initrd-"uname -r".img uname -r`O el comando: `dracut -f`
 . Reinicie el host.
-. Compruebe el resultado del `cat /proc/cmdline` comando para garantizar que la configuración se ha completado. Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP. Debería haber dos grupos de caminos con prioridades diferentes. Las rutas con las mayores prioridades son activo-optimizado, lo que significa que la controladora donde se encuentra el agregado presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas solo se usan cuando no hay rutas optimizadas disponibles.
+. Compruebe el resultado del `cat /proc/cmdline` comando para garantizar que se haya completado la configuración. Puede utilizar `multipath -ll` el comando para comprobar la configuración de sus LUN de ONTAP. Debería haber dos grupos de caminos con prioridades diferentes. Las rutas con las mayores prioridades son activo-optimizado, lo que significa que la controladora donde se encuentra el agregado presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
 
 
 .Ejemplo
@@ -183,7 +183,7 @@ blacklist {
 
 Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría estar anulando los valores predeterminados.
 
-La siguiente tabla demuestra lo crítico `multipathd` Parámetros para las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse con estrofas más adelante en el `multipath.conf` Archivo que se aplica específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe anular estos valores predeterminados en consulta con NetApp y/o el proveedor de SO y solo cuando comprenda completamente el impacto.
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===

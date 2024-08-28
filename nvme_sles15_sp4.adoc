@@ -221,18 +221,18 @@ cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 
 === Habilitar tamaño de I/o de 1 MB (opcional)
 
-ONTAP informa de un MDT (tamaño de transferencia de MAX Data) de 8 en los datos Identify Controller, lo que significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB. Sin embargo, para emitir solicitudes de I/O de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar el `lpfc` valor del `lpfc_sg_seg_cnt` parámetro a 256 desde el valor predeterminado de 64.
+ONTAP informa de un MDT (tamaño de transferencia de MAX Data) de 8 en los datos Identify Controller. Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB TB. Para emitir solicitudes de I/O de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar `lpfc` el valor `lpfc_sg_seg_cnt` del parámetro a 256 con respecto al valor predeterminado de 64.
 
 .Pasos
-. Ajuste la `lpfc_sg_seg_cnt` parámetro a 256.
+. Defina el `lpfc_sg_seg_cnt` parámetro en 256:
 +
 [listing]
 ----
 # cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. Ejecute un `dracut -f` y reinicie el host.
-. Compruebe que `lpfc_sg_seg_cnt` tiene 256.
+. Ejecute `dracut -f` un comando y reinicie el host:
+. Compruebe que `lpfc_sg_seg_cnt` es 256:
 +
 [listing]
 ----
@@ -577,7 +577,7 @@ A partir de ONTAP 9.11.1, puede crear un controlador de detección persistente (
 nvme discover -t <trtype> -w <host-traddr> -a <traddr>
 ----
 +
-.Resultado de ejemplo:
+.Mostrar resultado de ejemplo:
 [%collapsible]
 ====
 [listing, subs="+quotes"]
