@@ -20,7 +20,9 @@ sidebar:
     - title: Utilidades del host AIX
       entries:
       - title: Notas de la versión
-        url: "/hu_aix_61_rn.html"
+        url: "/hu_aix_rn.html"
+      - title: Instale AIX HU 7.0
+        url: "/hu-aix-70.html"
       - title: Instale AIX HU 6.1
         url: "/hu_aix_61.html"
       - title: Referencia de comandos de muestra
