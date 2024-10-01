@@ -182,7 +182,7 @@ blacklist {
 }
 ----
 .Ejemplo
-En este ejemplo, vamos a determinar el WWID de un dispositivo y agregar al `multipath.conf` archivo.
+El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipath.conf` archivo.
 
 .Pasos
 . Ejecute el siguiente comando para determinar el WWID:
@@ -210,7 +210,7 @@ blacklist {
 
 Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría sustituir la configuración predeterminada.
 
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deberán corregirse posteriormente mediante estrofas en `multipath.conf` el archivo aplicables específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===
@@ -301,13 +301,13 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 La versión de RHEL 6,9 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols="4*"]
+[cols="3*"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1067272["1067272"^] | El estado del puerto remoto en el host Emulex LPe32002 podría estar en estado "bloqueado" durante las operaciones de conmutación por error del almacenamiento | Durante las operaciones de conmutación por error del almacenamiento, es posible que determinados Estados del puerto remoto del host RHEL 6.9 con el adaptador LPe32002 tengan el estado "bloqueado". Como las interfaces lógicas se reducen cuando un nodo de almacenamiento está inactivo, el puerto remoto establece el estado del nodo de almacenamiento en "bloqueado". Sin embargo, cuando el nodo de almacenamiento vuelve a estar en estado óptimo, las interfaces lógicas también se activa y se espera que el estado del puerto remoto sea "en línea". Pero, en cierta ocasión, el puerto remoto sigue estando "bloqueado". Este estado se manifiesta como "defectuoso" en LAS LUN de la capa multivía. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1427496["427496"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1067272["1067272"^] | El estado del puerto remoto en el host Emulex LPe32002 podría estar en estado "bloqueado" durante las operaciones de conmutación por error del almacenamiento | Durante las operaciones de conmutación por error del almacenamiento, es posible que determinados Estados del puerto remoto del host RHEL 6.9 con el adaptador LPe32002 tengan el estado "bloqueado". Como las interfaces lógicas se reducen cuando un nodo de almacenamiento está inactivo, el puerto remoto establece el estado del nodo de almacenamiento en "bloqueado". Sin embargo, cuando el nodo de almacenamiento vuelve a estar en estado óptimo, las interfaces lógicas también se activa y se espera que el estado del puerto remoto sea "en línea". Pero, en cierta ocasión, el puerto remoto sigue estando "bloqueado". Este estado se manifiesta como "defectuoso" en LAS LUN de la capa multivía. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1076584["1076584"^] | Se producen volcados de firmware en el HBA QE8362 de Red Hat Enterprise Linux 6.9 QLogic durante las operaciones de conmutación por error de almacenamiento | Pueden producirse volcados de firmware durante las operaciones de conmutación al nodo de respaldo del almacenamiento en hosts Red Hat Enterprise Linux (RHEL) 6.9 con adaptadores de bus de host (HBA) QLE8362 de QLogic. Ocasionalmente se observan volcados de firmware. Los volcados de firmware pueden manifestarse como interrupción de la actividad de I/o en el host, que puede durar hasta 1200 segundos. Una vez que el adaptador finaliza el volcado de los núcleos del firmware, la operación I/o se reanuda con normalidad. No se requiere ningún otro procedimiento de recuperación en el host. Para indicar el volcado de firmware, se muestra el siguiente mensaje en /var/log/ archivo de mensaje: Kernel: Qlast2xxx [0000:0c:00.3]-d001:3: Volcado de firmware guardado en búfer temporal (3/ffffc90018b01000), indicadores de estado de volcado (0x3f) | link:https://bugzilla.redhat.com/show_bug.cgi?id=1438711["1438711"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1076584["1076584"^] | Se producen volcados de firmware en el HBA QE8362 de Red Hat Enterprise Linux 6.9 QLogic durante las operaciones de conmutación por error de almacenamiento | Pueden producirse volcados de firmware durante las operaciones de conmutación al nodo de respaldo del almacenamiento en hosts Red Hat Enterprise Linux (RHEL) 6.9 con adaptadores de bus de host (HBA) QLE8362 de QLogic. Ocasionalmente se observan volcados de firmware. Los volcados de firmware pueden manifestarse como interrupción de la actividad de I/o en el host, que puede durar hasta 1200 segundos. Una vez que el adaptador finaliza el volcado de los núcleos del firmware, la operación I/o se reanuda con normalidad. No se requiere ningún otro procedimiento de recuperación en el host. Para indicar el volcado de firmware, se muestra el siguiente mensaje en /var/log/ archivo de mensaje: Kernel: Qlast2xxx [0000:0c:00.3]-d001:3: Volcado de firmware guardado en búfer temporal (3/ffffc90018b01000), indicadores de estado de volcado (0x3f) 
 |===

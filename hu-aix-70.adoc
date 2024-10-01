@@ -43,7 +43,7 @@ Puede utilizar el https://mysupport.netapp.com/matrix/imt.jsp?components=65623%3
 
 
 
-NOTE: El paquete de software de utilidades del host AIX de NetApp está disponible en link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^]un archivo tar.gz comprimido. Debe instalar el kit de utilidades del host AIX mientras usa AIX MPIO con almacenamiento de NetApp ONTAP.
+NOTE: El paquete de software de utilidades del host AIX de NetApp está disponible en link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.0["Sitio de soporte de NetApp"^]un archivo tar.gz comprimido. Debe instalar el kit de utilidades del host AIX mientras usa AIX MPIO con almacenamiento de NetApp ONTAP.
 
 .Pasos
 . Inicie sesión en el host.
@@ -52,7 +52,7 @@ NOTE: El paquete de software de utilidades del host AIX de NetApp está disponib
 ** En un host de PowerVM, inicie sesión como *padmin* y, a continuación, introduzca el `oem_setup_env` comando para convertirse en un usuario root.
 
 
-. Vaya al https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab["Sitio de soporte de NetApp"^] y descargue el archivo comprimido que contiene las utilidades de host en un directorio del host.
+. Vaya al https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.0["Sitio de soporte de NetApp"^] y descargue el archivo comprimido que contiene las utilidades de host en un directorio del host.
 . Vaya al directorio que contiene la descarga.
 . Descomprima el archivo y extraiga el paquete de software del kit de herramientas SAN:
 +

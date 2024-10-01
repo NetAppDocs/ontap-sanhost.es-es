@@ -169,7 +169,7 @@ blacklist {
 }
 ----
 .Ejemplo
-En este ejemplo, vamos a determinar el WWID de un dispositivo y agregar al `multipath.conf` archivo.
+El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipath.conf` archivo.
 
 .Pasos
 . Ejecute el siguiente comando para determinar el WWID:
@@ -197,7 +197,7 @@ blacklist {
 
 Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría sustituir la configuración predeterminada.
 
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deberán corregirse posteriormente mediante estrofas en `multipath.conf` el archivo aplicables específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===
@@ -288,13 +288,13 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 La versión de RHEL 7,1 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols="4*"]
+[cols="3*"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=799323["799323"^] | Errores de host o ruta de Emulex FCoE (OCe10102-FX-D) observados durante las operaciones de conmutación por error de almacenamiento | Puede observar los errores de la ruta o el bloqueo del host en un host FCoE de Emulex 10G (OCe10102-FX-D) durante las operaciones de I/o con operaciones de conmutación por error de almacenamiento. En estos casos, puede que aparezca el siguiente mensaje: "El pool de buffers del controlador está vacío, IO ocupado y SCSI Layer I/o Abort Request Status" | link:https://bugzilla.redhat.com/show_bug.cgi?id=1061755["1061755"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=799323["799323"^] | Errores de host o ruta de Emulex FCoE (OCe10102-FX-D) observados durante las operaciones de conmutación por error de almacenamiento | Puede observar los errores de la ruta o el bloqueo del host en un host FCoE de Emulex 10G (OCe10102-FX-D) durante las operaciones de I/o con operaciones de conmutación por error de almacenamiento. En estos casos, puede que aparezca el siguiente mensaje: "El pool de buffers del controlador está vacío, IO ocupado y SCSI Layer I/o Abort Request Status" 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=836875["836875"^] | Las direcciones IP no siempre se asignan durante el arranque de un sistema operativo RHEL 7.0 instalado en un LUN multivía iSCSI | Al instalar root(/) en un LUN multipath de iSCSI, la dirección IP de las interfaces Ethernet se especifica en la línea de comandos del núcleo para que las direcciones IP se asignen antes de que se inicie el servicio iSCSI. Sin embargo, dracut no puede asignar direcciones IP a todos los puertos Ethernet durante el arranque, antes de que se inicie el servicio iSCSI. Esto provoca errores en el inicio de sesión de iSCSI en las interfaces sin direcciones IP. Verá que el servicio iSCSI intenta iniciar sesión varias veces, lo que provoca un retraso en el tiempo de arranque del sistema operativo. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1114966["1114966"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=836875["836875"^] | Las direcciones IP no siempre se asignan durante el arranque de un sistema operativo RHEL 7.0 instalado en un LUN multivía iSCSI | Al instalar root(/) en un LUN multipath de iSCSI, la dirección IP de las interfaces Ethernet se especifica en la línea de comandos del núcleo para que las direcciones IP se asignen antes de que se inicie el servicio iSCSI. Sin embargo, dracut no puede asignar direcciones IP a todos los puertos Ethernet durante el arranque, antes de que se inicie el servicio iSCSI. Esto provoca errores en el inicio de sesión de iSCSI en las interfaces sin direcciones IP. Verá que el servicio iSCSI intenta iniciar sesión varias veces, lo que provoca un retraso en el tiempo de arranque del sistema operativo. 
 |===

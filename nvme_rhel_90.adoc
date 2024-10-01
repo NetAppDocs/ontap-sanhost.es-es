@@ -458,10 +458,10 @@ NSID   UUID                               Size
 
 La configuración de host de NVMe-oF para RHEL 9,0 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols="10,30,30,10"]
+[cols="20,40,40"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Los hosts NVMe-of de RHEL 9.0 crean controladoras de detección persistente duplicadas | En los hosts NVMe over Fabrics (NVMe-of), es posible utilizar el comando "nvme Discover -p" para crear controladoras de detección persistente (PDCs). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta ONTAP 9.10.1 y Red Hat Enterprise Linux (RHEL) 9.0 con un host NVMe-of, se crea un PDC duplicado cada vez que se ejecuta "nvme Discover -p". Esto lleva a un uso innecesario de recursos tanto en el host como en el destino. | 2087000 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Los hosts NVMe-of de RHEL 9.0 crean controladoras de detección persistente duplicadas | En los hosts NVMe over Fabrics (NVMe-of), es posible utilizar el comando "nvme Discover -p" para crear controladoras de detección persistente (PDCs). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta ONTAP 9.10.1 y Red Hat Enterprise Linux (RHEL) 9.0 con un host NVMe-of, se crea un PDC duplicado cada vez que se ejecuta "nvme Discover -p". Esto lleva a un uso innecesario de recursos tanto en el host como en el destino. 
 |===

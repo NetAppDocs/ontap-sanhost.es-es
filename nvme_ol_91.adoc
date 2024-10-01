@@ -554,11 +554,11 @@ La configuración de host de NVMe-oF para OL 9,1 con la versión ONTAP tiene los
 
 [cols=""20"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| 1536937 | `nvme list-subsys` El comando imprime controladoras NVMe repetidas para un subsistema | La `nvme list-subsys` El comando debe mostrar una lista única de controladoras NVMe asociadas con un determinado subsistema. En Oracle Linux 9,1, el `nvme list-subsys` El comando muestra las controladoras NVMe con el respectivo estado de acceso asimétrico al espacio de nombres (ANA) de todos los espacios de nombres que pertenecen a un determinado subsistema. Sin embargo, sería útil mostrar entradas únicas de la controladora NVMe con el estado de la ruta si se enumera la sintaxis del comando del subsistema para un espacio de nombres determinado, ya que el estado de ANA es un atributo por espacio de nombres. | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=17998["17998"^] 
+| 1536937 | `nvme list-subsys` El comando imprime controladoras NVMe repetidas para un subsistema | La `nvme list-subsys` El comando debe mostrar una lista única de controladoras NVMe asociadas con un determinado subsistema. En Oracle Linux 9,1, el `nvme list-subsys` El comando muestra las controladoras NVMe con el respectivo estado de acceso asimétrico al espacio de nombres (ANA) de todos los espacios de nombres que pertenecen a un determinado subsistema. Sin embargo, sería útil mostrar entradas únicas de la controladora NVMe con el estado de la ruta si se enumera la sintaxis del comando del subsistema para un espacio de nombres determinado, ya que el estado de ANA es un atributo por espacio de nombres. 
 
 
-| 1539101 | Los hosts NVMe-oF de Oracle Linux 9,1 no pueden crear una controladora de detección persistente | En los hosts Oracle Linux 9,1 NVMe-oF, puede utilizar el `nvme discover -p` Comando para crear controladores de descubrimiento persistente (PDCs). Cuando se usa este comando, se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta Oracle Linux 9,1 en un host NVMe-oF, la creación de PDC produce un error cuando el `nvme discover -p` se ejecuta el comando. | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18196["18196"^] 
+| 1539101 | Los hosts NVMe-oF de Oracle Linux 9,1 no pueden crear una controladora de detección persistente | En los hosts Oracle Linux 9,1 NVMe-oF, puede utilizar el `nvme discover -p` Comando para crear controladores de descubrimiento persistente (PDCs). Cuando se usa este comando, se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta Oracle Linux 9,1 en un host NVMe-oF, la creación de PDC produce un error cuando el `nvme discover -p` se ejecuta el comando. 
 |===

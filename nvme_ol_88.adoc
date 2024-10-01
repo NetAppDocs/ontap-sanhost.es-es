@@ -581,8 +581,8 @@ La configuración de host de NVMe-oF para OL 8,8 con la versión ONTAP tiene los
 
 [cols=""20"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| 1517321 | Los hosts NVMe-oF de Oracle Linux 8,8 crean PDCs duplicados | En los hosts OL 8,8 NVMe-oF, se crean las controladoras de detección persistente (PDCs) pasando `-p` la opción al `nvme discover` comando. Para una combinación de iniciador-destino determinada, `nvme discover` se espera que cada ejecución del comando cree un PDC. Sin embargo, a partir de OL 8.x, los hosts NVMe-oF crean PDCs duplicados. Esto desperdicia recursos tanto en el host como en el destino. | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118"^] 
+| 1517321 | Los hosts NVMe-oF de Oracle Linux 8,8 crean PDCs duplicados | En los hosts OL 8,8 NVMe-oF, se crean las controladoras de detección persistente (PDCs) pasando `-p` la opción al `nvme discover` comando. Para una combinación de iniciador-destino determinada, `nvme discover` se espera que cada ejecución del comando cree un PDC. Sin embargo, a partir de OL 8.x, los hosts NVMe-oF crean PDCs duplicados. Esto desperdicia recursos tanto en el host como en el destino. 
 |===

@@ -451,10 +451,10 @@ NSID UUID                                   Size
 
 La configuración de host de NVMe-oF para RHEL 9,1 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols="10,30,30,10"]
+[cols="20,40,40"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| 1503468 | `nvme list-subsys` el comando devuelve una lista repetida de la controladora nvme para un subsistema determinado | La `nvme list-subsys` el comando debe devolver una lista exclusiva de controladoras nvme asociadas a un subsistema determinado. En RHEL 9.1, la `nvme list-subsys` El comando devuelve las controladoras nvme con su estado ANA correspondiente para todos los espacios de nombres que pertenecen a un subsistema dado. Sin embargo, el estado ANA es un atributo por espacio de nombres, por lo tanto, sería ideal mostrar entradas únicas de la controladora nvme con el estado path si enumera la sintaxis del comando del subsistema para un espacio de nombres determinado. | 2130106 
+| 1503468 | `nvme list-subsys` el comando devuelve una lista repetida de la controladora nvme para un subsistema determinado | La `nvme list-subsys` el comando debe devolver una lista exclusiva de controladoras nvme asociadas a un subsistema determinado. En RHEL 9.1, la `nvme list-subsys` El comando devuelve las controladoras nvme con su estado ANA correspondiente para todos los espacios de nombres que pertenecen a un subsistema dado. Sin embargo, el estado ANA es un atributo por espacio de nombres, por lo tanto, sería ideal mostrar entradas únicas de la controladora nvme con el estado path si enumera la sintaxis del comando del subsistema para un espacio de nombres determinado. 
 |===

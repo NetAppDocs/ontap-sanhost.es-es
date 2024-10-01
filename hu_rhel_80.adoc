@@ -169,7 +169,7 @@ blacklist {
 }
 ----
 .Ejemplo
-En este ejemplo, vamos a determinar el WWID de un dispositivo y agregar al `multipath.conf` archivo.
+El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipath.conf` archivo.
 
 .Pasos
 . Ejecute el siguiente comando para determinar el WWID:
@@ -197,7 +197,7 @@ blacklist {
 
 Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría sustituir la configuración predeterminada.
 
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deberán corregirse posteriormente mediante estrofas en `multipath.conf` el archivo aplicables específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===
@@ -288,25 +288,25 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 La versión de RHEL 8,0 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols="4*"]
+[cols="3*"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1238719["1238719"^] | Interrupción del kernel en RHEL8 con QLogic QLE2672 FC de 16 GB durante las operaciones de conmutación al nodo de respaldo de almacenamiento | Se pueden producir interrupciones en el kernel durante las operaciones de conmutación al nodo de respaldo del almacenamiento en un kernel Red Hat Enterprise Linux (RHEL) 8 con un adaptador de bus de host (HBA) QLE2672 de QLogic. La interrupción del kernel provoca el reinicio del sistema operativo. El reinicio provoca interrupciones en la aplicación y genera el archivo vmcore en /var/crash/directory si kdump está configurado. Utilice el archivo vmcore para identificar la causa del error. En este caso, la interrupción se encuentra en el módulo “kmem_cache_alloc+160”. Se registra en el archivo vmcore con la siguiente cadena: "[Exception RIP: Kmem_cache_alloc+160]". Reinicie el sistema operativo del host para recuperar el sistema operativo y, a continuación, reinicie la aplicación. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1710009["1710009"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1238719["1238719"^] | Interrupción del kernel en RHEL8 con QLogic QLE2672 FC de 16 GB durante las operaciones de conmutación al nodo de respaldo de almacenamiento | Se pueden producir interrupciones en el kernel durante las operaciones de conmutación al nodo de respaldo del almacenamiento en un kernel Red Hat Enterprise Linux (RHEL) 8 con un adaptador de bus de host (HBA) QLE2672 de QLogic. La interrupción del kernel provoca el reinicio del sistema operativo. El reinicio provoca interrupciones en la aplicación y genera el archivo vmcore en /var/crash/directory si kdump está configurado. Utilice el archivo vmcore para identificar la causa del error. En este caso, la interrupción se encuentra en el módulo “kmem_cache_alloc+160”. Se registra en el archivo vmcore con la siguiente cadena: "[Exception RIP: Kmem_cache_alloc+160]". Reinicie el sistema operativo del host para recuperar el sistema operativo y, a continuación, reinicie la aplicación. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1226783["1226783"^] | RHEL8 OS arranca en "modo de emergencia" cuando se asignan más de 204 dispositivos SCSI en todos los adaptadores de bus de host (HBA) de Fibre Channel (FC) | Si se asigna un host con más de 204 dispositivos SCSI durante un proceso de reinicio del sistema operativo, el sistema operativo RHEL8 no arranca en "modo normal" y entra en "modo de emergencia". Esto provoca que la mayoría de los servicios host no estén disponibles. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1690356["1690356"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1226783["1226783"^] | RHEL8 OS arranca en "modo de emergencia" cuando se asignan más de 204 dispositivos SCSI en todos los adaptadores de bus de host (HBA) de Fibre Channel (FC) | Si se asigna un host con más de 204 dispositivos SCSI durante un proceso de reinicio del sistema operativo, el sistema operativo RHEL8 no arranca en "modo normal" y entra en "modo de emergencia". Esto provoca que la mayoría de los servicios host no estén disponibles. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1230882["1230882"^] | No es posible crear una partición en un dispositivo multivía iSCSI durante la instalación de RHEL8. | Los dispositivos multivía para el LUN DE SAN iSCSI no aparecen en la selección del disco durante la instalación de RHEL 8. Por lo tanto, el servicio multivía no está activado en el dispositivo DE arranque SAN. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1709995["1709995"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1230882["1230882"^] | No es posible crear una partición en un dispositivo multivía iSCSI durante la instalación de RHEL8. | Los dispositivos multivía para el LUN DE SAN iSCSI no aparecen en la selección del disco durante la instalación de RHEL 8. Por lo tanto, el servicio multivía no está activado en el dispositivo DE arranque SAN. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1235998["1235998"^] | El comando "rescan-scsi-bus.sh -a" no analiza más de 328 dispositivos | Si un host Red Hat Enterprise Linux 8 se asigna con más de 328 dispositivos SCSI, el comando del sistema operativo host "rescan-scsi-bus.sh -a" sólo explora 328 dispositivos. El host no detecta ningún dispositivo asignado restante. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1709995["1709995"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1235998["1235998"^] | El comando "rescan-scsi-bus.sh -a" no analiza más de 328 dispositivos | Si un host Red Hat Enterprise Linux 8 se asigna con más de 328 dispositivos SCSI, el comando del sistema operativo host "rescan-scsi-bus.sh -a" sólo explora 328 dispositivos. El host no detecta ningún dispositivo asignado restante. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231087["1231087"^] | Los puertos remotos pasan a un estado bloqueado en RHEL8 con Emulex LPe16002 FC de 16 GB durante las operaciones de recuperación tras fallos de almacenamiento | Los puertos remotos pasan a un estado bloqueado en RHEL8 con Emulex LPe16002 Fibre Channel de 16 GB (FC) durante las operaciones de recuperación tras fallos de almacenamiento. Cuando el nodo de almacenamiento vuelve a su estado óptimo, también se up las LIF y el estado del puerto remoto debe leer "en línea". En ocasiones, es posible que el estado del puerto remoto siga siendo "bloqueado" o "no presente". Este estado puede llevar a una ruta "defectuosa" para las LUN en la capa multivía | link:https://bugzilla.redhat.com/show_bug.cgi?id=1702005["1702005"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231087["1231087"^] | Los puertos remotos pasan a un estado bloqueado en RHEL8 con Emulex LPe16002 FC de 16 GB durante las operaciones de recuperación tras fallos de almacenamiento | Los puertos remotos pasan a un estado bloqueado en RHEL8 con Emulex LPe16002 Fibre Channel de 16 GB (FC) durante las operaciones de recuperación tras fallos de almacenamiento. Cuando el nodo de almacenamiento vuelve a su estado óptimo, también se up las LIF y el estado del puerto remoto debe leer "en línea". En ocasiones, es posible que el estado del puerto remoto siga siendo "bloqueado" o "no presente". Este estado puede llevar a una ruta "defectuosa" para las LUN en la capa multivía 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231098["1231098"^] | Los puertos remotos transitan al estado bloqueado en RHEL8 con Emulex LPe32002 32 GB FC durante las operaciones de recuperación tras fallos de almacenamiento | Los puertos remotos pasan a un estado bloqueado en RHEL8 con Emulex LPe32002 32 GBFibre Channel (FC) durante las operaciones de recuperación tras fallos de almacenamiento. Cuando el nodo de almacenamiento vuelve a su estado óptimo, también se up las LIF y el estado del puerto remoto debe leer "en línea". En ocasiones, es posible que el estado del puerto remoto siga siendo "bloqueado" o "no presente". Este estado puede llevar a una ruta "defectuosa" para las LUN en la capa multivía. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1705573["1705573"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1231098["1231098"^] | Los puertos remotos transitan al estado bloqueado en RHEL8 con Emulex LPe32002 32 GB FC durante las operaciones de recuperación tras fallos de almacenamiento | Los puertos remotos pasan a un estado bloqueado en RHEL8 con Emulex LPe32002 32 GBFibre Channel (FC) durante las operaciones de recuperación tras fallos de almacenamiento. Cuando el nodo de almacenamiento vuelve a su estado óptimo, también se up las LIF y el estado del puerto remoto debe leer "en línea". En ocasiones, es posible que el estado del puerto remoto siga siendo "bloqueado" o "no presente". Este estado puede llevar a una ruta "defectuosa" para las LUN en la capa multivía. 
 |===

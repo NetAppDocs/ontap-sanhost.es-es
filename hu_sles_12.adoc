@@ -168,7 +168,7 @@ blacklist {
 }
 ----
 .Ejemplo
-En este ejemplo, vamos a determinar el WWID de un dispositivo y agregar al `multipath.conf` archivo.
+El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipath.conf` archivo.
 
 .Pasos
 . Ejecute el siguiente comando para determinar el WWID:
@@ -196,7 +196,7 @@ blacklist {
 
 Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría sustituir la configuración predeterminada.
 
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deberán corregirse posteriormente mediante estrofas en `multipath.conf` el archivo aplicables específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===
@@ -277,16 +277,16 @@ devices {
 
 La versión SLES 12 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols="4*"]
+[cols="3*"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=873555["873555"^] | el módulo scsi_dh_alua no se carga durante el inicio multipathd en el arranque local | scsi_dh_alua es un módulo de controlador de dispositivos ALUA de Linux. Esto no se carga durante el inicio de multipathd en el inicio local. Debido a que este controlador de dispositivos no se cargará si ALUA está habilitado en el lado de destino. | link:https://bugzilla.suse.com/show_bug.cgi?id=908529["908529"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=873555["873555"^] | el módulo scsi_dh_alua no se carga durante el inicio multipathd en el arranque local | scsi_dh_alua es un módulo de controlador de dispositivos ALUA de Linux. Esto no se carga durante el inicio de multipathd en el inicio local. Debido a que este controlador de dispositivos no se cargará si ALUA está habilitado en el lado de destino. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=863584["863584"^] | Aparece el mensaje "conflictivo device node '/dev/mapper/360xx' found" en la pantalla cuando se crea un dispositivo DM en SLES12 | Es posible que observe un error al crear un enlace a dispositivos DM en /dev/mapper dir en SLES 12 y vea los mensajes "se ha encontrado un nodo de dispositivo conflictivo '/dev/mapper/360xx'". | link:https://bugzilla.suse.com/show_bug.cgi?id=903001["903001"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=863584["863584"^] | Aparece el mensaje "conflictivo device node '/dev/mapper/360xx' found" en la pantalla cuando se crea un dispositivo DM en SLES12 | Es posible que observe un error al crear un enlace a dispositivos DM en /dev/mapper dir en SLES 12 y vea los mensajes "se ha encontrado un nodo de dispositivo conflictivo '/dev/mapper/360xx'". 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=847490["847490"^] | El daemon de multivía muestra errores de ruta en SLES 12 | Puede observar errores de ruta en el daemon SLES12 multivía durante la I/o con errores de almacenamiento o de estructura. | link:https://bugzilla.novell.com/show_bug.cgi?id=890854["890854"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=847490["847490"^] | El daemon de multivía muestra errores de ruta en SLES 12 | Puede observar errores de ruta en el daemon SLES12 multivía durante la I/o con errores de almacenamiento o de estructura. 
 |===

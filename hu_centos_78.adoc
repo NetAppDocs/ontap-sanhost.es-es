@@ -167,7 +167,7 @@ blacklist {
 }
 ----
 .Ejemplo
-En este ejemplo, vamos a determinar el WWID de un dispositivo y agregar al `multipath.conf` archivo.
+El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipath.conf` archivo.
 
 .Pasos
 . Ejecute el siguiente comando para determinar el WWID:
@@ -195,7 +195,7 @@ blacklist {
 
 Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría sustituir la configuración predeterminada.
 
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deberán corregirse posteriormente mediante estrofas en `multipath.conf` el archivo aplicables específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===
@@ -286,10 +286,10 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 La versión CentOS 7,8 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols="4*"]
+[cols="3*"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| 1440718 | Si se desasigna o se asigna una LUN sin realizar una detección repetida de SCSI, es posible que se dañen los datos del host. | Cuando se establece el parámetro de configuración multivía "disable_change_wwids" en SÍ, se deshabilita el acceso al dispositivo de ruta en caso de que se produzca un cambio WWID. El acceso multivía deshabilitará el acceso al dispositivo de ruta hasta que el WWID de la ruta se restaure al WWID del dispositivo multivía. Para obtener más información, consulte link:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/The_filesystem_corruption_on_iSCSI_LUN_on_the_Oracle_Linux_7["Base de conocimientos de NetApp: Daño en el sistema de archivos del LUN de iSCSI en Oracle Linux 7"^]. | N.A. 
+| 1440718 | Si se desasigna o se asigna una LUN sin realizar una detección repetida de SCSI, es posible que se dañen los datos del host. | Cuando se establece el parámetro de configuración multivía "disable_change_wwids" en SÍ, se deshabilita el acceso al dispositivo de ruta en caso de que se produzca un cambio WWID. El acceso multivía deshabilitará el acceso al dispositivo de ruta hasta que el WWID de la ruta se restaure al WWID del dispositivo multivía. Para obtener más información, consulte link:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/The_filesystem_corruption_on_iSCSI_LUN_on_the_Oracle_Linux_7["Base de conocimientos de NetApp: Daño en el sistema de archivos del LUN de iSCSI en Oracle Linux 7"^]. 
 |===

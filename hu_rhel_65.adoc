@@ -182,7 +182,7 @@ blacklist {
 }
 ----
 .Ejemplo
-En este ejemplo, vamos a determinar el WWID de un dispositivo y agregar al `multipath.conf` archivo.
+El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipath.conf` archivo.
 
 .Pasos
 . Ejecute el siguiente comando para determinar el WWID:
@@ -210,7 +210,7 @@ blacklist {
 
 Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría sustituir la configuración predeterminada.
 
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deberán corregirse posteriormente mediante estrofas en `multipath.conf` el archivo aplicables específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===
@@ -301,22 +301,22 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 La versión de RHEL 6,5 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols="4*"]
+[cols="3*"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=760515["760515"^] | Se observaron errores de ruta o bloqueos de host en el host SAN FC Qlogic de RHEL 6.5 8G durante las operaciones de recuperación tras fallos de almacenamiento | Se observaron errores de ruta o bloqueos de host en el host SAN FC Qlogic de RHEL 6.5 8G durante las operaciones de recuperación tras fallos de almacenamiento. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1033136["1033136"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=760515["760515"^] | Se observaron errores de ruta o bloqueos de host en el host SAN FC Qlogic de RHEL 6.5 8G durante las operaciones de recuperación tras fallos de almacenamiento | Se observaron errores de ruta o bloqueos de host en el host SAN FC Qlogic de RHEL 6.5 8G durante las operaciones de recuperación tras fallos de almacenamiento. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=758271["758271"^] | el firmware bnx2 no se carga al arrancar con initrd personalizado (dracut -f) | Los puertos del controlador Broadcom NetXtreme II Gigabit no harán ping debido a que el firmware bnx2 no se carga durante el arranque con initrd personalizado. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1007463["1007463"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=758271["758271"^] | el firmware bnx2 no se carga al arrancar con initrd personalizado (dracut -f) | Los puertos del controlador Broadcom NetXtreme II Gigabit no harán ping debido a que el firmware bnx2 no se carga durante el arranque con initrd personalizado. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=799394["799394"^] | RHEL 6U5: Se produce un bloqueo del host de 16 GB FC (LPe16002B-M6) de Emulex durante las operaciones de I/o con operaciones de recuperación tras fallos del almacenamiento | Se produce un bloqueo del host Emulex (LPe16002B-M6) DE 16 G durante las operaciones de I/o con operaciones de recuperación tras fallos de almacenamiento. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1063699["1063699"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=799394["799394"^] | RHEL 6U5: Se produce un bloqueo del host de 16 GB FC (LPe16002B-M6) de Emulex durante las operaciones de I/o con operaciones de recuperación tras fallos del almacenamiento | Se produce un bloqueo del host Emulex (LPe16002B-M6) DE 16 G durante las operaciones de I/o con operaciones de recuperación tras fallos de almacenamiento. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=786571["786571"^] | Los errores de rutas/bloqueos del host FCoE de QLogic se observan en RHEL 6.5 durante las operaciones de I/o con recuperación tras fallos de almacenamiento | Los errores de bloqueo/ruta del host FCoE (QLE8242) de QLogic se observan en RHEL 6.5 durante las operaciones de I/o con recuperación tras fallos de almacenamiento. En estos casos, es posible que aparezca el siguiente mensaje: "Se ha producido un tiempo de espera de cmd del buzón, cmd=0x54, mb[0]=0x54. Programar mensajes de interrupción de ISP" que provocan errores de acceso/bloqueo del host. | link:https://bugzilla.redhat.com/show_bug.cgi?id=1068619["1068619"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=786571["786571"^] | Los errores de rutas/bloqueos del host FCoE de QLogic se observan en RHEL 6.5 durante las operaciones de I/o con recuperación tras fallos de almacenamiento | Los errores de bloqueo/ruta del host FCoE (QLE8242) de QLogic se observan en RHEL 6.5 durante las operaciones de I/o con recuperación tras fallos de almacenamiento. En estos casos, es posible que aparezca el siguiente mensaje: "Se ha producido un tiempo de espera de cmd del buzón, cmd=0x54, mb[0]=0x54. Programar mensajes de interrupción de ISP" que provocan errores de acceso/bloqueo del host. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=801580["801580"^] | El host FC de 16 G de QLogic se bloquea o se producen errores de ruta en RHEL 6.5 durante las operaciones de I/o con operaciones de recuperación tras fallos de almacenamiento | Los retrasos de I/o de más de 600 segundos se observan en el host FC de 16 G de QLogic (QLE2672) durante las operaciones de recuperación tras fallos de almacenamiento. En estos casos, se muestra el siguiente mensaje: "Failed mbx[0]=54, mb[1]=0, mb[2]=76b9, mb[3]=5200, cmd=54" | link:https://bugzilla.redhat.com/show_bug.cgi?id=1068622["1068622"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=801580["801580"^] | El host FC de 16 G de QLogic se bloquea o se producen errores de ruta en RHEL 6.5 durante las operaciones de I/o con operaciones de recuperación tras fallos de almacenamiento | Los retrasos de I/o de más de 600 segundos se observan en el host FC de 16 G de QLogic (QLE2672) durante las operaciones de recuperación tras fallos de almacenamiento. En estos casos, se muestra el siguiente mensaje: "Failed mbx[0]=54, mb[1]=0, mb[2]=76b9, mb[3]=5200, cmd=54" 
 |===

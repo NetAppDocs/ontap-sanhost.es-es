@@ -183,7 +183,7 @@ blacklist {
 
 Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría estar anulando los valores predeterminados.
 
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===
@@ -270,12 +270,12 @@ NOTE: Para configurar Oracle Linux 6,9 Red Hat Enterprise Kernel (RHCK), utilice
 
 La versión Oracle Linux 6,9 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols="4*"]
+[cols="3*"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1082780["1082780"^] | Ocasionalmente se observan volcados de firmware en el hipervisor OL6.9 con la tarjeta QLE8362 | Durante las operaciones de conmutación por error del almacenamiento en el hipervisor OL6.9 con tarjeta QLE8362, se observan los volcados de firmware ocasionalmente. Los volcados de firmware pueden provocar una interrupción de I/o en el host que puede alcanzar mil segundos. Una vez que el adaptador completa el volcado de firmware, la operación de I/o se reanuda de forma normal. No se requiere ningún otro procedimiento de recuperación en el host. Para indicar el volcado de firmware, se muestra el siguiente mensaje en el archivo /var/log/message: Qla2xxx [0000:0c:00.3]-d001:3: Volcado de firmware guardado en búfer temporal (3/ffffc90008901000), indicadores de estado de volcado (0x3f). | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=16039["16039"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1082780["1082780"^] | Ocasionalmente se observan volcados de firmware en el hipervisor OL6.9 con la tarjeta QLE8362 | Durante las operaciones de conmutación por error del almacenamiento en el hipervisor OL6.9 con tarjeta QLE8362, se observan los volcados de firmware ocasionalmente. Los volcados de firmware pueden provocar una interrupción de I/o en el host que puede alcanzar mil segundos. Una vez que el adaptador completa el volcado de firmware, la operación de I/o se reanuda de forma normal. No se requiere ningún otro procedimiento de recuperación en el host. Para indicar el volcado de firmware, se muestra el siguiente mensaje en el archivo /var/log/message: Qla2xxx [0000:0c:00.3]-d001:3: Volcado de firmware guardado en búfer temporal (3/ffffc90008901000), indicadores de estado de volcado (0x3f). 
 |===
 
 NOTE: Para ver los problemas conocidos de Oracle Linux (kernel compatible con Red Hat), consulte link:hu_rhel_69.html#known-problems-and-limitations["problemas conocidos"] Para Red Hat Enterprise Linux (RHEL) 6.9.

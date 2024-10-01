@@ -152,7 +152,7 @@ blacklist {
 }
 ----
 .Ejemplo
-En este ejemplo, vamos a determinar el WWID de un dispositivo y agregar al `multipath.conf` archivo.
+El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipath.conf` archivo.
 
 .Pasos
 . Ejecute el siguiente comando para determinar el WWID:
@@ -180,7 +180,7 @@ blacklist {
 
 Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría sustituir la configuración predeterminada.
 
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deberán corregirse posteriormente mediante estrofas en `multipath.conf` el archivo aplicables específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===
@@ -264,25 +264,25 @@ NOTE: Para configurar Oracle Linux 7,0 Red Hat Enterprise Kernel (RHCK), utilice
 
 La versión Oracle Linux 7,0 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols="4*"]
+[cols="3*"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901558["901558"^] | OL7.0 : el host pierde todas las rutas a la lun y se bloquea debido al error "RSCN timeout" en OL 7.0 UEK r3U5 Beta en el host Emulex 8G(LPe12002) | Es posible que observe que el host Emulex 8G(LPe12002) se bloquea y hay una alta interrupción de I/o durante las operaciones de recuperación tras fallos de almacenamiento con I/O. Es posible que observe las rutas que no se están recuperando, lo cual es un resultado del tiempo de espera RSCN, debido al cual el host pierde todas las rutas y se bloquea. La probabilidad de golpear este problema es alta. | link:https://bugzilla.redhat.com/show_bug.cgi?id=14898["14898"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901558["901558"^] | OL7.0 : el host pierde todas las rutas a la lun y se bloquea debido al error "RSCN timeout" en OL 7.0 UEK r3U5 Beta en el host Emulex 8G(LPe12002) | Es posible que observe que el host Emulex 8G(LPe12002) se bloquea y hay una alta interrupción de I/o durante las operaciones de recuperación tras fallos de almacenamiento con I/O. Es posible que observe las rutas que no se están recuperando, lo cual es un resultado del tiempo de espera RSCN, debido al cual el host pierde todas las rutas y se bloquea. La probabilidad de golpear este problema es alta. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901557["901557"^] | OL 7.0: Interrupción de I/o elevada observada en el host SAN FC 8G (QLE2562) de QLogic durante las operaciones de recuperación tras fallos de almacenamiento con I/O. | Es posible que observe una interrupción elevada de I/o en el host FC 8G de QLogic (QLE2562) durante las operaciones de conmutación por error de almacenamiento con I/O. Las cancelaciones y el restablecimiento del dispositivo se manifiestan como interrupción de I/o en el host. La probabilidad de llegar a esta interrupción de I/o es alta. | link:https://bugzilla.redhat.com/show_bug.cgi?id=14894["14894"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901557["901557"^] | OL 7.0: Interrupción de I/o elevada observada en el host SAN FC 8G (QLE2562) de QLogic durante las operaciones de recuperación tras fallos de almacenamiento con I/O. | Es posible que observe una interrupción elevada de I/o en el host FC 8G de QLogic (QLE2562) durante las operaciones de conmutación por error de almacenamiento con I/O. Las cancelaciones y el restablecimiento del dispositivo se manifiestan como interrupción de I/o en el host. La probabilidad de llegar a esta interrupción de I/o es alta. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894766["894766"^] | OL7.0: Dracut no incluye el módulo scsi_dh_alua.ko en initramfs en UEKR3U5 alfa | Es posible que el módulo scsi_dh_alua no se cargue incluso después de agregar el parámetro "rdloaddriver=scsi_dh_alua" en la línea de comandos del kernel y crear Dracut. Como resultado, ALUA no está habilitado para los LUN de NetApp tal como se recomienda. | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=14860["14860"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894766["894766"^] | OL7.0: Dracut no incluye el módulo scsi_dh_alua.ko en initramfs en UEKR3U5 alfa | Es posible que el módulo scsi_dh_alua no se cargue incluso después de agregar el parámetro "rdloaddriver=scsi_dh_alua" en la línea de comandos del kernel y crear Dracut. Como resultado, ALUA no está habilitado para los LUN de NetApp tal como se recomienda. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894796["894796"^] | Anaconda muestra un mensaje de error de inicio de sesión iSCSI aunque los inicios de sesión se realizan correctamente durante la instalación de OL 7.0 OS | Cuando se instala OL 7.0, la pantalla de instalación de anaconda muestra que se produjo un error en el inicio de sesión iSCSI en varias IP de destino aunque los inicios de sesión iSCSI se hayan realizado correctamente. Anaconda muestra el siguiente mensaje de error: "Error de inicio de sesión de nodo". Este error solo se observa cuando se seleccionan varias IP de destino para el inicio de sesión iSCSI. Puede continuar con la instalación del sistema operativo haciendo clic en el botón "Aceptar". Este error no afecta negativamente a iSCSI ni a la instalación de OL 7.0 OS. | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=14870["14870"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894796["894796"^] | Anaconda muestra un mensaje de error de inicio de sesión iSCSI aunque los inicios de sesión se realizan correctamente durante la instalación de OL 7.0 OS | Cuando se instala OL 7.0, la pantalla de instalación de anaconda muestra que se produjo un error en el inicio de sesión iSCSI en varias IP de destino aunque los inicios de sesión iSCSI se hayan realizado correctamente. Anaconda muestra el siguiente mensaje de error: "Error de inicio de sesión de nodo". Este error solo se observa cuando se seleccionan varias IP de destino para el inicio de sesión iSCSI. Puede continuar con la instalación del sistema operativo haciendo clic en el botón "Aceptar". Este error no afecta negativamente a iSCSI ni a la instalación de OL 7.0 OS. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894771["894771"^] | OL7.0 : Anaconda no agrega argumento bootdev en la línea cmd del kernel para establecer la dirección IP para la instalación de iSCSI SANboot OS | Anaconda no añade un argumento bootdev en la línea de comandos del kernel donde se establece la dirección IPv4 durante la instalación del SO OL 7.0 en un LUN multipath iSCSI. Por este motivo, no se pueden asignar direcciones IP a ninguna de las interfaces Ethernet configuradas para establecer sesiones iSCSI con el subsistema de almacenamiento durante el arranque OL 7.0. Dado que no se establecen las sesiones iSCSI, el LUN raíz no se detecta cuando se inicia el sistema operativo y, por lo tanto, se produce un error en el arranque del sistema operativo. | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=14871["14871"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894771["894771"^] | OL7.0 : Anaconda no agrega argumento bootdev en la línea cmd del kernel para establecer la dirección IP para la instalación de iSCSI SANboot OS | Anaconda no añade un argumento bootdev en la línea de comandos del kernel donde se establece la dirección IPv4 durante la instalación del SO OL 7.0 en un LUN multipath iSCSI. Por este motivo, no se pueden asignar direcciones IP a ninguna de las interfaces Ethernet configuradas para establecer sesiones iSCSI con el subsistema de almacenamiento durante el arranque OL 7.0. Dado que no se establecen las sesiones iSCSI, el LUN raíz no se detecta cuando se inicia el sistema operativo y, por lo tanto, se produce un error en el arranque del sistema operativo. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=916501["916501"^] | Se produce un bloqueo del kernel host de QLogic 10G FCoE (QLE8152) durante las operaciones de conmutación por error del almacenamiento con I/O. | Puede observar un bloqueo del kernel en el módulo de controlador Qlogic en el host Qlogic FCoE de 10G (QLE8152). El bloqueo se produce durante las operaciones de conmutación por error de almacenamiento con I/O. La probabilidad de alcanzar este bloqueo es alta, lo que provoca una interrupción de I/o más prolongada en el host. | link:https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=15019["15019"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=916501["916501"^] | Se produce un bloqueo del kernel host de QLogic 10G FCoE (QLE8152) durante las operaciones de conmutación por error del almacenamiento con I/O. | Puede observar un bloqueo del kernel en el módulo de controlador Qlogic en el host Qlogic FCoE de 10G (QLE8152). El bloqueo se produce durante las operaciones de conmutación por error de almacenamiento con I/O. La probabilidad de alcanzar este bloqueo es alta, lo que provoca una interrupción de I/o más prolongada en el host. 
 |===

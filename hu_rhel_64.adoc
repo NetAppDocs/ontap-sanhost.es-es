@@ -182,7 +182,7 @@ blacklist {
 }
 ----
 .Ejemplo
-En este ejemplo, vamos a determinar el WWID de un dispositivo y agregar al `multipath.conf` archivo.
+El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipath.conf` archivo.
 
 .Pasos
 . Ejecute el siguiente comando para determinar el WWID:
@@ -210,7 +210,7 @@ blacklist {
 
 Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría sustituir la configuración predeterminada.
 
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deberán corregirse posteriormente mediante estrofas en `multipath.conf` el archivo aplicables específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===
@@ -301,10 +301,10 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 La versión de RHEL 6,4 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols="4*"]
+[cols="3*"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=673009["673009"^] | La creación de un sistema de archivos ext4 en bandas LV en 15 o más dispositivos multipath habilitados para descartar y con Thin Provisioning desencadena errores de núcleo "solicitudes en funcionamiento" | Se han observado errores de núcleo "solicitud por transferencia" cuando los usuarios intentan crear un sistema de archivos ext4 en dispositivos multirruta habilitados para desechar. Como resultado, la creación del sistema de archivos ext4 puede tardar más tiempo en completarse y puede producirse una interrupción ocasional. Este problema sólo se ha producido cuando los usuarios intentan crear el sistema de archivos ext4 en un LV seccionado a través de 15 o más dispositivos multirruta habilitados para descartar en sistemas que ejecutan Red Hat Enterprise Linux 6.x y Data ONTAP 8.1.3 y posterior funcionando en 7-Mode. El problema se debe a que el kernel intenta por error fusionar solicitudes de descarte, que actualmente no se admite en Red Hat Enterprise Linux 6.x. Cuando se produce este problema, se escriben en syslog varias instancias del siguiente mensaje (/var/log/messages): Kernel: blk: Request botched. Como resultado, la creación de un sistema de archivos puede tardar más tiempo en completarse de lo esperado. | link:https://bugzilla.redhat.com/show_bug.cgi?id=907844["907844"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=673009["673009"^] | La creación de un sistema de archivos ext4 en bandas LV en 15 o más dispositivos multipath habilitados para descartar y con Thin Provisioning desencadena errores de núcleo "solicitudes en funcionamiento" | Se han observado errores de núcleo "solicitud por transferencia" cuando los usuarios intentan crear un sistema de archivos ext4 en dispositivos multirruta habilitados para desechar. Como resultado, la creación del sistema de archivos ext4 puede tardar más tiempo en completarse y puede producirse una interrupción ocasional. Este problema sólo se ha producido cuando los usuarios intentan crear el sistema de archivos ext4 en un LV seccionado a través de 15 o más dispositivos multirruta habilitados para descartar en sistemas que ejecutan Red Hat Enterprise Linux 6.x y Data ONTAP 8.1.3 y posterior funcionando en 7-Mode. El problema se debe a que el kernel intenta por error fusionar solicitudes de descarte, que actualmente no se admite en Red Hat Enterprise Linux 6.x. Cuando se produce este problema, se escriben en syslog varias instancias del siguiente mensaje (/var/log/messages): Kernel: blk: Request botched. Como resultado, la creación de un sistema de archivos puede tardar más tiempo en completarse de lo esperado. 
 |===

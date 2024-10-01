@@ -397,10 +397,10 @@ Device      Vserver         Namespace Path             NSID UUID                
 
 La configuración de host de NVMe-oF para OL 8,3 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols="20, 20, 50, 20"]
+[cols="20,40,40"]
 |===
-| ID de error de NetApp | Título | Descripción | Bugzilla de Oracle 
+| ID de error de NetApp | Título | Descripción 
 
 
-| 1517321 | Los hosts Oracle Linux 8.3 NVMe-of crean controladoras de detección persistente duplicadas | En los hosts Oracle Linux 8.3 NVMe over Fabrics (NVMe-of), puede usar el `nvme discover -p` Comando para crear controladores de descubrimiento persistente (PDCs). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta ONTAP 9.10.1 y Oracle Linux 8.3 con un host NVMe-of, se crea un PDC duplicado cada vez `nvme discover -p` se ejecuta. Esto lleva a un uso innecesario de recursos tanto en el host como en el destino. | https://bugzilla.oracle.com/bugzilla/show_bug.cgi?id=18118["18118"^] 
+| 1517321 | Los hosts Oracle Linux 8.3 NVMe-of crean controladoras de detección persistente duplicadas | En los hosts Oracle Linux 8.3 NVMe over Fabrics (NVMe-of), puede usar el `nvme discover -p` Comando para crear controladores de descubrimiento persistente (PDCs). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si ejecuta ONTAP 9.10.1 y Oracle Linux 8.3 con un host NVMe-of, se crea un PDC duplicado cada vez `nvme discover -p` se ejecuta. Esto lleva a un uso innecesario de recursos tanto en el host como en el destino. 
 |===

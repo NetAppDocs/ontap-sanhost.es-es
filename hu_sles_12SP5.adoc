@@ -168,7 +168,7 @@ blacklist {
 }
 ----
 .Ejemplo
-En este ejemplo, vamos a determinar el WWID de un dispositivo y agregar al `multipath.conf` archivo.
+El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipath.conf` archivo.
 
 .Pasos
 . Ejecute el siguiente comando para determinar el WWID:
@@ -196,7 +196,7 @@ blacklist {
 
 Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría sustituir la configuración predeterminada.
 
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deberán corregirse posteriormente mediante estrofas en `multipath.conf` el archivo aplicables específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===
@@ -280,10 +280,10 @@ devices {
 
 La versión SLES 12 SP5 con ONTAP tiene los siguientes problemas conocidos:
 
-[cols="4*"]
+[cols="3*"]
 |===
-| ID de error de NetApp | Título | Descripción | ID Bugzilla 
+| ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1284293["1284293"^] | Se produce la interrupción del kernel en SLES12 SP5 con HBA FC de 8 GB QLE2562 de QLogic durante las operaciones de recuperación tras fallos de almacenamiento | La interrupción del kernel se produce durante las operaciones de recuperación tras fallos de almacenamiento en el kernel SLES12 SP5 con un adaptador de bus de host (HBA) Fibre Channel (FC) QLE2562 de QLogic. La interrupción del núcleo provoca el reinicio de SLES12 SP5, lo que provoca la interrupción de las aplicaciones. Si se activa el mecanismo kdump, la interrupción del kernel genera un archivo vmcore ubicado en el directorio /var/crash/. Compruebe el archivo vmcore para determinar la causa de la interrupción. Una conmutación por error del almacenamiento con un evento QLogic QLE2562 HBA afecta al módulo "THREAD_INFO: Ff8aedf723c2c0". Localice este evento en el archivo vmcore encontrándose la siguiente cadena: " [THREAD_INFO: Ff8aedf723c2c0]". Tras la interrupción del kernel, reinicie el sistema operativo del host para permitir la recuperación. A continuación, reinicie las aplicaciones. | link:http://bugzilla.suse.com/show_bug.cgi?id=1157966["1157966"^] 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1284293["1284293"^] | Se produce la interrupción del kernel en SLES12 SP5 con HBA FC de 8 GB QLE2562 de QLogic durante las operaciones de recuperación tras fallos de almacenamiento | La interrupción del kernel se produce durante las operaciones de recuperación tras fallos de almacenamiento en el kernel SLES12 SP5 con un adaptador de bus de host (HBA) Fibre Channel (FC) QLE2562 de QLogic. La interrupción del núcleo provoca el reinicio de SLES12 SP5, lo que provoca la interrupción de las aplicaciones. Si se activa el mecanismo kdump, la interrupción del kernel genera un archivo vmcore ubicado en el directorio /var/crash/. Compruebe el archivo vmcore para determinar la causa de la interrupción. Una conmutación por error del almacenamiento con un evento QLogic QLE2562 HBA afecta al módulo "THREAD_INFO: Ff8aedf723c2c0". Localice este evento en el archivo vmcore encontrándose la siguiente cadena: " [THREAD_INFO: Ff8aedf723c2c0]". Tras la interrupción del kernel, reinicie el sistema operativo del host para permitir la recuperación. A continuación, reinicie las aplicaciones. 
 |===
