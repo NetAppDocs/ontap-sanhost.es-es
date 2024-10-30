@@ -13,5 +13,5 @@ NOTE: Una vez que el sistema operativo host está activo y en ejecución en las 
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Reinicie el host para verificar que el inicio se haya realizado correctamente.
+. Reinicie el host para verificar que el inicio se ha realizado correctamente.
 

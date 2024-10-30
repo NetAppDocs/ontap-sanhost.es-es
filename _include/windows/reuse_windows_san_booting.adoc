@@ -5,7 +5,11 @@
 Si decide utilizar el arranque SAN, su configuración debe ser compatible. Es posible usar la herramienta de matriz de interoperabilidad de NetApp para verificar que el sistema operativo, HBA, el firmware de HBA y la versión de arranque de HBA y ONTAP son compatibles.
 
 . Asignar el LUN de arranque SAN al host.
-. Verifique que haya varias rutas disponibles. Recuerde que solo habrá varias rutas disponibles después de que el sistema operativo del host esté en funcionamiento en las rutas.
+. Verifique que haya varias rutas disponibles.
++
+
+NOTE: Las rutas múltiples solo quedan disponibles cuando el sistema operativo del host está activo y en ejecución en las rutas.
+
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN. Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 . Reinicie el host para verificar que el arranque se haya realizado correctamente.
 

@@ -26,8 +26,7 @@ El paquete de software NetApp Linux Unified Host Utilities está disponible en l
 
 NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
-.Lo que necesitará
-Si tiene una versión de Linux Unified Host Utilities actualmente instalada, debe actualizarla o quitarla y luego usar los siguientes pasos para instalar la versión más reciente.
+Si tiene una versión de Linux Unified Host Utilities instalada, debe actualizarla o quitarla y seguir estos pasos para instalar la versión más reciente.
 
 .Pasos
 . Descargue el paquete de software Linux Unified Host Utilities de 64 bits de https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] al host.
@@ -59,7 +58,7 @@ Resultado de ejemplo:
 ----
 controller(7mode/E-Series)/            device     host               lun
 vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
--------------------------------------------------------------------------
+------------------------------------------------------------------------------------
 data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
 data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
 data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
@@ -83,7 +82,7 @@ NOTE: Una vez que el sistema operativo host está activo y en ejecución en las 
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Reinicie el host para verificar que el inicio se haya realizado correctamente.
+. Reinicie el host para verificar que el inicio se ha realizado correctamente.
 
 
 
@@ -92,7 +91,9 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 Para Red Hat Enterprise Linux (RHEL) 8.7 la `/etc/multipath.conf` el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. RHEL 8.7 se ha compilado con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
 
-Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP. Las siguientes secciones proporcionan una salida multivía de muestra para una LUN asignada a personas ASA y no ASA.
+Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP.
+
+En las siguientes secciones se proporcionan ejemplos de salidas multivía para una LUN asignada a personas ASA y no ASA.
 
 
 
@@ -115,13 +116,13 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   |- 11:0:11:1  sdpt  131:304  active ready running
 ----
 
-NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
 
 
 
 === Configuraciones que no son ASA
 
-En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
+En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
 
 .Ejemplo
 En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
@@ -139,7 +140,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   |- 15:0:1:35 sdbx  68:176  active ready running
 ----
 
-NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
 
 
 
@@ -158,7 +159,7 @@ La primera vez que crea el `multipath.conf` archivo, es posible que deba habilit
 # chkconfig multipathd on
 # /etc/init.d/multipathd start
 ----
-No es necesario agregar nada directamente al `multipath.conf` archivo a menos que tenga dispositivos que no desea que se gestionen con acceso multivía o que tenga una configuración existente que anule los valores predeterminados. Para excluir los dispositivos no deseados, agregue la siguiente sintaxis al `multipath.conf` archivo, reemplazando <DevId> por la cadena WWID del dispositivo que desea excluir:
+No es necesario agregar nada directamente al `multipath.conf` archivo a menos que tenga dispositivos que no desee que se gestionen con acceso multivía o que tenga una configuración existente que anule los valores predeterminados. Para excluir los dispositivos no deseados, agregue la siguiente sintaxis al `multipath.conf` archivo, reemplazando <DevId> por la cadena WWID del dispositivo que desea excluir:
 
 [listing]
 ----
@@ -173,7 +174,7 @@ blacklist {
 El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipath.conf` archivo.
 
 .Pasos
-. Ejecute el siguiente comando para determinar el WWID:
+. Determine el WWID:
 +
 [listing]
 ----
@@ -181,7 +182,7 @@ El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipa
 360030057024d0730239134810c0cb833
 ----
 +
-`sda` Es el disco SCSI local que necesitamos para agregarlo a la lista negra.
+`sda` Es el disco SCSI local que desea agregar a la lista negra.
 
 . Añada el `WWID` a la lista negra stanza en `/etc/multipath.conf`:
 +

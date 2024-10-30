@@ -16,7 +16,7 @@ summary: Describe cómo configurar NVMe/FC para SUSE Linux Enterprise Server 15 
 
 
 [role="lead"]
-NVMe/FC es compatible con ONTAP 9.6 y versiones posteriores con SLES15 SP2. El host SLES15 SP2 puede ejecutar tráfico de NVMe/FC y FCP a través de los mismos puertos de adaptador de iniciador de Fibre Channel. Consulte link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] Para obtener una lista de controladoras y adaptadores de FC admitidos.
+Con SUSE Linux Enterprise Server 15 SP2, se admite NVMe/FC en ONTAP 9.6 y versiones posteriores. El host SUSE Linux Enterprise Server 15 SP2 puede ejecutar tráfico NVMe/FC y FCP a través de los mismos puertos de adaptador de iniciador de Fibre Channel. Consulte la link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obtener una lista de los adaptadores y controladoras de FC compatibles.
 
 Para obtener la lista más actual de las configuraciones y versiones compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
 
@@ -31,9 +31,9 @@ Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 
 
-== Habilite NVMe/FC en SLES15 SP2
+== Active NVMe/FC en SUSE Linux Enterprise Server 15 SP2
 
-. Actualice a la versión de kernel MU de SLES15 SP2 recomendada.
+. Actualice a la versión recomendada del núcleo MU de SUSE Linux Enterprise Server 15 SP2.
 . Actualice el paquete nvme-cli nativo.
 +
 Este paquete nvme-cli nativo contiene los scripts de conexión automática NVMe/FC, la regla udev de ONTAP que permite el equilibrio de carga round-robin para NVMe multivía, así como el plugin de NetApp para espacios de nombres ONTAP.
@@ -44,7 +44,7 @@ Este paquete nvme-cli nativo contiene los scripts de conexión automática NVMe/
 # rpm -qa|grep nvme-cli
 nvme-cli-1.10-2.38.x86_64
 ----
-. En el host SLES15 SP2, compruebe la cadena NQN del host en `/etc/nvme/hostnqn` Y verifique que coincida con la cadena del host NQN para el subsistema correspondiente en la cabina de ONTAP. Por ejemplo:
+. En el host SUSE Linux Enterprise Server 15 SP2, compruebe la cadena NQN del host en `/etc/nvme/hostnqn` y verifique que coincida con la cadena NQN del host para el subsistema correspondiente en la matriz de ONTAP. Por ejemplo:
 +
 [listing]
 ----

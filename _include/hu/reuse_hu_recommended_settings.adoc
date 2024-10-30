@@ -13,7 +13,7 @@ La primera vez que crea el `multipath.conf` archivo, es posible que deba habilit
 # chkconfig multipathd on
 # /etc/init.d/multipathd start
 ----
-No es necesario agregar nada directamente al `multipath.conf` archivo a menos que tenga dispositivos que no desea que se gestionen con acceso multivía o que tenga una configuración existente que anule los valores predeterminados. Para excluir los dispositivos no deseados, agregue la siguiente sintaxis al `multipath.conf` archivo, reemplazando <DevId> por la cadena WWID del dispositivo que desea excluir:
+No es necesario agregar nada directamente al `multipath.conf` archivo a menos que tenga dispositivos que no desee que se gestionen con acceso multivía o que tenga una configuración existente que anule los valores predeterminados. Para excluir los dispositivos no deseados, agregue la siguiente sintaxis al `multipath.conf` archivo, reemplazando <DevId> por la cadena WWID del dispositivo que desea excluir:
 
 [listing]
 ----
@@ -28,7 +28,7 @@ blacklist {
 El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipath.conf` archivo.
 
 .Pasos
-. Ejecute el siguiente comando para determinar el WWID:
+. Determine el WWID:
 +
 [listing]
 ----
@@ -36,7 +36,7 @@ El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipa
 360030057024d0730239134810c0cb833
 ----
 +
-`sda` Es el disco SCSI local que necesitamos para agregarlo a la lista negra.
+`sda` Es el disco SCSI local que desea agregar a la lista negra.
 
 . Añada el `WWID` a la lista negra stanza en `/etc/multipath.conf`:
 +

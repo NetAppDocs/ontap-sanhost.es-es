@@ -16,7 +16,7 @@ summary: Cómo configurar el host NVMe-oF para RHEL 9,1 con ONTAP
 
 
 [role="lead"]
-NVMe over Fabrics o NVMe-of (incluidos NVMe/FC y NVMe/TCP) es compatible con RHEL 9.1 con acceso asimétrico de espacio de nombres (ANA) necesario para recuperaciones tras fallos de almacenamiento (SFO) en la cabina ONTAP. ANA es el equivalente de acceso asimétrico de unidad lógica (ALUA) en el entorno NVMe-of y, actualmente, se implementa con NVMe Multipath en el kernel. Este documento contiene detalles para habilitar NVMe-of con NVMe multivía en el kernel mediante ANA en RHEL 9.1 y ONTAP como destino.
+NVMe over Fabrics o NVMe-of (incluidos NVMe/FC y NVMe/TCP) es compatible con RHEL 9.1 con acceso asimétrico de espacio de nombres (ANA) necesario para recuperaciones tras fallos de almacenamiento (SFO) en la cabina ONTAP. ANA es el equivalente de acceso asimétrico de unidad lógica (ALUA) en el entorno NVMe-of y, actualmente, se implementa con NVMe Multipath en el kernel. Con este procedimiento, puede habilitar NVMe-oF con NVMe multipath en kernel usando ANA en RHEL 9,1 y ONTAP como destino.
 
 Se ofrece la siguiente compatibilidad para la configuración del host de NVMe-oF para RHEL 9,1 con ONTAP:
 
@@ -186,7 +186,7 @@ FCP CMPL: xb 00000000 Err 00000004
 --
 .Adaptador FC Marvell/QLogic para NVMe/FC
 --
-La bandeja de entrada nativa `qla2xxx` El controlador que se incluye en el kernel RHEL 9,1 tiene las últimas correcciones esenciales para la compatibilidad con ONTAP.
+El controlador de la bandeja de entrada nativo `qla2xxx` incluido en el kernel RHEL 9,1 tiene las últimas correcciones, que son. Estas correcciones son esenciales para la compatibilidad con ONTAP.
 
 .Pasos
 . Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles mediante el siguiente comando:

@@ -233,8 +233,10 @@ FCP CMPL: xb 00000629 Err 0001bd3d
 --
 .Adaptador FC Marvell/QLogic para NVMe/FC
 --
+El controlador de la bandeja de entrada qla2xxx nativo que se incluye en el kernel GA de RHEL 9,3 tiene las correcciones más recientes. Estas correcciones son esenciales para la compatibilidad con ONTAP.
+
 .Pasos
-. El controlador de la bandeja de entrada qla2xxx nativo que se incluye en el kernel GA de RHEL 9,3 tiene las últimas correcciones esenciales para la compatibilidad con ONTAP. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
+. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
 +
 [listing]
 ----

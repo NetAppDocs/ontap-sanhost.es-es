@@ -219,8 +219,10 @@ FCP CMPL: xb 00000000 Err 00000000
 --
 .Adaptador FC Marvell/QLogic para NVMe/FC
 --
+El controlador de bandeja de entrada nativa qla2xxx incluido en el kernel Ubuntu 22,04 GA tiene las últimas correcciones ascendentes. Estas correcciones son esenciales para la compatibilidad con ONTAP.
+
 .Pasos
-. El controlador de bandeja de entrada nativa qla2xxx incluido en el kernel Ubuntu 22,04 GA tiene las últimas correcciones de subida esenciales para el soporte de ONTAP. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
+. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
 +
 [listing]
 ----

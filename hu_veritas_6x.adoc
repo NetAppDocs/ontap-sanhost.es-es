@@ -26,8 +26,7 @@ El paquete de software NetApp Linux Unified Host Utilities está disponible en l
 
 NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
-.Lo que necesitará
-Si tiene una versión de Linux Unified Host Utilities actualmente instalada, debe actualizarla o quitarla y luego usar los siguientes pasos para instalar la versión más reciente.
+Si tiene una versión de Linux Unified Host Utilities instalada, debe actualizarla o quitarla y seguir estos pasos para instalar la versión más reciente.
 
 .Pasos
 . Descargue el paquete de software Linux Unified Host Utilities de 64 bits de https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] al host.
@@ -86,7 +85,7 @@ NOTE: Una vez que el sistema operativo host está activo y en ejecución en las 
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Reinicie el host para verificar que el inicio se haya realizado correctamente.
+. Reinicie el host para verificar que el inicio se ha realizado correctamente.
 
 
 
@@ -96,7 +95,7 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 Debe verificar que la configuración cumple los requisitos del sistema. Para obtener más información, consulte https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Y la matriz Veritas HCL.
 
 .Ejemplo
-En este ejemplo, la `vxdmpadm` Se utiliza el comando para verificar que VxDMP Multipath tiene conectada la cabina de destino de ONTAP.
+En el siguiente ejemplo, el `vxdmpadm` comando se utiliza para verificar que VxDMP Multipath tiene la cabina de destino de ONTAP conectada.
 
 [listing]
 ----
@@ -144,7 +143,7 @@ ARRAY_TYPE  ALUA, A/A
 
 === Configuraciones que no son ASA
 
-En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
+En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
 
 .Ejemplo
 En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
@@ -160,7 +159,7 @@ sdcj  ENABLED(A)  Active/Optimized     c14   SFRAC       sfrac0     -      -
 sdea  ENABLED     Active/Non-Optimized c14   SFRAC       sfrac0     -      -
 ----
 
-NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
 
 
 

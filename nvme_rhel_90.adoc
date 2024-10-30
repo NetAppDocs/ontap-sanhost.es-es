@@ -16,7 +16,7 @@ summary: Cómo configurar NVMe-of Host para RHEL 9.0 con ONTAP
 
 
 [role="lead"]
-Se admite NVMe-of (incluidos NVMe/FC y NVMe/TCP) con RHEL 9.0 con acceso asimétrico de espacio de nombres (ANA) requerido para recuperaciones tras fallos de almacenamiento (SFO) en la cabina ONTAP. ANA es el equivalente ALUA en el entorno NVM-of y actualmente se implementa con NVMe Multipath en el kernel. Este documento contiene detalles para habilitar NVMe-of con NVMe multivía en el kernel mediante ANA en RHEL 9.0 y ONTAP como destino.
+Se admite NVMe-of (incluidos NVMe/FC y NVMe/TCP) con RHEL 9.0 con acceso asimétrico de espacio de nombres (ANA) requerido para recuperaciones tras fallos de almacenamiento (SFO) en la cabina ONTAP. ANA es el equivalente ALUA en el entorno NVM-of y actualmente se implementa con NVMe Multipath en el kernel. Con este procedimiento, puede habilitar NVMe-oF con NVMe multipath en kernel usando ANA en RHEL 9,0 y ONTAP como destino.
 
 Si quiere más información sobre las configuraciones compatibles, consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
 
@@ -176,7 +176,7 @@ FCP CMPL: xb 00001f50 Err 0000d9f8
 --
 .Marvell/QLogic
 --
-El controlador de la bandeja de entrada nativa qla2xxx que se incluye en el kernel RHEL 9,0 tiene las últimas correcciones, esenciales para la compatibilidad con ONTAP.
+El controlador de la bandeja de entrada qla2xxx nativo que se incluye en el kernel RHEL 9,0 tiene las correcciones más recientes. Estas correcciones son esenciales para la compatibilidad con ONTAP.
 
 .Pasos
 . Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:

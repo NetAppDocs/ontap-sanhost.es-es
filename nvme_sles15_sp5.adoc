@@ -19,9 +19,9 @@ summary: Describe cómo configurar NVMe/FC para SUSE Linux Enterprise Server 15 
 
 
 [role="lead"]
-NVMe over Fabrics (NVMe-oF), incluido NVMe over Fibre Channel (NVMe/FC) y otros transportes, es compatible con SUSE Linux Enterprise Server (SLES) 15 SP5 con acceso asimétrico a espacio de nombres (ANA). En entornos de NVMe-oF, ANA es el equivalente a la multivía ALUA en entornos iSCSI y FCP y se implementa con NVMe multivía en kernel.
+NVMe over Fabrics (NVMe-oF), incluido NVMe over Fibre Channel (NVMe/FC) y otros transportes, es compatible con SUSE Linux Enterprise Server 15 SP5 con acceso asimétrico a espacio de nombres (ANA). En entornos de NVMe-oF, ANA es el equivalente a la multivía ALUA en entornos iSCSI y FCP y se implementa con NVMe multivía en kernel.
 
-Se ofrece la siguiente compatibilidad para la configuración del host de NVMe-oF para SLES 15 SP5 con ONTAP:
+La siguiente compatibilidad está disponible para la configuración de host NVMe-oF para SUSE Linux Enterprise Server 15 SP5 con ONTAP:
 
 * Tanto el tráfico NVMe como SCSI pueden ejecutarse en el mismo host coexistente. Por lo tanto, para LUN SCSI, es posible configurar dm-multipath para dispositivos SCSI mpath, mientras que se puede utilizar NVMe multipath para configurar dispositivos de espacio de nombres NVMe-oF en el host.
 * Compatibilidad para NVMe sobre TCP (NVMe/TCP) además de NVMe/FC. El plugin de NetApp es en la versión nativa `nvme-cli` El paquete muestra detalles de ONTAP para espacios de nombres NVMe/FC y NVMe/TCP.
@@ -42,7 +42,7 @@ Si quiere más información sobre las configuraciones compatibles, consulte link
 == Limitaciones conocidas
 
 * Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
-* No `sanlun` Compatibilidad con NVMe-of. Por lo tanto, la compatibilidad con la utilidad de host no está disponible para NVMe-oF en un host SLES 15 SP5. Puede confiar en el plugin de NetApp incluido en el paquete nvme-cli nativo para todos los transportes NVMe-oF.
+* No `sanlun` es compatible con NVMe-oF. Por lo tanto, la compatibilidad con la utilidad host no está disponible para NVMe-oF en un host SUSE Linux Enterprise Server 15 SP5. Es posible usar el plugin de NetApp incluido en el paquete nvme-cli nativo para todos los transportes NVMe-oF.
 
 
 
@@ -156,7 +156,7 @@ cat /sys/class/scsi_host/host*/nvme_info
 *Ejemplo de salida*:
 
 +
-En este ejemplo, un puerto iniciador está habilitado y conectado con dos LIF de destino.
+En el ejemplo siguiente, un puerto iniciador está habilitado y conectado con dos LIF de destino.
 
 +
 [listing, subs="+quotes"]
@@ -200,8 +200,10 @@ FCP CMPL: xb 0000159d Err 000135c3
 --
 .Marvell/QLogic
 --
+El controlador de la bandeja de entrada nativa qla2xxx incluido en el kernel de SUSE Linux Enterprise Server 15 SP5 tiene las últimas correcciones. Estas correcciones son esenciales para la compatibilidad con ONTAP.
+
 .Pasos
-. El controlador de la bandeja de entrada nativa qla2xxx incluido en el kernel SLES 15 SP5 tiene las últimas correcciones esenciales para la compatibilidad con ONTAP. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
+. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
 +
 [listing]
 ----
@@ -586,7 +588,7 @@ Device           Vserver                   Namespace Path                       
 
 == Cree una controladora de detección persistente
 
-A partir de ONTAP 9.11.1, puede crear un controlador de detección persistente (PDC) para el host SLES 15 SP5 mediante el siguiente procedimiento. Se necesita un PDC para detectar automáticamente el subsistema NVMe agregar o eliminar escenarios y cambios en los datos de la página de registro de detección.
+A partir de ONTAP 9.11,1, puede crear un controlador de detección persistente (PDC) para su host SUSE Linux Enterprise Server 15 SP5. Se necesita un PDC para detectar automáticamente un subsistema NVMe para agregar o eliminar un escenario y cambios en los datos de la página de registro de detección.
 
 .Pasos
 . Compruebe que los datos de la página de registro de detección estén disponibles y que se puedan recuperar mediante la combinación de LIF de destino y puerto iniciador:
@@ -820,7 +822,7 @@ Vserver UUID: 48391d66-c0a6-11ec-aaa5-d039ea165514
 
 == Configure la autenticación segura en banda
 
-A partir de ONTAP 9.12.1, la autenticación en banda segura es compatible con NVMe/TCP y NVMe/FC entre su host SLES 15 SP5 y su controladora ONTAP.
+A partir de ONTAP 9.12,1, la autenticación segura en banda es compatible con NVMe/TCP y NVMe/FC entre el host SUSE Linux Enterprise Server 15 SP5 y el controlador ONTAP.
 
 Para configurar la autenticación segura, cada host o controladora debe estar asociado con a. `DH-HMAC-CHAP` Clave, que es una combinación de NQN del host o de la controladora NVMe y un secreto de autenticación configurado por el administrador. Para autenticar su par, un host o una controladora NVMe deben reconocer la clave asociada con el par.
 
@@ -837,7 +839,7 @@ Puede configurar la autenticación segura en banda mediante la interfaz de líne
 ----
 cat /etc/nvme/hostnqn
 ----
-. Genere la clave dhchap para el host SLES15 SP5:
+. Genere la clave dhchap para el host SUSE Linux Enterprise Server 15 SP5:
 +
 [listing]
 ----
@@ -1042,4 +1044,4 @@ DHHC-
 
 == Problemas conocidos
 
-No hay problemas conocidos para la versión SLES 15 SP5 con ONTAP.
+No existen problemas conocidos para la versión SUSE Linux Enterprise Server 15 SP5 con ONTAP.

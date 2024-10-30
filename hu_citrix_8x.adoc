@@ -36,14 +36,14 @@ NOTE: Una vez que el sistema operativo host está activo y en ejecución en las 
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Reinicie el host para verificar que el inicio se haya realizado correctamente.
+. Reinicie el host para verificar que el inicio se ha realizado correctamente.
 
 
 
 
 == Accesos múltiples
 
-Para Citrix Hypervisor (CH) 8.x el `/etc/multipath.conf` el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. CH 8.x se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP. Puede utilizar el `/sbin/mpathutil` Comando de estado para comprobar la configuración de sus LUN de ONTAP. En las siguientes secciones se proporciona muestra la salida multivía para una LUN asignada a ASA personas.
+Para Citrix Hypervisor (CH) 8.x el `/etc/multipath.conf` archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. CH 8.x se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP. Puede utilizar `/sbin/mpathutil` el comando status para comprobar la configuración de sus LUN de ONTAP. En las siguientes secciones se proporcionan ejemplos de salidas multivía para una LUN asignada a personas ASA.
 
 
 
@@ -69,12 +69,12 @@ NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan 
 
 
 
-=== Configuración no ASA
+=== Configuraciones que no son ASA
 
-Para la configuración que no sea ASA debe haber dos grupos de rutas con prioridades diferentes. Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio. Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
+En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
 
 .Ejemplo
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizadas:
+En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
 
 ....
 # mpathutil status
@@ -88,7 +88,7 @@ size=30G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_hand
    `- 12:0:26:11 sdyt  129:720 active ready running
 ....
 
-NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
 
 
 
@@ -126,7 +126,7 @@ blacklist {
 NOTE: Sustituya *<DevID>* por la cadena WWID del dispositivo que desea excluir.
 
 .Ejemplo
-En este ejemplo para Citrix Hypervisor 8.x, `sda` Es el disco SCSI local que necesitamos agregar a la lista negra.
+En el siguiente ejemplo para Citrix Hypervisor 8.x, `sda` es el disco SCSI local que desea agregar a la lista negra.
 
 . Ejecute el siguiente comando para determinar el WWID:
 +

@@ -16,7 +16,7 @@ summary: Describe cómo configurar NVMe/FC para SUSE Linux Enterprise Server 15 
 
 
 [role="lead"]
-SUSE Linux Enterprise Server 15 SP3 (SLES15 SP3) con ANA (acceso asimétrico de espacio de nombres) admite NVMe over Fabrics o NVMe-of (incluidos NVMe/FC y otros transportes). ANA es el equivalente ALUA en el entorno NVMe-of y actualmente se implementa con NVMe multivía en el kernel. Los detalles para habilitar NVMe-of con NVMe multivía en el kernel mediante ANA en SLES15 SP3 y ONTAP, ya que el destino se ha documentado aquí.
+NVMe over Fabrics o NVMe-oF (incluidos NVMe/FC y otros transportes) es compatible con SUSE Linux Enterprise Server 15 SP3 con ANA (acceso asimétrico al espacio de nombres). ANA es el equivalente ALUA en el entorno NVMe-of y actualmente se implementa con NVMe multivía en el kernel. Con este procedimiento, puede habilitar NVMe-oF con NVMe Multipath en el núcleo mediante ANA en SUSE Linux Enterprise Server 15 SP3 y ONTAP como destino.
 
 Consulte la link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener información precisa sobre las configuraciones compatibles.
 
@@ -24,8 +24,8 @@ Consulte la link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilid
 
 == Funciones
 
-* SLES15 SP3 admite NVMe/FC y otros transportes.
-* No existe compatibilidad alguna con NVMe-of. Por lo tanto, no existe compatibilidad con LUHU para NVMe-of en SLES15 SP3. Puede confiar en el complemento de NetApp que se incluye en la nvme-cli nativa para el mismo tipo de usuario. Esto debería funcionar para todos los transportes NVMe-of.
+* SUSE Linux Enterprise Server 15 SP3 es compatible con NVMe/FC y otros transportes.
+* No existe compatibilidad alguna con NVMe-of. Por lo tanto, no existe compatibilidad con LUHU para NVMe-oF en SUSE Linux Enterprise Server 15 SP3. Es posible usar el plugin de NetApp incluido en el paquete nvme-cli nativo para NVMe-oF. Esto debería admitir todos los transportes NVMe-oF.
 * Tanto el tráfico NVMe como SCSI pueden ejecutarse en el mismo host coexistente. De hecho, se espera que sea la configuración de host instalada habitualmente para los clientes. Por lo tanto, para SCSI, puede configurar `dm-multipath` Como es habitual para los LUN de SCSI, que dan como resultado dispositivos mpath, mientras que es posible que se utilice NVMe multivía para configurar los dispositivos multivía en el host.
 
 
@@ -39,7 +39,7 @@ Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 == Habilite NVMe multivía en el kernel
 
-El acceso multivía NVMe en el kernel ya está habilitado de forma predeterminada en hosts SLES como SLES15 SP3. Por lo tanto, aquí no se requiere ningún ajuste adicional. Consulte la link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener información precisa sobre las configuraciones compatibles.
+La opción multivía NVMe en el núcleo ya está activada de forma predeterminada en los hosts de SUSE Linux Enterprise Server, como SUSE Linux Enterprise Server 15 SP3. Por lo tanto, aquí no se requiere ningún ajuste adicional. Consulte el link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener información precisa sobre las configuraciones compatibles.
 
 
 
@@ -47,7 +47,7 @@ El acceso multivía NVMe en el kernel ya está habilitado de forma predeterminad
 
 Consulte la link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^] para obtener información precisa sobre las configuraciones compatibles.
 
-. Compruebe que tiene instalados los paquetes MU del kernel y nvme-cli necesarios en el host MU de SLES15 SP3.
+. Compruebe que tiene instalados los paquetes MU de núcleo y nvme-cli necesarios en el host MU de SUSE Linux Enterprise Server 15 SP3.
 +
 Ejemplo:
 
@@ -173,7 +173,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Online
 Online
 ----
-. Verifique que los puertos iniciadores NVMe/FC estén habilitados y que pueda ver los puertos objetivo y que todos estén en funcionamiento. En este ejemplo, solo se habilita un puerto de iniciador y se conecta con dos LIF de destino, como se ve en el resultado:
+. Verifique que los puertos de iniciador NVMe/FC estén habilitados, pueda ver los puertos de destino y todos los puertos estén activos y funcionando. + En el ejemplo siguiente, solo hay un puerto de iniciador habilitado y conectado con dos LIF de destino:
 +
 [listing, subs="+quotes"]
 ----
@@ -233,7 +233,7 @@ Ahora el host NVMe/FC de Broadcom debe enviar solicitudes de I/o de 1 MB en los 
 
 === Marvell/QLogic
 
-El controlador qla2xxx de bandeja de entrada nativo incluido en el nuevo kernel MU SLES15 SP3 tiene las últimas correcciones previas, esenciales para la compatibilidad con ONTAP.
+El controlador de la bandeja de entrada nativa qla2xxx incluido en el núcleo más reciente de SUSE Linux Enterprise Server 15 SP3 MU tiene las últimas correcciones anteriores. Estas correcciones son esenciales para la compatibilidad con ONTAP.
 
 . Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles; por ejemplo:
 +

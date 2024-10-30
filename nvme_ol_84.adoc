@@ -32,7 +32,7 @@ NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este d
 == Funciones
 
 * Oracle Linux 8.4 tiene NVMe multivía en el kernel habilitado de forma predeterminada para nombres NVMe.
-* Con Oracle Linux 8.4, `nvme-fc auto-connect` los scripts se incluyen en el nativo `nvme-cli` paquete. Puede confiar en estas secuencias de comandos de conexión automática nativas en lugar de instalar secuencias de comandos de conexión automática proporcionadas por el proveedor externo.
+* Con Oracle Linux 8,4, `nvme-fc auto-connect` los scripts se incluyen en el paquete nativo `nvme-cli`. Puede utilizar estos scripts nativos de conexión automática en lugar de instalar scripts de conexión automática proporcionados por el proveedor externo.
 * Con Oracle Linux 8.4, un nativo `udev` la regla se proporciona como parte de la `nvme-cli` Paquete que permite el equilibrio de carga por turnos para NVMe multivía. Por lo tanto, ya no es necesario crear manualmente esta regla.
 * Con Oracle Linux 8.4, tanto el tráfico NVMe como SCSI pueden ejecutarse en el mismo host coexistente. De hecho, se espera que sea la configuración de host instalada habitualmente. Por lo tanto, puede configurar dm-multipath como suele suceder en los LUN de SCSI, lo que provoca en dispositivos mpath mientras que el multivía de NVMe se puede utilizar para configurar dispositivos multivía de NVMe-of (por ejemplo, `/dev/nvmeXnY`) en el host.
 * Con Oracle Linux 8.4, el complemento de NetApp en el nativo `nvme-cli` El paquete puede mostrar detalles de ONTAP, así como espacios de nombres ONTAP.
@@ -217,8 +217,10 @@ NOTE: Esto no es aplicable a los hosts Qlogic NVMe/FC.
 
 == Configure el adaptador Marvell/QLogic FC para NVMe/FC
 
+El controlador de la bandeja de entrada nativa qla2xxx incluido en el kernel OL 8,4 GA tiene las últimas correcciones ascendentes. Estas correcciones son esenciales para la compatibilidad con ONTAP.
+
 .Pasos
-. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles. El controlador ql2xxx de bandeja de entrada nativo incluido en el kernel OL 8.4 GA tiene las últimas correcciones previas esenciales para la compatibilidad con ONTAP.
+. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
 +
 [listing]
 ----

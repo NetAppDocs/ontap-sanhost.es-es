@@ -4,9 +4,9 @@
 
 Para la configuración que no sea ASA debe haber dos grupos de rutas con prioridades diferentes.
 
-Las rutas con las mayores prioridades son activo/optimizado, lo que significa que la controladora donde se encuentra el agregado es la que presta servicio.
+Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado.
 
-Las rutas con las prioridades más bajas están activas, pero no optimizadas porque se ofrecen desde otra controladora.
+Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente.
 
 
 NOTE: Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
