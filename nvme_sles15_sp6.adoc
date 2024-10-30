@@ -1,0 +1,936 @@
+---
+sidebar: sidebar 
+permalink: nvme_sles15_sp6.html 
+keywords: nvme, linux, suse, sles, 15, SP6, server, enterprise 
+summary: Describe cómo configurar NVMe/FC para SUSE Linux Enterprise Server 15 SP6 con ONTAP. 
+---
+= Configuración de host NVMe-oF para SUSE Linux Enterprise Server 15 SP6 con ONTAP
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:source-highlighter: highlighter.js
+:toc-position: content
+
+
+[role="lead"]
+NVMe over Fabrics (NVMe-oF), incluido NVMe over Fibre Channel (NVMe/FC) y otros transportes, es compatible con SUSE Linux Enterprise Server 15 SP6 con acceso asimétrico a espacio de nombres (ANA). En entornos de NVMe-oF, ANA es el equivalente a la multivía ALUA en entornos iSCSI y FCP y se implementa con NVMe multivía en kernel.
+
+La siguiente compatibilidad está disponible para la configuración de host NVMe-oF para SUSE Linux Enterprise Server 15 SP6 con ONTAP:
+
+* Tanto el tráfico NVMe como SCSI pueden ejecutarse en el mismo host coexistente. Por lo tanto, para LUN SCSI, es posible configurar dm-multipath para dispositivos SCSI mpath, mientras que se puede utilizar NVMe multipath para configurar dispositivos de espacio de nombres NVMe-oF en el host.
+* Compatibilidad para NVMe sobre TCP (NVMe/TCP) además de NVMe/FC. El plugin de NetApp es en la versión nativa `nvme-cli` El paquete muestra detalles de ONTAP para espacios de nombres NVMe/FC y NVMe/TCP.
+
+
+Si quiere más información sobre las configuraciones compatibles, consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
+
+
+
+== Funciones
+
+* Compatibilidad con la autenticación segura en banda de NVMe
+* Compatibilidad con controladores de detección persistente (PDCs) mediante un NQN de detección único
+
+
+
+
+== Limitaciones conocidas
+
+* Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
+* No `sanlun` es compatible con NVMe-oF. Por lo tanto, la compatibilidad con la utilidad host no está disponible para NVMe-oF en un host SUSE Linux Enterprise Server 15 SP6. Es posible usar el plugin de NetApp incluido en el paquete nativo `nvme-cli` para todos los transportes NVMe-oF.
+
+
+
+
+== Configure NVMe/FC
+
+Puede configurar NVMe/FC para adaptadores FC Broadcom/Emulex o Marvell/Qlogic FC.
+
+[role="tabbed-block"]
+====
+.Broadcom/Emulex
+--
+.Pasos
+. Compruebe que está utilizando el modelo de adaptador recomendado:
++
+[listing]
+----
+cat /sys/class/scsi_host/host*/modelname
+----
++
+*Ejemplo de salida*:
+
++
+[listing]
+----
+LPe32002 M2
+LPe32002-M2
+----
+. Compruebe la descripción del modelo del adaptador:
++
+[listing]
+----
+cat /sys/class/scsi_host/host*/modeldesc
+----
++
+*Ejemplo de salida*:
+
++
+[listing]
+----
+Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
+Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
+----
+. Compruebe que está utilizando las versiones recomendadas del firmware del adaptador de bus de host (HBA) de Emulex:
++
+[listing]
+----
+cat /sys/class/scsi_host/host*/fwrev
+----
++
+*Ejemplo de salida*:
+
++
+[listing]
+----
+14.2.673.40, sli-4:2:c
+14.2.673.40, sli-4:2:c
+----
+. Compruebe que está utilizando la versión de controlador LPFC recomendada:
++
+[listing]
+----
+cat /sys/module/lpfc/version
+----
++
+*Ejemplo de salida*:
+
++
+[listing]
+----
+0:14.4.0.1
+----
+. Compruebe que puede ver los puertos de iniciador:
++
+[listing]
+----
+cat /sys/class/fc_host/host*/port_name
+----
++
+*Ejemplo de salida*:
+
++
+[listing]
+----
+0x10000090fae0ec88
+0x10000090fae0ec89
+----
+. Compruebe que los puertos de iniciador estén en línea:
++
+[listing]
+----
+cat /sys/class/fc_host/host*/port_state
+----
++
+*Ejemplo de salida*:
+
++
+[listing]
+----
+Online
+Online
+----
+. Compruebe que los puertos de iniciador NVMe/FC estén habilitados y que los puertos de destino estén visibles:
++
+[listing]
+----
+cat /sys/class/scsi_host/host*/nvme_info
+----
++
+En el ejemplo siguiente, un puerto iniciador está habilitado y conectado con dos LIF de destino.
+
++
+.Muestra el resultado de ejemplo
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+NVME Initiator Enabled
+XRI Dist lpfc0 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc0 WWPN x10000090fae0ec88 WWNN x20000090fae0ec88 DID x0a1300 ONLINE
+NVME RPORT WWPN x2070d039ea359e4a WWNN x206bd039ea359e4a DID x0a0a05 TARGET DISCSRVC
+ONLINE
+NVME Statistics
+LS: Xmt 00000003ba Cmpl 00000003ba Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 0000000014e3dfb8 Issue 0000000014e308db OutIO ffffffffffff2923
+ abort 00000845 noxri 00000000 nondlp 00000063 qdepth 00000000 wqerr 00000003 err 00000000
+FCP CMPL: xb 00000847 Err 00027f33
+NVME Initiator Enabled
+XRI Dist lpfc1 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc1 WWPN x10000090fae0ec89 WWNN x20000090fae0ec89 DID x0a1200 ONLINE
+NVME RPORT WWPN x2071d039ea359e4a WWNN x206bd039ea359e4a DID x0a0305 TARGET DISCSRVC
+ONLINE
+NVME Statistics
+LS: Xmt 00000003ba Cmpl 00000003ba Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 0000000014e39f78 Issue 0000000014e2b832 OutIO ffffffffffff18ba
+ abort 0000082d noxri 00000000 nondlp 00000028 qdepth 00000000 wqerr 00000007 err 00000000
+FCP CMPL: xb 0000082d Err 000283bb
+----
+=====
+
+
+--
+.Marvell/QLogic
+--
+El controlador de la bandeja de entrada nativa qla2xxx incluido en el kernel de SUSE Linux Enterprise Server 15 SP6 tiene las últimas correcciones. Estas correcciones son esenciales para la compatibilidad con ONTAP.
+
+.Pasos
+. Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
++
+[listing]
+----
+cat /sys/class/fc_host/host*/symbolic_name
+----
++
+*Ejemplo de salida*:
+
++
+[listing]
+----
+QLE2742 FW:v9.14.01 DVR: v10.02.09.200-k
+QLE2742 FW:v9.14.01 DVR: v10.02.09.200-k
+----
+. Compruebe que el `ql2xnvmeenable` el parámetro está definido en 1:
++
+[listing]
+----
+cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
+1
+----
+
+
+--
+====
+
+
+=== Habilitar tamaño de I/o de 1 MB (opcional)
+
+ONTAP informa de un MDT (tamaño de transferencia de MAX Data) de 8 en los datos Identify Controller. Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB TB. Para emitir solicitudes de I/O de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar `lpfc` el valor `lpfc_sg_seg_cnt` del parámetro a 256 con respecto al valor predeterminado de 64.
+
+.Pasos
+. Defina el `lpfc_sg_seg_cnt` parámetro en 256:
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_sg_seg_cnt=256
+----
+. Ejecute `dracut -f` un comando y reinicie el host:
+. Compruebe que `lpfc_sg_seg_cnt` es 256:
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+256
+----
+
+
+
+NOTE: Esto no es aplicable a los hosts Qlogic NVMe/FC.
+
+
+
+== Configure NVMe/TCP
+
+NVMe/TCP no tiene una funcionalidad de conexión automática. Por lo tanto, debe utilizar el siguiente procedimiento para detectar los subsistemas y los espacios de nombres NVMe/TCP ejecutando las funcionalidades de conexión NVMe/TCP o CONNECT-ALL manualmente.
+
+.Pasos
+. Compruebe que el puerto del iniciador pueda recuperar los datos de la página de registro de detección en las LIF NVMe/TCP admitidas:
++
+[listing]
+----
+nvme discover -t tcp -w <host-traddr> -a <traddr>
+----
++
+.Mostrar resultado de ejemplo:
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+# nvme discover -t tcp -w 192.168.211.79 -a 192.168.211.66
+Discovery Log Number of Records 8, Generation counter 18
+=====Discovery Log Entry 0======
+trtype: tcp
+adrfam: ipv4
+subtype: current discovery subsystem
+treq: not specified
+portid: 4
+trsvcid: 8009
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:discovery
+traddr: 192.168.211.67
+eflags: explicit discovery connections, duplicate discovery information
+sectype: none
+=====Discovery Log Entry 1======
+trtype: tcp
+adrfam: ipv4
+subtype: current discovery subsystem
+treq: not specified
+portid: 2
+trsvcid: 8009
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:discovery
+traddr: 192.168.111.67
+eflags: explicit discovery connections, duplicate discovery information
+sectype: none
+=====Discovery Log Entry 2======
+trtype: tcp
+adrfam: ipv4
+subtype: current discovery subsystem
+treq: not specified
+portid: 3
+trsvcid: 8009
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:discovery
+traddr: 192.168.211.66
+eflags: explicit discovery connections, duplicate discovery information
+sectype: none
+=====Discovery Log Entry 3======
+trtype: tcp
+adrfam: ipv4
+subtype: current discovery subsystem
+treq: not specified
+portid: 1
+trsvcid: 8009
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:discovery
+traddr: 192.168.111.66
+eflags: explicit discovery connections, duplicate discovery information
+sectype: none
+=====Discovery Log Entry 4======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 4
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:subsystem.nvme_tcp_1
+traddr: 192.168.211.67
+eflags: none
+sectype: none
+=====Discovery Log Entry 5======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 2
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:subsystem.nvme_tcp_1
+traddr: 192.168.111.67
+eflags: none
+sectype: none
+=====Discovery Log Entry 6======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 3
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:subsystem.nvme_tcp_1
+traddr: 192.168.211.66
+eflags: none
+sectype: none
+=====Discovery Log Entry 7======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 1
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:subsystem.nvme_tcp_1
+traddr: 192.168.111.66
+eflags: none
+sectype: none
+----
+====
+. Compruebe que todas las demás combinaciones de LIF iniciador-objetivo NVMe/TCP puedan recuperar correctamente los datos de la página del registro de detección:
++
+[listing]
+----
+nvme discover -t tcp -w <host-traddr> -a <traddr>
+----
++
+*Ejemplo de salida:*
+
++
+[listing]
+----
+#nvme discover -t tcp -w 192.168.111.79 -a 192.168.111.66
+#nvme discover -t tcp -w 192.168.111.79 -a 192.168.111.67
+#nvme discover -t tcp -w 192.168.211.79 -a 192.168.211.66
+#nvme discover -t tcp -w 192.168.211.79 -a 192.168.211.67
+----
+. Ejecute el `nvme connect-all` Comando en todos los LIF objetivo iniciador NVMe/TCP admitidos entre los nodos:
++
+[listing]
+----
+nvme connect-all -t tcp -w host-traddr -a traddr
+----
++
+*Ejemplo de salida:*
+
++
+[listing]
+----
+# nvme connect-all -t tcp -w 192.168.111.79 -a 192.168.111.66
+# nvme connect-all -t tcp -w 192.168.111.79 -a 192.168.111.67
+# nvme connect-all -t tcp -w 192.168.211.79 -a 192.168.211.66
+# nvme connect-all -t tcp -w 192.168.211.79 -a 192.168.211.67
+----
++
+
+NOTE: A partir de SUSE Linux Enterprise Server 15 SP6, la configuración predeterminada para el tiempo de espera de NVMe/TCP `ctrl-loss-tmo` está desactivada. Esto significa que no hay límite en el número de reintentos (reintento indefinido). Como resultado, no es necesario configurar manualmente una duración de tiempo de espera específica `ctrl-loss-tmo` cuando se utilizan los `nvme connect` comandos o `nvme connect-all` (opción `-l`). Además, no se agotan los tiempos de espera de las controladoras NVMe/TCP en caso de un fallo de ruta y permanecen conectadas indefinidamente.
+
+
+
+
+
+== Valide NVMe-of
+
+Use el siguiente procedimiento para validar NVMe-oF.
+
+.Pasos
+. Compruebe que la multivía de NVMe en kernel está habilitada:
++
+[listing]
+----
+cat /sys/module/nvme_core/parameters/multipath
+Y
+----
+. Compruebe que el host tenga el modelo de controladora correcto para los espacios de nombres NVMe de ONTAP:
++
+[listing]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/model
+----
++
+*Ejemplo de salida:*
+
++
+[listing]
+----
+NetApp ONTAP Controller
+NetApp ONTAP Controller
+----
+. Compruebe la política de I/O NVMe para la controladora de I/O NVMe de ONTAP respectiva:
++
+[listing]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+----
++
+*Ejemplo de salida:*
+
++
+[listing]
+----
+round-robin
+round-robin
+----
+. Compruebe que el host pueda ver los espacios de nombres de ONTAP:
++
+[listing]
+----
+nvme list -v
+----
++
+*Ejemplo de salida:*
+
++
+[listing]
+----
+Subsystem        Subsystem-NQN                                                                         Controllers
+---------------- ------------------------------------------------------------------------------------- ---------------------
+nvme-subsys0     nqn.1992- 08.com.netapp:sn.0501daf15dda11eeab68d039eaa7a232:subsystem.unidir_dhcha p  nvme0, nvme1, nvme2, nvme3
+
+Device   SN                   MN                                       FR       TxPort Asdress        Subsystem    Namespaces
+-------- -------------------- ---------------------------------------- -------- ---------------------------------------------
+nvme0    81LGgBUqsI3EAAAAAAAE NetApp ONTAP Controller   FFFFFFFF tcp traddr=192.168.111.66,trsvcid=4420,host_traddr=192.168.111.79 nvme-subsys0 nvme0n1
+nvme1    81LGgBUqsI3EAAAAAAAE NetApp ONTAP Controller   FFFFFFFF tcp traddr=192.168.111.67,trsvcid=4420,host_traddr=192.168.111.79 nvme-subsys0 nvme0n1
+nvme2    81LGgBUqsI3EAAAAAAAE NetApp ONTAP Controller   FFFFFFFF tcp traddr=192.168.211.66,trsvcid=4420,host_traddr=192.168.211.79 nvme-subsys0 nvme0n1
+nvme3    81LGgBUqsI3EAAAAAAAE NetApp ONTAP Controller   FFFFFFFF tcp traddr=192.168.211.67,trsvcid=4420,host_traddr=192.168.211.79 nvme-subsys0 nvme0n1
+Device        Generic     NSID       Usage                 Format         Controllers
+------------ ------------ ---------- -------------------------------------------------------------
+/dev/nvme0n1 /dev/ng0n1   0x1     1.07  GB /   1.07  GB    4 KiB +  0 B   nvme0, nvme1, nvme2, nvme3
+----
+. Compruebe que el estado de la controladora de cada ruta sea activo y que tenga el estado de ANA correcto:
++
+[listing]
+----
+nvme list-subsys /dev/<subsystem_name>
+----
++
+[role="tabbed-block"]
+====
+.NVMe/FC
+--
+*Ejemplo de salida*
+
+[listing, subs="+quotes"]
+----
+# nvme list-subsys /dev/nvme2n1
+nvme-subsys2 - NQN=nqn.1992-
+08.com.netapp:sn.06303c519d8411eea468d039ea36a106:subs
+ystem.nvme
+ hostnqn=nqn.2014-08.org.nvmexpress:uuid:4c4c4544-
+0056-5410-8048-c6c04f425633
+ iopolicy=round-robin
+\
++- nvme4 fc traddr=nn-0x208fd039ea359e4a:pn-0x210dd039ea359e4a,host_traddr=nn-0x2000f4c7aa0cd7ab:pn-0x2100f4c7aa0cd7ab live optimized
++- nvme6 fc traddr=nn-0x208fd039ea359e4a:pn-0x210ad039ea359e4a,host_traddr=nn-0x2000f4c7aa0cd7aa:pn-0x2100f4c7aa0cd7aa live optimized
+
+----
+--
+.NVMe/TCP
+--
+*Ejemplo de salida*
+
+[listing, subs="+quotes"]
+----
+# nvme list-subsys
+nvme-subsys1 - NQN=nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:subsystem.nvme_tcp_1
+ hostnqn=nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0035-5910-804b-b2c04f444d33
+ iopolicy=round-robin
+\
++- nvme4 tcp traddr=192.168.111.66,trsvcid=4420,host_traddr=192.168.111.79,src_addr=192.168.111.79 live
++- nvme3 tcp traddr=192.168.211.66,trsvcid=4420,host_traddr=192.168.211.79,src_addr=192.168.111.79 live
++- nvme2 tcp traddr=192.168.111.67,trsvcid=4420,host_traddr=192.168.111.79,src_addr=192.168.111.79 live
++- nvme1 tcp traddr=192.168.211.67,trsvcid=4420,host_traddr=192.168.211.79,src_addr=192.168.111.79 live
+----
+--
+====
+. Confirmar que el complemento de NetApp muestra los valores correctos para cada dispositivo de espacio de nombres ONTAP:
++
+[role="tabbed-block"]
+====
+.Columna
+--
+`nvme netapp ontapdevices -o column` *Ejemplo de salida*:
+
+[listing]
+----
+Device           Vserver    Namespace Path                       NSID UUID                                   Size
+---------------- ---------- ------------------------------------ ------------------------------------------- --------
+/dev/nvme0n1     vs_192     /vol/fcnvme_vol_1_1_0/fcnvme_ns      1    c6586535-da8a-40fa-8c20-759ea0d69d33   20GB
+
+----
+--
+.JSON
+--
+`nvme netapp ontapdevices -o json` *Ejemplo de salida*:
+
+[listing]
+----
+{
+"ONTAPdevices":[
+{
+"Device":"/dev/nvme0n1",
+"Vserver":"vs_192",
+"Namespace_Path":"/vol/fcnvme_vol_1_1_0/fcnvme_ns",
+"NSID":1,
+"UUID":"c6586535-da8a-40fa-8c20-759ea0d69d33",
+"Size":"20GB",
+"LBA_Data_Size":4096,
+"Namespace_Size":262144
+}
+]
+}
+----
+--
+====
+
+
+
+
+== Cree una controladora de detección persistente
+
+A partir de ONTAP 9.11,1, puede crear un controlador de detección persistente (PDC) para su host SUSE Linux Enterprise Server 15 SP6. Se necesita un PDC para detectar automáticamente un subsistema NVMe para agregar o eliminar un escenario y cambios en los datos de la página de registro de detección.
+
+.Pasos
+. Compruebe que los datos de la página de registro de detección estén disponibles y que se puedan recuperar mediante la combinación de LIF de destino y puerto iniciador:
++
+[listing]
+----
+nvme discover -t <trtype> -w <host-traddr> -a <traddr>
+----
++
+.Mostrar resultado de ejemplo:
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+Discovery Log Number of Records 8, Generation counter 18
+=====Discovery Log Entry 0======
+trtype: tcp
+adrfam: ipv4
+subtype: current discovery subsystem
+treq: not specified
+portid: 4
+trsvcid: 8009
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:discovery
+traddr: 192.168.211.67
+eflags: explicit discovery connections, duplicate discovery information
+sectype: none
+=====Discovery Log Entry 1======
+trtype: tcp
+adrfam: ipv4
+subtype: current discovery subsystem
+treq: not specified
+portid: 2
+trsvcid: 8009
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:discovery
+traddr: 192.168.111.67
+eflags: explicit discovery connections, duplicate discovery information
+sectype: none
+=====Discovery Log Entry 2======
+trtype: tcp
+adrfam: ipv4
+subtype: current discovery subsystem
+treq: not specified
+portid: 3
+trsvcid: 8009
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:discovery
+traddr: 192.168.211.66
+eflags: explicit discovery connections, duplicate discovery information
+sectype: none
+=====Discovery Log Entry 3======
+trtype: tcp
+adrfam: ipv4
+subtype: current discovery subsystem
+treq: not specified
+portid: 1
+trsvcid: 8009
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:discovery
+traddr: 192.168.111.66
+eflags: explicit discovery connections, duplicate discovery information
+sectype: none
+=====Discovery Log Entry 4======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 4
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:subsystem.nvme_tcp_1
+traddr: 192.168.211.67
+eflags: none
+sectype: none
+=====Discovery Log Entry 5======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 2
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:subsystem.nvme_tcp_1
+traddr: 192.168.111.67
+eflags: none
+sectype: none
+=====Discovery Log Entry 6======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 3
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:subsystem.nvme_tcp_1
+traddr: 192.168.211.66
+eflags: none
+sectype: none
+=====Discovery Log Entry 7======
+trtype: tcp
+adrfam: ipv4
+subtype: nvme subsystem
+treq: not specified
+portid: 1
+trsvcid: 4420
+subnqn: nqn.1992-08.com.netapp:sn.8b5ee9199ff411eea468d039ea36a106:subsystem.nvme_tcp_1
+traddr: 192.168.111.66
+eflags: none
+sectype: none
+
+----
+====
+. Cree un PDC para el subsistema de detección:
++
+[listing]
+----
+nvme discover -t <trtype> -w <host-traddr> -a <traddr> -p
+----
++
+*Ejemplo de salida:*
+
++
+[listing]
+----
+nvme discover -t tcp -w 192.168.111.79 -a 192.168.111.666 -p
+----
+. En el controlador ONTAP, compruebe que se ha creado el PDC:
++
+[listing]
+----
+vserver nvme show-discovery-controller -instance -vserver <vserver_name>
+----
++
+*Ejemplo de salida:*
+
++
+[listing, subs="+quotes"]
+----
+vserver nvme show-discovery-controller -instance -vserver vs_nvme79
+Vserver Name: vs_CLIENT116 Controller ID: 00C0h
+Discovery Subsystem NQN: nqn.1992-
+08.com.netapp:sn.48391d66c0a611ecaaa5d039ea165514:discovery Logical Interface UUID: d23cbb0a-c0a6-11ec-9731-d039ea165abc Logical Interface:
+CLIENT116_lif_4a_1
+Node: A400-14-124
+Host NQN: nqn.2014-08.org.nvmexpress:uuid:12372496-59c4-4d1b-be09-74362c0c1afc
+Transport Protocol: nvme-tcp
+Initiator Transport Address: 192.168.1.16
+Host Identifier: 59de25be738348f08a79df4bce9573f3 Admin Queue Depth: 32
+Header Digest Enabled: false Data Digest Enabled: false
+Vserver UUID: 48391d66-c0a6-11ec-aaa5-d039ea165514
+----
+
+
+
+
+== Configure la autenticación segura en banda
+
+A partir de ONTAP 9.12,1, la autenticación segura en banda es compatible con NVMe/TCP y NVMe/FC entre el host SUSE Linux Enterprise Server 15 SP6 y el controlador ONTAP.
+
+Para configurar la autenticación segura, cada host o controladora debe estar asociado con a. `DH-HMAC-CHAP` Clave, que es una combinación de NQN del host o de la controladora NVMe y un secreto de autenticación configurado por el administrador. Para autenticar su par, un host o una controladora NVMe deben reconocer la clave asociada con el par.
+
+Puede configurar la autenticación segura en banda mediante la interfaz de línea de comandos o un archivo config JSON. Si necesita especificar diferentes claves dhchap para diferentes subsistemas, debe utilizar un archivo JSON de configuración.
+
+[role="tabbed-block"]
+====
+.CLI
+--
+.Pasos
+. Obtenga el NQN del host:
++
+[listing]
+----
+cat /etc/nvme/hostnqn
+----
+. Genere la clave dhchap para el host SUSE Linux Enterprise Server 15 SP6:
++
+[listing]
+----
+nvme gen-dhchap-key -s optional_secret -l key_length {32|48|64} -m HMAC_function {0|1|2|3} -n host_nqn
+•	-s secret key in hexadecimal characters to be used to initialize the host key
+•	-l length of the resulting key in bytes
+•	-m HMAC function to use for key transformation
+0 = none, 1- SHA-256, 2 = SHA-384, 3=SHA-512
+•	-n host NQN to use for key transformation
+----
++
+En el siguiente ejemplo, se genera una clave dhchap aleatoria con HMAC establecido en 3 (SHA-512).
+
++
+[listing]
+----
+# nvme gen-dhchap-key -m 3 -n nqn.2014-08.org.nvmexpress:uuid:d3ca725a- ac8d-4d88-b46a-174ac235139b
+DHHC-1:03:J2UJQfj9f0pLnpF/ASDJRTyILKJRr5CougGpGdQSysPrLu6RW1fGl5VSjbeDF1n1DEh3nVBe19nQ/LxreSBeH/bx/pU=:
+----
+. En la controladora ONTAP, añada el host y especifique ambas claves dhchap:
++
+[listing]
+----
+vserver nvme subsystem host add -vserver <svm_name> -subsystem <subsystem> -host-nqn <host_nqn> -dhchap-host-secret <authentication_host_secret> -dhchap-controller-secret <authentication_controller_secret> -dhchap-hash-function {sha-256|sha-512} -dhchap-group {none|2048-bit|3072-bit|4096-bit|6144-bit|8192-bit}
+----
+. Un host admite dos tipos de métodos de autenticación: Unidireccional y bidireccional. En el host, conéctese a la controladora ONTAP y especifique claves dhchap según el método de autenticación elegido:
++
+[listing]
+----
+nvme connect -t tcp -w <host-traddr> -a <tr-addr> -n <host_nqn> -S <authentication_host_secret> -C <authentication_controller_secret>
+----
+. Valide el `nvme connect authentication` comando mediante la verificación de las claves dhchap de host y controladora:
++
+.. Verifique las claves dhchap del host:
++
+[listing]
+----
+$cat /sys/class/nvme-subsystem/<nvme-subsysX>/nvme*/dhchap_secret
+----
++
+*Ejemplo de salida para configuración unidireccional:*
+
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys1/nvme*/dhchap_secret
+DHHC-1:03:je1nQCmjJLUKD62mpYbzlpuw0OIws86NB96uNO/t3jbvhp7fjyR9bIRjOHg8wQtye1JCFSMkBQH3pTKGdYR1OV9gx00=:
+DHHC-1:03:je1nQCmjJLUKD62mpYbzlpuw0OIws86NB96uNO/t3jbvhp7fjyR9bIRjOHg8wQtye1JCFSMkBQH3pTKGdYR1OV9gx00=:
+DHHC-1:03:je1nQCmjJLUKD62mpYbzlpuw0OIws86NB96uNO/t3jbvhp7fjyR9bIRjOHg8wQtye1JCFSMkBQH3pTKGdYR1OV9gx00=:
+DHHC-1:03:je1nQCmjJLUKD62mpYbzlpuw0OIws86NB96uNO/t3jbvhp7fjyR9bIRjOHg8wQtye1JCFSMkBQH3pTKGdYR1OV9gx00=:
+----
+.. Compruebe las claves dhchap del controlador:
++
+[listing]
+----
+$cat /sys/class/nvme-subsystem/<nvme-subsysX>/nvme*/dhchap_ctrl_secret
+----
++
+*Ejemplo de salida para configuración bidireccional:*
+
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys6/nvme*/dhchap_ctrl_secret
+DHHC-1:03:WorVEV83eYO53kV4Iel5OpphbX5LAphO3F8fgH3913tlrkSGDBJTt3crXeTUB8fCwGbPsEyz6CXxdQJi6kbn4IzmkFU=:
+DHHC-1:03:WorVEV83eYO53kV4Iel5OpphbX5LAphO3F8fgH3913tlrkSGDBJTt3crXeTUB8fCwGbPsEyz6CXxdQJi6kbn4IzmkFU=:
+DHHC-1:03:WorVEV83eYO53kV4Iel5OpphbX5LAphO3F8fgH3913tlrkSGDBJTt3crXeTUB8fCwGbPsEyz6CXxdQJi6kbn4IzmkFU=:
+DHHC-1:03:WorVEV83eYO53kV4Iel5OpphbX5LAphO3F8fgH3913tlrkSGDBJTt3crXeTUB8fCwGbPsEyz6CXxdQJi6kbn4IzmkFU=:
+----
+
+
+
+
+--
+.Archivo JSON
+--
+Cuando hay varios subsistemas NVMe disponibles en la configuración de la controladora ONTAP, se puede utilizar `/etc/nvme/config.json` el archivo con `nvme connect-all` el comando. Puede usar `-o` la opción para generar el archivo JSON. Consulte las páginas del manual NVMe connect-all para ver más opciones de sintaxis. .STEPS . Configure el archivo JSON:
+
++ .Mostrar ejemplo de salida
+
+[%collapsible]
+=====
+[listing]
+----
+# cat /etc/nvme/config.json
+[
+ {
+    "hostnqn":"nqn.2014-08.org.nvmexpress:uuid:12372496-59c4-4d1b-be09-74362c0c1afc",
+    "hostid":"3ae10b42-21af-48ce-a40b-cfb5bad81839",
+    "dhchap_key":"DHHC-1:03:Cu3ZZfIz1WMlqZFnCMqpAgn/T6EVOcIFHez215U+Pow8jTgBF2UbNk3DK4wfk2EptWpna1rpwG5CndpOgxpRxh9m41w=:"
+ },
+ {
+    "hostnqn":"nqn.2014-08.org.nvmexpress:uuid:12372496-59c4-4d1b-be09-74362c0c1afc",
+    "subsystems":[
+        {
+            "nqn":"nqn.1992-08.com.netapp:sn.48391d66c0a611ecaaa5d039ea165514:subsystem.subsys_CLIENT116",
+            "ports":[
+               {
+                    "transport":"tcp",
+                    "traddr":" 192.168.111.66 ",
+                    "host_traddr":" 192.168.111.79",
+                    "trsvcid":"4420",
+                    "dhchap_ctrl_key":"DHHC-
+1:01:0h58bcT/uu0rCpGsDYU6ZHZvRuVqsYKuBRS0Nu0VPx5HEwaZ:"
+               },
+               {
+                    "transport":"tcp",
+                    "traddr":" 192.168.111.66 ",
+                    "host_traddr":" 192.168.111.79",
+                    "trsvcid":"4420",
+                    "dhchap_ctrl_key":"DHHC-
+1:01:0h58bcT/uu0rCpGsDYU6ZHZvRuVqsYKuBRS0Nu0VPx5HEwaZ:"
+               },
+               {
+                    "transport":"tcp",
+                   "traddr":" 192.168.111.66 ",
+                    "host_traddr":" 192.168.111.79",
+                    "trsvcid":"4420",
+                    "dhchap_ctrl_key":"DHHC-
+1:01:0h58bcT/uu0rCpGsDYU6ZHZvRuVqsYKuBRS0Nu0VPx5HEwaZ:"
+               },
+               {
+                    "transport":"tcp",
+                    "traddr":" 192.168.111.66 ",
+                    "host_traddr":" 192.168.111.79",
+                    "trsvcid":"4420",
+                    "dhchap_ctrl_key":"DHHC-
+1:01:0h58bcT/uu0rCpGsDYU6ZHZvRuVqsYKuBRS0Nu0VPx5HEwaZ:"
+               }
+           ]
+       }
+   ]
+ }
+]
+----
+=====
+
+NOTE: En el ejemplo anterior, `dhchap_key` corresponde a `dhchap_secret` y `dhchap_ctrl_key` corresponde a `dhchap_ctrl_secret` . . Conéctese a la controladora ONTAP mediante el archivo JSON de configuración:
+
++
+
+[listing]
+----
+nvme connect-all -J /etc/nvme/config.json
+----
++ *Ejemplo de salida*:
+
++
+
+[listing]
+----
+traddr=192.168.111.66 is already connected
+traddr=192.168.211.66 is already connected
+traddr=192.168.111.66 is already connected
+traddr=192.168.211.66 is already connected
+traddr=192.168.111.66 is already connected
+traddr=192.168.211.66 is already connected
+traddr=192.168.111.67 is already connected
+traddr=192.168.211.67 is already connected
+traddr=192.168.111.67 is already connected
+traddr=192.168.211.67 is already connected
+traddr=192.168.111.67 is already connected
+traddr=192.168.111.67 is already connected
+----
+. Verifique que se hayan activado los secretos dhchap para las respectivas controladoras de cada subsistema:
++
+.. Verifique las claves dhchap del host:
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_secret
+----
++
+*Ejemplo de salida:*
+
++
+[listing]
+----
+DHHC-1:01:NunEWY7AZlXqxITGheByarwZdQvU4ebZg9HOjIr6nOHEkxJg:
+----
+.. Compruebe las claves dhchap del controlador:
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_ctrl_secret
+----
++
+*Ejemplo de salida:*
+
++
+[listing]
+----
+DHHC-
+1:03:2YJinsxa2v3+m8qqCiTnmgBZoH6mIT6G/6f0aGO8viVZB4VLNLH4z8CvK7pVYxN6S5fOAtaU3DNi12rieRMfdbg3704=:
+----
+
+
+
+
+--
+====
+
+
+== Problemas conocidos
+
+No existen problemas conocidos para la versión SUSE Linux Enterprise Server 15 SP6 con ONTAP.
