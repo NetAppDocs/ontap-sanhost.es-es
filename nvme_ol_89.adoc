@@ -22,7 +22,7 @@ Se ofrece la siguiente compatibilidad para la configuración del host de NVMe-oF
 
 * Compatibilidad para NVMe sobre TCP (NVMe/TCP) además de NVMe/FC. El plugin de NetApp del `nvme-cli` paquete nativo muestra los detalles de ONTAP para espacios de nombres NVMe/FC y NVMe/TCP.
 * Tanto el tráfico NVMe como SCSI pueden ejecutarse en el mismo host coexistente. Por lo tanto, es posible configurar dm-multipath para dispositivos SCSI mpath para LUN SCSI, mientras que se puede utilizar NVMe multivía para configurar dispositivos NVMe-oF espacio de nombres en el host.
-* No existe compatibilidad alguna con NVMe-of. Por lo tanto, no hay compatibilidad de utilidades de host para NVMe-oF en un host Oracle Linux 8,9. Es posible usar el plugin de NetApp incluido en el paquete nativo `nvme-cli` para todos los transportes NVMe-oF.
+* No existe compatibilidad alguna con NVMe-of. Por lo tanto, no hay compatibilidad de utilidades de host para NVMe-oF en un host Oracle Linux 8,9. Puede confiar en el plugin de NetApp incluido en el `nvme-cli` paquete nativo para todos los transportes NVMe-oF.
 
 
 Si quiere más información sobre las configuraciones compatibles, consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
@@ -271,26 +271,33 @@ QLE2742 FW:v9.12.00 DVR:v10.02.08.100-k
 
 ONTAP informa de un MDT (tamaño de transferencia de MAX Data) de 8 en los datos Identify Controller. Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB TB. Para emitir solicitudes de I/O de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar `lpfc` el valor `lpfc_sg_seg_cnt` del parámetro a 256 con respecto al valor predeterminado de 64.
 
+
+NOTE: Los siguientes pasos no se aplican a los hosts Qlogic NVMe/FC.
+
 .Pasos
 . Defina el `lpfc_sg_seg_cnt` parámetro en 256:
 +
 [listing]
 ----
-# cat /etc/modprobe.d/lpfc.conf
+cat /etc/modprobe.d/lpfc.conf
+----
++
+.Resultado de ejemplo
+[listing]
+----
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. Ejecute `dracut -f` un comando y reinicie el host:
+. Ejecute `dracut -f` el comando y reinicie el host:
 . Compruebe que `lpfc_sg_seg_cnt` es 256:
 +
 [listing]
 ----
-# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-256
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 ----
++
+El valor esperado es 256.
 
 
-
-NOTE: Esto no es aplicable a los hosts Qlogic NVMe/FC.
 
 
 

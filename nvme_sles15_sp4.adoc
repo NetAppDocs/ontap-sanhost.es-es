@@ -39,7 +39,7 @@ Si quiere más información sobre las configuraciones compatibles, consulte link
 == Limitaciones conocidas
 
 * Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
-* No hay compatibilidad de sanlun para NVMe-oF. Por lo tanto, la compatibilidad con la utilidad host no está disponible para NVMe-oF en un host SUSE Linux Enterprise Server 15 SP5. Es posible usar el plugin de NetApp incluido en el paquete nvme-cli nativo para todos los transportes NVMe-oF.
+* No hay compatibilidad de sanlun para NVMe-oF. Por lo tanto, la compatibilidad con la utilidad host no está disponible para NVMe-oF en un host SUSE Linux Enterprise Server 15 SP5. Puede confiar en el plugin de NetApp incluido en el paquete nvme-cli nativo para todos los transportes NVMe-oF.
 
 
 
@@ -225,26 +225,33 @@ cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 
 ONTAP informa de un MDT (tamaño de transferencia de MAX Data) de 8 en los datos Identify Controller. Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB TB. Para emitir solicitudes de I/O de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar `lpfc` el valor `lpfc_sg_seg_cnt` del parámetro a 256 con respecto al valor predeterminado de 64.
 
+
+NOTE: Los siguientes pasos no se aplican a los hosts Qlogic NVMe/FC.
+
 .Pasos
 . Defina el `lpfc_sg_seg_cnt` parámetro en 256:
 +
 [listing]
 ----
-# cat /etc/modprobe.d/lpfc.conf
+cat /etc/modprobe.d/lpfc.conf
+----
++
+.Resultado de ejemplo
+[listing]
+----
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. Ejecute `dracut -f` un comando y reinicie el host:
+. Ejecute `dracut -f` el comando y reinicie el host:
 . Compruebe que `lpfc_sg_seg_cnt` es 256:
 +
 [listing]
 ----
-# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-256
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 ----
++
+El valor esperado es 256.
 
 
-
-NOTE: Esto no es aplicable a los hosts Qlogic NVMe/FC.
 
 
 
@@ -261,7 +268,7 @@ Existen dos servicios de arranque NVMe/FC incluidos en la `nvme-cli` paquete, si
 Created symlink /etc/systemd/system/default.target.wants/nvmf-autoconnect.service → /usr/lib/systemd/system/nvmf-autoconnect.service.
 ----
 . Reinicie el host.
-. Compruebe que `nvmf-autoconnect.service` y.. `nvmefc-boot-connections.service` se están ejecutando después de que el sistema se inicie:
+. Compruebe que `nvmf-autoconnect.service` y `nvmefc-boot-connections.service` se están ejecutando después del arranque del sistema:
 +
 *Ejemplo de salida:*
 

@@ -272,32 +272,39 @@ QLE2872 FW:v9.12.01 DVR:v10.02.09.100-k
 
 ONTAP informa de un MDT (tamaño de transferencia de MAX Data) de 8 en los datos Identify Controller. Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB TB. Para emitir solicitudes de I/O de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar `lpfc` el valor `lpfc_sg_seg_cnt` del parámetro a 256 con respecto al valor predeterminado de 64.
 
+
+NOTE: Los siguientes pasos no se aplican a los hosts Qlogic NVMe/FC.
+
 .Pasos
 . Defina el `lpfc_sg_seg_cnt` parámetro en 256:
 +
 [listing]
 ----
-# cat /etc/modprobe.d/lpfc.conf
+cat /etc/modprobe.d/lpfc.conf
+----
++
+.Resultado de ejemplo
+[listing]
+----
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. Ejecute `dracut -f` un comando y reinicie el host:
+. Ejecute `dracut -f` el comando y reinicie el host:
 . Compruebe que `lpfc_sg_seg_cnt` es 256:
 +
 [listing]
 ----
-# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-256
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 ----
++
+El valor esperado es 256.
 
 
-
-NOTE: Esto no es aplicable a los hosts Qlogic NVMe/FC.
 
 
 
 == Configure NVMe/TCP
 
-NVMe/TCP no tiene una funcionalidad de conexión automática. Por lo tanto, debe utilizar el siguiente procedimiento para detectar los subsistemas y los espacios de nombres NVMe/TCP ejecutando las funcionalidades de conexión NVMe/TCP o CONNECT-ALL manualmente.
+NVMe/TCP no tiene una funcionalidad de conexión automática. En su lugar, puede detectar los subsistemas y los espacios de nombres NVMe/TCP ejecutando manualmente las operaciones o `connect-all` NVMe/TCP `connect`.
 
 .Pasos
 . Compruebe que el puerto del iniciador pueda recuperar los datos de la página de registro de detección en las LIF NVMe/TCP admitidas:
