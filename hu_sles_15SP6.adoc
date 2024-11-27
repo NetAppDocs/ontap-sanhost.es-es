@@ -116,7 +116,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   `- 14:0:7:9   sdiw 8:256   active ready running
 ----
 
-NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de cuatro rutas puede ocasionar problemas de ruta durante errores de almacenamiento.
 
 
 
@@ -140,7 +140,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   `- 14:0:5:0   sdgz 132:240 active ready running
 ----
 
-NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de cuatro rutas puede ocasionar problemas de ruta durante errores de almacenamiento.
 
 
 
@@ -148,9 +148,7 @@ NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de ocho ru
 
 El sistema operativo SUSE Linux Enterprise Server 15 SP6 reconoce los LUN de ONTAP y establece automáticamente todos los parámetros de configuración correctamente para ASA configuraciones de ASA y de terceros. Puede optimizar aún más el rendimiento de la configuración del host con los siguientes ajustes recomendados.
 
- `multipath.conf`El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes mediante el siguiente comando:
-
-`touch /etc/multipath.conf`
+ `multipath.conf`El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el `touch /etc/multipath.conf` comando.
 
 La primera vez que crea el `multipath.conf` archivo, es posible que deba habilitar e iniciar los servicios multivía mediante los siguientes comandos:
 
@@ -197,7 +195,7 @@ blacklist {
 ----
 
 
-Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría sustituir la configuración predeterminada.
+Siempre debe comprobar el `/etc/multipath.conf` archivo, especialmente en la sección de valores predeterminados, para los ajustes heredados que podrían estar anulando los valores predeterminados.
 
 La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deberán corregirse posteriormente mediante estrofas en `multipath.conf` el archivo aplicables específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe anular estos valores predeterminados en consulta con NetApp y/o un proveedor de SO y solo cuando comprenda completamente el impacto.
 

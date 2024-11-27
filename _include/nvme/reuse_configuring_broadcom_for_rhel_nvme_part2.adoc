@@ -61,7 +61,7 @@ La `lpfc_sg_seg_cnt` El parámetro debe configurarse en 256 para que el controla
 # cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. Ejecute un `dracut -f` reinicie el host.
+. Ejecute `dracut -f` el comando y reinicie el host.
 . Después de que se inicie el host, compruebe que lpfc_sg_seg_cnt está establecido en 256.
 +
 [listing]

@@ -109,7 +109,7 @@ Para la configuración de cabina All SAN (ASA), debe haber un grupo de rutas con
 image::asa.png[Captura de pantalla de LUN de ONTAP con rutas activas/optimizadas]
 
 
-NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de cuatro rutas puede ocasionar problemas de ruta durante errores de almacenamiento.
 
 
 

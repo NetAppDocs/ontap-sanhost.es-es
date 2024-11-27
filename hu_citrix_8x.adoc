@@ -88,7 +88,7 @@ size=30G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_hand
    `- 12:0:26:11 sdyt  129:720 active ready running
 ....
 
-NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de cuatro rutas puede ocasionar problemas de ruta durante errores de almacenamiento.
 
 
 

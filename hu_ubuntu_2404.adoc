@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_ubuntu_2004.html 
+permalink: hu_ubuntu_2404.html 
 keywords: host utilities, red hat, rhel, linux, 20.04, netapp, ontap, ubuntu 
-summary: Describe cómo usar Ubuntu 20,04 con ONTAP 
+summary: Describe cómo usar Ubuntu 24,04 con ONTAP 
 ---
-= Usa Ubuntu 20,04 con ONTAP
+= Usa Ubuntu 24,04 con ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -19,17 +19,19 @@ summary: Describe cómo usar Ubuntu 20,04 con ONTAP
 
 
 [role="lead"]
-Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Ubuntu 20,04 con ONTAP como destino.
+Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Ubuntu 24,04 con ONTAP como destino.
 
 
-NOTE: El paquete de software de utilidades de host unificadas de NetApp no está disponible para el sistema operativo Ubuntu 20,04.
+NOTE: El paquete de software Utilidades de host unificadas de NetApp no está disponible para el sistema operativo Ubuntu 24,04.
 
 
 
 == Arranque SAN
 
-.Lo que necesitará
-Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
+Si decide utilizar el arranque SAN, debe ser compatible con su configuración.
+
+.Antes de empezar
+Utilice link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar que su sistema operativo, adaptador de bus de host, firmware de adaptador de bus de host, BIOS de arranque de HBA y versión de ONTAP sean compatibles.
 
 .Pasos
 . Asignar el LUN de arranque SAN al host.
@@ -49,24 +51,24 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 == Accesos múltiples
 
-Para Ubuntu 20,04, el `/etc/multipath.conf` el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. Ubuntu 20,04 se compila con todas las configuraciones necesarias para reconocer y administrar correctamente las LUN de ONTAP.
+Para Ubuntu 24,04, el `/etc/multipath.conf` archivo debe existir, pero no es necesario hacer cambios en el archivo porque Ubuntu 24,04 se compila con la configuración necesaria para reconocer y administrar correctamente los LUN de ONTAP.
 
-Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP.
-
-En las siguientes secciones se proporcionan ejemplos de salidas multivía para una LUN asignada a personas ASA y no ASA.
+En el caso de todas las configuraciones de cabina SAN (ASA) y que no son ASA, puede utilizar `multipath -ll` el comando para comprobar la configuración de una LUN de ONTAP, como se muestra en los ejemplos siguientes.
 
 
+NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
 
-=== Configuraciones de cabinas All SAN
 
-En todas las configuraciones de cabinas SAN (ASA), todas las rutas a un LUN determinado se mantienen activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
-.Ejemplo
-En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:
+=== Configuraciones de ASA
+
+En las configuraciones de ASA, todas las rutas a un LUN determinado son activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
+
+En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP asignada a una persona de ASA:
 
 [listing]
 ----
-# multipath -ll
+# # multipath -ll
 3600a098038314559533f524d6c652f62 dm-24 NETAPP,LUN C-Mode
 size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
@@ -76,16 +78,12 @@ size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   `- 12:0:3:13 sdbx 68:176 active ready running
 ----
 
-NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de cuatro rutas puede ocasionar problemas de ruta durante errores de almacenamiento.
-
-
 
 === Configuraciones que no son ASA
 
-En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
+En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas solo se utilizan cuando las rutas optimizadas no están disponibles.
 
-.Ejemplo
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
+En el ejemplo siguiente se muestra el resultado correcto de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizada asignadas a una persona que no es ASA:
 
 [listing]
 ----
@@ -100,13 +98,10 @@ size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
   `- 15:0:1:0 sdv  65:80  active ready running
 ----
 
-NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de cuatro rutas puede ocasionar problemas de ruta durante errores de almacenamiento.
-
-
 
 == Configuración recomendada
 
-El sistema operativo Ubuntu 20,04 se compila para reconocer LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para configuraciones ASA y no ASA. Puede optimizar aún más el rendimiento de la configuración del host con los siguientes ajustes recomendados.
+El sistema operativo Ubuntu 24,04 se compila para reconocer LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para configuraciones ASA y no ASA. Además, se puede utilizar la siguiente configuración recomendada para optimizar aún más el rendimiento de la configuración de host.
 
  `multipath.conf`El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el `touch /etc/multipath.conf` comando
 
@@ -214,8 +209,7 @@ En la siguiente tabla se muestran los parámetros críticos `multipathd` de las 
 
 | proveedor | NETAPP 
 |===
-.Ejemplo
-El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este caso, el `multipath.conf` el archivo define los valores para `path_checker` y.. `no_path_retry` Que no son compatibles con las LUN de ONTAP. Si no pueden eliminarse debido a que aún hay otras cabinas SAN conectadas al host, estos parámetros pueden corregirse específicamente para LUN de ONTAP con una stanza de dispositivo.
+El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este caso, el `multipath.conf` archivo define valores para `path_checker` y `no_path_retry` que no son compatibles con las LUN de ONTAP. Si no pueden eliminarse debido a que aún hay otras cabinas SAN conectadas al host, estos parámetros pueden corregirse específicamente para LUN de ONTAP con una stanza de dispositivo.
 
 [listing]
 ----
@@ -243,4 +237,4 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 
 == Problemas conocidos
 
-No existen problemas conocidos para el lanzamiento de Ubuntu 20,04 con ONTAP.
+No existen problemas conocidos para el lanzamiento de Ubuntu 24,04 con ONTAP.

@@ -217,7 +217,7 @@ ONTAP informa de UN MDT (Tamaño de transferencia MAX Data) de 8 en los datos de
 # cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. Ejecute un `dracut -f` y reinicie el host.
+. Ejecute `dracut -f` el comando y reinicie el host.
 . Después de reiniciar, compruebe que se ha aplicado la configuración anterior comprobando el valor sysfs correspondiente:
 +
 [listing]

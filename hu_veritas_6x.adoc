@@ -159,7 +159,7 @@ sdcj  ENABLED(A)  Active/Optimized     c14   SFRAC       sfrac0     -      -
 sdea  ENABLED     Active/Non-Optimized c14   SFRAC       sfrac0     -      -
 ----
 
-NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de cuatro rutas puede ocasionar problemas de ruta durante errores de almacenamiento.
 
 
 

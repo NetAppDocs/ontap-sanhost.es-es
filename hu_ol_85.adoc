@@ -117,7 +117,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 |- 15:0:1:35 sdbx 68:176 active ready running
 ----
 
-NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de cuatro rutas puede ocasionar problemas de ruta durante errores de almacenamiento.
 
 
 
@@ -148,17 +148,13 @@ NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan 
 
 El sistema operativo Oracle Linux 8.5 se compila para reconocer las LUN ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA.
 
- `multipath.conf`El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes mediante el siguiente comando:
-
-`touch /etc/multipath.conf`
+ `multipath.conf`El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el `touch /etc/multipath.conf` comando
 
 La primera vez que crea el `multipath.conf` archivo, es posible que deba habilitar e iniciar los servicios multivía mediante los siguientes comandos:
 
-[listing]
-----
-# chkconfig multipathd on
-# /etc/init.d/multipathd start
-----
+`# chkconfig multipathd on`
+`# /etc/init.d/multipathd start`
+
 No es necesario agregar nada directamente al `multipath.conf` archivo a menos que tenga dispositivos que no desee que se gestionen con acceso multivía o que tenga una configuración existente que anule los valores predeterminados. Para excluir los dispositivos no deseados, agregue la siguiente sintaxis al `multipath.conf` archivo, reemplazando <DevId> por la cadena WWID del dispositivo que desea excluir:
 
 [listing]
@@ -170,7 +166,6 @@ blacklist {
         devnode "^cciss.*"
 }
 ----
-.Ejemplo
 El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipath.conf` archivo.
 
 .Pasos
@@ -197,9 +192,9 @@ blacklist {
 ----
 
 
-Siempre debe comprobar su `/etc/multipath.conf` archivo para configuraciones heredadas, especialmente en la sección de valores predeterminados, que podría sustituir la configuración predeterminada.
+Siempre debe comprobar el `/etc/multipath.conf` archivo, especialmente en la sección de valores predeterminados, para configuraciones heredadas que pueden anular la configuración predeterminada.
 
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+En la siguiente tabla se muestran los parámetros críticos `multipathd` de las LUN de ONTAP y la configuración necesaria. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===
