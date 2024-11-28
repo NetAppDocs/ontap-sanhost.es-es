@@ -56,7 +56,7 @@ Para Ubuntu 24,04, el `/etc/multipath.conf` archivo debe existir, pero no es nec
 En el caso de todas las configuraciones de cabina SAN (ASA) y que no son ASA, puede utilizar `multipath -ll` el comando para comprobar la configuración de una LUN de ONTAP, como se muestra en los ejemplos siguientes.
 
 
-NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.
+NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de cuatro rutas pueden causar problemas de ruta durante fallos de almacenamiento.
 
 
 

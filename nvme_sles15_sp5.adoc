@@ -247,7 +247,6 @@ NOTE: Los siguientes pasos no se aplican a los hosts Qlogic NVMe/FC.
 cat /etc/modprobe.d/lpfc.conf
 ----
 +
-.Resultado de ejemplo
 [listing]
 ----
 options lpfc lpfc_sg_seg_cnt=256
