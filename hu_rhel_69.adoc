@@ -22,15 +22,15 @@ Puede utilizar los ajustes de configuración del host SAN de ONTAP para configur
 
 == Instale las utilidades unificadas de host de Linux
 
-El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] en un archivo .rpm de 32 y 64 bits. Si no sabe cuál es el archivo adecuado para su configuración, utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar cuál necesita.
+El paquete de software de utilidades de host unificadas Linux de NetApp está disponible en link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^]un archivo .rpm de 32 bits y 64 bits. Si no sabe qué archivo es el adecuado para su configuración, utilice el link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar cuál necesita.
 
-NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
+NetApp recomienda la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración del host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
-Si tiene una versión de Linux Unified Host Utilities instalada, debe actualizarla o quitarla y seguir estos pasos para instalar la versión más reciente.
+Si tiene Linux Unified Host Utilities instalado actualmente, debe actualizarla a la versión más reciente o quitarla y seguir estos pasos para instalar la versión más reciente.
 
 .Pasos
-. Descargue el paquete de software Linux Unified Host Utilities de 32 o 64 bits del link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] Sitio a su anfitrión.
-. Use el siguiente comando para instalar el paquete de software:
+. Descargue el paquete de software Linux Unified Host Utilities de 32 o 64 bits del link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] al host.
+. Instale el paquete de software:
 +
 `rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
 
@@ -76,7 +76,7 @@ Si decide utilizar el arranque SAN, debe ser compatible con su configuración. P
 . Verifique que haya varias rutas disponibles.
 +
 
-NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
+NOTE: Una vez que el sistema operativo del host está activo y en ejecución en las rutas, hay varias rutas disponibles.
 
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
@@ -161,7 +161,7 @@ NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de c
 
 El sistema operativo RHEL 6.9 se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración tanto de ASA como de terceros.
 
- `multipath.conf`El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el `touch /etc/multipath.conf` comando
+ `multipath.conf`El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el `touch /etc/multipath.conf` comando.
 
 La primera vez que crea el `multipath.conf` archivo, es posible que deba habilitar e iniciar los servicios multivía mediante los siguientes comandos:
 
@@ -207,7 +207,7 @@ blacklist {
 
 Siempre debe comprobar el `/etc/multipath.conf` archivo, especialmente en la sección de valores predeterminados, para configuraciones heredadas que podrían estar anulando la configuración predeterminada.
 
-En la siguiente tabla se muestran los parámetros críticos `multipathd` de las LUN de ONTAP y la configuración necesaria. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===

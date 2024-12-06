@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+Es posible usar NVMe-oF con LUN de ONTAP. En entornos de NVMe-oF, ANA es equivalente a la multivía ALUA en entornos iSCSI y FCP; se implementa con la función multivía de NVMe en kernel.

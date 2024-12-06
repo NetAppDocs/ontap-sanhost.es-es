@@ -79,7 +79,7 @@ Consulte el portal de soporte de Veritas (matriz de productos, búsqueda de plat
 . Verifique que haya varias rutas disponibles.
 +
 
-NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
+NOTE: Una vez que el sistema operativo del host está activo y en ejecución en las rutas, hay varias rutas disponibles.
 
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +

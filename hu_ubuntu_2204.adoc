@@ -33,7 +33,7 @@ Si decide utilizar el arranque SAN, debe ser compatible con su configuración. P
 . Verifique que haya varias rutas disponibles.
 +
 
-NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
+NOTE: Una vez que el sistema operativo del host está activo y en ejecución en las rutas, hay varias rutas disponibles.
 
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
@@ -107,7 +107,7 @@ NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de c
 
 El sistema operativo Ubuntu 22,04 se compila para reconocer LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para configuraciones ASA y no ASA. Puede optimizar aún más el rendimiento de la configuración del host con los siguientes ajustes recomendados.
 
- `multipath.conf`El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el `touch /etc/multipath.conf` comando
+ `multipath.conf`El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el `touch /etc/multipath.conf` comando.
 
 La primera vez que crea el `multipath.conf` archivo, es posible que deba habilitar e iniciar los servicios multivía mediante los siguientes comandos:
 
@@ -153,7 +153,7 @@ blacklist {
 
 Siempre debe comprobar el `/etc/multipath.conf` archivo, especialmente en la sección de valores predeterminados, para configuraciones heredadas que podrían estar anulando la configuración predeterminada.
 
-En la siguiente tabla se muestran los parámetros críticos `multipathd` de las LUN de ONTAP y la configuración necesaria. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
 
 [cols="2*"]
 |===
