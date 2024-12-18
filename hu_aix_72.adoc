@@ -57,7 +57,7 @@ Al descomprimir el archivo se crea el siguiente directorio: `ntap_aix_host_utili
 
 == Kit de herramientas SAN
 
-El kit de herramientas se instala automáticamente al instalar el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar LUN y HBA. La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
+La instalación del paquete de utilidades de host de NetApp instala automáticamente el kit de herramientas. Este kit proporciona la `sanlun` utilidad, que le ayuda a gestionar los LUN y los adaptadores de bus de host (HBA). El `sanlun` comando muestra información acerca de las LUN asignadas al host, la multivía y la información necesaria para crear iGroups.
 
 .Ejemplo
 En el siguiente ejemplo, la `sanlun lun show` Command muestra información de LUN.
@@ -99,7 +99,7 @@ Para AIX, el módulo de control de rutas (PCM) es responsable de controlar varia
 En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
 
 .Ejemplo
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
+En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas.
 
 [listing]
 ----
@@ -126,10 +126,10 @@ up      secondary  path3  fcs1    fc_aix_4        1
 
 === Configuraciones de cabinas All SAN
 
-En todas las configuraciones de cabinas SAN (ASA), todas las rutas a un LUN determinado se mantienen activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
+Las configuraciones de cabinas All SAN (ASA) optimizan todas las rutas para un LUN determinado, manteniéndolas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
 .Ejemplo
-En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:
+En el ejemplo siguiente se muestra el resultado correcto de una LUN de ONTAP.
 
 
 NOTE: Todas las configuraciones de cabinas SAN (ASA) son compatibles a partir de ONTAP 9.8 para hosts AIX.

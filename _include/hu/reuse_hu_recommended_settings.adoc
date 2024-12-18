@@ -6,10 +6,12 @@
 
 La primera vez que crea el `multipath.conf` archivo, es posible que deba habilitar e iniciar los servicios multivía mediante los siguientes comandos:
 
-`# chkconfig multipathd on`
-`# /etc/init.d/multipathd start`
-
-No es necesario agregar nada directamente al `multipath.conf` archivo a menos que tenga dispositivos que no desee que se gestionen con acceso multivía o que tenga una configuración existente que anule los valores predeterminados. Para excluir los dispositivos no deseados, agregue la siguiente sintaxis al `multipath.conf` archivo, reemplazando <DevId> por la cadena WWID del dispositivo que desea excluir:
+[listing]
+----
+chkconfig multipathd on
+/etc/init.d/multipathd start
+----
+No es necesario agregar nada directamente al `multipath.conf` archivo a menos que tenga dispositivos que no desee que se gestionen con acceso multivía o que tenga una configuración existente que anule los valores predeterminados. Para excluir dispositivos no deseados, agregue la siguiente sintaxis al `multipath.conf` archivo y reemplace <DevId> por la cadena de identificador mundial (WWID) del dispositivo que desea excluir:
 
 [listing]
 ----
@@ -27,25 +29,37 @@ El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipa
 +
 [listing]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
-360030057024d0730239134810c0cb833
+/lib/udev/scsi_id -gud /dev/sda
 ----
-+
-`sda` Es el disco SCSI local que desea agregar a la lista negra.
-
-. Añada el `WWID` a la lista negra stanza en `/etc/multipath.conf`:
 +
 [listing]
 ----
-blacklist {
-     wwid   360030057024d0730239134810c0cb833
-     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-     devnode "^hd[a-z]"
-     devnode "^cciss.*"
-}
+3600a098038314c4a433f5774717a3046
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+360030057024d0730239134810c0cb833
+
+
+
+[listing]
+----
++
+`sda` is the local SCSI disk that you want to add to the blacklist.
+
+. Add the `WWID` to the blacklist stanza in `/etc/multipath.conf`:
+[source,cli]
++
+----
+lista negra { wwid 3600a098038314c4a433f5774717a3046 devnode '^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]* }
+
+[listing]
 ----
 
+Always check your `/etc/multipath.conf` file, especially in the defaults section, for legacy settings that might be overriding default settings.
 
-Siempre debe comprobar el `/etc/multipath.conf` archivo, especialmente en la sección de valores predeterminados, para configuraciones heredadas que podrían estar anulando la configuración predeterminada.
+The following table demonstrates the critical `multipathd` parameters for ONTAP LUNs and the required values. If a host is connected to LUNs from other vendors and any of these parameters are overridden, they must be corrected by later stanzas in the `multipath.conf` file that apply specifically to ONTAP LUNs. Without this correction, the ONTAP LUNs might not work as expected. You should only override these defaults in consultation with NetApp, the OS vendor, or both, and only when the impact is fully understood.
 
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+//ONTAPDOC-2578 9-Dec-2024
+//ONTAPDOC-2561 25-Nov-202
+----

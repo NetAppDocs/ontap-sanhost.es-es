@@ -22,11 +22,9 @@ Puede utilizar los ajustes de configuración del host SAN de ONTAP para la base 
 
 == Instale las utilidades unificadas de host de Linux
 
-El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] en un archivo .rpm de 64 bits.
+Es posible descargar el paquete de software de utilidades de host unificadas de NetApp como archivo 64-bit.rpm en el link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^].
 
 NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
-
-Si tiene una versión de Linux Unified Host Utilities instalada, debe actualizarla o quitarla y seguir estos pasos para instalar la versión más reciente.
 
 .Pasos
 . Descargue el paquete de software Linux Unified Host Utilities de 64 bits de https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] al host.
@@ -40,7 +38,7 @@ Si tiene una versión de Linux Unified Host Utilities instalada, debe actualizar
 
 == Kit de herramientas SAN
 
-El kit de herramientas se instala automáticamente al instalar el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar LUN y HBA. La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
+La instalación del paquete de utilidades de host de NetApp instala automáticamente el kit de herramientas. Este kit proporciona la `sanlun` utilidad, que le ayuda a gestionar los LUN y los adaptadores de bus de host (HBA). El `sanlun` comando muestra información acerca de las LUN asignadas al host, la multivía y la información necesaria para crear iGroups.
 
 .Ejemplo
 En la siguiente ilustración, el `sanlun show` Command muestra información de LUN.

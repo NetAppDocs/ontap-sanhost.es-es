@@ -72,7 +72,7 @@ tpgs_on        VMW_PSP_RR                   NetApp arrays with ALUA support
 En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
 
 .Ejemplo
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
+En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas.
 
 [listing]
 ----
@@ -140,10 +140,10 @@ fc.20000024ff7f4a50:21000024ff7f4a50-fc.2009d039ea3ab21f:2000d039ea3ab21f-naa.60
 
 === Configuraciones de cabinas All SAN
 
-En todas las configuraciones de cabinas SAN (ASA), todas las rutas a un LUN determinado se mantienen activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
+Las configuraciones de cabinas All SAN (ASA) optimizan todas las rutas para un LUN determinado, manteniéndolas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
 .Ejemplo
-En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:
+En el ejemplo siguiente se muestra el resultado correcto de una LUN de ONTAP.
 
 [listing]
 ----

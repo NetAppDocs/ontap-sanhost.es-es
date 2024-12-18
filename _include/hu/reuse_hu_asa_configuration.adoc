@@ -6,7 +6,7 @@
 
 === Configuraciones de cabinas All SAN
 
-En todas las configuraciones de cabinas SAN (ASA), todas las rutas a un LUN determinado se mantienen activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
+Las configuraciones de cabinas All SAN (ASA) optimizan todas las rutas para un LUN determinado, manteniéndolas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
 .Ejemplo
-En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:
+En el ejemplo siguiente se muestra el resultado correcto de una LUN de ONTAP.

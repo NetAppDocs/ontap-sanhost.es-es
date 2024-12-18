@@ -22,11 +22,9 @@ Puede utilizar los ajustes de configuración del host SAN de ONTAP para configur
 
 == Instale las utilidades unificadas de host de Linux
 
-El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] en un archivo .rpm de 64 bits.
+Es posible descargar el paquete de software de utilidades de host unificadas de NetApp como archivo 64-bit.rpm en el link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^].
 
 NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
-
-Si tiene una versión de Linux Unified Host Utilities instalada, debe actualizarla o quitarla y seguir estos pasos para instalar la versión más reciente.
 
 .Pasos
 . Descargue el paquete de software Linux Unified Host Utilities de 64 bits de https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] al host.
@@ -119,10 +117,12 @@ CentOS 8.2 OS se compila para reconocer las LUN de ONTAP y establecer automátic
 
 La primera vez que crea el `multipath.conf` archivo, es posible que deba habilitar e iniciar los servicios multivía mediante los siguientes comandos:
 
-`# chkconfig multipathd on`
-`# /etc/init.d/multipathd start`
-
-No es necesario agregar nada directamente al `multipath.conf` archivo a menos que tenga dispositivos que no desee que se gestionen con acceso multivía o que tenga una configuración existente que anule los valores predeterminados. Para excluir los dispositivos no deseados, agregue la siguiente sintaxis al `multipath.conf` archivo, reemplazando <DevId> por la cadena WWID del dispositivo que desea excluir:
+[listing]
+----
+chkconfig multipathd on
+/etc/init.d/multipathd start
+----
+No es necesario agregar nada directamente al `multipath.conf` archivo a menos que tenga dispositivos que no desee que se gestionen con acceso multivía o que tenga una configuración existente que anule los valores predeterminados. Para excluir dispositivos no deseados, agregue la siguiente sintaxis al `multipath.conf` archivo y reemplace <DevId> por la cadena de identificador mundial (WWID) del dispositivo que desea excluir:
 
 [listing]
 ----
@@ -140,114 +140,84 @@ El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipa
 +
 [listing]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+[listing]
+----
+3600a098038314c4a433f5774717a3046
+/lib/udev/scsi_id -gud /dev/sda
+----
++
 360030057024d0730239134810c0cb833
-----
-+
-`sda` Es el disco SCSI local que desea agregar a la lista negra.
-
-. Añada el `WWID` a la lista negra stanza en `/etc/multipath.conf`:
-+
-[listing]
-----
-blacklist {
-     wwid   360030057024d0730239134810c0cb833
-     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-     devnode "^hd[a-z]"
-     devnode "^cciss.*"
-}
-----
 
 
-Siempre debe comprobar el `/etc/multipath.conf` archivo, especialmente en la sección de valores predeterminados, para configuraciones heredadas que podrían estar anulando la configuración predeterminada.
-
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
-
-[cols="2*"]
-|===
-| Parámetro | Ajuste 
-
-
-| detect_prio | sí 
-
-
-| dev_loss_tmo | "infinito" 
-
-
-| conmutación tras recuperación | inmediata 
-
-
-| fast_io_fail_tmo | 5 
-
-
-| funciones | "2 pg_init_retries 50" 
-
-
-| flush_on_last_del | "sí" 
-
-
-| manipulador_hardware | "0" 
-
-
-| no_path_retry | cola 
-
-
-| comprobador_de_rutas | "tur" 
-
-
-| política_agrupación_ruta | "group_by_prio" 
-
-
-| selector_de_rutas | "tiempo de servicio 0" 
-
-
-| intervalo_sondeo | 5 
-
-
-| prioridad | "ONTAP" 
-
-
-| producto | LUN.* 
-
-
-| retain_attached_hw_handler | sí 
-
-
-| rr_weight | "uniforme" 
-
-
-| nombres_descriptivos_usuario | no 
-
-
-| proveedor | NETAPP 
-|===
-.Ejemplo
-El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este caso, el `multipath.conf` el archivo define los valores para `path_checker` y.. `no_path_retry` Que no son compatibles con las LUN de ONTAP. Si no se pueden quitar debido a que aún hay otras cabinas SAN conectadas al host, estos parámetros pueden corregirse específicamente para LUN de ONTAP con una sección de dispositivo.
 
 [listing]
 ----
-defaults {
-   path_checker      readsector0
-   no_path_retry      fail
-}
++
+`sda` is the local SCSI disk that you want to add to the blacklist.
 
-devices {
-   device {
-      vendor         "NETAPP  "
-      product         "LUN.*"
-      no_path_retry     queue
-      path_checker      tur
-   }
-}
+. Add the `WWID` to the blacklist stanza in `/etc/multipath.conf`:
+[source,cli]
++
+----
+lista negra { wwid 3600a098038314c4a433f5774717a3046 devnode '^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]* }
+
+[listing]
 ----
 
+Always check your `/etc/multipath.conf` file, especially in the defaults section, for legacy settings that might be overriding default settings.
 
-=== Configuración de KVM
+The following table demonstrates the critical `multipathd` parameters for ONTAP LUNs and the required values. If a host is connected to LUNs from other vendors and any of these parameters are overridden, they must be corrected by later stanzas in the `multipath.conf` file that apply specifically to ONTAP LUNs. Without this correction, the ONTAP LUNs might not work as expected. You should only override these defaults in consultation with NetApp, the OS vendor, or both, and only when the impact is fully understood.
 
-También puede utilizar los ajustes recomendados para configurar la máquina virtual basada en kernel (KVM). No es necesario realizar cambios para configurar KVM a medida que la LUN está asignada al hipervisor.
+//ONTAPDOC-2578 9-Dec-2024
+//ONTAPDOC-2561 25-Nov-202
 
 
+[cols=2*,options="header"]
+|===
+| Parameter
+| Setting
+| detect_prio | yes
+| dev_loss_tmo | "infinity"
+| failback | immediate
+| fast_io_fail_tmo | 5
+| features | "2 pg_init_retries 50"
+| flush_on_last_del | "yes"
+| hardware_handler | "0"
+| no_path_retry | queue
+| path_checker | "tur"
+| path_grouping_policy | "group_by_prio"
+| path_selector | "service-time 0"
+| polling_interval | 5
+| prio | "ontap"
+| product | LUN.*
+| retain_attached_hw_handler | yes
+| rr_weight | "uniform"
+| user_friendly_names | no
+| vendor | NETAPP
+|===
 
-== Problemas conocidos
+.Example
 
-Para conocer los problemas conocidos de CentOS (kernel compatible con Red Hat), consulte link:hu_rhel_82.html#known-problems-and-limitations["problemas conocidos"] Para Red Hat Enterprise Linux (RHEL) 8.2.
+The following example shows how to correct an overridden default. In this case, the `multipath.conf` file defines values for `path_checker` and `no_path_retry` that are not compatible with ONTAP LUNs. If they cannot be removed because of other SAN arrays still attached to the host, these parameters can be corrected specifically for ONTAP LUNs with a device stanza.
+
+----
+los valores por defecto { path_checker readsector0 no_path_retry fallan }
+
+Dispositivos { device { vendor «NetApp» product «lun.*» no_path_retry queue path_checker tur }
+
+[listing]
+----
+
+=== Configure KVM settings
+
+You can use the recommended settings to configure Kernel-based Virtual Machine (KVM) as well. There are no changes required to configure KVM because the LUN is mapped to the hypervisor.
+
+//ONTAPDOC-2561 5-Dec-2024
+
+== Known issues
+
+For CentOS (Red Hat compatible kernel) known issues, see the link:hu_rhel_82.html#known-problems-and-limitations[known issues] for Red Hat Enterprise Linux (RHEL) 8.2.
+----

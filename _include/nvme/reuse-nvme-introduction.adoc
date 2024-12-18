@@ -2,4 +2,4 @@
 :allow-uri-read: 
 
 
-Es posible usar NVMe-oF con LUN de ONTAP. En entornos de NVMe-oF, ANA es equivalente a la multivía ALUA en entornos iSCSI y FCP; se implementa con la función multivía de NVMe en kernel.
+Las configuraciones de host SAN de NetApp admiten el protocolo NVMe over Fabrics (NVMe-oF) con acceso asimétrico al espacio de nombres (ANA). En entornos con NVMe-oF, ANA es equivalente a accesos múltiples asimétricos de unidad lógica (ALUA) en entornos iSCSI y FCP. ANA se implementa mediante la función multivía de NVMe interna.

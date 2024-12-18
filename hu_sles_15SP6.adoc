@@ -99,10 +99,10 @@ En las siguientes secciones se proporcionan ejemplos de salidas multivía para u
 
 === Configuraciones de cabinas All SAN
 
-En todas las configuraciones de cabinas SAN (ASA), todas las rutas a un LUN determinado se mantienen activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
+Las configuraciones de cabinas All SAN (ASA) optimizan todas las rutas para un LUN determinado, manteniéndolas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
 .Ejemplo
-En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP:
+En el ejemplo siguiente se muestra el resultado correcto de una LUN de ONTAP.
 
 [listing]
 ----
@@ -125,7 +125,7 @@ NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de c
 En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
 
 .Ejemplo
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
+En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas.
 
 [listing]
 ----
@@ -168,15 +168,18 @@ blacklist {
         devnode "^cciss.*"
 }
 ----
-.Ejemplo
-En el siguiente ejemplo, se determina el WWID de un dispositivo y se agrega al `multipath.conf` archivo.
+En el siguiente ejemplo, determina el WWID de un dispositivo y agrega el dispositivo al `multipath.conf` archivo.
 
 .Pasos
 . Determine el WWID:
 +
 [listing]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+[listing]
+----
 360030057024d0730239134810c0cb833
 ----
 +
