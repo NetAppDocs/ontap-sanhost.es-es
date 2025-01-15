@@ -194,88 +194,120 @@ El siguiente ejemplo determina el WWID de un dispositivo y lo agrega al `multipa
 [listing]
 ----
 3600a098038314c4a433f5774717a3046
-/lib/udev/scsi_id -gud /dev/sda
 ----
 +
-360030057024d0730239134810c0cb833
+`sda` Es el disco SCSI local que desea agregar a la lista negra.
+
+. Añada el `WWID` a la lista negra stanza en `/etc/multipath.conf`:
++
+[source, cli]
+----
+blacklist {
+     wwid   3600a098038314c4a433f5774717a3046
+     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+     devnode "^hd[a-z]"
+     devnode "^cciss.*"
+}
+----
 
 
+Compruebe siempre el `/etc/multipath.conf` archivo, especialmente en la sección de valores predeterminados, para ver la configuración heredada que podría estar anulando la configuración predeterminada.
+
+La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben corregirse mediante estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a las LUN de ONTAP. Sin esta corrección, es posible que las LUN de ONTAP no funcionen como se espera. Solo debe sobrescribir estos valores predeterminados en consulta con NetApp, el proveedor del sistema operativo o ambos, y solo cuando se comprenda completamente el impacto.
+
+[cols="2*"]
+|===
+| Parámetro | Ajuste 
+
+
+| detect_prio | sí 
+
+
+| dev_loss_tmo | "infinito" 
+
+
+| conmutación tras recuperación | inmediata 
+
+
+| fast_io_fail_tmo | 5 
+
+
+| funciones | "3 queue_if_no_path pg_init_retries 50" 
+
+
+| flush_on_last_del | "sí" 
+
+
+| manipulador_hardware | "0" 
+
+
+| no_path_retry | cola 
+
+
+| comprobador_de_rutas | "tur" 
+
+
+| política_agrupación_ruta | "group_by_prio" 
+
+
+| selector_de_rutas | "operación por turnos 0" 
+
+
+| intervalo_sondeo | 5 
+
+
+| prioridad | "ONTAP" 
+
+
+| producto | LUN.* 
+
+
+| retain_attached_hw_handler | sí 
+
+
+| rr_weight | "uniforme" 
+
+
+| nombres_descriptivos_usuario | no 
+
+
+| proveedor | NETAPP 
+|===
+.Ejemplo
+El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este caso, el `multipath.conf` el archivo define los valores para `path_checker` y.. `no_path_retry` Que no son compatibles con las LUN de ONTAP. Si no se pueden quitar debido a que aún hay otras cabinas SAN conectadas al host, estos parámetros pueden corregirse específicamente para LUN de ONTAP con una sección de dispositivo.
 
 [listing]
 ----
-+
-`sda` is the local SCSI disk that you want to add to the blacklist.
+defaults {
+   path_checker      readsector0
+   no_path_retry      fail
+}
 
-. Add the `WWID` to the blacklist stanza in `/etc/multipath.conf`:
-[source,cli]
-+
+devices {
+   device {
+      vendor         "NETAPP  "
+      product         "LUN.*"
+      no_path_retry     queue
+      path_checker      tur
+   }
+}
 ----
-lista negra { wwid 3600a098038314c4a433f5774717a3046 devnode '^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]* }
 
-[listing]
-----
 
-Always check your `/etc/multipath.conf` file, especially in the defaults section, for legacy settings that might be overriding default settings.
+=== Configure los ajustes de KVM
 
-The following table demonstrates the critical `multipathd` parameters for ONTAP LUNs and the required values. If a host is connected to LUNs from other vendors and any of these parameters are overridden, they must be corrected by later stanzas in the `multipath.conf` file that apply specifically to ONTAP LUNs. Without this correction, the ONTAP LUNs might not work as expected. You should only override these defaults in consultation with NetApp, the OS vendor, or both, and only when the impact is fully understood.
+También puede utilizar los ajustes recomendados para configurar la máquina virtual basada en kernel (KVM). No se requieren cambios para configurar KVM porque la LUN está asignada al hipervisor.
 
-//ONTAPDOC-2578 9-Dec-2024
-//ONTAPDOC-2561 25-Nov-202
 
-[cols=2*,options="header"]
+
+== Problemas conocidos
+
+La versión de RHEL 6,4 con ONTAP tiene los siguientes problemas conocidos:
+
+[cols="3*"]
 |===
-| Parameter
-| Setting
-| detect_prio | yes
-| dev_loss_tmo | "infinity"
-| failback | immediate
-| fast_io_fail_tmo | 5
-| features | "3 queue_if_no_path pg_init_retries 50"
-| flush_on_last_del | "yes"
-| hardware_handler | "0"
-| no_path_retry | queue
-| path_checker | "tur"
-| path_grouping_policy | "group_by_prio"
-| path_selector | "round-robin 0"
-| polling_interval | 5
-| prio | "ontap"
-| product | LUN.*
-| retain_attached_hw_handler | yes
-| rr_weight | "uniform"
-| user_friendly_names | no
-| vendor | NETAPP
+| ID de error de NetApp | Título | Descripción 
+
+
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=673009["673009"^] | La creación de un sistema de archivos ext4 en bandas LV en 15 o más dispositivos multipath habilitados para descartar y con Thin Provisioning desencadena errores de núcleo "solicitudes en funcionamiento" | Se han observado errores de núcleo "solicitud por transferencia" cuando los usuarios intentan crear un sistema de archivos ext4 en dispositivos multirruta habilitados para desechar. Como resultado, la creación del sistema de archivos ext4 puede tardar más tiempo en completarse y puede producirse una interrupción ocasional. Este problema sólo se ha producido cuando los usuarios intentan crear el sistema de archivos ext4 en un LV seccionado a través de 15 o más dispositivos multirruta habilitados para descartar en sistemas que ejecutan Red Hat Enterprise Linux 6.x y Data ONTAP 8.1.3 y posterior funcionando en 7-Mode. El problema se debe a que el kernel intenta por error fusionar solicitudes de descarte, que actualmente no se admite en Red Hat Enterprise Linux 6.x. Cuando se produce este problema, se escriben en syslog varias instancias del siguiente mensaje (/var/log/messages): Kernel: blk: Request botched. Como resultado, la creación de un sistema de archivos puede tardar más tiempo en completarse de lo esperado. 
 |===
-
-.Example
-
-The following example shows how to correct an overridden default. In this case, the `multipath.conf` file defines values for `path_checker` and `no_path_retry` that are not compatible with ONTAP LUNs. If they cannot be removed because of other SAN arrays still attached to the host, these parameters can be corrected specifically for ONTAP LUNs with a device stanza.
-
-----
-los valores por defecto { path_checker readsector0 no_path_retry fallan }
-
-Dispositivos { device { vendor «NetApp» product «lun.*» no_path_retry queue path_checker tur }
-
-[listing]
-----
-
-=== Configure KVM settings
-
-You can use the recommended settings to configure Kernel-based Virtual Machine (KVM) as well. There are no changes required to configure KVM because the LUN is mapped to the hypervisor.
-
-//ONTAPDOC-2561 5-Dec-2024
-
-[[known-problems-and-limitations]]
-== Known issues
-
-The RHEL 6.4 with ONTAP release has the following known issues:
-
-[cols=3*,options="header"]
-|===
-| NetApp Bug ID
-| Title
-| Description
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=673009[673009^] | Creating ext4 file system on LV striped across 15 or more discard-enabled, thinly provisioned multipath devices triggers "request botched" kernel errors | "Request blotched" kernel errors have been seen when users attempt to create an ext4 file system on discard-enabled, thinly provisioned multipath devices. As a result, creating the ext4 file system might take longer to complete and occasional disruption occurs. This issue has occurred only when users attempt to create the ext4 file system on a LV striped across 15 or more discard-enabled multipath devices on systems running Red Hat Enterprise Linux 6.x and Data ONTAP 8.1.3 and later operating in 7-Mode. The issue happens because the kernel erroneously attempts to merge discard requests, which is not supported on Red Hat Enterprise Linux 6.x at this time. When this issue occurs, multiple instances of the following message are written to syslog (/var/log/messages):  kernel: blk: request botched. As a result, file system creation might take longer time to complete than expected.
-|===
-
-// 2024 SEP 2, ONTAPDOC-2345
-----
