@@ -235,9 +235,9 @@ devices {
 ----
 
 
-=== Configuración de KVM
+== Configure los ajustes de KVM
 
-También puede utilizar los ajustes recomendados para configurar la máquina virtual basada en kernel (KVM). No es necesario realizar cambios para configurar KVM a medida que la LUN está asignada al hipervisor.
+No es necesario configurar ajustes para una máquina virtual basada en kernel porque la LUN está asignada al hipervisor.
 
 
 

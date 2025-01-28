@@ -272,13 +272,13 @@ devices {
 }
 ----
 
-NOTE: Para configurar Oracle Linux 8,8 Red Hat Enterprise Kernel, utilice link:hu_rhel_88.html#recommended-settings["configuración recomendada"]para Red Hat Enterprise Linux (RHEL) 8,8.
+NOTE: Para configurar el kernel compatible con Red Hat (RHCK) de Oracle Linux 8,8, utilice para link:hu_rhel_88.html#recommended-settings["configuración recomendada"]Red Hat Enterprise Linux (RHEL) 8,8.
 
 
 
-== Configuración de KVM
+== Configure los ajustes de KVM
 
-También puede utilizar la configuración recomendada para configurar una máquina virtual basada en kernel (KVM). No se necesitan cambios para configurar un KVM, ya que la LUN está asignada al hipervisor.
+No es necesario configurar ajustes para una máquina virtual basada en kernel porque la LUN está asignada al hipervisor.
 
 
 

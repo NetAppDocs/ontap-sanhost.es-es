@@ -246,7 +246,7 @@ devices {
 }
 ----
 
-NOTE: Para configurar Oracle Linux 8,1 Red Hat Enterprise Kernel (RHCK), utilice para link:hu_rhel_81.html#recommended-settings["configuración recomendada"]Red Hat Enterprise Linux (RHEL) 8,1.
+NOTE: Para configurar el kernel compatible con Red Hat (RHCK) de Oracle Linux 8,1, utilice para link:hu_rhel_81.html#recommended-settings["configuración recomendada"]Red Hat Enterprise Linux (RHEL) 8,1.
 
 
 
@@ -255,4 +255,4 @@ NOTE: Para configurar Oracle Linux 8,1 Red Hat Enterprise Kernel (RHCK), utilice
 No existen problemas conocidos para la versión Oracle Linux 8,1 con ONTAP.
 
 
-NOTE: Para problemas conocidos de Oracle Linux (kernel compatible con Red Hat), consulte link:hu_rhel_81.html#known-problems-and-limitations["problemas conocidos"]para Red Hat Enterprise Linux (RHEL) 8,1.
+NOTE: Para obtener información sobre problemas conocidos de Oracle Linux RHCK, consulte link:hu_rhel_81.html#known-problems-and-limitations["problemas conocidos"]para RHEL 8,1.

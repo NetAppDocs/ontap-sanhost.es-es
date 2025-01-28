@@ -277,13 +277,13 @@ devices {
 }
 ----
 
-NOTE: Para configurar Oracle Linux 8,4 Red Hat Enterprise Kernel (RHCK), utilice para link:hu_rhel_84.html#recommended-settings["configuración recomendada"]Red Hat Enterprise Linux (RHEL) 8,4.
+NOTE: Para configurar el kernel compatible con Red Hat (RHCK) de Oracle Linux 8,4, utilice para link:hu_rhel_84.html#recommended-settings["configuración recomendada"]Red Hat Enterprise Linux (RHEL) 8,4.
 
 
 
-== Configuración DE KVM
+== Configure los ajustes de KVM
 
-También puede utilizar los ajustes recomendados para configurar la máquina virtual basada en kernel (KVM). No es necesario realizar cambios para configurar KVM a medida que la LUN está asignada al hipervisor.
+No es necesario configurar ajustes para una máquina virtual basada en kernel porque la LUN está asignada al hipervisor.
 
 
 
@@ -292,4 +292,4 @@ También puede utilizar los ajustes recomendados para configurar la máquina vir
 No existen problemas conocidos para la versión Oracle Linux 8,4 con ONTAP.
 
 
-NOTE: Para obtener información sobre problemas conocidos de Oracle Linux (kernel compatible con Red Hat), consulte link:hu_rhel_84.html#known-problems-and-limitations["problemas conocidos"]la sección en la documentación de la versión de Red Hat Enterprise Linux correspondiente.
+NOTE: Para obtener información sobre los problemas conocidos de RHCK de Oracle Linux, consulte la link:hu_rhel_84.html#known-problems-and-limitations["problemas conocidos"] sección de la documentación de la versión de RHEL correspondiente.

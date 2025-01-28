@@ -253,7 +253,7 @@ devices {
 }
 ----
 
-NOTE: Para configurar Oracle Linux 6,4 Red Hat Enterprise Kernel (RHCK), utilice para link:hu_rhel_64.html#recommended-settings["configuración recomendada"]Red Hat Enterprise Linux (RHEL) 6,4.
+NOTE: Para configurar el kernel compatible con Red Hat (RHCK) de Oracle Linux 6,4, utilice para link:hu_rhel_64.html#recommended-settings["configuración recomendada"]Red Hat Enterprise Linux (RHEL) 6,4.
 
 
 
@@ -278,4 +278,4 @@ La versión Oracle Linux 6,4 con ONTAP tiene los siguientes problemas conocidos:
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=739909["739909"^] | La llamada del sistema SG_IO ioctl falla en dispositivos dm-multipath después de un error de FC en hosts OL6.x y OL5.x con UEK2 | Se observa un problema en los hosts Oracle Linux 6.x con el kernel UEK2 y los hosts Oracle Linux 5.x con kernel UEK2. Los comandos sg_* de un dispositivo multipath fallan con el código de error EAGAIN (errno) después de un error de estructura que hace que todas las rutas del grupo de rutas activas se desencuentren. Este problema solo se observa cuando no se producen operaciones de I/o en los dispositivos multivía. El siguiente es un ejemplo: # sg_inq -v /dev/mapper/3600a098041764937303f436c75324370 consulta cdb: 12 00 00 00 24 00 ioctl(SG_IO v3) falló con os_err (errno) = 11 consulta: Pase a través de error de sistema operativo: El recurso temporalmente no está disponible HDIO_GET_iocl IDENTIDAD falló: El recurso no está disponible temporalmente [11] tanto LA CONSULTA SCSI como la recuperación de la información ATA han fallado en las llamadas /dev/mapper/3600a098041764937303f436c75324370 # este problema se produce porque la conmutación del grupo de rutas a otros grupos activos no se activa durante las llamadas de ioctl() cuando no se produce ninguna E/S en el dispositivo DM-Multipath. El problema se ha observado en las siguientes versiones de kernel-uek y Device-mapper-multipath packages: OL6.4 Versions: Kernel-uek-2.6.39-400.17.1.el6uek device-mapper-multipath-0.4.9-64.0.1.el6 OL5.9: Kernel-uek-2.6.39-400.17.1.el5uek-Device-0.4.9-64.0.el5--.el5uek-multipath-..1..el5- 
 |===
 
-NOTE: Para ver los problemas conocidos de Oracle Linux (kernel compatible con Red Hat), consulte link:hu_rhel_64.html#known-problems-and-limitations["problemas conocidos"] Para Red Hat Enterprise Linux (RHEL) 6.4.
+NOTE: Para obtener información sobre problemas conocidos de Oracle Linux RHCK, consulte link:hu_rhel_64.html#known-problems-and-limitations["problemas conocidos"]para RHEL 6,4.

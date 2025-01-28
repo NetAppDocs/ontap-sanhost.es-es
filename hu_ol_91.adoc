@@ -272,13 +272,13 @@ devices {
 }
 ----
 
-NOTE: Para configurar Oracle Linux 9,1 Red Hat Enterprise Kernel (RHCK), utilice para link:hu_rhel_91.html#recommended-settings["configuración recomendada"]Red Hat Enterprise Linux (RHEL) 9,1.
+NOTE: Para configurar el kernel compatible con Red Hat (RHCK) de Oracle Linux 9,1, utilice para link:hu_rhel_91.html#recommended-settings["configuración recomendada"]Red Hat Enterprise Linux (RHEL) 9,1.
 
 
 
-== Configuración de KVM
+== Configure los ajustes de KVM
 
-También puede utilizar la configuración recomendada para configurar la máquina virtual basada en kernel (KVM). No es necesario realizar cambios para configurar KVM a medida que la LUN está asignada al hipervisor.
+No es necesario configurar ajustes para una máquina virtual basada en kernel porque la LUN está asignada al hipervisor.
 
 
 
