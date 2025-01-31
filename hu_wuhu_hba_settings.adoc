@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_wuhu_hba_settings.html 
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
-summary: Las utilidades unificadas de host de Windows incluyen un programa de instalación que establece el registro de Windows y los parámetros de HBA necesarios para que el host de Windows gestione correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP y E-Series de NetApp. 
+summary: Windows Host Utilities incluye un programa de instalación que establece los parámetros de registro de Windows y HBA necesarios para que el host Windows controle correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP y E-Series. 
 ---
 = Configure los valores del registro
 :toc: macro
@@ -27,22 +27,22 @@ No todos los valores se aplican al módulo específico del dispositivo (DSM) par
 
 Los HBA FC, NVMe/FC e iSCSI también tienen parámetros que deben configurarse para garantizar el mejor rendimiento y para gestionar correctamente los eventos del sistema de almacenamiento.
 
-El programa de instalación suministrado con Windows Unified Host Utilities establece los parámetros de Windows, FC y NVMe/FC HBA en los valores admitidos.
+El programa de instalación suministrado con Windows Host Utilities establece los parámetros de Windows, FC y NVMe/FC HBA en los valores admitidos.
 
 Debe establecer manualmente los parámetros de HBA de iSCSI.
 
-El instalador establece diferentes valores según si especifica compatibilidad de I/O multivía (MPIO) al ejecutar el programa de instalación.
+El instalador establece diferentes valores en función de si se especifica el soporte de E/S (MPIO) de Microsoft Multipath al ejecutar el programa de instalación.
 
 
 NOTE: No debe cambiar estos valores a no ser que el soporte técnico de NetApp le indique que lo haga.
 
 
 
-== Valores de registro establecidos por Windows Unified Host Utilities 7,2
+== Valores de Registro establecidos por Windows Host Utilities 7,2
 
-El instalador de Windows Unified Host Utilities establece automáticamente valores de Registro que se basan en las opciones que realice durante la instalación. Debe tener en cuenta estos valores de registro y la versión del sistema operativo.
+El instalador de Windows Host Utilities establece automáticamente valores de registro que se basan en las opciones que se realizan durante la instalación. Debe tener en cuenta estos valores de registro y la versión del sistema operativo.
 
-El instalador de Windows Unified Host Utilities establece los siguientes valores. Todos los valores están en decimales a menos que se indique lo contrario.
+Los siguientes valores los configura el instalador de Windows Host Utilities. Todos los valores están en decimales a menos que se indique lo contrario.
 
 
 NOTE: HKLM es la abreviatura de `HKEY_LOCAL_MACHINE`.
@@ -124,7 +124,7 @@ NOTE: HKLM es la abreviatura de `HKEY_LOCAL_MACHINE`.
 
 === Parámetros de NVMe
 
-Los siguientes parámetros del controlador NVMe Emulex se actualizan al instalar Windows Unified Host Utilities 7,2:
+Los siguientes parámetros del controlador NVMe Emulex se actualizan al instalar Windows Host Utilities 7,2:
 
 * EnableNVMe = 1
 * NVMEMode = 0
@@ -133,11 +133,11 @@ Los siguientes parámetros del controlador NVMe Emulex se actualizan al instalar
 
 
 
-== Valores de registro establecidos por Windows Unified Host Utilities 7,1
+== Valores de Registro establecidos por Windows Host Utilities 7,1
 
-El instalador de Windows Unified Host Utilities establece automáticamente los valores del Registro que se basan en las opciones que se toman durante la instalación. Debe conocer estos valores del Registro, la versión del sistema operativo.
+El instalador de utilidades de host de Windows establece automáticamente valores de registro que se basan en las opciones que se toman durante la instalación. Debe conocer estos valores del Registro, la versión del sistema operativo.
 
-El instalador de Windows Unified Host Utilities establece los siguientes valores. Todos los valores están en decimales a menos que se indique lo contrario.
+Los siguientes valores los configura el instalador de Windows Host Utilities. Todos los valores están en decimales a menos que se indique lo contrario.
 
 
 NOTE: `HKLM` es la abreviatura de `HKEY_LOCAL_MACHINE`.

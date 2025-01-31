@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_solaris_113.html 
 keywords: host utilities, solaris, 113, netapp, ontap 
-summary: Describe cómo instalar las utilidades de host de solaris 
+summary: Describe cómo instalar solaris Host Utilities 
 ---
 = Utilice Solaris 11,3 con ONTAP
 :hardbreaks:
@@ -91,12 +91,12 @@ data_vserver       /vol/vol2/lun2  /dev/rdsk/c0t600A098038314362705D51465A626475
 
 == Arranque SAN
 
-.Lo que necesitará
-Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
+.Antes de empezar
+Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^]para verificar que el sistema operativo, el HBA, el firmware del HBA y la versión de arranque del BIOS y ONTAP sean compatibles.
 
 El arranque SAN es el proceso de configurar un disco conectado a SAN (un LUN) como dispositivo de arranque para un host Solaris.
 
-Puede configurar un LUN de arranque SAN para que funcione en un entorno MPxIO de Solaris con el protocolo FC y ejecutar las utilidades de host de Solaris. El método que utilice para configurar un LUN DE arranque SAN puede variar en función del gestor de volúmenes y el sistema de archivos. Consulte https://docs.netapp.com/us-en/ontap-sanhost/hu_solaris_62.html["Instale Solaris Host Utilities"^] Para obtener más información sobre el inicio de LUN de SAN en un entorno Solaris MPIO.
+Puede configurar un LUN de arranque SAN para que funcione en un entorno MPxIO de Solaris con el protocolo FC y ejecutar las utilidades de host de Solaris. El método que utilice para configurar un LUN DE arranque SAN puede variar en función del gestor de volúmenes y el sistema de archivos. Consulte https://docs.netapp.com/us-en/ontap-sanhost/hu_solaris_62.html["Instale Solaris Host Utilities"^] para obtener información detallada sobre el inicio de LUN de SAN en un entorno de I/O (MPIO) de Microsoft de Solaris.
 
 
 
@@ -147,7 +147,7 @@ NOTE: Todas las configuraciones de cabinas SAN (ASA) son compatibles a partir de
 
 == Configuración recomendada
 
-A continuación se enumeran algunos parámetros de configuración recomendados para Solaris 11.3 SPARC y x86_64 con LUN de ONTAP de NetApp. Estos valores de parámetros los establece Host Utilities.
+A continuación se muestran algunos valores de parámetros recomendados para Solaris 11,3 SPARC y x86_64 con LUN de ONTAP. Estos valores de parámetros los establece Host Utilities.
 
 [cols="2*"]
 |===
@@ -186,8 +186,8 @@ De forma predeterminada, el sistema operativo Solaris fallará las operaciones d
 
 * Entre las opciones de virtualización de Solaris se incluyen los dominios lógicos de Solaris (también llamados LDOM o Oracle VM Server para SPARC), los dominios dinámicos de Solaris, las zonas de Solaris y los contenedores de Solaris. Por lo general, estas tecnologías se han remarcado como "Oracle Virtual Machines", a pesar de que se basan en arquitecturas muy diferentes.
 * En algunos casos, se pueden utilizar varias opciones, como un contenedor Solaris dentro de un dominio lógico de Solaris en particular.
-* NetApp suele admitir el uso de estas tecnologías de virtualización, donde Oracle admite la configuración general y cualquier partición con acceso directo a las LUN se muestra en la https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["Matriz de interoperabilidad de NetApp"^] en una configuración compatible. Esto incluye contenedores raíz, dominios de IO de LDOM y LDOM mediante NPIV para acceder a las LUN.
-* Particiones y/o máquinas virtuales que solo utilizan recursos de almacenamiento virtualizados, como por ejemplo `vdsk`, No necesita cualificación específica porque no tienen acceso directo a las LUN de NetApp. Sólo se debe encontrar en la la partición/VM que tiene acceso directo a la LUN subyacente, como un dominio de E/S de LDOM https://mysupport.netapp.com/matrix/imt.jsp?components=95803;&solution=1&isHWU&src=IMT["Matriz de interoperabilidad de NetApp"^].
+* Por lo general, NetApp admite el uso de estas tecnologías de virtualización donde Oracle admite la configuración general y cualquier partición con acceso directo a LUN aparece en la https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] en una configuración admitida. Esto incluye contenedores raíz, dominios de I/O LDOM y LDOM que usan NPIV para acceder a las LUN.
+* Las particiones o máquinas virtuales que utilizan sólo recursos de almacenamiento virtualizado, como A `vdsk`, no necesitan cualificación específica ya que no tienen acceso directo a las LUN de NetApp. Sólo se debe encontrar la partición/equipo virtual que tiene acceso directo a la LUN subyacente, como un dominio de E/S de LDOM, en la https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^].
 
 
 

@@ -20,18 +20,18 @@ Puede utilizar los ajustes de configuración del host SAN de ONTAP para configur
 
 
 
-== Instale las utilidades unificadas de host de Linux
+== Instale las utilidades del host de Linux
 
-El paquete de software NetApp Linux Unified Host Utilities está disponible en la link:https://mysupport.netapp.com/site/downloads["Sitio de soporte de NetApp"^] en un archivo .rpm de 64 bits.
+Puede descargar el paquete de software de utilidades del host de Linux de NetApp como un archivo 64-bit.rpm en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^].
 
-Instalar NetApp recomienda encarecidamente las utilidades de host unificadas de Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
-
-Si tiene una versión de Linux Unified Host Utilities instalada, debe actualizarla o quitarla y usar los siguientes pasos para instalar la versión más reciente.
+NetApp recomienda encarecidamente la instalación de las utilidades del host Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
 .Pasos
-. Descargue el paquete de software Linux Unified Host Utilities de 64 bits de link:https://mysupport.netapp.com/site/downloads["Sitio de soporte de NetApp"] al host.
+. Descargue el paquete de software de utilidades de host de Linux de 64 bits desde https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] el en el host.
 . Instale el paquete de software:
++
 `rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
+
 
 
 
@@ -66,8 +66,8 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 
 == Arranque SAN
 
-.Lo que necesitará
-Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
+.Antes de empezar
+Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^]para verificar que el sistema operativo, el HBA, el firmware del HBA y la versión de arranque del BIOS y ONTAP sean compatibles.
 
 .Pasos
 . Asignar el LUN de arranque SAN al host.
@@ -296,5 +296,5 @@ La versión de RHEL 9,1 con ONTAP tiene los siguientes problemas conocidos:
 | ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554"^] | La CLI de NetApp Linux Host Utilities requiere dependencias de paquetes de biblioteca adicionales para admitir la detección del adaptador de bus de host de Emulex | En RHEL 9.1, la CLI de utilidades host SAN Linux de NetApp `sanlun fcp show adapter -v` Error porque no se pueden encontrar las dependencias del paquete de biblioteca para admitir la detección de HBA. 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554"^] | La CLI de NetApp Linux Host Utilities requiere dependencias de paquetes de biblioteca adicionales para admitir la detección del adaptador de bus de host de Emulex | En RHEL 9,1, se produce un error en la interfaz de línea de comandos de utilidades del host SAN de NetApp Linux `sanlun fcp show adapter -v` debido a que no se pueden encontrar las dependencias del paquete de la biblioteca para admitir la detección de HBA. 
 |===

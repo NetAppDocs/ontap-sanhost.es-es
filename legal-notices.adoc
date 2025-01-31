@@ -8,10 +8,7 @@ summary: Los avisos legales proporcionan acceso a las declaraciones de copyright
 :allow-uri-read: 
 
 
-[role="lead"]
-Los avisos legales proporcionan acceso a las declaraciones de copyright, marcas comerciales, patentes y mucho más.
-
-[role="lead"]
+[role="lead lead"]
 Los avisos legales proporcionan acceso a las declaraciones de copyright, marcas comerciales, patentes y mucho más.
 
 
@@ -41,14 +38,6 @@ link:https://www.netapp.com/pdf.html?item=/media/11887-patentspage.pdf["https://
 == Política de privacidad
 
 link:https://www.netapp.com/company/legal/privacy-policy/["https://www.netapp.com/company/legal/privacy-policy/"^]
-
-
-
-== Código abierto
-
-Los archivos de notificación proporcionan información sobre los derechos de autor y las licencias de terceros que se utilizan en software de NetApp.
-
-Proporciona información acerca de los derechos de autor y las licencias de terceros utilizados en este producto.
 
 * link:./media/Notices-AIX61-2023.pdf["Aviso para AIX"^]
 * link:./media/Linux_Unified_Host_Utilities.pdf["Aviso para Linux"^]

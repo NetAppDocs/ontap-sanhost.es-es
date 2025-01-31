@@ -24,7 +24,7 @@ Se ofrece la siguiente compatibilidad para la configuración del host de NVMe-oF
 * Uso del tráfico coexistente de NVMe y SCSI en el mismo host en un adaptador de bus de host (HBA) determinado, sin la configuración multivía explícita de dm para evitar la reclamación de espacios de nombres de NVMe.
 
 
-Si quiere más información sobre las configuraciones compatibles, consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
+Si quiere más información sobre las configuraciones compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
 
 
 
@@ -175,7 +175,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 0:14.2.0.12
 ----
 +
-Para obtener la lista más actual de las versiones de firmware y controladores de adaptador compatibles, consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
+Para obtener la lista actual de versiones de firmware y controladores de adaptador compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
 
 . Compruebe que `lpfc_enable_fc4_type` se establece en `3`:
 +
@@ -284,7 +284,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . Ejecute `dracut -f` el comando y reinicie el host.
-. Compruebe que el valor esperado de `lpfc_sg_seg_cnt` es 256:
+. Compruebe que el valor de `lpfc_sg_seg_cnt` es 256:
 +
 [listing]
 ----

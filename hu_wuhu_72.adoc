@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: hu_wuhu_72.html 
-keywords: wuhu, 7.2, host utilities, SAN, windows, unified 
-summary: Las utilidades del host unificadas de Windows incluyen un programa de instalación que establece los parámetros del registro de Windows y del HBA necesarios para que el host Windows controle correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP y E-Series de NetApp. 
+keywords: windows, 7.2, host utilities, SAN, windows 
+summary: Windows Host Utilities incluye un programa de instalación que establece los parámetros de registro de Windows y HBA necesarios para que el host Windows controle correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP y E-Series. 
 ---
-= Instale Windows Unified Host Utilities 7,2
+= Instale Windows Host Utilities 7,2
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,9 +14,9 @@ summary: Las utilidades del host unificadas de Windows incluyen un programa de i
 
 
 [role="lead"]
-Las utilidades unificadas de host de Windows (WUHU) permiten conectar un equipo host Windows a los sistemas de almacenamiento NetApp.
+Las utilidades de host de Windows permiten conectar un equipo host de Windows a sistemas de almacenamiento NetApp.
 
-Las utilidades de Windows Unified Host Utilities son compatibles con las siguientes versiones de Windows:
+Las utilidades de host de Windows son compatibles con las siguientes versiones de Windows:
 
 * Windows 2022
 * Windows 2019
@@ -25,7 +25,7 @@ Las utilidades de Windows Unified Host Utilities son compatibles con las siguien
 * Windows 2012
 
 
-Windows Unified Host Utilities incluye un programa de instalación que establece los parámetros necesarios del registro de Windows y del adaptador de bus de host (HBA) para que un host Windows pueda manejar correctamente los comportamientos del sistema de almacenamiento para las plataformas NetApp ONTAP y E-Series.
+Windows Host Utilities incluye un programa de instalación que establece los parámetros necesarios del registro de Windows y del adaptador de bus de host (HBA) para que un host Windows pueda manejar correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP y E-Series.
 
 Cuando instala el software Host Utilities, el instalador establece los parámetros necesarios del Registro de Windows y del HBA.
 
@@ -49,16 +49,16 @@ Los siguientes programas y archivos se instalan en el equipo host de Windows. El
 
 | `san_version.exe` | Muestra la versión de las utilidades del host y de los HBA de FC. 
 |===
-Las utilidades de host admiten diferentes configuraciones de host, protocolos y opciones multivía de Windows. Para obtener más información, consulte https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
+Las utilidades de host admiten diferentes configuraciones de host, protocolos y opciones de multivía de Windows. Para obtener más información, consulte la https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
 
 
 
 == Verificar la configuración del host y del sistema de almacenamiento
 
-Antes de instalar las utilidades de host, debe comprobar que la versión de utilidades del host sea compatible con la configuración del host y del sistema de almacenamiento para que el software se instale correctamente.
+Antes de instalar las utilidades de host, debe comprobar que la versión de utilidades de host admite la configuración del sistema de almacenamiento y host para que el software se instale correctamente.
 
 .Pasos
-. Compruebe la configuración compatible en la http://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^].
+. Compruebe la configuración admitida en la http://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad"^].
 . Compruebe las revisiones necesarias para el host correspondiente en el link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Documentación para Windows del host SAN"].
 +
 
@@ -98,24 +98,24 @@ CAUTION: No cambie la configuración del adaptador de bus de host manualmente.
 
 == Instale las utilidades de host
 
-El programa de instalación instala el paquete de utilidades del host y establece el registro de Windows y los ajustes del HBA.
+El programa de instalación instala el paquete de utilidades de host y establece el registro de Windows y la configuración de HBA.
 
-Debe especificar si desea incluir la compatibilidad con multivía al instalar el paquete de software de Windows Unified Host Utilities. Installer le solicita las siguientes opciones. También puede ejecutar una instalación silenciosa (desatendida) desde el símbolo del sistema de Windows.
+Debe especificar si desea incluir soporte multivía al instalar el paquete de software de Windows Host Utilities. Installer le solicita las siguientes opciones. También puede ejecutar una instalación silenciosa (desatendida) desde el símbolo del sistema de Windows.
 
 .Compatibilidad con accesos múltiples
 * Seleccione `MPIO` Si tiene más de una ruta desde el host o la máquina virtual de Windows al sistema de almacenamiento.
 * Seleccione `no MPIO` únicamente si utiliza una ruta única al sistema de almacenamiento.
 
 
-La selección MPIO no está disponible para los sistemas Windows XP y Windows Vista; las operaciones de I/o multivía no son compatibles con estos sistemas operativos invitados. Para los huéspedes de Hyper-V, los discos sin formato (de paso) no aparecen en el sistema operativo invitado si elige compatibilidad con accesos múltiples. Puede usar discos sin configurar o MPIO, pero no es posible usar ambos en el sistema operativo invitado.
+La selección de Microsoft Multipath I/O (MPIO) no está disponible para los sistemas Windows XP y Windows Vista; los sistemas operativos invitados no admiten I/O multivía. Para los huéspedes de Hyper-V, los discos sin formato (de paso) no aparecen en el sistema operativo invitado si elige compatibilidad con accesos múltiples. Puede usar discos sin configurar o MPIO, pero no es posible usar ambos en el sistema operativo invitado.
 
-Puede instalar las utilidades del host de forma interactiva o mediante la línea de comandos. El nuevo paquete de instalación de utilidades de host debe estar en una ruta a la que pueda acceder el host de Windows. Siga las instrucciones para instalar las utilidades de host de forma interactiva o desde la línea de comandos de Windows.
+Puede instalar las utilidades de host de forma interactiva o mediante la línea de comandos. El nuevo paquete de instalación de utilidades de host debe estar en una ruta a la que pueda acceder el host de Windows. Siga las instrucciones para instalar las utilidades de host de forma interactiva o desde la línea de comandos de Windows.
 
 [role="tabbed-block"]
 ====
 .Instalar de forma interactiva
 --
-Para instalar el paquete de software Host Utilities de forma interactiva, debe ejecutar el programa de instalación de las utilidades de host y seguir las instrucciones.
+Para instalar el paquete de software de Host Utilities de forma interactiva, debe ejecutar el programa de instalación de Host Utilities y seguir las instrucciones.
 
 .Pasos
 . Descargue el archivo ejecutable de la https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.2/downloads["Sitio de soporte de NetApp"^].
@@ -127,7 +127,7 @@ Para instalar el paquete de software Host Utilities de forma interactiva, debe e
 --
 .Realice la instalación desde una línea de comandos
 --
-Puede realizar una instalación silenciosa (desatendida) de las utilidades del host introduciendo los comandos apropiados en el símbolo del sistema de Windows. El sistema se reinicia automáticamente cuando finaliza la instalación.
+Puede realizar una instalación silenciosa (sin supervisión) de las utilidades de host introduciendo los comandos apropiados en el símbolo del sistema de Windows. El sistema se reinicia automáticamente cuando finaliza la instalación.
 
 .Pasos
 . Introduzca el siguiente comando en el símbolo del sistema de Windows:
@@ -137,7 +137,7 @@ Puede realizar una instalación silenciosa (desatendida) de las utilidades del h
 +
 ** `installer` es el nombre de `.msi` Archivo para su arquitectura de CPU.
 ** MULTIPATHING especifica si está instalado la compatibilidad con MPIO. Los valores permitidos son “0” para NO y “1” para sí.
-** `inst_path` es la ruta donde se instalan los archivos de utilidades host. La ruta predeterminada es `C:\Program Files\NetApp\Windows Host Utilities\`.
+** `inst_path` Es la ruta en la que se instalan los archivos de utilidades de host. La ruta predeterminada es `C:\Program Files\NetApp\Windows Host Utilities\`.
 
 
 

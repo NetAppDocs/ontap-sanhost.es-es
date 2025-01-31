@@ -20,14 +20,14 @@ Es posible usar las opciones de configuración del host SAN de ONTAP para config
 
 
 
-== Instale las utilidades unificadas de host de Linux
+== Instale las utilidades del host de Linux
 
-Es posible descargar el paquete de software de utilidades de host unificadas de NetApp como archivo 64-bit.rpm en el link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^].
+Puede descargar el paquete de software de utilidades del host de Linux de NetApp como un archivo 64-bit.rpm en la link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^].
 
-NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
+NetApp recomienda encarecidamente la instalación de las utilidades del host Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración en el host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
 .Pasos
-. Descargue el paquete de software Linux Unified Host Utilities de 64 bits de https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] al host.
+. Descargue el paquete de software de utilidades de host de Linux de 64 bits desde https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] el en el host.
 . Instale el paquete de software:
 +
 `rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
@@ -38,7 +38,7 @@ NetApp recomienda encarecidamente la instalación de Linux Unified Host Utilitie
 
 == Kit de herramientas SAN
 
-El kit de herramientas se instala automáticamente al instalar el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar los LUN y los adaptadores de bus de host (HBA). La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
+El kit de herramientas se instala automáticamente cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar los LUN y los adaptadores de bus de host (HBA). La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
 
 En el siguiente ejemplo, la `sanlun lun show` Command muestra información de LUN.
 
@@ -61,8 +61,8 @@ data_vserver            /vol/vol2/lun2   /dev/sde   host15   FCP       80.0g  cD
 
 == Arranque SAN
 
-.Lo que necesitará
-Su configuración admite arranque SAN. Consulte link:https://mysupport.netapp.com/matrix/imt.jsp?components=91863;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^]el para comprobar que el sistema operativo, el adaptador de bus de host, el firmware del adaptador de bus de host y el BIOS de arranque del adaptador de bus de host y la versión de ONTAP son compatibles.
+.Antes de empezar
+Su configuración admite arranque SAN. Consulte link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^]el para comprobar que el sistema operativo, el adaptador de bus de host, el firmware del adaptador de bus de host y el BIOS de arranque del adaptador de bus de host y la versión de ONTAP son compatibles.
 
 .Pasos
 . Asignar el LUN de arranque SAN al host.

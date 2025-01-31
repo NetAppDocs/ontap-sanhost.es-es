@@ -28,7 +28,7 @@ Hay dos opciones para arrancar el sistema operativo: Mediante el arranque local 
 
 === Arranque SAN
 
-Si decide utilizar el arranque SAN, su configuración debe ser compatible. Es posible usar la herramienta de matriz de interoperabilidad de NetApp para verificar que el sistema operativo, HBA, el firmware de HBA y la versión de arranque de HBA y ONTAP son compatibles.
+Si decide utilizar el arranque SAN, su configuración debe ser compatible. Puede utilizar la herramienta de matriz de interoperabilidad para verificar que el sistema operativo, el adaptador de bus de host, el firmware HBA y la versión de BIOS de arranque en HBA y ONTAP sean compatibles.
 
 . Asignar el LUN de arranque SAN al host.
 . Verifique que haya varias rutas disponibles.
@@ -66,20 +66,20 @@ TIP: Muchas correcciones urgentes requieren un reinicio del host de Windows, per
 
 
 
-== Instale Windows Unified Host Utilities
+== Instale las utilidades del host de Windows
 
-Las utilidades unificadas de host de Windows (WUHU) son un conjunto de programas de software con documentación que le permite conectar equipos host a discos virtuales (LUN) en UNA SAN de NetApp. NetApp recomienda descargar e instalar el kit de utilidades más reciente. Para obtener información e instrucciones sobre la configuración de WUHU, consulte la link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentación de Windows Unified Host Utilities"] Y seleccione el procedimiento de instalación para su versión de Windows Unified Host Utilities.
+Las utilidades de host de Windows son un conjunto de programas de software con documentación que le permite conectar equipos host a discos virtuales (LUN) en una SAN de NetApp. NetApp recomienda descargar e instalar el kit de utilidades más reciente. Para obtener información e instrucciones de configuración de WUHU, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentación de Windows Host Utilities"]y seleccione el procedimiento de instalación para su versión de Utilidades de host de Windows.
 
 
 
 == Accesos múltiples
 
-Debe instalar el software MPIO y tener configurado el acceso multivía si el host de Windows tiene más de una ruta para el sistema de almacenamiento. Sin el software MPIO, es posible que el sistema operativo vea cada ruta como un disco independiente, lo que podría dañar los datos. El software MPIO presenta un único disco al sistema operativo para todas las rutas, y un módulo específico de cada dispositivo (DSM) gestiona la recuperación tras fallos de rutas.
+Debe instalar el software Microsoft Multipath I/O (MPIO) y configurar las rutas múltiples si el host de Windows tiene más de una ruta al sistema de almacenamiento. Sin el software MPIO, es posible que el sistema operativo vea cada ruta como un disco independiente, lo que podría dañar los datos. El software MPIO presenta un único disco al sistema operativo para todas las rutas, y un módulo específico de cada dispositivo (DSM) gestiona la recuperación tras fallos de rutas.
 
 En un sistema Windows, los dos componentes principales de cualquier solución MPIO son DSM y Windows MPIO. MPIO no es compatible con Windows XP o Windows Vista en una máquina virtual Hyper- V.
 
 
-NOTE: Si selecciona la compatibilidad con MPIO, las utilidades unificadas de host de Windows habilitan la función MPIO incluida de Windows Server 2016.
+NOTE: Cuando selecciona MPIO, Windows Host Utilities habilita la función MPIO incluida de Windows Server 2016.
 
 
 
@@ -145,7 +145,7 @@ Para los HBA Fibre Channel de QLogic:
 | PortDownRetryCount | 10 
 |===
 
-NOTE: La utilidad Unified Host de Windows configurará estos valores. Para obtener información detallada sobre los ajustes recomendados, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentación de Windows Host Utilities"] Y seleccione el procedimiento de instalación para su versión de Windows Unified Host Utilities.
+NOTE: La utilidad de host de Windows establece estos valores. Para obtener información detallada sobre la configuración recomendada, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentación de Windows Host Utilities"]y seleccione el procedimiento de instalación para su versión de Utilidades de host de Windows.
 
 
 

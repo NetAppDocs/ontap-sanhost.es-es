@@ -22,7 +22,7 @@ Es posible configurar NVMe over Fibre Channel (NVMe/FC) en hosts de iniciador qu
 
 == Compatibilidad
 
-NVMe/FC es compatible con ONTAP 9.6 o versiones posteriores para Oracle Linux 7.8. El host Oracle Linux 7,8 puede ejecutar tráfico NVMe y SCSI a través de los mismos puertos de adaptador de iniciador de Fibre Channel (FC). Tenga en cuenta que el iniciador de Broadcom puede servir tráfico NVMe/FC y FCP a través de los mismos puertos de adaptador de FC. Consulte la link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obtener una lista de los adaptadores y controladoras de FC compatibles. Para obtener la lista más actual de configuraciones compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
+A partir de ONTAP 9,6, se admite NVMe/FC para Oracle Linux 7,8. El host Oracle Linux 7,8 puede ejecutar tráfico NVMe y SCSI a través de los mismos puertos de adaptador de iniciador de Fibre Channel (FC). Tenga en cuenta que el iniciador de Broadcom puede servir tráfico NVMe/FC y FCP a través de los mismos puertos de adaptador de FC. Consulte la link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obtener una lista de los adaptadores y controladoras de FC compatibles. Para obtener la lista actual de configuraciones compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
 
 
 NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este documento para configurar los clientes de cloud conectados a. link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
@@ -33,7 +33,7 @@ NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este d
 
 * Las secuencias de comandos de conexión automática NVMe/FC nativas no están disponibles en el paquete nvme-cli. Use las secuencias de comandos de conexión automática externas proporcionadas por el proveedor HBA.
 * De forma predeterminada, el equilibrio de carga por turnos no está habilitado en NVMe multivía. Debe escribir una regla udev para habilitar esta funcionalidad. Los pasos se proporcionan en la sección sobre la habilitación de NVMe/FC en Oracle Linux 7.8.
-* No existe compatibilidad alguna con NVMe/FC y, como consecuencia, no hay compatibilidad con Unified Host Utilities (LUHU) de Linux para NVMe/FC en Oracle Linux 7.8. Utilice la salida del comando ONTAP que está disponible como parte del plugin de NetApp que se incluye en la interfaz de línea de comandos nvme nativa.
+* No existe compatibilidad con sanlun para NVMe/FC y, por lo tanto, no existe compatibilidad con las utilidades de host de Linux para NVMe/FC en Oracle Linux 7,8. Utilice la salida del comando ONTAP que está disponible como parte del plugin de NetApp que se incluye en la interfaz de línea de comandos nvme nativa.
 * Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 
@@ -42,7 +42,7 @@ NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este d
 == Habilitar NVMe/FC
 
 . Instale Oracle Linux 7.8 en el servidor.
-. Una vez finalizada la instalación, compruebe que está ejecutando el kernel Unbreakable Enterprise compatible. Consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
+. Una vez finalizada la instalación, compruebe que está ejecutando el kernel Unbreakable Enterprise compatible. Consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
 +
 [listing]
 ----
@@ -90,7 +90,7 @@ Si las cadenas +hostnqn+ no coinciden, debe utilizar el comando vserver modify p
 
 == Configurar el adaptador de FC de Broadcom para NVMe/FC
 
-. Compruebe que está utilizando el adaptador compatible. Para obtener la lista más actual de adaptadores compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
+. Compruebe que está utilizando el adaptador compatible. Para obtener la lista actual de adaptadores compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
 +
 [listing]
 ----
@@ -251,7 +251,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . Ejecute `dracut -f` el comando y reinicie el host.
-. Compruebe que el valor esperado de `lpfc_sg_seg_cnt` es 256:
+. Compruebe que el valor de `lpfc_sg_seg_cnt` es 256:
 +
 [listing]
 ----

@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: hu_sanhost_index.html 
-keywords:  
-summary:  
+keywords: san, host, utility, software, netapp 
+summary: Obtenga información sobre las versiones de SAN Host Utility y acceda al procedimiento de instalación para la configuración del host. 
 ---
-= Descripción general
+= Obtenga más información sobre las utilidades de host de SAN
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,13 @@ summary:
 
 
 [role="lead"]
-Detecte la información más reciente sobre las versiones de la utilidad host SAN y acceda al procedimiento de instalación para la configuración del host.
+Obtenga información sobre las versiones de SAN Host Utility y acceda al procedimiento de instalación para la configuración del host.
+
+Existen varios paquetes de software de utilidades de host SAN disponibles en el sitio de soporte de NetApp. NetApp recomienda usar el software de utilidades del host SAN si está disponible para el host SAN.
+
+Los software AIX, HP-UX, Linux y Solaris Host Utilities proporcionan un kit de herramientas de línea de comandos. El kit de herramientas le ayuda a gestionar los LUN de ONTAP y los adaptadores de bus de host (HBA). El soporte al cliente de NetApp también puede usar las utilidades del host SAN para recopilar información sobre la configuración si tiene un problema que requiera ayuda. El kit de herramientas se instala automáticamente al instalar el paquete de software de Host Utilities.
+
+Las utilidades de host de Windows permiten conectar un equipo host de Windows a sistemas de almacenamiento NetApp. El software incluye un programa de instalación que establece el registro de Windows y los parámetros HBA necesarios. Esto permite que el host Windows gestione correctamente los comportamientos del sistema de almacenamiento de las plataformas ONTAP y E-Series.
 
 
-NOTE: Para un funcionamiento fiable después de la instalación, utilice el https://mysupport.netapp.com/matrix/imt.jsp?components=65623%3B64703%3B&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar que el host admite la configuración completa de NVMe over Fabrics (incluidos NVMe over TCP y NVMe over Fibre Channel), iSCSI, FC o FCoE.
+NOTE: Para que el funcionamiento sea fiable después de la instalación, utilice el link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que el host admite la configuración de NVMe over Fabrics completa (incluida NVMe over TCP y NVMe over Fibre Channel), iSCSI, FC o FCoE.

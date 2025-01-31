@@ -53,7 +53,7 @@ FCP CMPL: xb 00001f50 Err 0000d9f8
 ----
 . Activa 1 MB de tamaño de E/S _(opcional)_.
 +
-La `lpfc_sg_seg_cnt` El parámetro debe configurarse en 256 para que el controlador lpfc emita solicitudes de E/S de hasta 1 MB de tamaño.
+ `lpfc_sg_seg_cnt`El parámetro debe establecerse en 256 para que el controlador lpfc emita solicitudes de E/S de hasta 1MB GB de tamaño.
 
 +
 [listing]

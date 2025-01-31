@@ -18,16 +18,16 @@ summary: Notas de la versión de AIX Host Utilities 6.1
 [role="lead"]
 En las notas de la versión, se describen las nuevas funciones y mejoras, los problemas solucionados en la versión actual, los problemas conocidos y las limitaciones y las precauciones importantes relacionadas con la configuración y gestión del host AIX específico con el sistema de almacenamiento de ONTAP.
 
-Para obtener información específica acerca de las versiones del sistema operativo y las actualizaciones que admiten las utilidades de host, consulte link:https://mysupport.netapp.com/matrix/imt.jsp?components=85803;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^].
+Para obtener información específica sobre las versiones y actualizaciones del sistema operativo que admiten las utilidades de host, consulte la link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^].
 
 
 
 == Novedades
 
-Las versiones recientes de AIX Host Utilities incluyen las siguientes funciones y mejoras nuevas:
+Las versiones de AIX Host Utilities contienen las siguientes nuevas funciones y mejoras:
 
 * AIX Host Utilities 7,0 admite SCSI UNMAP en el sistema operativo host AIX. Con AIX Host Utilities 7,0, thin provisioning de SCSI funciona sin problemas con AIX y LUN de NetApp para dispositivos FC.
-* AIX Host Utilities 6,1 añadió compatibilidad con el problema de fallo de memoria que ocurrió en versiones anteriores del sistema operativo del host AIX. Con AIX Host Utilities 6.1, sólo ha cambiado el binario sanlun. MPIO y ODM relacionados no se han modificado.
+* AIX Host Utilities 6,1 incluye compatibilidad con el problema de error de memoria que ocurrió en versiones anteriores del sistema operativo del host AIX. Con AIX Host Utilities 6.1, sólo ha cambiado el binario sanlun. La I/O multivía de Microsoft (MPIO) y el ODM relacionado permanecen sin cambios.
 
 
 
@@ -41,7 +41,7 @@ Debe conocer los siguientes problemas y limitaciones conocidos que pueden afecta
 | ID. De error | Título | Descripción 
 
 
-| N.A. | SCSI UNMAP compatibilidad con LUN de iSCSI de NetApp ONTAP | AIX Host Utilities 7,0 solo admite la función SCSI UNMAP para dispositivos FC. La compatibilidad CON SCSI UNMAP para dispositivos iSCSI no se incluye en esta versión. 
+| N.A. | SCSI UNMAP compatibilidad con LUN de iSCSI de ONTAP | AIX Host Utilities 7,0 solo admite la función SCSI UNMAP para dispositivos FC. La compatibilidad CON SCSI UNMAP para dispositivos iSCSI no se incluye en esta versión. 
 
 
 | link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1069147["1069147"^] | HU Sanlun de AIX informa de una velocidad de HBA incorrecta | Se informan instancias de un sanlun que muestran velocidades de HBA incorrectas al ejecutar el `sanlun fcp show adapter –v` comando. La `sanlun fcp show adapter –v` Comando muestra información de las tarjetas HBA, como las velocidades admitidas y negociadas de los adaptadores. Esto parece ser sólo una cuestión de presentación de informes. Para identificar la velocidad real, utilice `fcstat fcsx` comando. 

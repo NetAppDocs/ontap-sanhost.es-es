@@ -18,14 +18,14 @@ summary: Describe cómo configurar NVMe/FC para SUSE Linux Enterprise Server 15 
 [role="lead"]
 Es posible configurar NVMe over Fibre Channel (NVMe/FC) en hosts que ejecutan SUSE Linux Enterprise Server 15 SP1 y ONTAP como destino.
 
-ONTAP 9.6 o posterior es compatible con NVMe/FC para las siguientes versiones de SUSE Linux Enterprise Server:
+A partir de ONTAP 9,6, NVMe/FC es compatible con las siguientes versiones de SUSE Linux Enterprise Server:
 
 * SUSE Linux Enterprise Server 15 SP1
 +
 El host SUSE Linux Enterprise Server 15 SP1 puede ejecutar tráfico NVMe/FC y FCP a través de los mismos puertos de adaptador de iniciador de Fibre Channel. Consulte la link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obtener una lista de los adaptadores y controladoras de FC compatibles.
 
 +
-Para obtener la lista más actual de las configuraciones y versiones compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
+Para obtener la lista actual de configuraciones y versiones compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
 
 * Las secuencias de comandos de conexión automática NVMe/FC nativas se incluyen en el paquete nvme-cli. Puede utilizar el controlador lpfc de la bandeja de entrada nativa en SUSE Linux Enterprise Server 15 SP1.
 
@@ -74,7 +74,7 @@ nqn.2014-08.org.nvmexpress:uuid:75953f3b-77fe-4e03-bf3c-09d5a156fbcd
 
 == Configure el adaptador de FC de Broadcom para NVMe/FC
 
-. Compruebe que está utilizando el adaptador compatible. Para obtener la lista más actual de adaptadores compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
+. Compruebe que está utilizando el adaptador compatible. Para obtener la lista actual de adaptadores compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
 +
 [listing]
 ----
@@ -240,7 +240,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . Ejecute `dracut -f` el comando y reinicie el host.
-. Compruebe que el valor esperado de `lpfc_sg_seg_cnt` es 256:
+. Compruebe que el valor de `lpfc_sg_seg_cnt` es 256:
 +
 [listing]
 ----

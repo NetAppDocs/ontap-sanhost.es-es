@@ -18,7 +18,7 @@ summary: Describe cómo configurar NVMe/FC para SUSE Linux Enterprise Server 15 
 [role="lead"]
 Con SUSE Linux Enterprise Server 15 SP2, se admite NVMe/FC en ONTAP 9.6 y versiones posteriores. El host SUSE Linux Enterprise Server 15 SP2 puede ejecutar tráfico NVMe/FC y FCP a través de los mismos puertos de adaptador de iniciador de Fibre Channel. Consulte la link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obtener una lista de los adaptadores y controladoras de FC compatibles.
 
-Para obtener la lista más actual de las configuraciones y versiones compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
+Para obtener la lista actual de configuraciones y versiones compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
 
 
 NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este documento para configurar los clientes de cloud conectados a. link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
@@ -77,7 +77,7 @@ nqn.2014-08.org.nvmexpress:uuid:c7b07b16-a22e-41a6-a1fd-cf8262c8713f
 
 == Configure el adaptador de FC de Broadcom para NVMe/FC
 
-. Compruebe que está utilizando el adaptador compatible. Para obtener la lista más actual de adaptadores compatibles, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidad de NetApp"^].
+. Compruebe que está utilizando el adaptador compatible. Para obtener la lista actual de adaptadores compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
 +
 [listing]
 ----
@@ -257,7 +257,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . Ejecute `dracut -f` el comando y reinicie el host.
-. Compruebe que el valor esperado de `lpfc_sg_seg_cnt` es 256:
+. Compruebe que el valor de `lpfc_sg_seg_cnt` es 256:
 +
 [listing]
 ----

@@ -4,7 +4,7 @@ permalink: hu_aix_72_sanbooting_aix.html
 keywords: host utilities, aix, netapp, ontap, configure, discover, configuring, discovering 
 summary: Describe cómo detectar y configurar LUN con AIX 
 ---
-= (AIX MPIO sin PowerVM) detectar y configurar LUN con AIX
+= (AIX MPIO sin PowerVM) Detecte y configure LUN con AIX
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,7 @@ summary: Describe cómo detectar y configurar LUN con AIX
 
 
 [role="lead"]
-Cuando está utilizando AIX sin PowerVM, utilice el comando cfgmgr para obtener el host para detectar las LUN. No es necesario reiniciar el host para detectar los LUN. Para confirmar que el host ha detectado LAS LUN, puede utilizar la utilidad sanlun.
+Cuando utiliza AIX sin PowerVM, puede ejecutar `cfgmgr` el comando para permitir que el host detecte las LUN. No es necesario reiniciar el host para detectar los LUN. Para confirmar que el host ha detectado LAS LUN, puede utilizar la utilidad sanlun.
 
 
 NOTE: Los pasos siguientes no se aplican a un host que ejecuta un entorno PowerVM.
@@ -36,7 +36,7 @@ La `cfgmgr` el comando ayuda con lo siguiente:
 ** El sistema para crear nuevas entradas de dispositivo.
 
 
-. Para mostrar todos los discos AIX, incluidas las LUN de NetApp, introduzca el siguiente comando:
+. Mostrar todos los discos de AIX, incluidas las LUN de NetApp:
 +
 `lsdev -Cc disk`
 
@@ -47,9 +47,12 @@ Los LUN aparecen en el host como discos. Puede utilizar estos discos de la misma
 Anote los números de instancia de hdisk. Los utiliza cuando realiza la configuración de ruta.
 
 +
-A continuación, se muestra el tipo de salida que genera el comando lsdev -cc disk en un entorno que utiliza FC.
+En el ejemplo siguiente se muestra el `lsdev -Cc disk` resultado del comando en un entorno FC.
 
 +
+.Muestra el resultado de ejemplo
+[%collapsible]
+====
 [listing]
 ----
 # lsdev -Cc disk
@@ -60,14 +63,15 @@ hdisk3 Available 04-08-02  MPIO NetApp FCP Default PCM Disk
 hdisk4 Available 04-08-02  MPIO NetApp FCP Default PCM Disk
 hdisk5 Available 04-08-02  MPIO NetApp FCP Default PCM Disk
 ----
-. Escriba el siguiente comando para obtener información sobre su configuración:
+====
+. Recuperar información sobre la configuración:
 +
 `lsattr -El hdisk_name`
 
 +
-Este comando genera el siguiente resultado.
-
-+
+.Muestra el resultado de ejemplo
+[%collapsible]
+====
 [listing]
 ----
 # lsattr -El hdisk65
@@ -97,6 +101,7 @@ scsi_id         0xd10001                         SCSI ID                        
 start_timeout   60                               START unit time out value               True
 ww_name         0x500a0984994ae0e0               FC World Wide Name                      False
 ----
+====
 . Si su configuración admite ALUA, puede usarlo para establecer la prioridad de ruta. Compruebe que ALUA está habilitado:
 +
 `lun igroup show -instance igroup_name`
@@ -108,30 +113,32 @@ ww_name         0x500a0984994ae0e0               FC World Wide Name             
 
 
 
-. Si la configuración no admite ALUA, debe ejecutar la utilidad dotpaths para establecer las prioridades de la ruta. La utilidad dotpaths se instala al instalar Host Utilities. No utilice la utilidad dotpaths si ALUA está habilitado.
+. Si la configuración no es compatible con ALUA, debe utilizar la utilidad dotpaths para establecer las prioridades de la ruta. La utilidad dotpaths se instala al instalar Host Utilities. No utilice la utilidad dotpaths si ALUA está habilitado.
 +
-.. Para establecer la prioridad de todas las LUN de Data ONTAP, introduzca:
+.. Establezca la prioridad para todas las LUN ONTAP:
 +
 `dotpaths`
 
-.. Para establecer la prioridad de un conjunto específico de discos, introduzca:
+.. Establezca la prioridad para un conjunto específico de discos:
 +
 `dotpaths [-hqv] [hdiskN ...]`
 
 +
-Utilice la `-v` opción para habilitar el modo detallado y mostrar todas las prioridades. Utilice la `-q` opción de consultar todas las prioridades de disco o individuales.
+Utilice `-v` la opción para habilitar el modo detallado y mostrar todas las prioridades. Utilice `-q` la opción para consultar todas las prioridades de disco o las prioridades de disco individuales.
 
 
 
-. Para verificar que el host ha detectado las LUN, introduzca el siguiente comando:
+. Compruebe que el host ha detectado las LUN:
 +
 `# sanlun lun show`
 
 +
-.Ejemplo
-Este ejemplo muestra el resultado típico de `sanlun lun show` En un entorno multivía MPIO.
+El ejemplo siguiente muestra el resultado típico del `sanlun lun show` comando en un entorno multivía de Microsoft Multipath I/O (MPIO):
 
 +
+.Muestra el resultado de ejemplo
+[%collapsible]
+====
 [listing]
 ----
 sanlun lun show -p
@@ -167,4 +174,5 @@ up        secondary   path13 fcs1    4a                                         
 up        primary     path14 fcs1    4b                                             1
 up        primary     path15 fcs1    4a                                             1
 ----
+====
 

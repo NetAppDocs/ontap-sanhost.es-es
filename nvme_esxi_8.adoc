@@ -81,7 +81,7 @@ Si las cadenas del host NQN no coinciden, se debe usar `vserver nvme subsystem h
 
 La `lpfc` conductor y el `qlnativefc` El controlador en vSphere 8.x tiene la funcionalidad NVMe/FC habilitada de forma predeterminada.
 
-Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^] para comprobar si la configuración es compatible con el controlador o el firmware.
+Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^] para comprobar si la configuración es compatible con el controlador o el firmware.
 
 
 

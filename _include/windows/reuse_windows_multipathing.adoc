@@ -2,6 +2,6 @@
 :allow-uri-read: 
 
 
-Debe instalar el software MPIO y tener configurado el acceso multivía si el host de Windows tiene más de una ruta para el sistema de almacenamiento. Sin el software MPIO, es posible que el sistema operativo vea cada ruta como un disco independiente, lo que podría dañar los datos. El software MPIO presenta un único disco al sistema operativo para todas las rutas, y un módulo específico de cada dispositivo (DSM) gestiona la recuperación tras fallos de rutas.
+Debe instalar el software Microsoft Multipath I/O (MPIO) y configurar las rutas múltiples si el host de Windows tiene más de una ruta al sistema de almacenamiento. Sin el software MPIO, es posible que el sistema operativo vea cada ruta como un disco independiente, lo que podría dañar los datos. El software MPIO presenta un único disco al sistema operativo para todas las rutas, y un módulo específico de cada dispositivo (DSM) gestiona la recuperación tras fallos de rutas.
 
 En un sistema Windows, los dos componentes principales de cualquier solución MPIO son DSM y Windows MPIO. MPIO no es compatible con Windows XP o Windows Vista en una máquina virtual Hyper- V.

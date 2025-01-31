@@ -22,8 +22,8 @@ Es posible configurar los ajustes del host SAN de ONTAP para la versión de VMwa
 
 == Arranque SAN del hipervisor
 
-.Lo que necesitará
-Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
+.Antes de empezar
+Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^]para verificar que el sistema operativo, el HBA, el firmware del HBA y la versión de arranque del BIOS y ONTAP sean compatibles.
 
 .Pasos
 . Asignar el LUN de arranque SAN al host.
@@ -45,7 +45,7 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 ESXi proporciona un módulo multivía ampliable llamado complemento nativo multivía (NMP) que gestiona los subplugins, los complementos de tipo de cabina de almacenamiento (SATP) y los complementos de selección de rutas (PSP). De forma predeterminada, estas reglas SATP están disponibles en ESXi.
 
-Para almacenamiento ONTAP de NetApp, `VMW_SATP_ALUA` el plugin se utiliza por defecto con `VMW_PSP_RR` Como una política de selección de ruta (PSP). Puede confirmar utilizando el siguiente comando:
+Para el almacenamiento de ONTAP, el complemento «VMW_SATP_ALUA» se utiliza de forma predeterminada con «VMW_PSP_RR» como política de selección de rutas (PSP). Puede ejecutar el siguiente comando para confirmar PSP:
 
 [listing]
 ----
@@ -216,7 +216,7 @@ Los volúmenes virtuales (vVols) son un tipo de objeto de VMware que corresponde
 
 Las herramientas de ONTAP para VMware vSphere incluyen el proveedor VASA para ONTAP, que proporciona el punto de integración para que una instancia de VMware vCenter aproveche el almacenamiento basado en vVols. Al implementar las herramientas de ONTAP Open Virtualization Appliance (OVA), este se registra automáticamente en vCenter Server y habilita el proveedor VASA.
 
-Cuando se crea un almacén de datos vVols con la interfaz de usuario de vCenter, le guía para crear FlexVols como almacenamiento de backup para el almacén de datos. Los hosts ESXi acceden a los vVols en los almacenes de datos de vVols mediante un extremo de protocolo (PE). En entornos SAN, se crea un LUN de 4 MB sobre cada FlexVol en el almacén de datos para su uso como PE. UNA San PE es una unidad lógica administrativa (ALU). Los vVols son unidades lógicas subsidiarias (PLUS).
+Cuando se crea un almacén de datos vVols mediante la interfaz de usuario de vCenter, esto guía para crear FlexVols como almacenamiento de backup para el almacén de datos. Los hosts ESXi acceden a los vVols dentro de los almacenes de datos de vVols con un extremo de protocolo (PE). En entornos SAN, se crea un LUN de 4 MB sobre cada FlexVol en el almacén de datos para su uso como PE. Un PE SAN es una unidad lógica administrativa (ALU). Los vVols son unidades lógicas subsidiarias (SLUS).
 
 Al usar vVols, se aplican los requisitos estándar y las prácticas recomendadas para los entornos SAN que incluyen (pero sin limitarse a ellos):
 
@@ -231,7 +231,7 @@ NOTE: Para habilitar el proveedor VASA, debe implementar herramientas de ONTAP p
 
 NetApp no recomienda cambiar los ajustes de vVols de forma predeterminada en estos momentos.
 
-Consulte la https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para conocer las versiones específicas de las herramientas de ONTAP o el proveedor VASA heredado para las versiones específicas de vSphere y ONTAP.
+Consulte el https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para obtener versiones específicas de las herramientas de ONTAP o el proveedor VASA heredado para obtener versiones específicas de vSphere y ONTAP.
 
 Si quiere información detallada sobre el aprovisionamiento y la gestión de vVols, consulte la documentación de las herramientas de ONTAP para VMware vSphere, link:https://docs.netapp.com/us-en/netapp-solutions/hybrid-cloud/vsphere_ontap_ontap_for_vsphere.html["TR-4597"^], y. link:https://www.netapp.com/pdf.html?item=/media/13555-tr4400pdf.pdf["TR-4400"^].
 
@@ -305,7 +305,7 @@ Puede utilizar el siguiente comando para verificar el `HardwareAcceleratedLockin
 ----
 
 
-=== Valide el valor de Disk IOPS
+=== Valide la configuración de IOPS del disco
 
 Puede usar el siguiente comando para comprobar la configuración de IOPS.
 

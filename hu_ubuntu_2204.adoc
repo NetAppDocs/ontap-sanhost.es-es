@@ -19,14 +19,14 @@ summary: Describe cómo usar Ubuntu 22,04 con ONTAP
 Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Ubuntu 22,04 con ONTAP como destino.
 
 
-NOTE: El paquete de software de utilidades de host unificadas de NetApp no está disponible para el sistema operativo Ubuntu 22,04.
+NOTE: El paquete de software de utilidades del host Linux de NetApp no está disponible para el sistema operativo Ubuntu 22,04.
 
 
 
 == Arranque SAN
 
-.Lo que necesitará
-Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
+.Antes de empezar
+Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^]para verificar que el sistema operativo, el HBA, el firmware del HBA y la versión de arranque del BIOS y ONTAP sean compatibles.
 
 .Pasos
 . Asignar el LUN de arranque SAN al host.

@@ -24,7 +24,7 @@ Se ofrece la siguiente compatibilidad para la configuración del host de NVMe-oF
 * Uso del tráfico coexistente de NVMe y SCSI en el mismo host en un adaptador de bus de host (HBA) determinado, sin la configuración multivía explícita de dm para evitar la reclamación de espacios de nombres de NVMe.
 
 
-Consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener información precisa sobre las configuraciones compatibles.
+Consulte el link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^] para obtener información precisa sobre las configuraciones compatibles.
 
 
 
@@ -46,7 +46,7 @@ Es posible utilizar el siguiente procedimiento para habilitar la multivía NVMe 
 
 .Pasos
 . Instale RHEL 9,1 en el servidor.
-. Una vez finalizada la instalación, compruebe que está ejecutando el kernel RHEL 9,1 especificado. Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones compatibles.
+. Una vez finalizada la instalación, compruebe que está ejecutando el kernel RHEL 9,1 especificado. Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^]la para obtener la lista actual de versiones compatibles.
 +
 Ejemplo:
 
@@ -99,7 +99,7 @@ Puede configurar NVMe/FC para adaptadores Broadcom/Emulex o Marvell/Qlogic.
 .Broadcom/Emulex
 --
 .Pasos
-. Compruebe que está utilizando el adaptador compatible. Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de adaptadores compatibles.
+. Compruebe que está utilizando el adaptador compatible. Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^]la para obtener la lista actual de adaptadores compatibles.
 +
 [listing]
 ----
@@ -113,7 +113,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 
 ----
-. Compruebe que está utilizando el firmware de Broadcom lpfc y el controlador de bandeja de entrada recomendados. Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones de firmware y controladores de adaptador compatibles.
+. Compruebe que está utilizando el firmware de Broadcom lpfc y el controlador de bandeja de entrada recomendados. Consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^] para obtener la lista actual de versiones de firmware y controlador del adaptador compatibles.
 +
 [listing]
 ----
@@ -230,7 +230,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . Ejecute `dracut -f` el comando y reinicie el host.
-. Compruebe que el valor esperado de `lpfc_sg_seg_cnt` es 256:
+. Compruebe que el valor de `lpfc_sg_seg_cnt` es 256:
 +
 [listing]
 ----

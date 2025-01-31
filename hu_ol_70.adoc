@@ -20,16 +20,16 @@ Es posible usar las opciones de configuración del host SAN de ONTAP para config
 
 
 
-== Instale las utilidades unificadas de host de Linux
+== Instale las utilidades del host de Linux
 
-El paquete de software de utilidades de host unificadas Linux de NetApp está disponible en link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^]un archivo .rpm de 32 bits y 64 bits. Si no sabe qué archivo es el adecuado para su configuración, utilice el link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar cuál necesita.
+El paquete de software de utilidades del host Linux de NetApp está disponible en link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^]un archivo .rpm de 32 bits y 64 bits. Si no sabe qué archivo es el adecuado para su configuración, utilice el link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar cuál necesita.
 
-NetApp recomienda la instalación de Linux Unified Host Utilities, pero no es obligatorio. Las utilidades no cambian ninguna configuración del host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
+NetApp recomienda encarecidamente la instalación de las utilidades del host Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración del host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
 
-Si tiene Linux Unified Host Utilities instalado actualmente, debe actualizarla a la versión más reciente o quitarla y seguir estos pasos para instalar la versión más reciente.
+Si tiene Linux Host Utilities actualmente instaladas, debe actualizarla a la versión más reciente, o bien eliminarla y seguir estos pasos para instalar la versión más reciente.
 
 .Pasos
-. Descargue el paquete de software Linux Unified Host Utilities de 32 o 64 bits del link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] al host.
+. Descargue el paquete de software de Linux Host Utilities de 32 o 64 bits en el link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^]al host.
 . Instale el paquete de software:
 +
 `rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
@@ -68,8 +68,8 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 
 == Arranque San
 
-.Lo que necesitará
-Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el https://mysupport.netapp.com/matrix/imt.jsp?components=68625;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
+.Antes de empezar
+Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^]para verificar que el sistema operativo, el HBA, el firmware del HBA y la versión de arranque del BIOS y ONTAP sean compatibles.
 
 .Pasos
 . Asignar el LUN de arranque SAN al host.
@@ -273,7 +273,7 @@ La versión Oracle Linux 7,0 con ONTAP tiene los siguientes problemas conocidos:
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901558["901558"^] | OL7.0 : el host pierde todas las rutas a la lun y se bloquea debido al error "RSCN timeout" en OL 7.0 UEK r3U5 Beta en el host Emulex 8G(LPe12002) | Es posible que observe que el host Emulex 8G(LPe12002) se bloquea y hay una alta interrupción de I/o durante las operaciones de recuperación tras fallos de almacenamiento con I/O. Es posible que observe las rutas que no se están recuperando, lo cual es un resultado del tiempo de espera RSCN, debido al cual el host pierde todas las rutas y se bloquea. La probabilidad de golpear este problema es alta. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901557["901557"^] | OL 7.0: Interrupción de I/o elevada observada en el host SAN FC 8G (QLE2562) de QLogic durante las operaciones de recuperación tras fallos de almacenamiento con I/O. | Es posible que observe una interrupción elevada de I/o en el host FC 8G de QLogic (QLE2562) durante las operaciones de conmutación por error de almacenamiento con I/O. Las cancelaciones y el restablecimiento del dispositivo se manifiestan como interrupción de I/o en el host. La probabilidad de llegar a esta interrupción de I/o es alta. 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=901557["901557"^] | OL 7,0: Interrupción de alta I/O observada en host SAN QLogic 8G FC (QLE2562) durante las operaciones de recuperación tras fallos del almacenamiento con I/O. | Es posible observar una interrupción elevada de I/O en el host QLogic 8G FC (QLE2562) durante las operaciones de conmutación por error de almacenamiento con I/O. Aborta y el dispositivo restablece manifiestos como interrupción de E/S en el host. La probabilidad de alcanzar esta interrupción de I/O es alta. 
 
 
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894766["894766"^] | OL7.0: Dracut no incluye el módulo scsi_dh_alua.ko en initramfs en UEKR3U5 alfa | Es posible que el módulo scsi_dh_alua no se cargue incluso después de agregar el parámetro "rdloaddriver=scsi_dh_alua" en la línea de comandos del kernel y crear Dracut. Como resultado, ALUA no está habilitado para los LUN de NetApp tal como se recomienda. 
@@ -285,5 +285,5 @@ La versión Oracle Linux 7,0 con ONTAP tiene los siguientes problemas conocidos:
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=894771["894771"^] | OL7.0 : Anaconda no agrega argumento bootdev en la línea cmd del kernel para establecer la dirección IP para la instalación de iSCSI SANboot OS | Anaconda no añade un argumento bootdev en la línea de comandos del kernel donde se establece la dirección IPv4 durante la instalación del sistema operativo OL 7.0 en un LUN multivía iSCSI. Por este motivo, no se pueden asignar direcciones IP a ninguna de las interfaces Ethernet configuradas para establecer sesiones iSCSI con el subsistema de almacenamiento durante el arranque OL 7.0. Dado que no se establecen las sesiones iSCSI, el LUN raíz no se detecta cuando se inicia el sistema operativo y, por lo tanto, se produce un error en el arranque del sistema operativo. 
 
 
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=916501["916501"^] | Se produce un bloqueo del kernel host de QLogic 10G FCoE (QLE8152) durante las operaciones de conmutación por error del almacenamiento con I/O. | Puede observar un bloqueo del kernel en el módulo de controlador Qlogic en el host Qlogic FCoE de 10G (QLE8152). El bloqueo se produce durante las operaciones de conmutación por error de almacenamiento con I/O. La probabilidad de alcanzar este bloqueo es alta, lo que provoca una interrupción de I/o más prolongada en el host. 
+| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=916501["916501"^] | Se observó un fallo del kernel de host FCoE (QLE8152) de QLogic 10G durante las operaciones de conmutación por error de almacenamiento con I/O. | Es posible que observe un bloqueo del núcleo en el módulo de controlador Qlogic en el host 10G FCoE Qlogic (QLE8152). El bloqueo se produce durante las operaciones de conmutación al nodo de respaldo de almacenamiento con I/O. La probabilidad de golpear este bloqueo es alta, lo que provoca una interrupción de I/O más prolongada en el host. 
 |===

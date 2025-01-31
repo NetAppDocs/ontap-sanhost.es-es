@@ -16,9 +16,9 @@ summary: Describe cómo configurar NVMe/FC para RHEL 8.1 con ONTAP
 
 
 [role="lead"]
-NVMe/FC es compatible con ONTAP 9,6 o posterior para Red Hat Enterprise Linux (RHEL) 8,1. Un host de RHEL 8,1 puede ejecutar tráfico NVMe y SCSI a través de los mismos puertos de adaptador de iniciador FC. Consulte link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] Para obtener una lista de controladoras y adaptadores de FC admitidos.
+A partir de ONTAP 9,6, NVMe/FC es compatible con Red Hat Enterprise Linux (RHEL) 8,1. Un host de RHEL 8,1 puede ejecutar tráfico NVMe y SCSI a través de los mismos puertos de adaptador de iniciador FC. Consulte la link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obtener una lista de los adaptadores y controladoras de FC compatibles.
 
-Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de configuraciones compatibles.
+Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^]la para obtener la lista actual de configuraciones compatibles.
 
 
 
@@ -46,7 +46,7 @@ Es posible usar el siguiente procedimiento para habilitar NVMe/FC.
 4.18.0-147.el8.x86_64
 ----
 +
-Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de versiones compatibles.
+Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^]la para obtener la lista actual de versiones compatibles.
 
 . Instale el `nvme-cli-1.8.1-3.el8` paquete:
 +
@@ -98,7 +98,7 @@ NOTE: Si las cadenas del host NQN no coinciden, utilice `vserver modify` Comando
 Puede usar el siguiente procedimiento para configurar un adaptador de FC Broadcom.
 
 .Pasos
-. Compruebe que está utilizando el adaptador compatible. Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener la lista más actual de adaptadores compatibles.
+. Compruebe que está utilizando el adaptador compatible. Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^]la para obtener la lista actual de adaptadores compatibles.
 +
 [listing]
 ----
@@ -205,7 +205,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . Ejecute `dracut -f` el comando y reinicie el host.
-. Compruebe que el valor esperado de `lpfc_sg_seg_cnt` es 256:
+. Compruebe que el valor de `lpfc_sg_seg_cnt` es 256:
 +
 [listing]
 ----

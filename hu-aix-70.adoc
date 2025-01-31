@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu-aix-70.html 
 keywords: host utilities, aix, powervm, vios, 3.1, 7.0, netapp, ontap 
-summary: Las utilidades unificadas de host de AIX le ayudan a gestionar el almacenamiento de NetApp ONTAP conectado a un host AIX. 
+summary: Las utilidades de host AIX le ayudan a gestionar el almacenamiento de ONTAP conectado a un host AIX. 
 ---
 = Instale AIX Host Utilities 7,0
 :hardbreaks:
@@ -16,7 +16,7 @@ summary: Las utilidades unificadas de host de AIX le ayudan a gestionar el almac
 
 
 [role="lead"]
-Las utilidades unificadas de host de AIX le ayudan a gestionar el almacenamiento de NetApp ONTAP conectado a un host AIX.
+Las utilidades de host AIX le ayudan a gestionar el almacenamiento de ONTAP conectado a un host AIX.
 
 Las utilidades de host de AIX admiten los siguientes protocolos:
 
@@ -27,7 +27,7 @@ Las utilidades de host de AIX admiten los siguientes protocolos:
 
 Las utilidades de host de AIX son compatibles con los siguientes entornos:
 
-* AIX MPIO (SO NATIVO)
+* AIX Microsoft Multipath I/O (MPIO) (SO nativo)
 * PowerVM
 +
 Para obtener más información acerca de PowerVM, consulte el libro rojo de movilidad de particiones activas de IBM PowerVM.
@@ -37,13 +37,13 @@ Para obtener más información acerca de PowerVM, consulte el libro rojo de movi
 .Antes de empezar
 * Para lograr un funcionamiento fiable, verifique que toda la configuración de iSCSI, FC o FCoE sea compatible.
 +
-Puede utilizar el https://mysupport.netapp.com/matrix/imt.jsp?components=65623%3B64703%3B&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] para verificar la configuración.
+Puede utilizar el https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar la configuración.
 
 * El seguimiento dinámico debe estar habilitado para todos los iniciadores de FC y FCoE.
 
 
 
-NOTE: El paquete de software de utilidades del host AIX de NetApp está disponible en link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.0["Sitio de soporte de NetApp"^]un archivo tar.gz comprimido. Debe instalar el kit de utilidades del host AIX mientras usa AIX MPIO con almacenamiento de NetApp ONTAP.
+NOTE: El paquete de software de utilidades de host AIX de NetApp está disponible en en link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.0["Sitio de soporte de NetApp"^]un `tar.gz file` . Debe instalar el kit de utilidades del host AIX mientras usa AIX MPIO con almacenamiento de ONTAP.
 
 .Pasos
 . Inicie sesión en el host.
@@ -65,7 +65,7 @@ El siguiente directorio se crea al descomprimir el archivo `ntap_aix_host_utilit
 +
 `# installp -aXYd /var/tmp/ntap_aix_host_utilities_7.0/MPIO NetApp.MPIO_Host_Utilities_Kit`
 
-. Instale el kit de herramientas SAN:
+. Instalación del kit DE herramientas SAN:
 +
 `# installp -aXYd /var/tmp/ntap_aix_host_utilities_7.0/SAN_Tool_Kit/NetApp.SAN_toolkit`
 
@@ -152,4 +152,4 @@ data_vserver   /vol/vol3/lun3 hdisk11 fcs0   FCP      20g C
 data_vserver   /vol/vol4/lun4 hdisk14 fcs0   FCP      20g C
 ----
 
-NOTE: Este kit de herramientas es común en todas las configuraciones y protocolos de las utilidades de host. Como resultado, parte de su contenido se aplica a una configuración, pero no a otra. El hecho de tener componentes sin utilizar no afecta al rendimiento del sistema. El kit DE herramientas SAN es compatible con las versiones de sistema operativo AIX y PowerVM/VIOS.
+NOTE: Este kit de herramientas es común en todas las configuraciones y protocolos de las utilidades de host. Como resultado, todos los componentes no se aplican a todas las configuraciones. Los componentes no utilizados no afectan al rendimiento del sistema. El kit de herramientas SAN es compatible con las versiones AIX y PowerVM/VIOS

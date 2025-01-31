@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: hu_luhu_71_rn.html 
 keywords: host utilities, linux, 7.1, netapp, ontap, release, notes, linux 
-summary: Notas de la versión de Linux Unified Host Utilities 7.1 
+summary: Notas de la versión de Linux Host Utilities 7,1 
 ---
-= Notas de la versión de Linux Unified Host Utilities 7.1
+= Notas de la versión de Linux Host Utilities 7,1
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -18,7 +18,7 @@ summary: Notas de la versión de Linux Unified Host Utilities 7.1
 [role="lead"]
 En las notas de la versión, se describen las nuevas funciones y mejoras, los problemas y limitaciones conocidos y las precauciones importantes para configurar y gestionar el host específico con el sistema de almacenamiento de ONTAP.
 
-Para obtener información específica acerca de las versiones del sistema operativo y las actualizaciones que admiten las utilidades de host, consulte link:https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^].
+Para obtener información específica sobre las versiones y actualizaciones del sistema operativo que admiten las utilidades de host, consulte la link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^].
 
 
 
@@ -47,7 +47,7 @@ NOTE: Cualquier mención de utilidades de host o utilidades de host de Linux en 
 
 
 
-NOTE: NetApp sigue trabajando con las utilidades de host para añadir compatibilidad con las funciones después de la versión inicial. Para obtener la información más reciente acerca de las características compatibles y las nuevas funciones que se han agregado, consulte link:https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^].
+NOTE: NetApp sigue trabajando con las utilidades de host para añadir compatibilidad con las funciones después de la versión inicial. Para obtener la información más reciente sobre las funciones admitidas y las nuevas características que se han agregado, consulte la link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^].
 
 
 
@@ -66,12 +66,9 @@ La versión Linux Host Utilities 7,1 tiene los siguientes problemas y limitacion
 | ID de error de NetApp | Título | Descripción 
 
 
-| 1457017 |  `sanlun` la instalación emite mensajes de advertencia relacionados con `libdevmapper.so` y.. `libnl.so` bibliotecas. Estas advertencias no afectan a la funcionalidad de `sanlun` kit. | Cuando se ejecuta el comando CLI de Linux Unified Host Utilities: Sanlun fcp show adapter -v en un host SAN, el comando genera un mensaje de error que muestra que las dependencias de la biblioteca necesarias para una detección del adaptador de bus de host (HBA) no pueden ser
-ubicado:
-
-[root@hostname ~]# sanlun fcp show adapter -v
-No se ha encontrado la biblioteca /usr/lib64/libHBAAPI.so
-Asegúrese de que el paquete que instala la biblioteca está instalado y cargado
-Consulte NetApp Bugs Online - link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554"^]. 
+| 1457017 |  `sanlun` la instalación emite mensajes de advertencia relacionados con `libdevmapper.so` y.. `libnl.so` bibliotecas. Estas advertencias no afectan a la funcionalidad de `sanlun` kit. | Cuando ejecuta el comando CLI de utilidades del host de Linux - «sanlun fcp show adapter -v» en un host SAN, el comando falla con un mensaje de error que muestra que las dependencias de la biblioteca necesarias para una detección del adaptador de bus de host (HBA) no pueden encontrarse: 
+`[root@hostname ~]# sanlun fcp show adapter -v
+Unable to locate /usr/lib64/libHBAAPI.so library
+Make sure the package installing the library is installed & loaded` Consulte NetApp Bugs Online - link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554"^]. 
 |===
 link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^] proporciona información completa sobre la mayoría de los problemas conocidos, incluidas las soluciones alternativas sugeridas cuando sea posible.

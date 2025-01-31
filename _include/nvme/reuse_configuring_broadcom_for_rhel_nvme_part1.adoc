@@ -2,7 +2,7 @@
 :allow-uri-read: 
 
 
-Para obtener la lista más actual de adaptadores compatibles, consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad de NetApp"^].
+Para obtener la lista actual de adaptadores compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
 
 .Pasos
 . Compruebe que está utilizando el adaptador compatible.
@@ -71,7 +71,7 @@ FCP CMPL: xb 00001f50 Err 0000d9f8
 ----
 . Activa 1 MB de tamaño de E/S _(opcional)_.
 +
-La `lpfc_sg_seg_cnt` El parámetro debe configurarse en 256 para que el controlador lpfc emita solicitudes de E/S de hasta 1 MB de tamaño.
+ `lpfc_sg_seg_cnt`El parámetro debe establecerse en 256 para que el controlador lpfc emita solicitudes de E/S de hasta 1MB GB de tamaño.
 
 +
 [listing]

@@ -22,8 +22,8 @@ Puede configurar las opciones de configuración del host SAN ONTAP para versione
 
 == Arranque San
 
-.Lo que necesitará
-Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["Herramienta de matriz de interoperabilidad de NetApp"^] Para verificar si el sistema operativo, el HBA, el firmware del HBA y la BIOS de arranque del HBA y las versiones de ONTAP son compatibles.
+.Antes de empezar
+Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^]para verificar que el sistema operativo, el HBA, el firmware del HBA y la versión de arranque del BIOS y ONTAP sean compatibles.
 
 .Pasos
 . Asignar el LUN de arranque SAN al host.
@@ -45,7 +45,7 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 La compatibilidad con varias rutas en Citrix XenServer se basa en los componentes de Device Mapper Multipathd. Los nodos de asignación de dispositivos no se crean automáticamente para todas las LUN presentadas a XenServer y solo se aprovisionan cuando el nivel de gestión de almacenamiento (API) utiliza los LUN de forma activa. El complemento de API de Citrix XenServer Storage Manager controla la activación y desactivación de nodos multivía automáticamente.
 
-Debido a las incompatibilidades de la arquitectura de gestión multivía integrada, Citrix recomienda utilizar la aplicación Citrix XenCenter para gestionar la configuración de almacenamiento. Si es necesario consultar el estado de las tablas de Device Mapper manualmente o enumerar los nodos multivía activos del asignador de dispositivos en el sistema, puede utilizar el `/sbin/mpathutil status` Comando para verificar la configuración de las LUN de ONTAP. Para obtener más información, consulte la documentación estándar del proveedor para Citrix XenServer.
+Debido a las incompatibilidades de la arquitectura de gestión multivía integrada, Citrix recomienda utilizar la aplicación Citrix XenCenter para gestionar la configuración de almacenamiento. Si es necesario consultar el estado de las tablas de asignación de dispositivos manualmente o mostrar los nodos multivía de asignación de dispositivos activos en el sistema, puede utilizar `/sbin/mpathutil status` el comando para verificar la configuración de los LUN de ONTAP. Para obtener más información, consulte la documentación estándar del proveedor para Citrix XenServer.
 
 
 

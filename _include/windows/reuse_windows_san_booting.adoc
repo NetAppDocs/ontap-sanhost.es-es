@@ -2,7 +2,7 @@
 :allow-uri-read: 
 
 
-Si decide utilizar el arranque SAN, su configuración debe ser compatible. Es posible usar la herramienta de matriz de interoperabilidad de NetApp para verificar que el sistema operativo, HBA, el firmware de HBA y la versión de arranque de HBA y ONTAP son compatibles.
+Si decide utilizar el arranque SAN, su configuración debe ser compatible. Puede utilizar la herramienta de matriz de interoperabilidad para verificar que el sistema operativo, el adaptador de bus de host, el firmware HBA y la versión de BIOS de arranque en HBA y ONTAP sean compatibles.
 
 . Asignar el LUN de arranque SAN al host.
 . Verifique que haya varias rutas disponibles.
