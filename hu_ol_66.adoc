@@ -37,7 +37,7 @@ Si tiene Linux Host Utilities actualmente instaladas, debe actualizarla a la ver
 
 
 
-NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este documento para configurar los clientes de cloud conectados a. link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
+NOTE: Puede utilizar los ajustes de configuración proporcionados en este procedimiento para configurar los clientes de nube conectados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^]
 
 
 
@@ -76,7 +76,7 @@ Si decide utilizar el arranque SAN, debe ser compatible con su configuración. P
 . Verifique que haya varias rutas disponibles.
 +
 
-NOTE: Una vez que el sistema operativo del host está activo y en ejecución en las rutas, hay varias rutas disponibles.
+NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
 
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
@@ -101,11 +101,11 @@ kernel /vmlinuz-3.8.13-68.1.2.el6uek.x86_64 ro root=/dev/mapper/vg_ibmx3550m4210
 ....
 . Utilice la `mkinitrd` comando para volver a crear la imagen initrd. Las versiones 6x y posteriores de Oracle utilizan el comando: `mkinitrd -f /boot/ initrd-"uname -r".img uname -r`O el comando: `dracut -f`
 . Reinicie el host.
-. Compruebe el resultado del `cat /proc/cmdline` comando para garantizar que se haya completado la configuración. Puede utilizar `multipath -ll` el comando para comprobar la configuración de sus LUN de ONTAP. Debería haber dos grupos de caminos con prioridades diferentes. Las rutas con prioridades más altas son activas/optimizadas, lo que significa que la controladora donde se encuentra el agregado presta servicio. Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
+. Compruebe el resultado del `cat /proc/cmdline` comando para garantizar que se haya completado la configuración. Puede utilizar `multipath -ll` el comando para comprobar la configuración de sus LUN de ONTAP. Debería haber dos grupos de caminos con prioridades diferentes. Las rutas con prioridades más altas son Active-Optimized. Esto significa que reciben servicio de la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
 
 
 .Ejemplo
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizadas:
+En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
 
 [listing]
 ----

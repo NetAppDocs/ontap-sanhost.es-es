@@ -4,7 +4,7 @@ permalink: hu_windows_2019.html
 keywords: windows, enterprise 
 summary: Uso de Windows Server 2019 con ONTAP 
 ---
-= Uso de Windows Server 2019 con ONTAP
+= Utilice Windows Server 2019 con ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,111 +16,126 @@ summary: Uso de Windows Server 2019 con ONTAP
 
 
 [role="lead"]
-Es posible usar los ajustes de configuración del host SAN de ONTAP para configurar Windows Server 2019 con ONTAP como destino.
+Es posible usar los ajustes de configuración del host SAN de ONTAP para configurar Windows Server 2019 con ONTAP para el funcionamiento con almacenamiento de ONTAP.
 
 
 
-== Arrancar el SO
+== Inicie el sistema operativo Windows
 
-Hay dos opciones para arrancar el sistema operativo: Mediante el arranque local o el arranque SAN. Para el arranque local, instala el sistema operativo en el disco duro local (SSD, SATA, RAID, etc.). Para el arranque DE SAN, consulte las instrucciones que se indican a continuación.
+Puede iniciar el sistema operativo Windows mediante un arranque local o un arranque SAN. NetApp recomienda utilizar un arranque SAN si es compatible con su configuración.
+
+[role="tabbed-block"]
+====
+.Arranque local
+--
+Realice un inicio local instalando el sistema operativo Windows en el disco duro local (SSD, SATA, RAID, etc.).
+
+--
+.Arranque SAN
+--
+Si elige usar arranque SAN, debe ser compatible con su configuración.
 
 
+NOTE: Puede utilizar los ajustes de configuración proporcionados en este procedimiento para configurar los clientes de nube conectados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^]
 
-=== Arranque SAN
+.Antes de empezar
+Utilice https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que el sistema operativo Windows, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admiten el arranque SAN.
 
-Si decide utilizar el arranque SAN, su configuración debe ser compatible. Puede utilizar la herramienta de matriz de interoperabilidad para verificar que el sistema operativo, el adaptador de bus de host, el firmware HBA y la versión de BIOS de arranque en HBA y ONTAP sean compatibles.
-
+.Pasos
 . Asignar el LUN de arranque SAN al host.
++
+Consulte link:https://docs.netapp.com/us-en/ontap/san-management/index.html["Gestión del almacenamiento san"^].
+
 . Verifique que haya varias rutas disponibles.
 +
 
 NOTE: Las rutas múltiples solo quedan disponibles cuando el sistema operativo del host está activo y en ejecución en las rutas.
 
-. Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN. Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
-. Reinicie el host para verificar que el arranque se haya realizado correctamente.
+. Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
++
+Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
+
+. Reinicie el host para verificar que el inicio se ha realizado correctamente
 
 
-
-NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este documento para configurar los clientes de cloud conectados a. link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
-
+--
+====
 
 
 == Instale las revisiones de Windows
 
-NetApp recomienda que la *última actualización acumulativa* esté instalada en el servidor.
+NetApp recomienda instalar la *última actualización acumulativa* disponible en el catálogo de actualizaciones de Microsoft en el servidor host.
 
-
-NOTE: Vaya a la link:https://www.catalog.update.microsoft.com/Search.aspx?q=Update+Windows+Server+2019["Catálogo de Microsoft Update 2019"^] Sitio web para obtener e instalar las revisiones de Windows necesarias para su versión de Windows.
-
-. Descargue las correcciones urgentes del sitio de soporte de Microsoft.
+.Pasos
+. Descargue las revisiones desde el link:https://www.catalog.update.microsoft.com/Search.aspx?q=Update+Windows+Server+2019["Catálogo de Microsoft Update 2019"^].
 
 
 
-NOTE: Algunas revisiones no están disponibles para descarga directa. En estos casos, deberá solicitar una revisión determinada al personal de soporte técnico de Microsoft.
+NOTE: Debe ponerse en contacto con el servicio de soporte técnico de Microsoft para obtener las correcciones urgentes que no se pueden descargar del catálogo de Microsoft Update.
 
 . Siga las instrucciones proporcionadas por Microsoft para instalar las revisiones.
 
 
 
-TIP: Muchas correcciones urgentes requieren un reinicio del host de Windows, pero puede optar por esperar a reiniciar el host hasta _after_ que instale o actualice las utilidades de host.
+TIP: Muchas correcciones requieren un reinicio del host de Windows. Puede optar por esperar a reiniciar el host hasta que _after_ instale o actualice las utilidades de host.
 
 
 
 == Instale las utilidades del host de Windows
 
-Las utilidades de host de Windows son un conjunto de programas de software con documentación que le permite conectar equipos host a discos virtuales (LUN) en una SAN de NetApp. NetApp recomienda descargar e instalar el kit de utilidades más reciente. Para obtener información e instrucciones de configuración de WUHU, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentación de Windows Host Utilities"]y seleccione el procedimiento de instalación para su versión de Utilidades de host de Windows.
+Las utilidades de host de Windows son un conjunto de programas de software con documentación que le permite conectar equipos host a discos virtuales (LUN) en una SAN de NetApp. NetApp recomienda descargar e instalar el kit de utilidades más reciente. Para obtener información de configuración e instrucciones de Windows Host Utilities, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentación de Windows Host Utilities"]y seleccione el procedimiento de instalación para su versión de Windows Host Utilities.
 
 
 
 == Accesos múltiples
 
-Debe instalar el software Microsoft Multipath I/O (MPIO) y configurar las rutas múltiples si el host de Windows tiene más de una ruta al sistema de almacenamiento. Sin el software MPIO, es posible que el sistema operativo vea cada ruta como un disco independiente, lo que podría dañar los datos. El software MPIO presenta un único disco al sistema operativo para todas las rutas, y un módulo específico de cada dispositivo (DSM) gestiona la recuperación tras fallos de rutas.
+Debe instalar el software Microsoft Multipath I/O (MPIO) y habilitar el acceso multivía si el host Windows tiene más de una ruta al sistema de almacenamiento. Cuando selecciona la compatibilidad con MPIO, Windows Host Utilities habilita la función MPIO que se incluye en Windows Server 2019. Si no utiliza las utilidades de host de Windows, debe habilitar el acceso multivía manualmente.
 
-En un sistema Windows, los dos componentes principales de cualquier solución MPIO son DSM y Windows MPIO. MPIO no es compatible con Windows XP o Windows Vista en una máquina virtual Hyper- V.
+El software MPIO presenta un disco único para el sistema operativo Windows para todas las rutas, y un módulo específico del dispositivo (DSM) gestiona la recuperación tras fallos en las rutas. En un sistema Windows, los dos componentes principales de cualquier solución MPIO son DSM y Windows MPIO.
 
 
-NOTE: Cuando selecciona MPIO, Windows Host Utilities habilita la función MPIO incluida de Windows Server 2019.
+CAUTION: Si no instala el software MPIO, el sistema operativo Windows puede ver cada ruta como un disco independiente. Esto puede conducir a la corrupción de datos.
+
+
+NOTE: Windows XP o Windows Vista en un equipo virtual Hyper-V no admite MPIO.
 
 
 
 == Configuración de SAN
 
-
-
-=== Configuración no ASA
-
-Para la configuración que no sea ASA debe haber dos grupos de rutas con prioridades diferentes.
-
-Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado.
-
-Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente.
-
-
-NOTE: Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
-
-.Ejemplo
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/sin optimizar.
-
-image::nonasa.png[Captura de pantalla de un LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas]
+Según la configuración de SAN, el host utiliza configuraciones de cabinas All SAN (ASA) o no ASA para acceder a los LUN de ONTAP. En las configuraciones de ASA y que no sean de ASA, no debería necesitar más de cuatro rutas para acceder a una única LUN de ONTAP. Si tiene más de cuatro rutas, se pueden producir problemas con las rutas durante un fallo del almacenamiento.
 
 
 
 === Configuración de cabina All SAN
 
-Para la configuración de cabina All SAN (ASA), debe haber un grupo de rutas con prioridades únicas. Todas las rutas son activas/optimizadas; es decir, la controladora recibe servicio y la controladora envía I/o a todas las rutas activas.
+Una configuración ASA debe tener un grupo de rutas activo/optimizadas con prioridades únicas. Esto significa que la controladora proporciona servicio a las rutas y las I/O se envían a todas las rutas activas.
+
+En el siguiente ejemplo se muestra el resultado correcto para una LUN de ONTAP con rutas activas/optimizadas.
 
 image::asa.png[Captura de pantalla de LUN de ONTAP con rutas activas/optimizadas]
 
 
-NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de cuatro rutas puede ocasionar problemas de ruta durante errores de almacenamiento.
+
+=== Configuración no ASA
+
+Una configuración que no sea de ASA debe tener dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son Active-Optimized. Esto significa que la controladora donde se encuentra el agregado suministra las rutas activa/optimizada. Las rutas con prioridades más bajas están activas pero no optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas solo se utilizan cuando las rutas optimizadas no están disponibles.
+
+En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas.
+
+image::nonasa.png[Captura de pantalla de un LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas]
 
 
 
 == Configuración recomendada
 
-En sistemas que utilizan FC, se requieren los siguientes valores de tiempo de espera para los HBA de Emulex y QLogic FC cuando se selecciona MPIO.
+Cuando selecciona MPIO en sistemas que utilizan FC, el instalador de utilidades de host establece los valores de tiempo de espera necesarios para los HBA de Emulex y QLogic FC.
 
-Para HBA Fibre Channel de Emulex:
+[role="tabbed-block"]
+====
+.FC Emulex
+--
+Los valores de tiempo de espera para los HBA FC de Emulex:
 
 [cols="2*"]
 |===
@@ -132,7 +147,10 @@ Para HBA Fibre Channel de Emulex:
 
 | NodeTimeOut | 10 
 |===
-Para los HBA Fibre Channel de QLogic:
+--
+.FC de QLogic
+--
+Los valores de tiempo de espera para los HBA FC de QLogic:
 
 [cols="2*"]
 |===
@@ -144,8 +162,10 @@ Para los HBA Fibre Channel de QLogic:
 
 | PortDownRetryCount | 10 
 |===
+--
+====
 
-NOTE: La utilidad de host de Windows establece estos valores. Para obtener información detallada sobre la configuración recomendada, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentación de Windows Host Utilities"]y seleccione el procedimiento de instalación para su versión de Utilidades de host de Windows.
+NOTE: Para obtener más información sobre los ajustes recomendados, consulte link:hu_wuhu_hba_settings.html["Configure los ajustes del Registro para las utilidades del host de Windows"].
 
 
 

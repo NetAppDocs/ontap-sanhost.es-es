@@ -4,7 +4,7 @@ permalink: hu_wuhu_hba_settings.html
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Windows Host Utilities incluye un programa de instalación que establece los parámetros de registro de Windows y HBA necesarios para que el host Windows controle correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP y E-Series. 
 ---
-= Configure los valores del registro
+= Configure los ajustes del Registro para las utilidades del host de Windows
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -33,9 +33,13 @@ Debe establecer manualmente los parámetros de HBA de iSCSI.
 
 El instalador establece diferentes valores en función de si se especifica el soporte de E/S (MPIO) de Microsoft Multipath al ejecutar el programa de instalación.
 
+[NOTE]
+====
+Necesita cambiar el valor del parámetro LimTransferSize después de instalar Windows Host Utilities 7,2, consulte <<nvme_parameters,Parámetros de NVMe>>.
 
-NOTE: No debe cambiar estos valores a no ser que el soporte técnico de NetApp le indique que lo haga.
+Para todos los demás parámetros y claves del Registro de Windows Host Utilities 7,2 y 7,1, no debe cambiar los valores a menos que el soporte técnico le indique que lo haga.
 
+====
 
 
 == Valores de Registro establecidos por Windows Host Utilities 7,2
@@ -52,10 +56,10 @@ NOTE: HKLM es la abreviatura de `HKEY_LOCAL_MACHINE`.
 | Clave de registro | Valor | Cuando se haya configurado 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters \DsmMaximumRetryTimeDuringStateTransitition | 120 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2012 R2, Windows Server 2016 y Windows 2019, o Windows Server 2022 
+| HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters \DsmMaximumRetryTimeDuringStateTransitition | 120 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2025, 2022, 2019, 2016 o 2012 R2 
 
 
-| HKLM\SYSTEM\CurrentControlSet \Services\msdsm\Parameters \DsmMaximumStateTransitionTime | 120 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2012 R2, o Windows Server 2016, Windows 2019 o Windows Server 2022 
+| HKLM\SYSTEM\CurrentControlSet \Services\msdsm\Parameters \DsmMaximumStateTransitionTime | 120 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2025, 2022, 2019, 2016 o 2012 R2 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters\DsmSupportedDeviceList | «NETAPP LUN», «NETAPP LUN C- Mode», «NVMe NetApp ONTAO Con» | Cuando se especifica la compatibilidad con MPIO 
@@ -79,13 +83,13 @@ NOTE: HKLM es la abreviatura de `HKEY_LOCAL_MACHINE`.
 | HKLM\SYSTEM\CurrentControlSet\Control \MPDEV\MPIOSupportedDeviceList | «NETAPP LUN», «NETAPP LUN C- Mode», «NVMe NetApp ONTAO Con» | Cuando se especifica la compatibilidad con MPIO 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\PathRecoveryInterval | 30 | Cuando el servidor es Windows Server 2012 R2, Windows Server 2016, Windows Server 2019 o Windows Server 2022 
+| HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\PathRecoveryInterval | 30 | Cuando el servidor es Windows Server 2025, 2022, 2019, 2016 o 2012 R2 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\PathVerifyEnabled | 1 | Cuando se especifica la compatibilidad con MPIO 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters\PathVerifyEnabled | 1 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2012 R2, Windows Server 2016, Windows Server 2019 o Windows Server 2022 
+| HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters\PathVerifyEnabled | 1 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2025, 2022, 2019, 2016 o 2012 R2 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services \vnetapp\Parameters\PathVerifyEnabled | 0 | Cuando se especifica la compatibilidad con MPIO 
@@ -94,22 +98,22 @@ NOTE: HKLM es la abreviatura de `HKEY_LOCAL_MACHINE`.
 | HKLM\SYSTEM\CurrentControlSet\Services \mpio\Parameters\PDORemovePeriod | 130 | Cuando se especifica la compatibilidad con MPIO 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\PDORemovePeriod | 130 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2012 R2, Windows Server 2016 , Windows Server 2019 o Windows Server 2022 
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\PDORemovePeriod | 130 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2025, 2022, 2019, 2016 o 2012 R2 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services\vnetapp \Parameters\PDORemovePeriod | 130 | Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP 
+| HKLM\SYSTEM\CurrentControlSet\Services\vnetapp \Parameters\PDORemovePeriod | 130 | Cuando se especifica la compatibilidad con MPIO 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\RetryCount | 6 | Cuando se especifica la compatibilidad con MPIO 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\RetryCount | 6 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2012 R2, Windows Server 2016, Windows Server 2019 o Windows Server 2022 
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\RetryCount | 6 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2025, 2022, 2019, 2016 o 2012 R2 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\RetryInterval | 1 | Cuando se especifica la compatibilidad con MPIO 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\RetryInterval | 1 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2012 R2, Windows Server 2016, Windows Server 2019 o Windows Server 2022 
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\RetryInterval | 1 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2025, 2022, 2019, 2016 o 2012 R2 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services\vNetApp \Parameters\RetryInterval | 1 | Cuando se especifica la compatibilidad con MPIO 
@@ -118,7 +122,7 @@ NOTE: HKLM es la abreviatura de `HKEY_LOCAL_MACHINE`.
 | HKLM\SYSTEM\CurrentControlSet\Services \disk\TimeOutValue | 120 | Cuando no se selecciona ninguna compatibilidad con MPIO 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\UseCustomPathRecoveryInterval | 1 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2012 R2, Windows Server 2016, Windows Server 2019 o Windows Server 2022 
+| HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\UseCustomPathRecoveryInterval | 1 | Si se especifica la compatibilidad con MPIO y el servidor es Windows Server 2025, 2022, 2019, 2016 o 2012 R2 
 |===
 
 
@@ -129,6 +133,9 @@ Los siguientes parámetros del controlador NVMe Emulex se actualizan al instalar
 * EnableNVMe = 1
 * NVMEMode = 0
 * LimTransferSize=1
++
+El parámetro LimTransferSize se establece automáticamente en “1” al instalar Windows Host Utilities 7,2. Después de la instalación, debe cambiar manualmente el valor LimTransferSize a “0” y reiniciar el servidor.
+
 
 
 
@@ -147,10 +154,10 @@ NOTE: `HKLM` es la abreviatura de `HKEY_LOCAL_MACHINE`.
 | Clave de registro | Valor | Cuando se haya configurado 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters \DsmMaximumRetryTimeDuringStateTransitition | 120 | Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016, excepto si se detecta DSM de Data ONTAP 
+| HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters \DsmMaximumRetryTimeDuringStateTransitition | 120 | Si se especifica compatibilidad con MPIO y el servidor es Windows Server 2016, 2012 R2, 2012, 2008 R2 o 2008, excepto si se detecta Data ONTAP DSM 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters \DsmMaximumStateTransitionTime | 120 | Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016, excepto si se detecta DSM de Data ONTAP 
+| HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters \DsmMaximumStateTransitionTime | 120 | Si se especifica compatibilidad con MPIO y el servidor es Windows Server 2016, 2012 R2, 2012, 2008 R2 o 2008, excepto si se detecta Data ONTAP DSM 
 
 
 .2+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\DsmSupportedDeviceList | "NETAPP" | Cuando se especifica la compatibilidad con MPIO 
@@ -189,7 +196,7 @@ NOTE: `HKLM` es la abreviatura de `HKEY_LOCAL_MACHINE`.
 | HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\PathVerifyEnabled | 0 | Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters\PathVerifyEnabled | 0 | Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016, excepto si se detecta DSM de Data ONTAP 
+| HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters\PathVerifyEnabled | 0 | Si se especifica compatibilidad con MPIO y el servidor es Windows Server 2016, 2012 R2, 2012, 2008 R2 o 2008, excepto si se detecta Data ONTAP DSM 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services \msiscdsm\Parameters\PathVerifyEnabled | 0 | Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2003, excepto si se detecta DSM de Data ONTAP 
@@ -201,7 +208,7 @@ NOTE: `HKLM` es la abreviatura de `HKEY_LOCAL_MACHINE`.
 | HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\PDORemovePeriod | 130 | Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\PDORemovePeriod | 130 | Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016, excepto si se detecta DSM de Data ONTAP 
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\PDORemovePeriod | 130 | Si se especifica compatibilidad con MPIO y el servidor es Windows Server 2016, 2012 R2, 2012, 2008 R2 o 2008, excepto si se detecta Data ONTAP DSM 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services\msiscdsm \Parameters\PDORemovePeriod | 130 | Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2003, excepto si se detecta DSM de Data ONTAP 
@@ -213,7 +220,7 @@ NOTE: `HKLM` es la abreviatura de `HKEY_LOCAL_MACHINE`.
 | HKLM\SYSTEM\CurrentControlSet\Services \mpio\Parameters\RetryCount | 6 | Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\RetryCount | 6 | Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016, excepto si se detecta DSM de Data ONTAP 
+| HKLM\SYSTEM\CurrentControlSet\Services\msdsm \Parameters\RetryCount | 6 | Si se especifica compatibilidad con MPIO y el servidor es Windows Server 2016, 2012 R2, 2012, 2008 R2 o 2008, excepto si se detecta Data ONTAP DSM 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services \msiscdsm\Parameters\RetryCount | 6 | Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2003, excepto si se detecta DSM de Data ONTAP 
@@ -225,7 +232,7 @@ NOTE: `HKLM` es la abreviatura de `HKEY_LOCAL_MACHINE`.
 | HKLM\SYSTEM\CurrentControlSet\Services \mpio\Parameters\RetryInterval | 1 | Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters\RetryInterval | 1 | Cuando se especifica la compatibilidad con MPIO y el servidor es Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016, excepto si se detecta DSM de Data ONTAP 
+| HKLM\SYSTEM\CurrentControlSet\Services \msdsm\Parameters\RetryInterval | 1 | Si se especifica compatibilidad con MPIO y el servidor es Windows Server 2016, 2012 R2, 2012, 2008 R2 o 2008, excepto si se detecta Data ONTAP DSM 
 
 
 | HKLM\SYSTEM\CurrentControlSet\Services \vnetapp\Parameters\RetryInterval | 1 | Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP 
@@ -237,7 +244,7 @@ NOTE: `HKLM` es la abreviatura de `HKEY_LOCAL_MACHINE`.
 | 60 | Cuando se especifica la compatibilidad con MPIO, excepto si se detecta DSM de Data ONTAP 
 
 
-| HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\UseCustomPathRecoveryInterval | 1 | Cuando el servidor es únicamente Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 o Windows Server 2016 
+| HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\UseCustomPathRecoveryInterval | 1 | Cuando el servidor es Windows Server 2016, 2012 R2, 2012, 2008 R2 o 2008 
 |===
 Consulte https://docs.microsoft.com/en-us/troubleshoot/windows-server/performance/windows-registry-advanced-users["Documentos de Microsoft"^] para obtener los detalles de los parámetros del registro.
 
@@ -276,7 +283,7 @@ Para los HBA FC de Emulex, el instalador establece los siguientes parámetros:
 |===
 --
 ====
-Para los HBA de Fibre Channel de QLogic, el instalador establece los siguientes parámetros:
+Para los HBA de QLogic FC, el instalador establece los siguientes parámetros:
 
 [role="tabbed-block"]
 ====

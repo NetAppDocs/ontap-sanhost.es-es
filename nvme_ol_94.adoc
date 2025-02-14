@@ -403,7 +403,7 @@ NOTE: A partir de Oracle Linux 9,4, la configuración predeterminada para NVMe/T
 
 == Valide NVMe-of
 
-Para admitir el funcionamiento correcto de las LUN de ONTAP, compruebe que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean los correctos para la configuración de NVMe-oF.
+Verifique que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean correctos para la configuración de NVMe-oF.
 
 .Pasos
 . Verifique la siguiente configuración de NVMe/FC en el host Oracle Liniux 9,4:

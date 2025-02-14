@@ -2,6 +2,9 @@
 :allow-uri-read: 
 
 
+Debe habilitar MPIO para los dispositivos NVMe para completar la configuración de NVMe en el host de Windows.
+
+.Pasos
 . Instale link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Kit de utilidades de host de Windows 7.1"] Para configurar los parámetros de controlador que son comunes a FC y NVMe.
 . Abra las propiedades de MPIO.
 . En la pestaña *Discover Multi-paths*, agregue el identificador de dispositivo indicado para NVMe.
@@ -9,8 +12,8 @@
 MPIO detecta los dispositivos NVMe, que se ven bajo la gestión de discos.
 
 . Abra *Administración de discos* y vaya a *Propiedades de disco*.
-. En la ficha *MPIO*, haga clic en *Detalles*.
-. Establezca los siguientes valores de MSDSM:
+. En la pestaña *MPIO*, selecciona *Details*.
+. Establezca los siguientes ajustes de Microsoft DSM:
 +
 ** PathVerifiedPeriod: *10*
 ** PathVerifyEnabled: *Habilitar*
@@ -29,7 +32,4 @@ HKLM\SYSTEM\CurrentControlSet\Services\mpio\Parameters\PathRecoveryInterval DWOR
 HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\ UseCustomPathRecoveryInterval  DWORD-> 1
 ----
 . Reinicie el host.
-+
-La configuración de NVMe ahora se completa en el host Windows.
-
 

@@ -1,10 +1,15 @@
-= 
+= Configuración de cabina All SAN
 :allow-uri-read: 
 
 
-Para la configuración de cabina All SAN (ASA), debe haber un grupo de rutas con prioridades únicas. Todas las rutas son activas/optimizadas; es decir, la controladora recibe servicio y la controladora envía I/o a todas las rutas activas.
+Según la configuración de SAN, el host utiliza configuraciones de cabinas All SAN (ASA) o no ASA para acceder a los LUN de ONTAP. En las configuraciones de ASA y que no sean de ASA, no debería necesitar más de cuatro rutas para acceder a una única LUN de ONTAP. Si tiene más de cuatro rutas, se pueden producir problemas con las rutas durante un fallo del almacenamiento.
+
+
+
+=== Configuración de cabina All SAN
+
+Una configuración ASA debe tener un grupo de rutas activo/optimizadas con prioridades únicas. Esto significa que la controladora proporciona servicio a las rutas y las I/O se envían a todas las rutas activas.
+
+En el siguiente ejemplo se muestra el resultado correcto para una LUN de ONTAP con rutas activas/optimizadas.
 
 image::asa.png[Captura de pantalla de LUN de ONTAP con rutas activas/optimizadas]
-
-
-NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de cuatro rutas puede ocasionar problemas de ruta durante errores de almacenamiento.

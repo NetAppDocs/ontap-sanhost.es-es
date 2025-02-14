@@ -2,6 +2,4 @@
 :allow-uri-read: 
 
 
-Tenga en cuenta que el iniciador de Broadcom puede servir tráfico NVMe/FC y FCP a través de los mismos puertos de adaptador de FC de 32 GB. En el caso de FCP y FC/NVMe, utilice MSDSM como opción de I/o multivía de Microsoft (MPIO).
-
-Consulte la link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obtener una lista de los adaptadores y controladoras de FC compatibles. Para obtener la lista actual de configuraciones y versiones compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
+Si desea obtener una lista de los adaptadores y controladoras de FC compatibles, consulte la link:https://hwu.netapp.com/Home/Index["Hardware Universe"^]. Para obtener la lista actual de configuraciones y versiones compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].

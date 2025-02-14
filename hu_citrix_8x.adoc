@@ -30,7 +30,7 @@ Si decide utilizar el arranque SAN, debe ser compatible con su configuración. P
 . Verifique que haya varias rutas disponibles.
 +
 
-NOTE: Una vez que el sistema operativo del host está activo y en ejecución en las rutas, hay varias rutas disponibles.
+NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
 
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
@@ -49,7 +49,7 @@ Para Citrix Hypervisor (CH) 8.x el `/etc/multipath.conf` archivo debe existir, p
 
 === Configuración de cabina All SAN (ASA)
 
-Para la configuración de cabina All SAN (ASA) debe haber un grupo de rutas con prioridades únicas. Todas las rutas son activas/optimizadas, lo que significa que la controladora recibe servicio y que se envían I/o en todas las rutas activas.
+Para la configuración de cabina All SAN (ASA) debe haber un grupo de rutas con prioridades únicas. Todas las rutas son activas/optimizadas. Esto significa que la controladora proporciona servicio y el envío de I/O por todas las rutas activas.
 
 .Ejemplo
 En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con cuatro rutas activas/optimizadas:
@@ -71,7 +71,7 @@ NOTE: No utilice un número excesivo de rutas a una única LUN. No se necesitan 
 
 === Configuraciones que no son ASA
 
-En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
+En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son Active-Optimized. Esto significa que reciben servicio de la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
 
 .Ejemplo
 En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas.

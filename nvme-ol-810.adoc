@@ -425,7 +425,7 @@ NOTE: NetApp recomienda establecer `ctrl-loss-tmo` la opción en «-1» para que
 
 == Valide NVMe-of
 
-Para admitir el funcionamiento correcto de las LUN de ONTAP, compruebe que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean los correctos para la configuración de NVMe-oF.
+Verifique que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean correctos para la configuración de NVMe-oF.
 
 .Pasos
 . Compruebe que la multivía de NVMe en kernel está habilitada:

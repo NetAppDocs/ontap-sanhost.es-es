@@ -2,9 +2,13 @@
 :allow-uri-read: 
 
 
-En sistemas que utilizan FC, se requieren los siguientes valores de tiempo de espera para los HBA de Emulex y QLogic FC cuando se selecciona MPIO.
+Cuando selecciona MPIO en sistemas que utilizan FC, el instalador de utilidades de host establece los valores de tiempo de espera necesarios para los HBA de Emulex y QLogic FC.
 
-Para HBA Fibre Channel de Emulex:
+[role="tabbed-block"]
+====
+.FC Emulex
+--
+Los valores de tiempo de espera para los HBA FC de Emulex:
 
 [cols="2*"]
 |===
@@ -16,7 +20,10 @@ Para HBA Fibre Channel de Emulex:
 
 | NodeTimeOut | 10 
 |===
-Para los HBA Fibre Channel de QLogic:
+--
+.FC de QLogic
+--
+Los valores de tiempo de espera para los HBA FC de QLogic:
 
 [cols="2*"]
 |===
@@ -28,5 +35,7 @@ Para los HBA Fibre Channel de QLogic:
 
 | PortDownRetryCount | 10 
 |===
+--
+====
 
-NOTE: La utilidad de host de Windows establece estos valores. Para obtener información detallada sobre la configuración recomendada, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentación de Windows Host Utilities"]y seleccione el procedimiento de instalación para su versión de Utilidades de host de Windows.
+NOTE: Para obtener más información sobre los ajustes recomendados, consulte link:hu_wuhu_hba_settings.html["Configure los ajustes del Registro para las utilidades del host de Windows"].

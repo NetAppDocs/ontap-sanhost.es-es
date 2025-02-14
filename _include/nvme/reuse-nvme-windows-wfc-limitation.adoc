@@ -1,0 +1,7 @@
+= 
+:allow-uri-read: 
+
+
+El clúster de conmutación al nodo de respaldo de Windows no es compatible con NVMe/FC, ya que ONTAP no admite reservas persistentes con NVMe/FC.
+
++ NOTA: Broadcom envía un controlador externo para Windows NVMe/FC que es un controlador SCSI ⇄ NVMe traslacional y no un verdadero controlador NVMe/FC. La sobrecarga de transacción no afecta necesariamente al rendimiento, pero anula las ventajas en cuanto al rendimiento de NVMe/FC. Como resultado, el rendimiento de NVMe/FC y FCP es el mismo en los servidores Windows, a diferencia de otros sistemas operativos como Linux, donde el rendimiento de NVMe/FC es significativamente mejor que el de FCP.

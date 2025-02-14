@@ -35,7 +35,7 @@ NetApp recomienda encarecidamente la instalación de las utilidades del host Lin
 
 
 
-NOTE: Puede utilizar los ajustes de configuración que se proporcionan en este documento para configurar los clientes de cloud conectados a. link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.. link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
+NOTE: Puede utilizar los ajustes de configuración proporcionados en este procedimiento para configurar los clientes de nube conectados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^]
 
 
 
@@ -74,7 +74,7 @@ Si decide utilizar el arranque SAN, debe ser compatible con su configuración. P
 . Verifique que haya varias rutas disponibles.
 +
 
-NOTE: Una vez que el sistema operativo del host está activo y en ejecución en las rutas, hay varias rutas disponibles.
+NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
 
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
@@ -89,10 +89,10 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 Para Oracle Linux 8.1 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. Oracle Linux 8.1 se ha compilado con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
 
-Puede utilizar `multipath -ll` el comando para comprobar la configuración de sus LUN de ONTAP. Debería haber dos grupos de caminos con prioridades diferentes. Las rutas con prioridades más altas son activas/optimizadas, lo que significa que la controladora donde se encuentra el agregado presta servicio. Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
+Puede utilizar `multipath -ll` el comando para comprobar la configuración de sus LUN de ONTAP. Debería haber dos grupos de caminos con prioridades diferentes. Las rutas con prioridades más altas son Active-Optimized. Esto significa que reciben servicio de la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
 
 .Ejemplo
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizadas:
+En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas:
 
 [listing]
 ----

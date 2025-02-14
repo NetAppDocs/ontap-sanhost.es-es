@@ -2,18 +2,18 @@
 :allow-uri-read: 
 
 
-Si los límites de los bloques de datos de una partición de disco no se alinean con los límites de bloque de una LUN subyacente, es habitual que el sistema de almacenamiento tenga que completar dos lecturas o escrituras de bloque para cada lectura o escritura del sistema operativo. Las lecturas y escrituras de bloque adicionales causadas por la alineación incorrecta pueden provocar problemas de rendimiento graves.
+Si los límites de bloque de datos de una partición de disco no se alinean con los límites de bloque de la LUN subyacente, el sistema de almacenamiento suele tener que realizar dos lecturas o escrituras de bloques para la lectura o escritura de cada bloque del sistema operativo. Las lecturas y escrituras de bloque adicionales causadas por la alineación incorrecta pueden provocar problemas de rendimiento graves.
 
-La desalineación se debe a la ubicación del sector inicial para cada partición definida por el registro de inicio maestro.
+La ubicación del sector de inicio para cada partición definida por el registro de inicio maestro provoca errores de alineación.
 
 
 NOTE: Las particiones creadas por Windows Server 2016 se deben alinear de forma predeterminada.
 
-Utilice la `Get-NaVirtualDiskAlignment` Cmdlet en el kit de herramientas PowerShell de ONTAP para comprobar si las particiones están alineadas con los LUN subyacentes. Si las particiones están mal alineadas, utilice `Repair-NaVirtualDiskAlignment` Cmdlet para crear un nuevo archivo VHD con la alineación correcta. Este cmdlet copia todas las particiones en el nuevo archivo. El archivo VHD original no se ha modificado ni eliminado. La máquina virtual se debe apagar mientras se copian los datos.
+Utilice `Get-NaVirtualDiskAlignment` el cmdlet del kit de herramientas PowerShell de ONTAP para comprobar si las particiones están alineadas con los LUN subyacentes. Si las particiones no están alineadas correctamente, utilice el `Repair-NaVirtualDiskAlignment` cmdlet para crear un nuevo archivo VHD con la alineación correcta. Este cmdlet copia todas las particiones en el nuevo archivo. El archivo VHD original no se ha modificado ni eliminado. La máquina virtual se debe apagar mientras se copian los datos.
 
-Puede descargar el kit de herramientas PowerShell de ONTAP en las comunidades de NetApp. Debe descomprimir el `DataONTAP.zip` archivo en la ubicación especificada por la variable de entorno `%PSModulePath%` (o utilice el `Install.ps1` script para hacerlo por usted). Una vez que haya completado la instalación, utilice `Show-NaHelp` cmdlet para obtener ayuda de cmdlets.
+Puede descargar el kit de herramientas PowerShell de ONTAP en las comunidades de NetApp. Debe descomprimir `DataONTAP.zip` el archivo en la ubicación especificada por la variable de entorno `%PSModulePath%` (o usar el `Install.ps1` script para hacerlo por usted). Una vez completada la instalación, use el `Show-NaHelp` cmdlet para obtener ayuda para los cmdlets.
 
-El kit de herramientas PowerShell solo admite archivos VHD de tamaño fijo con particiones de tipo MBR. No se admiten los discos duros virtuales que utilizan discos dinámicos Windows o particiones GPT. Además, el kit de herramientas PowerShell requiere un tamaño de partición mínimo de 4 GB. Las particiones más pequeñas no se pueden alinear correctamente.
+El kit de herramientas PowerShell solo admite archivos VHD de tamaño fijo con particiones de tipo MBR. No se admiten los discos duros virtuales que utilicen discos dinámicos Windows o particiones GPT. Además, el kit de herramientas PowerShell requiere un tamaño de partición mínimo de 4 GB. Las particiones más pequeñas no se pueden alinear correctamente.
 
 
 NOTE: En el caso de equipos virtuales Linux que utilicen el cargador de arranque GRUB en un disco duro virtual, debe actualizar la configuración de arranque tras ejecutar el kit de herramientas PowerShell.

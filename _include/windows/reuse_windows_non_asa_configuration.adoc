@@ -2,16 +2,8 @@
 :allow-uri-read: 
 
 
-Para la configuración que no sea ASA debe haber dos grupos de rutas con prioridades diferentes.
+Una configuración que no sea de ASA debe tener dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son Active-Optimized. Esto significa que la controladora donde se encuentra el agregado suministra las rutas activa/optimizada. Las rutas con prioridades más bajas están activas pero no optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas solo se utilizan cuando las rutas optimizadas no están disponibles.
 
-Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado.
-
-Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente.
-
-
-NOTE: Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
-
-.Ejemplo
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/sin optimizar.
+En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas.
 
 image::nonasa.png[Captura de pantalla de un LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas]

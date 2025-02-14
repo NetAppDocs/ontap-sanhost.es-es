@@ -2,4 +2,4 @@
 :allow-uri-read: 
 
 
-Para admitir el funcionamiento correcto de las LUN de ONTAP, compruebe que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean los correctos para la configuración de NVMe-oF.
+Verifique que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean correctos para la configuración de NVMe-oF.

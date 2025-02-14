@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_windows_2016.html 
+permalink: hu-windows-2025.html 
 keywords: windows, enterprise 
-summary: Uso de Windows Server 2016 con ONTAP 
+summary: Es posible usar los ajustes de configuración del host SAN de ONTAP para configurar Windows Server 2025 para la operación con almacenamiento de ONTAP. 
 ---
-= Utilice Windows Server 2016 con ONTAP
+= Configure Windows Server 2025 para almacenamiento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,7 @@ summary: Uso de Windows Server 2016 con ONTAP
 
 
 [role="lead"]
-Es posible usar los ajustes de configuración del host SAN de ONTAP para configurar Windows Server 2016 para la operación con almacenamiento de ONTAP.
+Es posible usar los ajustes de configuración del host SAN de ONTAP para configurar Windows Server 2025 para la operación con almacenamiento de ONTAP.
 
 
 
@@ -34,9 +34,6 @@ Realice un inicio local instalando el sistema operativo Windows en el disco duro
 .Arranque SAN
 --
 Si elige usar arranque SAN, debe ser compatible con su configuración.
-
-
-NOTE: Puede utilizar los ajustes de configuración proporcionados en este procedimiento para configurar los clientes de nube conectados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^]
 
 .Antes de empezar
 Utilice https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que el sistema operativo Windows, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admiten el arranque SAN.
@@ -67,7 +64,7 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 NetApp recomienda instalar la *última actualización acumulativa* disponible en el catálogo de actualizaciones de Microsoft en el servidor host.
 
 .Pasos
-. Descargue las revisiones desde el link:https://www.catalog.update.microsoft.com/Search.aspx?q=Update+Windows+Server+2016["Catálogo de Microsoft Update 2016"^].
+. Descargue las revisiones desde el link:https://www.catalog.update.microsoft.com/Search.aspx?q=update%20%22windows%20server%202025%22["Catálogo de Microsoft Update 2025"^].
 
 
 
@@ -89,7 +86,7 @@ Las utilidades de host de Windows son un conjunto de programas de software con d
 
 == Accesos múltiples
 
-Debe instalar el software Microsoft Multipath I/O (MPIO) y habilitar el acceso multivía si el host Windows tiene más de una ruta al sistema de almacenamiento. Cuando selecciona la compatibilidad con MPIO, Windows Host Utilities habilita la función MPIO que se incluye en Windows Server 2016. Si no utiliza las utilidades de host de Windows, debe habilitar el acceso multivía manualmente.
+Debe instalar el software Microsoft Multipath I/O (MPIO) y habilitar el acceso multivía si el host Windows tiene más de una ruta al sistema de almacenamiento.
 
 El software MPIO presenta un disco único para el sistema operativo Windows para todas las rutas, y un módulo específico del dispositivo (DSM) gestiona la recuperación tras fallos en las rutas. En un sistema Windows, los dos componentes principales de cualquier solución MPIO son DSM y Windows MPIO.
 
@@ -171,4 +168,4 @@ NOTE: Para obtener más información sobre los ajustes recomendados, consulte li
 
 == Problemas conocidos
 
-No existen problemas conocidos para la versión de Windows Server 2016 con ONTAP.
+No existen problemas conocidos para la versión de Windows Server 2025 con ONTAP.

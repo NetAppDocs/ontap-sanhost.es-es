@@ -597,7 +597,7 @@ NOTE: A partir de RHEL 9,5, la configuración predeterminada del tiempo de esper
 
 == Valide NVMe-of
 
-Para admitir el funcionamiento correcto de las LUN de ONTAP, compruebe que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean los correctos para la configuración de NVMe-oF.
+Verifique que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean correctos para la configuración de NVMe-oF.
 
 .Pasos
 . Compruebe que la multivía NVMe en kernel esté habilitada:

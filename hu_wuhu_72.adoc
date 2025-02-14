@@ -18,6 +18,7 @@ Las utilidades de host de Windows permiten conectar un equipo host de Windows a 
 
 Las utilidades de host de Windows son compatibles con las siguientes versiones de Windows:
 
+* Windows 2025
 * Windows 2022
 * Windows 2019
 * Windows 2016
@@ -62,7 +63,7 @@ Antes de instalar las utilidades de host, debe comprobar que la versión de util
 . Compruebe las revisiones necesarias para el host correspondiente en el link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Documentación para Windows del host SAN"].
 +
 
-NOTE: La link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html["Uso de Windows Server 2022 con ONTAP"] el documento proporciona instrucciones sobre link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html#installing-windows-hotfixes["Instalación de revisiones de Windows"] Para Windows Server 2022. Consulte los documentos de Windows en la categoría de configuraciones de host para encontrar la información de revisiones relevante para versiones anteriores de Windows Server.
+NOTE: El link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html["Use Windows Server 2022 con ONTAP"] documento proporciona instrucciones en link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html#installing-windows-hotfixes["Instalación de revisiones de Windows"] para Windows Server 2022. Consulte los documentos de Windows en la categoría de configuraciones de host para encontrar la información de revisiones relevante para versiones anteriores de Windows Server.
 
 . Añada la licencia iSCSI, FCP o NVMe-oF e inicie el servicio de destino.
 +
