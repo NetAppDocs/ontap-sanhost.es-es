@@ -45,7 +45,7 @@ NOTE: Broadcom incluye un controlador externo para Windows NVMe/FC que es un con
 Habilite FC/NVMe en el host iniciador de Windows.
 
 .Pasos
-. Instale la utilidad OneCommand Manager en el host de Windows.
+. Instale la utilidad Emulex HBA Manager en el host de Windows.
 . En cada puerto de iniciador del HBA, establezca los siguientes parámetros del controlador del HBA:
 +
 ** EnableNVMe = 1
