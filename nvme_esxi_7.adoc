@@ -281,6 +281,4 @@ La configuración de host de NVMe-oF para ESXi 7.x con ONTAP tiene los siguiente
 | link:https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1420654["1420654"^] | Nodo de ONTAP no operativo cuando se utiliza el protocolo NVMe/FC con la versión 9.9.1 de ONTAP | Compruebe y rectifique los problemas de red en la estructura de host. Si esto no sirve de ayuda, actualice a un parche que solucione este problema. 
 |===
 .Información relacionada
-link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597-VMware vSphere con ONTAP"^]
-link:https://kb.vmware.com/s/article/2031038["Compatibilidad de VMware vSphere 5.x, 6.x y 7.x con MetroCluster de NetApp (2031038)"^]
-link:https://kb.vmware.com/s/article/83370["Compatibilidad con VMware vSphere 6.x y 7.x con NetApp® SnapMirror Active Sync"^]
+link:https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-overview.html["VMware vSphere con ONTAP"^] link:https://kb.vmware.com/s/article/2031038["Compatibilidad de VMware vSphere 5.x, 6.x y 7.x con MetroCluster de NetApp (2031038)"^] link:https://kb.vmware.com/s/article/83370["Compatibilidad con VMware vSphere 6.x y 7.x con NetApp® SnapMirror Active Sync"^]
