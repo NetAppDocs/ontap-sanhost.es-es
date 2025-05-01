@@ -1,0 +1,151 @@
+= 
+:allow-uri-read: 
+
+
+Para garantizar que el acceso multivía esté configurado correctamente para el host, verifique que el `/etc/multipath.conf` archivo esté definido y que los ajustes recomendados de NetApp estén configurados para los LUN de ONTAP.
+
+.Pasos
+. Compruebe que el `/etc/multipath.conf` archivo existe:
++
+[source, cli]
+----
+ls /etc/multipath.conf
+----
++
+Si el archivo no existe, cree un archivo vacío de cero bytes:
+
++
+[source, cli]
+----
+touch /etc/multipath.conf
+----
+. La primera vez que `multipath.conf` se crea el archivo, es posible que deba habilitar e iniciar los servicios multivía para cargar la configuración recomendada:
++
+[source, cli]
+----
+systemctl enable multipathd
+----
++
+[source, cli]
+----
+systemctl start multipathd
+----
+. Cada vez que arranca el host, el archivo de cero bytes vacío `/etc/multipath.conf` carga automáticamente los parámetros multivía de host recomendados por NetApp como configuración predeterminada. No debería ser necesario realizar cambios en `/etc/multipath.conf` el archivo para el host ya que el sistema operativo del host está compilado con los parámetros multivía que reconocen y gestionan correctamente las LUN de ONTAP.
++
+En la siguiente tabla se muestra la configuración de los parámetros multivía compilados por el sistema operativo Linux nativo para los LUN de ONTAP.
+
++
+.Muestra la configuración de los parámetros
+[%collapsible]
+====
+[cols="2"]
+|===
+| Parámetro | Ajuste 
+
+
+| detect_prio | sí 
+
+
+| dev_loss_tmo | "infinito" 
+
+
+| conmutación tras recuperación | inmediata 
+
+
+| fast_io_fail_tmo | 5 
+
+
+| funciones | "3 queue_if_no_path pg_init_retries 50" 
+
+
+| flush_on_last_del | "sí" 
+
+
+| manipulador_hardware | "0" 
+
+
+| no_path_retry | cola 
+
+
+| comprobador_de_rutas | "tur" 
+
+
+| política_agrupación_ruta | "group_by_prio" 
+
+
+| selector_de_rutas | "tiempo de servicio 0" 
+
+
+| intervalo_sondeo | 5 
+
+
+| prioridad | "ONTAP" 
+
+
+| producto | LUN.* 
+
+
+| retain_attached_hw_handler | sí 
+
+
+| rr_weight | "uniforme" 
+
+
+| nombres_descriptivos_usuario | no 
+
+
+| proveedor | NETAPP 
+|===
+====
+. Compruebe la configuración de parámetros y el estado de la ruta de sus LUN de ONTAP:
++
+[source, cli]
+----
+multipath -ll
+----
++
+Los parámetros multivía predeterminados admiten las configuraciones de ASA, AFF y FAS. En estas configuraciones, una única LUN de ONTAP no debería necesitar más de cuatro rutas. Si existen más de cuatro rutas, se pueden producir problemas con las rutas durante un fallo de almacenamiento.
+
++
+En el siguiente ejemplo, se muestran los ajustes de parámetros y el estado de la ruta correctos para las LUN de ONTAP en una configuración de ASA, AFF o FAS.
+
++
+[role="tabbed-block"]
+====
+.Configuración de ASA
+--
+Una configuración de ASA optimiza todas las rutas a una LUN determinada para mantenerlas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
+
+[listing]
+----
+# multipath -ll
+3600a09803831347657244e527766394e dm-5 NETAPP,LUN C-Mode
+size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 3:0:7:9    sdco 69:192  active ready running
+  |- 3:0:8:9    sddi 71:0    active ready running
+  |- 14:0:8:9   sdjq 65:320  active ready running
+  `- 14:0:7:9   sdiw 8:256   active ready running
+----
+--
+.Configuración de AFF o FAS
+--
+Una configuración de AFF o FAS debe tener dos grupos de rutas con prioridades superiores e inferiores. La controladora donde se encuentra el agregado ofrece rutas activas/optimizadas de mayor prioridad. Las rutas de prioridad más baja están activas pero no optimizadas debido a que se sirven con una controladora diferente. Las rutas no optimizadas solo se usan cuando las rutas optimizadas no están disponibles.
+
+En el siguiente ejemplo, se muestra el resultado de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizada:
+
+[listing]
+----
+# multipath -ll
+3600a09803831347657244e527766394e dm-5 NETAPP,LUN C-Mode
+size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 3:0:3:0    sdd  8:48    active ready running
+| |- 3:0:4:0    sdx  65:112  active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+  |- 14:0:2:0   sdfk 130:96  active ready running
+  `- 14:0:5:0   sdgz 132:240 active ready running
+----
+--
+====
+

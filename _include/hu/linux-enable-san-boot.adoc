@@ -1,0 +1,24 @@
+= Paso 1: Opcionalmente, habilite el arranque SAN
+:allow-uri-read: 
+
+
+
+
+== Paso 1: Opcionalmente, habilite el arranque SAN
+
+Puede configurar su host para que utilice el arranque SAN y simplificar la puesta en marcha y mejorar la escalabilidad.
+
+.Antes de empezar
+Utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que el sistema operativo Linux, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admiten el arranque SAN.
+
+.Pasos
+. Cree un LUN de inicio SAN y asígnelo al host.
++
+Consulte https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["Aprovisione el almacenamiento SAN"^].
+
+. Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
++
+Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
+
+. Compruebe que la configuración se haya realizado correctamente. Para ello, reinicie el host y verifique que el sistema operativo esté activo y en ejecución.
+

@@ -1,0 +1,6 @@
+= 
+:allow-uri-read: 
+
+
+
+NOTE: No es necesario configurar ajustes de máquina virtual basada en kernel (KVM) porque los LUN de ONTAP se asignan automáticamente al hipervisor de KVM.

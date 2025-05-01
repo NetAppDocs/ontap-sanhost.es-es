@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: hu_sles_15SP1.html 
 keywords: host utilities, suse linux enterprise server 15 sp1, suse, linux, 15 sp1, netapp, ontap 
-summary: Describe cómo utilizar SUSE Linux Enterprise Server 15 SP1 con ONTAP 
+summary: Instale las utilidades de host de Linux en SUSE Linux Enterprise Server 15 SP1 para gestionar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP. 
 ---
-= Utilice SUSE Linux Enterprise Server 15 SP1 con ONTAP
+= Configure SUSE Linux Enterprise Server 15 SP1 para FCP e iSCSI con almacenamiento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,194 +16,83 @@ summary: Describe cómo utilizar SUSE Linux Enterprise Server 15 SP1 con ONTAP
 
 
 [role="lead"]
-Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar SUSE Linux Enterprise Server 15 SP1 con ONTAP como destino.
+El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Al instalar las utilidades del host de Linux en un host SUSE Linux Enterprise Server 15 SP1, puede utilizar las utilidades del host para ayudarle a administrar las operaciones del protocolo FCP e iSCSI con LUN de ONTAP.
 
 
 
-== Instale las utilidades del host de Linux
+== Paso 1: Opcionalmente, habilite el arranque SAN
 
-El paquete de software de utilidades del host Linux de NetApp está disponible en link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^]un archivo .rpm de 32 bits y 64 bits. Si no sabe qué archivo es el adecuado para su configuración, utilice el link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar cuál necesita.
-
-NetApp recomienda encarecidamente la instalación de las utilidades del host Linux, pero no es obligatorio. Las utilidades no cambian ninguna configuración del host Linux. Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre la configuración.
-
-Si tiene Linux Host Utilities actualmente instaladas, debe actualizarla a la versión más reciente, o bien eliminarla y seguir estos pasos para instalar la versión más reciente.
-
-.Pasos
-. Descargue el paquete de software de Linux Host Utilities de 32 o 64 bits en el link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^]al host.
-. Instale el paquete de software:
-+
-`rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
-
-
-
-
-NOTE: Puede utilizar los ajustes de configuración proporcionados en este procedimiento para configurar los clientes de nube conectados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^]
-
-
-
-== Kit de herramientas SAN
-
-El kit de herramientas se instala automáticamente cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad, que le ayuda a gestionar LUN y HBA. La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
-
-.Ejemplo
-En el siguiente ejemplo, la `sanlun lun show` Command muestra información de LUN.
-
-[source, cli]
-----
-# sanlun lun show all
-----
-Resultado de ejemplo:
-
-[listing]
-----
-controller(7mode/E-Series)/            device     host               lun
-vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
-------------------------------------------------------------------------------------
-data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
-data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
-data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
-data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDOT
-----
-
-
-== Arranque San
+Puede configurar su host para que utilice el arranque SAN y simplificar la puesta en marcha y mejorar la escalabilidad.
 
 .Antes de empezar
-Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^]para verificar que el sistema operativo, el HBA, el firmware del HBA y la versión de arranque del BIOS y ONTAP sean compatibles.
+Utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que el sistema operativo Linux, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admiten el arranque SAN.
 
 .Pasos
-. Asignar el LUN de arranque SAN al host.
-. Verifique que haya varias rutas disponibles.
+. Cree un LUN de inicio SAN y asígnelo al host.
 +
-
-NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
+Consulte https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["Aprovisione el almacenamiento SAN"^].
 
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Reinicie el host para verificar que el inicio se ha realizado correctamente.
+. Compruebe que la configuración se haya realizado correctamente. Para ello, reinicie el host y verifique que el sistema operativo esté activo y en ejecución.
 
 
 
 
-== Accesos múltiples
+== Paso 2: Instale las utilidades del host de Linux
 
-Para SUSE Linux Enterprise Server 15 SP1 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. SUSE Linux Enterprise Server 15 SP1 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.
+NetApp recomienda la instalación de las utilidades del host Linux para admitir la gestión de las LUN de ONTAP y ayudar al soporte técnico con la recopilación de datos de configuración.
 
-Puede utilizar el `multipath -ll` Comando para verificar la configuración de las LUN de ONTAP.
-
-En las siguientes secciones se proporcionan ejemplos de salidas multivía para una LUN asignada a personas ASA y no ASA.
+link:hu_luhu_71.html["Instale Linux Host Utilities 7,1"].
 
 
-
-=== Configuraciones de cabinas All SAN
-
-Las configuraciones de cabinas All SAN (ASA) optimizan todas las rutas para un LUN determinado, manteniéndolas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
-
-.Ejemplo
-En el ejemplo siguiente se muestra el resultado correcto de una LUN de ONTAP.
-
-[listing]
-----
-# multipath -ll
-3600a0980383034466b2b4a3775474859 dm-3 NETAPP,LUN C-Mode
-size=20G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
-|-+- policy='round-robin 0' prio=50 status=active
-| |- 1:0:8:1  sdb 8:16 active ready running
-| `- 2:0:8:1  sdd 8:48 active ready running
-`-+- policy='round-robin 0' prio=10 status=enabled
-  |- 1:0:9:1  sdc 8:32 active ready running
-  `- 2:0:9:1  sde 8:64 active ready running
-----
-
-NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de cuatro rutas puede ocasionar problemas de ruta durante errores de almacenamiento.
+NOTE: La instalación de Linux Host Utilities no cambia ninguna configuración de tiempo de espera del host en el host Linux.
 
 
 
-=== Configuraciones que no son ASA
+== Paso 3: Confirme la configuración multivía del host
 
-En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son Active-Optimized. Esto significa que reciben servicio de la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
+Puede utilizar accesos múltiples con SUSE Linux Enterprise Server 15 SP1 para gestionar los LUN de ONTAP.
 
-.Ejemplo
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas.
-
-[listing]
-----
-# multipath -ll
-3600a09803831347657244e527766394e dm-5 NETAPP,LUN C-Mode
-size=80G  features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
-|-+- policy='service-time 0' prio=50 status=active
-| |- 11:0:1:0 sdj 8:144 active ready running
-| |- 11:0:2:0 sdr 65:16 active ready running
-`-+- policy='service-time 0' prio=10 status=enabled
- |- 11:0:0:0 sdb 8:i6 active ready running
- |- 12:0:0:0 sdz 65:144 active ready running
-----
-
-NOTE: Una única LUN no debería necesitar más de cuatro rutas. Tener más de cuatro rutas puede ocasionar problemas de ruta durante errores de almacenamiento.
-
-
-
-== Configuración recomendada
-
-SUSE Linux Enterprise Server 15 SP1 OS se compila para reconocer los LUN de ONTAP y definir automáticamente todos los parámetros de configuración correctamente.
-
- `multipath.conf`El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el `touch /etc/multipath.conf` comando.
-
-La primera vez que crea el `multipath.conf` archivo, es posible que deba habilitar e iniciar los servicios multivía mediante los siguientes comandos:
-
-[listing]
-----
-# systemctl enable multipathd
-# systemctl start multipathd
-----
-No es necesario agregar dispositivos directamente al `multipath.conf` archivo, a menos que tenga dispositivos que no desea que se gestionen mediante rutas múltiples o que tenga configuraciones existentes que anulen los valores predeterminados. Puede excluir los dispositivos no deseados agregando la siguiente sintaxis al `multipath.conf` archivo, reemplazando <DevId> por la cadena WWID del dispositivo que desea excluir:
-
-[listing]
-----
-blacklist {
-        wwid <DevId>
-        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-        devnode "^hd[a-z]"
-        devnode "^cciss.*"
-}
-----
-En el siguiente ejemplo, determina el WWID de un dispositivo y agrega el dispositivo al `multipath.conf` archivo.
+Para garantizar que el acceso multivía esté configurado correctamente para el host, verifique que el `/etc/multipath.conf` archivo esté definido y que los ajustes recomendados de NetApp estén configurados para los LUN de ONTAP.
 
 .Pasos
-. Determine el WWID:
+. Compruebe que el `/etc/multipath.conf` archivo existe:
 +
-[listing]
+[source, cli]
 ----
-/lib/udev/scsi_id -gud /dev/sda
-----
-+
-[listing]
-----
-360030057024d0730239134810c0cb833
+ls /etc/multipath.conf
 ----
 +
-`sda` Es el disco SCSI local que desea agregar a la lista negra.
+Si el archivo no existe, cree un archivo vacío de cero bytes:
 
-. Añada el `WWID` a la lista negra stanza en `/etc/multipath.conf`:
 +
-[listing]
+[source, cli]
 ----
-blacklist {
-     wwid   360030057024d0730239134810c0cb833
-     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-     devnode "^hd[a-z]"
-     devnode "^cciss.*"
-}
+touch /etc/multipath.conf
 ----
+. La primera vez que `multipath.conf` se crea el archivo, es posible que deba habilitar e iniciar los servicios multivía para cargar la configuración recomendada:
++
+[source, cli]
+----
+systemctl enable multipathd
+----
++
+[source, cli]
+----
+systemctl start multipathd
+----
+. Cada vez que arranca el host, el archivo de cero bytes vacío `/etc/multipath.conf` carga automáticamente los parámetros multivía de host recomendados por NetApp como configuración predeterminada. No debería ser necesario realizar cambios en `/etc/multipath.conf` el archivo para el host ya que el sistema operativo del host está compilado con los parámetros multivía que reconocen y gestionan correctamente las LUN de ONTAP.
++
+En la siguiente tabla se muestra la configuración de los parámetros multivía compilados por el sistema operativo Linux nativo para los LUN de ONTAP.
 
-
-Siempre debe comprobar el `/etc/multipath.conf` archivo, especialmente en la sección de valores predeterminados, para los ajustes heredados que podrían estar anulando los valores predeterminados.
-
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deberán corregirse posteriormente mediante estrofas en `multipath.conf` el archivo aplicables específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe anular estos valores predeterminados en consulta con NetApp y/o un proveedor de SO y solo cuando comprenda completamente el impacto.
-
-[cols="2*"]
++
+.Muestra la configuración de los parámetros
+[%collapsible]
+====
+[cols="2"]
 |===
 | Parámetro | Ajuste 
 
@@ -261,36 +150,126 @@ La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de 
 
 | proveedor | NETAPP 
 |===
-.Ejemplo
-El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este caso, el `multipath.conf` el archivo define los valores para `path_checker` y.. `no_path_retry` Que no son compatibles con las LUN de ONTAP. Si no se pueden quitar debido a que aún hay otras cabinas SAN conectadas al host, estos parámetros pueden corregirse específicamente para LUN de ONTAP con una sección de dispositivo.
+====
+. Compruebe la configuración de parámetros y el estado de la ruta de sus LUN de ONTAP:
++
+[source, cli]
+----
+multipath -ll
+----
++
+Los parámetros multivía predeterminados admiten las configuraciones de ASA, AFF y FAS. En estas configuraciones, una única LUN de ONTAP no debería necesitar más de cuatro rutas. Si existen más de cuatro rutas, se pueden producir problemas con las rutas durante un fallo de almacenamiento.
+
++
+En el siguiente ejemplo, se muestran los ajustes de parámetros y el estado de la ruta correctos para las LUN de ONTAP en una configuración de ASA, AFF o FAS.
+
++
+[role="tabbed-block"]
+====
+.Configuración de ASA
+--
+Una configuración de ASA optimiza todas las rutas a una LUN determinada para mantenerlas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
 [listing]
 ----
+# multipath -ll
+3600a09803831347657244e527766394e dm-5 NETAPP,LUN C-Mode
+size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 3:0:7:9    sdco 69:192  active ready running
+  |- 3:0:8:9    sddi 71:0    active ready running
+  |- 14:0:8:9   sdjq 65:320  active ready running
+  `- 14:0:7:9   sdiw 8:256   active ready running
+----
+--
+.Configuración de AFF o FAS
+--
+Una configuración de AFF o FAS debe tener dos grupos de rutas con prioridades superiores e inferiores. La controladora donde se encuentra el agregado ofrece rutas activas/optimizadas de mayor prioridad. Las rutas de prioridad más baja están activas pero no optimizadas debido a que se sirven con una controladora diferente. Las rutas no optimizadas solo se usan cuando las rutas optimizadas no están disponibles.
+
+En el siguiente ejemplo, se muestra el resultado de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizada:
+
+[listing]
+----
+# multipath -ll
+3600a09803831347657244e527766394e dm-5 NETAPP,LUN C-Mode
+size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 3:0:3:0    sdd  8:48    active ready running
+| |- 3:0:4:0    sdx  65:112  active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+  |- 14:0:2:0   sdfk 130:96  active ready running
+  `- 14:0:5:0   sdgz 132:240 active ready running
+----
+--
+====
+
+
+
+
+== Paso 4: Opcionalmente, excluya un dispositivo de las rutas múltiples
+
+Si es necesario, puede excluir un dispositivo del acceso múltiple agregando el WWID del dispositivo no deseado a la estrofa de la lista negra del `multipath.conf` archivo.
+
+.Pasos
+. Determine el WWID:
++
+[source, cli]
+----
+# /lib/udev/scsi_id -gud /dev/sda
+----
++
+“sda” es el disco SCSI local que desea agregar a la lista negra.
+
++
+Un ejemplo de WWID es `360030057024d0730239134810c0cb833`.
+
+. Añada el WWID a la estrofa «blacklist»:
++
+[listing]
+----
+blacklist {
+	     wwid   360030057024d0730239134810c0cb833
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+----
+
+
+
+
+== Paso 5: Personalice los parámetros multivía para las LUN de ONTAP
+
+Si su host está conectado a LUN de otros proveedores y cualquiera de la configuración de parámetros multivía se ha anulado, debe corregirlos agregando estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a LUN de ONTAP. Si no hace esto, es posible que las LUN de ONTAP no funcionen como se espera.
+
+Compruebe el `/etc/multipath.conf` archivo, especialmente en la sección de valores predeterminados, para ver los ajustes que podrían estar anulando el <<multipath-parameter-settings,configuración predeterminada para parámetros multivía>>.
+
+
+CAUTION: No debe anular la configuración de parámetros recomendada para las LUN de ONTAP. Estos ajustes se requieren para el rendimiento óptimo de la configuración del host. Póngase en contacto con el soporte de NetApp, con su proveedor de SO o con ambos para obtener más información.
+
+El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este ejemplo, el `multipath.conf` archivo define valores para `path_checker` y `no_path_retry` que no son compatibles con LUN de ONTAP, y no puede quitar estos parámetros porque las cabinas de almacenamiento ONTAP siguen conectadas al host. En su lugar, corrija los valores para `path_checker` y `no_path_retry` agregando una estrofa de dispositivo al `multipath.conf` archivo que se aplica específicamente a los LUN de ONTAP.
+
+[listing, subs="+quotes"]
+----
 defaults {
-   path_checker      readsector0
-   no_path_retry      fail
+   path_checker      *readsector0*
+   no_path_retry     *fail*
 }
 
 devices {
    device {
-      vendor         "NETAPP  "
+      vendor          "NETAPP"
       product         "LUN.*"
-      no_path_retry     queue
-      path_checker      tur
+      no_path_retry   *queue*
+      path_checker    *tur*
    }
 }
 ----
 
 
-== Mirroring de ASM
+== Paso 6: Revise los problemas conocidos
 
-El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM de ONTAP utilizan redundancia externa, lo que significa que la protección de datos es proporcionada por la cabina externa y ASM no hace mirroring de los datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["Bases de datos de Oracle en ONTAP"^] para obtener más información.
-
-
-
-== Problemas conocidos
-
-La versión SUSE Linux Enterprise Server 15 SP1 con ONTAP presenta los siguientes problemas conocidos:
+La versión SUSE Linux Enterprise Server 15 SP1 con almacenamiento ONTAP presenta los siguientes problemas conocidos:
 
 [cols="3"]
 |===
@@ -299,3 +278,13 @@ La versión SUSE Linux Enterprise Server 15 SP1 con ONTAP presenta los siguiente
 
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1246622["1246622"^] | Los puertos remotos pasan a un estado bloqueado en SLES15SP1 con Emulex LPe12002 8 GB FC durante las operaciones de recuperación tras fallos de almacenamiento. | Los puertos remotos pasan a un estado bloqueado en SLES15SP1 con Emulex LPe12002 8 GB Fibre Channel (FC) durante las operaciones de recuperación tras fallos de almacenamiento. Cuando el nodo de almacenamiento vuelve a su estado óptimo, también se vuelven las LIF y el estado del puerto remoto debe leer "en línea". En ocasiones, es posible que el estado del puerto remoto siga siendo "bloqueado" o "no presente". Este estado puede llevar a una ruta "defectuosa" para las LUN en la capa multivía, así como a una interrupción del servicio de I/o para dichas LUN. Puede comprobar los detalles del puerto remoto con los siguientes comandos de ejemplo: --- cat/sys/class/fc_host/host*/device/rport*/fc_remote_ports/rport*/Port_name cat/sys/class/fc_host/host*/device/rport*/fc_remote_ports/rport*/Port-- 
 |===
+
+
+== El futuro
+
+* link:hu_luhu_71_cmd.html["Obtenga más información sobre el uso de la herramienta Linux Host Utilities"].
+* Obtenga más información sobre la duplicación de ASM.
++
+El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM de ONTAP utilizan redundancia externa, lo que significa que la protección de datos es proporcionada por la cabina externa y ASM no hace mirroring de los datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["Bases de datos de Oracle en ONTAP"^] para obtener más información.
+
+
