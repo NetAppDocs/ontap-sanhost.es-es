@@ -1,6 +1,6 @@
 ---
 settings:
-  name: SAN hosts and cloud clients
+  name: ONTAP SAN hosts and cloud clients
   internal:
     pdf_enabled: true
   prod:
@@ -9,7 +9,7 @@ settings:
   langs: es-es,us-en,de-de,fr-fr,it-it,pt-br,ja-jp,ko-kr,zh-cn,zh-tw
 sidebar:
   entries:
-  - title: Configuración de los hosts SAN y los clientes de cloud
+  - title: Configurar hosts SAN y clientes cloud de ONTAP
     url: "/index.html"
   - title: Obtenga más información sobre las configuraciones host SAN
     url: "/overview.html"

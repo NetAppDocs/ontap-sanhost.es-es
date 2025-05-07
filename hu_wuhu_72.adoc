@@ -56,7 +56,7 @@ Las utilidades de host admiten diferentes configuraciones de host, protocolos y 
 
 == Verificar la configuración del host y del sistema de almacenamiento
 
-Antes de instalar las utilidades de host, debe comprobar que la versión de utilidades de host admite la configuración del sistema de almacenamiento y host para que el software se instale correctamente.
+Compruebe que la configuración del host y del sistema de almacenamiento sea compatible antes de instalar las utilidades de host de Windows para el <<supported-windows-versions-72,Versión de Windows compatible>>.
 
 .Pasos
 . Compruebe la configuración admitida en la http://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad"^].
