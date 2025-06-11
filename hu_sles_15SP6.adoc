@@ -19,6 +19,9 @@ summary: Instale las utilidades de host de Linux en SUSE Linux Enterprise Server
 El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Al instalar las utilidades del host de Linux en un host SUSE Linux Enterprise Server 15 SP6, puede utilizar las utilidades del host para ayudarle a administrar las operaciones del protocolo FCP e iSCSI con LUN de ONTAP.
 
 
+NOTE: No es necesario configurar manualmente los ajustes de la máquina virtual basada en kernel (KVM) porque los LUN de ONTAP se asignan automáticamente al hipervisor.
+
+
 
 == Paso 1: Opcionalmente, habilite el arranque SAN
 

@@ -19,7 +19,7 @@ summary: Instale Linux Host Utilities en un host de RHEL 8,7 para gestionar las 
 El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Al instalar las utilidades del host Linux en un host Red Hat Enterprise Linux (RHEL) 8,7, es posible utilizar las utilidades de host para ayudarle a gestionar las operaciones del protocolo FCP e iSCSI con LUN de ONTAP.
 
 
-NOTE: No es necesario configurar ajustes de máquina virtual basada en kernel (KVM) porque los LUN de ONTAP se asignan automáticamente al hipervisor de KVM.
+NOTE: No es necesario configurar manualmente los ajustes de la máquina virtual basada en kernel (KVM) porque los LUN de ONTAP se asignan automáticamente al hipervisor.
 
 
 
