@@ -108,7 +108,7 @@ drwxr-xr-x   3 root     sys            4 Jul 22  2019 ..
 
 
 
-== Kit de herramientas SAN
+== Habilitar el kit de herramientas SAN
 
 Solaris Host Utilities es un software de host de NetApp que proporciona un kit de herramientas de la línea de comandos en el host de Oracle Solaris. El kit de herramientas se instala cuando instala el paquete de utilidades de host de NetApp. Este kit proporciona la `sanlun` Utilidad que le ayuda a gestionar los LUN y los adaptadores de bus de host (HBA). La `sanlun` Comando muestra información acerca de las LUN asignadas a su host, multivía e información necesaria para crear iGroups.
 
