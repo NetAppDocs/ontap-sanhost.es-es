@@ -13,7 +13,7 @@ Si es necesario, puede excluir un dispositivo del acceso múltiple agregando el 
 +
 [source, cli]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
+/lib/udev/scsi_id -gud /dev/sda
 ----
 +
 “sda” es el disco SCSI local que desea agregar a la lista negra.
