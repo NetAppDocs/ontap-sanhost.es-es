@@ -63,7 +63,6 @@
   <block id="aa89a86e36a09e87ac1e23a259c8d26c" category="admonition">No utilice un número excesivo de rutas a una única LUN. No se necesitan más de 4 rutas. Más de 8 rutas pueden causar problemas de ruta durante fallos de almacenamiento.</block>
   <block id="73d4b705776db33e6478d2847ebc567c" category="paragraph">El sistema operativo Oracle Linux 8.5 se compila para reconocer las LUN ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA.</block>
   <block id="4d70a817ac85626aff88bbc73d0a2deb" category="list-text">Ejecute el siguiente comando para determinar el WWID:</block>
-  <block id="ff73d7e0f0c6051bbd80575105bb1cb1" category="list-text">Añada este WWID a la sección de la lista negra del<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>:</block>
   <block id="51ac4bf63a0c6a9cefa7ba69b4154ef1" category="cell">Ajuste</block>
   <block id="dbffbd283cd0d9c7937014167893297e" category="cell">detect_prio</block>
   <block id="a6105c0a611b41b08f1209506350279e" category="cell">sí</block>
@@ -404,28 +403,6 @@
   <block id="244c37afdc307098d90d497c08f88069" category="paragraph">En una configuración AIX, las recuperaciones tras fallos son disruptivas. Con cada conmutación al nodo de respaldo, deberá realizar un nuevo análisis en el host para que se reanuden las operaciones de I/O.</block>
   <block id="120d1efb0373e4924670fa06d0e23b7d" category="summary">Describe cómo usar Oracle Linux 7.3 con ONTAP</block>
   <block id="a62a1c6a3f1f4dcff8f3cfc9b1ff6c53" category="paragraph">Para Oracle Linux 7.3 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. Oracle Linux 7.3 se ha compilado con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
-  <block id="410267f88a5f79f5d40838a8e7a35e62" category="paragraph">Active el servicio de acceso múltiple desde *XenCenter Management Portal* y compruebe que el servicio de acceso múltiple está activado y en ejecución.</block>
-  <block id="b00ab7c17a141468a5921157cdf11ec3" category="admonition">Sustituya *&lt;DevID&gt;* por la cadena WWID del dispositivo que desea excluir.</block>
-  <block id="ec8b35f300ba884a5dff762db20c0a35" category="paragraph">Consulte la configuración de parámetro multivía en tiempo de ejecución mediante el<block ref="2fe120cfe752873c662c7bf65886ad65" prefix=" " category="inline-code"></block> comando. Siempre debe comprobar la configuración en ejecución de los valores heredados que podrían ser la configuración predeterminada, especialmente en la sección valores predeterminados.</block>
-  <block id="aea5fd959632948a3225c2ddd5323d43" category="paragraph">En la siguiente tabla se muestran los parámetros críticos *multipathd* para las LUN ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deben ser corregidos por stanzas posteriores en *multipath.conf* que se apliquen específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Los siguientes valores predeterminados solo se deben anular consultando con NetApp o con el proveedor de sistemas operativos, y únicamente cuando se haya comprendido completamente el impacto.</block>
-  <block id="093280d0b1b888a2d2861cdc763f5f54" category="cell"><block ref="dbffbd283cd0d9c7937014167893297e" prefix="" category="inline-code"></block></block>
-  <block id="d4f9e6cd04344d6033229cebcf82d8e6" category="cell"><block ref="f92718f463480c9c4b4291e7fd4ef19e" prefix="" category="inline-code"></block></block>
-  <block id="0b45dcda8325354552a9f3f77a81fb12" category="cell"><block ref="a571d3783c8d552371d5e8b486416b18" prefix="" category="inline-code"></block></block>
-  <block id="f723063a7c67a9c4d6dc09fcc9258bc0" category="cell"><block ref="2b0488825c6eb266b344708a7cddcf4f" prefix="" category="inline-code"></block></block>
-  <block id="9b1acf92108be93042969ae0cd15c662" category="cell"><block ref="9f034b63948763d489f944319c2eb3de" prefix="" category="inline-code"></block></block>
-  <block id="51639d9d920527eeeeb339933ef1d388" category="cell"><block ref="8ed3e71dbbc580b4bbaa9dcce8493bc6" prefix="" category="inline-code"></block></block>
-  <block id="dd3d09a74b9822f94f3022c45d6d89eb" category="cell"><block ref="357a02c5f1ac624818eb86d192ef02af" prefix="" category="inline-code"></block></block>
-  <block id="7793f55f663016533cfccea244686d20" category="cell"><block ref="3b07c0a70dc66d6564dcdf2f5ab1ed63" prefix="" category="inline-code"></block></block>
-  <block id="0229f06974ddf0fbb6c8163410252381" category="cell"><block ref="1c51c00662754cd025cb61ff206ae0f1" prefix="" category="inline-code"></block></block>
-  <block id="100ea8f1ede2192d241e4386cfe3c479" category="cell"><block ref="8f95a0e667787fdfd1050c84a0a3242d" prefix="" category="inline-code"></block></block>
-  <block id="06d7756e9ce36c56b9cea270ed31aa7d" category="cell"><block ref="e2f0125c5971e1ce714f86f145386ee3" prefix="" category="inline-code"></block></block>
-  <block id="5b64d224179378eb0872e824614167de" category="cell"><block ref="768ece56ce712f5866156382bfc1361a" prefix="" category="inline-code"></block></block>
-  <block id="dc2ba82454a2923edf99404df680c7ee" category="cell"><block ref="f5bf48aa40cad7891eb709fcf1fde128" prefix="" category="inline-code"></block></block>
-  <block id="aaa74fa881bc5ea07b9b9aef23bb28ab" category="cell"><block ref="900d1935a03e019eab2619da7c009da5" prefix="" category="inline-code"></block></block>
-  <block id="1b1f4bb4b35ee6994917bd6527d2e343" category="cell"><block ref="ba425f4425e634f6ee52c8f273549073" prefix="" category="inline-code"></block></block>
-  <block id="677641ebec419b9c5915ed13974b0c07" category="cell"><block ref="7a435144ffdde744d88ded2e7b6364a5" prefix="" category="inline-code"></block></block>
-  <block id="34fed3385bd742bd2b178de283f371b7" category="cell"><block ref="7c3613dba5171cb6027c67835dd3b9d4" prefix="" category="inline-code"></block></block>
-  <block id="9d5bc46c4aa8d12cf17b1243dea3cdb8" category="paragraph">El ejemplo siguiente ilustra cómo corregir un valor predeterminado anulado. En este caso, el archivo *multipath.conf* define los valores para *path_checker* y *Detect_prio* que no son compatibles con los LUN de ONTAP. Si no se pueden quitar debido a otras cabinas SAN conectadas al host, estos parámetros pueden corregirse específicamente para LUN de ONTAP con una sección de dispositivo.</block>
   <block id="1da730d18c28f088385f1eaca3cb2f71" category="summary">Describe cómo configurar NVMe-of para ESXi 7.x con ONTAP</block>
   <block id="38a445b35a68bb2b838316376b083c19" category="doc">Configuración de NVMe-of Host para ESXi 7.x con ONTAP</block>
   <block id="19c0ae184ff29a5cb77c04c8bea684af" category="list-text">A partir de ONTAP 9.7, se admite NVMe over Fibre Channel (NVMe/FC) en las versiones VMware vSphere.</block>
@@ -648,11 +625,6 @@
   <block id="b9204431a0ed79e40e8c590858bc11e4" category="cell">Se ha observado un problema de PLOGI durante la prueba de adaptadores Emulex</block>
   <block id="52f50d0f0ab285059648c7da67b4b07f" category="inline-link-macro">Compatibilidad de VMware vSphere 5.x, 6.x y 7.x con MetroCluster de NetApp (2031038)</block>
   <block id="8a515fe16331b7269862c5871e55c7e4" category="list-text"><block ref="8a515fe16331b7269862c5871e55c7e4" category="inline-link-macro-rx"></block></block>
-  <block id="33fb3916b5bbccadc7502b97d2b47e0a" category="summary">Describe cómo usar Citrix XenServer 7.x con ONTAP</block>
-  <block id="a51e3210f96458fa393e6f4bf88caabc" category="paragraph">La compatibilidad con varias rutas en Citrix XenServer se basa en los componentes de Device Mapper Multipathd. Los nodos de asignación de dispositivos no se crean automáticamente para todas las LUN presentadas a XenServer y solo se aprovisionan cuando el nivel de gestión de almacenamiento (API) utiliza los LUN de forma activa. El complemento de API de Citrix XenServer Storage Manager controla la activación y desactivación de nodos multivía automáticamente.</block>
-  <block id="c03432d938277a67cb7c8ce5d783b2ca" category="paragraph">En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con las cuatro rutas activas/optimizadas:</block>
-  <block id="9fc86c956b59ea355d470ac30580447a" category="paragraph">El sistema operativo Citrix XenServer 7.x se compila con todas las opciones necesarias para reconocer y administrar correctamente las LUN de ONTAP. Para Citrix XenServer 7.x, un zerobite vacío<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo.</block>
-  <block id="73087707ff2bdcd46af8a5eca4a750f8" category="admonition">Citrix XenServer recomienda el uso de las herramientas de Citrix VM para todos los equipos virtuales invitados basados en Linux y Windows para una configuración compatible.</block>
   <block id="e23d1316b6f8fd9d76ebc1a761f0ffa9" category="summary">Cómo configurar NVMe-of Host para RHEL 8.4 con ONTAP</block>
   <block id="1124bd13d48eff16726e09da76f5e2b3" category="doc">Configuración del host NVMe-of para RHEL 8.4 con ONTAP</block>
   <block id="dec4201e999d968c719dedcc36a07302" category="inline-link">Notas de la versión de RHEL 8.4</block>
@@ -1215,7 +1187,6 @@
   <block id="f884cc5c56f9c9a8d4d61568ff64db9c" category="sidebar">6.5</block>
   <block id="ded681fc154529ebbc7562fb0c73ba47" category="sidebar">6.4</block>
   <block id="44259680bd01002134994d85d023710c" category="sidebar">Citrix</block>
-  <block id="095f17ad6c7f706c5fa881fa28d2b0e2" category="sidebar">XenServer 7</block>
   <block id="11b4279628bd5bd99185024194584bba" category="sidebar">VMware vSphere 6.5 y 6.7</block>
   <block id="b1fd823d262032e04291313f72be9452" category="sidebar">HP-UX</block>
   <block id="d5b12213e8526feaa7c520b3b736f9b8" category="sidebar">11i v3</block>
@@ -1670,7 +1641,6 @@
   <block id="beb55dba3ba1d2be4056c146cb0bf458" category="paragraph">El sistema operativo Oracle Linux 9,2 se compila para reconocer los LUN de ONTAP y definir automáticamente todos los parámetros de configuración correctamente para configuraciones ASA y no ASA. Puede optimizar aún más el rendimiento de la configuración del host con los siguientes ajustes recomendados.</block>
   <block id="02b2bcdfe73b2cce057d7b84806fa6ed" category="paragraph">La versión Oracle Linux 9,1 con NetApp ONTAP tiene los siguientes problemas conocidos:</block>
   <block id="cc40ed991073c638cc114ee18ad15d8c" category="paragraph">La versión Oracle Linux 9,0 con NetApp ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="9f0988d93d2475f41e07c537ac5637e6" category="doc">Utilice Citrix XenServer con ONTAP</block>
   <block id="f419fe819afeb109ae85608ed6bd0ca7" category="doc">Utilice Veritas Infoscale 7 para Linux con ONTAP</block>
   <block id="30d85838b9488ee908d075559c8978cd" category="doc">Utilice VMware vSphere 8.x con ONTAP</block>
   <block id="7dfa70c3f5b28c905e177a472ecf20d7" category="doc">Utilice Oracle Linux 9,2 con ONTAP</block>
@@ -1767,7 +1737,6 @@
   <block id="0659d428df833a806e29e65e632d380a" category="inline-link-macro">Soporte de NetApp</block>
   <block id="b3303f1e3e1d5672f6b839c968637989" category="paragraph">Si todavía tiene problemas, recopile los siguientes archivos y salidas de comandos y póngase en contacto <block ref="39332fc74dd50b9d9a8e9919506502c0" category="inline-link-macro-rx"></block> para una clasificación adicional:</block>
   <block id="8e2fe53ccb05734b777fbcc2363d25ab" category="paragraph">Puede usar las opciones de configuración del host SAN de ONTAP para la versión vSphere 7.x con los protocolos FC, FCoE e iSCSI.</block>
-  <block id="4a09c73fa303eedb14779e29343fb862" category="paragraph">Puede configurar las opciones de configuración del host SAN ONTAP para versiones del sistema operativo Citrix XenServer serie 7 con protocolos FC, FCoE e iSCSI.</block>
   <block id="16739062558f135a2a67b7745e31e80d" category="paragraph">Puede recuperar una lista de todos los iniciadores de host asignados a un host.</block>
   <block id="416012ceac18a0ac6c16db45563c9298" category="paragraph">Puede recuperar una lista de todas las LUN asignadas a un host.</block>
   <block id="34f24f66e929234e4a25705afbec0a62" category="paragraph">Puede recuperar una lista de todas las LUN asignadas a un host de una determinada SVM.</block>
@@ -2063,7 +2032,6 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="57175c72c9ec2223e90f7a6f933b0c1b" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 7,6 con ONTAP como destino.</block>
   <block id="23e8ad4d32c5f707280dc61ecce90740" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 8,1 con ONTAP como destino.</block>
   <block id="3d8d5b2f05311b66754ca058971f7e2e" category="paragraph">No existen problemas conocidos para la versión SUSE Linux Enterprise Server 15 SP5 con ONTAP.</block>
-  <block id="d68505b811ecc342e2c201e1fcd2942d" category="paragraph">No existen problemas conocidos para el lanzamiento de Citrix XenServer con ONTAP.</block>
   <block id="30b87f3af4543974205ca57666930631" category="paragraph">No existen problemas conocidos para la versión de Veritas Storage Foundation 6 para Linux con ONTAP.</block>
   <block id="ee0e00ac8a597d343ecf7da72dd6effd" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 6,10 con ONTAP como destino.</block>
   <block id="c7512b0badc93efcac520b6d3264ca72" category="paragraph">No existen problemas conocidos para la versión Oracle Linux 6,10 con ONTAP.</block>
@@ -2345,7 +2313,6 @@ Para obtener información adicional y los cambios recomendados en la configuraci
   <block id="0f184640fa014a23c70b94529da4bca4" category="paragraph">No existen problemas conocidos para la versión Oracle Linux 9,3 con ONTAP.</block>
   <block id="26adbe58d014b17e22edee324b7c14d8" category="paragraph">La primera vez que crea el<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> archivo, es posible que deba habilitar e iniciar los servicios multivía mediante los siguientes comandos:</block>
   <block id="524b08ad750352e65f141bb6a45404ad" category="list-text">Defina el<block ref="63a7cb7a86eb0c84641936943496afaf" prefix=" " category="inline-code"></block> parámetro en 256:</block>
-  <block id="4e6815a5eaf606ab0b37b61763f811c3" category="paragraph">No es necesario agregar contenido al<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> archivo, a menos que tenga dispositivos que no desea que se gestionen con acceso multivía o que tenga una configuración existente que anule los valores predeterminados. Puede agregar la siguiente sintaxis al<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> archivo para excluir los dispositivos no deseados.</block>
   <block id="8d3d223fd7a6303b1d21d5a6d2ff42cf" category="summary">Describe cómo usar Oracle Linux 8,9 con ONTAP</block>
   <block id="82ccd7f4292a5fcdb3c91b2dac42a0ee" category="doc">Utilice Oracle Linux 8,9 con ONTAP</block>
   <block id="18b1f91c51b933e6287d49ea6806740e" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 8,9 con ONTAP como destino.</block>
@@ -2403,7 +2370,6 @@ Para obtener información adicional y los cambios recomendados en la configuraci
   <block id="48a57465c9050da3e456de11a1bce0f0" category="list-text">Reinicie el host para verificar que el inicio se ha realizado correctamente.</block>
   <block id="f7de5451f0d12f9de62cf0d59c9695f2" category="admonition">Las rutas múltiples solo quedan disponibles cuando el sistema operativo del host está activo y en ejecución en las rutas.</block>
   <block id="2ba8ced675fff51092484e241860c46e" category="paragraph"><block ref="273d5cd3ecc9b9ccde8aa81942ced2f2" prefix=" " category="inline-code"></block>El comando produce el siguiente tipo de salida. La salida del siguiente ejemplo se trunca.</block>
-  <block id="2f4a9005041851e9a64a6509d048aa33" category="paragraph">En el siguiente ejemplo para Citrix XenServer 7.x,<block ref="59b466fd93164953e56bdd1358dc0044" prefix=" " category="inline-code"></block> es el disco SCSI local que desea agregar a la lista negra.</block>
   <block id="fb403c5f670d67ab47637709eb33917d" category="paragraph">El problema de error intermitente del sistema operativo host que se produce al ejecutar<block ref="41dc2c94e82e1c56ba876085acf5a974" prefix=" " category="inline-code"></block> el comando en SUSE Linux Enterprise Server 12 SP1, OL 7,2, RHEL 7,2 y RHEL 6,8 se soluciona en esta versión.</block>
   <block id="e660061f6ca1690f631875aa9b659f5c" category="paragraph">En las siguientes secciones se proporcionan ejemplos de salidas multivía para una LUN asignada a personas que no son de ASA.</block>
   <block id="f2694c4b7724c227a6fd0a9ab3d8a8f9" category="paragraph">En las siguientes secciones se proporcionan ejemplos de salidas multivía para una LUN asignada a todas las configuraciones de matriz SAN (ASA) y distintas de ASA.</block>
@@ -3090,7 +3056,6 @@ Para obtener información adicional y los cambios recomendados en la configuraci
   <block id="65e17e3635aff4a06545ebdec876d723" category="paragraph">Las versiones de AIX Host Utilities contienen las siguientes nuevas funciones y mejoras:</block>
   <block id="3a7c6e3d017877edeea93359d3fe1527" category="list-text">AIX Host Utilities 6,1 incluye compatibilidad con el problema de error de memoria que ocurrió en versiones anteriores del sistema operativo del host AIX. Con AIX Host Utilities 6.1, sólo ha cambiado el binario sanlun. La I/O multivía de Microsoft (MPIO) y el ODM relacionado permanecen sin cambios.</block>
   <block id="2a372b892113e198dff50fad53f7c8cf" category="cell">SCSI UNMAP compatibilidad con LUN de iSCSI de ONTAP</block>
-  <block id="0593445145635811aefe17e2c2c0cee9" category="paragraph">Debido a las incompatibilidades de la arquitectura de gestión multivía integrada, Citrix recomienda utilizar la aplicación Citrix XenCenter para gestionar la configuración de almacenamiento. Si es necesario consultar el estado de las tablas de asignación de dispositivos manualmente o mostrar los nodos multivía de asignación de dispositivos activos en el sistema, puede utilizar<block ref="933a1510d6585bc60786b9db6910db56" prefix=" " category="inline-code"></block> el comando para verificar la configuración de los LUN de ONTAP. Para obtener más información, consulte la documentación estándar del proveedor para Citrix XenServer.</block>
   <block id="ad8a44c5166ba0f4232aef9400e09e61" category="cell">La longitud máxima de transferencia SCSI de 1 MB se aplica en la matriz All SAN de ONTAP. Para restringir la longitud máxima de transferencia de los hosts HP-UX cuando se conectan a la matriz All SAN de ONTAP, es necesario establecer el tamaño máximo de E/S permitido por el subsistema SCSI HP-UX en 1 MB. Consulte la documentación del proveedor de HP-UX para obtener más detalles.</block>
   <block id="09cab502d540fb90ba458ff77a1bf626" category="summary">Describe cómo usar HP-UX Host Utilities 6,0 con almacenamiento ONTAP</block>
   <block id="0fc97dd29480cf6d4f2229a9139b99f6" category="paragraph">Las utilidades de host NetApp HP-UX le permiten conectar un host HP-UX al almacenamiento ONTAP.</block>
@@ -3779,5 +3744,5 @@ Para obtener información adicional y los cambios recomendados en la configuraci
   <block id="a2e2d0fcc9350f73f4294c53a7b2fa53" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Al instalar las utilidades de host de Linux en un host Citrix Xenserver 8.4, puede usar las utilidades de host para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
   <block id="405ee507e1b0e20ba609f39dc449664e" category="paragraph">Puede utilizar rutas múltiples con Citrix Xenserver 8.4 para administrar LUN de ONTAP.</block>
   <block id="7ef93303f99987d3f82b96411ca41f0f" category="sidebar">XenServer 8,4</block>
-  <block id="df472899f555ad076c9b90f4bd508f91" category="sidebar">Hipervisor 8,2</block>
+  <block id="c4bb680e83ce918749e1d4853b0073d1" category="sidebar">Hipervisor 8.2 (LTSR)</block>
 </blocks>
