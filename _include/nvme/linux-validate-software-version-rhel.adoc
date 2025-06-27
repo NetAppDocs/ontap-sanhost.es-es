@@ -1,0 +1,77 @@
+= 
+:allow-uri-read: 
+
+
+. Instale el `nvme-cli` paquete:
++
+[source, cli]
+----
+rpm -qa|grep nvme-cli
+----
++
+El siguiente ejemplo muestra una versión del paquete nvme-cli:
+
++
+[listing]
+----
+nvme-cli-2.11-5.el9.x86_64
+----
+. Instale el `libnvme` paquete:
++
+[source, cli]
+----
+rpm -qa|grep libnvme
+----
++
+El siguiente ejemplo muestra un  `libnvme` versión del paquete:
+
++
+[listing]
+----
+libnvme-1.11.1-1.el9.x86_64
+----
+. En el host RHEL, verifique la cadena hostnqn en  `/etc/nvme/hostnqn` :
++
+[source, cli]
+----
+cat /etc/nvme/hostnqn
+----
++
+El siguiente ejemplo muestra un  `hostnqn` versión:
+
++
+[listing]
+----
+nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+----
+. Compruebe que el `hostnqn` la cadena coincide con `hostnqn` Cadena para el subsistema correspondiente en la cabina de ONTAP:
++
+[source, cli]
+----
+::> vserver nvme subsystem host show -vserver vs_coexistence_LPE36002
+----
++
+.Muestra el ejemplo
+[%collapsible]
+====
+[listing]
+----
+Vserver Subsystem Priority  Host NQN
+------- --------- --------  ------------------------------------------------
+vs_coexistence_LPE36002
+        nvme
+                  regular   nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+        nvme_1
+                  regular   nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+        nvme_2
+                  regular   nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+        nvme_3
+                  regular   nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+4 entries were displayed.
+----
+====
++
+
+NOTE: Si la `hostnqn` las cadenas no coinciden, utilice `vserver modify` comando para actualizar el `hostnqn` En el subsistema de cabina ONTAP correspondiente de que coincida con `hostnqn` cadena desde `/etc/nvme/hostnqn` en el host.
+
+

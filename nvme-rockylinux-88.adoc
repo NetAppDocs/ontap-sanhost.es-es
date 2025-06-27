@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: nvme_rhel_95.html 
-keywords: nvme, linux, rhel, red hat, enterprise 
-summary: Cómo configurar el host NVMe-oF para RHEL 9,5 con ONTAP 
+permalink: nvme-rockylinux-88.html 
+keywords: nvme, linux, rocky linux, enterprise 
+summary: Cómo configurar el host NVMe-oF para Rocky Linux 8.8 con ONTAP 
 ---
-= Configurar RHEL 9.5 para NVMe-oF con almacenamiento ONTAP
+= Configurar Rocky Linux 8.8 con NVMe-oF para almacenamiento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,36 +16,31 @@ summary: Cómo configurar el host NVMe-oF para RHEL 9,5 con ONTAP
 
 
 [role="lead"]
-Las configuraciones de host SAN de NetApp admiten el protocolo NVMe over Fabrics (NVMe-oF) con acceso asimétrico al espacio de nombres (ANA). En entornos con NVMe-oF, ANA es equivalente a accesos múltiples asimétricos de unidad lógica (ALUA) en entornos iSCSI y FCP. ANA se implementa mediante la función multivía de NVMe interna.
+Los hosts Rocky Linux 8.8 admiten los protocolos NVMe/FC y NVMe/TCP con acceso asimétrico al espacio de nombres (ANA). ANA es equivalente al acceso asimétrico a unidades lógicas (ALUA) multipath en entornos iSCSI y FCP y se implementa mediante la función de multipath NVMe integrada en el kernel.
+
+Si quiere más información sobre las configuraciones compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
 
 .Acerca de esta tarea
-Puede utilizar la siguiente compatibilidad y funciones con la configuración de host de NVMe-oF para Red Hat Enterprise Linux (RHEL) 9,5. También debe revisar las limitaciones conocidas antes de iniciar el proceso de configuración.
+Puede utilizar el siguiente soporte y características con la configuración de host NVMe-oF para Rocky Linux 8.8. También debe revisar las limitaciones conocidas antes de iniciar el proceso de configuración.
 
 * Soporte disponible:
 +
 ** Compatibilidad con NVMe sobre TCP (NVMe/TCP), además de NVMe sobre Fibre Channel (NVMe/FC). El complemento NetApp del paquete nativo `nvme-cli` muestra detalles de ONTAP para espacios de nombres NVMe/FC y NVMe/TCP.
-** Ejecutando tráfico NVMe y SCSI en el mismo host. Por ejemplo, puede configurar dm-multipath para dispositivos mpath SCSI para LUN SCSI y usar NVMe multipath para configurar dispositivos de espacio de nombres NVMe-oF en el host.
-+
-Si quiere más información sobre las configuraciones compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
-
-
-
-* Características disponibles:
-+
-** A partir de ONTAP 9.12.1, se introdujo la compatibilidad con la autenticación segura en banda para NVMe-oF. Se puede utilizar la autenticación segura en banda para NVMe-oF con RHEL 9,5.
-** RHEL 9,5 habilita la multivía NVMe dentro del kernel para espacios de nombres NVMe de forma predeterminada, lo que elimina la necesidad de utilizar configuraciones explícitas.
+** Ejecutar tráfico NVMe y SCSI en el mismo host. Por ejemplo, puede configurar dm-multipath para dispositivos mpath SCSI para LUN SCSI y usar NVMe multipath para configurar dispositivos de espacio de nombres NVMe-oF en el host.
 
 
 * Limitaciones conocidas:
 +
-** No hay limitaciones conocidas.
+** La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada para los hosts NVMe-oF de Rocky Linux 8.8. Por lo tanto, debe habilitarla manualmente.
+** En los hosts Rocky Linux 8.8, NVMe/TCP es una característica de vista previa de tecnología debido a problemas abiertos. Consulte la https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html-single/8.8_release_notes/index#technology-preview_file-systems-and-storage["Notas de la versión de Rocky Linux 8.8"^] para obtener más información.
+** Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
 
 
 
 
 
 
-== Habilite el arranque SAN
+== Paso 1: Opcionalmente, habilite el arranque SAN
 
 Puede configurar su host para que utilice el arranque SAN y simplificar la puesta en marcha y mejorar la escalabilidad.
 
@@ -54,7 +49,7 @@ Utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz
 
 .Pasos
 . https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["Cree un espacio de nombres de arranque SAN y asígnelo al host"^].
-. Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
+. Habilite el arranque SAN en el BIOS del servidor para los puertos a los que está asignado el espacio de nombres de arranque SAN.
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
@@ -63,50 +58,62 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 
 
-== Validación de versiones de software
+== Paso 2: Validar las versiones del software
 
-Puede utilizar el siguiente procedimiento para validar las versiones mínimas de software de RHEL 9,5 admitidas.
+Utilice el siguiente procedimiento para validar las versiones mínimas compatibles del software Rocky Linux 8.8.
 
 .Pasos
-. Instale RHEL 9,5 en el servidor. Una vez finalizada la instalación, compruebe que está ejecutando el kernel de RHEL 9,5 especificado:
+. Instale Rocky Linux 8.8 en el servidor. Una vez completada la instalación, verifique que esté ejecutando el kernel de Rocky Linux 8.8 especificado:
 +
-[listing]
+[source, cli]
 ----
 uname -r
 ----
 +
+El siguiente ejemplo muestra una versión del kernel de Rocky Linux:
+
++
 [listing]
 ----
-5.14.0-503.11.1.el9_5.x86_64
+5.14.0-570.12.1.el9_6.x86_64
 ----
 . Instale el `nvme-cli` paquete:
 +
-[listing]
+[source, cli]
 ----
 rpm -qa|grep nvme-cli
 ----
 +
+El siguiente ejemplo muestra una versión del paquete nvme-cli:
+
++
 [listing]
 ----
-nvme-cli-2.9.1-6.el9.x86_64
+nvme-cli-2.11-5.el9.x86_64
 ----
 . Instale el `libnvme` paquete:
 +
-[listing]
+[source, cli]
 ----
 rpm -qa|grep libnvme
 ----
 +
-[listing]
-----
-libnvme-1.9-3.el9.x86_64
-----
-. En el host RHEL 9,5, compruebe la cadena hostnqn en `/etc/nvme/hostnqn`:
+El siguiente ejemplo muestra un  `libnvme` versión del paquete:
+
 +
 [listing]
 ----
+libnvme-1.11.1-1.el9.x86_64
+----
+. En el host Rocky Linux, verifique la cadena hostnqn en  `/etc/nvme/hostnqn` :
++
+[source, cli]
+----
 cat /etc/nvme/hostnqn
 ----
++
+El siguiente ejemplo muestra un  `hostnqn` versión:
+
 +
 [listing]
 ----
@@ -114,7 +121,7 @@ nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
 ----
 . Compruebe que el `hostnqn` la cadena coincide con `hostnqn` Cadena para el subsistema correspondiente en la cabina de ONTAP:
 +
-[listing]
+[source, cli]
 ----
 ::> vserver nvme subsystem host show -vserver vs_coexistence_LPE36002
 ----
@@ -146,9 +153,9 @@ NOTE: Si la `hostnqn` las cadenas no coinciden, utilice `vserver modify` comando
 
 
 
-== Configure NVMe/FC
+== Paso 3: Configurar NVMe/FC
 
-Puede configurar NVMe/FC con adaptadores FC Broadcom/Emulex o Marvell/Qlogic. Para NVMe/FC configurado con un adaptador Broadcom, puede habilitar solicitudes de E/S de tamaño 1 MB.
+Puede configurar NVMe/FC con adaptadores FC Broadcom/Emulex o Marvell/Qlogic. También debe descubrir manualmente los subsistemas y espacios de nombres NVMe/TCP.
 
 [role="tabbed-block"]
 ====
@@ -157,14 +164,30 @@ Puede configurar NVMe/FC con adaptadores FC Broadcom/Emulex o Marvell/Qlogic. Pa
 .Pasos
 . Compruebe que está utilizando el modelo de adaptador admitido:
 +
-.. `cat /sys/class/scsi_host/host*/modelname`
+.. Mostrar los nombres de los modelos:
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/modelname
+----
++
+Debe ver la siguiente salida:
+
 +
 [listing]
 ----
 LPe36002-M64
 LPe36002-M64
 ----
-.. `cat /sys/class/scsi_host/host*/modeldesc`
+.. Mostrar las descripciones del modelo:
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/modeldesc
+----
++
+Debería ver un resultado similar al siguiente ejemplo:
+
 +
 [listing]
 ----
@@ -175,14 +198,30 @@ Emulex LightPulse LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 
 . Compruebe que está utilizando la Broadcom recomendada `lpfc` firmware y controlador de bandeja de entrada:
 +
-.. `cat /sys/class/scsi_host/host*/fwrev`
+.. Mostrar la versión del firmware:
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/fwrev
+----
++
+El siguiente ejemplo muestra las versiones de firmware:
+
 +
 [listing]
 ----
 14.4.317.10, sli-4:6:d
 14.4.317.10, sli-4:6:d
 ----
-.. `cat /sys/module/lpfc/version`
+.. Mostrar la versión del controlador de la bandeja de entrada:
++
+[source, cli]
+----
+cat /sys/module/lpfc/version`
+----
++
+El siguiente ejemplo muestra una versión del controlador:
+
 +
 [listing]
 ----
@@ -195,16 +234,18 @@ Para obtener la lista actual de versiones de firmware y controladores de adaptad
 
 . Compruebe que la salida esperada de `lpfc_enable_fc4_type` está definida en `3`:
 +
-`cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type`
-
-+
-[listing]
+[source, cli]
 ----
-3
+cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
 ----
 . Compruebe que puede ver los puertos de iniciador:
 +
-`cat /sys/class/fc_host/host*/port_name`
+[source, cli]
+----
+cat /sys/class/fc_host/host*/port_name
+----
++
+El siguiente ejemplo muestra las identidades del puerto:
 
 +
 [listing]
@@ -214,7 +255,12 @@ Para obtener la lista actual de versiones de firmware y controladores de adaptad
 ----
 . Compruebe que los puertos de iniciador estén en línea:
 +
-`cat /sys/class/fc_host/host*/port_state`
+[source, cli]
+----
+cat /sys/class/fc_host/host*/port_state
+----
++
+Debe ver la siguiente salida:
 
 +
 [listing]
@@ -224,8 +270,10 @@ Online
 ----
 . Compruebe que los puertos de iniciador NVMe/FC estén habilitados y que los puertos de destino estén visibles:
 +
-`cat /sys/class/scsi_host/host*/nvme_info`
-
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/nvme_info
+----
 +
 .Muestra el ejemplo
 [%collapsible]
@@ -267,15 +315,18 @@ FCP CMPL: xb 000014a5 Err 0002149a
 Configure NVMe/FC para un adaptador Marvell/QLogic.
 
 
-NOTE: El controlador de la bandeja de entrada qla2xxx nativo incluido en el kernel RHEL 9,5 GA tiene las correcciones más recientes. Estas correcciones son esenciales para la compatibilidad con ONTAP.
+NOTE: El controlador de bandeja de entrada nativo qla2xxx incluido en el kernel Rocky Linux tiene las últimas correcciones. Estas correcciones son esenciales para la compatibilidad con ONTAP.
 
 .Pasos
 . Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
 +
-[listing]
+[source, cli]
 ----
 cat /sys/class/fc_host/host*/symbolic_name
 ----
++
+El siguiente ejemplo muestra las versiones del controlador y del firmware:
+
 +
 [listing]
 ----
@@ -284,12 +335,12 @@ QLE2742 FW:v9.14.00 DVR:v10.02.09.200-k
 ----
 . Compruebe que `ql2xnvmeenable` está configurado. Esto permite que el adaptador Marvell funcione como iniciador NVMe/FC:
 +
-[listing]
+[source, cli]
 ----
 cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 ----
 +
-El ouptut esperado es 1.
+La salida esperada es 1.
 
 
 
@@ -297,9 +348,9 @@ El ouptut esperado es 1.
 ====
 
 
-=== Habilitar 1MB I/O (opcional)
+== Paso 4: Opcionalmente, habilite 1 MB de E/S
 
-ONTAP informa de un MDT (tamaño de transferencia de MAX Data) de 8 en los datos Identify Controller. Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB TB. Para emitir solicitudes de I/O de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar `lpfc` el valor `lpfc_sg_seg_cnt` del parámetro a 256 con respecto al valor predeterminado de 64.
+Puede habilitar solicitudes de E/S de 1 MB para NVMe/FC configurado con un adaptador Broadcom. ONTAP informa un tamaño máximo de transferencia de datos (MDTS) de 8 en los datos de identificación del controlador. Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB TB. Para emitir solicitudes de E/S de 1 MB, debe aumentar el valor lpfc de  `lpfc_sg_seg_cnt` parámetro a 256 desde el valor predeterminado de 64.
 
 
 NOTE: Estos pasos no se aplican a los hosts Qlogic NVMe/FC.
@@ -307,13 +358,10 @@ NOTE: Estos pasos no se aplican a los hosts Qlogic NVMe/FC.
 .Pasos
 . Defina el `lpfc_sg_seg_cnt` parámetro en 256:
 +
-[source, cli]
+[listing]
 ----
 cat /etc/modprobe.d/lpfc.conf
 ----
-+
-Debería ver un resultado similar al siguiente ejemplo:
-
 +
 [listing]
 ----
@@ -322,7 +370,7 @@ options lpfc lpfc_sg_seg_cnt=256
 . Ejecute `dracut -f` el comando y reinicie el host.
 . Compruebe que el valor de `lpfc_sg_seg_cnt` es 256:
 +
-[source, cli]
+[listing]
 ----
 cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 ----
@@ -330,9 +378,9 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
-== Configure NVMe/TCP
+== Paso 5: Configurar NVMe/TCP
 
-El protocolo NVMe/TCP no admite `auto-connect` la operación. En su lugar, puede detectar los subsistemas y los espacios de nombres NVMe/TCP ejecutando manualmente las operaciones o `connect-all` NVMe/TCP `connect`.
+El protocolo NVMe/TCP no admite la operación de conexión automática. En su lugar, puede descubrir los subsistemas y espacios de nombres NVMe/TCP realizando manualmente las operaciones de conexión o de conexión total de NVMe/TCP.
 
 .Pasos
 . Compruebe que el puerto del iniciador pueda recuperar los datos de la página de registro de detección en las LIF NVMe/TCP admitidas:
@@ -611,21 +659,21 @@ nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.25
 
 
 
-NOTE: A partir de RHEL 9,5, la configuración predeterminada del tiempo de espera de NVMe/TCP `ctrl_loss_tmo` está desactivada. Esto significa que no hay límite en el número de reintentos (reintento indefinido). Por lo tanto, no es necesario configurar manualmente una duración de tiempo de espera específica `ctrl_loss_tmo` cuando se utilizan los `nvme connect` comandos o `nvme connect-all` (opción -l ). Gracias a este comportamiento predeterminado, las controladoras NVMe/TCP no experimentan tiempos de espera en caso de un fallo de ruta y permanecen conectadas indefinidamente.
 
-
-
-== Valide NVMe-of
+== Paso 6: Validar NVMe-oF
 
 Verifique que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean correctos para la configuración de NVMe-oF.
 
 .Pasos
 . Compruebe que la multivía NVMe en kernel esté habilitada:
 +
-[listing]
+[source, cli]
 ----
 cat /sys/module/nvme_core/parameters/multipath
 ----
++
+Debe ver la siguiente salida:
+
 +
 [listing]
 ----
@@ -633,14 +681,30 @@ Y
 ----
 . Compruebe que la configuración NVMe-oF adecuada (como, por ejemplo, el modelo configurado en la controladora NetApp ONTAP y la política de balanceo de carga establecida en round-robin) en los respectivos espacios de nombres de ONTAP se reflejen correctamente en el host:
 +
-.. `cat /sys/class/nvme-subsystem/nvme-subsys*/model`
+.. Mostrar los subsistemas:
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/model
+----
++
+Debe ver la siguiente salida:
+
 +
 [listing]
 ----
 NetApp ONTAP Controller
 NetApp ONTAP Controller
 ----
-.. `cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy`
+.. Mostrar la política:
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+----
++
+Debe ver la siguiente salida:
+
 +
 [listing]
 ----
@@ -651,7 +715,7 @@ round-robin
 
 . Verifique que los espacios de nombres se hayan creado y detectado correctamente en el host:
 +
-[listing]
+[source, cli]
 ----
 nvme list
 ----
@@ -677,7 +741,7 @@ Namespace Usage    Format             FW             Rev
 ====
 .NVMe/FC
 --
-[listing]
+[source, cli]
 ----
 nvme list-subsys /dev/nvme4n5
 ----
@@ -699,7 +763,7 @@ iopolicy=round-robin\
 --
 .NVMe/TCP
 --
-[listing]
+[source, cli]
 ----
 nvme list-subsys /dev/nvme1n1
 ----
@@ -725,12 +789,13 @@ src_addr=192.168.1.31 *live non-optimized*
 --
 ====
 . Confirmar que el complemento de NetApp muestra los valores correctos para cada dispositivo de espacio de nombres ONTAP:
-+
+
+
 [role="tabbed-block"]
 ====
 .Columna
 --
-[listing]
+[source, cli]
 ----
 nvme netapp ontapdevices -o column
 ----
@@ -752,7 +817,7 @@ NSID       UUID                                   Size
 --
 .JSON
 --
-[listing]
+[source, cli]
 ----
 nvme netapp ontapdevices -o json
 ----
@@ -781,233 +846,14 @@ nvme netapp ontapdevices -o json
 ====
 
 
+== Paso 7: Revise los problemas conocidos
+
+La configuración del host NVMe-oF para la versión Rocky Linux 8.8 con ONTAP tiene los siguientes problemas conocidos:
+
+[cols="20,40,40"]
+|===
+| ID de error de NetApp | Título | Descripción 
 
 
-== Configure la autenticación segura en banda
-
-A partir de ONTAP 9.12.1, la autenticación en banda segura es compatible con NVMe/TCP y NVMe/FC entre un host RHEL 9,5 y una controladora ONTAP.
-
-Para configurar la autenticación segura, cada host o controladora debe estar asociado con a. `DH-HMAC-CHAP` Clave, que es una combinación de NQN del host o de la controladora NVMe y un secreto de autenticación configurado por el administrador. Para autenticar su par, un host o una controladora NVMe deben reconocer la clave asociada con el par.
-
-Puede configurar la autenticación segura en banda mediante la interfaz de línea de comandos o un archivo config JSON. Si necesita especificar diferentes claves dhchap para diferentes subsistemas, debe utilizar un archivo JSON de configuración.
-
-[role="tabbed-block"]
-====
-.CLI
---
-Configure la autenticación segura en banda mediante la CLI.
-
-.Pasos
-. Obtenga el NQN del host:
-+
-[listing]
-----
-cat /etc/nvme/hostnqn
-----
-. Genere la clave dhchap para el host RHEL 9,5.
-+
-En el siguiente resultado, se describen `gen-dhchap-key` los parámetros de los comandos:
-
-+
-[listing]
-----
-nvme gen-dhchap-key -s optional_secret -l key_length {32|48|64} -m HMAC_function {0|1|2|3} -n host_nqn
-•	-s secret key in hexadecimal characters to be used to initialize the host key
-•	-l length of the resulting key in bytes
-•	-m HMAC function to use for key transformation
-0 = none, 1- SHA-256, 2 = SHA-384, 3=SHA-512
-•	-n host NQN to use for key transformation
-----
-+
-En el siguiente ejemplo, se genera una clave dhchap aleatoria con HMAC establecido en 3 (SHA-512).
-
-+
-[listing]
-----
-# nvme gen-dhchap-key -m 3 -n nqn.2014-08.org.nvmexpress:uuid:e6dade64-216d-11ec-b7bb-7ed30a5482c3
-DHHC-1:03:1CFivw9ccz58gAcOUJrM7Vs98hd2ZHSr+iw+Amg6xZPl5D2Yk+HDTZiUAg1iGgxTYqnxukqvYedA55Bw3wtz6sJNpR4=:
-----
-. En la controladora ONTAP, añada el host y especifique ambas claves dhchap:
-+
-[listing]
-----
-vserver nvme subsystem host add -vserver <svm_name> -subsystem <subsystem> -host-nqn <host_nqn> -dhchap-host-secret <authentication_host_secret> -dhchap-controller-secret <authentication_controller_secret> -dhchap-hash-function {sha-256|sha-512} -dhchap-group {none|2048-bit|3072-bit|4096-bit|6144-bit|8192-bit}
-----
-. Un host admite dos tipos de métodos de autenticación: Unidireccional y bidireccional. En el host, conéctese a la controladora ONTAP y especifique claves dhchap según el método de autenticación elegido:
-+
-[listing]
-----
-nvme connect -t tcp -w <host-traddr> -a <tr-addr> -n <host_nqn> -S <authentication_host_secret> -C <authentication_controller_secret>
-----
-. Valide el `nvme connect authentication` comando mediante la verificación de las claves dhchap de host y controladora:
-+
-.. Verifique las claves dhchap del host:
-+
-[listing]
-----
-cat /sys/class/nvme-subsystem/<nvme-subsysX>/nvme*/dhchap_secret
-----
-+
-.Mostrar ejemplo de salida para una configuración unidireccional
-[%collapsible]
-=====
-[listing]
-----
-# cat /sys/class/nvme-subsystem/nvme-subsys1/nvme*/dhchap_secret
-DHHC-1:01:iM63E6cX7G5SOKKOju8gmzM53qywsy+C/YwtzxhIt9ZRz+ky:
-DHHC-1:01:iM63E6cX7G5SOKKOju8gmzM53qywsy+C/YwtzxhIt9ZRz+ky:
-DHHC-1:01:iM63E6cX7G5SOKKOju8gmzM53qywsy+C/YwtzxhIt9ZRz+ky:
-DHHC-1:01:iM63E6cX7G5SOKKOju8gmzM53qywsy+C/YwtzxhIt9ZRz+ky:
-----
-=====
-.. Compruebe las claves dhchap del controlador:
-+
-[listing]
-----
-cat /sys/class/nvme-subsystem/<nvme-subsysX>/nvme*/dhchap_ctrl_secret
-----
-+
-.Mostrar ejemplo de salida para una configuración bidireccional
-[%collapsible]
-=====
-[listing]
-----
-# cat /sys/class/nvme-subsystem/nvme-subsys6/nvme*/dhchap_ctrl_secret
-DHHC-1:03:1CFivw9ccz58gAcOUJrM7Vs98hd2ZHSr+iw+Amg6xZPl5D2Yk+HDTZiUAg1iGgxTYqnxukqvYedA55Bw3wtz6sJNpR4=:
-DHHC-1:03:1CFivw9ccz58gAcOUJrM7Vs98hd2ZHSr+iw+Amg6xZPl5D2Yk+HDTZiUAg1iGgxTYqnxukqvYedA55Bw3wtz6sJNpR4=:
-DHHC-1:03:1CFivw9ccz58gAcOUJrM7Vs98hd2ZHSr+iw+Amg6xZPl5D2Yk+HDTZiUAg1iGgxTYqnxukqvYedA55Bw3wtz6sJNpR4=:
-DHHC-1:03:1CFivw9ccz58gAcOUJrM7Vs98hd2ZHSr+iw+Amg6xZPl5D2Yk+HDTZiUAg1iGgxTYqnxukqvYedA55Bw3wtz6sJNpR4=:
-----
-=====
-
-
-
-
---
-.Archivo JSON
---
-Cuando hay varios subsistemas NVMe disponibles en la configuración de la controladora ONTAP, se puede utilizar `/etc/nvme/config.json` el archivo con `nvme connect-all` el comando.
-
-Para generar el archivo JSON, puede usar la `-o` opción. Consulte las páginas del manual de NVMe connect-all para obtener más opciones de sintaxis.
-
-.Pasos
-. Configure el archivo JSON:
-+
-.Muestra el ejemplo
-[%collapsible]
-=====
-[listing]
-----
-# cat /etc/nvme/config.json
-[
-{
-  "hostnqn":"nqn.2014-08.org.nvmexpress:uuid:9796c1ec-0d34-11eb-b6b2-3a68dd3bab57",
-  "hostid":"b033cd4fd6db4724adb48655bfb55448",
-  "dhchap_key":"DHHC-1:01:zGlgmRyWbplWfUCPMuaP3mAypX0+GHuSczx5vX4Yod9lMPim:"
-},
-{
-  "hostnqn":"nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0035-5910-804b-b5c04f444d33",
-  "subsystems":[
-       {
-          "nqn":"nqn.1992-08.com.netapp:sn.0f4ba1e74eb611ef9f50d039eab6cb6d:subsystem.bidir_DHCP",
-          "ports":[
-              {
-                  "transport":"tcp",
-                   "traddr":" 192.168.1.24 ",
-                  "host_traddr":" 192.168.1.31 ",
-                  "trsvcid":"4420",
-                  "dhchap_ctrl_key":"DHHC-1:03:L52ymUoR32zYvnqZFe5OHhMg4gxD79jIyxSShHansXpVN+WiXE222aVc651JxGZlQCI863iVOz5dNWvgb+14F4B4bTQ=:"
-              },
-              {
-                  "transport":"tcp",
-                  "traddr":" 192.168.1.24 ",
-                  "host_traddr":" 192.168.1.31",
-                  "trsvcid":"4420",
-                  "dhchap_ctrl_key":"DHHC-1:03:L52ymUoR32zYvnqZFe5OHhMg4gxD79jIyxSShHansXpVN+WiXE222aVc651JxGZlQCI863iVOz5dNWvgb+14F4B4bTQ=:"
-              },
-              {
-                  "transport":"tcp",
-                 "traddr":" 192.168.1.24 ",
-                  "host_traddr":" 192.168.1.31",
-                  "trsvcid":"4420",
-                  "dhchap_ctrl_key":"DHHC-1:03:L52ymUoR32zYvnqZFe5OHhMg4gxD79jIyxSShHansXpVN+WiXE222aVc651JxGZlQCI863iVOz5dNWvgb+14F4B4bTQ=:"
-              },
-              {
-                  "transport":"tcp",
-                  "traddr":" 192.168.1.24 ",
-                   "host_traddr":" 192.168.1.31",
-                  "trsvcid":"4420",
-                  "dhchap_ctrl_key":"DHHC-1:03:L52ymUoR32zYvnqZFe5OHhMg4gxD79jIyxSShHansXpVN+WiXE222aVc651JxGZlQCI863iVOz5dNWvgb+14F4B4bTQ=:"
-              }
-          ]
-      }
-  ]
-}
-]
-----
-=====
-+
-
-NOTE: En el ejemplo anterior, `dhchap_key` corresponde a `dhchap_secret` y `dhchap_ctrl_key` corresponde a `dhchap_ctrl_secret` .
-
-. Conéctese a la controladora ONTAP mediante el archivo JSON de configuración:
-+
-[listing]
-----
-# nvme connect-all -J /etc/nvme/config.json
-----
-+
-.Muestra el ejemplo
-[%collapsible]
-=====
-[listing]
-----
-traddr=192.168.1.24 is already connected
-traddr=192.168.1.24 is already connected
-traddr=192.168.1.24 is already connected
-traddr=192.168.1.24 is already connected
-traddr=192.168.1.24 is already connected
-traddr=192.168.1.24 is already connected
-traddr=192.168.1.25 is already connected
-traddr=192.168.1.25 is already connected
-traddr=192.168.1.25 is already connected
-traddr=192.168.1.25 is already connected
-traddr=192.168.1.25 is already connected
-traddr=192.168.1.25 is already connected
-----
-=====
-. Verifique que se hayan activado los secretos dhchap para las respectivas controladoras de cada subsistema:
-+
-.. Verifique las claves dhchap del host:
-+
-[listing]
-----
-# cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_secret
-----
-+
-[listing]
-----
-DHHC-1:01:zGlgmRyWbplWfUCPMuaP3mAypX0+GHuSczx5vX4Yod9lMPim:
-----
-.. Compruebe las claves dhchap del controlador:
-+
-[listing]
-----
-# cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_ctrl_secret
-----
-+
-[listing]
-----
-DHHC-1:03:L52ymUoR32zYvnqZFe5OHhMg4gxD79jIyxSShHansXpVN+WiXE222aVc651JxGZlQCI863iVOz5dNWvgb+14F4B4bTQ=:
-----
-
-
-
-
---
-====
-
-
-== Problemas conocidos
-
-No existen problemas conocidos para la configuración del host NVMe-oF en RHEL 9,5 con la versión ONTAP.
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"] | Los hosts NVMe-oF de Rocky Linux 8.8 crean controladores de descubrimiento persistentes duplicados | En los hosts NVMe over Fabrics (NVMe-of), es posible utilizar el comando "nvme Discover -p" para crear controladoras de detección persistente (PDCs). Cuando se utiliza este comando, sólo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si está ejecutando Rocky Linux 8.8 en un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p". Esto lleva a un uso innecesario de recursos tanto en el host como en el destino. 
+|===
