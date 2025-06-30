@@ -342,7 +342,6 @@
   <block id="72663606b8411ccc0666f2a99b78df08" category="list-text">Compruebe que se han creado espacios de nombres.</block>
   <block id="bb145463d4b33f8a2c6719372c1e8d1d" category="section-title">Habilite un tamaño de I/o de 1 MB para Broadcom NVMe/FC</block>
   <block id="9128494ba0ee37c628f015b5af093f58" category="summary">Describe cómo utilizar CentOS 7.0 con ONTAP</block>
-  <block id="5bd816c2094b5347fe9888b31305809d" category="paragraph">Para CentOS 7.0 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 7.0 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="51a4a26e6b1bdae133374d340c097526" category="paragraph">En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas.</block>
   <block id="2844e304c2e162332243113572206ac6" category="inline-link-macro">1308744</block>
   <block id="939827454c3bb8453033ba1bd60c555e" category="cell"><block ref="c8bdc7961e7fb79cc7e51cf734b247fb" category="inline-link-macro-rx"></block></block>
@@ -497,12 +496,9 @@
   <block id="d469d8f0f0ea6195efacf51226ff8db4" category="summary">Describe cómo usar Oracle Linux 7.7 con ONTAP</block>
   <block id="83c8070e0465c3b76698f556c407a97a" category="paragraph">Para Oracle Linux 7.7 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. Oracle Linux 7.7 se ha compilado con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="35a2873560c7df91eb3565c5ce683568" category="summary">Describe cómo utilizar CentOS 7.2 con ONTAP</block>
-  <block id="5e264cc9d3c17161fd51d23fc1227896" category="paragraph">Para CentOS 7.2 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 7.2 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="0b9f55b9dffba7eae6a1222b3c2e4753" category="summary">Describe cómo utilizar CentOS 7.1 con ONTAP</block>
-  <block id="95f05a2f59b08c6cdec0baaa96182662" category="paragraph">Para CentOS 7.1 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 7.1 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="df638353a182a7918b8592fc949dcf8c" category="summary">Describe cómo utilizar Red Hat Enterprise Linux 7.4 con ONTAP</block>
   <block id="b0825624074d948cc02dab7178882abe" category="summary">Describe cómo utilizar CentOS 8.1 con ONTAP</block>
-  <block id="2cc89810a4025d52a6eccc82f2fdfc91" category="paragraph">Para CentOS 8.1 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 8.1 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="cebcd1a5ff2049be4533aaf6b185029d" category="summary">Notas de la versión de AIX Host Utilities 6.1</block>
   <block id="b066ca6122c9857ad1ee3a44f18cc5e7" category="cell">ID. De error</block>
   <block id="31a061fd71807c34f31d154d95c10691" category="inline-link-macro">1069147</block>
@@ -512,7 +508,6 @@
   <block id="31dade612c24301b89dad4a9747ed73e" category="list-text">FCP General: Muestra los errores de FC y HBA que no están asociados con un host específico.</block>
   <block id="0dea8ccda08dc1647ed0a458849e5cda" category="doc">Configuración de host de NVMe/FC para Oracle Linux 8.6 con ONTAP</block>
   <block id="0a4a555ba90159c1b3608a4b2e3295e1" category="summary">Describe cómo utilizar CentOS 7.4 con ONTAP</block>
-  <block id="74b9535debb295fda5221dbd495584f5" category="paragraph">Para CentOS 7.4 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 7.4 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="5fc5720a1a04d98fd8788b6a94e31e4e" category="summary">Configurar la configuración de host de VME/FC para Oracle Linux 7.8 con ONTAP, con ejemplos</block>
   <block id="62eef3d72485420aaef57ae6f4135044" category="doc">Configuración de host de NVMe/FC para Oracle Linux 7.8 con ONTAP</block>
   <block id="77835a1b9432b93fd521ab9f863d3c08" category="list-text">Las secuencias de comandos de conexión automática NVMe/FC nativas no están disponibles en el paquete nvme-cli. Use las secuencias de comandos de conexión automática externas proporcionadas por el proveedor HBA.</block>
@@ -535,7 +530,6 @@
   <block id="f2ff9a4318af2aff0dcf758e87fcd4c8" category="paragraph">Para CentOS 6.6 el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 6.6 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP. Para habilitar ALUA Handler, realice los siguientes pasos:</block>
   <block id="c9266caf4d9776dead8063d2c3d71e40" category="paragraph">CentOS 6.6 OS se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y la que no es ASA.</block>
   <block id="3bb3263aa16bbeb228b8ecd7584a8064" category="summary">Describe cómo utilizar CentOS 7.3 con ONTAP</block>
-  <block id="ef96b3a7a075d8418a575b9d3ec01e49" category="paragraph">Para CentOS 7.3 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 7.3 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="86d37c3499918a5cbe18b451f7900060" category="summary">Describe cómo usar Oracle Linux 7.2 con ONTAP</block>
   <block id="879a2e4d18651bb7cc6629fafa11ad2c" category="paragraph">Oracle Linux 7.2 es compatible con Unbreakable Enterprise Kernel (UEK) R3 y UEK R4. El sistema operativo se inicia con el kernel UEK R3 de forma predeterminada.</block>
   <block id="f76dacb09cf26865aa39e565e340c25b" category="paragraph-title">Configuración de Oracle Linux 7.2 UEK R3</block>
@@ -562,7 +556,6 @@
   <block id="ed81d40ee1a062d4852e88bbb707608d" category="paragraph">Para CentOS 6.4 el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 6.4 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="c5b0e8703af1ccb56a53d3ccc87f83ac" category="paragraph">CentOS 6.4 OS se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y la que no es ASA.</block>
   <block id="fbd83cf0e839e6dec73fa3ff243bb8c5" category="summary">Describe cómo utilizar CentOS 7.8 con ONTAP</block>
-  <block id="76174ed9b35d8ad81e135443f4af3887" category="paragraph">Para CentOS 7.8 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 7.8 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="eea65c7c864efb688d55381c5b21a910" category="summary">Describe cómo utilizar Veritas Infocale 6.5 y 6.7 para Linux con ONTAP</block>
   <block id="e1059765ab19f25f118520b9942cefe8" category="section-title">Arranque SAN de hipervisores</block>
   <block id="b8c81b1034d96bceee150be6c06739b8" category="paragraph"><block ref="bffafdbeb65175b415cdfc3e99a5f592" prefix="*" category="inline-code"></block>*</block>
@@ -667,13 +660,11 @@
   <block id="abbdb018748bb6cd12284ad6c1685b67" category="cell"><block ref="8a79f8d12083f6c1f5d24ebab44084c7" prefix="" category="inline-code"></block></block>
   <block id="5d58354522165b88ab742ec42aac9161" category="section-title">Cuándo ponerse en contacto con el soporte técnico</block>
   <block id="f4bba4cff96aef30f859bc5d933b86d1" category="summary">Describe cómo utilizar CentOS 7.7 con ONTAP</block>
-  <block id="85c1cd097e2b89074f8df27d3f429558" category="paragraph">Para CentOS 7.7 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 7.7 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="c973ee9c17b37717f62a4aff80aecfb5" category="summary">Describe cómo utilizar Red Hat Enterprise Linux 7.1 con ONTAP</block>
   <block id="6f7f69f453663da32b05f6e1d898fb8e" category="summary">Describe cómo utilizar Red Hat Enterprise Linux 7.7 con ONTAP</block>
   <block id="880612d7054085e9af1cd3802ce4127d" category="summary">Describe cómo usar Oracle Linux 7.4 con ONTAP</block>
   <block id="491bbe882aaf63711fd558642fdb4958" category="paragraph">Para Oracle Linux 7.4 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. Oracle Linux 7.4 se ha compilado con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="480c1af29fcb3cc17dbe8a841a6a3c06" category="summary">Describe cómo utilizar CentOS 8.2 con ONTAP</block>
-  <block id="6d0ef457a6d83b808baa2444f1d454db" category="paragraph">Para CentOS 8.2 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 8.2 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="ce33fe68519e0e2d14428572a71c7569" category="summary">Configurar la configuración de host de VME/FC para Oracle Linux 8.2 con ONTAP, con ejemplos</block>
   <block id="89d62bb3e0891fdc6a601122dddc0440" category="doc">Configuración de host de NVMe/FC para Oracle Linux 8.2 con ONTAP</block>
   <block id="444ce06dcc32d405185ecb72eb5ab7a2" category="list-text">Instale Oracle Linux 8.2 en el servidor.</block>
@@ -736,8 +727,6 @@
   <block id="d517a34201e69d7cbd98e82863cbb016" category="paragraph">Se observa cuando las asociaciones de controladores o la operación especificada ya se han creado o se está creando. Esto podría suceder como parte de los scripts de conexión automática instalados anteriormente.</block>
   <block id="ed88a4dfde1eda848d0cd0880569e29d" category="paragraph">Ninguno. Intente ejecutar el<block ref="c4014d0307156b07d4412051f511221a" prefix=" " category="inline-code"></block> comando de nuevo después de un tiempo. Para<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block> y..<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block>, ejecute el<block ref="b0f1705bbfcfb10368af21a019072318" prefix=" " category="inline-code"></block> comando para verificar que los dispositivos de espacio de nombres ya se han creado y se muestran en el host.</block>
   <block id="3eeb371f92f74d2b6501646282092ca7" category="summary">Describe cómo utilizar CentOS 8.4 con ONTAP</block>
-  <block id="e5a962185d7bd63be4f29de827478b1c" category="paragraph">Para CentOS 8.4 el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 8.4 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
-  <block id="ea4f6ca54725c6a00ccdbd33cafe2aa2" category="paragraph">CentOS 8.4 se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente tanto para la configuración ASA como para la que no es ASA.</block>
   <block id="d6a549e2961efba4f33c4deb10965085" category="summary">Describe cómo usar Oracle Linux 6.6 con ONTAP</block>
   <block id="b17be161e93154b1a8e4c9e17fc3b190" category="paragraph">Para Oracle Linux 6.6 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. Oracle Linux 6.6 se ha compilado con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP. Para habilitar ALUA Handler, realice los siguientes pasos:</block>
   <block id="3c92bea3eb2289a6ec3282c1090533ba" category="paragraph">El sistema operativo Oracle Linux 6.6 se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente.</block>
@@ -1012,8 +1001,6 @@
   <block id="3a1eadc8d9bb3cf94717f7abc94eae77" category="inline-link">Versión de Red Hat Enterprise Linux</block>
   <block id="ecd07dd2a42b46fb7e8f73e1e5544962" category="admonition">Para problemas conocidos de Oracle Linux (kernel compatible con Red Hat), consulte la sección problemas conocidos en el correspondiente<block ref="939c54c506d35e0d0c1ee5e3c74f33dd" category="inline-link-rx"></block> documentación.</block>
   <block id="c33b879e8a189cf4ded38992165273b7" category="summary">Describe cómo utilizar CentOS 8.5 con ONTAP</block>
-  <block id="60d0d78dbe9bb18e16690c35ce6867e1" category="paragraph">Para CentOS 8.5 el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 8.5 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
-  <block id="fd586a803662833af2a4932bc04d30c2" category="paragraph">CentOS 8.5 OS se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA.</block>
   <block id="a2e4546887c7d826529e2c2bc558c869" category="summary">Describe cómo usar Oracle Linux 7.1 con ONTAP</block>
   <block id="073055d89f87f920dc7706848774e7b2" category="paragraph">Oracle Linux 7.1 es compatible con Unbreakable Enterprise Kernel (UEK) R3 y UEK R4. El sistema operativo se inicia con el kernel UEK R3 de forma predeterminada.</block>
   <block id="0330f3d77dc0535c34a5f7d97ee8d6a7" category="paragraph-title">Configuración de Oracle Linux 7.1 UEK R3</block>
@@ -1058,7 +1045,6 @@
   <block id="8eee884db44f521f0d19cac36bf258cc" category="summary">Uso de Windows Server 2016 con ONTAP</block>
   <block id="f5cba97c30a47867e3649fd136cca68c" category="inline-link-macro">Catálogo de Microsoft Update 2016</block>
   <block id="ba9c5cfb8923c683e175b0343242d5b2" category="summary">Describe cómo utilizar CentOS 8.0 con ONTAP</block>
-  <block id="2abffb2205f281bc82ee25fbb0545967" category="paragraph">Para CentOS 8.0 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 8.0 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="99d5775ff67d3ebcdc6e872f0bb0e7bd" category="summary">Describe cómo usar Oracle Linux 6.10 con ONTAP</block>
   <block id="3b3051e9028e74cd5ada27ca8f32e352" category="paragraph">Para Oracle Linux 6.10 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. Oracle Linux 6.10 se ha compilado con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP. Para habilitar ALUA Handler, realice los siguientes pasos:</block>
   <block id="00d1a8ad09df702e5b164c26cbd1bc1a" category="paragraph">El sistema operativo Oracle Linux 6.10 se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente.</block>
@@ -1095,7 +1081,6 @@
   <block id="cc04a552b7bd63c26430fa93dd280a82" category="summary">Describe cómo usar Oracle Linux 7.8 con ONTAP</block>
   <block id="16a3fbe78a74d2c0274fa4740e085eed" category="paragraph">Para Oracle Linux (OL) 7.8 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. OL 7.8 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="b277f2029ada9ac25bce475d62557cb4" category="summary">Describe cómo utilizar CentOS 7.9 con ONTAP</block>
-  <block id="266073eadfa1373804ed4272aa64c5e3" category="paragraph">Para CentOS 7.9 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 7.9 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="c1326fec4f12ec093296d507d6b6e33a" category="summary">Describe cómo usar Oracle Linux 8.6 con ONTAP</block>
   <block id="fa491ee178ddf6e96992dad027671112" category="paragraph">Para Oracle Linux (OL) 8.6 la<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. OL 8.6 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="ea11e68a3ea4e3736ee4012985057991" category="paragraph">El sistema operativo Oracle Linux 8.6 se compila para reconocer las LUN ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA.</block>
@@ -1107,9 +1092,7 @@
   <block id="c9bbd6792eac761da84ef7d035e5b41c" category="section-title">El disco duro virtual de Hyper-V requiere una alineación para obtener el mejor rendimiento</block>
   <block id="6ef4ca5514fc3496c82be53f21ea03d2" category="summary">Describe cómo utilizar Red Hat Enterprise Linux 7.3 con ONTAP</block>
   <block id="62d54f77039c15fe0a65691e9ff3f4c2" category="summary">Describe cómo utilizar CentOS 7.5 con ONTAP</block>
-  <block id="6a2c85eca0b58ae9120cd4aa738a6949" category="paragraph">Para CentOS 7.5 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 7.5 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="39e2f887814ee9598f2240638f02ad73" category="summary">Describe cómo utilizar CentOS 8.3 con ONTAP</block>
-  <block id="ef00ac506f369c446209297666bbc1c1" category="paragraph">Para CentOS 8.3 el archivo /etc/multipath.conf debe existir, pero no es necesario realizar cambios específicos en el archivo. CentOS 8.3 se compila con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP.</block>
   <block id="41e7560cde89e1cd58f68637cb85187c" category="summary">Describe cómo utilizar CentOS 7.6 con ONTAP</block>
   <block id="fea59de608f0d3ad102d8ee095187049" category="list-text">Inicie sesión en el host como root.</block>
   <block id="b2d33f0e0e850a2d778dfce3637f0b06" category="paragraph">En el momento en que se preparó esta documentación, se llamó a los archivos comprimidos:</block>
@@ -1645,29 +1628,19 @@
   <block id="30d85838b9488ee908d075559c8978cd" category="doc">Utilice VMware vSphere 8.x con ONTAP</block>
   <block id="7dfa70c3f5b28c905e177a472ecf20d7" category="doc">Utilice Oracle Linux 9,2 con ONTAP</block>
   <block id="6f304d3d0e5b539f0dcbc07ccaadfd0d" category="doc">Utilice Solaris 11,4 con ONTAP</block>
-  <block id="e3e7a0e78514daf4c04889e37e715428" category="doc">Utilice CentOS 8,1 con ONTAP</block>
-  <block id="3f1fd9dbf7a4bd66d068caecb08183c0" category="doc">Utilice CentOS 7,1 con ONTAP</block>
   <block id="92434d9005fca09d1be87854a8eba962" category="doc">Utilice Red Hat Enterprise Linux 6,4 con ONTAP</block>
-  <block id="fa3e4c48ee82eee0fd39bec2969d50e3" category="doc">Utilice CentOS 7,2 con ONTAP</block>
   <block id="5b1dc80fba1c5b1c02a46a705987abf2" category="doc">Utilice Oracle Linux 9,1 con ONTAP</block>
   <block id="a7c0c5734c50dba03d00cc462a49e909" category="doc">Utilice IBM AIX 7,2 o PowerVM (VIOS 3,1) con ONTAP</block>
   <block id="7e0b815f73afb730e7ee19f798970799" category="doc">Utilice Oracle Linux 6,10 con ONTAP</block>
   <block id="3944147aca4bcb3598602ba7abb8ecb6" category="doc">Utilice Red Hat Enterprise Linux 6,9 con ONTAP</block>
   <block id="1a397af520340e4380a5c55e26c5d54d" category="doc">Utilice CentOS 6,7 con ONTAP</block>
   <block id="cc4117db48a5e96b1494712383b1b668" category="doc">Utilice Oracle Linux 6,4 con ONTAP</block>
-  <block id="9aa797d15feccd1c092cc2d63807ff3b" category="doc">Utilice CentOS 7,0 con ONTAP</block>
-  <block id="0d32b2e93ea5b1b8a7aea87d09fdfddc" category="doc">Utilice CentOS 8,3 con ONTAP</block>
   <block id="6088639a5afca847eaa9177590532eea" category="doc">Utilice Oracle Linux 6,9 con ONTAP</block>
   <block id="9c45b061a4c38d17e217a2ae139d53e6" category="doc">Utilice Oracle Linux 7,1 con ONTAP</block>
-  <block id="1b10688ed96bd781bf6b13a4a6ad9df4" category="doc">Utilice CentOS 8,2 con ONTAP</block>
   <block id="f9674046dcea42f7f1b76662f92c73a5" category="doc">Utilice Oracle Linux 7,3 con ONTAP</block>
   <block id="9d82b77b5ad44e26cf2dd2b29f643724" category="doc">Utilice Oracle Linux 8,2 con ONTAP</block>
-  <block id="d434272cc7e38b31b984d576320118d8" category="doc">Utilice CentOS 7,5 con ONTAP</block>
   <block id="3f2293670d4541aec2b54ea60492a51f" category="doc">Utilice Oracle Linux 8,4 con ONTAP</block>
-  <block id="8d160e1e856e62e2daf74128e1ed2215" category="doc">Utilice CentOS 7,9 con ONTAP</block>
   <block id="d8fbd5ac0666d17248d83c1cba75a567" category="doc">Utilice Red Hat Enterprise Linux 6,7 con ONTAP</block>
-  <block id="be7f27b620fb8819aad9996ccaf4b9ce" category="doc">Utilice CentOS 7,8 con ONTAP</block>
-  <block id="b70f79f7541968cba061dec5df01b8ba" category="doc">Utilice CentOS 8,4 con ONTAP</block>
   <block id="1f7d8244b764d5a7c149c4cbfad4c873" category="paragraph">Es posible configurar determinados hosts SAN para el protocolo NVMe over Fabrics (NVMe-oF), que incluye NVMe over Fibre Channel (NVMe/FC) y NVMe over TCP (NVMe/TCP), con ONTAP como destino. Según el sistema operativo del host y la versión de ONTAP, se configuran y validan el protocolo NVMe/FC o NVMe/TCP, o ambos en el host.</block>
   <block id="9ad0749524277f1a9205afc7dc2e9660" category="doc">Utilice Oracle Linux 9,0 con ONTAP</block>
   <block id="8835b0ba3ac161aabc3cdea1abe9d36e" category="doc">Utilice Oracle Linux 7,9 con ONTAP</block>
@@ -1676,11 +1649,9 @@
   <block id="1298fa83c27263623f4780e10072ad20" category="doc">Utilice CentOS 6,9 con ONTAP</block>
   <block id="379f97722abe4a13e4bed62c347317a6" category="doc">Utilice CentOS 6,8 con ONTAP</block>
   <block id="91cbf6680aa73c0fd3805226334a31ec" category="doc">Utilice Red Hat Enterprise Linux 6,5 con ONTAP</block>
-  <block id="c35af07c43ab1d8770afcb3564b17436" category="doc">Utilice CentOS 7,3 con ONTAP</block>
   <block id="94b44acd6321eb98d389648c6d23e87f" category="doc">Utilice CentOS 6,6 con ONTAP</block>
   <block id="76a10186c32ada74e81aa00b639433fa" category="doc">Utilice Oracle Linux 7,5 con ONTAP</block>
   <block id="8081080397baec608d84fd3afffdb29d" category="doc">Utilice CentOS 6,5 con ONTAP</block>
-  <block id="5fef9070d7cec9b1052ec5f805c82203" category="doc">Utilice CentOS 8,0 con ONTAP</block>
   <block id="fcd5a26f819291c5057cf1bf9ba4b0e3" category="doc">Utilice Red Hat Enterprise Linux 6,10 con ONTAP</block>
   <block id="3e537edf35b6854e2685914d33b9835d" category="doc">Utilice Solaris 11,3 con ONTAP</block>
   <block id="136a479cd65c7a7cb09b6cb800da37d1" category="doc">Utilice CentOS 6,10 con ONTAP</block>
@@ -1692,9 +1663,7 @@
   <block id="c2364621e801637244e2e7cbae8837cb" category="doc">Utilice Oracle Linux 8,3 con ONTAP</block>
   <block id="da75d1c0a883e5675fe41c864ecff154" category="doc">Utilice Oracle Linux 8,7 con ONTAP</block>
   <block id="d5c69ee7983a74c7b20cb2b125456c2f" category="doc">Utilice Red Hat Enterprise Linux 6,6 con ONTAP</block>
-  <block id="eaa72704517d543af59911bc5e029612" category="doc">Utilice CentOS 7,6 con ONTAP</block>
   <block id="d55410086bf109e244412e2249b9502d" category="doc">Utilice Oracle Linux 8,1 con ONTAP</block>
-  <block id="06de367c45268820a34c0126836e8b3c" category="doc">Utilice CentOS 8,5 con ONTAP</block>
   <block id="d9cce7ecf669e2c8bb05f82a666a162d" category="doc">Utilice Red Hat Enterprise Linux 6,8 con ONTAP</block>
   <block id="016d8c2c520396c76232c5f9e6b5d55e" category="doc">Utilice Oracle Linux 8,5 con ONTAP</block>
   <block id="f40ff3f9f8b490795a2c37b0ef868d7f" category="doc">Utilice Oracle Linux 7,0 con ONTAP</block>
@@ -1703,11 +1672,9 @@
   <block id="8eac186652ad7bb00e2e352205afba06" category="doc">Utilice Oracle Linux 7,2 con ONTAP</block>
   <block id="3f774282fcdfb6c27b50967041caabfe" category="doc">Utilice CentOS 6,4 con ONTAP</block>
   <block id="4101603df72240eb3cf7ba1a3021306f" category="doc">Utilice Oracle Linux 8,6 con ONTAP</block>
-  <block id="6682bbba7d1d665f82a03aa16687a123" category="doc">Utilice CentOS 7,4 con ONTAP</block>
   <block id="d6f50b679febabd5a029294f3687131d" category="doc">Utilice Oracle Linux 7,4 con ONTAP</block>
   <block id="40db5019ed68654f4eb2cf21ec5021db" category="doc">Utilice VMware vSphere 7.x con ONTAP</block>
   <block id="96c79d6b70b9da95c3236e3cf0b071a3" category="doc">Utilice Oracle Linux 6,7 con ONTAP</block>
-  <block id="d8df57404793785937e9dea6422f0397" category="doc">Utilice CentOS 7,7 con ONTAP</block>
   <block id="47d63174f5a8747823754dbe907413b8" category="doc">Utilice Veritas Infoscale 8 para Linux con ONTAP</block>
   <block id="bb6a1ceb13d5a6a98f1fab62ea2d512f" category="doc">Utilice Oracle Linux 6,6 con ONTAP</block>
   <block id="e880125f3679cf40fd24e55f28d63538" category="doc">Utilice HP-UX 11i v3 con ONTAP</block>
@@ -1967,7 +1934,6 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="504e0c30fb2645a6baa2039125e4db84" category="paragraph">No existen problemas conocidos para la versión Oracle Linux 6,5 con ONTAP.</block>
   <block id="955a8ba1531bb4020623ab18e6949cfc" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 6,5 con ONTAP como destino.</block>
   <block id="bfb861b4de60d3c31c0349baa46c51b3" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar Red Hat Enterprise Linux 6,9 con ONTAP como destino.</block>
-  <block id="3ded60698f2d19fe69e05fe2661a5944" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 7,2 con ONTAP como destino.</block>
   <block id="7f3cd8ca9b188ba04b39e8260b58d5c0" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 6,7 con ONTAP como destino.</block>
   <block id="f6b1759ad7072aeed9f9cf3348794762" category="paragraph">No existen problemas conocidos para la versión Oracle Linux 6,7 con ONTAP.</block>
   <block id="bb567628e15358e56e9d494de915bd76" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 7,7 con ONTAP como destino.</block>
@@ -1976,23 +1942,17 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="12ad5d1ab65dc516a74a9b12db0d378f" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar Red Hat Enterprise Linux 6,10 con ONTAP como destino.</block>
   <block id="7e4c0abc516ebedb9b9f87be4f90f942" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 8,0 con ONTAP como destino.</block>
   <block id="a18067179cc6f4b287b23e7ffc267699" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 8,2 con ONTAP como destino.</block>
-  <block id="dc7453510a20a3aba420e5bb6f2f2431" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 7,0 con ONTAP como destino.</block>
-  <block id="5da66eda92e4d71f2505e5b7fa30a462" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 8,3 con ONTAP como destino.</block>
   <block id="8b6f606a4a301b4a1363fb06464ce09b" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 9,1 con ONTAP como destino.</block>
   <block id="5c8d07800729066248b4d2f58721995e" category="paragraph">Puede utilizar las opciones de configuración del host SAN de ONTAP para configurar Solaris 11,3 con ONTAP como destino.</block>
   <block id="ee6bccd9d4e5eb1093b1f5f3b0d86e7c" category="paragraph">La versión Solaris 11,3 con ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="63c403d14d322331797607900fd879e1" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 8,0 con ONTAP como destino.</block>
   <block id="cbda152ea4d3b0dbc23c508508e1de79" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar Red Hat Enterprise Linux 6,6 con ONTAP como destino.</block>
   <block id="5b88a090e813de0c838f7197c24a3c75" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 6,9 con ONTAP como destino.</block>
-  <block id="9accabc78cb81d6e8bcf1d9967acacbf" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 7,5 con ONTAP como destino.</block>
-  <block id="b3ee07d53ba0c1669d4fce99f84b1058" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 8,4 con ONTAP como destino.</block>
   <block id="c145abd6fbb348ce5e5f456ac88aabe3" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 8,1 con ONTAP como destino.</block>
   <block id="9ce087c89f930ecdafc9ed9c4ed0e415" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 8,5 con ONTAP como destino.</block>
   <block id="89803e3bc17feeb475170d3dcd320e4e" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 6,10 con ONTAP como destino.</block>
   <block id="9181955b285c10325d97f8ef33d5784c" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar IBM AIX 7,1 con ONTAP como destino.</block>
   <block id="92ecdf60dd5c6225e905e0a3eea885da" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 6,4 con ONTAP como destino.</block>
   <block id="0938dfec19dd45c8a6f64aa8b0b1eda4" category="paragraph">La versión Oracle Linux 6,4 con ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="242a33ec67b3633a46ebb3d495719e0e" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 7,1 con ONTAP como destino.</block>
   <block id="3998e195af175a67287a554b2d04b426" category="paragraph">No existen problemas conocidos para el lanzamiento de Veritas Infoscale 7 para Linux con ONTAP.</block>
   <block id="9a54de79abf75dfa58e891711132c192" category="paragraph">No existen problemas conocidos para la versión de Windows Server 2019 con ONTAP.</block>
   <block id="2c28f13d66417467433a2437f55ea117" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 7,0 con ONTAP como destino.</block>
@@ -2003,33 +1963,24 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="6963533acedb1b8942f9674f67500cd3" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 6,8 con ONTAP como destino.</block>
   <block id="4af84170930f2b57214e727fee146131" category="paragraph">No existen problemas conocidos para la versión Oracle Linux 6,8 con ONTAP.</block>
   <block id="81d8fbe509061464d769a1e77f746158" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 7,5 con ONTAP como destino.</block>
-  <block id="bfe142f7b4caf4627f38b989434ef047" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 7,4 con ONTAP como destino.</block>
-  <block id="3269c3a8d5595f9f8362bc075d20beb5" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 8,2 con ONTAP como destino.</block>
   <block id="bd845f14007e127fad3aff7bfc9999ca" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 8,3 con ONTAP como destino.</block>
-  <block id="3816c212b0eb5454dfe79acdd4bc2097" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 7,3 con ONTAP como destino.</block>
   <block id="0eb65f1785cb89eb886adbf9059ea5f7" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 6,7 con ONTAP como destino.</block>
-  <block id="7aee7eabeab0c390aa3cf824293b0484" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 7,8 con ONTAP como destino.</block>
-  <block id="fb1a4209dda3b7b98180fd7748a768e1" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 7,9 con ONTAP como destino.</block>
   <block id="a13006b9ebf1ba115456ee81fff754af" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar Red Hat Enterprise Linux 6,7 con ONTAP como destino.</block>
   <block id="f55878d5db78235140cd87e36b5e1afc" category="paragraph">La versión de VMware vSphere 8.x con ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="ce3a5b68105f43a3d184859ea230ccb6" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 8,5 con ONTAP como destino.</block>
   <block id="7d19e2b29f5e9464257914203cd8e401" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 8,6 con ONTAP como destino.</block>
   <block id="e03ce41b558f38979d0e0d140a375ebd" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar Red Hat Enterprise Linux 6,4 con ONTAP como destino.</block>
   <block id="367978ec29f45d00d1f34cb9df274d1f" category="paragraph">La versión de VMware vSphere 6,5 y 6,7 con ONTAP tiene los siguientes problemas conocidos:</block>
   <block id="b16452e3905ac336b68babc6fa562702" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 6,9 con ONTAP como destino.</block>
   <block id="a69f90991b7861bf298029c85947f926" category="paragraph">La versión Oracle Linux 6,9 con ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="32f983e932979a82cacf8c693f94492b" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 7,7 con ONTAP como destino.</block>
   <block id="95ee459b709d0e4cae7ea12ed33763f9" category="paragraph">No existen problemas conocidos para la versión SUSE Linux Enterprise Server 15 SP4 con ONTAP.</block>
   <block id="0d3d494fc08d768af320e003868e2ebc" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar HP-UX 11i v3 con ONTAP como destino.</block>
   <block id="e044107e01e9d98146984293fe495b49" category="paragraph">La versión HP-UX 11i v3 con ONTAP tiene los siguientes problemas conocidos:</block>
   <block id="1bc24cef68b137efe0e69c2b269dd7da" category="paragraph">No existen problemas conocidos para el lanzamiento de Veritas Infoscale 8 para Linux con ONTAP.</block>
   <block id="b6fc8a1131387d49545ad25502f3755d" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 7,4 con ONTAP como destino.</block>
   <block id="b0bf50be291cb2b8862c1b77bb1e9964" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 8,8 con ONTAP como destino.</block>
-  <block id="6415eba99ca625a70b9bced0f8464f58" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 7,6 con ONTAP como destino.</block>
   <block id="cdf4bf81cf3ee1a54f731160152019cf" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 7,2 con ONTAP como destino.</block>
   <block id="7145b773c01d1ea2262969c3644747a0" category="paragraph">No existen problemas conocidos para la versión de Windows Server 2022 con ONTAP.</block>
   <block id="57175c72c9ec2223e90f7a6f933b0c1b" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 7,6 con ONTAP como destino.</block>
-  <block id="23e8ad4d32c5f707280dc61ecce90740" category="paragraph">Puede utilizar los ajustes de configuración del host SAN de ONTAP para configurar CentOS 8,1 con ONTAP como destino.</block>
   <block id="3d8d5b2f05311b66754ca058971f7e2e" category="paragraph">No existen problemas conocidos para la versión SUSE Linux Enterprise Server 15 SP5 con ONTAP.</block>
   <block id="30b87f3af4543974205ca57666930631" category="paragraph">No existen problemas conocidos para la versión de Veritas Storage Foundation 6 para Linux con ONTAP.</block>
   <block id="ee0e00ac8a597d343ecf7da72dd6effd" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Oracle Linux 6,10 con ONTAP como destino.</block>
@@ -2561,20 +2512,6 @@ Para obtener información adicional y los cambios recomendados en la configuraci
   <block id="2405d152712524b9eb2f91ba3cd97f49" category="section-title">Habilite el arranque SAN</block>
   <block id="2a634c51087efc0e309e1895650a5114" category="paragraph">Para Oracle Linux 8,10, el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> archivo debe existir. No es necesario realizar cambios en este archivo porque Oracle Linux 8,10 se compila con la configuración necesaria para reconocer y gestionar correctamente los LUN de ONTAP.</block>
   <block id="450fcbe6c767b89b676ae3dec1072a60" category="paragraph">El sistema operativo Oracle Linux 8,10 se compila para reconocer los LUN de ONTAP y definir automáticamente los parámetros de configuración correctos para las configuraciones ASA y no ASA. Además, se pueden utilizar las siguientes recomendaciones para optimizar aún más el rendimiento de la configuración del host:</block>
-  <block id="1db009b08f23bec4e810fc14d2f20bca" category="paragraph">El sistema operativo CentOS 7,0 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
-  <block id="aca52a82faf017f6d70577c936319709" category="paragraph">El sistema operativo CentOS 7,1 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
-  <block id="b98e351a0278e9569a03513cb6e6f6ec" category="paragraph">El sistema operativo CentOS 7,2 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
-  <block id="47f4d38fb8224c7e02d93d52af3194b3" category="paragraph">El sistema operativo CentOS 7,3 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
-  <block id="38ada56b388b649318ff10c81857eadf" category="paragraph">El sistema operativo CentOS 7,4 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
-  <block id="d68b905f63c4626266558b66abf8c378" category="paragraph">El sistema operativo CentOS 7,5 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
-  <block id="44c7ecde1a9cf0f344f47e1fa40d5cd7" category="paragraph">El sistema operativo CentOS 7,6 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
-  <block id="71f4d77a1d17eb72114dca53b1802580" category="paragraph">El sistema operativo CentOS 7,7 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
-  <block id="2309b585e56dad44f3e82c55610a3bfc" category="paragraph">El sistema operativo CentOS 7,8 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
-  <block id="e470be7ba8749f50daf08d539424f343" category="paragraph">El sistema operativo CentOS 7,9 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
-  <block id="9c3a0d48eca76abf8282b4db4c654316" category="paragraph">El sistema operativo CentOS 8,0 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
-  <block id="b2fc039cebee1d0ae7654ef76d80ac20" category="paragraph">El sistema operativo CentOS 8,1 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
-  <block id="7ec0f488c07d7a642e2940476ee4ce94" category="paragraph">CentOS 8.2 OS se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
-  <block id="5752a4de533f23b8df7e923cec0672b9" category="paragraph">El sistema operativo CentOS 8,3 se compila para reconocer los LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para la configuración ASA y no ASA. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
   <block id="69ba8a9dba275c5475a9649a889e095c" category="paragraph">El sistema operativo Oracle Linux 7,2 se compila para reconocer los LUN de ONTAP y definir automáticamente todos los parámetros de configuración correctamente. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
   <block id="bba209ce867661e3a4b098c50c4ae891" category="paragraph">El sistema operativo Oracle Linux 7,3 se compila para reconocer los LUN de ONTAP y definir automáticamente todos los parámetros de configuración correctamente. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
   <block id="c28f46756cfeb28aa3236603ffeabd59" category="paragraph">El sistema operativo Oracle Linux 7,4 se compila para reconocer los LUN de ONTAP y definir automáticamente todos los parámetros de configuración correctamente. <block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
@@ -2678,26 +2615,10 @@ Para obtener información adicional y los cambios recomendados en la configuraci
   <block id="9d2a87ba78cec8237c139f77ffb44261" category="paragraph">Para ver problemas conocidos de CentOS (kernel compatible con Red Hat), consulte <block ref="fd679b4991af24edfd6d66f5cbc5db76" category="inline-link-macro-rx"></block>para Red Hat Enterprise Linux (RHEL) 6,7.</block>
   <block id="1d153902c02cd7301318e3e1be83184a" category="paragraph">Para ver problemas conocidos de CentOS (kernel compatible con Red Hat), consulte <block ref="7703b3b38de881e061b6dbcbbcaf9f81" category="inline-link-macro-rx"></block>para Red Hat Enterprise Linux (RHEL) 6,8.</block>
   <block id="9c5b436e1bb8a6899180fe9890e5395b" category="paragraph">Para ver problemas conocidos de CentOS (kernel compatible con Red Hat), consulte <block ref="6381fe6a72f9bd9f067a0ec390d2a8fb" category="inline-link-macro-rx"></block>para Red Hat Enterprise Linux (RHEL) 6,9.</block>
-  <block id="70d8388968a3a11604bb39f33f659b12" category="paragraph">No existen problemas conocidos para la versión CentOS 7,0 con ONTAP.</block>
-  <block id="851e86338d86c905fc29f8ecedbd0b2f" category="paragraph">No existen problemas conocidos para la versión CentOS 7,1 con ONTAP.</block>
-  <block id="def5d7178ce6eb1ac3496c404892e8dc" category="paragraph">No existen problemas conocidos para la versión CentOS 7,2 con ONTAP.</block>
-  <block id="7feb2b1450534db8c446c0f70860b69a" category="paragraph">No existen problemas conocidos para la versión CentOS 7,3 con ONTAP.</block>
-  <block id="082ff273f4446479932be5f51cf8433b" category="paragraph">La versión CentOS 7,4 con ONTAP tiene los siguientes problemas conocidos:</block>
   <block id="0d22c29a0eb01e70e085a44916b321b4" category="cell">1440718</block>
   <block id="2a80f8446aa4a429e9f97920b1e74d2c" category="cell">Si se desasigna o se asigna una LUN sin realizar una detección repetida de SCSI, es posible que se dañen los datos del host.</block>
   <block id="432a6b98702aceeda0bf1a325e31bcf4" category="inline-link-macro">Base de conocimientos de NetApp: Daño en el sistema de archivos del LUN de iSCSI en Oracle Linux 7</block>
   <block id="0317854ad5c788fd489e5dfe652c06cd" category="cell">Cuando se establece el parámetro de configuración multivía "disable_change_wwids" en SÍ, se deshabilita el acceso al dispositivo de ruta en caso de que se produzca un cambio WWID. El acceso multivía deshabilitará el acceso al dispositivo de ruta hasta que el WWID de la ruta se restaure al WWID del dispositivo multivía. Para obtener más información, consulte <block ref="5e3e42b5c40ab78809e1bb63eb29a681" category="inline-link-macro-rx"></block>.</block>
-  <block id="315cfe7e8975ed230363b922955d221b" category="paragraph">La versión CentOS 7,5 con ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="0b3c2391c446a11bbd0c66a38ea6904b" category="paragraph">La versión CentOS 7,6 con ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="80a7e1a7a3dc1fb6bca0ae027c3516e0" category="paragraph">La versión CentOS 7,7 con ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="e5531573dc40c61302ff8ed6b99bde7d" category="paragraph">La versión CentOS 7,8 con ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="68259199df7fde5545f7ab7628a2628b" category="paragraph">La versión CentOS 7,9 con ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="16c8f9caff89a168a424e7f5ade0f822" category="paragraph">Para ver problemas conocidos de CentOS (kernel compatible con Red Hat), consulte <block ref="13be8945161aaeca52d4e4a694080916" category="inline-link-macro-rx"></block>para Red Hat Enterprise Linux (RHEL) 8,0.</block>
-  <block id="4ed487db5845a58ae6349ab5f8fcc335" category="paragraph">Para ver problemas conocidos de CentOS (kernel compatible con Red Hat), consulte <block ref="028e50bd59e6088e4c25abc993c5b456" category="inline-link-macro-rx"></block>para Red Hat Enterprise Linux (RHEL) 8,1.</block>
-  <block id="f1beda93cf92219b8b55ae973eac7daa" category="paragraph">Para ver problemas conocidos de CentOS (kernel compatible con Red Hat), consulte <block ref="840d5abfe44b15b4222ea5c534ce82a9" category="inline-link-macro-rx"></block>para Red Hat Enterprise Linux (RHEL) 8,2.</block>
-  <block id="cdaab392c5ef9c222bc95dc907be230b" category="paragraph">Para ver problemas conocidos de CentOS (kernel compatible con Red Hat), consulte <block ref="3c7f0100e93cbb394731ee7d8982c161" category="inline-link-macro-rx"></block>para Red Hat Enterprise Linux (RHEL) 8,3.</block>
-  <block id="294f49673136bab1fa20a2da73fdee21" category="paragraph">No existen problemas conocidos para la versión CentOS 8,4 con ONTAP.</block>
-  <block id="4ecf9d7a3a8c52cfa00d399121a8eda8" category="paragraph">No hay problemas conocidos para la versión CentOS 8,5 con ONTAP.</block>
   <block id="b85d15d2a4c68e31e07d28311d3bc5de" category="paragraph">La versión Oracle Linux 7,0 con ONTAP tiene los siguientes problemas conocidos:</block>
   <block id="141ad1ff5cf1058b78e7b327d5363940" category="inline-link-macro">901558</block>
   <block id="36449de1465a8388d5bd6898a3ae93a1" category="cell"><block ref="7ace244e7f60745da9174ac22c242ea9" category="inline-link-macro-rx"></block></block>
@@ -3431,9 +3352,6 @@ Para obtener información adicional y los cambios recomendados en la configuraci
   <block id="80b9911e09d9f3eb39dbe09b75455ac6" category="doc">Paso 1: Opcionalmente, habilite el arranque SAN</block>
   <block id="b5001831a2a08c443a8119b646510728" category="paragraph">Puede configurar su host para que utilice el arranque SAN y simplificar la puesta en marcha y mejorar la escalabilidad.</block>
   <block id="dce866209e2bc36ca1c5f888ee01dfed" category="paragraph">Utilice <block ref="1ed2ba1980a264d01ab3597cde177180" category="inline-link-macro-rx"></block> para verificar que el sistema operativo Linux, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admiten el arranque SAN.</block>
-  <block id="312edc66ed28db260a115f02ffbc96c6" category="list-text">Cree un LUN de inicio SAN y asígnelo al host.</block>
-  <block id="4906f544b7a764889e992fe4877ad659" category="inline-link">Aprovisione el almacenamiento SAN</block>
-  <block id="06e593258c5ef7163e03bae381c155bf" category="paragraph">Consulte<block ref="b3a16b4be4ceee44fbb57b07c0ed925f" category="inline-link-rx"></block>.</block>
   <block id="29040b31622814fd9a85249553b75039" category="list-text">Compruebe que la configuración se haya realizado correctamente. Para ello, reinicie el host y verifique que el sistema operativo esté activo y en ejecución.</block>
   <block id="c5bf0e4109271560189b47082ba7e28e" category="paragraph">Para garantizar que el acceso multivía esté configurado correctamente para el host, verifique que el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> archivo esté definido y que los ajustes recomendados de NetApp estén configurados para los LUN de ONTAP.</block>
   <block id="c201654eb19fc1c9aff1f621692fcdea" category="list-text">Compruebe que el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> archivo existe:</block>
@@ -3984,4 +3902,66 @@ Para obtener información adicional y los cambios recomendados en la configuraci
   <block id="074720cb7866529cf5ec3aad61198ac4" category="sidebar">Rocky Linux 8</block>
   <block id="32abbb92208e586e49dce3e4e69b53e5" category="sidebar">RL-8-FCP</block>
   <block id="004d94776b28ba1f02680460dac43cc0" category="sidebar">NVMeoF Rocky Linux</block>
+  <block id="d2e384028f122a3391609393d4a2635e" category="doc">Configurar CentOS 7.0 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="b7f92a2c197778c06a0c90dd30058b43" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 7.0, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="cf6c05052f2b786c1482bf0ffeb8248b" category="paragraph">Puede utilizar rutas múltiples con CentOS 7.0 para administrar LUN de ONTAP.</block>
+  <block id="fc6c6adaa6932ae9bb4f8523a5b96422" category="doc">Configurar CentOS 7.1 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="ea41040fff9210213568690e103c3c6e" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 7.1, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="a9bfc717cd75f388ea17d7c53039b003" category="paragraph">Puede utilizar rutas múltiples con CentOS 7.1 para administrar LUN de ONTAP.</block>
+  <block id="68376c8c22b8540972d010862788d0de" category="doc">Configurar CentOS 7.2 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="ebd6c56e2fb22c7365a110a4400b3e3f" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 7.2, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="4191601859d7a234ecfdd809ef7254bb" category="paragraph">Puede utilizar rutas múltiples con CentOS 7.2 para administrar LUN de ONTAP.</block>
+  <block id="05358af870772ebc5bef63e897bf4728" category="doc">Configurar CentOS 7.3 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="d6e10fed24d6d29ec85417923159b76c" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 7.3, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="bf681187bcb154b7112f409c33a82e6b" category="paragraph">Puede utilizar rutas múltiples con CentOS 7.3 para administrar LUN de ONTAP.</block>
+  <block id="148f54232f880f3d83186a7514ed656f" category="doc">Configurar CentOS 7.4 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="f50c262e25e0e28408113badfd06b284" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 7.4, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="d09d2873256392ae23e2087af611ab7a" category="paragraph">Puede utilizar rutas múltiples con CentOS 7.4 para administrar LUN de ONTAP.</block>
+  <block id="045d005cf748f8868a4f799190dfe35c" category="paragraph">El host CentOS 7.4 con almacenamiento ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="da0f0cee5b5902b87e8d61311b7de818" category="doc">Configurar CentOS 7.5 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="e365476a27f4c1bc73f093801313c93d" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 7.5, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="4cabc1b52c28cb613dc6d5c3aad5095c" category="paragraph">Puede utilizar rutas múltiples con CentOS 7.5 para administrar LUN de ONTAP.</block>
+  <block id="41c7f526069561bd962e7e0a3c3b5e09" category="paragraph">El host CentOS 7.5 con almacenamiento ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="6b9edcecd50c44b4970d4b47ebf5c742" category="doc">Configurar CentOS 7.6 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="8939d632c326d668740c43e490bd0c9a" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 7.6, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="e7d64eb1a737f3e4da5c41c38bf8989e" category="paragraph">Puede utilizar rutas múltiples con CentOS 7.6 para administrar LUN de ONTAP.</block>
+  <block id="30a13201fd2baa06af07321cd1ab5581" category="paragraph">El host CentOS 7.6 con almacenamiento ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="67964124758fa8a3c37a596b2384f957" category="doc">Configurar CentOS 7.7 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="d6079b971eb4ab429e173a6d260758d3" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 7.7, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="a2d4e9d1c3726a1ed3c8c8deca6e9739" category="paragraph">Puede utilizar rutas múltiples con CentOS 7.7 para administrar LUN de ONTAP.</block>
+  <block id="8fa46090515c1e239e7e30c63a10fd69" category="paragraph">El host CentOS 7.7 con almacenamiento ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="9ea80965b906e6221845b8f95917ee00" category="doc">Configurar CentOS 7.8 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="0f85f6e230aeea13b9179c9e79ef143b" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 7.8, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="181b93d51397aeac0aa45c182b1538f6" category="paragraph">Puede utilizar rutas múltiples con CentOS 7.8 para administrar LUN de ONTAP.</block>
+  <block id="d08ccdb6faf142d94c2ef003531659ad" category="paragraph">El host CentOS 7.8 con almacenamiento ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="4984519991a90ef8109bebcddb1ef4a1" category="doc">Configurar CentOS 7.9 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="424fbbe58d081fac8928ddb2baa0049a" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 7.9, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="4884d9c0ac331c0961ce8e16922aa141" category="paragraph">Puede utilizar rutas múltiples con CentOS 7.9 para administrar LUN de ONTAP.</block>
+  <block id="e85e8ae42253cb29511a2226b89895d8" category="paragraph">El host CentOS 7.9 con almacenamiento ONTAP tiene los siguientes problemas conocidos:</block>
+  <block id="67fe770b4e5ec363d5b444f0a42400c2" category="doc">Configurar CentOS 8.0 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="593e47ca359b07667f8c8082996de465" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 8.0, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="f38c7afa5f1fae5f3c81c03486c5c344" category="paragraph">Puede utilizar rutas múltiples con CentOS 8.0 para administrar LUN de ONTAP.</block>
+  <block id="59ea615947a2020a6db99a2d73a8168d" category="paragraph">No hay problemas conocidos para CentOS 8.0 para FCP e iSCSI con almacenamiento ONTAP.</block>
+  <block id="992b0745667f7e03e6212332aaa1a053" category="paragraph">Para conocer los problemas conocidos del kernel compatible con CentOS Red Hat, consulte <block ref="13be8945161aaeca52d4e4a694080916" category="inline-link-macro-rx"></block> para Red Hat Enterprise Linux (RHEL) 8.0.</block>
+  <block id="9cfa8186483ff450023200a05da37267" category="doc">Configurar CentOS 8.1 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="cdacdfbbaee0210b6811d1ebe4dfa607" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 8.1, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="b4426f8f1f811f0295e0ea075a55bdfc" category="paragraph">Puede utilizar rutas múltiples con CentOS 8.1 para administrar LUN de ONTAP.</block>
+  <block id="a92e4863e842960763753ee0623a3ec7" category="paragraph">No hay problemas conocidos para CentOS 8.1 para FCP e iSCSI con almacenamiento ONTAP.</block>
+  <block id="5fba6fb979e49186d9e32d97656b6f30" category="paragraph">Para conocer los problemas conocidos del kernel compatible con CentOS Red Hat, consulte <block ref="028e50bd59e6088e4c25abc993c5b456" category="inline-link-macro-rx"></block> para Red Hat Enterprise Linux (RHEL) 8.1.</block>
+  <block id="b172ee9e291293e67be5403167362055" category="doc">Configurar CentOS 8.2 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="ca4cc088e6a5ddd41a0523eb74c25c28" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 8.2, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="c89ef9efe1f9164958e5c1e01640f08e" category="paragraph">Puede utilizar rutas múltiples con CentOS 8.2 para administrar LUN de ONTAP.</block>
+  <block id="b238747cf8ec0ee5148c9cc373085bd4" category="paragraph">No hay problemas conocidos para CentOS 8.2 para FCP e iSCSI con almacenamiento ONTAP.</block>
+  <block id="6a30496b8d4d20c682c6bae2fa331205" category="paragraph">Para conocer los problemas conocidos del kernel compatible con CentOS Red Hat, consulte <block ref="840d5abfe44b15b4222ea5c534ce82a9" category="inline-link-macro-rx"></block> para Red Hat Enterprise Linux (RHEL) 8.2.</block>
+  <block id="46eac72545de48bc29ab8e760d07d946" category="doc">Configurar CentOS 8.3 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="ff6dc31606f5c670f3fc3f4d9664e2b3" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 8.3, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="d541665cad3a72efaff542f26600afbe" category="paragraph">Puede utilizar rutas múltiples con CentOS 8.3 para administrar LUN de ONTAP.</block>
+  <block id="4f32092493e839d18510a94dbab55c30" category="paragraph">No hay problemas conocidos para CentOS 8.3 para FCP e iSCSI con almacenamiento ONTAP.</block>
+  <block id="6e6e182611ac0bf525073fea056f339e" category="paragraph">Para conocer los problemas conocidos del kernel compatible con CentOS Red Hat, consulte <block ref="3c7f0100e93cbb394731ee7d8982c161" category="inline-link-macro-rx"></block> para Red Hat Enterprise Linux (RHEL) 8.3.</block>
+  <block id="bb3e38cea1c1be488bdf74187ab980f9" category="doc">Configurar CentOS 8.4 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="b9312ab92841fb9e83f2ac8bae8aa0c5" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 8.4, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="62fb36c811aaf23e2eba1001dffff7d1" category="paragraph">Puede utilizar rutas múltiples con CentOS 8.4 para administrar LUN de ONTAP.</block>
+  <block id="e02248ab51c300e9606fb5813ed1ca78" category="doc">Configurar CentOS 8.5 para FCP e iSCSI para almacenamiento ONTAP</block>
+  <block id="9a9d47d430bc0ccaf329d88297d4948c" category="paragraph">El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Cuando instala las utilidades de host de Linux en un host CentOS 8.5, puede usarlas para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.</block>
+  <block id="67280eacf99cd3591c58a61aba24967f" category="paragraph">Puede utilizar rutas múltiples con CentOS 8.5 para administrar LUN de ONTAP.</block>
 </blocks>
