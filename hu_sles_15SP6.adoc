@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_sles_15SP6.html 
 keywords: host utilities, suse linux enterprise server 15 sp6, suse, linux, 15 sp6, netapp, ontap, fcp, iscsi 
-summary: Instale las utilidades de host de Linux en SUSE Linux Enterprise Server 15 SP6 para gestionar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP. 
+summary: Instale Linux Host Utilities en un SUSE Linux Enterprise Server 15 SP6 para administrar operaciones de protocolo FCP e iSCSI con LUN de ONTAP. 
 ---
 = Configure SUSE Linux Enterprise Server 15 SP6 para FCP e iSCSI con almacenamiento ONTAP
 :hardbreaks:
@@ -249,6 +249,9 @@ CAUTION: No debe anular la configuración de parámetros recomendada para las LU
 
 El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este ejemplo, el `multipath.conf` archivo define valores para `path_checker` y `no_path_retry` que no son compatibles con LUN de ONTAP, y no puede quitar estos parámetros porque las cabinas de almacenamiento ONTAP siguen conectadas al host. En su lugar, corrija los valores para `path_checker` y `no_path_retry` agregando una estrofa de dispositivo al `multipath.conf` archivo que se aplica específicamente a los LUN de ONTAP.
 
+.Muestra el ejemplo
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 defaults {
@@ -265,6 +268,7 @@ devices {
    }
 }
 ----
+====
 
 
 == Paso 6: Revise los problemas conocidos

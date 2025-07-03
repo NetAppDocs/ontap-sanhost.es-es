@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_rhel_95.html 
 keywords: host utilities, red hat, rhel, linux, 9.5, netapp, ontap, rhel 
-summary: Instale Linux Host Utilities en un host de RHEL 9,5 para gestionar las operaciones del protocolo FCP e iSCSI con LUN de ONTAP. 
+summary: Instale Linux Host Utilities en un host RHEL 9.5 para administrar operaciones de protocolo FCP e iSCSI con LUN de ONTAP. 
 ---
 = Configurar RHEL 9,5 para FCP e iSCSI con almacenamiento de ONTAP
 :hardbreaks:
@@ -162,6 +162,9 @@ En el siguiente ejemplo, se muestran los ajustes de parámetros y el estado de l
 --
 Una configuración de ASA optimiza todas las rutas a una LUN determinada para mantenerlas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
+.Muestra el ejemplo
+[%collapsible]
+=====
 [listing]
 ----
 multipath -ll
@@ -173,6 +176,7 @@ size=180G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
   |- 14:0:3:0  sdar 66:176 active ready running
   `- 17:0:3:0  sdch 69:80  active ready running
 ----
+=====
 --
 .Configuración de AFF o FAS
 --
@@ -180,6 +184,9 @@ Una configuración de AFF o FAS debe tener dos grupos de rutas con prioridades s
 
 En el siguiente ejemplo, se muestra el resultado de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizada:
 
+.Muestra el ejemplo
+[%collapsible]
+=====
 [listing]
 ----
 multipath -ll
@@ -192,6 +199,7 @@ size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
   |- 10:0:1:0  sdc  8:32   active ready running
   `- 16:0:2:0  sdcf 69:48  active ready running
 ----
+=====
 --
 ====
 

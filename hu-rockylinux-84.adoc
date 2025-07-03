@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu-rockylinux-84.html 
 keywords: host utilities, rocky, linux, 8.4, netapp, ontap, fcp, iscsi 
-summary: Instale las utilidades de host de Linux en un host Rocky Linux 8.4 para administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP. 
+summary: Instale Linux Host Utilities en un host Rocky Linux 8.4 para administrar operaciones de protocolo FCP e iSCSI con LUN de ONTAP. 
 ---
 = Configurar Rocky Linux 8.4 para FCP e iSCSI con almacenamiento ONTAP
 :hardbreaks:
@@ -16,7 +16,7 @@ summary: Instale las utilidades de host de Linux en un host Rocky Linux 8.4 para
 
 
 [role="lead"]
-El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Al instalar las utilidades de host de Linux en un host Rocky Linux 8.4, puede usar las utilidades de host para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.
+El software de utilidades de host Linux proporciona herramientas de gestión y diagnóstico para hosts Linux que se conectan al almacenamiento de ONTAP. Al instalar Linux Host Utilities en un host Rocky Linux 8.4, puede usar las Host Utilities para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP.
 
 
 NOTE: No es necesario configurar ajustes de máquina virtual basada en kernel (KVM) porque los LUN de ONTAP se asignan automáticamente al hipervisor de KVM.
