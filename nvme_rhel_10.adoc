@@ -25,12 +25,11 @@ Puede utilizar la siguiente compatibilidad y funciones con la configuración de 
 +
 ** Compatibilidad con NVMe sobre TCP (NVMe/TCP), además de NVMe sobre Fibre Channel (NVMe/FC). El complemento NetApp del paquete nativo `nvme-cli` muestra detalles de ONTAP para espacios de nombres NVMe/FC y NVMe/TCP.
 ** Ejecutando tráfico NVMe y SCSI en el mismo host. Por ejemplo, puede configurar dm-multipath para dispositivos mpath SCSI para LUN SCSI y usar NVMe multipath para configurar dispositivos de espacio de nombres NVMe-oF en el host.
-** Compatibilidad para arranque SAN usando el protocolo NVMe/FC.
 ** A partir de ONTAP 9.12.1, se incorpora la compatibilidad con la autenticación segura en banda para NVMe/TCP. Puede usar la autenticación segura en banda para NVMe/TCP con RHEL 10.
+
+
 +
 Si quiere más información sobre las configuraciones compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
-
-
 
 * Características disponibles:
 +
@@ -39,7 +38,7 @@ Si quiere más información sobre las configuraciones compatibles, consulte la l
 
 * Limitaciones conocidas:
 +
-** Evite emitir el  `nvme disconnect-all` comando en sistemas que arrancan desde SAN a través de espacios de nombres NVMe-TCP o NVMe-FC, ya que desconecta los sistemas de archivos raíz y de datos y puede generar inestabilidad en el sistema.
+** Evite emitir el  `nvme disconnect-all` comando en sistemas que arrancan desde SAN a través de espacios de nombres NVMe-TCP o NVMe-FC porque desconecta los sistemas de archivos raíz y de datos y podría generar inestabilidad en el sistema.
 
 
 
@@ -388,7 +387,9 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 == Paso 5: Verificar los servicios de arranque NVMe
 
-Con RHEL 10, el  `nvmefc-boot-connections.service` y  `nvmf-autoconnect.service` Servicios de arranque incluidos en NVMe/FC  `nvme-cli` Los paquetes se habilitan automáticamente al iniciar el sistema. Una vez finalizado el arranque, verifique que los servicios estén habilitados.
+Con RHEL 10, el  `nvmefc-boot-connections.service` y  `nvmf-autoconnect.service` Servicios de arranque incluidos en NVMe/FC  `nvme-cli` Los paquetes se habilitan automáticamente al iniciar el sistema.
+
+Una vez finalizado el arranque, verifique que  `nvmefc-boot-connections.service` y  `nvmf-autoconnect.service` Los servicios de arranque están habilitados.
 
 .Pasos
 . Compruebe que `nvmf-autoconnect.service` está activado:
@@ -587,9 +588,16 @@ nvme	connect-all	-t	tcp	-w	192.168.21.1	-a	192.168.21.21
 ====
 
 
+[NOTE]
+====
+A partir de RHEL 9.4, la configuración para NVMe/TCP  `ctrl_loss_tmo timeout` se establece automáticamente en "apagado". Como resultado:
 
-NOTE: A partir de RHEL 9,5, la configuración predeterminada del tiempo de espera de NVMe/TCP `ctrl_loss_tmo` está desactivada. Esto significa que no hay límite en el número de reintentos (reintento indefinido). Por lo tanto, no es necesario configurar manualmente una duración de tiempo de espera específica `ctrl_loss_tmo` cuando se utilizan los `nvme connect` comandos o `nvme connect-all` (opción -l ). Gracias a este comportamiento predeterminado, las controladoras NVMe/TCP no experimentan tiempos de espera en caso de un fallo de ruta y permanecen conectadas indefinidamente.
+* No hay límites en el número de reintentos (reintento indefinido).
+* No es necesario configurar manualmente un elemento específico.  `ctrl_loss_tmo timeout` Duración al utilizar el  `nvme connect` o  `nvme connect-all` comandos (opción -l ).
+* Los controladores NVMe/TCP no experimentan tiempos de espera en caso de una falla de ruta y permanecen conectados indefinidamente.
 
+
+====
 
 
 == Paso 7: Validar NVMe-oF

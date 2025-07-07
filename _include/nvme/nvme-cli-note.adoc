@@ -1,0 +1,6 @@
+= 
+:allow-uri-read: 
+
+
+
+NOTE: La NetApp  `sanlun` La utilidad de host no es compatible con NVMe-oF. En su lugar, puede usar el complemento de NetApp incluido en el entorno nativo.  `nvme-cli` para todos los transportes NVMe-oF.

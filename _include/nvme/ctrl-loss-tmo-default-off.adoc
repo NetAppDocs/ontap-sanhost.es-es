@@ -1,0 +1,8 @@
+= 
+:allow-uri-read: 
+
+
+* No hay límites en el número de reintentos (reintento indefinido).
+* No es necesario configurar manualmente un elemento específico.  `ctrl_loss_tmo timeout` Duración al utilizar el  `nvme connect` o  `nvme connect-all` comandos (opción -l ).
+* Los controladores NVMe/TCP no experimentan tiempos de espera en caso de una falla de ruta y permanecen conectados indefinidamente.
+

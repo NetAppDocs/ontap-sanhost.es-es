@@ -604,17 +604,24 @@ nvme connect-all -t tcp -w host-traddr -a traddr
 ====
 [listing, subs="+quotes"]
 ----
-nvme	connect-all	-t	tcp	-w	192.168.1.31	-a	192.168.1.24
-nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.24
-nvme	connect-all	-t	tcp	-w	192.168.1.31	-a	192.168.1.25
-nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.25
+nvme connect-all -t	tcp	-w 192.168.1.31	-a 192.168.1.24
+nvme connect-all -t	tcp	-w 192.168.2.31	-a 192.168.2.24
+nvme connect-all -t	tcp	-w 192.168.1.31	-a 192.168.1.25
+nvme connect-all -t	tcp	-w 192.168.2.31	-a 192.168.2.25
 ----
 ====
 
 
+[NOTE]
+====
+A partir de RHEL 9.4, la configuración para NVMe/TCP  `ctrl_loss_tmo timeout` se establece automáticamente en "apagado". Como resultado:
 
-NOTE: A partir de RHEL 9,5, la configuración predeterminada del tiempo de espera de NVMe/TCP `ctrl_loss_tmo` está desactivada. Esto significa que no hay límite en el número de reintentos (reintento indefinido). Por lo tanto, no es necesario configurar manualmente una duración de tiempo de espera específica `ctrl_loss_tmo` cuando se utilizan los `nvme connect` comandos o `nvme connect-all` (opción -l ). Gracias a este comportamiento predeterminado, las controladoras NVMe/TCP no experimentan tiempos de espera en caso de un fallo de ruta y permanecen conectadas indefinidamente.
+* No hay límites en el número de reintentos (reintento indefinido).
+* No es necesario configurar manualmente un elemento específico.  `ctrl_loss_tmo timeout` Duración al utilizar el  `nvme connect` o  `nvme connect-all` comandos (opción -l ).
+* Los controladores NVMe/TCP no experimentan tiempos de espera en caso de una falla de ruta y permanecen conectados indefinidamente.
 
+
+====
 
 
 == Valide NVMe-of
