@@ -280,7 +280,7 @@ La compatibilidad con desasignación siempre está habilitada para los espacios 
 .Pasos
 . En el host ESXi, compruebe la configuración para la desasignación de DSM con compatibilidad con TP4040:
 +
-`esxcfg-advcfg -g /SCSi/NVmeUseDsmTp4040`
+`esxcfg-advcfg -g /Scsi/NVmeUseDsmTp4040`
 
 +
 El valor esperado es 0.
@@ -291,7 +291,7 @@ El valor esperado es 0.
 
 . Compruebe que la configuración para la desasignación de DSM con compatibilidad con TP4040 esté habilitada:
 +
-`esxcfg-advcfg -g /SCSi/NVmeUseDsmTp4040`
+`esxcfg-advcfg -g /Scsi/NVmeUseDsmTp4040`
 
 +
 El valor esperado es 1.

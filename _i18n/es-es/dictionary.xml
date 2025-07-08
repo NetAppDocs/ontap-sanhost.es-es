@@ -2247,7 +2247,6 @@ Para obtener información adicional y los cambios recomendados en la configuraci
   <block id="ece05e51adea1b8393f46534993e099e" category="sidebar">15 SP6</block>
   <block id="587b796170a9abac4701cd8aa1bb38cb" category="listing-title">Resultado de ejemplo</block>
   <block id="8b6a5845688d81720a1016c10aa9e843" category="list-text">A partir de ONTAP 9.16,1 la asignación de espacio está habilitada de forma predeterminada en todos los espacios de nombres NVMe recién creados.</block>
-  <block id="664436f4ce3f6d98f6df651147109cff" category="paragraph"><block ref="dc858e51d6de4761e03193e6d9baadfc" prefix="" category="inline-code"></block></block>
   <block id="0c48e7c4bbc87e64bef6a0afca5676b3" category="paragraph">El valor esperado es 0.</block>
   <block id="e63e68670f6caa57aae357d60e7ea92c" category="paragraph"><block ref="5fb81999d6f54088d56d3a83b7e45bb2" prefix="" category="inline-code"></block></block>
   <block id="7b4c45ceb018e94a23feffc876757fd9" category="paragraph">El valor esperado es 1.</block>
@@ -3949,4 +3948,5 @@ Para obtener información adicional y los cambios recomendados en la configuraci
   <block id="42cbea0085bea3ec5496d092c502217b" category="paragraph">Configure NVMe/FC con adaptadores Broadcom/Emulex FC o Marvell/Qlogic FC.</block>
   <block id="0f2332cb3d4b010b45d6eb9fbbeab96c" category="list-text">Ejecutando tráfico NVMe y SCSI en el mismo host. Por ejemplo, puede configurar dm-multipath para dispositivos SCSI mpath en LUN SCSI y usar NVMe multipath para configurar dispositivos de espacio de nombres NVMe-oF en el host.</block>
   <block id="c28f1c588b284418e1f1f45095861195" category="list-text">Ejecutar tráfico NVMe y SCSI en el mismo host. Por ejemplo, puede configurar dm-multipath para dispositivos SCSI mpath en LUN SCSI y usar NVMe multipath para configurar dispositivos de espacio de nombres NVMe-oF en el host.</block>
+  <block id="7b041227be300a97269b0c517c4d8a5c" category="paragraph"><block ref="b5c9ec30dafc3cdd07e22705d3fd28f9" prefix="" category="inline-code"></block></block>
 </blocks>
