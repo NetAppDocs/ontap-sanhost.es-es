@@ -416,6 +416,79 @@ A partir de Oracle Linux 9.4, la configuración para NVMe/TCP  `ctrl_loss_tmo ti
 Verifique que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean correctos para la configuración de NVMe-oF.
 
 .Pasos
+. Compruebe que la multivía NVMe en kernel esté habilitada:
++
+[source, cli]
+----
+cat /sys/module/nvme_core/parameters/multipath
+----
++
+Debe ver la siguiente salida:
+
++
+[listing]
+----
+Y
+----
+. Compruebe que la configuración NVMe-oF adecuada (como, por ejemplo, el modelo configurado en la controladora NetApp ONTAP y la política de balanceo de carga establecida en round-robin) en los respectivos espacios de nombres de ONTAP se reflejen correctamente en el host:
++
+.. Mostrar los subsistemas:
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/model
+----
++
+Debe ver la siguiente salida:
+
++
+[listing]
+----
+NetApp ONTAP Controller
+NetApp ONTAP Controller
+----
+.. Mostrar la política:
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+----
++
+Debe ver la siguiente salida:
+
++
+[listing]
+----
+round-robin
+round-robin
+----
+
+
+. Verifique que los espacios de nombres se hayan creado y detectado correctamente en el host:
++
+[source, cli]
+----
+nvme list
+----
++
+.Muestra el ejemplo
+[%collapsible]
+====
+[listing]
+----
+Node         SN                   Model
+---------------------------------------------------------
+/dev/nvme4n1 81Ix2BVuekWcAAAAAAAB	NetApp ONTAP Controller
+
+
+Namespace Usage    Format             FW             Rev
+-----------------------------------------------------------
+1                 21.47 GB / 21.47 GB	4 KiB + 0 B   FFFFFFFF
+----
+====
+
+
+.Pasos
 . Verifique la siguiente configuración de NVMe/FC en el host Oracle Liniux 9,4:
 +
 .. `cat /sys/module/nvme_core/parameters/multipath`

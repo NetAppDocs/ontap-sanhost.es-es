@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+Configure NVMe/FC para un adaptador Marvell/QLogic.

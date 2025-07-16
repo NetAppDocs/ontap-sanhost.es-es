@@ -82,7 +82,7 @@ En la siguiente tabla se muestra la configuración de los parámetros multivía 
 | prioridad | "ONTAP" 
 
 
-| producto | LUN.* 
+| producto | LUN 
 
 
 | retain_attached_hw_handler | sí 

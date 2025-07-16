@@ -1,5 +1,0 @@
-= 
-:allow-uri-read: 
-
-
-Verifique que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean correctos para la configuración de NVMe-oF.

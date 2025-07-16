@@ -1,10 +1,6 @@
-= Configure la seguridad de la capa de transporte
+= 
 :allow-uri-read: 
 
-
-
-
-== Configure la seguridad de la capa de transporte
 
 Transport Layer Security (TLS) proporciona cifrado seguro e integral para conexiones NVMe entre los hosts NVMe-oF y una cabina ONTAP. A partir de ONTAP 9.16,1, puede configurar TLS 1,3 mediante la CLI y una clave precompartida configurada (PSK).
 
