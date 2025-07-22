@@ -7,9 +7,9 @@ Puede configurar NVMe/FC con adaptadores FC Broadcom/Emulex o Marvell/Qlogic. Ta
 [role="tabbed-block"]
 ====
 .Broadcom/Emulex
+--
 Configuración de NVMe/FC para un adaptador Broadcom/Emulex.
 
---
 .Pasos
 . Compruebe que está utilizando el modelo de adaptador admitido:
 +
