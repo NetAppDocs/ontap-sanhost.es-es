@@ -1,0 +1,28 @@
+= Paso 1: Opcionalmente, habilite el arranque SAN
+:allow-uri-read: 
+
+
+
+
+== Paso 1: Opcionalmente, habilite el arranque SAN
+
+Puede configurar su host para utilizar el arranque SAN para simplificar la implementación y mejorar la escalabilidad.  Si su configuración no admite el arranque SAN, puede utilizar un arranque local.
+
+[role="tabbed-block"]
+====
+.Arranque SAN
+--
+El arranque SAN es el proceso de configurar un disco conectado a SAN (un LUN) como dispositivo de arranque para un host AIX/PowerVM.  Puede configurar un LUN de arranque SAN para que funcione en un entorno AIX Multipath I/O (MPIO) que utilice el protocolo FC y ejecute AIX Host Utilities con el protocolo FC o FCoE.  El método que utiliza para crear un LUN de arranque SAN e instalar una nueva imagen del sistema operativo en un entorno AIX MPIO depende del protocolo que esté utilizando.
+
+.Pasos
+. Utilice ellink:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que su sistema operativo AIX, su protocolo y la versión de ONTAP admitan el arranque SAN.
+. Siga las mejores prácticas para configurar un arranque SAN en la documentación del proveedor.
+
+
+--
+.Arranque local
+--
+Realice un arranque local instalando el sistema operativo AIX en el disco duro local, por ejemplo, en un SSD, SATA o RAID.
+
+--
+====

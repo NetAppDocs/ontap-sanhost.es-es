@@ -1,0 +1,29 @@
+= Paso 3: Instalar las utilidades de host de Windows
+:allow-uri-read: 
+
+
+
+
+== Paso 3: Instalar las utilidades de host de Windows
+
+El programa de instalación instala el paquete Windows Host Utilities y establece el registro de Windows y la configuración de HBA.
+
+.Acerca de esta tarea
+Opcionalmente, puede incluir soporte para múltiples rutas al instalar el paquete de software Windows Host Utilities.  El instalador le solicitará las siguientes opciones:
+
+* Seleccione `MPIO` Si tiene más de una ruta desde el host o la máquina virtual de Windows al sistema de almacenamiento.
+* Elegir `no MPIO` Sólo si está utilizando una única ruta al sistema de almacenamiento.
+
+
+También puede elegir soporte de rutas múltiples mediante un símbolo del sistema de Windows.
+
+En el caso de los invitados de Hyper-V, los discos sin procesar (de paso a través) no aparecen en el sistema operativo invitado si elige compatibilidad con múltiples rutas.  Puedes usar discos sin procesar o MPIO, pero no puedes usar ambos en el sistema operativo invitado.
+
+
+CAUTION: Si no instala el software MPIO, el sistema operativo Windows puede ver cada ruta como un disco independiente. Esto puede conducir a la corrupción de datos.
+
+
+NOTE: Windows XP o Windows Vista en un equipo virtual Hyper-V no admite MPIO.
+
+.Pasos
+Puede instalar las utilidades de host de forma interactiva o utilizando la línea de comandos de Windows.  El nuevo paquete de instalación de Host Utilities debe estar en una ruta que sea accesible para el host de Windows.

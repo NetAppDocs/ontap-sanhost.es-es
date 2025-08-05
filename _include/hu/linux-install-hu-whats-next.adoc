@@ -1,0 +1,14 @@
+= ¿Que sigue?
+:allow-uri-read: 
+
+
+
+
+== El futuro
+
+* Configuración de controlador recomendada con el kernel de Linux
++
+Cuando configura un entorno FC que utiliza controladores de bandeja de entrada nativos que se incluyen en el núcleo de Linux, puede utilizar los valores predeterminados para los controladores.
+
+* link:hu-luhu-sanlun-utility.html["Conozca la utilidad "sanlun""] .
+

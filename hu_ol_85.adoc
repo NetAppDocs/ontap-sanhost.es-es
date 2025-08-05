@@ -45,7 +45,7 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 NetApp recomienda la instalación de las utilidades del host Linux para admitir la gestión de las LUN de ONTAP y ayudar al soporte técnico con la recopilación de datos de configuración.
 
-link:hu_luhu_71.html["Instale Linux Host Utilities 7,1"].
+link:hu-luhu-80.html["Instalar Linux Host Utilities 8.0"] .
 
 
 NOTE: La instalación de Linux Host Utilities no cambia ninguna configuración de tiempo de espera del host en el host Linux.
@@ -285,7 +285,7 @@ NOTE: Para obtener información sobre los problemas conocidos de Oracle Linux RH
 
 == El futuro
 
-* link:hu_luhu_71_cmd.html["Obtenga más información sobre el uso de la herramienta Linux Host Utilities"].
+* link:hu-luhu-command-reference.html["Obtenga más información sobre el uso de la herramienta Linux Host Utilities"] .
 * Obtenga más información sobre la duplicación de ASM.
 +
 El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM de ONTAP utilizan redundancia externa, lo que significa que la protección de datos es proporcionada por la cabina externa y ASM no hace mirroring de los datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["Bases de datos de Oracle en ONTAP"^] para obtener más información.

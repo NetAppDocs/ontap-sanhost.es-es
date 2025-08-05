@@ -1,0 +1,24 @@
+= 
+:allow-uri-read: 
+
+
+. Si su configuración de almacenamiento incluye sincronización activa de MetroCluster o SnapMirror , cambie la configuración predeterminada:
++
+[role="tabbed-block"]
+====
+.MetroCluster
+--
+De forma predeterminada, el sistema operativo AIX aplica un tiempo de espera de E/S más corto cuando no hay rutas disponibles a un LUN.  Esto podría ocurrir en configuraciones que incluyen una estructura SAN de un solo conmutador y en configuraciones de MetroCluster que experimentan conmutaciones por error no planificadas.  Para obtener información adicional y cambios recomendados en la configuración predeterminada, consulte el artículo de la Base de conocimientoslink:https://kb.netapp.com/on-prem/ontap/mc/MC-KBs/What_are_AIX_Host_support_considerations_in_a_MetroCluster_configuration["¿Cuáles son las consideraciones de soporte de host AIX en una configuración de MetroCluster ?"^] .
+
+--
+.Sincronización activa de SnapMirror
+--
+A partir de ONTAP 9.11.1, la sincronización activa de SnapMirror es compatible con un host AIX.  El clúster principal en una configuración AIX es el clúster "activo".
+
+En una configuración AIX, las conmutaciones por error son disruptivas.  Con cada conmutación por error, es necesario volver a realizar un escaneo en el host para que se reanuden las operaciones de E/S.
+
+Consulte el artículo de la base de conocimientoslink:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/How_to_configure_AIX_Host_for_SnapMirror_active_sync_in_ONTAP["Cómo configurar un host AIX para la sincronización activa de SnapMirror"^] .
+
+--
+====
+

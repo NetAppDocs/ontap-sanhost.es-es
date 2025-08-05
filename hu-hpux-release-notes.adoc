@@ -1,0 +1,37 @@
+---
+sidebar: sidebar 
+permalink: hu-hpux-release-notes.html 
+keywords: host utilities, hpux, 6.0, netapp, ontap, release, notes 
+summary: Notas de la versión de HPUX Host Utilities 6.0 
+---
+= Notas de la versión de las utilidades de host de HP-UX
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Las notas de la versión describen nuevas características y mejoras, problemas solucionados, problemas conocidos, limitaciones y precauciones importantes relacionadas con la configuración y administración de su host HP-UX específico con su sistema de almacenamiento ONTAP .
+
+
+
+== Novedades de HP-UX Host Utilities 6.0
+
+No hay nuevas funciones ni mejoras.
+
+HP-UX Host Utilities 6.0 admite las siguientes versiones del sistema operativo HP-UX:
+
+* HP-UX 11iv2
+* HP-UX 11iv3
+
+
+
+
+== Problemas y limitaciones conocidos
+
+No hay problemas ni limitaciones conocidos.

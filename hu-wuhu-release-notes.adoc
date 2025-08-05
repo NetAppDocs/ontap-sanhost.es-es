@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: hu-wuhu-release-notes.html 
+keywords: host utilities, linux, 7.1, 7.2, netapp, ontap, release, notes 
+summary: Notas de la versión de Windows Host Utilities 
+---
+= Notas de la versión de Windows Host Utilities
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Las notas de la versión describen nuevas características, mejoras, problemas conocidos, limitaciones y precauciones importantes relacionadas con la configuración y administración de su host de Windows específico con su sistema de almacenamiento ONTAP .
+
+Para obtener información específica sobre las versiones y actualizaciones del sistema operativo que admiten las utilidades de host, consulte la link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^].
+
+
+
+== Novedades de Windows Host Utilities 8.0
+
+Windows Host Utilities 8.0 incluye configuraciones de parámetros adicionales para los controladores NVMe/FC.  Estos parámetros se cargan automáticamente cuando instala Windows Host Utilities 8.0.
+
+
+
+== Novedades de Windows Host Utilities 7.2
+
+Windows Host Utilities 7,2 incluye soporte para la configuración de parámetros del controlador NVMe/FC y correcciones de errores para tarjetas de nuevo proveedor.
+
+
+
+== Novedades de Windows Host Utilities 7.1
+
+Windows Host Utilities 7.1 incluye soporte para sistemas de almacenamiento E-Series, software ONTAP 9 y tiempos de espera iSCSI mejorados para una conmutación por error más rápida.
+
+
+
+== Problemas y limitaciones conocidos
+
+Debe tener en cuenta los siguientes problemas y limitaciones conocidos que podrían afectar el rendimiento de su host específico.
+
+[cols="30, 15, 30, 30"]
+|===
+| Título | Afecta la versión | Descripción | Solución alternativa 
+
+
+| Ejecutando el `linux_gos_timeout-install.sh` Ya no es necesario ejecutar secuencias de comandos en huéspedes de Hyper-V que ejecuten Red Hat Enterprise Linux o SUSE Linux Enterprise Server | 7.1 | Ya no es necesario ejecutar `linux_gos_timeout-install.sh` el script para cambiar los tiempos de espera de disco en los huéspedes de Red Hat Enterprise Linux 5, Red Hat Enterprise Linux 6 o SUSE Linux Enterprise Server 11 Hyper-V porque se están utilizando los valores de tiempo de espera predeterminados.  `linux_gos_timeout-install.sh`El script que se incluyó en versiones anteriores de las utilidades de host ya no se incluye en la versión de Windows Host Utilities 7,1. Windows Host Utilities 7,1 utiliza la configuración predeterminada de tiempo de espera del disco. | No aplicable 
+|===
+link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^] proporciona información completa sobre la mayoría de los problemas conocidos, incluidas las soluciones alternativas sugeridas cuando sea posible.

@@ -1,0 +1,93 @@
+---
+sidebar: sidebar 
+permalink: hu-luhu-release-notes.html 
+keywords: host utilities, linux, 7.1, netapp, ontap, release, notes, linux 
+summary: Notas de la versión de utilidades de host de Linux 
+---
+= Notas de la versión de Linux Host Utilities
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Las notas de la versión describen nuevas características, mejoras, problemas solucionados, problemas conocidos, limitaciones y precauciones importantes para configurar y administrar su host específico con su sistema de almacenamiento ONTAP .
+
+Para obtener información específica sobre las versiones y actualizaciones del sistema operativo que admiten las utilidades de host, consulte la link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^].
+
+
+
+== Novedades de Linux Host Utilities 8.0
+
+La versión 8.0 de Linux Host Utilities contiene las siguientes nuevas características y mejoras
+
+Linux Host Utilities 8.0 incluye soporte para adaptadores de bus de host FC (HBA) QLogic y Emulex de 64 bits.
+
+Los siguientes sistemas operativos son compatibles:
+
+* Red Hat Enterprise Linux (RHEL) series 9 y 8
+* SUSE Linux Enterprise Server
+* Oracle Linux series 9 y 8
+* Ubuntu
+
+
+
+
+== Novedades de Linux Host Utilities 7.1
+
+La versión de Linux Host Utilities 7,1 contiene las siguientes funciones y mejoras nuevas:
+
+* Las utilidades de host de Linux ahora se denominan _Linux Unified Host Utilities_ porque son compatibles con los sistemas de almacenamiento E-Series de NetApp que ejecutan SANtricity, así como sistemas AFF, FAS y ASA que ejecutan ONTAP.
+* Los siguientes sistemas operativos son compatibles:
++
+** Citrix XenServer
+** KVM y XEN, RHEV 6.5 y 6.4
+** Oracle VM serie 3.2
+** Oracle Linux series 7 y 6
+** Serie RHEL 7 y 6
+** SUSE Linux Enterprise Server serie 15
+** SUSE Linux Enterprise Server 11 SP4
+
+
+* En los hosts RHEL 6 y 7, ahora se admite un paquete optimizado para configurar perfiles de servidor.  Puedes utilizar el `tuned-adm` Comando para establecer diferentes perfiles, dependiendo del entorno.  Por ejemplo, puede utilizar el perfil de invitado virtual como máquina virtual invitada y el perfil de almacenamiento empresarial para configuraciones cuando se utilizan LUN de matrices de almacenamiento empresarial.  El uso de estos paquetes optimizados puede generar mejoras en el rendimiento y la latencia en ONTAP.
+* Linux Host Utilities 7.1 agrega soporte para adaptadores FC de 32 GB de Broadcom Emulex y Marvell Qlogic.
+
+
+
+NOTE: NetApp continúa trabajando con Linux Host Utilities para agregar soporte para funciones después del lanzamiento inicial.  Para obtener la información más reciente sobre las funciones compatibles y las nuevas funciones que se han agregado, consultelink:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] .
+
+
+
+== Problemas solucionados
+
+Se han solucionado los siguientes problemas en Linux Host Utilities.
+
+[cols="20, 80"]
+|===
+| Corregido en la versión | Descripción 
+
+
+| 7.1 | El problema de falla intermitente del sistema operativo del host que ocurre cuando se ejecuta el `sanlun lun show -p` comando en SUSE Linux Enterprise Server 12 SP1, Oracle Linux 7.2, RHEL 7.2 y RHEL 6.8. 
+|===
+
+
+== Problemas y limitaciones conocidos
+
+Debe tener en cuenta los siguientes problemas y limitaciones conocidos que podrían afectar el rendimiento de su host específico:
+
+[cols="15, 15, 30, 40"]
+|===
+| ID de error de NetApp | Afecta la versión | Título | Descripción 
+
+
+| 1457017 | 7.1 |  `sanlun` la instalación emite mensajes de advertencia relacionados con `libdevmapper.so` y.. `libnl.so` bibliotecas. Estas advertencias no afectan a la funcionalidad de `sanlun` kit. | Cuando ejecuta el comando CLI de Linux Host Utilities: "sanlun fcp show adapter -v" en un host SAN, el comando falla con un mensaje de error que muestra que no se pueden ubicar las dependencias de biblioteca requeridas para un descubrimiento de HBA de adaptador de bus de host:
+`[root@hostname ~]# sanlun fcp show adapter -v
+Unable to locate /usr/lib64/libHBAAPI.so library
+Make sure the package installing the library is installed & loaded` Consulte Errores de NetApp en línea:link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554"^] . 
+|===
+link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^] proporciona información completa sobre la mayoría de los problemas conocidos, incluidas las soluciones alternativas sugeridas cuando sea posible.

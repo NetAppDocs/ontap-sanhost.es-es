@@ -4,7 +4,7 @@ permalink: hu_wuhu_upgrade.html
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Windows Host Utilities incluye un programa de instalación que establece los parámetros de registro de Windows y HBA necesarios para que el host Windows controle correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP y E-Series. 
 ---
-= Actualice las utilidades del host de Windows
+= Actualizar las utilidades de host de Windows para el almacenamiento ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -19,13 +19,13 @@ summary: Windows Host Utilities incluye un programa de instalación que establec
 
 
 [role="lead"]
-El nuevo paquete de instalación de utilidades de host debe estar en una ruta a la que pueda acceder el host de Windows. Siga las instrucciones para instalar las utilidades de host de forma interactiva o desde la línea de comandos de Windows para actualizar el paquete de instalación.
+Puede actualizar el software Windows Host Utilities en su configuración de almacenamiento de ONTAP siguiendo las instrucciones de instalación de forma interactiva o utilizando la línea de comandos de Windows.  Debe instalar el nuevo software de instalación de Windows Host Utilities en una ruta que sea accesible para el host de Windows.
 
 [role="tabbed-block"]
 ====
 .Actualice de forma interactiva
 --
-Para actualizar el paquete de software Host Utilities de forma interactiva, debe ejecutar el programa de instalación de Host Utilities y seguir las instrucciones.
+Actualice el software Windows Host Utilities de forma interactiva ejecutando el programa de instalación Host Utilities y siguiendo las instrucciones.
 
 .Pasos
 . Cambie al directorio en el que descargó el archivo ejecutable.
@@ -40,15 +40,17 @@ Para actualizar el paquete de software Host Utilities de forma interactiva, debe
 
 
 --
-.Actualice desde una línea de comandos
+.Actualizar de forma no interactiva
 --
-Puede realizar una actualización silenciosa (sin supervisión) de las nuevas utilidades de host introduciendo los comandos apropiados en el símbolo del sistema de Windows.
+Realice una actualización del software de utilidades de host de Windows no interactiva mediante la línea de comandos de Windows.
 
 .Pasos
 . Introduzca el siguiente comando en el símbolo del sistema de Windows:
 +
-`msiexec /i installer.msi /quiet MULTIPATHING= {0 | 1} [INSTALLDIR=inst_path]`
-
+[source, cli]
+----
+msiexec /i installer.msi /quiet MULTIPATHING= {0 | 1} [INSTALLDIR=inst_path]
+----
 +
 ** `installer` es el nombre de `.msi` Archivo para su arquitectura de CPU.
 ** MULTIPATH especifica si está instalada la compatibilidad con Microsoft Multipath I/O (MPIO). Los valores permitidos son “0” para NO y “1” para sí.

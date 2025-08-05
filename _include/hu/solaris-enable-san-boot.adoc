@@ -1,0 +1,28 @@
+= Paso 1: Opcionalmente, habilite el arranque SAN
+:allow-uri-read: 
+
+
+
+
+== Paso 1: Opcionalmente, habilite el arranque SAN
+
+Puede configurar su host para utilizar el arranque SAN para simplificar la implementación y mejorar la escalabilidad.  Si su configuración no admite el arranque SAN, puede utilizar un arranque local.
+
+[role="tabbed-block"]
+====
+.Arranque SAN
+--
+El arranque SAN es el proceso de configurar un disco conectado a SAN (un LUN) como dispositivo de arranque para un host Solaris.  Puede configurar un LUN de arranque SAN para que funcione en un entorno Solaris MPxIO que utilice el protocolo FC y ejecute Solaris Host Utilities.  El método que utilice para configurar un LUN de arranque SAN depende de su administrador de volumen y del sistema de archivos.
+
+.Pasos
+. Utilice ellink:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que su sistema operativo Solaris, su protocolo y la versión de ONTAP admitan el arranque SAN.
+. Siga las mejores prácticas para configurar un arranque SAN en la documentación del proveedor de Solaris.
+
+
+--
+.Arranque local
+--
+Realice un arranque local instalando el sistema operativo Solaris en el disco duro local, por ejemplo, instálelo en un SSD, SATA o RAID.
+
+--
+====

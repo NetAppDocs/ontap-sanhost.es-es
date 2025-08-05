@@ -4,7 +4,7 @@ permalink: hu_wuhu_71.html
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Windows Host Utilities incluye un programa de instalación que establece los parámetros de registro de Windows y HBA necesarios para que el host Windows controle correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP y E-Series. 
 ---
-= Instale Windows Host Utilities 7,1
+= Instalar Windows Host Utilities 7.1 para el almacenamiento ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -32,7 +32,7 @@ Windows Host Utilities es compatible con las siguientes versiones de Windows:
 
 Windows Host Utilities incluye un programa de instalación que establece los parámetros necesarios del registro de Windows y del adaptador de bus de host (HBA) para que un host Windows pueda manejar correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP y E-Series.
 
-Al instalar el software Host Utilities, el instalador establece los parámetros necesarios del Registro de Windows y del adaptador de bus de host (HBA).
+Cuando instala el software Host Utilities, el instalador establece los parámetros necesarios del Registro de Windows y del HBA.
 
 Los siguientes programas y archivos se instalan en el equipo host de Windows. El directorio predeterminado es `C:\Program Files\NetApp\Windows Host Utilities`.
 
@@ -58,70 +58,79 @@ Las utilidades de host admiten diferentes configuraciones de host, protocolos y 
 
 
 
-== Verificar la configuración del host y del sistema de almacenamiento
+== Paso 1: Verifique las configuraciones de su host y del sistema de almacenamiento
 
 Compruebe que la configuración del host y del sistema de almacenamiento sea compatible antes de instalar las utilidades de host de Windows para el <<supported-windows-versions-71,Versión de Windows compatible>>.
 
 .Pasos
 . Compruebe la configuración admitida en la http://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad"^].
-. Compruebe las revisiones necesarias para el host correspondiente del link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Documentación para Windows del host SAN"].
+. Consulte las revisiones necesarias para la versión del host de Windows Server enlink:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Documentación para Windows del host SAN"] .
++
+Por ejemplo, ellink:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html["Configurar Windows Server 2022 para el almacenamiento ONTAP"] La documentación proporciona las instrucciones para instalar revisiones de Windows para Windows Server 2022.
+
+. link:https://docs.netapp.com/us-en/ontap/san-admin/verify-license-fc-iscsi-task.html["Agregue la licencia iSCSI o FCP"^] .
 +
 
-NOTE: El link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html["Use Windows Server 2022 con ONTAP"] documento proporciona instrucciones en link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html#installing-windows-hotfixes["Instalación de revisiones de Windows"] para Windows Server 2022. Consulte los documentos de Windows en la categoría de configuraciones de host para encontrar la información de revisiones relevante para versiones anteriores de Windows Server.
+NOTE: Los protocolos FC e iSCSI no requieren licencias en los sistemas de almacenamiento E-Series que utilizan SANtricity Storage Manager.
 
-. Añada la licencia iSCSI o FCP e inicie el servicio de destino.
+. Iniciar el servicio de destino.
+. Compruebe el cableado.
 +
-
-NOTE: Los protocolos FC e iSCSI no requieren licencias en los sistemas de almacenamiento E-Series que utilizan Storage Manager de SANtricity.
-
-. Compruebe el cableado
-+
-Consulte https://docs.netapp.com/us-en/ontap/san-config/index.html["Referencia para la configuración DE SAN"^] Documentación para la versión de ONTAP o. https://docs.netapp.com/us-en/e-series/install-hw-cabling/index.html["Cableado de hardware E-Series"^] para obtener información detallada sobre el cableado y la configuración.
+Consulte la https://docs.netapp.com/us-en/ontap/san-config/index.html["Referencia para la configuración DE SAN"^] para obtener información detallada sobre el cableado y la configuración.
 
 
 
 
 
-== Configurar switches y HBA de FC
+== Paso 2: Configurar los HBA y conmutadores FC
 
-Instale y configure uno o más adaptadores de bus de host (HBA) FC compatibles para las conexiones FC a un sistema de almacenamiento.
+Instale y configure uno o más adaptadores de bus de host (HBA) FC compatibles para las conexiones FC al sistema de almacenamiento.
 
 El instalador de Windows Host Utilities establece los ajustes de FC HBA requeridos.
 
 
-NOTE: No cambie la configuración del adaptador de bus de host manualmente.
+CAUTION: Solo debe permitir que el instalador de Windows Host Utilities configure los parámetros de HBA.  Esto garantiza que el host de Windows pueda manejar correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP .
 
 .Pasos
 . Instalar uno o más HBA FC compatibles según las instrucciones proporcionadas por el proveedor de HBA.
 . Obtenga los controladores HBA admitidos y las utilidades de administración e instálelos según las instrucciones proporcionadas por el proveedor de HBA.
-. Conecte los HBA a sus switches FC o directamente al sistema de almacenamiento.
-. Cree zonas en el switch FC según la documentación del switch FC.
-. Para ONTAP, divida el switch por nombre de puerto WWPN. Asegúrese de utilizar el WWPN de las LIF y no de los puertos físicos en las controladoras de almacenamiento. Consulte https://docs.netapp.com/us-en/ontap/san-config/index.html["Referencia para la configuración DE SAN"^] documentación para obtener más información.
+. https://docs.netapp.com/us-en/ontap/san-management/index.html["Conecte los HBA a sus conmutadores FC o directamente al sistema de almacenamiento"^] .
+. https://docs.netapp.com/us-en/ontap/san-config/fibre-channel-fcoe-zoning-concept.html["Cree zonas en el conmutador FC según la documentación de su conmutador FC"^] .
+. Para ONTAP, zonifique el conmutador según el WWPN.  Asegúrese de utilizar el WWPN de las interfaces lógicas (LIF) y no el WWPN de los puertos físicos en los controladores de almacenamiento. Consulte la  https://docs.netapp.com/us-en/ontap/san-config/index.html["Referencia para la configuración DE SAN"^] Para más información.
 
 
 
 
-== Instale las utilidades de host
+== Paso 3: Instalar las utilidades de host de Windows
 
-El programa de instalación instala el paquete de utilidades de host y establece el registro de Windows y la configuración de HBA.
+El programa de instalación instala el paquete Windows Host Utilities y establece el registro de Windows y la configuración de HBA.
 
-Debe especificar si desea incluir soporte multivía al instalar el paquete de software de Windows Host Utilities. El instalador le solicita la siguiente opción. También puede ejecutar una instalación silenciosa (desatendida) desde el símbolo del sistema de Windows.
+.Acerca de esta tarea
+Opcionalmente, puede incluir soporte para múltiples rutas al instalar el paquete de software Windows Host Utilities.  El instalador le solicitará las siguientes opciones:
 
-.Compatibilidad con accesos múltiples
 * Seleccione `MPIO` Si tiene más de una ruta desde el host o la máquina virtual de Windows al sistema de almacenamiento.
-* Seleccione `no MPIO` únicamente si utiliza una ruta única al sistema de almacenamiento.
+* Elegir `no MPIO` Sólo si está utilizando una única ruta al sistema de almacenamiento.
 
 
-La selección de Microsoft Multipath I/O (MPIO) no está disponible para los sistemas Windows XP y Windows Vista; los sistemas operativos invitados no admiten I/O multivía. Para los huéspedes de Hyper-V, los discos sin formato (de paso) no aparecen en el sistema operativo invitado si elige compatibilidad con accesos múltiples. Puede usar discos sin configurar o MPIO, pero no es posible usar ambos en el sistema operativo invitado.
+También puede elegir soporte de rutas múltiples mediante un símbolo del sistema de Windows.
 
-Puede instalar las utilidades de host de forma interactiva o mediante la línea de comandos. El nuevo paquete de instalación de utilidades de host debe estar en una ruta a la que pueda acceder el host de Windows. Siga las instrucciones para instalar las utilidades de host de forma interactiva o desde la línea de comandos de Windows.
+En el caso de los invitados de Hyper-V, los discos sin procesar (de paso a través) no aparecen en el sistema operativo invitado si elige compatibilidad con múltiples rutas.  Puedes usar discos sin procesar o MPIO, pero no puedes usar ambos en el sistema operativo invitado.
+
+
+CAUTION: Si no instala el software MPIO, el sistema operativo Windows puede ver cada ruta como un disco independiente. Esto puede conducir a la corrupción de datos.
+
+
+NOTE: Windows XP o Windows Vista en un equipo virtual Hyper-V no admite MPIO.
+
+.Pasos
+Puede instalar las utilidades de host de forma interactiva o utilizando la línea de comandos de Windows.  El nuevo paquete de instalación de Host Utilities debe estar en una ruta que sea accesible para el host de Windows.
 
 [role="tabbed-block"]
 ====
 .Instalar de forma interactiva
 --
 .Pasos
-Para instalar el paquete de software de Host Utilities de forma interactiva, debe ejecutar el programa de instalación de Host Utilities y seguir las instrucciones.
+Instale el paquete de software Host Utilities de forma interactiva ejecutando el programa de instalación Host Utilities y siguiendo las instrucciones.
 
 .Pasos
 . Descargue el archivo ejecutable de la https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^].
@@ -131,15 +140,17 @@ Para instalar el paquete de software de Host Utilities de forma interactiva, deb
 
 
 --
-.Realice la instalación desde una línea de comandos
+.Instalar de forma no interactiva
 --
-Puede realizar una instalación silenciosa (desatendida) de las utilidades de host introduciendo los comandos apropiados en el símbolo del sistema de Windows. El sistema se reinicia automáticamente cuando finaliza la instalación.
+Realice una instalación no interactiva de las utilidades de host mediante la línea de comandos de Windows.  El sistema se reinicia automáticamente cuando se completa la instalación.
 
 .Pasos
 . Introduzca el siguiente comando en un símbolo del sistema de Windows:
 +
-`msiexec /i installer.msi /quiet MULTIPATHING= {0 | 1} [INSTALLDIR=inst_path]`
-
+[source, cli]
+----
+msiexec /i installer.msi /quiet MULTIPATHING= {0 | 1} [INSTALLDIR=inst_path]
+----
 +
 ** `installer` es el nombre de `.msi` Archivo de la arquitectura de CPU
 ** MULTIPATHING especifica si está instalado la compatibilidad con MPIO. Los valores permitidos son “0” para no, “1” para sí
@@ -153,3 +164,8 @@ NOTE: Para ver las opciones estándar de Microsoft Installer (MSI) para el regis
 
 --
 ====
+
+
+== El futuro
+
+link:hu_wuhu_hba_settings.html["Configurar los ajustes del registro para las utilidades de host de Windows"] .

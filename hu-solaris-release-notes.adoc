@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: hu-solaris-release-notes.html 
+keywords: Host Utilities, solaris, 6.2, 8.0, netapp, ontap 
+summary: Notas de la versión de Solaris Host Utilities. 
+---
+= Notas de la versión de Solaris Host Utilities
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Las notas de la versión de Solaris Host Utilities describen nuevas características, mejoras, problemas conocidos, limitaciones y precauciones importantes relacionadas con la configuración y administración de su host Solaris específico con su sistema de almacenamiento ONTAP .
+
+Para obtener información específica sobre las versiones y actualizaciones del sistema operativo que admiten las utilidades de host, consulte la link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^].
+
+
+
+== Novedades de Solaris Host Utilities 8.0
+
+* Solaris Host Utilities 8.0 presenta la `disksort:false` y `cache-nonvolatile:true` ajustes de parámetros.  Estos parámetros suprimen las llamadas de sincronización constantes del host.  Las llamadas de sincronización afectan el rendimiento y no son necesarias porque ONTAP no tiene caché volátil. Para obtener más información, consulte link:https://docs.oracle.com/en/operating-systems/solaris/oracle-solaris/11.4/tuning/ensuring-proper-cache-flush-behavior-flash-and-nvram-storage-devices.html["Comportamiento de vaciado de caché para dispositivos de almacenamiento Flash y NVRAM"^] .
+* Solaris Host Utilities 8.0 admite actualizaciones automáticas para controladores FC.  Los controladores FC que vinculan los parámetros para Solaris 11.4 utilizan discos SCSI. Para obtener más información, consulte link:https://support.oracle.com/knowledge/Sun%20Microsystems/2595926_1.html["ID de documento de soporte de Oracle 2595926.1"^] .
+
+
+
+
+== Problemas y limitaciones conocidos
+
+Debe tener en cuenta los siguientes problemas y limitaciones conocidos que podrían afectar el rendimiento de su host específico.
+
+[cols="15,15,15,55"]
+|===
+| ID. De error | Afecta la versión | Título | Descripción 
+
+
+|  | Utilidades de host de Solaris 8.0 |  | La versión Solaris Host Utilities 8.0 solo es compatible con Solaris 11.4 con plataformas SPARC y x86.  Para Solaris 11.3 y versiones anteriores, debe utilizar Solaris Host Utilities 6.2. 
+
+
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1385189["1385189"^] | Solaris 11.4 | Cambios de enlace de controladores FC Solaris 11.4 requeridos en HUK 6.2 | Recomendaciones de Solaris 11,4 y HUK:
+Se ha cambiado el enlace al controlador FC de `ssd(4D)` para `sd(4D)`. Mover la configuración que tiene en `ssd.conf` para `sd.conf` Tal como se menciona en Oracle (ID de documento 2595926.1). El comportamiento varía en los sistemas y sistemas Solaris 11,4 recién instalados actualizados desde versiones 11,3 o anteriores. 
+|===
++link:https://mysupport.netapp.com/site/["NetApp Bugs Online"^] Proporciona información completa sobre la mayoría de los problemas conocidos, incluidas soluciones alternativas sugeridas cuando sea posible.  Algunas combinaciones de palabras clave y tipos de errores que podrías querer utilizar incluyen los siguientes:
+
+* FCP General: Muestra los errores de FC y del adaptador de bus de host (HBA) que no están asociados con un host específico.
+* FCP: Solaris
+

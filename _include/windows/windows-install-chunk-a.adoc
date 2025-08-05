@@ -1,0 +1,7 @@
+= 
+:allow-uri-read: 
+
+
+Cuando instala el software Host Utilities, el instalador establece los parámetros necesarios del Registro de Windows y del HBA.
+
+Los siguientes programas y archivos se instalan en el equipo host de Windows. El directorio predeterminado es `C:\Program Files\NetApp\Windows Host Utilities`.

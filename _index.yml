@@ -17,15 +17,15 @@ indexpage:
     - title: Obtenga más información sobre las configuraciones host SAN
       url: "/overview.html"
     - title: Notas de la versión de AIX Host Utilities
-      url: "/hu_aix_rn.html"
+      url: "/hu-aix-release-notes.html"
     - title: Notas de la versión de HP-UX Host Utilities
-      url: "/hu_hpux_60_rn.html"
+      url: "/hu-hpux-release-notes.html"
     - title: Notas de la versión de Linux Host Utilities
-      url: "/hu_luhu_71_rn.html"
+      url: "/hu-luhu-release-notes.html"
     - title: Notas de la versión de Solaris Host Utilities
-      url: "/hu_solaris_62_rn.html"
+      url: "/hu-solaris-release-notes.html"
     - title: Notas de la versión de Windows Host Utilities
-      url: "/hu_wuhu_71_rn.html"
+      url: "/hu-wuhu-release-notes.html"
   - title: Instalar y configurar hosts SAN
     links:
     - title: Instale las utilidades del host de SAN

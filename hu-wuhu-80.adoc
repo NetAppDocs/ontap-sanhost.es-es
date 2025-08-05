@@ -1,0 +1,152 @@
+---
+sidebar: sidebar 
+permalink: hu-wuhu-80.html 
+keywords: windows, 7.2, host utilities, SAN, windows 
+summary: Windows Host Utilities incluye un programa de instalación que configura los parámetros HBA y de registro de Windows necesarios para que el host de Windows gestione correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP . 
+---
+= Instalar Windows Host Utilities 8.0 para el almacenamiento ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Las utilidades de host de Windows permiten conectar un equipo host de Windows a sistemas de almacenamiento NetApp.
+
+Las utilidades de host de Windows son compatibles con las siguientes versiones de Windows:
+
+* Windows 2025
+* Windows 2022
+* Windows 2019
+* Windows 2016
+
+
+Windows Host Utilities incluye un programa de instalación que establece los parámetros necesarios del registro de Windows y del Adaptador de bus host (HBA) para que un host de Windows pueda manejar correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP .
+
+Cuando instala el software Host Utilities, el instalador establece los parámetros necesarios del Registro de Windows y del HBA.
+
+Los siguientes programas y archivos se instalan en el equipo host de Windows. El directorio predeterminado es `C:\Program Files\NetApp\Windows Host Utilities`.
+
+|===
+| Programa | Específico 
+
+
+| `\NetAppQCLI\fcconfig.exe` | Utilizado por el programa de instalación para establecer los parámetros del HBA. 
+
+
+| `\NetAppQCLI\fcconfig.ini` | Utilizado por el programa de instalación para establecer los parámetros del HBA. 
+
+
+| `san_version.exe` | Muestra la versión de las utilidades del host y de los HBA de FC. 
+|===
+Las utilidades de host admiten diferentes configuraciones de host, protocolos y opciones de multivía de Windows. Para obtener más información, consulte la https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
+
+
+
+== Paso 1: Verifique la configuración de su host y del sistema de almacenamiento
+
+Verifique que la configuración de su host y del sistema de almacenamiento sean compatibles antes de instalar Windows Host Utilities para el sistema.<<supported-windows-versions-80,Versión de Windows compatible>> .
+
+.Pasos
+. Compruebe la configuración admitida en la http://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad"^].
+. Consulte las revisiones necesarias para la versión del host de Windows Server enlink:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Documentación para Windows del host SAN"] .
++
+Por ejemplo, ellink:https://docs.netapp.com/us-en/ontap-sanhost/hu-windows-2025.html["Configure Windows Server 2025 para almacenamiento ONTAP"] La documentación proporciona las instrucciones para instalar revisiones de Windows para Windows Server 2025.
+
+. link:https://docs.netapp.com/us-en/ontap/san-admin/verify-license-fc-iscsi-task.html["Agregue la licencia iSCSI o FCP"^] .
+. Iniciar el servicio de destino.
+. Compruebe el cableado.
++
+Consulte la https://docs.netapp.com/us-en/ontap/san-config/index.html["Referencia para la configuración DE SAN"^] para obtener información detallada sobre el cableado y la configuración.
+
+
+
+
+
+== Paso 2: Configurar los HBA y conmutadores FC
+
+Instale y configure uno o más adaptadores de bus de host (HBA) FC compatibles para las conexiones FC al sistema de almacenamiento.
+
+El instalador de Windows Host Utilities establece los ajustes de FC HBA requeridos.
+
+
+CAUTION: Solo debe permitir que el instalador de Windows Host Utilities configure los parámetros de HBA.  Esto garantiza que el host de Windows pueda manejar correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP .
+
+.Pasos
+. Instalar uno o más HBA FC compatibles según las instrucciones proporcionadas por el proveedor de HBA.
+. Obtenga los controladores HBA admitidos y las utilidades de administración e instálelos según las instrucciones proporcionadas por el proveedor de HBA.
+. https://docs.netapp.com/us-en/ontap/san-management/index.html["Conecte los HBA a sus conmutadores FC o directamente al sistema de almacenamiento"^] .
+. https://docs.netapp.com/us-en/ontap/san-config/fibre-channel-fcoe-zoning-concept.html["Cree zonas en el conmutador FC según la documentación de su conmutador FC"^] .
+. Para ONTAP, zonifique el conmutador según el WWPN.  Asegúrese de utilizar el WWPN de las interfaces lógicas (LIF) y no el WWPN de los puertos físicos en los controladores de almacenamiento. Consulte la  https://docs.netapp.com/us-en/ontap/san-config/index.html["Referencia para la configuración DE SAN"^] Para más información.
+
+
+
+
+== Paso 3: Instalar las utilidades de host de Windows
+
+El programa de instalación instala el paquete Windows Host Utilities y establece el registro de Windows y la configuración de HBA.
+
+.Acerca de esta tarea
+Opcionalmente, puede incluir soporte para múltiples rutas al instalar el paquete de software Windows Host Utilities.  El instalador le solicitará las siguientes opciones:
+
+* Seleccione `MPIO` Si tiene más de una ruta desde el host o la máquina virtual de Windows al sistema de almacenamiento.
+* Elegir `no MPIO` Sólo si está utilizando una única ruta al sistema de almacenamiento.
+
+
+También puede elegir soporte de rutas múltiples mediante un símbolo del sistema de Windows.
+
+En el caso de los invitados de Hyper-V, los discos sin procesar (de paso a través) no aparecen en el sistema operativo invitado si elige compatibilidad con múltiples rutas.  Puedes usar discos sin procesar o MPIO, pero no puedes usar ambos en el sistema operativo invitado.
+
+
+CAUTION: Si no instala el software MPIO, el sistema operativo Windows puede ver cada ruta como un disco independiente. Esto puede conducir a la corrupción de datos.
+
+
+NOTE: Windows XP o Windows Vista en un equipo virtual Hyper-V no admite MPIO.
+
+.Pasos
+Puede instalar las utilidades de host de forma interactiva o utilizando la línea de comandos de Windows.  El nuevo paquete de instalación de Host Utilities debe estar en una ruta que sea accesible para el host de Windows.
+
+[role="tabbed-block"]
+====
+.Instalar de forma interactiva
+--
+Instale el paquete de software Windows Host Utilities de forma interactiva ejecutando el programa de instalación y siguiendo las instrucciones.
+
+. Descargue el archivo ejecutable de la https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.2/downloads["Sitio de soporte de NetApp"^].
+. Cambie al directorio en el que descargó el archivo ejecutable.
+. Ejecute el `netapp_windows_host_utilities_7.2_x64` archivar y seguir las instrucciones en pantalla.
+. Reinicie el host de Windows cuando se le solicite.
+
+
+--
+.Instalar de forma no interactiva
+--
+Realice una instalación no interactiva de las utilidades de host mediante la línea de comandos de Windows.  El sistema se reinicia automáticamente cuando se completa la instalación.
+
+. Introduzca el siguiente comando en el símbolo del sistema de Windows:
++
+[source, cli]
+----
+msiexec /i installer.msi /quiet MULTIPATHING= {0 | 1} [INSTALLDIR=inst_path]
+----
++
+** `installer` es el nombre de `.msi` Archivo para su arquitectura de CPU.
+** MULTIPATHING especifica si está instalado la compatibilidad con MPIO. Los valores permitidos son “0” para NO y “1” para sí.
+** `inst_path` Es la ruta en la que se instalan los archivos de utilidades de host. La ruta predeterminada es `C:\Program Files\NetApp\Windows Host Utilities\`.
+
+
+
+
+
+NOTE: Para ver las opciones estándar de Microsoft Installer (MSI) para el registro y otras funciones, introduzca `msiexec /help` En el símbolo del sistema de Windows. Por ejemplo, la `msiexec /i install.msi /quiet /l*v <install.log> LOGVERBOSE=1` el comando muestra la información de registro.
+
+--
+====
+
+
+== El futuro
+
+link:hu_wuhu_hba_settings.html["Configurar los ajustes del registro para las utilidades de host de Windows"] .

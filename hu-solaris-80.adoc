@@ -1,0 +1,179 @@
+---
+sidebar: sidebar 
+permalink: hu-solaris-80.html 
+keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
+summary: Describe cómo utilizar Solaris Host Utilities 8.0 con ONTAP 
+---
+= Instalar Solaris Host Utilities 8.0 para el almacenamiento ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Las utilidades de host de Solaris le ayudan a administrar el almacenamiento ONTAP conectado a un host de Solaris y ayudan al soporte técnico a recopilar datos de configuración.
+
+Las utilidades de host de Solaris admiten los siguientes entornos y protocolos de transporte de Solaris.  Estos son los principales entornos compatibles:
+
+* El sistema operativo nativo con Oracle Solaris I/O Multipathing (MPxIO) y el protocolo FC o iSCSI en un sistema que utiliza un procesador SPARC o x86/64.
+* Veritas Dynamic Multipathing (DMP) con el protocolo FC o iSCSI en un sistema que utiliza un procesador SPARC.
+
+
+Solaris Host Utilities 8.0 es compatible con la serie Solaris 11.4.
+
+.Antes de empezar
+Verifique que su configuración iSCSI, FC o FCoE sea compatible.  Puedes utilizar ellink:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar su configuración.
+
+.Pasos
+. Inicie sesión en su host como root.
+. Descargue una copia del archivo comprimido que contiene las utilidades de host de en link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["Sitio de soporte de NetApp"^] a un directorio del host.
++
+[role="tabbed-block"]
+====
+.CPU SPARC
+--
+[source, cli]
+----
+netapp_solaris_host_utilities_8_0_sparc.tar.gz
+----
+--
+.CPU x86/x64
+--
+[source, cli]
+----
+netapp_solaris_host_utilities_8_0_amd.tar.gz
+----
+--
+====
+. Vaya al directorio en su host que contiene la descarga.
+. Descomprima el archivo usando el `gunzip` comando y luego extraiga el archivo usando `tar -xvf` :
++
+[source, cli]
+----
+gunzip netapp_solaris_host_utilities_8_0_sparc.tar.gz
+----
++
+[source, cli]
+----
+tar -xvf netapp_solaris_host_utilities_8_0_sparc.tar
+----
+. Añade los paquetes que extrajiste del archivo tar a tu host:
++
+[source, cli]
+----
+pkgadd
+----
++
+Los paquetes se agregan a la `/opt/NTAP/SANToolkit/bin` directorio.
+
++
+En el siguiente ejemplo se utiliza `pkgadd` el comando para instalar el paquete de instalación de Solaris:
+
++
+[source, cli]
+----
+pkgadd -d ./NTAPSANTool.pkg
+----
+. Confirme que el kit de herramientas se instaló correctamente utilizando el siguiente comando en la ruta de instalación:
++
+[source, cli]
+----
+pkgchk
+----
++
+.Muestra el resultado de ejemplo
+[%collapsible]
+====
+[listing]
+----
+# pkgchk -l -p /opt/NTAP/SANToolkit
+
+Pathname: /opt/NTAP/SANToolkit
+Type: directory
+Expected mode: 0755
+Expected owner: root
+Expected group: sys
+Referenced by the following packages: NTAPSANTool
+Current status: installed
+
+# ls -alR /opt/NTAP/SANToolkit
+/opt/NTAP/SANToolkit:
+total 1038
+drwxr-xr-x   3 root     sys            4 Mar  7 13:11 .
+drwxr-xr-x   3 root     sys            3 Mar  7 13:11 ..
+drwxr-xr-x   2 root     sys            6 Mar 17 18:32 bin
+-r-xr-xr-x   1 root     sys       432666 Dec 31 13:23 NOTICES.PDF
+
+/opt/NTAP/SANToolkit/bin:
+total 3350
+drwxr-xr-x   2 root     sys            6 Mar 17 18:32 .
+drwxr-xr-x   3 root     sys            4 Mar  7 13:11 ..
+-r-xr-xr-x   1 root     sys      1297000 Feb  7 22:22 host_config
+-r-xr-xr-x   1 root     root         996 Mar 17 18:32 san_version
+-r-xr-xr-x   1 root     sys       309700 Feb  7 22:22 sanlun
+-r-xr-xr-x   1 root     sys          677 Feb  7 22:22 vidpid.dat
+
+# cd /usr/share/man/man1; ls -al host_config.1 sanlun.1
+-r-xr-xr-x   1 root     sys        12266 Feb  7 22:22 host_config.1
+-r-xr-xr-x   1 root     sys         9044 Feb  7 22:22 sanlun.1
+----
+====
+. Configure los parámetros del host para su entorno "MPxIO" o "Veritas DMP" mediante el `/opt/NTAP/SANToolkit/bin/host_config` Comando con la pila de múltiples rutas de la referencia de comandos:
++
+`/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp|iscsi|mixed -multipath mpxio|dmp|non [-noalua] [-mcc 60|90|120]`
+
++
+[cols="2*"]
+|===
+| Por ejemplo, si su configuración es... | Utilice el comando... 
+
+
+| FCP con múltiples rutas como MPxIO | `#/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp -multipath mpxio`Para obtener información sobre los cambios de configuración para la sincronización activa de SnapMirror , consulte el artículo de la base de conocimientoslink:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/Solaris_Host_support_recommended_settings_in_SnapMirror_active_sync_formerly_SM_BC_configuration["Configuración recomendada de compatibilidad del host Solaris en la configuración de sincronización activa de SnapMirror (anteriormente SM-BC)"^] . 
+
+
+| FCP con multitrayecto como DMP | `#/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp -multipath dmp` 
+
+
+| FCP en MetroCluster con rutas múltiples como MPxIO y el valor Todas las rutas inactivas está establecido en 120 s.  (Esta es la configuración recomendada para las configuraciones de MetroCluster ). | `#/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp -multipath mpxio -mcc 120`Para obtener más información, consulte el artículo de la base de conocimientoslink:https://kb.netapp.com/on-prem/ontap/mc/MC-KBs/Solaris_host_support_considerations_in_a_MetroCluster_configuration["Consideraciones de compatibilidad de host Solaris en una configuración de MetroCluster"^] . 
+|===
+. Reinicie el host.
++
+Las utilidades de host cargan las siguientes configuraciones de parámetros de tiempo de espera recomendadas por NetApp para LUN de ONTAP .
+
++
+.Muestra el ejemplo
+[%collapsible]
+====
+[listing]
+----
+#prtconf -v |grep NETAPP
+   value='NETAPP  LUN' +
+   physical-block-size:4096,
+   retries-busy:30,
+   retries-reset:30,
+   retries-notready:300,
+   retries-timeout:10,
+   throttle-max:64,
+   throttle-min:8,
+   disksort:false,
+   cache-nonvolatile:true'
+----
+====
+. Verificar la instalación de Host Utilities:
++
+[source, cli]
+----
+sanlun version
+----
+
+
+
+
+== El futuro
+
+link:hu-solaris-san-toolkit.html["Obtenga más información sobre el kit de herramientas SAN"] .

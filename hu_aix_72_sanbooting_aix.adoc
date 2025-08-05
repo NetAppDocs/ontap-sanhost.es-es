@@ -19,14 +19,16 @@ summary: Describe cómo detectar y configurar LUN con AIX
 Cuando utiliza AIX sin PowerVM, puede ejecutar `cfgmgr` el comando para permitir que el host detecte las LUN. No es necesario reiniciar el host para detectar los LUN. Para confirmar que el host ha detectado LAS LUN, puede utilizar la utilidad sanlun.
 
 
-NOTE: Los pasos siguientes no se aplican a un host que ejecuta un entorno PowerVM.
+NOTE: Los siguientes pasos no se aplican a un host que ejecuta un entorno PowerVM.
 
 .Pasos
 . Inicie sesión como root en el host.
-. En el host AIX, introduzca el siguiente comando para detectar las LUN recién creadas:
+. En el host AIX, descubra los LUN recién creados:
 +
-`cfgmgr`
-
+[source, cli]
+----
+cfgmgr
+----
 +
 La `cfgmgr` el comando ayuda con lo siguiente:
 
@@ -38,8 +40,10 @@ La `cfgmgr` el comando ayuda con lo siguiente:
 
 . Mostrar todos los discos de AIX, incluidas las LUN de NetApp:
 +
-`lsdev -Cc disk`
-
+[source, cli]
+----
+lsdev -Cc disk
+----
 +
 Los LUN aparecen en el host como discos. Puede utilizar estos discos de la misma manera que utiliza discos locales en el host. La configuración del host ODM que se instala como parte de las utilidades de host hace que los LUN se muestren como discos FCP de NetApp.
 
@@ -66,8 +70,10 @@ hdisk5 Available 04-08-02  MPIO NetApp FCP Default PCM Disk
 ====
 . Recuperar información sobre la configuración:
 +
-`lsattr -El hdisk_name`
-
+[source, cli]
+----
+lsattr -El hdisk_name
+----
 +
 .Muestra el resultado de ejemplo
 [%collapsible]
@@ -104,25 +110,33 @@ ww_name         0x500a0984994ae0e0               FC World Wide Name             
 ====
 . Si su configuración admite ALUA, puede usarlo para establecer la prioridad de ruta. Compruebe que ALUA está habilitado:
 +
-`lun igroup show -instance igroup_name`
-
+[source, cli]
+----
+lun igroup show -instance igroup_name
+----
 +
 .. Si ALUA no está habilitado, habilite:
 +
-`igroup set igroup_name alua yes`
-
+[source, cli]
+----
+igroup set igroup_name alua yes
+----
 
 
 . Si la configuración no es compatible con ALUA, debe utilizar la utilidad dotpaths para establecer las prioridades de la ruta. La utilidad dotpaths se instala al instalar Host Utilities. No utilice la utilidad dotpaths si ALUA está habilitado.
 +
 .. Establezca la prioridad para todas las LUN ONTAP:
 +
-`dotpaths`
-
+[source, cli]
+----
+dotpaths
+----
 .. Establezca la prioridad para un conjunto específico de discos:
 +
-`dotpaths [-hqv] [hdiskN ...]`
-
+[source, cli]
+----
+dotpaths [-hqv] [hdiskN ...]
+----
 +
 Utilice `-v` la opción para habilitar el modo detallado y mostrar todas las prioridades. Utilice `-q` la opción para consultar todas las prioridades de disco o las prioridades de disco individuales.
 
@@ -130,8 +144,10 @@ Utilice `-v` la opción para habilitar el modo detallado y mostrar todas las pri
 
 . Compruebe que el host ha detectado las LUN:
 +
-`# sanlun lun show`
-
+[source, cli]
+----
+sanlun lun show
+----
 +
 El ejemplo siguiente muestra el resultado típico del `sanlun lun show` comando en un entorno multivía de Microsoft Multipath I/O (MPIO):
 

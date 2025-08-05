@@ -4,7 +4,7 @@ permalink: hu_aix_72.html
 keywords: Host Utilities, aix, powervm, vios, 3.1, 7.2 netapp, ontap 
 summary: Describe cómo utilizar IBM AIX 7.2 y/o PowerVM VIOS 3.1 con ONTAP 
 ---
-= Utilice IBM AIX 7,2 o PowerVM (VIOS 3,1) con ONTAP
+= Configurar AIX 7.2/VIOS 3.1 para FCP e iSCSI con almacenamiento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,150 +16,60 @@ summary: Describe cómo utilizar IBM AIX 7.2 y/o PowerVM VIOS 3.1 con ONTAP
 
 
 [role="lead"]
-Es posible usar las opciones de configuración del host SAN de ONTAP para configurar IBM AIX 7,2 y/o PowerVM (VIOS 3,1) con ONTAP como destino.
+El software AIX Host Utilities proporciona herramientas de administración y diagnóstico para los hosts AIX que están conectados al almacenamiento ONTAP .  Cuando instala las utilidades de host de AIX en un host AIX 7.2 y/o PowerVM (VIOS 3.1), puede usar las utilidades de host para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP .
 
 
 
-== Instale las utilidades de host AIX/VIOS
+== Paso 1: Opcionalmente, habilite el arranque SAN
 
-Debe instalar el kit de utilidades de host AIX mientras utiliza la I/O multivía de AIX (MPIO) con almacenamiento de ONTAP.
+Puede configurar su host para utilizar el arranque SAN para simplificar la implementación y mejorar la escalabilidad.  Si su configuración no admite el arranque SAN, puede utilizar un arranque local.
 
-Puede descargar el archivo comprimido que contiene los paquetes de software de Host Utilities en el link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["Sitio de soporte de NetApp"^]. Después de tener el archivo, debe descomprimirlo para obtener los dos paquetes de software que necesita para instalar las utilidades de host.
-
-La versión AIX Host Utilities 6,1 corrige el problema de pérdida de memoria que se notificó en las versiones anteriores. Consulte el link:hu_aix_rn.html["notas de la versión"] para obtener información adicional.
+[role="tabbed-block"]
+====
+.Arranque SAN
+--
+El arranque SAN es el proceso de configurar un disco conectado a SAN (un LUN) como dispositivo de arranque para un host AIX/PowerVM.  Puede configurar un LUN de arranque SAN para que funcione en un entorno AIX Multipath I/O (MPIO) que utilice el protocolo FC y ejecute AIX Host Utilities con el protocolo FC o FCoE.  El método que utiliza para crear un LUN de arranque SAN e instalar una nueva imagen del sistema operativo en un entorno AIX MPIO depende del protocolo que esté utilizando.
 
 .Pasos
-. Inicie sesión en el host.
+. Utilice ellink:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que su sistema operativo AIX, su protocolo y la versión de ONTAP admitan el arranque SAN.
+. Siga las mejores prácticas para configurar un arranque SAN en la documentación del proveedor.
+
+
+--
+.Arranque local
+--
+Realice un arranque local instalando el sistema operativo AIX en el disco duro local, por ejemplo, en un SSD, SATA o RAID.
+
+--
+====
+
+
+== Paso 2: Instalar las utilidades del host AIX
+
+NetApp recomienda encarecidamente instalar AIX Host Utilities para respaldar la administración de LUN de ONTAP y ayudar al soporte técnico con la recopilación de datos de configuración.  El paquete MPIO de Host Utilities proporciona soporte MPIO para AIX y VIOS.
+
+
+NOTE: La instalación de AIX Host Utilities proporciona configuraciones de tiempo de espera adicionales en su host AIX.
+
+link:hu_aix_61.html["Instalar AIX Host Utilities 6.1"] .
+
+
+
+== Paso 3: Confirme la configuración multivía del host
+
+Puede utilizar rutas múltiples con AIX 7.2 y PowerVM para administrar LUN de ONTAP .
+
+La función de múltiples rutas le permite configurar múltiples rutas de red entre el host y el sistema de almacenamiento.  Si una ruta falla, el tráfico continúa con las rutas restantes.  Los entornos AIX y PowerVM de Host Utilities utilizan la solución de múltiples rutas nativa de AIX (MPIO).
+
+El módulo de control de ruta (PCM) es responsable de controlar múltiples rutas para un host AIX.  El PCM es un código suministrado por el proveedor de almacenamiento que maneja la administración de rutas y se instala y habilita durante la instalación de Host Utilities.
+
+Para garantizar que la función de rutas múltiples esté configurada correctamente para su host, verifique que tenga configuradas las configuraciones recomendadas de NetApp para sus LUN de ONTAP .
+
+. Las utilidades de host de AIX cargan las siguientes configuraciones de parámetros para los LUN de ONTAP .
 +
-** En un host AIX, inicie sesión como *root*.
-** En un host PowerVM, inicie sesión como *padmin* y, a continuación, introduzca el `oem_setup_env` comando para convertirse en root.
-
-
-. Descargue una copia del archivo comprimido que contiene las utilidades de host del sitio de soporte de NetApp en un directorio del host.
-. Vaya al directorio que contiene la descarga.
-. Descomprimir el archivo y extraer el paquete DE software DE SAN Toolkit.
-+
-`tar -xvf ntap_aix_host_utilities_6.1.tar.gz`
-
-+
-Al descomprimir el archivo se crea el siguiente directorio: `ntap_aix_host_utilities_6.1`. Este directorio tendrá uno de los siguientes subdirectorios: MPIO, NON_MPIO o SAN_Tool_Kit.
-
-. Instale el MPIO de AIX:
-+
-`installp -aXYd /var/tmp/ntap_aix_host_utilities_6.1/MPIO NetApp.MPIO_Host_Utilities_Kit`
-
-. Instalación del kit DE herramientas SAN:
-`installp -aXYd /var/tmp/ntap_aix_host_utilities_6.1/SAN_Tool_Kit NetApp.SAN_toolkit`
-. Reinicie el host.
-
-
-
-
-== Kit de herramientas SAN
-
-La instalación del paquete de utilidades de host de NetApp instala automáticamente el kit de herramientas. Este kit proporciona la `sanlun` utilidad, que le ayuda a gestionar los LUN y los adaptadores de bus de host (HBA). El `sanlun` comando muestra información acerca de las LUN asignadas al host, la multivía y la información necesaria para crear iGroups.
-
-.Ejemplo
-En el siguiente ejemplo, la `sanlun lun show` Command muestra información de LUN.
-
-[listing]
-----
-#sanlun lun show
-
-controller(7mode)/                  device      host       lun
-vserver(Cmode)    lun-pathname     filename    adapter   protocol   size   mode
---------------------------------------------------------------------------------
-data_vserver      /vol/vol1/lun1    hdisk0      fcs0       FCP       60g    C
-data_vserver      /vol/vol2/lun2    hdisk0      fcs0       FCP       20g    C
-data_vserver      /vol/vol3/lun3    hdisk11     fcs0       FCP       20g    C
-data_vserver      /vol/vol4/lun4    hdisk14     fcs0       FCP       20g    C
-
-----
-
-
-== Arranque SAN
-
-.Antes de empezar
-Si decide utilizar el arranque SAN, debe ser compatible con su configuración. Puede utilizar el link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^]para verificar que el sistema operativo, el HBA, el firmware del HBA y la versión de arranque del BIOS y ONTAP sean compatibles.
-
-El arranque SAN es el proceso de configurar un disco conectado a UNA SAN (un LUN) como dispositivo de arranque para un host AIX/PowerVM. Puede configurar un LUN de arranque SAN para que funcione en un entorno AIX MPIO que ejecute las utilidades del host AIX con el protocolo FC o FCoE. El método que utiliza para crear un LUN de arranque SAN e instalar una nueva imagen de sistema operativo en un entorno AIX MPIO puede variar en función del protocolo que utilice.
-
-
-
-== Accesos múltiples
-
-La función multivía le permite configurar varias rutas de red entre el host y el sistema de almacenamiento. Si una ruta falla, el tráfico continúa en las rutas restantes. Los entornos AIX y PowerVM de las utilidades de host utilizan la solución multivía nativa de AIX (MPIO).
-
-Para AIX, el módulo de control de rutas (PCM) es responsable de controlar varias rutas. PCM es un código proporcionado por el proveedor de almacenamiento que gestiona la gestión de rutas. Esto se instala y se habilita como parte de la instalación de utilidades de host.
-
-
-
-=== Configuraciones que no son ASA
-
-En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son Active-Optimized. Esto significa que reciben servicio de la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
-
-.Ejemplo
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas.
-
-[listing]
-----
-# sanlun lun show -p |grep -p hdisk78
-                    ONTAP Path: vs_aix_clus:/vol/chataix_205p2_vol_en_1_7/jfs_205p2_lun_en
-                           LUN: 37
-                      LUN Size: 15g
-                   Host Device: hdisk78
-                          Mode: C
-            Multipath Provider: AIX Native
-        Multipathing Algorithm: round_robin
-------- ---------- ------ ------- ---------- ----------
-host    vserver    AIX                        AIX MPIO
-path    path       MPIO   host    vserver         path
-state   type       path   adapter LIF         priority
-------- ---------- ------ ------- ---------- ----------
-up      secondary  path0  fcs0    fc_aix_1        1
-up      primary    path1  fcs0    fc_aix_2        1
-up      primary    path2  fcs1    fc_aix_3        1
-up      secondary  path3  fcs1    fc_aix_4        1
-
-----
-
-
-=== Configuraciones de cabinas All SAN
-
-Las configuraciones de cabinas All SAN (ASA) optimizan todas las rutas para un LUN determinado, manteniéndolas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
-
-.Ejemplo
-En el ejemplo siguiente se muestra el resultado correcto de una LUN de ONTAP.
-
-
-NOTE: Todas las configuraciones de cabinas SAN (ASA) son compatibles a partir de ONTAP 9.8 para hosts AIX.
-
-[listing]
-----
-# sanlun lun show -p |grep -p hdisk78
-                    ONTAP Path: vs_aix_clus:/vol/chataix_205p2_vol_en_1_7/jfs_205p2_lun_en
-                           LUN: 37
-                      LUN Size: 15g
-                   Host Device: hdisk78
-                          Mode: C
-            Multipath Provider: AIX Native
-        Multipathing Algorithm: round_robin
------- ------- ------ ------- --------- ----------
-host   vserver  AIX                      AIX MPIO
-path   path     MPIO   host    vserver     path
-state  type     path   adapter LIF       priority
------- ------- ------ ------- --------- ----------
-up     primary  path0  fcs0    fc_aix_1     1
-up     primary  path1  fcs0    fc_aix_2     1
-up     primary  path2  fcs1    fc_aix_3     1
-up     primary  path3  fcs1    fc_aix_4     1
-----
-
-
-== Configuración recomendada
-
-A continuación se muestran algunas configuraciones de parámetros recomendadas para las LUN de ONTAP. Los parámetros críticos para las LUN de ONTAP se establecen automáticamente después de instalar el kit de utilidades de host de NetApp.
-
+.Muestra la configuración de los parámetros
+[%collapsible]
+====
 [cols="4*"]
 |===
 | Parámetro | Entorno Oracle | Valor para AIX | Nota 
@@ -192,7 +102,7 @@ A continuación se muestran algunas configuraciones de parámetros recomendadas 
 | política_de_reserva | MPIO/sin MPIO | no_reserva | Establezca Host Utilities 
 
 
-| tiempo de espera rw (disco) | MPIO/sin MPIO | 30 segundos | Utiliza valores predeterminados del SO 
+| tiempo de espera (disco) | MPIO/sin MPIO | 30 segundos | Utiliza valores predeterminados del SO 
 
 
 | dintrik | MPIO/sin MPIO | Sí | Utiliza valores predeterminados del SO 
@@ -209,27 +119,110 @@ A continuación se muestran algunas configuraciones de parámetros recomendadas 
 
 | núm_cmd_elems | MPIO/sin MPIO | 1024 para AIX | FC EN0G 
 |===
+====
+. Si su configuración de almacenamiento incluye sincronización activa de MetroCluster o SnapMirror , cambie la configuración predeterminada:
++
+[role="tabbed-block"]
+====
+.MetroCluster
+--
+De forma predeterminada, el sistema operativo AIX aplica un tiempo de espera de E/S más corto cuando no hay rutas disponibles a un LUN.  Esto podría ocurrir en configuraciones que incluyen una estructura SAN de un solo conmutador y en configuraciones de MetroCluster que experimentan conmutaciones por error no planificadas.  Para obtener información adicional y cambios recomendados en la configuración predeterminada, consulte el artículo de la Base de conocimientoslink:https://kb.netapp.com/on-prem/ontap/mc/MC-KBs/What_are_AIX_Host_support_considerations_in_a_MetroCluster_configuration["¿Cuáles son las consideraciones de soporte de host AIX en una configuración de MetroCluster ?"^] .
+
+--
+.Sincronización activa de SnapMirror
+--
+A partir de ONTAP 9.11.1, la sincronización activa de SnapMirror es compatible con un host AIX.  El clúster principal en una configuración AIX es el clúster "activo".
+
+En una configuración AIX, las conmutaciones por error son disruptivas.  Con cada conmutación por error, es necesario volver a realizar un escaneo en el host para que se reanuden las operaciones de E/S.
+
+Consulte el artículo de la base de conocimientoslink:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/How_to_configure_AIX_Host_for_SnapMirror_active_sync_in_ONTAP["Cómo configurar un host AIX para la sincronización activa de SnapMirror"^] .
+
+--
+====
+. Verifique el estado de la ruta para los LUN de ONTAP :
++
+[source, cli]
+----
+sanlun lun show
+----
++
+Los siguientes ejemplos de salida muestran el estado de ruta correcto para los LUN de ONTAP en una configuración ASA, AFF o FAS .
+
++
+[role="tabbed-block"]
+====
+.Configuraciones de ASA
+--
+Una configuración ASA optimiza todas las rutas a un LUN determinado, manteniéndolas activas ("principales").  Esto mejora el rendimiento al atender operaciones de E/S a través de todas las rutas al mismo tiempo.
+
+.Muestra el ejemplo
+[%collapsible]
+=====
+[listing]
+----
+# sanlun lun show -p |grep -p hdisk78
+                    ONTAP Path: vs_aix_clus:/vol/chataix_205p2_vol_en_1_7/jfs_205p2_lun_en
+                           LUN: 37
+                      LUN Size: 15g
+                   Host Device: hdisk78
+                          Mode: C
+            Multipath Provider: AIX Native
+        Multipathing Algorithm: round_robin
+------ ------- ------ ------- --------- ----------
+host   vserver  AIX                      AIX MPIO
+path   path     MPIO   host    vserver     path
+state  type     path   adapter LIF       priority
+------ ------- ------ ------- --------- ----------
+up     primary  path0  fcs0    fc_aix_1     1
+up     primary  path1  fcs0    fc_aix_2     1
+up     primary  path2  fcs1    fc_aix_3     1
+up     primary  path3  fcs1    fc_aix_4     1
+----
+=====
+--
+.Configuración de AFF o FAS
+--
+Una configuración de AFF o FAS debe tener dos grupos de rutas con prioridades superiores e inferiores. La controladora donde se encuentra el agregado ofrece rutas activas/optimizadas de mayor prioridad. Las rutas de prioridad más baja están activas pero no optimizadas debido a que se sirven con una controladora diferente. Las rutas no optimizadas solo se usan cuando las rutas optimizadas no están disponibles.
+
+El siguiente ejemplo muestra la salida correcta para un LUN de ONTAP con dos rutas activas/optimizadas ("principales") y dos rutas activas/no optimizadas ("secundarias"):
+
+.Muestra el ejemplo
+[%collapsible]
+=====
+[listing]
+----
+# sanlun lun show -p |grep -p hdisk78
+                    ONTAP Path: vs_aix_clus:/vol/chataix_205p2_vol_en_1_7/jfs_205p2_lun_en
+                           LUN: 37
+                      LUN Size: 15g
+                   Host Device: hdisk78
+                          Mode: C
+            Multipath Provider: AIX Native
+        Multipathing Algorithm: round_robin
+------- ---------- ------ ------- ---------- ----------
+host    vserver    AIX                        AIX MPIO
+path    path       MPIO   host    vserver         path
+state   type       path   adapter LIF         priority
+------- ---------- ------ ------- ---------- ----------
+up      secondary  path0  fcs0    fc_aix_1        1
+up      primary    path1  fcs0    fc_aix_2        1
+up      primary    path2  fcs1    fc_aix_3        1
+up      secondary  path3  fcs1    fc_aix_4        1
+----
+=====
+--
+====
 
 
-== Configuración recomendada para MetroCluster
-
-De forma predeterminada, el sistema operativo AIX aplica un tiempo de espera de I/o más corto cuando no hay rutas a una LUN disponibles. Esto puede suceder en configuraciones que incluyen una estructura SAN de switch único y configuraciones de MetroCluster que experimentan recuperaciones tras fallos no planificadas. Para obtener información adicional y los cambios recomendados en la configuración predeterminada, consulte link:https://kb.netapp.com/app/answers/answer_view/a_id/1001318["KB1001318 de NetApp"^]
 
 
-
-== Compatibilidad de AIX con sincronización activa de SnapMirror
-
-A partir de ONTAP 9.11.1, AIX es compatible con la sincronización activa de SnapMirror. Con una configuración AIX, el clúster primario es el clúster "activo".
-
-En una configuración AIX, las recuperaciones tras fallos son disruptivas. Con cada conmutación al nodo de respaldo, deberá realizar un nuevo análisis en el host para que se reanuden las operaciones de I/O.
-
-Para configurar la sincronización activa de AIX para SnapMirror, consulte el artículo de la base de conocimientos link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/How_to_configure_an_AIX_host_for_SnapMirror_Business_Continuity_(SM-BC)["Cómo configurar un host AIX para la sincronización activa de SnapMirror"^].
+== Paso 4: Revisar los problemas conocidos
 
 
 
 == Problemas conocidos
 
-IBM AIX 7,2 y/o PowerVM (VIOS 3,1) con la versión ONTAP tienen los siguientes problemas conocidos:
+La versión IBM AIX 7.2 y/o PowerVM (VIOS 3.1) con almacenamiento ONTAP tiene los siguientes problemas conocidos:
 
 [cols="4*"]
 |===
@@ -244,3 +237,8 @@ IBM AIX 7,2 y/o PowerVM (VIOS 3,1) con la versión ONTAP tienen los siguientes p
 
 | link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1307653["1307653"^] | Los problemas de E/S se producen en VIOS 3.1.1.10 durante los fallos de SFO y la E/S directa | En VIOS 3,1.1, se pueden producir errores de I/O en los discos de cliente NPIV respaldados por adaptadores FC de 16 GB o 32 GB. Además, `vfchost` el controlador podría dejar de procesar las solicitudes de I/O del cliente. La aplicación de IBM APAR IJ22290 IBM APAR IJ23222 soluciona el problema. | NA 
 |===
+
+
+== El futuro
+
+link:hu-aix-command-reference.html["Obtenga información sobre el uso de la herramienta Utilidades de host de AIX"] .

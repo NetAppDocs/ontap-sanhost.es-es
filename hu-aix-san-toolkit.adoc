@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: hu-aix-san-toolkit.html 
+keywords: san, toolkit, command, line, AIX, hot, utilities 
+summary: El software de host AIX Host Utilities proporciona un kit de herramientas de línea de comandos en su host IBM AIX. 
+---
+= Obtenga más información sobre el kit de herramientas AIX SAN para el almacenamiento ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+AIX Host Utilities es un software de host de NetApp que proporciona un kit de herramientas de línea de comandos en su host IBM AIX.  El kit de herramientas SAN se instala cuando instala el paquete NetApp Host Utilities.  El kit de herramientas proporciona la `sanlun` utilidad que le ayuda a administrar LUN de ONTAP y adaptadores de bus host (HBA).  El `sanlun` El comando devuelve información sobre los LUN de ONTAP asignados a su host, rutas múltiples e información necesaria para crear grupos de iniciadores.
+
+El siguiente ejemplo de salida muestra la información LUN de ONTAP devuelta para el `sanlun lun show` dominio:
+
+[listing]
+----
+controller(7mode)/ device host lun
+
+vserver(Cmode) lun-pathname filename adapter protocol size mode
+----------------------------------------------------------------
+data_vserver   /vol/vol1/lun1 hdisk0 fcs0    FCP      60g C
+data_vserver   /vol/vol2/lun2 hdisk0 fcs0    FCP      20g C
+data_vserver   /vol/vol3/lun3 hdisk11 fcs0   FCP      20g C
+data_vserver   /vol/vol4/lun4 hdisk14 fcs0   FCP      20g C
+----
+
+NOTE: El kit de herramientas SAN es común en todas las configuraciones de host y protocolos de transporte de AIX.  Como resultado, no todos los componentes se aplican a todas las configuraciones.  Los componentes no utilizados no afectan el rendimiento del sistema.  El kit de herramientas SAN es compatible con las versiones del sistema operativo AIX y PowerVM/VIOS.
+
+
+
+== El futuro
+
+link:hu-aix-command-reference.html["Obtenga información sobre el uso de la herramienta Utilidades de host de AIX"] .

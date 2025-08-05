@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: hu-hpux-sanlun-toolkit.html 
+keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
+summary: Describe cómo usar HP-UX Host Utilities 6,0 con almacenamiento ONTAP 
+---
+= Obtenga más información sobre el kit de herramientas SAN para el almacenamiento ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+HP-UX Host Utilities es un software de host de NetApp que proporciona un kit de herramientas de línea de comandos en su host HP-UX.  El kit de herramientas se instala cuando instala el paquete NetApp Host Utilities.  Este kit proporciona la `sanlun` utilidad que le ayuda a administrar LUN de ONTAP y adaptadores de bus host.  El `sanlun` El comando devuelve información sobre los LUN asignados a su host, rutas múltiples e información necesaria para crear grupos de iniciadores.
+
+En el siguiente ejemplo, el `sanlun lun show` El comando devuelve información de LUN de ONTAP .
+
+[listing]
+----
+# sanlun lun show all
+
+controller(7mode)/ device host lun
+vserver(Cmode)           lun-pathname                   filename          adapter    protocol   size   mode
+------------------------------------------------------------------------------------------------------------
+sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c34t0d0  fclp1      FCP        150g    C
+sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c23t0d0  fclp1      FCP        150g    C
+sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c12t0d0  fclp0      FCP        150g    C
+sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c81t0d0  fclp0      FCP        150g    C
+
+----
+[NOTE]
+====
+Este kit de herramientas SAN es común en todas las configuraciones y protocolos de Host Utilities.  Como resultado, no todos los componentes se aplican a todas las configuraciones.  Los componentes no utilizados no afectan el rendimiento del sistema.
+
+El kit de herramientas SAN es compatible con las versiones del sistema operativo AIX y PowerVM/VIOS.
+
+====
+
+
+== El futuro
+
+link:hu_hpux_60_cmd.html["Obtenga información sobre el uso de la herramienta HP-UX Host Utilities"] .

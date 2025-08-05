@@ -4,7 +4,7 @@ permalink: hu_wuhu_troubleshoot.html
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Windows Host Utilities incluye un programa de instalación que establece los parámetros de registro de Windows y HBA necesarios para que el host Windows controle correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP y E-Series. 
 ---
-= Solucionar problemas
+= Solucionar problemas de utilidades de host de Windows con configuración de almacenamiento de ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -19,7 +19,7 @@ summary: Windows Host Utilities incluye un programa de instalación que establec
 
 
 [role="lead"]
-Es posible utilizar las técnicas generales de solución de problemas para utilidades de host de Windows. No olvide consultar las notas de la versión más recientes para ver los problemas conocidos y las soluciones.
+Utilice las técnicas generales de solución de problemas para investigar problemas que puedan ocurrir con una configuración de almacenamiento de Windows Host Utilities con ONTAP .  También deberías comprobar ellink:hu-wuhu-release-notes.html["Notas de la versión de Windows Host Utilities"] para problemas conocidos y soluciones.
 
 A continuación, se muestra una lista de las diferentes áreas que puede investigar en busca de posibles problemas de interoperabilidad:
 
@@ -28,7 +28,7 @@ A continuación, se muestra una lista de las diferentes áreas que puede investi
 * Si los LUN iSCSI no están disponibles después de un reinicio, verifique que el destino esté listado como persistente en la pestaña *Destinos persistentes* de la GUI del iniciador iSCSI de Microsoft.
 * Si las aplicaciones que utilizan las LUN muestran errores al iniciar, compruebe que las aplicaciones estén configuradas para que dependan del servicio iSCSI.
 * Para las rutas FC a controladoras de almacenamiento que ejecutan ONTAP, compruebe que las zonas de los switches FC están configuradas mediante los WWPN de las LIF de destino, no con los WWPN de los puertos físicos del nodo.
-* Revise la link:hu_wuhu_71_rn.html["Notas de la versión"] Para las utilidades de host de Windows que compruebe los problemas conocidos. Las notas de la versión incluyen una lista de problemas conocidos y limitaciones.
+* Revisar ellink:hu-wuhu-release-notes.html["Notas de la versión"] para que las utilidades de host de Windows comprueben si hay problemas conocidos.  Las notas de la versión incluyen una lista de problemas y limitaciones conocidos.
 * Consulte la información sobre solución de problemas en la https://docs.netapp.com/us-en/ontap/san-admin/index.html["Administración de SAN de ONTAP"^] documentación.
 * Búsqueda https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^] para problemas descubiertos recientemente.
 +

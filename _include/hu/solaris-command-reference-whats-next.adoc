@@ -1,0 +1,9 @@
+= ¿Que sigue?
+:allow-uri-read: 
+
+
+
+
+== El futuro
+
+link:hu-solaris-command-reference.html["Obtenga información sobre el uso de la herramienta Utilidades de host de Solaris"] .

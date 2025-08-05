@@ -1,0 +1,29 @@
+= Paso 2: Configurar los HBA y conmutadores FC
+:allow-uri-read: 
+
+
+. Iniciar el servicio de destino.
+. Compruebe el cableado.
++
+Consulte la https://docs.netapp.com/us-en/ontap/san-config/index.html["Referencia para la configuración DE SAN"^] para obtener información detallada sobre el cableado y la configuración.
+
+
+
+
+
+== Paso 2: Configurar los HBA y conmutadores FC
+
+Instale y configure uno o más adaptadores de bus de host (HBA) FC compatibles para las conexiones FC al sistema de almacenamiento.
+
+El instalador de Windows Host Utilities establece los ajustes de FC HBA requeridos.
+
+
+CAUTION: Solo debe permitir que el instalador de Windows Host Utilities configure los parámetros de HBA.  Esto garantiza que el host de Windows pueda manejar correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP .
+
+.Pasos
+. Instalar uno o más HBA FC compatibles según las instrucciones proporcionadas por el proveedor de HBA.
+. Obtenga los controladores HBA admitidos y las utilidades de administración e instálelos según las instrucciones proporcionadas por el proveedor de HBA.
+. https://docs.netapp.com/us-en/ontap/san-management/index.html["Conecte los HBA a sus conmutadores FC o directamente al sistema de almacenamiento"^] .
+. https://docs.netapp.com/us-en/ontap/san-config/fibre-channel-fcoe-zoning-concept.html["Cree zonas en el conmutador FC según la documentación de su conmutador FC"^] .
+. Para ONTAP, zonifique el conmutador según el WWPN.  Asegúrese de utilizar el WWPN de las interfaces lógicas (LIF) y no el WWPN de los puertos físicos en los controladores de almacenamiento. Consulte la  https://docs.netapp.com/us-en/ontap/san-config/index.html["Referencia para la configuración DE SAN"^] Para más información.
+

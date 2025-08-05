@@ -1,0 +1,113 @@
+---
+sidebar: sidebar 
+permalink: hu-luhu-80.html 
+keywords: host utilities, unified, oracle, linux, 8.0, netapp, ontap 
+summary: Describe cómo utilizar Linux Host Utilities 8.0 con ONTAP 
+---
+= Instalar Linux Host Utilities 8.0 para el almacenamiento ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Las utilidades de host de Linux le ayudan a administrar el almacenamiento ONTAP conectado a un host de Linux.  NetApp recomienda encarecidamente instalar Linux Host Utilities, pero no es obligatorio.  Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre su configuración.
+
+Linux Host Utilities 8.0 admite los siguientes tipos de distribución:
+
+* Red Hat Enterprise Linux
+* SUSE Linux Enterprise Server
+* Oracle Linux
+* Oracle VM
+
+
+
+NOTE: El software Linux Host Utilities no es compatible con los protocolos de host NVMe over Fibre Channel (NVMe/FC) y NVMe over TCP (NVMe/TCP).
+
+.Acerca de esta tarea
+Cuando instala Linux Host Utilities, no cambia ninguna configuración en su host Linux.
+
+.Antes de empezar
+* Para un funcionamiento confiable, utilice ellink:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que su configuración iSCSI, FC o FCoE sea compatible.
+* Instale los paquetes de administración del adaptador de bus host (HBA) disponibles en el sitio de soporte del proveedor.  El software de gestión permite: `sanlun` comandos para recopilar información sobre los HBA FC, como sus WWPN.
++
+Consulte la documentación del proveedor para verificar que los siguientes paquetes estén instalados correctamente.  Estos paquetes son necesarios para dar soporte al `sanlun fcp show adapter` dominio:
+
++
+** Marvell QLogic HBA: CLI de QConvergeConsole
+** HBA de Broadcom Emulex: CLI de aplicación central de OneCommand Manager
+
+
+
+
+.Pasos
+. Si tiene una versión de Linux Host Utilities actualmente instalada, elimínela:
++
+[source, cli]
+----
+rpm -e netapp_linux_unified_host_utilities-8-0
+----
++
+Para versiones anteriores de Linux Host Utilities, vaya al directorio donde está instalado el software de la utilidad host e introduzca el comando uninstall para eliminar el paquete instalado.
+
+. El paquete de software NetApp Linux Host Utilities está disponible en el sitio de soporte de NetApp en un archivo .rpm de 64 bits.  Descargue el archivo de 64 bits desdelink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] a su anfitrión.
+. Vaya al directorio donde descargó el paquete de software e instálelo:
++
+[source, cli]
+----
+rpm -ivh netapp_linux_unified_host_utilities-8-0.x86_xx.rpm
+----
++
+Debería ver un resultado similar al siguiente ejemplo:
+
++
+[listing]
+----
+rpm -ivh netapp_linux_unified_host_utilities-8-0.x86_64.rpm
+Verifying...                          ################################# [100%]
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:netapp_linux_unified_host_utiliti################################# [100%]
+
+----
++
+[NOTE]
+====
+Si está utilizando un sistema operativo host Ubuntu, deberá vincularlo manualmente a la biblioteca HBA:
+
+[source, cli]
+----
+cp /opt/QLogic_Corporation/QConvergeConsoleCLI/lib64/libHBAAPI.so.2.0.2 /usr/lib64/libHBAAPI.so
+----
+====
+. Compruebe la instalación:
++
+[source, cli]
+----
+sanlun version
+----
++
+Debería ver un resultado similar al siguiente ejemplo:
+
++
+[listing]
+----
+sanlun version 8.0.386.1644
+----
+
+
+
+
+== El futuro
+
+* Configuración de controlador recomendada con el kernel de Linux
++
+Cuando configura un entorno FC que utiliza controladores de bandeja de entrada nativos que se incluyen en el núcleo de Linux, puede utilizar los valores predeterminados para los controladores.
+
+* link:hu-luhu-sanlun-utility.html["Conozca la utilidad "sanlun""] .
+

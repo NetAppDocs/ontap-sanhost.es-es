@@ -1,0 +1,9 @@
+= 
+:allow-uri-read: 
+
+
+La función de múltiples rutas le permite configurar múltiples rutas de red entre el host y el sistema de almacenamiento.  Si una ruta falla, el tráfico continúa con las rutas restantes.  Los entornos AIX y PowerVM de Host Utilities utilizan la solución de múltiples rutas nativa de AIX (MPIO).
+
+El módulo de control de ruta (PCM) es responsable de controlar múltiples rutas para un host AIX.  El PCM es un código suministrado por el proveedor de almacenamiento que maneja la administración de rutas y se instala y habilita durante la instalación de Host Utilities.
+
+Para garantizar que la función de rutas múltiples esté configurada correctamente para su host, verifique que tenga configuradas las configuraciones recomendadas de NetApp para sus LUN de ONTAP .
