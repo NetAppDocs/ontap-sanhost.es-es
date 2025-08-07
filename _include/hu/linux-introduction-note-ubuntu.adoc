@@ -1,0 +1,11 @@
+= 
+:allow-uri-read: 
+
+
+[NOTE]
+====
+El paquete de software Linux Host Utilities no es compatible con los sistemas operativos Ubuntu.
+
+No es necesario configurar manualmente los ajustes de la máquina virtual basada en kernel (KVM) porque los LUN de ONTAP se asignan automáticamente al hipervisor.
+
+====

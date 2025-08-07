@@ -241,6 +241,9 @@ CAUTION: No debe anular la configuración de parámetros recomendada para las LU
 
 El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este ejemplo, el `multipath.conf` archivo define valores para `path_checker` y `no_path_retry` que no son compatibles con LUN de ONTAP, y no puede quitar estos parámetros porque las cabinas de almacenamiento ONTAP siguen conectadas al host. En su lugar, corrija los valores para `path_checker` y `no_path_retry` agregando una estrofa de dispositivo al `multipath.conf` archivo que se aplica específicamente a los LUN de ONTAP.
 
+.Muestra el ejemplo
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 defaults {
@@ -257,6 +260,7 @@ devices {
    }
 }
 ----
+====
 
 
 == Paso 6: Revise los problemas conocidos

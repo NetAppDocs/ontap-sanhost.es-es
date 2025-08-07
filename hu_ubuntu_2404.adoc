@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: hu_ubuntu_2404.html 
 keywords: host utilities, red hat, rhel, linux, 20.04, netapp, ontap, ubuntu 
-summary: Describe cómo usar Ubuntu 24,04 con ONTAP 
+summary: Configure Ubuntu 22.04 para rutas múltiples y con parámetros y configuraciones específicos para la operación FCP e iSCSI con almacenamiento ONTAP . 
 ---
-= Usa Ubuntu 24,04 con ONTAP
+= Configurar Ubuntu 24.04 para FCP e iSCSI con almacenamiento ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -19,145 +19,68 @@ summary: Describe cómo usar Ubuntu 24,04 con ONTAP
 
 
 [role="lead"]
-Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Ubuntu 24,04 con ONTAP como destino.
+Configure Ubuntu 24.04 para rutas múltiples y con parámetros y configuraciones específicos para la operación FCP e iSCSI con almacenamiento ONTAP .
+
+[NOTE]
+====
+El paquete de software Linux Host Utilities no es compatible con los sistemas operativos Ubuntu.
+
+No es necesario configurar manualmente los ajustes de la máquina virtual basada en kernel (KVM) porque los LUN de ONTAP se asignan automáticamente al hipervisor.
+
+====
 
 
-NOTE: El paquete de software Utilidades del host Linux de NetApp no está disponible para el sistema operativo Ubuntu 24,04.
+== Paso 1: Opcionalmente, habilite el arranque SAN
 
-
-
-== Arranque SAN
-
-Si decide utilizar el arranque SAN, debe ser compatible con su configuración.
+Puede configurar su host para que utilice el arranque SAN y simplificar la puesta en marcha y mejorar la escalabilidad.
 
 .Antes de empezar
-Utilice link:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que su sistema operativo, adaptador de bus de host, firmware de adaptador de bus de host, BIOS de arranque de HBA y versión de ONTAP sean compatibles.
+Utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que el sistema operativo Linux, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admiten el arranque SAN.
 
 .Pasos
-. Asignar el LUN de arranque SAN al host.
-. Verifique que haya varias rutas disponibles.
-+
-
-NOTE: Una vez que el sistema operativo host está activo y en ejecución en las rutas, hay varias rutas disponibles.
-
+. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["Cree un LUN de arranque SAN y asígnelo al host"^].
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Reinicie el host para verificar que el inicio se ha realizado correctamente.
+. Compruebe que la configuración se haya realizado correctamente. Para ello, reinicie el host y verifique que el sistema operativo esté activo y en ejecución.
 
 
 
 
-== Accesos múltiples
+== Paso 2: Confirme la configuración de múltiples rutas para su host
 
-Para Ubuntu 24,04, el `/etc/multipath.conf` archivo debe existir, pero no es necesario hacer cambios en el archivo porque Ubuntu 24,04 se compila con la configuración necesaria para reconocer y administrar correctamente los LUN de ONTAP.
+Puede utilizar rutas múltiples con Ubuntu 24.04 para administrar LUN de ONTAP .
 
-En el caso de todas las configuraciones de cabina SAN (ASA) y que no son ASA, puede utilizar `multipath -ll` el comando para comprobar la configuración de una LUN de ONTAP, como se muestra en los ejemplos siguientes.
-
-
-NOTE: Una única LUN no debería necesitar más de cuatro rutas. Más de cuatro rutas pueden causar problemas de ruta durante fallos de almacenamiento.
-
-
-
-=== Configuraciones de ASA
-
-En las configuraciones de ASA, todas las rutas a un LUN determinado son activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
-
-En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP asignada a una persona de ASA:
-
-[listing]
-----
-# # multipath -ll
-3600a098038314559533f524d6c652f62 dm-24 NETAPP,LUN C-Mode
-size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
-`-+- policy='service-time 0' prio=50 status=active
-  |- 11:0:1:13 sdm  8:192  active ready running
-  |- 11:0:3:13 sdah 66:16  active ready running
-  |- 12:0:1:13 sdbc 67:96  active ready running
-  `- 12:0:3:13 sdbx 68:176 active ready running
-----
-
-
-=== Configuraciones que no son ASA
-
-En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas solo se utilizan cuando las rutas optimizadas no están disponibles.
-
-En el ejemplo siguiente se muestra el resultado correcto de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizada asignadas a una persona que no es ASA:
-
-[listing]
-----
-# multipath -ll
-3600a098038314837352453694b542f4a dm-0 NETAPP,LUN C-Mode
-size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
-|-+- policy='service-time 0' prio=50 status=active
-| |- 14:0:3:0 sdbk 67:224 active ready running
-| `- 15:0:2:0 sdbl 67:240 active ready running
-`-+- policy='service-time 0' prio=10 status=enabled
-  |- 14:0:0:0 sda  8:0    active ready running
-  `- 15:0:1:0 sdv  65:80  active ready running
-----
-
-
-== Configuración recomendada
-
-El sistema operativo Ubuntu 24,04 se compila para reconocer LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para configuraciones ASA y no ASA. Además, se puede utilizar la siguiente configuración recomendada para optimizar aún más el rendimiento de la configuración de host.
-
- `multipath.conf`El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el `touch /etc/multipath.conf` comando.
-
-La primera vez que crea el `multipath.conf` archivo, es posible que deba habilitar e iniciar los servicios multivía mediante los siguientes comandos:
-
-[listing]
-----
-# systemctl enable multipathd
-# systemctl start multipathd
-----
-No es necesario agregar dispositivos directamente al `multipath.conf` archivo, a menos que tenga dispositivos que no desea que se gestionen mediante rutas múltiples o que tenga configuraciones existentes que anulen los valores predeterminados. Puede excluir los dispositivos no deseados agregando la siguiente sintaxis al `multipath.conf` archivo, reemplazando <DevId> por la cadena WWID del dispositivo que desea excluir:
-
-[listing]
-----
-blacklist {
-        wwid <DevId>
-        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-        devnode "^hd[a-z]"
-        devnode "^cciss.*"
-}
-----
-En el siguiente ejemplo, determina el WWID de un dispositivo y agrega el dispositivo al `multipath.conf` archivo.
+Para garantizar que el acceso multivía esté configurado correctamente para el host, verifique que el `/etc/multipath.conf` archivo esté definido y que los ajustes recomendados de NetApp estén configurados para los LUN de ONTAP.
 
 .Pasos
-. Determine el WWID:
+. Verifique que el `/etc/multipath.conf` archivo salga. Si el archivo no existe, cree un archivo vacío de cero bytes:
 +
-[listing]
+[source, cli]
 ----
-/lib/udev/scsi_id -gud /dev/sda
+touch /etc/multipath.conf
+----
+. La primera vez que `multipath.conf` se crea el archivo, es posible que deba habilitar e iniciar los servicios multivía para cargar la configuración recomendada:
++
+[source, cli]
+----
+systemctl enable multipathd
 ----
 +
-[listing]
+[source, cli]
 ----
-360030057024d0730239134810c0cb833
+systemctl start multipathd
 ----
+. Cada vez que arranca el host, el archivo de cero bytes vacío `/etc/multipath.conf` carga automáticamente los parámetros multivía de host recomendados por NetApp como configuración predeterminada. No debería ser necesario realizar cambios en `/etc/multipath.conf` el archivo para el host ya que el sistema operativo está compilado con los parámetros multivía que reconocen y gestionan correctamente las LUN de ONTAP.
 +
-`sda` Es el disco SCSI local que desea agregar a la lista negra.
+En la siguiente tabla se muestra la configuración del parámetro multivía compilado nativo del sistema operativo Linux para los LUN de ONTAP.
 
-. Añada el `WWID` a la lista negra stanza en `/etc/multipath.conf`:
 +
-[listing]
-----
-blacklist {
-     wwid   360030057024d0730239134810c0cb833
-     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-     devnode "^hd[a-z]"
-     devnode "^cciss.*"
-}
-----
-
-
-Siempre debe comprobar el `/etc/multipath.conf` archivo, especialmente en la sección de valores predeterminados, para los ajustes heredados que podrían estar anulando los valores predeterminados.
-
-La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de ONTAP y los valores necesarios. Si un host está conectado a LUN de otros proveedores y cualquiera de estos parámetros se anula, deberán corregirse posteriormente mediante estrofas en `multipath.conf` el archivo aplicables específicamente a las LUN de ONTAP. Si esto no se hace, es posible que las LUN de ONTAP no funcionen según se espera. Solo debe anular estos valores predeterminados en consulta con NetApp y/o un proveedor de SO y solo cuando comprenda completamente el impacto.
-
-[cols="2*"]
+.Muestra la configuración de los parámetros
+[%collapsible]
+====
+[cols="2"]
 |===
 | Parámetro | Ajuste 
 
@@ -201,7 +124,7 @@ La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de 
 | prioridad | "ONTAP" 
 
 
-| producto | LUN.* 
+| producto | LUN 
 
 
 | retain_attached_hw_handler | sí 
@@ -215,32 +138,135 @@ La siguiente tabla muestra `multipathd` los parámetros críticos de las LUN de 
 
 | proveedor | NETAPP 
 |===
-El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este caso, el `multipath.conf` archivo define valores para `path_checker` y `no_path_retry` que no son compatibles con las LUN de ONTAP. Si no pueden eliminarse debido a que aún hay otras cabinas SAN conectadas al host, estos parámetros pueden corregirse específicamente para LUN de ONTAP con una stanza de dispositivo.
+====
+. Compruebe la configuración de parámetros y el estado de la ruta de sus LUN de ONTAP:
++
+[source, cli]
+----
+multipath -ll
+----
++
+Los parámetros multivía predeterminados admiten las configuraciones de ASA, AFF y FAS. En estas configuraciones, una única LUN de ONTAP no debería necesitar más de cuatro rutas. Si existen más de cuatro rutas, se pueden producir problemas con las rutas durante un fallo de almacenamiento.
 
++
+En el siguiente ejemplo, se muestran los ajustes de parámetros y el estado de la ruta correctos para las LUN de ONTAP en una configuración de ASA, AFF o FAS.
+
++
+[role="tabbed-block"]
+====
+.Configuración de ASA
+--
+Una configuración de ASA optimiza todas las rutas a una LUN determinada para mantenerlas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
+
+.Muestra el ejemplo
+[%collapsible]
+=====
 [listing]
 ----
+# multipath -ll
+3600a098038314559533f524d6c652f62 dm-24 NETAPP,LUN C-Mode
+size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 11:0:1:13 sdm  8:192  active ready running
+  |- 11:0:3:13 sdah 66:16  active ready running
+  |- 12:0:1:13 sdbc 67:96  active ready running
+  `- 12:0:3:13 sdbx 68:176 active ready running
+----
+=====
+--
+.Configuración de AFF o FAS
+--
+Una configuración de AFF o FAS debe tener dos grupos de rutas con prioridades superiores e inferiores. La controladora donde se encuentra el agregado ofrece rutas activas/optimizadas de mayor prioridad. Las rutas de prioridad más baja están activas pero no optimizadas debido a que se sirven con una controladora diferente. Las rutas no optimizadas solo se usan cuando las rutas optimizadas no están disponibles.
+
+En el siguiente ejemplo, se muestra el resultado de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizada:
+
+.Muestra el ejemplo
+[%collapsible]
+=====
+[listing]
+----
+# multipath -ll
+3600a098038314837352453694b542f4a dm-0 NETAPP,LUN C-Mode
+size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 14:0:3:0 sdbk 67:224 active ready running
+| `- 15:0:2:0 sdbl 67:240 active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+  |- 14:0:0:0 sda  8:0    active ready running
+  `- 15:0:1:0 sdv  65:80  active ready running
+----
+=====
+--
+====
+
+
+
+
+== Paso 3: Opcionalmente, excluya un dispositivo de las rutas múltiples
+
+Si es necesario, puede excluir un dispositivo del acceso múltiple agregando el WWID del dispositivo no deseado a la estrofa de la lista negra del `multipath.conf` archivo.
+
+.Pasos
+. Determine el WWID:
++
+[source, cli]
+----
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+“sda” es el disco SCSI local que desea agregar a la lista negra.
+
++
+Un ejemplo de WWID es `360030057024d0730239134810c0cb833`.
+
+. Añada el WWID a la estrofa «blacklist»:
++
+[source, cli]
+----
+blacklist {
+	     wwid   360030057024d0730239134810c0cb833
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+----
+
+
+
+
+== Paso 4: Personalizar los parámetros de rutas múltiples para los LUN de ONTAP
+
+Si su host está conectado a LUN de otros proveedores y cualquiera de la configuración de parámetros multivía se ha anulado, debe corregirlos agregando estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a LUN de ONTAP. Si no hace esto, es posible que las LUN de ONTAP no funcionen como se espera.
+
+Compruebe el `/etc/multipath.conf` archivo, especialmente en la sección de valores predeterminados, para ver los ajustes que podrían estar anulando el <<multipath-parameter-settings,configuración predeterminada para parámetros multivía>>.
+
+
+CAUTION: No debe anular la configuración de parámetros recomendada para las LUN de ONTAP. Estos ajustes se requieren para el rendimiento óptimo de la configuración del host. Póngase en contacto con el soporte de NetApp, con su proveedor de SO o con ambos para obtener más información.
+
+El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este ejemplo, el `multipath.conf` archivo define valores para `path_checker` y `no_path_retry` que no son compatibles con LUN de ONTAP, y no puede quitar estos parámetros porque las cabinas de almacenamiento ONTAP siguen conectadas al host. En su lugar, corrija los valores para `path_checker` y `no_path_retry` agregando una estrofa de dispositivo al `multipath.conf` archivo que se aplica específicamente a los LUN de ONTAP.
+
+.Muestra el ejemplo
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
 defaults {
-   path_checker      readsector0
-   no_path_retry     fail
+   path_checker      *readsector0*
+   no_path_retry     *fail*
 }
 
 devices {
    device {
-      vendor         "NETAPP"
+      vendor          "NETAPP"
       product         "LUN"
-      no_path_retry    queue
-      path_checker     tur
+      no_path_retry   *queue*
+      path_checker    *tur*
    }
 }
 ----
+====
 
 
-== Configure los ajustes de KVM
+== Paso 5: Revisar los problemas conocidos
 
-No es necesario configurar ajustes para una máquina virtual basada en kernel porque la LUN está asignada al hipervisor.
-
-
-
-== Problemas conocidos
-
-No existen problemas conocidos para el lanzamiento de Ubuntu 24,04 con ONTAP.
+No hay problemas conocidos.

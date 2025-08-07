@@ -226,7 +226,6 @@
   <block id="c7c7e4d1fc8a47f946a88914900694c3" category="list-text">HP-UX 11iv2</block>
   <block id="4feac8845db3a6b1f4e4ead570b6b3ad" category="list-text">HP-UX 11iv3</block>
   <block id="29b512fbc4379581cd2fd8694ca529c4" category="summary">Uso de Windows Server 2022 con ONTAP</block>
-  <block id="d39909bec744e2f2c23d014243c69d33" category="section-title">Arranque SAN</block>
   <block id="8d1d5b8defd8dab28a7e51c7b4ff5d33" category="inline-link-macro">Catálogo de Microsoft Update 2022</block>
   <block id="5a3b43f9090be87b411af7ac82adcb38" category="list-text">Siga las instrucciones proporcionadas por Microsoft para instalar las revisiones.</block>
   <block id="4f27a34799ad8580f67b93c57e242ad0" category="section-title">Configuración de SAN</block>
@@ -883,7 +882,6 @@
   <block id="360ef025710e08a61d1403840b1b7d2f" category="list-text">Una vez finalizada la instalación, compruebe que está ejecutando el kernel de Red Hat Enterprise Linux especificado.</block>
   <block id="97b1d501c6990b34b9d8e6c6a3bd4c72" category="section-title">Enumere la identidad de la SVM de la ONTAP a partir de la que se asigna una LUN determinada al host</block>
   <block id="ccf6dcaf9d267935d140bb63387e1b16" category="section-title">Enumere las LUN de ONTAP que se ven en el host de un determinado WWPN de LIF de destino de SVM</block>
-  <block id="2938598ecd7ea37f885251173aa43089" category="paragraph">El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este caso, el<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> el archivo define los valores para<block ref="3b07c0a70dc66d6564dcdf2f5ab1ed63" prefix=" " category="inline-code"></block> y..<block ref="9434de34302b4f40887a7277cf35a8fc" prefix=" " category="inline-code"></block> Que no son compatibles con las LUN de ONTAP. Si no pueden eliminarse debido a que aún hay otras cabinas SAN conectadas al host, estos parámetros pueden corregirse específicamente para LUN de ONTAP con una stanza de dispositivo.</block>
   <block id="2fefce185e7d7498c7e3da22bac84294" category="cell">1508554</block>
   <block id="11613812ad376f15dc5ee5a9f425cea1" category="cell">La CLI de NetApp Linux Host Utilities requiere dependencias de paquetes de biblioteca adicionales para admitir la detección del adaptador de bus de host de Emulex</block>
   <block id="f2ec2908e789bd4d085520a7536b0d19" category="summary">Describe cómo utilizar CentOS 6.10 con ONTAP</block>
@@ -1691,21 +1689,9 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="4bd5bd4d2b1b5b4d45d52aa3025e20d9" category="paragraph">Puede configurar NVMe/FC para adaptadores FC Broadcom/Emulex o Marvell/Qlogic FC.</block>
   <block id="5d672db52f749787478547eba4ca55f3" category="section-title">Cree una controladora de detección persistente</block>
   <block id="d3e220182499e43aeadc8bda16bcb3db" category="paragraph">En el siguiente ejemplo, se genera una clave dhchap aleatoria con HMAC establecido en 3 (SHA-512).</block>
-  <block id="4ac1d0cb33ca920ad318b5108ad35c83" category="summary">Describe cómo usar Ubuntu 20,04 con ONTAP</block>
-  <block id="884709522224b2e2f9861c09fe418c9f" category="doc">Usa Ubuntu 20,04 con ONTAP</block>
-  <block id="c47bdeb8aa6e7dfdadec0c481e4a21ce" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Ubuntu 20,04 con ONTAP como destino.</block>
-  <block id="17ce72ad1f5e6eaa8a603ac974a06f2d" category="paragraph">Para Ubuntu 20,04, el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. Ubuntu 20,04 se compila con todas las configuraciones necesarias para reconocer y administrar correctamente las LUN de ONTAP.</block>
-  <block id="cb22bc47f0f8e662ab604bbcbf236866" category="paragraph">El sistema operativo Ubuntu 20,04 se compila para reconocer LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para configuraciones ASA y no ASA. Puede optimizar aún más el rendimiento de la configuración del host con los siguientes ajustes recomendados.</block>
-  <block id="47310b4ac9536318d7bb35ce155bbc39" category="paragraph">No existen problemas conocidos para el lanzamiento de Ubuntu 20,04 con ONTAP.</block>
   <block id="3d945423f8e9496c429a5d8c65b4604f" category="sidebar">Ubuntu</block>
   <block id="4ecf3c9493d36f3a582a25b68e645741" category="sidebar">Ubuntu-FCP</block>
   <block id="7cd95c816f8a04ff858a857e3e5a484d" category="sidebar">20,04</block>
-  <block id="61b07fd83e5960959693b88b1afdfcbe" category="summary">Describe cómo usar Ubuntu 22,04 con ONTAP</block>
-  <block id="d2142f1d82ab3f8920c5e47446631d4b" category="doc">Usa Ubuntu 22,04 con ONTAP</block>
-  <block id="4fbbd56106aac3814f8ddd0f05db140b" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Ubuntu 22,04 con ONTAP como destino.</block>
-  <block id="aa9b36be0bfd178660104314442edd58" category="paragraph">Para Ubuntu 22,04, el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> el archivo debe existir, pero no es necesario realizar cambios específicos en el archivo. Ubuntu 22,04 se compila con todas las configuraciones necesarias para reconocer y administrar correctamente las LUN de ONTAP.</block>
-  <block id="918af3e81e1488cf1519a1f43482b774" category="paragraph">El sistema operativo Ubuntu 22,04 se compila para reconocer LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para configuraciones ASA y no ASA. Puede optimizar aún más el rendimiento de la configuración del host con los siguientes ajustes recomendados.</block>
-  <block id="268d764f10521ffc4e0f9dfd03765bd6" category="paragraph">No existen problemas conocidos para el lanzamiento de Ubuntu 22,04 con ONTAP.</block>
   <block id="78550e91fbb2b5810210b43b287b7c4e" category="summary">Cómo configurar el host NVMe-oF para Ubuntu 22,04 con ONTAP</block>
   <block id="c6846e0213409c96ad77f710fa307642" category="paragraph">NVMe over Fabrics (NVMe-oF), incluido NVMe over Fibre Channel (NVMe/FC) y otros transportes, es compatible con Ubuntu 22,04 con acceso asimétrico a espacio de nombres (ANA). En entornos de NVMe-oF, ANA es el equivalente a la multivía ALUA en entornos iSCSI y FC y se implementa con NVMe multivía en kernel.</block>
   <block id="71251761db71d74ce129581af51deea0" category="paragraph">Se ofrece la siguiente compatibilidad para la configuración de host de NVMe-oF para Ubuntu 22,04 con ONTAP:</block>
@@ -1968,20 +1954,12 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="5825e25cd2548b8d4af651b91652e28d" category="paragraph"><block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block>El archivo debe existir para que se inicie el daemon multivía. Si este archivo no existe, puede crear un archivo vacío de cero bytes con el<block ref="307e748c432594fde04ec1d02c6808e4" prefix=" " category="inline-code"></block> comando.</block>
   <block id="d2151dcee8f5a191a60c2d0cb4823f78" category="list-text">Ejecute<block ref="eb2bf21d337d5754274973a21f351bbd" prefix=" " category="inline-code"></block> el comando y reinicie el host.</block>
   <block id="318233b2432e2f51f31d04b8c0f7cbef" category="paragraph">Siempre debe comprobar el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> archivo, especialmente en la sección de valores predeterminados, para los ajustes heredados que podrían estar anulando los valores predeterminados.</block>
-  <block id="3ae9aaf85db63ed41ae37b1878de94b3" category="summary">Describe cómo usar Ubuntu 24,04 con ONTAP</block>
-  <block id="5ec14b83feffb359d4444b755e719320" category="doc">Usa Ubuntu 24,04 con ONTAP</block>
-  <block id="defdbb12ef0ae2d46274d8fe5aa59d06" category="paragraph">Es posible usar las opciones de configuración del host SAN de ONTAP para configurar Ubuntu 24,04 con ONTAP como destino.</block>
-  <block id="1797c6fe21b28b6b8987ee970844bade" category="paragraph">Si decide utilizar el arranque SAN, debe ser compatible con su configuración.</block>
-  <block id="be7b845c6ae84ed80593911a7b992a7f" category="paragraph">Para Ubuntu 24,04, el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> archivo debe existir, pero no es necesario hacer cambios en el archivo porque Ubuntu 24,04 se compila con la configuración necesaria para reconocer y administrar correctamente los LUN de ONTAP.</block>
   <block id="8b40b4ef41e0aa8d3e61056f1c3f19a0" category="paragraph">En el caso de todas las configuraciones de cabina SAN (ASA) y que no son ASA, puede utilizar<block ref="3d80983fc82ff72fd51e5d1f7e90c56d" prefix=" " category="inline-code"></block> el comando para comprobar la configuración de una LUN de ONTAP, como se muestra en los ejemplos siguientes.</block>
   <block id="4a69ba1535a62f4e118b39597d1edde0" category="section-title">Configuraciones de ASA</block>
   <block id="a8b4b0587b094d82b6d3386124d9175b" category="paragraph">En las configuraciones de ASA, todas las rutas a un LUN determinado son activas y optimizadas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.</block>
   <block id="9fa498aba33ec7d79f732c26e2efc9d9" category="paragraph">En el ejemplo siguiente se muestra la salida correcta de una LUN de ONTAP asignada a una persona de ASA:</block>
   <block id="f340ac01fe767e25be9ddb4fa3e6d0a5" category="paragraph">En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son activas/optimizadas, lo que significa que son operadas por la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no están optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas solo se utilizan cuando las rutas optimizadas no están disponibles.</block>
   <block id="41f471e5d42c21f9230c41ea515c384c" category="paragraph">En el ejemplo siguiente se muestra el resultado correcto de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizada asignadas a una persona que no es ASA:</block>
-  <block id="17e7cd74d1e06a3b09cc2ed56b832ac3" category="paragraph">El sistema operativo Ubuntu 24,04 se compila para reconocer LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente para configuraciones ASA y no ASA. Además, se puede utilizar la siguiente configuración recomendada para optimizar aún más el rendimiento de la configuración de host.</block>
-  <block id="8df9c3964d22bd888b14a649ed45d753" category="paragraph">El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este caso, el<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> archivo define valores para<block ref="3b07c0a70dc66d6564dcdf2f5ab1ed63" prefix=" " category="inline-code"></block> y<block ref="9434de34302b4f40887a7277cf35a8fc" prefix=" " category="inline-code"></block> que no son compatibles con las LUN de ONTAP. Si no pueden eliminarse debido a que aún hay otras cabinas SAN conectadas al host, estos parámetros pueden corregirse específicamente para LUN de ONTAP con una stanza de dispositivo.</block>
-  <block id="4058762f4387b98428e1dd8ec8288b95" category="paragraph">No existen problemas conocidos para el lanzamiento de Ubuntu 24,04 con ONTAP.</block>
   <block id="353cc9a5b9b1899de18cfe6696d32fff" category="list-text">Ejecute<block ref="eb2bf21d337d5754274973a21f351bbd" prefix=" " category="inline-code"></block> el comando y reinicie el host.</block>
   <block id="7ed1d546734f7bd4b0ef96e269498a07" category="summary">Cómo configurar el host NVMe-oF para Ubuntu 24,04 con ONTAP</block>
   <block id="60996b6ae2fc149121c64d77e545be4d" category="doc">Configuración de host de NVMe-oF para Ubuntu 24,04 con ONTAP</block>
@@ -2017,7 +1995,6 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="198ef744f24c6814a980b52a8b628dbd" category="paragraph">No existen problemas conocidos para la configuración de host NVMe-oF para Ubuntu 24,04 con la versión ONTAP.</block>
   <block id="cd5fcfe02b1d4f040fde5ba738d7572a" category="sidebar">24,04</block>
   <block id="4d2491544460a0c7af79b0ca7492e6fd" category="paragraph">Siempre debe comprobar el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> archivo, especialmente en la sección de valores predeterminados, para configuraciones heredadas que podrían estar anulando la configuración predeterminada.</block>
-  <block id="d7b408d96809ae22d6292a5e84814c2a" category="admonition">Una única LUN no debería necesitar más de cuatro rutas. Más de cuatro rutas pueden causar problemas de ruta durante fallos de almacenamiento.</block>
   <block id="ec1fba1237506df59a6228cbfc26fd26" category="admonition">Una única LUN no debería necesitar más de cuatro rutas. Más de ocho rutas pueden causar problemas de ruta durante fallos de almacenamiento.</block>
   <block id="d7eeafe16e993a6db0f390553a4f2af4" category="paragraph">El protocolo NVMe/TCP no admite<block ref="c73910bff7459eb78b9c2d1e7c0e3ed7" prefix=" " category="inline-code"></block> la operación. En su lugar, puede detectar los subsistemas y los espacios de nombres NVMe/TCP ejecutando manualmente las operaciones o<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block> NVMe/TCP<block ref="b640a0ce465fa2a4150c36b305c1c11b" prefix=" " category="inline-code"></block>.</block>
   <block id="15090de1ea1067de344502d808b5a4bd" category="summary">Describe cómo usar Oracle Linux 8,10 con ONTAP</block>
@@ -2429,10 +2406,6 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="b25ec790b4cbb02c184ec7d8479f9e72" category="summary">Describe cómo usar Solaris Host Utilities 6,2 con ONTAP</block>
   <block id="22ee06c1124036b790e8e12bab28c94a" category="doc">Instale Solaris Host Utilities 6,2 para el almacenamiento ONTAP</block>
   <block id="12ce99988bb774881369b300029d0c1f" category="paragraph">En el siguiente ejemplo se utiliza<block ref="5187972b2183e07957bec1dbaf34d29c" prefix=" " category="inline-code"></block> el comando para instalar el paquete de instalación de Solaris:</block>
-  <block id="97f9e9274f6dc3116e102b9f9e29e4cf" category="admonition">El paquete de software de utilidades del host Linux de NetApp no está disponible para el sistema operativo Ubuntu 20,04.</block>
-  <block id="36a3f8c9356af2833dfeecba1c622a0c" category="admonition">El paquete de software de utilidades del host Linux de NetApp no está disponible para el sistema operativo Ubuntu 22,04.</block>
-  <block id="ed15c03c842cb2a2695650adf5e123c7" category="admonition">El paquete de software Utilidades del host Linux de NetApp no está disponible para el sistema operativo Ubuntu 24,04.</block>
-  <block id="a21ffa856fbd1843f5375291ecd10dd9" category="paragraph">Utilice <block ref="d663e2c355c00396895dd4c79ec8b92b" category="inline-link-macro-rx"></block> para verificar que su sistema operativo, adaptador de bus de host, firmware de adaptador de bus de host, BIOS de arranque de HBA y versión de ONTAP sean compatibles.</block>
   <block id="15d9fd1ff3011117296f7ee36d231ebd" category="paragraph">Puede usar los ajustes de configuración del host de SAN de ONTAP para la versión de la serie Veritas Storage Foundation 6 para plataformas Red Hat Enterprise Linux y Oracle Linux (compatible con kernel Red Hat) con protocolos FC, FCoE e iSCSI.</block>
   <block id="fd1139296e6463001441b6b2bcf07035" category="paragraph">Debe verificar que la configuración cumple los requisitos del sistema. Si quiere más información, consulte la<block ref="d4eba3849609aea965d9c09098fd43df" category="inline-link-rx"></block> matriz de HCL de Veritas y.</block>
   <block id="ebd757716a60a98a115db0a8540bc8d2" category="paragraph">NetApp recomienda los siguientes ajustes de Veritas VxDMP para obtener una configuración óptima del sistema en las operaciones de conmutación por error del almacenamiento.</block>
@@ -3843,11 +3816,8 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="c96052047f6e2280e6b7aa1f7a351896" category="cell">Utilice el comando...</block>
   <block id="060c7613df3b0d7fd1bf71f18ab099cb" category="cell">FCP con múltiples rutas como MPxIO</block>
   <block id="ad577776d81734f3f29e6764dbcc4520" category="inline-link-macro">Configuración recomendada de compatibilidad del host Solaris en la configuración de sincronización activa de SnapMirror (anteriormente SM-BC)</block>
-  <block id="29cf82657b8be502ce36ea12f289a417" category="cell"><block ref="c463d73ec1f40f47a93931626b8fc677" prefix="" category="inline-code"></block>Para obtener información sobre los cambios de configuración para la sincronización activa de SnapMirror , consulte el artículo de la base de conocimientos<block ref="7c741ba5f1f526ee70c650413daefc0a" category="inline-link-macro-rx"></block> .</block>
   <block id="b823fb4d79c4390b2c148c74a9b89103" category="cell">FCP con multitrayecto como DMP</block>
-  <block id="93632c49f604d0b310c0babdc34326c2" category="cell"><block ref="06faf6d1b783c18c94681d6c1f16428a" prefix="" category="inline-code"></block></block>
   <block id="4e7c844ed51a666f84ad8bcf2e71d65a" category="cell">FCP en MetroCluster con rutas múltiples como MPxIO y el valor Todas las rutas inactivas está establecido en 120 s.  (Esta es la configuración recomendada para las configuraciones de MetroCluster ).</block>
-  <block id="b07019d4f94787b75c1485b9c2611aaf" category="cell"><block ref="5f101970758620c2992abbe36bba041b" prefix="" category="inline-code"></block>Para obtener más información, consulte el artículo de la base de conocimientos<block ref="4063ba8be1734fe40e57f28ec9d72b76" category="inline-link-macro-rx"></block> .</block>
   <block id="3b73fde0526aa5735452da53c395dc38" category="paragraph">Las utilidades de host cargan las siguientes configuraciones de parámetros de tiempo de espera recomendadas por NetApp para LUN de ONTAP .</block>
   <block id="64349882c1f787c3b5516b9e9f8ad791" category="list-text">Verificar la instalación de Host Utilities:</block>
   <block id="19b0b1ffb2094b2504c5f1a5a6ed4383" category="doc">Utilice los comandos de Solaris Host Utilities para verificar la configuración de almacenamiento de ONTAP</block>
@@ -3944,8 +3914,6 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="1f7fcca8d7ffda3b845b35eb5e1b2d7a" category="paragraph">Puede utilizar rutas múltiples con Solaris 11.3 para administrar LUN de ONTAP .</block>
   <block id="da81eb6295b00861bab1b50a7fe94dc9" category="paragraph">La función de múltiples rutas le permite configurar múltiples rutas de red entre el host y los sistemas de almacenamiento.  Si una ruta falla, el tráfico continúa por las rutas restantes.</block>
   <block id="e1428e77099ea286a233c882eef3c5d5" category="paragraph">La versión Solaris 11.3 para FCP e iSCSI con almacenamiento ONTAP tiene los siguientes problemas conocidos:</block>
-  <block id="aefa1c67bd56ed8b8ae7b71c91fabd7a" category="inline-link-macro">Obtenga información sobre el uso de la herramienta Solaris Host Utilities 6.2</block>
-  <block id="76ae943ec9d0c473e0ca68d35b9662ce" category="paragraph"><block ref="00c35a1e192164e9fc4b8a6af4d2db02" category="inline-link-macro-rx"></block> .</block>
   <block id="54db225106fc02ccdb6fa2058389400c" category="paragraph">Las utilidades de host de Solaris admiten varios entornos Solaris y múltiples protocolos de transporte.  Estos son los entornos principales de Solaris Host Utilities:</block>
   <block id="bc6f3dc142b02ac42cfba1de410cd59f" category="list-text">El sistema operativo nativo con MPxIO y el protocolo Fibre Channel (FC) o iSCSI en un sistema que utiliza un procesador SPARC o un procesador x86/64.</block>
   <block id="d9c6d7a6adf54489dc3d1c65712f561e" category="paragraph">Las utilidades de host de Solaris 6.2 admiten las siguientes series de Solaris:</block>
@@ -4056,4 +4024,30 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="d4609abcc5de600b2cd5aa87443c612c" category="sidebar">Instalar Windows Host Utilities 8.0</block>
   <block id="390e5244f8ae0a5b4cdd721ad6036cb9" category="sidebar">Configurar ajustes para las utilidades de host de Windows</block>
   <block id="89a348be490d3be0bdc23d43fb585c56" category="sidebar">7.3/4.x</block>
+  <block id="f72cfd397ddcffbe2327665e83f6e4fd" category="doc">Paso 3: Opcionalmente, excluya un dispositivo de las rutas múltiples</block>
+  <block id="2767a9a2ad485daf64375577843d3ba2" category="doc">Paso 4: Personalizar los parámetros de rutas múltiples para los LUN de ONTAP</block>
+  <block id="6b22e7ac9e8b2c938a9f3cfefc2acf42" category="paragraph">El paquete de software Linux Host Utilities no es compatible con los sistemas operativos Ubuntu.</block>
+  <block id="541fef17acfcdb9ddcecc5eea7c2d771" category="inline-link-macro">Obtenga información sobre la instalación de AIX Host Utilities</block>
+  <block id="4943444f1b42627e453b1e0c8a2cd150" category="paragraph"><block ref="4943444f1b42627e453b1e0c8a2cd150" category="inline-link-macro-rx"></block></block>
+  <block id="3f9444261a484426c9ae23c5b9b82e8d" category="inline-link-macro">Obtenga información sobre la instalación de HP-UX Host Utilities</block>
+  <block id="e79831ce53ed0916ad57668b90bc9a1b" category="paragraph"><block ref="e79831ce53ed0916ad57668b90bc9a1b" category="inline-link-macro-rx"></block></block>
+  <block id="e9930ee9972a09b2fa1b31e4f5fbe66f" category="inline-link-macro">Aprenda a instalar utilidades de host de Linux</block>
+  <block id="e96921eeb66d57c1e2d154eb9ab78984" category="paragraph"><block ref="e96921eeb66d57c1e2d154eb9ab78984" category="inline-link-macro-rx"></block></block>
+  <block id="1d60707d2fd2532f7783d3c34fe248ce" category="paragraph">Para obtener información sobre los cambios de configuración para la sincronización activa de SnapMirror , consulte el artículo de la base de conocimientos<block ref="7c741ba5f1f526ee70c650413daefc0a" category="inline-link-macro-rx"></block> .</block>
+  <block id="a947e38c0699762b6b117c5faa8af149" category="paragraph">Para obtener más información, consulte el artículo de la base de conocimientos. <block ref="4063ba8be1734fe40e57f28ec9d72b76" category="inline-link-macro-rx"></block> .</block>
+  <block id="5904ba8db5ff841e6a7d13a462291c66" category="inline-link-macro">Obtenga información sobre la instalación de Solaris Host Utilities</block>
+  <block id="2a620c94e95b2a7a9b0a5187427a9dc9" category="paragraph"><block ref="2a620c94e95b2a7a9b0a5187427a9dc9" category="inline-link-macro-rx"></block></block>
+  <block id="f98d44b09f5d0cc59433485eb0048243" category="inline-link-macro">Obtenga información sobre la instalación de utilidades de host de Windows</block>
+  <block id="cc30e60c3bfc777355fb5c1a9f21201f" category="paragraph"><block ref="cc30e60c3bfc777355fb5c1a9f21201f" category="inline-link-macro-rx"></block></block>
+  <block id="eb9e9eaeca9a2fe6f091f95c60ceeda4" category="summary">Configure Ubuntu 20.04 para rutas múltiples y con parámetros y configuraciones específicos para la operación FCP e iSCSI con almacenamiento ONTAP .</block>
+  <block id="2eea900ee581f5726b661093cf8ad505" category="doc">Configurar Ubuntu 20.04 para FCP e iSCSI con almacenamiento ONTAP</block>
+  <block id="dd8d9457c96c61b509341e8fc9c06a5a" category="section-title">Paso 2: Confirme la configuración de múltiples rutas para su host</block>
+  <block id="86068021aef836dc1f6f1acf0c458729" category="paragraph">Puede utilizar rutas múltiples con Ubuntu 20.04 para administrar LUN de ONTAP .</block>
+  <block id="e5c9aae3aa070feffc71ad22ae694781" category="section-title">Paso 5: Revisar los problemas conocidos</block>
+  <block id="00958a9c412688342677cda75697e733" category="summary">Configure Ubuntu 22.04 para rutas múltiples y con parámetros y configuraciones específicos para la operación FCP e iSCSI con almacenamiento ONTAP .</block>
+  <block id="ff819e4a2fe4a976a60235e7548a85fb" category="doc">Configurar Ubuntu 22.04 para FCP e iSCSI con almacenamiento ONTAP</block>
+  <block id="0ec9e84225e24bae7e1764e1ec2d5208" category="paragraph">Puede utilizar rutas múltiples con Ubuntu 22.04 para administrar LUN de ONTAP .</block>
+  <block id="7ffbdb03ebbe3dde997db38f057eaa6f" category="doc">Configurar Ubuntu 24.04 para FCP e iSCSI con almacenamiento ONTAP</block>
+  <block id="907d5397191da1f1ee4679d077fb0523" category="paragraph">Configure Ubuntu 24.04 para rutas múltiples y con parámetros y configuraciones específicos para la operación FCP e iSCSI con almacenamiento ONTAP .</block>
+  <block id="7346a23f776ee48b909f292127a35cfd" category="paragraph">Puede utilizar rutas múltiples con Ubuntu 24.04 para administrar LUN de ONTAP .</block>
 </blocks>

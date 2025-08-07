@@ -50,3 +50,9 @@ Se ha cambiado el enlace al controlador FC de `ssd(4D)` para `sd(4D)`. Mover la 
 * FCP General: Muestra los errores de FC y del adaptador de bus de host (HBA) que no están asociados con un host específico.
 * FCP: Solaris
 
+
+
+
+== ¿Qué sigue?
+
+link:hu-solaris-80.html["Obtenga información sobre la instalación de Solaris Host Utilities"]
