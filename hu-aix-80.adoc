@@ -63,7 +63,7 @@ oem_setup_env
 
 --
 ====
-. Vaya al https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.0["Sitio de soporte de NetApp"^] y descargue el archivo comprimido que contiene las utilidades de host en un directorio del host.
+. Ir a la https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/8.0/downloads["Sitio de soporte de NetApp"^] y descargue el archivo comprimido que contiene las utilidades del host a un directorio en su host.
 . Vaya al directorio que contiene la descarga.
 . Descomprima el archivo y extraiga el paquete de software del kit de herramientas SAN:
 +

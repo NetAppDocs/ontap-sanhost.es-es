@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_ubuntu_2004.html 
 keywords: host utilities, red hat, rhel, linux, 20.04, netapp, ontap, ubuntu 
-summary: Configure Ubuntu 20.04 para rutas múltiples y con parámetros y configuraciones específicos para la operación FCP e iSCSI con almacenamiento ONTAP . 
+summary: Configure Ubuntu 20.04 para rutas múltiples y con parámetros y configuraciones específicos para operaciones de protocolo FCP e iSCSI con almacenamiento ONTAP . 
 ---
 = Configurar Ubuntu 20.04 para FCP e iSCSI con almacenamiento ONTAP
 :toc: macro
@@ -19,7 +19,7 @@ summary: Configure Ubuntu 20.04 para rutas múltiples y con parámetros y config
 
 
 [role="lead"]
-Configure Ubuntu 20.04 para rutas múltiples y con parámetros y configuraciones específicos para la operación FCP e iSCSI con almacenamiento ONTAP .
+Configure Ubuntu 20.04 para rutas múltiples y con parámetros y configuraciones específicos para operaciones de protocolo FCP e iSCSI con almacenamiento ONTAP .
 
 [NOTE]
 ====

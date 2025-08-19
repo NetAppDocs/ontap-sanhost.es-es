@@ -55,7 +55,7 @@ rpm -e netapp_linux_unified_host_utilities-8-0
 +
 Para versiones anteriores de Linux Host Utilities, vaya al directorio donde está instalado el software de la utilidad host e introduzca el comando uninstall para eliminar el paquete instalado.
 
-. El paquete de software NetApp Linux Host Utilities está disponible en el sitio de soporte de NetApp en un archivo .rpm de 64 bits.  Descargue el archivo de 64 bits desdelink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Sitio de soporte de NetApp"^] a su anfitrión.
+. El paquete de software NetApp Linux Host Utilities está disponible en el sitio de soporte de NetApp en un archivo .rpm de 64 bits. Descargue el archivo de 64 bits desdelink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/8.0/downloads["Sitio de soporte de NetApp"^] a su anfitrión.
 . Vaya al directorio donde descargó el paquete de software e instálelo:
 +
 [source, cli]
