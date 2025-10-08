@@ -248,7 +248,7 @@ El ouptut esperado es 1.
 
 === Habilitar 1MB I/O (opcional)
 
-ONTAP informa de un MDT (tamaño de transferencia de MAX Data) de 8 en los datos Identify Controller. Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB TB. Para emitir solicitudes de I/O de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar `lpfc` el valor `lpfc_sg_seg_cnt` del parámetro a 256 con respecto al valor predeterminado de 64.
+ONTAP informa un tamaño máximo de transferencia de datos (MDTS) de 8 en los datos del controlador de identificación.  Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1 MB.  Para emitir solicitudes de E/S de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar el `lpfc` valor de la `lpfc_sg_seg_cnt` parámetro a 256 desde el valor predeterminado de 64.
 
 
 NOTE: Estos pasos no se aplican a los hosts Qlogic NVMe/FC.

@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+Verifique que su sistema cumpla con los requisitos de software y verifique las instalaciones de paquetes NVMe y la configuración del host.

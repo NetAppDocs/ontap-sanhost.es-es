@@ -4,7 +4,7 @@ permalink: nvme-rockylinux-95.html
 keywords: nvme, linux, rocky linux, enterprise 
 summary: Cómo configurar el host NVMe-oF para Rocky Linux 9.5 con ONTAP 
 ---
-= Configurar Rocky Linux 9.5 con NVMe-oF para almacenamiento ONTAP
+= Configurar Rocky Linux 9.5 para NVMe-oF con almacenamiento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,65 +16,42 @@ summary: Cómo configurar el host NVMe-oF para Rocky Linux 9.5 con ONTAP
 
 
 [role="lead"]
-Los hosts Rocky Linux 9.5 admiten los protocolos NVMe/FC y NVMe/TCP con acceso asimétrico al espacio de nombres (ANA). ANA es equivalente al acceso asimétrico a unidades lógicas (ALUA) en entornos iSCSI y FCP, y se implementa mediante la función de multirutas NVMe integrada en el kernel.
+Los hosts Red Hat Enterprise Linux (RHEL) admiten los protocolos NVMe sobre canal de fibra (NVMe/FC) y NVMe sobre TCP (NVMe/TCP) con acceso asimétrico al espacio de nombres (ANA).  ANA proporciona una funcionalidad de múltiples rutas equivalente al acceso a unidad lógica asimétrica (ALUA) en entornos iSCSI y FCP.
 
-Si quiere más información sobre las configuraciones compatibles, consulte la link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
+Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.5.  Para obtener más información sobre soporte y funciones, consultelink:hu-nvme-index.html["Descripción general de NVME-oF"^] .
 
-.Acerca de esta tarea
-Puede utilizar el siguiente soporte y características con la configuración de host NVMe-oF para Rocky Linux 9.5. También debe revisar las limitaciones conocidas antes de iniciar el proceso de configuración.
-
-* Soporte disponible:
-+
-** Compatibilidad con NVMe sobre TCP (NVMe/TCP), además de NVMe sobre Fibre Channel (NVMe/FC). El complemento NetApp del paquete nativo `nvme-cli` muestra detalles de ONTAP para espacios de nombres NVMe/FC y NVMe/TCP.
-** Ejecutar tráfico NVMe y SCSI en el mismo host. Por ejemplo, puede configurar dm-multipath para dispositivos SCSI mpath en LUN SCSI y usar NVMe multipath para configurar dispositivos de espacio de nombres NVMe-oF en el host.
-
-
-* Características disponibles:
-+
-** A partir de ONTAP 9.12.1, puede utilizar la autenticación segura en banda para NVMe-oF con Rocky Linux 9.5.
-** Rocky Linux 9.5 habilita la multiruta NVMe dentro del kernel para espacios de nombres NVMe de manera predeterminada, eliminando la necesidad de configuraciones explícitas.
-
-
-* Limitaciones conocidas:
-+
-** No hay limitaciones conocidas.
-
-
-
+NVMe-oF con Rocky Linux 9.5 no tiene limitaciones conocidas.
 
 
 
 == Paso 1: Opcionalmente, habilite el arranque SAN
 
-Puede configurar su host para que utilice el arranque SAN y simplificar la puesta en marcha y mejorar la escalabilidad.
-
-.Antes de empezar
-Utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que el sistema operativo Linux, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admiten el arranque SAN.
+Puede configurar su host para utilizar el arranque SAN para simplificar la implementación y mejorar la escalabilidad. Utilice ellink:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que su sistema operativo Linux, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admitan el arranque SAN.
 
 .Pasos
-. https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["Cree un espacio de nombres de arranque SAN y asígnelo al host"^].
+. https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["Cree un espacio de nombres NVMe y asígnelo al host"^] .
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que está asignado el espacio de nombres de arranque SAN.
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Compruebe que la configuración se haya realizado correctamente. Para ello, reinicie el host y verifique que el sistema operativo esté activo y en ejecución.
+. Reinicie el host y verifique que el sistema operativo esté funcionando.
 
 
 
 
-== Paso 2: Validar las versiones del software
+== Paso 2: Verifique la versión del software y la configuración de NVMe
 
-Utilice el siguiente procedimiento para validar las versiones mínimas compatibles del software Rocky Linux 9.5.
+Verifique que su sistema cumpla con los requisitos de software y verifique las instalaciones de paquetes NVMe y la configuración del host.
 
 .Pasos
-. Instale Rocky Linux 9.5 en el servidor. Una vez completada la instalación, verifique que esté ejecutando el kernel de Rocky Linux 9.5 especificado:
+. Instalar Rocky Linux 9.5 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 9.5 requerido:
 +
 [source, cli]
 ----
 uname -r
 ----
 +
-El siguiente ejemplo muestra una versión del kernel de Rocky Linux:
+Ejemplo de versión del kernel de Rocky Linux:
 
 +
 [listing]
@@ -157,13 +134,13 @@ NOTE: Si la `hostnqn` las cadenas no coinciden, utilice `vserver modify` comando
 
 
 
-== Paso 3: Configurar NVMe/FC
+== Paso 3: Configurar NVMe/FC y NVMe/TCP
 
-Puede configurar NVMe/FC con adaptadores FC Broadcom/Emulex o Marvell/Qlogic. También debe descubrir manualmente los subsistemas y espacios de nombres NVMe/TCP.
+Configure NVMe/FC con adaptadores Broadcom/Emulex o Marvell/QLogic, o configure NVMe/TCP mediante operaciones de descubrimiento y conexión manuales.
 
 [role="tabbed-block"]
 ====
-.Broadcom/Emulex
+.FC - Broadcom/Emulex
 --
 Configuración de NVMe/FC para un adaptador Broadcom/Emulex.
 
@@ -211,7 +188,7 @@ Emulex LightPulse LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 cat /sys/class/scsi_host/host*/fwrev
 ----
 +
-El siguiente ejemplo muestra las versiones de firmware:
+El comando devuelve las versiones del firmware:
 
 +
 [listing]
@@ -316,12 +293,9 @@ FCP CMPL: xb 000014a5 Err 0002149a
 
 
 --
-.Marvell/QLogic
+.FC - Marvell/QLogic
 --
 Configure NVMe/FC para un adaptador Marvell/QLogic.
-
-
-NOTE: El controlador de bandeja de entrada nativo qla2xxx incluido en el kernel Rocky Linux tiene las últimas correcciones. Estas correcciones son esenciales para la compatibilidad con ONTAP.
 
 .Pasos
 . Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
@@ -351,45 +325,12 @@ La salida esperada es 1.
 
 
 --
-====
-
-
-== Paso 4: Opcionalmente, habilite 1 MB de E/S
-
-Puede habilitar solicitudes de E/S de 1 MB para NVMe/FC configurado con un adaptador Broadcom. ONTAP informa un tamaño máximo de transferencia de datos (MDTS) de 8 en los datos de identificación del controlador. Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB TB. Para emitir solicitudes de E/S de 1 MB, debe aumentar el valor lpfc de  `lpfc_sg_seg_cnt` parámetro a 256 desde el valor predeterminado de 64.
-
-
-NOTE: Estos pasos no se aplican a los hosts Qlogic NVMe/FC.
+.TCP
+--
+El protocolo NVMe/TCP no admite la operación de conexión automática.  En su lugar, puede descubrir los subsistemas y espacios de nombres NVMe/TCP realizando la prueba NVMe/TCP. `connect` o `connect-all` operaciones manualmente.
 
 .Pasos
-. Defina el `lpfc_sg_seg_cnt` parámetro en 256:
-+
-[listing]
-----
-cat /etc/modprobe.d/lpfc.conf
-----
-+
-[listing]
-----
-options lpfc lpfc_sg_seg_cnt=256
-----
-. Ejecute `dracut -f` el comando y reinicie el host.
-. Compruebe que el valor de `lpfc_sg_seg_cnt` es 256:
-+
-[listing]
-----
-cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-----
-
-
-
-
-== Paso 5: Configurar NVMe/TCP
-
-El protocolo NVMe/TCP no admite la operación de conexión automática. En su lugar, puede descubrir los subsistemas y espacios de nombres NVMe/TCP realizando manualmente las operaciones de conexión o de conexión total de NVMe/TCP.
-
-.Pasos
-. Compruebe que el puerto del iniciador pueda recuperar los datos de la página de registro de detección en las LIF NVMe/TCP admitidas:
+. Verifique que el puerto iniciador pueda obtener los datos de la página de registro de descubrimiento a través de los LIF NVMe/TCP compatibles:
 +
 [listing]
 ----
@@ -398,7 +339,7 @@ nvme discover -t tcp -w host-traddr -a traddr
 +
 .Muestra el ejemplo
 [%collapsible]
-====
+=====
 [listing, subs="+quotes"]
 ----
 nvme discover -t tcp -w 192.168.1.31 -a 192.168.1.24
@@ -624,7 +565,7 @@ traddr:  192.168.1.24
 eflags:  none
 sectype: none
 ----
-====
+=====
 . Compruebe que las demás combinaciones de LIF iniciador-destino NVMe/TCP puedan recuperar correctamente los datos de la página de registro de detección:
 +
 [listing]
@@ -634,7 +575,7 @@ nvme discover -t tcp -w host-traddr -a traddr
 +
 .Muestra el ejemplo
 [%collapsible]
-====
+=====
 [listing, subs="+quotes"]
 ----
 nvme discover -t tcp -w 192.168.1.31 -a 192.168.1.24
@@ -642,7 +583,7 @@ nvme discover -t tcp -w 192.168.2.31 -a 192.168.2.24
 nvme discover -t tcp -w 192.168.1.31 -a 192.168.1.25
 nvme discover -t tcp -w 192.168.2.31 -a 192.168.2.25
 ----
-====
+=====
 . Ejecute el `nvme connect-all` Comando en todos los LIF objetivo iniciador NVMe/TCP admitidos entre los nodos:
 +
 [listing]
@@ -652,7 +593,7 @@ nvme connect-all -t tcp -w host-traddr -a traddr
 +
 .Muestra el ejemplo
 [%collapsible]
-====
+=====
 [listing, subs="+quotes"]
 ----
 nvme	connect-all	-t	tcp	-w	192.168.1.31	-a	192.168.1.24
@@ -660,9 +601,11 @@ nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.24
 nvme	connect-all	-t	tcp	-w	192.168.1.31	-a	192.168.1.25
 nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.25
 ----
+=====
+
+
+--
 ====
-
-
 [NOTE]
 ====
 A partir de Rocky Linux 9.4, la configuración para NVMe/TCP  `ctrl_loss_tmo timeout` se establece automáticamente en "apagado". Como resultado:
@@ -675,7 +618,40 @@ A partir de Rocky Linux 9.4, la configuración para NVMe/TCP  `ctrl_loss_tmo tim
 ====
 
 
-== Paso 6: Validar NVMe-oF
+== Paso 4: Opcionalmente, habilite 1 MB de E/S para NVMe/FC
+
+ONTAP informa un tamaño máximo de transferencia de datos (MDTS) de 8 en los datos del controlador de identificación.  Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1 MB.  Para emitir solicitudes de E/S de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar el `lpfc` valor de la `lpfc_sg_seg_cnt` parámetro a 256 desde el valor predeterminado de 64.
+
+
+NOTE: Estos pasos no se aplican a los hosts Qlogic NVMe/FC.
+
+.Pasos
+. Defina el `lpfc_sg_seg_cnt` parámetro en 256:
++
+[source, cli]
+----
+cat /etc/modprobe.d/lpfc.conf
+----
++
+Debería ver un resultado similar al siguiente ejemplo:
+
++
+[listing]
+----
+options lpfc lpfc_sg_seg_cnt=256
+----
+. Ejecute `dracut -f` el comando y reinicie el host.
+. Compruebe que el valor de `lpfc_sg_seg_cnt` es 256:
++
+[source, cli]
+----
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+----
+
+
+
+
+== Paso 5: Verificar la configuración de rutas múltiples
 
 Verifique que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean correctos para la configuración de NVMe-oF.
 
@@ -861,7 +837,7 @@ nvme netapp ontapdevices -o json
 
 
 
-== Paso 7: Configurar la autenticación segura en banda
+== Paso 6: Configurar la autenticación segura en banda
 
 A partir de ONTAP 9.12.1, se admite la autenticación segura en banda a través de NVMe/TCP y NVMe/FC entre el host y el controlador ONTAP.
 
@@ -1086,6 +1062,6 @@ DHHC-1:03:L52ymUoR32zYvnqZFe5OHhMg4gxD79jIyxSShHansXpVN+WiXE222aVc651JxGZlQCI863
 ====
 
 
-== Paso 8: Revise los problemas conocidos
+== Paso 7: Revise los problemas conocidos
 
 No hay problemas conocidos.

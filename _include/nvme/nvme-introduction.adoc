@@ -2,4 +2,4 @@
 :allow-uri-read: 
 
 
-Las configuraciones de host SAN de NetApp admiten el protocolo NVMe over Fabrics (NVMe-oF) con acceso asimétrico al espacio de nombres (ANA). En entornos con NVMe-oF, ANA es equivalente a accesos múltiples asimétricos de unidad lógica (ALUA) en entornos iSCSI y FCP. ANA se implementa mediante la función multivía de NVMe interna.
+Los hosts Red Hat Enterprise Linux (RHEL) admiten los protocolos NVMe sobre canal de fibra (NVMe/FC) y NVMe sobre TCP (NVMe/TCP) con acceso asimétrico al espacio de nombres (ANA).  ANA proporciona una funcionalidad de múltiples rutas equivalente al acceso a unidad lógica asimétrica (ALUA) en entornos iSCSI y FCP.
