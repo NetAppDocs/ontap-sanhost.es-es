@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: hu_citrix_84.html 
-keywords: host utilities, citrix, XenServer, 8 series, netapp, ontap, san, boot 
-summary: Configure Citrix Hypervisor 8.4 para rutas múltiples y con parámetros y configuraciones específicos para operaciones de protocolo FCP e iSCSI con almacenamiento ONTAP . 
+keywords: host utilities, citrix, Xenserver, 8 series, netapp, ontap, san, boot 
+summary: Configure Citrix Xenserver 8.4 para rutas múltiples y con parámetros y configuraciones específicos para operaciones de protocolo FCP e iSCSI con almacenamiento ONTAP . 
 ---
 = Configurar Citrix Xenserver 8.4 para FCP e iSCSI con almacenamiento ONTAP
 :hardbreaks:
@@ -16,11 +16,11 @@ summary: Configure Citrix Hypervisor 8.4 para rutas múltiples y con parámetros
 
 
 [role="lead"]
-Configure Citrix Hypervisor 8.4 para rutas múltiples y con parámetros y configuraciones específicos para operaciones de protocolo FCP e iSCSI con almacenamiento ONTAP .
+Configure Citrix Xenserver 8.4 para rutas múltiples y con parámetros y configuraciones específicos para operaciones de protocolo FCP e iSCSI con almacenamiento ONTAP .
 
 [NOTE]
 ====
-El paquete de software Linux Host Utilities no es compatible con los sistemas operativos Citrix Hypervisor.
+El paquete de software Linux Host Utilities no es compatible con los sistemas operativos Citrix Xenserver.
 
 ====
 
@@ -45,7 +45,7 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 == Paso 2: Confirme la configuración de múltiples rutas para su host
 
-Puede utilizar rutas múltiples con Citrix Hypervisor 8.4 para administrar LUN de ONTAP .
+Puede utilizar rutas múltiples con Citrix Xenserver 8.4 para administrar LUN de ONTAP .
 
 Para garantizar que el acceso multivía esté configurado correctamente para el host, verifique que el `/etc/multipath.conf` archivo esté definido y que los ajustes recomendados de NetApp estén configurados para los LUN de ONTAP.
 
