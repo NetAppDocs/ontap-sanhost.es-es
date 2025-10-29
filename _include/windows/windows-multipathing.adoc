@@ -1,0 +1,81 @@
+= Paso 4: Confirme la configuración de múltiples rutas para su host
+:allow-uri-read: 
+
+
+
+
+== Paso 4: Confirme la configuración de múltiples rutas para su host
+
+Instale el software Microsoft Multipath I/O (MPIO) y habilite el multipath si su host Windows tiene más de una ruta al sistema de almacenamiento.
+
+En un sistema Windows, los dos componentes principales de una solución MPIO son el módulo específico del dispositivo (DSM) y el MPIO de Windows.  MPIO presenta un disco al sistema operativo Windows para todas las rutas y DSM gestiona las conmutaciones por error de ruta.
+
+
+CAUTION: Si no instala el software MPIO, el sistema operativo Windows puede ver cada ruta como un disco independiente. Esto puede conducir a la corrupción de datos.
+
+
+NOTE: Windows XP o Windows Vista en un equipo virtual Hyper-V no admite MPIO.
+
+.Pasos
+. Instale el software MPIO y habilite el multipathing.
+. Cuando selecciona MPIO en sistemas que utilizan FC, el instalador de utilidades de host establece los valores de tiempo de espera necesarios para los HBA de Emulex y QLogic FC.
++
+[role="tabbed-block"]
+====
+.FC Emulex
+--
+Los valores de tiempo de espera para los HBA FC de Emulex:
+
+[cols="2*"]
+|===
+| Tipo de propiedad | Valor de propiedad 
+
+
+| LinkTimeOut | 1 
+
+
+| NodeTimeOut | 10 
+|===
+--
+.FC de QLogic
+--
+Los valores de tiempo de espera para los HBA FC de QLogic:
+
+[cols="2*"]
+|===
+| Tipo de propiedad | Valor de propiedad 
+
+
+| LinkDownTimeOut | 1 
+
+
+| PortDownRetryCount | 10 
+|===
+--
+====
+. Verifique el estado de la ruta para sus LUN de ONTAP :
++
+Dependiendo de la configuración de su SAN, el host utiliza configuraciones ASA, AFF o FAS para acceder a las LUN de ONTAP .  Estas configuraciones no deberían requerir más de cuatro rutas para acceder a un único LUN de ONTAP .  Más de cuatro rutas pueden causar problemas durante un fallo de almacenamiento.
+
++
+Los siguientes ejemplos muestran la configuración correcta para las LUN de ONTAP para una configuración ASA, AFF o FAS .
+
++
+[role="tabbed-block"]
+====
+.Configuración de ASA
+--
+Una configuración ASA debe tener un grupo de rutas activas/optimizadas con prioridades únicas.  El controlador gestiona las rutas y envía E/S en todas las rutas activas.
+
+image::asa.png[Captura de pantalla de LUN de ONTAP con rutas activas/optimizadas]
+
+--
+.Configuración de AFF o FAS
+--
+Una configuración AFF o FAS debe tener dos grupos de rutas con diferentes prioridades.  Las rutas con mayor prioridad están activas/optimizadas y son atendidas por el controlador donde se encuentra el agregado.  Las rutas con menor prioridad son atendidas desde un controlador diferente.  Están activas pero no optimizadas y solo se utilizan cuando no hay rutas optimizadas disponibles.
+
+image::nonasa.png[Captura de pantalla de un LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas]
+
+--
+====
+

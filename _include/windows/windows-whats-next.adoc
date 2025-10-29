@@ -1,0 +1,9 @@
+= ¿Que sigue?
+:allow-uri-read: 
+
+
+
+
+== El futuro
+
+link:hu_wuhu_hba_settings.html["Aprenda sobre la configuración del registro para las utilidades de host de Windows."].

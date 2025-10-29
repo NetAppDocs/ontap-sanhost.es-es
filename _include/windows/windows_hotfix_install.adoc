@@ -9,4 +9,4 @@ NOTE: Debe ponerse en contacto con el servicio de soporte técnico de Microsoft 
 
 
 
-TIP: Muchas correcciones requieren un reinicio del host de Windows. Puede optar por esperar a reiniciar el host hasta que _after_ instale o actualice las utilidades de host.
+TIP: Muchas correcciones urgentes requieren reiniciar el sistema Windows.  Puedes esperar a reiniciar el host hasta _después_ de instalar o actualizar las utilidades del host.

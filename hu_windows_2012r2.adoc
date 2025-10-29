@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: hu_windows_2012r2.html 
-keywords: windows, enterprise 
-summary: Uso de Windows Server 2012 R2 con ONTAP 
+keywords: fcp, iscsi, windows, host, utilities, 2012, ontp, luns, configure 
+summary: Instale las utilidades de host de Windows en un host Windows Server 2012 R2 para ayudarle a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP . 
 ---
-= Utilice Windows Server 2012 R2 con ONTAP
+= Configurar Windows Server 2012 R2 para FCP e iSCSI con almacenamiento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,53 +16,42 @@ summary: Uso de Windows Server 2012 R2 con ONTAP
 
 
 [role="lead"]
-Es posible usar los ajustes de configuración del host SAN de ONTAP para configurar Windows Server 2012 R2 para la operación con almacenamiento de ONTAP.
+Las utilidades de host de Windows le permiten conectar hosts de Windows a discos virtuales (LUN) en una SAN NetApp .  Instale las utilidades de host de Windows en un host Windows Server 2012 R2 para ayudarle a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP .
 
 
 
-== Inicie el sistema operativo Windows
+== Paso 1: Opcionalmente, habilite el arranque SAN
 
-Puede iniciar el sistema operativo Windows mediante un arranque local o un arranque SAN. NetApp recomienda utilizar un arranque SAN si es compatible con su configuración.
+Puede arrancar el sistema operativo Windows utilizando un arranque local o un arranque SAN.  NetApp recomienda utilizar un arranque SAN para simplificar la implementación y mejorar la escalabilidad.
 
 [role="tabbed-block"]
 ====
-.Arranque local
---
-Realice un inicio local instalando el sistema operativo Windows en el disco duro local (SSD, SATA, RAID, etc.).
-
---
 .Arranque SAN
 --
 Si elige usar arranque SAN, debe ser compatible con su configuración.
-
-
-NOTE: Puede utilizar los ajustes de configuración proporcionados en este procedimiento para configurar los clientes de nube conectados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] y.link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^]
 
 .Antes de empezar
 Utilice https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que el sistema operativo Windows, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admiten el arranque SAN.
 
 .Pasos
-. Asignar el LUN de arranque SAN al host.
-+
-Consulte link:https://docs.netapp.com/us-en/ontap/san-management/index.html["Gestión del almacenamiento san"^].
-
-. Verifique que haya varias rutas disponibles.
-+
-
-NOTE: Las rutas múltiples solo quedan disponibles cuando el sistema operativo del host está activo y en ejecución en las rutas.
-
+. link:https://docs.netapp.com/us-en/ontap/san-management/index.html["Cree un LUN de arranque SAN y asígnelo al host"^].
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
 
-. Reinicie el host para verificar que el inicio se ha realizado correctamente
+. Compruebe que la configuración se haya realizado correctamente. Para ello, reinicie el host y verifique que el sistema operativo esté activo y en ejecución.
 
+
+--
+.Arranque local
+--
+Realice un arranque local instalando el sistema operativo Windows en el disco duro local, por ejemplo, en una unidad SSD, SATA o RAID.
 
 --
 ====
 
 
-== Instale las revisiones de Windows
+== Paso 2: Instalar las revisiones de Windows
 
 NetApp recomienda instalar la *última actualización acumulativa* disponible en el catálogo de actualizaciones de Microsoft en el servidor host.
 
@@ -77,140 +66,34 @@ NOTE: Debe ponerse en contacto con el servicio de soporte técnico de Microsoft 
 
 
 
-TIP: Muchas correcciones requieren un reinicio del host de Windows. Puede optar por esperar a reiniciar el host hasta que _after_ instale o actualice las utilidades de host.
+TIP: Muchas correcciones urgentes requieren reiniciar el sistema Windows.  Puedes esperar a reiniciar el host hasta _después_ de instalar o actualizar las utilidades del host.
 
 
 
-== Instale las utilidades del host de Windows
+== Paso 3: Instalar las utilidades de host de Windows
 
-Las utilidades de host de Windows son un conjunto de programas de software con documentación que le permiten conectar computadoras host a discos virtuales (LUN) en una SAN de NetApp .  NetApp recomienda descargar e instalar el kit de utilidades más reciente.  Para obtener información e instrucciones sobre la configuración de las utilidades de host de Windows, consulte lalink:https://docs.netapp.com/us-en/ontap-sanhost/hu-wuhu-release-notes.html["Documentación de Windows Host Utilities"] y seleccione el procedimiento de instalación para su versión de Windows Host Utilities.
+Las utilidades de host de Windows son un conjunto de programas de software con documentación que le permiten conectar computadoras host a discos virtuales (LUN) en una SAN NetApp .  NetApp recomienda descargar e instalar las últimas utilidades de host de Windows para admitir la administración de LUN de ONTAP y ayudar al soporte técnico a recopilar datos de configuración.
+
+Para obtener información sobre la configuración e instalación de las utilidades de host de Windows, consulte ellink:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Utilidades del host de Windows"] Consulte la documentación y seleccione el procedimiento de instalación correspondiente a su versión de Windows Host Utilities.
 
 
 
-== Accesos múltiples
+== Paso 4: Confirme la configuración de múltiples rutas para su host
 
-Debe instalar el software Microsoft Multipath I/O (MPIO) y habilitar el acceso multivía si el host Windows tiene más de una ruta al sistema de almacenamiento. Cuando selecciona la compatibilidad con MPIO, Windows Host Utilities habilita la función MPIO que se incluye en Windows Server 2012 R2. Si no utiliza las utilidades de host de Windows, debe habilitar el acceso multivía manualmente.
+Instale el software Microsoft Multipath I/O (MPIO) y habilite el multipath si su host Windows tiene más de una ruta al sistema de almacenamiento.
 
-El software MPIO presenta un disco único para el sistema operativo Windows para todas las rutas, y un módulo específico del dispositivo (DSM) gestiona la recuperación tras fallos en las rutas. En un sistema Windows, los dos componentes principales de cualquier solución MPIO son DSM y Windows MPIO.
+En un sistema Windows, los dos componentes principales de una solución MPIO son el módulo específico del dispositivo (DSM) y el MPIO de Windows.  MPIO presenta un disco al sistema operativo Windows para todas las rutas y DSM gestiona las conmutaciones por error de ruta.
 
 
 CAUTION: Si no instala el software MPIO, el sistema operativo Windows puede ver cada ruta como un disco independiente. Esto puede conducir a la corrupción de datos.
 
-[NOTE]
-====
-* Para Windows Host Utilities 8.0, la función MPIO se habilita automáticamente cuando selecciona la compatibilidad con MPIO.
-* Windows XP o Windows Vista ejecutándose en una máquina virtual Hyper-V no admiten MPIO.
 
-
-====
-
-
-== Configuración de SAN
-
-Según la configuración de SAN, el host utiliza configuraciones de cabinas All SAN (ASA) o no ASA para acceder a los LUN de ONTAP. En las configuraciones de ASA y que no sean de ASA, no debería necesitar más de cuatro rutas para acceder a una única LUN de ONTAP. Si tiene más de cuatro rutas, se pueden producir problemas con las rutas durante un fallo del almacenamiento.
-
-
-
-=== Configuración de cabina All SAN
-
-Una configuración ASA debe tener un grupo de rutas activo/optimizadas con prioridades únicas. Esto significa que la controladora proporciona servicio a las rutas y las I/O se envían a todas las rutas activas.
-
-En el siguiente ejemplo se muestra el resultado correcto para una LUN de ONTAP con rutas activas/optimizadas.
-
-image::asa.png[Captura de pantalla de LUN de ONTAP con rutas activas/optimizadas]
-
-
-
-=== Configuración no ASA
-
-Una configuración que no sea de ASA debe tener dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son Active-Optimized. Esto significa que la controladora donde se encuentra el agregado suministra las rutas activa/optimizada. Las rutas con prioridades más bajas están activas pero no optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas solo se utilizan cuando las rutas optimizadas no están disponibles.
-
-En el siguiente ejemplo, se muestra la salida correcta de una LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas.
-
-image::nonasa.png[Captura de pantalla de un LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas]
-
-
-
-== El disco duro virtual de Hyper-V requiere una alineación para obtener el mejor rendimiento
-
-Si los límites de bloque de datos de una partición de disco no se alinean con los límites de bloque de la LUN subyacente, el sistema de almacenamiento suele tener que realizar dos lecturas o escrituras de bloques para la lectura o escritura de cada bloque del sistema operativo. Las lecturas y escrituras de bloque adicionales causadas por la alineación incorrecta pueden provocar problemas de rendimiento graves.
-
-La ubicación del sector de inicio para cada partición definida por el registro de inicio maestro provoca errores de alineación.
-
-
-NOTE: Las particiones creadas por Windows Server 2016 se deben alinear de forma predeterminada.
-
-Utilice `Get-NaVirtualDiskAlignment` el cmdlet del kit de herramientas PowerShell de ONTAP para comprobar si las particiones están alineadas con los LUN subyacentes. Si las particiones no están alineadas correctamente, utilice el `Repair-NaVirtualDiskAlignment` cmdlet para crear un nuevo archivo VHD con la alineación correcta. Este cmdlet copia todas las particiones en el nuevo archivo. El archivo VHD original no se ha modificado ni eliminado. La máquina virtual se debe apagar mientras se copian los datos.
-
-Puede descargar el kit de herramientas PowerShell de ONTAP en las comunidades de NetApp. Debe descomprimir `DataONTAP.zip` el archivo en la ubicación especificada por la variable de entorno `%PSModulePath%` (o usar el `Install.ps1` script para hacerlo por usted). Una vez completada la instalación, use el `Show-NaHelp` cmdlet para obtener ayuda para los cmdlets.
-
-El kit de herramientas PowerShell solo admite archivos VHD de tamaño fijo con particiones de tipo MBR. No se admiten los discos duros virtuales que utilicen discos dinámicos Windows o particiones GPT. Además, el kit de herramientas PowerShell requiere un tamaño de partición mínimo de 4 GB. Las particiones más pequeñas no se pueden alinear correctamente.
-
-
-NOTE: En el caso de equipos virtuales Linux que utilicen el cargador de arranque GRUB en un disco duro virtual, debe actualizar la configuración de arranque tras ejecutar el kit de herramientas PowerShell.
-
-
-
-=== Vuelva a instalar GRUB para invitados de Linux después de corregir la alineación de MBR con PowerShell Toolkit
-
-Después de ejecutar `mbralign` En discos para corregir la alineación de MBR con el kit de herramientas PowerShell en sistemas operativos invitados Linux mediante el cargador de arranque GRUB, debe reinstalar GRUB para asegurarse de que el sistema operativo «guest» se arranque correctamente.
-
-.Acerca de esta tarea
-El cmdlet de PowerShell Toolkit se ha completado en el archivo VHD de la máquina virtual. Este procedimiento se aplica sólo a los sistemas operativos invitados Linux que utilizan la Loader de inicio de GRUB y `SystemRescueCd`.
+NOTE: Windows XP o Windows Vista en un equipo virtual Hyper-V no admite MPIO.
 
 .Pasos
-. Monte la imagen ISO del disco 1 de los CD de instalación para la versión correcta de Linux para la máquina virtual.
-. Abra la consola de la máquina virtual en Hyper-V Manager.
-. Si la VM se está ejecutando y congelando en la pantalla de GRUB, haga clic en el área de visualización para asegurarse de que está activa, luego seleccione el icono de la barra de herramientas *Ctrl-Alt-Delete* para reiniciar la VM. Si la máquina virtual no está en ejecución, inícielo y, a continuación, haga clic inmediatamente en el área de visualización para asegurarse de que esté activa.
-. Tan pronto como vea la pantalla de bienvenida del BIOS de VMware, pulse la tecla *Esc* una vez. Aparece el menú de inicio.
-. En el menú de inicio, seleccione *CD-ROM*.
-. En la pantalla de inicio de Linux, introduzca: `linux rescue`
-. Tome los valores predeterminados de Anaconda (las pantallas de configuración azul/roja). Las redes son opcionales.
-. Inicie GRUB introduciendo: `grub`
-. Si sólo hay un disco virtual en esta máquina virtual, o si hay varios discos y el primero es el disco de inicio, ejecute los siguientes comandos de GRUB:
+. Instale el software MPIO y habilite el multipathing.
+. Cuando selecciona MPIO en sistemas que utilizan FC, el instalador de utilidades de host establece los valores de tiempo de espera necesarios para los HBA de Emulex y QLogic FC.
 +
-[listing]
-----
-root (hd0,0)
-setup (hd0)
-quit
-----
-+
-Si tiene varios discos virtuales en el equipo virtual, y el disco de arranque no es el primer disco, o está solucionando GRUB arrancando desde el disco duro virtual de backup mal alineado, introduzca el comando siguiente para identificar el disco de arranque:
-
-+
-[listing]
-----
-find /boot/grub/stage1
-----
-+
-Después, ejecute los siguientes comandos:
-
-+
-[listing]
-----
-root (boot_disk,0)
-setup (boot_disk)
-quit
-----
-+
-
-NOTE: En `setup (boot_disk)`, `boot_disk` es un marcador de posición para el identificador de disco real del disco de inicio.
-
-
-
-. Pulse *Ctrl-D* para cerrar la sesión.
-+
-El rescate de Linux se cierra y luego se reinicia.
-
-
-
-
-
-== Configuración recomendada
-
-Cuando selecciona MPIO en sistemas que utilizan FC, el instalador de utilidades de host establece los valores de tiempo de espera necesarios para los HBA de Emulex y QLogic FC.
-
 [role="tabbed-block"]
 ====
 .FC Emulex
@@ -244,11 +127,41 @@ Los valores de tiempo de espera para los HBA FC de QLogic:
 |===
 --
 ====
+. Verifique el estado de la ruta para sus LUN de ONTAP :
++
+Dependiendo de la configuración de su SAN, el host utiliza configuraciones ASA, AFF o FAS para acceder a las LUN de ONTAP .  Estas configuraciones no deberían requerir más de cuatro rutas para acceder a un único LUN de ONTAP .  Más de cuatro rutas pueden causar problemas durante un fallo de almacenamiento.
 
-NOTE: Para obtener más información sobre los ajustes recomendados, consulte link:hu_wuhu_hba_settings.html["Configure los ajustes del Registro para las utilidades del host de Windows"].
++
+Los siguientes ejemplos muestran la configuración correcta para las LUN de ONTAP para una configuración ASA, AFF o FAS .
+
++
+[role="tabbed-block"]
+====
+.Configuración de ASA
+--
+Una configuración ASA debe tener un grupo de rutas activas/optimizadas con prioridades únicas.  El controlador gestiona las rutas y envía E/S en todas las rutas activas.
+
+image::asa.png[Captura de pantalla de LUN de ONTAP con rutas activas/optimizadas]
+
+--
+.Configuración de AFF o FAS
+--
+Una configuración AFF o FAS debe tener dos grupos de rutas con diferentes prioridades.  Las rutas con mayor prioridad están activas/optimizadas y son atendidas por el controlador donde se encuentra el agregado.  Las rutas con menor prioridad son atendidas desde un controlador diferente.  Están activas pero no optimizadas y solo se utilizan cuando no hay rutas optimizadas disponibles.
+
+image::nonasa.png[Captura de pantalla de un LUN de ONTAP con dos rutas activas/optimizadas y dos rutas activas/no optimizadas]
+
+--
+====
 
 
 
-== Problemas conocidos
 
-No existen problemas conocidos para la versión de Windows Server 2012 R2 con ONTAP.
+== Paso 5: Revisar los problemas conocidos
+
+No hay problemas conocidos.
+
+
+
+== El futuro
+
+link:hu_wuhu_hba_settings.html["Aprenda sobre la configuración del registro para las utilidades de host de Windows."].
