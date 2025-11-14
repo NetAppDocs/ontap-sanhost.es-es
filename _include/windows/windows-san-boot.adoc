@@ -18,7 +18,7 @@ Si elige usar arranque SAN, debe ser compatible con su configuración.
 Utilice https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que el sistema operativo Windows, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admiten el arranque SAN.
 
 .Pasos
-. link:https://docs.netapp.com/us-en/ontap/san-management/index.html["Cree un LUN de arranque SAN y asígnelo al host"^].
+. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["Cree un LUN de arranque SAN y asígnelo al host"^].
 . Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
 +
 Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
