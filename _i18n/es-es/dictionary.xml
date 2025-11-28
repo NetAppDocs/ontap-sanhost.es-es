@@ -137,7 +137,6 @@
   <block id="f75fbeea110530ab4a9306fd42a5e085" category="summary">Describe cómo usar Oracle Linux 6.8 con ONTAP</block>
   <block id="f554c70908c90cf2ddb8539029693dc9" category="paragraph">Para Oracle Linux 6.8 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. Oracle Linux 6.8 se ha compilado con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP. Para habilitar ALUA Handler, realice los siguientes pasos:</block>
   <block id="6485c78f22d3f3aa24bf7cbcea864cb3" category="paragraph">El sistema operativo Oracle Linux 6.8 se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente.</block>
-  <block id="5116d27ab3c67a2413a9afe024b82a38" category="summary">Cómo configurar el host NVMe/FC para RHEL 8.3 con ONTAP</block>
   <block id="3a8ba1ff8824968961222d6b447b4973" category="section-title">Compatibilidad</block>
   <block id="da160308e3b4b4a80bf1b72b5bdbedb8" category="inline-link-macro">Hardware Universe</block>
   <block id="482723983a4f2af954e36ff41e567451" category="section-title">Limitaciones conocidas</block>
@@ -147,7 +146,6 @@
   <block id="637c9dab407a19b5ffba6acd84571167" category="list-text">Una vez finalizada la actualización, ejecute el siguiente comando:</block>
   <block id="29dfe6da86bf07e6603e28dfb347ad93" category="list-text">Restaure los archivos del host en<block ref="63af1d1c5f17da947c35d30dddf5b493" prefix=" " category="inline-code"></block>.</block>
   <block id="6583872aab9c396f958f3f06d3512a9d" category="list-text">Copie el original<block ref="e82750eaf1d7258b5557bfe448245cd4" prefix=" " category="inline-code"></block> contenido del backup en los archivos de host reales en<block ref="63af1d1c5f17da947c35d30dddf5b493" prefix=" " category="inline-code"></block>.</block>
-  <block id="4e9e6a353c31b00bcbf2e522fd8093c3" category="list-text">Reinicie el daemon multipathd ejecutando un<block ref="5a8f02947e83d77dcfc767816a70ab96" prefix=" " category="inline-code"></block>.</block>
   <block id="30184b2ffcd5459f75061dc63a6b8c62" category="section-title">Valide NVMe/FC</block>
   <block id="b6a29cb5683f3c681aef0fb1df5f0331" category="list-text">Verifique la siguiente configuración de NVMe/FC.</block>
   <block id="d58a6348af94cbfcbf65485358c4a07d" category="list-text">Compruebe el estado de las rutas de ANA.</block>
@@ -255,7 +253,6 @@
   <block id="7c7b1ac412755c409b674d6d1d5261c8" category="paragraph">Para Oracle Linux 6.7 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. Oracle Linux 6.7 se ha compilado con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP. Para habilitar ALUA Handler, realice los siguientes pasos:</block>
   <block id="30551084db41b5a626c643ea028e9abc" category="paragraph">El sistema operativo Oracle Linux 6.7 se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente.</block>
   <block id="51da3f0f90428027f2a496d366e696eb" category="inline-link-macro">Catálogo de Microsoft Update 2019</block>
-  <block id="43b1876560748141954ab34c38e01ac0" category="summary">Describe cómo configurar NVMe/FC para RHEL 8.1 con ONTAP</block>
   <block id="3d8955b26bfbc81a964a71512390e793" category="list-text">Agregue la cadena siguiente como regla udev separada en /lib/udev/rules.d/71-nvme-iopolicy-netapp-ONTAP.rules. Esto permite el equilibrio de carga por turnos para NVMe multivía.</block>
   <block id="6d2964de8c046289cdcfaebf91369e08" category="section-title">Configure el adaptador de FC de Broadcom para NVMe/FC</block>
   <block id="f17e2682405234dfca14c2a2181e2cd1" category="list-text">Compruebe que lpfc_enable_fc4_TYPE está establecido en 3.</block>
@@ -475,7 +472,6 @@
   <block id="b9204431a0ed79e40e8c590858bc11e4" category="cell">Se ha observado un problema de PLOGI durante la prueba de adaptadores Emulex</block>
   <block id="52f50d0f0ab285059648c7da67b4b07f" category="inline-link-macro">Compatibilidad de VMware vSphere 5.x, 6.x y 7.x con MetroCluster de NetApp (2031038)</block>
   <block id="8a515fe16331b7269862c5871e55c7e4" category="list-text"><block ref="8a515fe16331b7269862c5871e55c7e4" category="inline-link-macro-rx"></block></block>
-  <block id="e23d1316b6f8fd9d76ebc1a761f0ffa9" category="summary">Cómo configurar NVMe-of Host para RHEL 8.4 con ONTAP</block>
   <block id="c8fe594dab6cb1395df34d73b005c900" category="section-title">Requisitos de configuración</block>
   <block id="da5c98f4248ec7387bdaa6db8341fdef" category="section-title">Habilite NVMe multivía en el kernel</block>
   <block id="81eeab9506186e2dca8faefa78d54067" category="paragraph">Ejemplo:</block>
@@ -534,7 +530,6 @@
   <block id="4a08b4cdc752d6b56372551f5eaf5055" category="list-text">En el host OL 7.7, compruebe la cadena NQN del host en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> Y verifique que coincida con la cadena del host NQN para el subsistema correspondiente en la cabina de ONTAP.</block>
   <block id="7fa8390ac8c114f16d588d79fe36a1ee" category="admonition">Si las cadenas del NQN del host no coinciden, se debe usar el comando vserver modify para actualizar la cadena NQN del host en el subsistema de cabina de ONTAP correspondiente para que coincidan con la cadena de NQN del host<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> en el host.</block>
   <block id="769627b30441d87c853de2b1343baa09" category="list-text">Copie e instale el paquete de secuencias de comandos de conexión automática de Broadcom outbox.</block>
-  <block id="3f11bd75d4bcc18b35f7eeb9b9966c9c" category="summary">Cómo configurar NVMe-of Host para RHEL 8.6 con ONTAP</block>
   <block id="71dcdd59971df1a5bb4dfbb60ffe2bad" category="list-text">Compruebe que los puertos iniciador están en funcionamiento y que puede ver las LIF de destino.</block>
   <block id="ed53d9bb40cf906cb73ab578cb3adb1d" category="paragraph">Es necesario configurar el periodo de reintento para eventos de conmutación por error en al menos 30 minutos para evitar los tiempos de espera. Puede aumentar el período de reintento aumentando el valor del temporizador ctrl_loss_tmo. A continuación se muestran los detalles:</block>
   <block id="4c865e0cb70fa33868e69a5e88daad47" category="inline-link-macro">1479047</block>
@@ -565,7 +560,6 @@
   <block id="b7c74c258f112727be39c4b747d743ec" category="paragraph">Utilice el siguiente comando para comprobar la configuración de IOPS.</block>
   <block id="32014634f5e91fea92881a76289729e4" category="paragraph">Utilice el siguiente comando para verificar QFullSampleSize</block>
   <block id="784c795c066fdf3c4713aae58af639ff" category="paragraph">No hay problemas conocidos.</block>
-  <block id="587384a32d909bff27b8405e18d9d7cf" category="summary">Cómo configurar NVMe-of Host para RHEL 9.0 con ONTAP</block>
   <block id="d79792e27890df0330ac43850943e028" category="list-text">Instale el<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> paquete.</block>
   <block id="79ba4cec11a87f2af036439169eabd6c" category="paragraph">Verificación<block ref="a8961a0cb8d5dfd91556db806f0f2cfc" prefix=" " category="inline-code"></block> Is set que permite que el adaptador Marvell funcione como iniciador NVMe/FC:</block>
   <block id="a57fd33007e3d579c230eadee6c70cda" category="summary">Configurar la configuración de host de VME/FC para Oracle Linux 7.9 con ONTAP, con ejemplos</block>
@@ -578,9 +572,7 @@
   <block id="cad20c09779103c2292c566cf14fb7ec" category="paragraph">Si la<block ref="eba7e0b12a189364b39ab6613de786ec" prefix=" " category="inline-code"></block> las cadenas no coinciden, debe utilizar<block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block> Comando para actualizar la cadena NQN del host en el subsistema de cabina de ONTAP correspondiente para que coincidan con la cadena de NQN del host<block ref="c5b2e644c597673d2f8f06c8e500abf3" prefix=" " category="inline-code"></block> en el host.</block>
   <block id="8c95c9542a975007e5a35ecad47efad2" category="paragraph">Los controladores lpfc más recientes (tanto la bandeja de entrada como la bandeja de salida) tienen el valor predeterminado lpfc_enable_fc4_TYPE establecido en 3. Por lo tanto, no es necesario establecer esto explícitamente en el<block ref="39cb7236e95ada10fc0d69173bd48cdb" prefix=" " category="inline-code"></block>.</block>
   <block id="cd028f2be9225b4251e86c9754599aa3" category="paragraph">En el ejemplo anterior, se asignan dos espacios de nombres al host de Oracle Linux 7.9 ANA. Estos son visibles mediante cuatro LIF de destino: Dos LIF de nodo local y otros dos LIF de nodo remoto/partner. Esta configuración muestra dos rutas ANA optimizadas y dos ANA inaccesibles para cada espacio de nombres en el host.</block>
-  <block id="98a246e1f1b81f16a2ceb0cc274c4da8" category="summary">Cómo configurar NVMe-of Host para RHEL 8.7 con ONTAP</block>
   <block id="0929df0c2d7b307ae019137c488669a8" category="cell">1503468</block>
-  <block id="2f8adf6e51ddcf7b0618dad0e63a4144" category="cell"><block ref="f3d48156832e70ac41335c007fa76798" prefix="" category="inline-code"></block> el comando devuelve una lista repetida de la controladora nvme para un subsistema determinado</block>
   <block id="9571def175ecc3ee331559407e9d5ed4" category="summary">Describe cómo detectar y configurar LUN con AIX</block>
   <block id="080e9c7916d00328189e183a451bff56" category="list-text">Inicie sesión como root en el host.</block>
   <block id="21b450809d7909679670d0d0f4be983f" category="paragraph">La<block ref="fe54d1c30028417038a4ffe0fc5eb503" prefix=" " category="inline-code"></block> el comando ayuda con lo siguiente:</block>
@@ -788,7 +780,6 @@
   <block id="99d5775ff67d3ebcdc6e872f0bb0e7bd" category="summary">Describe cómo usar Oracle Linux 6.10 con ONTAP</block>
   <block id="3b3051e9028e74cd5ada27ca8f32e352" category="paragraph">Para Oracle Linux 6.10 debe existir el archivo /etc/multipath.conf, pero no es necesario realizar cambios específicos en el archivo. Oracle Linux 6.10 se ha compilado con todas las configuraciones necesarias para reconocer y gestionar correctamente las LUN de ONTAP. Para habilitar ALUA Handler, realice los siguientes pasos:</block>
   <block id="00d1a8ad09df702e5b164c26cbd1bc1a" category="paragraph">El sistema operativo Oracle Linux 6.10 se compila para reconocer las LUN de ONTAP y establecer automáticamente todos los parámetros de configuración correctamente.</block>
-  <block id="dcda2cb33413b9ab0c8373225de75578" category="summary">Cómo configurar NVMe-of Host para RHEL 8.5 con ONTAP</block>
   <block id="d59a70bb68888f817286630067489719" category="list-text">Compruebe que la configuración de NVMe-of adecuada (como,<block ref="20f35e630daf44dbfa4c3f68f5399d8c" prefix=" " category="inline-code"></block> establezca en<block ref="756ad8952bac6a54235a8fd3a5378672" prefix=" " category="inline-code"></block> y..<block ref="327aabfd61354af395e1929225190f20" prefix=" " category="inline-code"></block> establezca en<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>) Para los respectivos espacios de nombres ONTAP se reflejan correctamente en el host:</block>
   <block id="b5532e466b7ace9d1d9ddb98b57ec0d7" category="summary">Describe cómo configurar NVMe/FC para SUSE Linux Enterprise Server 15 SP3 con ONTAP</block>
   <block id="59788ae5607a12c1afe34deb1ad155a2" category="doc">Configuración de host de NVMe-of para SUSE Linux Enterprise Server 15 SP3 con ONTAP</block>
@@ -801,7 +792,6 @@
   <block id="ab5c1cc33879491a00632f6478216936" category="paragraph">Sus hosts SAN y el almacenamiento ONTAP pueden residir en las instalaciones, en el cloud, o en ambos.</block>
   <block id="bb80358d422ec918cde74cab08e90d5c" category="admonition">En un entorno cloud, los hosts se denominan clientes normalmente. Toda la información específica sobre hosts de este contenido también se aplica a los clientes cloud.</block>
   <block id="309cf24349edc5122d2f31c53280bf27" category="doc">Configuración de host de NVMe/FC para Oracle Linux 8.5 con ONTAP</block>
-  <block id="911e585c5684ba9f5c2b87af879f4a13" category="summary">Cómo configurar el host NVMe/FC para RHEL 8.2 con ONTAP</block>
   <block id="97b1d501c6990b34b9d8e6c6a3bd4c72" category="section-title">Enumere la identidad de la SVM de la ONTAP a partir de la que se asigna una LUN determinada al host</block>
   <block id="ccf6dcaf9d267935d140bb63387e1b16" category="section-title">Enumere las LUN de ONTAP que se ven en el host de un determinado WWPN de LIF de destino de SVM</block>
   <block id="2fefce185e7d7498c7e3da22bac84294" category="cell">1508554</block>
@@ -834,10 +824,8 @@
   <block id="971455e5b307f416baac0cb24b710792" category="sidebar">7.7</block>
   <block id="8b6f93f33bce541c7f50f8aff637e2e1" category="sidebar">RHEL</block>
   <block id="1a0d3890b0eb9dc0c7e3f33e1b9f1865" category="sidebar">RHEL NVMeoF</block>
-  <block id="38aef0bc7cf230dfcf5476915774aa95" category="sidebar">RHEL 9</block>
   <block id="796d3a90e43ce105cbf37298c5065f7e" category="sidebar">9.1</block>
   <block id="cf5f238fca8b6e155078aa41c175743a" category="sidebar">9.0</block>
-  <block id="d413bda6687be2c7d50d2c76e62fc60f" category="sidebar">RHEL 8</block>
   <block id="c7ed23f5281d7f5b606a1019ecd9fd97" category="sidebar">8.7</block>
   <block id="9b402891c0d38b9c654dcfa36df9d722" category="sidebar">8.6</block>
   <block id="845e85fa64a2d6037055beba19fe0bd8" category="sidebar">8.5</block>
@@ -1203,8 +1191,6 @@
   <block id="5cf8c44d0d04885f386e9f0d05461ec2" category="cell">1539101</block>
   <block id="91a845901382406af3acfb27b99025ea" category="cell">Los hosts NVMe-oF de Oracle Linux 9,1 no pueden crear una controladora de detección persistente</block>
   <block id="da80aa62fc6cf6b66539a5a3933874a8" category="cell"><block ref="da80aa62fc6cf6b66539a5a3933874a8" category="inline-link-rx"></block></block>
-  <block id="b8aa99c2e58dbe6b9f5fbd80d2ef3c41" category="summary">Cómo configurar el host NVMe-oF para RHEL 8,8 con ONTAP</block>
-  <block id="0b2a1cf2bd4cdd2ea23a2f0ea592a4d6" category="list-text">Instale el paquete nvme-cli:</block>
   <block id="5aae5284420b8ceb0aa0f5d959c566bc" category="list-text">Compruebe que las otras combinaciones de LIF iniciador-objetivo NVMe/TCP puedan recuperar correctamente los datos de la página del registro de detección:</block>
   <block id="317bd3f8323d3750053ef303ee6f5813" category="paragraph">NVMe over Fabrics (NVMe-oF), incluido NVMe over Fibre Channel (NVMe/FC) y otros transportes, es compatible con Oracle Linux (OL) 9,1 con acceso asimétrico a espacio de nombres (ANA). En entornos de NVMe-oF, ANA es el equivalente a la multivía ALUA en entornos iSCSI y FC y se implementa con NVMe multivía en kernel.</block>
   <block id="403f78a784ce2b6ea83a425d2530e736" category="paragraph">La configuración de host de NVMe-oF para OL 9,1 con la versión ONTAP tiene los siguientes problemas conocidos:</block>
@@ -1333,13 +1319,7 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="09244b95824d6e702b6eaab2034bdeec" category="list-text">FCP: AIX</block>
   <block id="344b83be976d50cb0bd99eec20c5e8ea" category="paragraph">No hay nuevas funciones en esta versión.</block>
   <block id="10dce9030ad8783afd2b4e831da49b7f" category="paragraph">*Ejemplo de salida*:</block>
-  <block id="79d54ad2be013dc1efba6b62f8feb800" category="list-text">Si lo desea, actualice el<block ref="cb2f8f6f16be615751b5bbd73928d197" prefix=" " category="inline-code"></block> ajuste.</block>
   <block id="72c8898bab867ffe51404357bb7e09df" category="list-text">Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:</block>
-  <block id="8011cf80f5dd20dfddd3b92b4d5d01ac" category="list-text">Instale el<block ref="891ed8cccffd2c63b191f54b44b5ae65" prefix=" " category="inline-code"></block> paquete:</block>
-  <block id="4221dbb6ea6b43719aae88d86846d722" category="list-text">Agregue la siguiente cadena como una regla udev independiente en<block ref="99434fae4c03e5f280aa41106396dfa1" prefix=" " category="inline-code"></block>. Esto permite el equilibrio de carga round-robin para NVMe multivía:</block>
-  <block id="7620805eadd8352b0e3c343da7a49853" category="admonition">Si las cadenas del host NQN no coinciden, utilice<block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block> Comando para actualizar la cadena NQN del host en el subsistema de la cabina ONTAP correspondiente para que coincida con la cadena NQN del host de<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> en el host.</block>
-  <block id="e2ca5e94cb7ab3712e0cf796ebeda62e" category="list-text">Copie e instale el controlador de salida Broadcom lpfc y los scripts de conexión automática:</block>
-  <block id="3bb8b43ed1b1526e68b2b7ee931b531a" category="admonition">Los controladores nativos que se incluyen con el sistema operativo se denominan controladores de la bandeja de entrada. Si descarga los controladores de la bandeja de salida (controladores que no se incluyen con una versión del sistema operativo), se incluye un script de conexión automática en la descarga y se debe instalar como parte del proceso de instalación del controlador.</block>
   <block id="25bf44f4015fc028f21a62c878e44061" category="list-text">Ejecución<block ref="1615297782a0dff59b20451e2ca97ea7" prefix=" " category="inline-code"></block> contra el zpool y verifique que el valor de *ashift* es<block ref="c20ad4d76fe97759aa27a0c99bff6710" prefix=" " category="inline-code"></block>.</block>
   <block id="ea97d5c2ead91159f0f6b9bb0c5482a0" category="cell">Consulte las recomendaciones de Solaris 11,4 y HUK. Se ha cambiado el enlace al controlador FC de<block ref="4ac64d4c80a809df47ac078b5c56d623" prefix=" " category="inline-code"></block> para<block ref="0d1e6498671862209810e5029cd1e779" prefix=" " category="inline-code"></block>. Mueva la configuración existente desde<block ref="d5ef7f69fa74e42b54d8244ee447ab2b" prefix=" " category="inline-code"></block> para<block ref="88cafedaeae385b0e8278ab1804829cd" prefix=" " category="inline-code"></block> Como se menciona en Oracle DOC: 2595926,1). El comportamiento varía en los sistemas y sistemas Solaris 11,4 recién instalados actualizados desde Solaris 11,3 o versiones anteriores.</block>
   <block id="65afcaea10e26dc5c66de4f6bf0ade99" category="cell">Se ha detectado un problema de LIF de Solaris durante la operación de devolución de conmutación por error del almacenamiento (SFO) con el adaptador de bus de host (HBA) Emulex 32G en x86 Arch</block>
@@ -1436,14 +1416,10 @@ En el siguiente ejemplo, se genera una clave dhchap aleatoria con HMAC estableci
   <block id="8cfe2b11255c36622bc84e4bd2dfb53c" category="list-text">Ejecute el<block ref="eb2bf21d337d5754274973a21f351bbd" prefix=" " category="inline-code"></block> reinicie el host.</block>
   <block id="9688ec84efd5b1cb7c885e598b6ebf4a" category="list-text">Después del reinicio, compruebe que el registro detallado se ha habilitado:</block>
   <block id="86891fa05c8b78ad9621085c8abc1fb4" category="paragraph">Puede generar el archivo JSON con<block ref="b2ed43620b7fff2689035f1e99c24ded" prefix=" " category="inline-code"></block> opción. Consulte las páginas del manual NVMe connect-all para obtener más opciones de sintaxis.</block>
-  <block id="3a891098b79eaa53ca214516fa78a5e6" category="summary">Cómo configurar el host NVMe-oF para RHEL 9,1 con ONTAP</block>
-  <block id="5464d39105cc61c77c01f61a6c049eae" category="summary">Cómo configurar el host NVMe-oF para RHEL 9,2 con ONTAP</block>
   <block id="13aa98a5d20992675bbf7111d4bcf7cc" category="cell">La interfaz de línea de comandos de utilidades de host Linux de NetApp requiere dependencias adicionales del paquete de biblioteca para admitir la detección del adaptador de bus de host (HBA) Emulex</block>
-  <block id="447d82560b23d134af7247622d397daf" category="summary">Cómo configurar el host NVMe-oF para RHEL 9,3 con ONTAP</block>
   <block id="af1363e13388a6153d5ee5e31361b059" category="list-text">Compruebe que las demás combinaciones de LIF iniciador-destino NVMe/TCP puedan recuperar correctamente los datos de la página de registro de detección:</block>
   <block id="7391a7cd9aaad0e97cd0084d95a4c0fd" category="sidebar">9,3</block>
   <block id="4407c95e5daa7102b34d0879e4eb12ed" category="sidebar">8,9</block>
-  <block id="b434464d1a1076f0912b586e6f0da437" category="summary">Cómo configurar el host NVMe-oF para RHEL 8,9 con ONTAP</block>
   <block id="3ffd22c07b48a1c76b76f941ad1cad96" category="list-text">Windows 2022</block>
   <block id="0a412bceaa4a8d671231ab04d2e0296e" category="list-text">Windows 2019</block>
   <block id="4083fee85864d55c66d5e0b21a7928b3" category="list-text">Windows 2016</block>
@@ -1504,7 +1480,6 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="e764fe6b8f8825a307a87cedbef45678" category="sidebar">22,04</block>
   <block id="829d28d8727a4d458f1c35bda30f5ad7" category="sidebar">Ubuntu NVMeoF</block>
   <block id="4d82a1ec1af02725042c8c785564ee7a" category="inline-link-macro">Amazon FSX para ONTAP de NetApp</block>
-  <block id="99fc62da3c4063c517d61da1e5cb3ea3" category="summary">Cómo configurar el host NVMe-oF para RHEL 9,4 con ONTAP</block>
   <block id="b68de8f1f938e0330acdf64c63b08b9a" category="sidebar">9,4</block>
   <block id="b6758eb9c7ac57209dfad7db602a24d4" category="inline-link-macro">Cómo configurar un host AIX para la sincronización activa de SnapMirror</block>
   <block id="a9e760f9ba2dad33870cce967a12f75a" category="cell"><block ref="a9e760f9ba2dad33870cce967a12f75a" category="inline-link-macro-rx"></block></block>
@@ -1514,7 +1489,6 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="bc2c3049c0f4d679fb14b74cd64723c8" category="cell"><block ref="bc2c3049c0f4d679fb14b74cd64723c8" category="inline-link-macro-rx"></block></block>
   <block id="c96b4702a07478185cc851585d0055b6" category="inline-link-macro">NetApp ONTAP con SnapMirror de NetApp sincronización activa con VMware vSphere Metro Storage Cluster (VMSC)</block>
   <block id="8b3f58063486fce853bcbb473e73c56f" category="list-text"><block ref="8b3f58063486fce853bcbb473e73c56f" category="inline-link-macro-rx"></block></block>
-  <block id="7ce2c81c828f2a1b54c1127149fe015e" category="summary">Cómo configurar el host NVMe-oF para RHEL 8,10 con ONTAP</block>
   <block id="23c3f6b1dc0958b81d21563a91eecfa6" category="cell"><block ref="23c3f6b1dc0958b81d21563a91eecfa6" category="inline-link-macro-rx"></block></block>
   <block id="e59f05c9149caf590d63da27c24797cb" category="inline-link-macro">Compatibilidad con VMware vSphere 6.x y 7.x con NetApp® SnapMirror Active Sync</block>
   <block id="2a41c03d949869222b758867aff845ff" category="inline-link-macro">Compatibilidad de VMware vSphere 6.x y 7.x con la sincronización activa de SnapMirror de NetApp</block>
@@ -1806,12 +1780,8 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="29246f167e3a779b1e6f616740b06741" category="list-text">Verifique la siguiente configuración de NVMe/FC en el host Oracle Liniux 9,4:</block>
   <block id="9a8c8fd6ced80cbe4db0d4c4fef7bf6e" category="list-text">Genere la clave dhchap para el host OL 9,4.</block>
   <block id="d481825a9f6d37ba25450de94597b251" category="paragraph">No existen problemas conocidos para la versión Oracle Linux 9,4 con ONTAP.</block>
-  <block id="5dca4677c0eb60175de3486097fb7e31" category="summary">Cómo configurar el host NVMe-oF para RHEL 9,5 con ONTAP</block>
   <block id="c396639e860651e2d3cd53ecae736ced" category="list-text">Compatibilidad con NVMe sobre TCP (NVMe/TCP), además de NVMe sobre Fibre Channel (NVMe/FC). El complemento NetApp del paquete nativo<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> muestra detalles de ONTAP para espacios de nombres NVMe/FC y NVMe/TCP.</block>
-  <block id="38f6bc852d1bbe27e299d387064a34e3" category="list-text">En el host RHEL 9,5, compruebe la cadena hostnqn en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>:</block>
   <block id="81f52aae1ae4c5a7cdc70ef7d5def232" category="list-text">Compruebe que la salida esperada de<block ref="2daa99bd4c709cddaca678ef2050fb39" prefix=" " category="inline-code"></block> está definida en<block ref="eccbc87e4b5ce2fe28308fd9f2a7baf3" prefix=" " category="inline-code"></block>:</block>
-  <block id="d8133302f3833708e05d2a65a4efe359" category="paragraph">A partir de ONTAP 9.12.1, la autenticación en banda segura es compatible con NVMe/TCP y NVMe/FC entre un host RHEL 9,5 y una controladora ONTAP.</block>
-  <block id="710b53594e3ee110c5fc61ba3387e351" category="list-text">Genere la clave dhchap para el host RHEL 9,5.</block>
   <block id="eab7e959c5707439b9e2c1fe3e86d60c" category="sidebar">9,5</block>
   <block id="a4ac74af7c81edef10a1710e62ceadeb" category="paragraph"><block ref="59b466fd93164953e56bdd1358dc0044" prefix="" category="inline-code"></block> Es el disco SCSI local que desea agregar a la lista negra.</block>
   <block id="e78866ae0ff845eed770c2b938efee3b" category="paragraph">Compruebe siempre el<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> archivo, especialmente en la sección de valores predeterminados, para ver la configuración heredada que podría estar anulando la configuración predeterminada.</block>
@@ -2529,9 +2499,7 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="b4da3417a3bbac7760c5f326458d9927" category="sidebar">RHEL 10</block>
   <block id="63da114c28add40c319de84e3a92a8ed" category="sidebar">RHEL-10-FCP</block>
   <block id="43a1437f7f656cd8be7c996c58719e0a" category="sidebar">10,0</block>
-  <block id="6cbcd68038ece1dbafa173add2c90697" category="summary">Cómo configurar el host NVMe-oF para RHEL 9,6 con ONTAP</block>
   <block id="deeefe26777fb24a155fd5e2eac9f23b" category="paragraph">El siguiente ejemplo muestra una versión del paquete nvme-cli:</block>
-  <block id="c76dae5432bc09fa983706505086692e" category="list-text">Genere la clave dhchap para el host RHEL 9,6.</block>
   <block id="eaf2f97729e8d5e4d205672da8afc9a5" category="sidebar">9,6</block>
   <block id="c90e2c8eff8de67c2e01d748085394db" category="list-text">Verificar que el <block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> El archivo existe. Si el archivo no existe, cree un archivo vacío de cero bytes:</block>
   <block id="0825e58b251b6f1e1956c9f982c69b3d" category="doc">Configurar Citrix Hypervisor 8.2 para FCP e iSCSI con almacenamiento ONTAP</block>
@@ -2579,8 +2547,6 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="331d7a0b82cb882efa5b3b430281a9d8" category="doc">Configurar Rocky Linux 9.6 para NVMe-oF con almacenamiento ONTAP</block>
   <block id="d4454d1f91fdbee65b5b084bbf2c935c" category="paragraph">A partir de ONTAP 9.12.1, se admite la autenticación segura en banda a través de NVMe/TCP entre un host Rocky Linux 9.6 y un controlador ONTAP.</block>
   <block id="e5f095ea13bd0114b461048aa3c82608" category="list-text">Genere la clave dhchap para el host Rocky Linux 9.6.</block>
-  <block id="9b26e38834ec2f2df9641c2b954ff579" category="doc">Configurar RHEL 9.5 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="dc5d05edf7eac3cf1cb6e7a130e6f430" category="doc">Configurar RHEL 9.6 para NVMe-oF con almacenamiento ONTAP</block>
   <block id="a85fe49c4f48d905593c7bce3b551763" category="sidebar">Hosts SAN y clientes de cloud de ONTAP</block>
   <block id="fb09e86e3230567e42bbd530bcb5a946" category="sidebar">Linux rocoso</block>
   <block id="1f27018b2bb672b8cdc3ade88964fcd2" category="sidebar">Rocky Linux 10</block>
@@ -3321,52 +3287,15 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="c66e8f141f367b0a5a1d201cc49ccc72" category="paragraph">ONTAP informa un tamaño máximo de transferencia de datos (MDTS) de 8 en los datos del controlador de identificación.  Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1 MB.  Para emitir solicitudes de E/S de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar el<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block> valor de la<block ref="63a7cb7a86eb0c84641936943496afaf" prefix=" " category="inline-code"></block> parámetro a 256 desde el valor predeterminado de 64.</block>
   <block id="cfa5b6e557299c1ae7c635f08785f365" category="paragraph">Los hosts Red Hat Enterprise Linux (RHEL) admiten los protocolos NVMe sobre canal de fibra (NVMe/FC) y NVMe sobre TCP (NVMe/TCP) con acceso asimétrico al espacio de nombres (ANA).  ANA proporciona una funcionalidad de múltiples rutas equivalente al acceso a unidad lógica asimétrica (ALUA) en entornos iSCSI y FCP.</block>
   <block id="e8584093909cb01d1e4390beaad82a5f" category="paragraph">El<block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block> y<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> Servicios de arranque incluidos en NVMe/FC<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> Los paquetes se habilitan automáticamente cuando se inicia el sistema.</block>
-  <block id="38ebfab3a4661e076a180498de8db502" category="paragraph">Verifique que su sistema cumpla con los requisitos de software y verifique las instalaciones de paquetes NVMe y la configuración del host.</block>
   <block id="660bcc8bfdb485b79b7dede726eb2358" category="doc">Obtenga información sobre cómo configurar hosts SAN de ONTAP con NVMe-OF</block>
   <block id="be1e5922c13f8cd92deb77a78a07375f" category="paragraph">Puede configurar hosts SAN compatibles para utilizar el protocolo NVMe over Fabrics (NVMe-oF) con ONTAP como destino de almacenamiento.  NVMe-oF incluye NVMe sobre canal de fibra (NVMe/FC) y NVMe sobre TCP (NVMe/TCP).  Según el sistema operativo del host y la versión de ONTAP , debe configurar y validar el protocolo NVMe/FC o NVMe/TCP, o ambos en el host.</block>
   <block id="b0e0bd8207ba62457f58c3e06f3f7bec" category="section-title">Compatibilidad y funciones de ONTAP</block>
-  <block id="c083727c571f8ac1566efd9a6c818983" category="paragraph">La tabla muestra las características de ONTAP compatibles con las versiones de ONTAP y los sistemas operativos host SAN:</block>
-  <block id="0a0891df749e36f8a1da70eeb7191ff8" category="cell">Función ONTAP</block>
-  <block id="aefa7649e1e29e479910b089b2d642d0" category="cell">Hosts SAN compatibles</block>
   <block id="3b2a75ebc087c7f3c4fa9ac0e2a92ebe" category="cell">Versión ONTAP</block>
-  <block id="b48dd7b275ed5be01568bf3fea421774" category="cell">*Autenticación segura en banda para NVMe/TCP*</block>
-  <block id="f50ad339a2fcf7aedfe431f3ae3ef107" category="list-text">RHEL 10.0</block>
-  <block id="1080847e44693bff1e1d0a62e357d97c" category="list-text">RHEL 9.6, 9.5</block>
-  <block id="aafcc7be030d124544f5c9bee1ca41f2" category="list-text">Rocky Linux 10,0</block>
-  <block id="bae2f5c72217fa9eb5a4c27196e340f0" category="list-text">Rocky Linux 9.6, 9.5</block>
-  <block id="84de463f38d2bd8631492023d51c423f" category="cell">El soporte comienza con 9.12.1</block>
-  <block id="205c456d8edaaf80b1bc352753ffc7fc" category="cell">*NVMe/TCP además de NVMe/FC* Proporciona detalles de ONTAP para los espacios de nombres NVMe/FC y NVMe/TCP utilizando el protocolo nativo<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> paquete.</block>
-  <block id="45b0d7be0acab674ffba143dc3e0a918" category="list-text">RHEL 9.6, 9.5, 9.4, 9.3, 9.2, 9.1</block>
-  <block id="2cb74808d6693532821746fc716c0381" category="list-text">RHEL 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.8, 8.2</block>
-  <block id="91b91776d78f74933e5f5858c59366ac" category="list-text">Rocky Linux 9.6, 9.5, 9.4, 9.3, 9.2, 9.1</block>
-  <block id="396f6ca2135cbfa76729310561aa4ba9" category="list-text">Rocky Linux 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.8, 8.2</block>
-  <block id="6eddaf2e77d53e1283b1daab6a61df94" category="cell">El soporte comienza con 9.10.1</block>
-  <block id="7ac6c334971283da5d076b1534b082f3" category="cell">*NVMe/TCP es una función empresarial totalmente compatible*</block>
-  <block id="80178f74d6b9fce071b5b0f0b6274d65" category="list-text">RHEL 9.6, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0</block>
-  <block id="fd40da61045ca76b0b52080a584e5391" category="list-text">Rocky Linux 9.6, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0</block>
-  <block id="f18c7176c7f79f5ffbf2b78c9429be7f" category="cell">*Tráfico NVMe y SCSI compatible en el mismo host* Utilice dm-multipath para LUN SCSI y NVMe multipath para espacios de nombres NVMe-oF.</block>
-  <block id="8e4e5423889b9c96a5f9389d54c74f97" category="list-text">RHEL 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2</block>
-  <block id="60c189e08484a64fff69b7a79b4563f6" category="list-text">Rocky Linux 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2</block>
-  <block id="31e59474dea301e167fa6ede6c6a33e1" category="cell">El soporte comienza con 9.4</block>
-  <block id="eb74a6c58611be9f641b975602744854" category="paragraph">ONTAP admite las siguientes funciones de host SAN independientemente de la versión de ONTAP que se ejecute en la configuración de su sistema:</block>
-  <block id="74b948fb40f71fa2ceaff2854cb6a302" category="cell">*La multirruta nativa de NVMe siempre está habilitada* ONTAP no admite la multirruta de Device Mapper (DM) para NVMe-oF.</block>
-  <block id="544512b3b597000544bd5bf828c0a760" category="cell">*Arranque SAN mediante el protocolo NVMe/FC*</block>
-  <block id="98aa5d7769ae8d6ef5341d2a326a7959" category="list-text">RHEL 9.6, 9.5, 9.4</block>
-  <block id="66a70875b9c109ad80588f8942c780d8" category="list-text">Rocky Linux 9.6, 9.5, 9.4</block>
-  <block id="343115f4d9e53080ec64de12f9f6cfd2" category="cell"><block ref="e1667929105bf030b9f367fc21f8d216" prefix="*" category="inline-code"></block>El paquete incluye scripts de conexión automática*. No necesita scripts de terceros.</block>
-  <block id="0c3c8d0b4f3ef98adbe43f1114adb219" category="cell">*Regla udev nativa en<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> paquete* Proporciona equilibrio de carga round-robin para rutas múltiples NVMe.</block>
-  <block id="06b82420e8e8aa665b9eeb4cac33e56c" category="cell">*Multirutas NVMe dentro del kernel para espacios de nombres NVMe* ONTAP habilita esta función de manera predeterminada; no es necesario cambiar ninguna configuración.</block>
   <block id="d66d64f553dfd862f68036b9e5fcaaa1" category="admonition">Para obtener detalles sobre las configuraciones admitidas, consulte la<block ref="303ffee46fa5d607063d9b04cfb6d8cb" category="inline-link-macro-rx"></block> .</block>
   <block id="a711f567596d88e746e95770f343d065" category="inline-link-macro">Base de conocimientos de NetApp : Obtenga más información sobre NVMe-oF</block>
   <block id="b225a8d62c5126b34eef960debf4a7d2" category="list-text"><block ref="3ca35c6105331fc07b327260aeca73b4" category="inline-link-macro-rx"></block> .</block>
-  <block id="2bacb82eac763cb42ebecc41069bbc13" category="summary">Cómo configurar el host NVMe-oF para RHEL 10.0 con ONTAP</block>
-  <block id="129843e0ca03d063512c5d1d66ecade2" category="doc">Configurar RHEL 10.0 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="42f901a5e0385b74e46671aa6a4bc20c" category="inline-link-macro">Descripción general de NVME-oF</block>
-  <block id="fb4038911955a875023c06ed3eebacad" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 10.0.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="fe682fb68de933011daacd85b2450671" category="paragraph">*NVMe-oF con RHEL 10.0 tiene las siguientes limitaciones conocidas:*</block>
   <block id="018e7e3157a1d237d053e8a05683c5ac" category="list-text">La compatibilidad con múltiples rutas DM para NVMe-oF no es compatible.</block>
   <block id="392c26bef490517500e70c527c7f0958" category="section-title">Paso 2: Verifique la versión del software y la configuración de NVMe</block>
-  <block id="32a2c569f5025310ae2af3537308f394" category="list-text">Instalar RHEL 10.0 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 10.0 requerido:</block>
   <block id="7b38cd7357c50824c462a690ab2c7e64" category="paragraph">Ejemplo de versión del kernel RHEL:</block>
   <block id="7ca0b86a69f6feef87cf7c24a1422e47" category="admonition">Si el<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> Las cadenas no coinciden, utilice el<block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block> comando para actualizar el<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadena en el subsistema del sistema de almacenamiento ONTAP correspondiente para que coincida con el<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadena de<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> en el host.</block>
   <block id="0846f796a67ab827e48866ee9d867e7e" category="section-title">Paso 3: Configurar NVMe/FC y NVMe/TCP</block>
@@ -3376,154 +3305,27 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="ecf2f5d54ee701fadaed20b14f41130d" category="paragraph">El siguiente ejemplo muestra las versiones del controlador y del firmware:</block>
   <block id="d6d1236e99f0a7666fc4dd786441dfb0" category="list-text">Verifique que las otras combinaciones de LIF de iniciador-destino NVMe/TCP puedan recuperar correctamente los datos de la página del registro de descubrimiento:</block>
   <block id="978a5dbdb2510cf2ab4bbb4f077211e4" category="section-title">Paso 6: Verificar la configuración de rutas múltiples</block>
-  <block id="0200302b1ae55f5fee0081a5d1dea5c7" category="paragraph">A partir de ONTAP 9.12.1, se admite la autenticación segura en banda a través de NVMe/TCP entre un host RHEL 10.0 y un controlador ONTAP .</block>
-  <block id="422ecfe408ef7636ddfdeefdb618082b" category="list-text">Genere la clave dhchap para el host RHEL 10.0.</block>
   <block id="c6435210311cdc2f2fd7178e9e2a07bc" category="paragraph">La siguiente salida describe el<block ref="d7688aca31d2d9a6f7b631fc004ab8a3" prefix=" " category="inline-code"></block> parámetros del comando:</block>
   <block id="688a7a038e61f63c371af3de097cb6d5" category="paragraph">Cuando hay varios subsistemas NVMe disponibles en el controlador ONTAP , puede utilizar el<block ref="2be2042afe5d55c4305aa3ff91b1ff5f" prefix=" " category="inline-code"></block> archivo con el<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> dominio.</block>
   <block id="cb7a2a49d05cbe42594d333153703124" category="paragraph">Utilice el<block ref="b2ed43620b7fff2689035f1e99c24ded" prefix=" " category="inline-code"></block> Opción para generar el archivo JSON.  Consulte las páginas del manual de NVMe connect-all para obtener más opciones de sintaxis.</block>
-  <block id="679a72a5a047d7f34b2f0486462e530c" category="doc">Configurar RHEL 8.1 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="163e74418bca100f90bcee8e3163d2bd" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 8.1.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="3b456e5670e5eb7629779fd9381e04bb" category="paragraph">*NVMe-oF con RHEL 8.1 tiene las siguientes limitaciones conocidas:*</block>
   <block id="7fb5b376b57fa8396d7c55b71420580b" category="list-text">Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.</block>
-  <block id="8acd593a26cf8903ebf9a7efb128a66f" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en RHEL 8.1, por lo que debe habilitarla manualmente.</block>
-  <block id="dfbbce3148930ead96d3edfdd5fb1ae1" category="list-text">El nativo<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> El paquete no incluye<block ref="dafde1b5ed9f22cccd76aeeb9844345b" prefix=" " category="inline-code"></block> guiones.  Puede utilizar el script de conexión automática externa proporcionado por el proveedor del adaptador de bus host (HBA).</block>
-  <block id="8507484c096ff8eb2c3755f2b5fdc1dc" category="list-text">De forma predeterminada, el equilibrio de carga round-robin no está habilitado.  Puedes habilitarlo escribiendo un<block ref="ab775c875d5f89d991a670444dd32ad2" prefix=" " category="inline-code"></block> regla.</block>
-  <block id="e6770839657464a1af0c4b9ef7743087" category="list-text">Instalar RHEL 8.1 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 8.1 requerido:</block>
-  <block id="b0a5b26ba23a76668427cf975fcdc6c2" category="list-text">En el host RHEL 8.1, verifique la cadena NQN del host en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
-  <block id="52fcd5d23e1390e3538c49440c99e092" category="paragraph">El siguiente ejemplo muestra una cadena hostnqn:</block>
-  <block id="bb7a4cc570ffcf7c817e139cb0946b34" category="list-text">Verifique que la cadena NQN del host coincida con la cadena NQN del host del subsistema correspondiente en la matriz ONTAP :</block>
-  <block id="105455d504b605ae4b31eddf81a122d7" category="section-title">Paso 3: Configurar NVMe/FC para Broadcom/Emulex</block>
-  <block id="e8a367d33a68cdf61c2ce0d9e015e8f0" category="paragraph">Puede configurar NVMe/FC para Broadcom/Emulex.</block>
-  <block id="a7e1091a0a42f0e299ec8c514ec2ae0b" category="list-text">Verifique que esté utilizando las configuraciones recomendadas de Broadcom.</block>
-  <block id="0110dc47e1d6dd1d02d8805b0b450406" category="list-text">Verificar el firmware lpfc:</block>
-  <block id="a188b2d0859fc5f2f5ba5941b197856a" category="list-text">Verifique el controlador de la bandeja de salida:</block>
-  <block id="11c709eb0775467d3b89fd90265ca8e7" category="list-text">Verificar las versiones del paquete de conexión automática:</block>
-  <block id="16cebc7a38a4dce095838ddef6521e63" category="list-text">Verifique que los puertos iniciadores estén en funcionamiento y puedan ver los LIF de destino:</block>
   <block id="49114cde17f4e681ed58cb826c3e6e82" category="section-title">Paso 5: Validar NVMe-oF</block>
-  <block id="49d00482095a0415684dd0e66a8130ec" category="doc">Configurar RHEL 8.10 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="4302da1c8b29a730731bf7189b62424c" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 8.10.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="af7fd56fc52ad273fc229faba8d68c43" category="paragraph">*NVMe-oF con RHEL 8.10 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="cdfc2f9f79d1c6ce8c817dfbec647045" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en RHEL 8.10; debe habilitarla manualmente.</block>
   <block id="a91509a4d71e2f2d7e848538dc5299e3" category="list-text">NVMe/TCP está disponible como una versión preliminar de tecnología debido a problemas conocidos.</block>
-  <block id="849693ce4cdceac58e9408b73fc14a3e" category="list-text">Instalar RHEL 8.10 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 8.10 requerido:</block>
   <block id="f694b9fc6aaf6fd4838bee331f5cb375" category="paragraph">El siguiente ejemplo muestra una versión del paquete libnvme:</block>
-  <block id="2ce3b261541cc0a973a66fa7b5f3c7fa" category="list-text">En el host RHEL 8.10, verifique la<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cuerda en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
-  <block id="340a0bacce719cd899100302d7028ba6" category="list-text">Verificar que el<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> La cadena coincide con la<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadena para el subsistema correspondiente en el sistema de almacenamiento ONTAP :</block>
   <block id="3d8c2f20c69104516adf8f11842395df" category="paragraph">Para ejecutar tráfico NVMe y SCSI en el mismo host, NetApp recomienda utilizar la ruta múltiple NVMe en el kernel para espacios de nombres ONTAP y dm-multipath para LUN ONTAP .  Para evitar que dm-multipath reclame dispositivos de espacio de nombres ONTAP , exclúyalos agregando el<block ref="cb2f8f6f16be615751b5bbd73928d197" prefix=" " category="inline-code"></block> Ajuste a la<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> archivo:</block>
   <block id="5728fbd1a5c8ae099d988e87299f3dd9" category="paragraph">Estos son los problemas conocidos:</block>
-  <block id="35505b505808a2ecc05d9086eb0b98b6" category="cell">Los hosts NVMe-oF de RHEL 8.10 crean controladores de descubrimiento persistentes (PDC) duplicados</block>
-  <block id="3a2717aac0a9a2c23b94e869e7c85523" category="cell">En los hosts NVMe-oF, puede utilizar el comando "nvme discover -p" para crear PDC.  Cuando se utiliza este comando, solo se debe crear un PDC por combinación iniciador-destino.  Sin embargo, si está ejecutando RHEL 8.10 en un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p".  Esto genera un uso innecesario de recursos tanto en el host como en el destino.</block>
-  <block id="4f1c176c271e0d7b6534ed125441128a" category="doc">Configurar RHEL 8.2 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="553a133f1b2319db8f2c802d3fa24f7b" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 8.2.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="d72df1a55eec086d10717b81be383fff" category="paragraph">*NVMe-oF con RHEL 8.2 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="76067c107fea1f7d020796ad9897703a" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en RHEL 8.2; debe habilitarla manualmente.</block>
-  <block id="8f704db9a482d70c3e2400e43b3a628a" category="list-text">Instalar RHEL 8.2 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 8.2 requerido:</block>
-  <block id="3f9d6dd28519f2fc07d89b8937f95007" category="list-text">En el host RHEL 8.2, verifique la cadena NQN del host en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
-  <block id="1d2397b8639aa9a3ba6723be8a5ad9a2" category="list-text">En el host RHEL 8.2, verifique la cadena hostnqn en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
-  <block id="957752664da1bd7961121b5738ea8947" category="admonition">Si las cadenas NQN del host no coinciden, utilice el<block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block> Comando para actualizar la cadena NQN del host en el subsistema de matriz ONTAP correspondiente para que coincida con la cadena NQN del host<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> en el host.</block>
-  <block id="535a1f23163f7188dd4a4f537fb5beb1" category="doc">Configurar RHEL 8.3 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="27a21bb7a09ddd52e686193a20a6eaf8" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 8.3.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="c272a364e6d6e72af5618b3140c979d0" category="paragraph">*NVMe-oF con RHEL 8.3 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="2a5430c305f8a20db1f3678b58f7bd97" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en RHEL 8.3; debe habilitarla manualmente.</block>
-  <block id="2145e186c33dbe3721d851f085070dc0" category="list-text">Instalar RHEL 8.3 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 8.3 requerido:</block>
-  <block id="7f39c64f880dc155527174bb703d4b46" category="list-text">En el host RHEL 8.3, verifique la cadena hostnqn en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
-  <block id="fb705c0cc0153c1e6c7e70a9d7a4f914" category="paragraph">El siguiente ejemplo muestra una versión de hostnqn:</block>
-  <block id="19be893708a6341a343917b13e708cea" category="section-title">Paso 3: Configurar el adaptador NVMe/FC Broadcom/Emulex</block>
-  <block id="d54a71f306074fc0b37b53f097c3adbb" category="paragraph">Configure NVMe/FC con el adaptador Broadcom/Emulex.</block>
-  <block id="a47de2fa4d4773268bb8c644c6a1a348" category="doc">Configurar RHEL 8.4 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="acde332f45cbed39a381159aacc9778c" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 8.4.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="d17cf3668f22c35bbfa148b6d46e0473" category="paragraph">*NVMe-oF con RHEL 8.4 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="948e5a31820fec6fe7047764662c5019" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en RHEL 8.4; debe habilitarla manualmente.</block>
-  <block id="573de97378110c30b7c1aeb7fd449da2" category="list-text">Instalar RHEL 8.4 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 8.4 requerido:</block>
-  <block id="19ede0bde4d016f8a078afaf319783e2" category="list-text">En el host RHEL 8.4, verifique la cadena hostnqn en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
-  <block id="b5eafa6a4892d9eae2d6d95bb2d12704" category="section-title">Paso 3: Configurar NVMe/FC o NVMe/TCP</block>
-  <block id="da889eb1d8779b97362fe9b5efe9870a" category="list-text">Verifique que esté utilizando el modelo de adaptador, el controlador y las versiones de firmware compatibles:</block>
-  <block id="6d12cc3db20258699d44680774535034" category="paragraph">El resultado esperado es 1.</block>
-  <block id="784ca6d159eef3bed8698f2db9dd3fb5" category="doc">Configurar RHEL 8.5 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="3d8c75cd5e94f468fbffd3b3072f1a6e" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 8.5.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="ef65eec45eac729fdd322502ce6274ca" category="paragraph">*NVMe-oF con RHEL 8.5 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="d44e1c82ef19e30deb2b3b3c856a45e1" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en RHEL 8.5; debe habilitarla manualmente.</block>
-  <block id="8d78cc7e45434e1fc1fb521e34124eb8" category="list-text">Instalar RHEL 8.5 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 8.5 requerido:</block>
-  <block id="bb52c301410cc09e43d848da53a755b6" category="list-text">En el host RHEL 8.5, verifique la<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cuerda en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
-  <block id="e47437f6f6c7f05a3c94465ea23f765b" category="doc">Configurar RHEL 8.6 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="9028906909c2befed38c0746a9a8ef87" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 8.6.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="67e753553d9adf0e555af10ca07450b2" category="paragraph">*NVMe-oF con RHEL 8.6 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="5c3d8ad8024558fe89aeeebe311379ad" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en RHEL 8.6; debe habilitarla manualmente.</block>
-  <block id="a8e486f46b1903dacd320dfc3f08a0d6" category="list-text">Instalar RHEL 8.6 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 8.6 requerido:</block>
-  <block id="2065b685428cd419272baf94e03258c5" category="list-text">En el host RHEL 8.6, verifique la<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cuerda en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
-  <block id="127ef0abf6a5dc2707bcaef613a8711c" category="admonition">Si el<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> Las cadenas no coinciden, debes utilizar el<block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block> comando para actualizar el<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadena en el subsistema NVMe del sistema de almacenamiento ONTAP correspondiente para que coincida con<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadena<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> en el host.</block>
-  <block id="5f34a4b67e30c5dbda63616f9d145079" category="cell">Los hosts NVMe-oF de RHEL 8.7 crean controladores de descubrimiento persistentes (PDC) duplicados</block>
-  <block id="6d251e9e06c922ae1a58f52c67f46d31" category="cell">En los hosts NVMe-oF, puede utilizar el comando "nvme discover -p" para crear PDC.  Cuando se utiliza este comando, solo se debe crear un PDC por combinación iniciador-destino.  Sin embargo, si está ejecutando RHEL 8.8 en un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p".  Esto genera un uso innecesario de recursos tanto en el host como en el destino.</block>
-  <block id="e7074ac8440ad062f16f1fa861a573c5" category="doc">Configurar RHEL 8.7 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="4ced6d177673c6864d02cfb22ea4f00b" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 8.7.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="64dc60f7d81b618c268d23933a674863" category="paragraph">*NVMe-oF con RHEL 8.7 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="ffa0239154d3a20c4bc2040b98de8467" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en RHEL 8.7; debe habilitarla manualmente.</block>
-  <block id="de0b330dcc751103e057cea258f2f217" category="list-text">Instalar RHEL 8.7 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 8.7 requerido:</block>
-  <block id="0e9d225010e76c1d7455569a92e82d15" category="list-text">En el host RHEL 8.7, verifique la<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cuerda en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
-  <block id="47b72b770e3bc6333e83ef4375777dd1" category="doc">Configurar RHEL 8.8 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="8548b77c8a4ffd200f994be29915cede" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 8.8.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="510756716252d2ebe14a80b6f7f8b100" category="paragraph">*NVMe-oF con RHEL 8.8 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="1d5cc795af560b82ce6d4d8120046a1b" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en RHEL 8.8; debe habilitarla manualmente.</block>
-  <block id="bcf47c4655a31350eae693e8602b40ee" category="list-text">Instalar RHEL 8.8 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 8.8 requerido:</block>
-  <block id="6fdcbf106a92a13a8edd6c7d3f38adbd" category="list-text">En el host RHEL 8.8, verifique la<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cuerda en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
-  <block id="376b18320d14537f1dbf35f2ddd5e14c" category="cell">Los hosts NVMe-oF de RHEL 8.8 crean controladores de descubrimiento persistente (PDC) duplicados</block>
-  <block id="33b255e8ba7e4b382ddd049140c265a8" category="doc">Configurar RHEL 8.9 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="60840edffab8e6a6e4d686d5e000c32a" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 8.9.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="cd91f8c38ed75ac597a3eee673f9b1a2" category="paragraph">*NVMe-oF con RHEL 8.9 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="7184938a3e8987e6582ceb73615149fd" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en RHEL 8.9; debe habilitarla manualmente.</block>
-  <block id="adff4bd3bc2ab86bbd4e6b4daef33f73" category="list-text">Instalar RHEL 8.9 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 8.9 requerido:</block>
-  <block id="6cf2fb93dbf3c13b40b2d908f64efb3a" category="list-text">En el host RHEL 8.9, verifique la<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cuerda en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
-  <block id="af42387b4df9ca744c344a717e2da653" category="paragraph">Configurar NVMe/FC para un adaptador Marvell/QLogic</block>
-  <block id="2c7e80d3e0edbd175044b5210ee87f03" category="cell">Los hosts NVMe-oF de RHEL 8.9 crean controladores de descubrimiento persistente (PDC) duplicados</block>
-  <block id="e89e81029b125b1f7d687255c45c5f6e" category="cell">En los hosts NVMe-oF, puede utilizar el comando "nvme discover -p" para crear PDC.  Cuando se utiliza este comando, solo se debe crear un PDC por combinación iniciador-destino.  Sin embargo, si está ejecutando RHEL 8.9 en un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p".  Esto genera un uso innecesario de recursos tanto en el host como en el destino.</block>
-  <block id="fc4979c03acab2ac0889a771e3b9d511" category="doc">Configurar RHEL 9.0 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="ee74c6ac2ce54cb9b38ef34a7f5baaf8" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 9.0.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="1814316aab7e20cd4ec09035693769e6" category="paragraph">*NVMe-oF con RHEL 9.0 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="2fecaf41b8d7f353a0701e68e554ed70" category="list-text">Instalar RHEL 9.0 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 9.0 requerido:</block>
-  <block id="063a08597b54946b6cd54d3c191eae26" category="list-text">En el host RHEL 9.0, verifique la<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cuerda en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
-  <block id="82922a8f8df6b3fbacca2fc1bfc05096" category="list-text">Verifique que las otras combinaciones de LIF de iniciador-destino NVMe/TCP puedan recuperar correctamente los datos de la página del registro de descubrimiento:</block>
   <block id="ac783620bd79a6f903c67f639a9962f6" category="section-title">Paso 5: Verificar la configuración de rutas múltiples</block>
   <block id="3ac8a887d7c6b1750dee1f66e33d2041" category="cell">Los hosts NVMe-oF de RHEL 9.0 crean controladores de descubrimiento persistente (PDC) duplicados</block>
   <block id="da2d45849155dbe5ea43ca29451e3092" category="cell">En los hosts NVMe-oF, puede utilizar el comando "nvme discover -p" para crear PDC.  Cuando se utiliza este comando, solo se debe crear un PDC por combinación iniciador-destino.  Sin embargo, si está ejecutando ONTAP 9.10.1 y RHEL 9.0 con un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p".  Esto genera un uso innecesario de recursos tanto en el host como en el destino.</block>
-  <block id="f1672372b6b592218f4781d65bf636d2" category="doc">Configurar RHEL 9.1 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="a4b62dafdc2a28790b92f9e3b7483170" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 9.1.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="a59fe170d9e7adb5f529e168a6df3bde" category="paragraph">*NVMe-oF con RHEL 9.1 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="17e3be28e4b8005aa8e0ec9ab05fbde4" category="list-text">Instalar RHEL 9.1 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 9.1 requerido:</block>
-  <block id="f897397bef67775310f9103be634b964" category="list-text">En el host RHEL 9.1, verifique la<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cuerda en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
   <block id="3ac93f7cf1853dfbc16c8472fc66d07d" category="cell">El<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block> El comando devuelve una lista de controladores NVMe para un subsistema determinado.  En RHEL 9.1, este comando muestra los controladores con su estado ANA para todos los espacios de nombres del subsistema.  Dado que el estado de ANA es un atributo por espacio de nombres, el comando debe mostrar entradas de controlador únicas con el estado de la ruta para cada espacio de nombres.</block>
-  <block id="5490957bacbdac38823467759d812104" category="doc">Configurar RHEL 9.2 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="5c95b17efd4f88d66b9d5395dcae29a2" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 9.2.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="5ce3189ac3042d6a7e3c4c4720d47457" category="paragraph">*NVMe-oF con RHEL 9.2 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="bf141f95cfb77b75940b63bb598d2d05" category="list-text">Instalar RHEL 9.2 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 9.2 requerido:</block>
-  <block id="32b76ab29bb1f35c79f18f676034cf0a" category="doc">Configurar RHEL 9.3 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="60596f77501fff0f4e90db7a26158414" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 9.3.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="0b6caa2c80f6be5c3289aaa00cedde1f" category="paragraph">*NVMe-oF con RHEL 9.3 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="b65783cc8c4fe2183259045f24093872" category="list-text">Instalar RHEL 9.3 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 9.3 requerido:</block>
   <block id="d1137ffaeb3a0ca88e57e0f4130f3134" category="section-title">Paso 6: Configurar la autenticación segura en banda</block>
-  <block id="bf4fc5b96abe44f1ebb2698601ba500c" category="paragraph">A partir de ONTAP 9.12.1, se admite la autenticación segura en banda a través de NVMe/TCP entre un host RHEL 9.3 y un controlador ONTAP .</block>
-  <block id="408ff77f4628dc6c0b1dbe0045a80b91" category="list-text">Genere la clave dhchap para el host RHEL 9.3.</block>
-  <block id="99600619391da824baa4507a38cfebb5" category="doc">Configurar RHEL 9.4 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="6376c8ca914cd1f1b91e9e81b347854c" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 9.4.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
-  <block id="9304770d7124e59d6e7f17917a129922" category="paragraph">NVMe-oF con RHEL 9.4 no tiene limitaciones conocidas.</block>
-  <block id="9c4c99909075dcb8253eb802dd100e36" category="list-text">Instalar RHEL 9.4 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 9.4 requerido:</block>
-  <block id="a02fa3f1e64906beba11b70cceddfd08" category="paragraph">A partir de ONTAP 9.12.1, se admite la autenticación segura en banda a través de NVMe/TCP entre un host RHEL 9.4 y un controlador ONTAP .</block>
-  <block id="05b6001078009a66d7398f78cec2ee21" category="list-text">Genere la clave dhchap para el host RHEL 9.4.</block>
-  <block id="dbfb199274d1063eab16fa9e3a4eea71" category="paragraph">NVMe-oF con RHEL 9.5 no tiene limitaciones conocidas.</block>
-  <block id="ceb59c3db0b79174ade65f5440374b63" category="list-text">Instalar RHEL 9.5 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 9.5 requerido:</block>
-  <block id="0e2a6ca17682f87afed8a24fd851c31b" category="paragraph">*NVMe-oF con RHEL 9.6 tiene las siguientes limitaciones conocidas:*</block>
-  <block id="fbe70a9e4e86428613212ca9bafab36e" category="list-text">Instalar RHEL 9.6 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 9.6 requerido:</block>
-  <block id="abcdfaf745ecf46fa48ee4febc561be5" category="section-title">Modificar la iopolicy en las reglas de udev</block>
-  <block id="2f09f4b0e6b1ec31753a355af2e93f1a" category="paragraph">RHEL 9.6 establece la política de io predeterminada para NVMe-oF en<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block> .  Si desea cambiar la iopolicy a<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block> , modifique el archivo de reglas de udev de la siguiente manera:</block>
   <block id="ece25d4c541fbae683416549d3f4ac05" category="list-text">Abra el archivo de reglas de udev en un editor de texto con privilegios de root:</block>
   <block id="b9908e7dd449843af949631c92e15e09" category="list-text">Encuentre la línea que establece iopolicy para el controlador NetApp ONTAP .</block>
   <block id="87a7f5650d1515a9aa05f05e2e75e27c" category="paragraph">El siguiente ejemplo muestra una regla de ejemplo:</block>
   <block id="1cdf0be14ba09adc81c1095b08aa7aa2" category="list-text">Modificar la regla para que<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block> se convierte<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block> :</block>
-  <block id="d16ef16e8667a481333eb9c4c5b96da2" category="list-text">Ejecute los siguientes comandos para recargar las reglas udev y aplicar los cambios:</block>
-  <block id="5d33a0e191bd5777ae2be8e33feabe51" category="list-text">Verifique la iopolicy actual para su subsistema.  Reemplace &lt;subsistema&gt; con el nombre apropiado, por ejemplo,<block ref="621b1b464ec30e8b168fcad04cefe44c" prefix=" " category="inline-code"></block> .</block>
   <block id="84acde248a4e307a6672632785153fc4" category="admonition">La nueva iopolicy se aplica automáticamente a los dispositivos NetApp ONTAP Controller coincidentes.  No es necesario reiniciar.</block>
   <block id="8368841b470b6e92a17171fdc50066e4" category="summary">Cómo configurar el host NVMe-oF para Rocky Linux 10.0 con almacenamiento ONTAP</block>
   <block id="3bb0dd42b9baf9976e4fd910388b116d" category="doc">Configurar Rocky Linux 10.0 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="a4948b48f1c713b5c83e88817c8e854d" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 10.0.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="353c5da630e8437465e2bac779b53241" category="paragraph">*NVMe-oF con Rocky Linux 10.0 tiene las siguientes limitaciones conocidas:*</block>
   <block id="f80057125870dd8fcdb5724934b94611" category="list-text">Instalar Rocky Linux 10.0 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 10.0 requerido:</block>
   <block id="47b12d977e58e4eab7ccd70d2694af53" category="paragraph">Ejemplo de versión del kernel de Rocky Linux:</block>
@@ -3531,70 +3333,56 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="49b93db902bfe2e6ebda3a7184947901" category="paragraph">A partir de ONTAP 9.12.1, se admite la autenticación segura en banda a través de NVMe/TCP entre un host Rocky Linux 10.0 y un controlador ONTAP .</block>
   <block id="8425313d42b15365aae1ff69464f1dca" category="list-text">Genere la clave dhchap para el host Rocky Linux 10.0.</block>
   <block id="6211a3c33e0f4a48c60de5341c3a2a81" category="doc">Configurar Rocky Linux 8.10 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="f0a82e15426482ff89d74b86cec00591" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.10.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="bdbd81a0d21d774923ec9b8001556aa9" category="paragraph">*NVMe-oF con Rocky Linux 8.10 tiene las siguientes limitaciones conocidas:*</block>
   <block id="ce84c293f4533ead89e44c141c39e24d" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en Rocky Linux 8.10; debe habilitarla manualmente.</block>
   <block id="2d5fd08f975c42bc4116ef7ba2522228" category="list-text">Instalar Rocky Linux 8.10 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 8.10 requerido:</block>
   <block id="288cbbee1aaa32bace43584affb5e317" category="cell">En los hosts NVMe-oF, puede usar el comando "nvme discover -p" para crear controladores de descubrimiento persistentes (PDC).  Cuando se utiliza este comando, solo se debe crear un PDC por combinación iniciador-destino.  Sin embargo, si está ejecutando Rocky Linux 8.10 en un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p".  Esto genera un uso innecesario de recursos tanto en el host como en el destino.</block>
   <block id="f2bdba23e5036ab5e18eb00629c59223" category="doc">Configurar Rocky Linux 8.4 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="6fe0fb638e188ad70110dc8a5005d58b" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.4.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="24f087a5d398659484aeb7222f5ad111" category="paragraph">*NVMe-oF con Rocky Linux 8.4 tiene las siguientes limitaciones conocidas:*</block>
   <block id="f8e44043b30e00f88f1ac3dbee8f4377" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en Rocky Linux 8.4; debe habilitarla manualmente.</block>
   <block id="5f47d85aa7566fadf90e5654cc3ca615" category="list-text">Instalar Rocky Linux 8.4 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 8.4 requerido:</block>
   <block id="b0690b13a0da9891dafda2ced1883512" category="doc">Configurar Rocky Linux 8.5 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="a43b3f792de05e2c8056433a1aa4d55a" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.5.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="c27f85c9b8b42c98a0e8eb9dcd2eef2d" category="paragraph">*NVMe-oF con Rocky Linux 8.5 tiene las siguientes limitaciones conocidas:*</block>
   <block id="eb6dc69b63757073330de2a73a580209" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en Rocky Linux 8.5; debe habilitarla manualmente.</block>
   <block id="732d43e40946ef08d0fef5d2a9d5eb5e" category="list-text">Instalar Rocky Linux 8.5 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 8.5 requerido:</block>
   <block id="a9797c338c90b2ca4b7c1065a078812a" category="doc">Configurar Rocky Linux 8.6 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="b556747903cbff020f9092fb0d3a737c" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.6.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="9b6a7e5d5e7dbcf0b5fcc4ceb6b82fd4" category="paragraph">*NVMe-oF con Rocky Linux 8.6 tiene las siguientes limitaciones conocidas:*</block>
   <block id="ac376874a384a110cab792d727f955a0" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en Rocky Linux 8.6; debe habilitarla manualmente.</block>
   <block id="74bc6972055c10543fe719f9744de269" category="list-text">Instalar Rocky Linux 8.6 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 8.6 requerido:</block>
   <block id="0b1c01bc9bd9968ea6669a8b0eb4e0ee" category="cell">En los hosts NVMe-oF, puede usar el comando "nvme discover -p" para crear controladores de descubrimiento persistentes (PDC).  Cuando se utiliza este comando, solo se debe crear un PDC por combinación iniciador-destino.  Sin embargo, si está ejecutando Rocky Linux 8.6 en un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p".  Esto genera un uso innecesario de recursos tanto en el host como en el destino.</block>
   <block id="805bbaac088928ad38815c5ab4d63bd9" category="doc">Configurar Rocky Linux 8.7 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="1dc2213bbe36ae75b8b4bf78f95652c3" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.7.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="f5502fa53fe357f04271558187af263f" category="paragraph">*NVMe-oF con Rocky Linux 8.7 tiene las siguientes limitaciones conocidas:*</block>
   <block id="255064172f7c96f2aa67377f4530dddf" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en Rocky Linux 8.7; debe habilitarla manualmente.</block>
   <block id="070fd89fe102d8db6595913c97eb74d8" category="list-text">Instalar Rocky Linux 8.7 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 8.7 requerido:</block>
   <block id="1015a8611097f1b3bdb2ba6ca3a89bea" category="cell">Los hosts NVMe-oF de Rocky Linux 8.7 crean controladores de descubrimiento persistentes duplicados</block>
   <block id="ea62aaafb4e214b16cd5e4a1677445f6" category="cell">En los hosts NVMe-oF, puede usar el comando "nvme discover -p" para crear controladores de descubrimiento persistentes (PDC).  Cuando se utiliza este comando, solo se debe crear un PDC por combinación iniciador-destino.  Sin embargo, si está ejecutando Rocky Linux 8.7 en un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p".  Esto genera un uso innecesario de recursos tanto en el host como en el destino.</block>
   <block id="135ade99cb8fe34986bcf078c5826edb" category="doc">Configurar Rocky Linux 8.8 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="63b24701ac21bf85677ce66f416ae1a9" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.8.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="1050d38d7182f0d37a6cdd97f306305b" category="paragraph">*NVMe-oF con Rocky Linux 8.8 tiene las siguientes limitaciones conocidas:*</block>
   <block id="4c277658506ee9574c7298c6dc0074ea" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en Rocky Linux 8.8; debe habilitarla manualmente.</block>
   <block id="931c64bb24529c7556328fc7ffa80aae" category="list-text">Instalar Rocky Linux 8.8 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 8.8 requerido:</block>
   <block id="408d44ef10f9b5b901eeae5e10fbd62f" category="cell">En los hosts NVMe-oF, puede usar el comando "nvme discover -p" para crear controladores de descubrimiento persistentes (PDC).  Cuando se utiliza este comando, solo se debe crear un PDC por combinación iniciador-destino.  Sin embargo, si está ejecutando Rocky Linux 8.8 en un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p".  Esto genera un uso innecesario de recursos tanto en el host como en el destino.</block>
   <block id="61de719e8163a47d7586d02547026101" category="doc">Configurar Rocky Linux 8.9 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="20d0cfacf8049da727f8b6b2dd340e93" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.9.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="1543368a046f9c834265c82de853cbb0" category="paragraph">*NVMe-oF con Rocky Linux 8.9 tiene las siguientes limitaciones conocidas:*</block>
   <block id="dbfff7853c1db30bdf535f30e8ff82ed" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en Rocky Linux 8.9; debe habilitarla manualmente.</block>
   <block id="6678b392edcf995e583d47cce2e84d0b" category="list-text">Instalar Rocky Linux 8.9 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 8.9 requerido:</block>
   <block id="9c70948283cbf873b47aee1b77995b01" category="cell">En los hosts NVMe-oF, puede usar el comando "nvme discover -p" para crear controladores de descubrimiento persistentes (PDC).  Cuando se utiliza este comando, solo se debe crear un PDC por combinación iniciador-destino.  Sin embargo, si está ejecutando Rocky Linux 8.9 en un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p".  Esto genera un uso innecesario de recursos tanto en el host como en el destino.</block>
   <block id="20583acc86439b91edb5803bac8804cd" category="doc">Configurar Rocky Linux 9.0 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="91a08c1029ff9143f286e8fb8278d4c1" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.0.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="296dcd7996a7108a86e50054cac41d16" category="paragraph">*NVMe-oF con Rocky Linux 9.0 tiene las siguientes limitaciones conocidas:*</block>
   <block id="fb13800809bac1aebf60326ab33c6885" category="list-text">Instalar Rocky Linux 9.0 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 9.0 requerido:</block>
   <block id="dfc278b2eed97e06f727ddb4c0e26912" category="cell">En los hosts NVMe-oF, puede usar el comando "nvme discover -p" para crear controladores de descubrimiento persistentes (PDC).  Cuando se utiliza este comando, solo se debe crear un PDC por combinación iniciador-destino.  Sin embargo, si está ejecutando ONTAP 9.10.1 y Rocky Linux 9.0 con un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p".  Esto genera un uso innecesario de recursos tanto en el host como en el destino.</block>
   <block id="8c3e4189914813b00284263638fb1fd7" category="doc">Configurar Rocky Linux 9.1 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="e7dcdfc3dde5b3d60a838f92b55e532b" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.1.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="793f00de5e5b3b29aed3ddd5254c5445" category="paragraph">*NVMe-oF con Rocky Linux 9.1 tiene las siguientes limitaciones conocidas:*</block>
   <block id="4f222424dd46c1f376ecb4fa33e18a14" category="list-text">Instalar Rocky Linux 9.1 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 9.1 requerido:</block>
   <block id="7864882a6cbe77092cb7a6cac1b75653" category="doc">Configurar Rocky Linux 9.2 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="0f6ce4c4de1d6fe51551d79e17475662" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.2.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="a49c3a9696717a7cb9cfd1d3c004827f" category="paragraph">*NVMe-oF con Rocky Linux 9.2 tiene las siguientes limitaciones conocidas:*</block>
   <block id="b0ebc82cbc862d9c5d0f0080dcd0de32" category="list-text">Instalar Rocky Linux 9.2 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 9.2 requerido:</block>
   <block id="3ff973089721be7dc9372719fcda8427" category="doc">Configurar Rocky Linux 9.3 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="faaa60b8a063ee72a3fe2c2ba168e71d" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.3.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="0f4cd1f3a12ab9584b817aef6895b1d5" category="paragraph">*NVMe-oF con Rocky Linux 9.3 tiene las siguientes limitaciones conocidas:*</block>
   <block id="7809c44309e984847c2a771474f871f0" category="list-text">Instalar Rocky Linux 9.3 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 9.3 requerido:</block>
-  <block id="0dbc54d5c7981f138a4789b8660c4b04" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.4.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="1f3d75c592e176946dc1cf68a250b546" category="paragraph">NVMe-oF con Rocky Linux 9.4 no tiene limitaciones conocidas.</block>
   <block id="2d591a45e9330d70b6c75efed3161333" category="doc">Configurar Rocky Linux 9.5 para NVMe-oF con almacenamiento ONTAP</block>
-  <block id="9551e64a9ba96676d7b433847891f913" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.5.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="c09d9e2245886db14a9eef945cfebc84" category="paragraph">NVMe-oF con Rocky Linux 9.5 no tiene limitaciones conocidas.</block>
   <block id="ffb0571980efe2c82ed0b7b16cde197d" category="list-text">Instalar Rocky Linux 9.5 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 9.5 requerido:</block>
-  <block id="ec19c9da8ee51caa1a9c506e22592869" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.6.  Para obtener más información sobre soporte y funciones, consulte<block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block> .</block>
   <block id="d02174711fef247a48b38e51d5db562f" category="paragraph">*NVMe-oF con Rocky Linux 9.6 tiene las siguientes limitaciones conocidas:*</block>
   <block id="812b9a27245a2daec29f5e3d12ebaa1a" category="list-text">Instalar Rocky Linux 9.6 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 9.6 requerido:</block>
   <block id="bdd85bb9fb61697998b63578c3818344" category="paragraph">El protocolo NVMe/TCP no admite la operación de conexión automática.  Debe realizar manualmente las operaciones de conexión NVMe/TCP o de conexión total para descubrir los subsistemas y espacios de nombres NVMe/TCP.</block>
@@ -3687,8 +3475,6 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="184d73c3e73e940410390b1d3eccaee1" category="paragraph">El software Linux Host Utilities proporciona herramientas de administración y diagnóstico para los hosts Linux que están conectados al almacenamiento ONTAP . Cuando instale las utilidades de host de Linux en un host SUSE Linux Enterprise Server 15 SPx, podrá utilizarlas para ayudarle a gestionar las operaciones de los protocolos FCP e iSCSI con LUN de ONTAP .</block>
   <block id="d8a7e98e6a80f5570d0d9d848e259cd3" category="paragraph">Puede utilizar rutas múltiples con SUSE Linux Enterprise Server 15 SPx para administrar LUN de ONTAP .</block>
   <block id="3d3c3e3b44ea208fbe0adc756eaf2f8d" category="paragraph">SUSE Linux Enterprise Server 15 SPx con almacenamiento ONTAP tiene los siguientes problemas conocidos.</block>
-  <block id="8735a4440d500827cfdf795952d67b09" category="paragraph">Aprenda cómo configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 9.5. Para obtener más información sobre asistencia y funciones, consulte <block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block>.</block>
-  <block id="52a37a88318fad922723be47f50ede75" category="paragraph">Aprenda cómo configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 9.6. Para obtener más información sobre asistencia y funciones, consulte <block ref="d2bb6f0f580c95c45b3aaa7f84bf937a" category="inline-link-macro-rx"></block>.</block>
   <block id="bf3d61234a95ca1b30fcf4069234c324" category="paragraph">git pull origin main --- enlace permanente: hu_sles_15SP1.html redirección: ontap-sanhost/hu-sles-15spx.html ---</block>
   <block id="1eaa600ad4870574c79128f26c23dd48" category="sidebar">CentOS 8.x</block>
   <block id="e4fc61fa9a616ca27d481649f48b573a" category="sidebar">Oracle Linux 9.x</block>
@@ -3701,4 +3487,99 @@ Las utilidades del host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " 
   <block id="d7c1825e0f2407a4d10d399ac78c1f95" category="doc">Configurar RHEL 10 para FCP e iSCSI con almacenamiento ONTAP</block>
   <block id="d7b201e34bf72ed2024522784d92bd59" category="paragraph">El software Linux Host Utilities proporciona herramientas de administración y diagnóstico para los hosts Linux que están conectados al almacenamiento ONTAP . Cuando instale las utilidades de host de Linux en un host Red Hat Enterprise Linux (RHEL) 10, podrá utilizarlas para ayudarle a gestionar las operaciones de los protocolos FCP e iSCSI con LUN de ONTAP .</block>
   <block id="0171e05f7a58a96089d554991286cd67" category="paragraph">Puedes utilizar multipathing con RHEL 10 para administrar LUN de ONTAP .</block>
+  <block id="8df47c4ac3eebc35e0249205060ef2cf" category="paragraph">Los hosts Oracle Linux admiten los protocolos NVMe sobre canal de fibra (NVMe/FC) y NVMe sobre TCP (NVMe/TCP) con acceso asimétrico al espacio de nombres (ANA). ANA proporciona una funcionalidad de múltiples rutas equivalente al acceso a unidad lógica asimétrica (ALUA) en entornos iSCSI y FCP.</block>
+  <block id="0f59f7580246ca7da252d28d24ec8650" category="paragraph">Los hosts Rocky Linux admiten los protocolos NVMe sobre canal de fibra (NVMe/FC) y NVMe sobre TCP (NVMe/TCP) con acceso asimétrico al espacio de nombres (ANA). ANA proporciona una funcionalidad de múltiples rutas equivalente al acceso a unidad lógica asimétrica (ALUA) en entornos iSCSI y FCP.</block>
+  <block id="f247c6563d906c0a16051aa5b052c788" category="paragraph">Para configurar su host para NVMe-oF, debe instalar los paquetes de software de host y NVMe, habilitar las rutas múltiples y verificar la configuración NQN de su host.</block>
+  <block id="30aa2c2a1d649a4e33898f09567805e5" category="summary">Cómo configurar el host NVMe-oF para RHEL 10x con ONTAP</block>
+  <block id="d7c0be613d6bb12ef8a5ad6bda6ad40c" category="doc">Configurar RHEL 10x para NVMe-oF con almacenamiento ONTAP</block>
+  <block id="1115467d419ca097455f701e2b9e97f1" category="inline-link-macro">Compatibilidad y características de RHEL ONTAP</block>
+  <block id="40d1a7aa3be3b71ee2cb02e8f19df076" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 10x. Para obtener más información sobre asistencia y funciones, consulte <block ref="2b82789a9f75524f0645dc6918740a89" category="inline-link-macro-rx"></block>.</block>
+  <block id="3ad1543a744eff9025384f21980a59b8" category="paragraph">NVMe-oF con RHEL 10x tiene las siguientes limitaciones conocidas:</block>
+  <block id="b43850ec2a458178ffdaf44efff78baa" category="list-text">El<block ref="de5ac85ea45047f4dbeea79d7b729b7d" prefix=" " category="inline-code"></block> El comando desconecta los sistemas de archivos raíz y de datos y podría provocar inestabilidad del sistema.  No emita esto en sistemas que arrancan desde SAN a través de espacios de nombres NVMe-TCP o NVMe-FC.</block>
+  <block id="5a165f7348146612c8bb4726dfc987e8" category="section-title">Paso 2: Instale el software RHEL y NVMe y verifique su configuración</block>
+  <block id="542be28dfe54d1aba7f27376722f7184" category="list-text">Instalar RHEL 10x en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 10x requerido:</block>
+  <block id="7aedebfaf7f5d3acecf62e5e1e6a0a87" category="list-text">En el sistema ONTAP , verifique que<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> La cadena coincide con la<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadena para el subsistema correspondiente en el sistema de almacenamiento ONTAP :</block>
+  <block id="02973176ee0c32946f8a45d229cdcfb8" category="paragraph">La autenticación segura en banda es compatible con NVMe/TCP entre un host RHEL 10x y un controlador ONTAP .</block>
+  <block id="aea5204a2d7b6f662e8bc4cad9d5ea0f" category="list-text">Genere la clave dhchap para el host RHEL 10x.</block>
+  <block id="c24b380957c32369f896ee360d60ae1f" category="summary">Cómo configurar el host NVMe-oF para RHEL 8x con ONTAP</block>
+  <block id="51dce611f80cce1007373d6aa3b34714" category="doc">Configurar RHEL 8x para NVMe-oF con almacenamiento ONTAP</block>
+  <block id="edf3ff083eb06b85b560565f8f317325" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 8x. Para obtener más información sobre asistencia y funciones, consulte <block ref="2b82789a9f75524f0645dc6918740a89" category="inline-link-macro-rx"></block>.</block>
+  <block id="780819b4fee564b6f660afea32e2f1b3" category="paragraph">NVMe-oF con RHEL 8x tiene las siguientes limitaciones conocidas:</block>
+  <block id="a5a6483f99333ca98c9e119f1af37724" category="list-text">La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en RHEL 8x; debe habilitarla manualmente.</block>
+  <block id="90f4c5b86bf0d934fa290dc46c5315ee" category="list-text">Instalar RHEL 8x en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 8x requerido:</block>
+  <block id="cb8ff7e20a6299d80a0803ae4a872f27" category="list-text">En el host RHEL 8x, verifique la<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cuerda en<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
+  <block id="d286d12da4f4e6576e98c97eb597f043" category="example-title">Mostrar ejemplo de NVMe/FC</block>
+  <block id="7b25b7a93bbe178f0d420e334d6ad6f8" category="example-title">Mostrar ejemplo de NVMe/TCP</block>
+  <block id="8ebfa9c0eeb69f94ca0f65f475c357d1" category="cell">Los hosts RHEL 8x NVMe-oF crean controladores de descubrimiento persistentes (PDC) duplicados</block>
+  <block id="b5e84a2ea63a9f1b7ce01fa5d82b1edd" category="cell">En los hosts NVMe-oF, puede utilizar el comando "nvme discover -p" para crear PDC.  Cuando se utiliza este comando, solo se debe crear un PDC por combinación iniciador-destino.  Sin embargo, si está ejecutando RHEL 8x en un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p".  Esto genera un uso innecesario de recursos tanto en el host como en el destino.</block>
+  <block id="4e4640fc0c24b35d3cd6c5c91003b24c" category="summary">Cómo configurar el host NVMe-oF para RHEL 9x con ONTAP</block>
+  <block id="ec6eb54f1b1f7d47a4fea6a5506fe518" category="doc">Configurar RHEL 9x para NVMe-oF con almacenamiento ONTAP</block>
+  <block id="abbed039ea7b04d2789b4167b6df70bd" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 9x. Para obtener más información sobre asistencia y funciones, consulte <block ref="2b82789a9f75524f0645dc6918740a89" category="inline-link-macro-rx"></block>.</block>
+  <block id="2976ab3aa0d36f735d8a12d9bd886a3a" category="paragraph">NVMe-oF con RHEL 9x tiene las siguientes limitaciones conocidas:</block>
+  <block id="64d5adda16684ed4bc230cb76388ea82" category="list-text">Instalar RHEL 9x en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel RHEL 9x requerido:</block>
+  <block id="9b477ce27ea88f4f85280e9cdee7c154" category="section-title">Paso 4: Opcionalmente, modifique la iopolicy en las reglas de udev</block>
+  <block id="b563c88e9abe33f9ebe5ffe91fca2101" category="paragraph">RHEL 9.6 establece la política de io predeterminada para NVMe-oF en<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block> .  Si está utilizando RHEL 9.6 y desea cambiar la iopolicy a<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block> , modifique el archivo de reglas de udev de la siguiente manera:</block>
+  <block id="ac81318c5111726b893fa8dcdc177d9f" category="list-text">Recargue las reglas udev y aplique los cambios:</block>
+  <block id="44d5823b8f69c86c4a41c13b72067d2e" category="list-text">Verifique la iopolicy actual para su subsistema.  Reemplace &lt;subsistema&gt;, por ejemplo,<block ref="621b1b464ec30e8b168fcad04cefe44c" prefix=" " category="inline-code"></block> .</block>
+  <block id="02e6f562a82adc38b8762b8d4fc3c8c2" category="section-title">Paso 5: Opcionalmente, habilite 1 MB de E/S para NVMe/FC</block>
+  <block id="e6b3c2c8d823bf042f0e8e9e02dabf14" category="section-title">Paso 6: Verificar los servicios de arranque NVMe</block>
+  <block id="378f49529e98279285d9a2eb0d2b3e5e" category="section-title">Paso 7: Verificar la configuración de rutas múltiples</block>
+  <block id="273367a798b160b982190fa4a5689c4e" category="paragraph">La autenticación segura en banda es compatible con NVMe/TCP entre un host RHEL 9x y un controlador ONTAP .</block>
+  <block id="d300a599fce2b340808309cfb3d6bc5a" category="list-text">Genere la clave dhchap para el host RHEL 9x.</block>
+  <block id="817977d49e0479a834f082c774ea3949" category="cell">En RHEL 9.1, el<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block> El comando devuelve una lista repetida de controladores NVME para un subsistema determinado</block>
+  <block id="f12463db66bb26df5aae5e1aa393205f" category="summary">Obtenga información sobre la compatibilidad y las funciones de ONTAP para hosts RHEL</block>
+  <block id="d4063c82026eda59b5c15cca38aa9b92" category="paragraph">Las características compatibles con la configuración del host con NVMe over Fabrics (NVMe-oF) varían según su versión de ONTAP y RHEL.</block>
+  <block id="21021ea0e52be8e9c599f4dff41e5be0" category="cell">Característica</block>
+  <block id="6f22b33e80795a1f6ae056be55236d14" category="cell">Versión del host RHEL</block>
+  <block id="a7a75f073b67f15aafda088b8cefbc56" category="cell">Se admite la autenticación segura en banda a través de NVMe/TCP entre un host RHEL y un controlador ONTAP</block>
+  <block id="2529b4658a8617eb9acc8ecd9e756b6d" category="paragraph">9.3 o posterior</block>
+  <block id="384264f87c50753f2eb17ca87ee9effa" category="cell">9.12.1 o posterior</block>
+  <block id="b5cd58c682dec103e654b2c187746643" category="cell">NVMe/TCP proporciona espacios de nombres utilizando el protocolo nativo<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> paquete</block>
+  <block id="39ff48086522b01f77c4507652041edf" category="paragraph">8.2 o posterior</block>
+  <block id="2275b38e5279b78660b012808a4cb08e" category="cell">9.10.1 o posterior</block>
+  <block id="62b2d3ffa141d4c3257e46eb0cef3832" category="cell">NVMe/TCP es una función empresarial totalmente compatible</block>
+  <block id="2fa35db0c55fadac2f4d89f334265dfa" category="paragraph">9.0 o posterior</block>
+  <block id="709f3a8ebed229446a646c1db695bdee" category="cell">Se admite el tráfico NVMe y SCSI en el mismo host mediante NVMe multipath para espacios de nombres NVMe-oF y dm-multipath para LUN SCSI</block>
+  <block id="79560b9bbd4e7fca6de41e9baf411794" category="cell">9.4 o posterior</block>
+  <block id="21196efaf47859867a3e15bb00df9bdd" category="paragraph">ONTAP admite las siguientes funciones de host SAN independientemente de la versión de ONTAP que se ejecute en la configuración de su sistema.</block>
+  <block id="457f5a654df2a652e2f6a423a330fc4e" category="cell">La multirruta nativa de NVMe está habilitada de forma predeterminada</block>
+  <block id="c7c50320ea39956b088be548294af1e0" category="paragraph">10.0 o posterior</block>
+  <block id="5d2e5ee168e90c0595b3cc1eee2ee6dd" category="cell">El arranque SAN se habilita mediante el protocolo NVMe/FC</block>
+  <block id="9d6d817f456752dac19e4b5c699bd30c" category="cell">El<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> El paquete incluye scripts de conexión automática que eliminan la necesidad de scripts de terceros.</block>
+  <block id="1115310dc5d902646a8153a110b7cbc7" category="cell">La regla nativa de udev en<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> El paquete proporciona equilibrio de carga round-robin para rutas múltiples NVMe</block>
+  <block id="fc247827714f96cf26c9cbb26911cbf8" category="cell">Si su versión de RHEL es ..</block>
+  <block id="a63480986ae76ec294cfdac303f1cc61" category="cell">Conozca más sobre..</block>
+  <block id="62287eeee3056dc397ebc956062f6d92" category="cell">Serie 10</block>
+  <block id="c34a7839b3f231e397d2f177d6d84b48" category="inline-link-macro">Configuración de NVMe para RHEL 10x</block>
+  <block id="e3e0f06db1ae1cf5139e341a6b89c089" category="cell"><block ref="e3e0f06db1ae1cf5139e341a6b89c089" category="inline-link-macro-rx"></block></block>
+  <block id="2ee39f4f778b47b40d3a961eef85042c" category="cell">Serie 9</block>
+  <block id="8b7e7b79da283090e95e5e064f2f0674" category="inline-link-macro">Configuración de NVMe para RHEL 9x</block>
+  <block id="585f59c165dce6553dd5bb88dca5584f" category="cell"><block ref="585f59c165dce6553dd5bb88dca5584f" category="inline-link-macro-rx"></block></block>
+  <block id="ee75ab6a598e53989bfa62b7af1bc1c0" category="cell">Serie 8</block>
+  <block id="851c6dcac272a6b81c4f1bc354e5dd30" category="inline-link-macro">Configuración de NVMe para RHEL 8x</block>
+  <block id="eb843c3a0d88815db0697625e0d53e67" category="cell"><block ref="eb843c3a0d88815db0697625e0d53e67" category="inline-link-macro-rx"></block></block>
+  <block id="5d0c8eb2133aebd1b84ae7eadb64443d" category="inline-link-macro">Obtenga información sobre la gestión de protocolos NVMe</block>
+  <block id="ea103ce11fa3acd9ff613573f07e83a8" category="paragraph"><block ref="ea103ce11fa3acd9ff613573f07e83a8" category="inline-link-macro-rx"></block></block>
+  <block id="46df6d1dcf1bfe1d293e698a53cb025f" category="inline-link-macro">Compatibilidad y características de Rocky Linux ONTAP</block>
+  <block id="2bcba8bad4fcf760dffcacf8b4a4cc62" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 10.0. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="ef6b2f6e617a38d7878383a8f2b7d19b" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.10. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="eff346b10e9abaf1f4d714ca9df21bc0" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.4. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="682922c7ea5594fe7bdcd2b7277e9753" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.5. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="120b950f8a485a339e959e9b7a66047d" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.6. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="5d818d94d4d7b336ddf7f5e1c710ed41" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.7. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="4bfb47d472f173a03cd1d2df2af129ff" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.8. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="646d73193bcb07c45f83d548cefb34fa" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.9. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="8bc36568c971e7b3df3a392d30b311c8" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.0. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="05009c1e9d40ab93e9501109fb7ea18d" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.1. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="3d4b393ca8cab92825657c10c9d8c1cf" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.2. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="4a6b31a56b173440740905400c439e09" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.3. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="0e394156b915862ea0b130800ff5e59d" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.4. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="33b5872c4a7a0e71bfc3330b089f9464" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.5. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="67e1bc19eec84fea93766fe5fa8a33df" category="paragraph">Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.6. Para obtener más información sobre asistencia y funciones, consulte <block ref="08d4fe0a6a750912079de4ad634caec3" category="inline-link-macro-rx"></block>.</block>
+  <block id="fc35bf5b5ac3f79b1fa6a280a58f05d4" category="summary">Obtenga información sobre la compatibilidad y las características de ONTAP para Rocky Linux</block>
+  <block id="d4c250eac77deea13f8e9d9293a5aad2" category="paragraph">Las características compatibles con la configuración del host con NVMe over Fabrics (NVMe-oF) varían según su versión de ONTAP y Rocky Linux.</block>
+  <block id="3127b50785e82cd676744d9673a7bb86" category="cell">Versión del host Rocky Linux</block>
+  <block id="4b91f32a6e7c9347e242c6a3cfe81831" category="sidebar">10x</block>
+  <block id="41d60d32d9ec705b3d3409e5c37a47ed" category="sidebar">9x</block>
+  <block id="22d3c538ae9a7893a8cca2d17abd46ce" category="sidebar">8x</block>
 </blocks>
