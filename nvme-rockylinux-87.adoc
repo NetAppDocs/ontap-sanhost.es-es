@@ -18,7 +18,7 @@ summary: Cómo configurar el host NVMe-oF para Rocky Linux 8.7 con ONTAP
 [role="lead"]
 Los hosts Rocky Linux admiten los protocolos NVMe sobre canal de fibra (NVMe/FC) y NVMe sobre TCP (NVMe/TCP) con acceso asimétrico al espacio de nombres (ANA). ANA proporciona una funcionalidad de múltiples rutas equivalente al acceso a unidad lógica asimétrica (ALUA) en entornos iSCSI y FCP.
 
-Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.7. Para obtener más información sobre asistencia y funciones, consulte link:nvme-rockylinux-overview.html["Compatibilidad y características de Rocky Linux ONTAP"].
+Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.7. Para obtener más información sobre asistencia y funciones, consulte link:nvme-rockylinux-supported-features.html["Compatibilidad y características de Rocky Linux ONTAP"].
 
 *NVMe-oF con Rocky Linux 8.7 tiene las siguientes limitaciones conocidas:*
 

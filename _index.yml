@@ -33,7 +33,7 @@ indexpage:
     - title: Configurar hosts con FCP e iSCSI
       url: "/hu_fcp_scsi_index.html"
     - title: Configure los hosts con NVMe-oF
-      url: "/hu_nvme_index.html"
+      url: "/hu-nvme-index.html"
   - title: Más recursos
     links:
     - title: Cloud Volumes ONTAP

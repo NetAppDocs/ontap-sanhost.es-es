@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: nvme-rhel-supported-features.html 
-keywords: nvme, linux, rhel, red hat, enterprise 
-summary: Obtenga información sobre la compatibilidad y las funciones de ONTAP para hosts RHEL 
+permalink: nvme-proxmox-supported-features.html 
+keywords: nvme, proxmox, enterprise 
+summary: Obtenga información sobre la compatibilidad y las funciones de ONTAP para los hosts Proxmox 
 ---
-= Obtenga información sobre la compatibilidad y las funciones de ONTAP para hosts RHEL
+= Obtenga información sobre la compatibilidad y las funciones de ONTAP para los hosts Proxmox
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,56 +16,46 @@ summary: Obtenga información sobre la compatibilidad y las funciones de ONTAP p
 
 
 [role="lead"]
-Las características compatibles con la configuración del host con NVMe over Fabrics (NVMe-oF) varían según su versión de ONTAP y RHEL.
+Las características compatibles con la configuración del host con NVMe over Fabrics (NVMe-oF) varían según su versión de ONTAP y Proxmox.
 
-[cols="50,25,25"]
+[cols="30,20,20"]
 |===
-| Característica | Versión del host RHEL | Versión ONTAP 
+| Función ONTAP | Versión del host de Proxmox | Versión ONTAP 
 
 
-| Se admite la autenticación segura en banda a través de NVMe/TCP entre un host RHEL y un controlador ONTAP  a| 
-9.3 o posterior
-| 9.12.1 o posterior 
-
-
-| NVMe/TCP proporciona espacios de nombres utilizando el protocolo nativo `nvme-cli` paquete  a| 
-8.2 o posterior
+| Proporciona detalles de ONTAP para los espacios de nombres NVMe/FC y NVMe/TCP utilizando el nativo `nvme-cli` paquete.  a| 
+9.0
 | 9.10.1 o posterior 
 
 
 | NVMe/TCP es una función empresarial totalmente compatible  a| 
-9.0 o posterior
+9.0
 | 9.10.1 o posterior 
 
 
 | Se admite el tráfico NVMe y SCSI en el mismo host mediante NVMe multipath para espacios de nombres NVMe-oF y dm-multipath para LUN SCSI  a| 
-8.2 o posterior
+9.0
 | 9.4 o posterior 
 |===
 ONTAP admite las siguientes funciones de host SAN independientemente de la versión de ONTAP que se ejecute en la configuración de su sistema.
 
-[cols="75,25"]
+[cols="70,30"]
 |===
-| Característica | Versión del host RHEL 
+| Característica | Versión del host de Proxmox 
 
 
 | La multirruta nativa de NVMe está habilitada de forma predeterminada  a| 
-10.0 o posterior
-
-
-
-| El arranque SAN se habilita mediante el protocolo NVMe/FC  a| 
-9.4 o posterior
+9.0
 
 
 
 | El `nvme-cli` El paquete incluye scripts de conexión automática que eliminan la necesidad de scripts de terceros.  a| 
-8.2 o posterior
+9.0
 
 
 
 | La regla nativa de udev en `nvme-cli` El paquete proporciona equilibrio de carga round-robin para rutas múltiples NVMe  a| 
-8.2 o posterior
+9.0
 
 |===
 
@@ -75,18 +65,7 @@ NOTE: Para obtener detalles sobre las configuraciones admitidas, consulte lalink
 
 == ¿Qué sigue?
 
-[cols="50,50"]
-|===
-| Si su versión de RHEL es .. | Conozca más sobre.. 
+link:nvme-proxmox-ve-9x.html["Obtenga información sobre la configuración de Proxmox VE 9.0"]
 
-
-| Serie 10 | link:nvme-rhel-10x.html["Configuración de NVMe para RHEL 10x"] 
-
-
-| Serie 9 | link:nvme-rhel-9x.html["Configuración de NVMe para RHEL 9x"] 
-
-
-| Serie 8 | link:nvme-rhel-8x.html["Configuración de NVMe para RHEL 8x"] 
-|===
 .Información relacionada
 link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["Obtenga información sobre la gestión de protocolos NVMe"^]
