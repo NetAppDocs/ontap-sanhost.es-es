@@ -1,0 +1,90 @@
+---
+sidebar: sidebar 
+permalink: nvme-ol-supported-features.html 
+keywords: nvme, oracle linux, enterprise 
+summary: Obtenga información sobre el soporte y las características de ONTAP para hosts Oracle Linux 
+---
+= Obtenga información sobre el soporte y las características de ONTAP para hosts Oracle Linux
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Las características compatibles con la configuración del host con NVMe over Fabrics (NVMe-oF) varían según su versión de ONTAP y Oracle Linux.
+
+[cols="50,25,25"]
+|===
+| Característica | Versión de host de Oracle Linux | Versión ONTAP 
+
+
+| Se admite la autenticación segura en banda a través de NVMe/TCP entre un host Oracle Linux y un controlador ONTAP  a| 
+9.4 o posterior
+| 9.12.1 o posterior 
+
+
+| NVMe/TCP proporciona espacios de nombres utilizando el protocolo nativo `nvme-cli` paquete  a| 
+8.2 o posterior
+| 9.10.1 o posterior 
+
+
+| Se admite el tráfico NVMe y SCSI en el mismo host mediante NVMe multipath para espacios de nombres NVMe-oF y dm-multipath para LUN SCSI  a| 
+7.7 o posterior
+| 9.4 o posterior 
+|===
+
+NOTE: La NetApp  `sanlun` La utilidad de host no es compatible con NVMe-oF. En su lugar, puede usar el complemento de NetApp incluido en el entorno nativo.  `nvme-cli` para todos los transportes NVMe-oF.
+
+ONTAP admite las siguientes funciones de host SAN independientemente de la versión de ONTAP que se ejecute en la configuración de su sistema.
+
+[cols="75,25"]
+|===
+| Característica | Versión de host de Oracle Linux 
+
+
+| La multirruta NVMe dentro del kernel para espacios de nombres NVMe está habilitada de forma predeterminada  a| 
+8.3 o posterior
+
+
+
+| El arranque SAN se habilita mediante el protocolo NVMe/FC  a| 
+9.5 o posterior
+
+
+
+| El `nvme-cli` El paquete incluye scripts de conexión automática que eliminan la necesidad de scripts de terceros.  a| 
+8.3 o posterior
+
+
+
+| La regla nativa de udev en `nvme-cli` El paquete proporciona equilibrio de carga round-robin para rutas múltiples NVMe  a| 
+8.3 o posterior
+
+|===
+
+NOTE: Para obtener detalles sobre las configuraciones admitidas, consulte lalink:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^] .
+
+
+
+== ¿Qué sigue?
+
+[cols="50,50"]
+|===
+| Si su versión de Oracle Linux es .. | Conozca más sobre.. 
+
+
+| Serie 9 | link:nvme-ol-9x.html["Configuración de NVMe para Oracle Linux 9x"] 
+
+
+| Serie 8 | link:nvme-ol-8x.html["Configuración de NVMe para Oracle Linux 8x"] 
+
+
+| Serie 7 | link:nvme-ol-7x.html["Configuración de NVMe para Oracle Linux 7x"] 
+|===
+.Información relacionada
+link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["Obtenga información sobre la gestión de protocolos NVMe"^]

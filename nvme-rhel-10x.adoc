@@ -769,7 +769,6 @@ Configure la autenticación segura en banda mediante la CLI o un archivo JSON de
 --
 Configure la autenticación segura en banda mediante la CLI.
 
-.Pasos
 . Obtenga el NQN del host:
 +
 [source, cli]
@@ -873,7 +872,6 @@ Cuando hay varios subsistemas NVMe disponibles en el controlador ONTAP , puede u
 
 Utilice el `-o` Opción para generar el archivo JSON.  Consulte las páginas del manual de NVMe connect-all para obtener más opciones de sintaxis.
 
-.Pasos
 . Configurar el archivo JSON.
 +
 
