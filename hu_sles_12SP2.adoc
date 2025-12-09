@@ -158,7 +158,7 @@ En la siguiente tabla se muestra la configuración de los parámetros multivía 
 multipath -ll
 ----
 +
-Los parámetros multivía predeterminados admiten las configuraciones de ASA, AFF y FAS. En estas configuraciones, una única LUN de ONTAP no debería necesitar más de cuatro rutas. Si existen más de cuatro rutas, se pueden producir problemas con las rutas durante un fallo de almacenamiento.
+Los parámetros multiruta predeterminados admiten configuraciones ASA, AFF y FAS . En estas configuraciones, un solo LUN de ONTAP no debería requerir más de cuatro rutas. Tener más de cuatro rutas puede causar problemas durante una falla de almacenamiento.
 
 +
 En el siguiente ejemplo, se muestran los ajustes de parámetros y el estado de la ruta correctos para las LUN de ONTAP en una configuración de ASA, AFF o FAS.

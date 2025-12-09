@@ -127,7 +127,7 @@ chkconfig multipathd on
 multipath -ll
 ----
 +
-Los parámetros multiruta predeterminados admiten configuraciones AFF y FAS. En estas configuraciones, una única LUN de ONTAP no debería necesitar más de cuatro rutas. Si existen más de cuatro rutas, se pueden producir problemas con las rutas durante un fallo de almacenamiento.
+Los parámetros multiruta predeterminados admiten configuraciones AFF y FAS . En estas configuraciones, un solo LUN de ONTAP no debería requerir más de cuatro rutas. Tener más de cuatro rutas puede causar problemas durante una falla de almacenamiento.
 
 +
 Una configuración de AFF o FAS debe tener dos grupos de rutas con prioridades superiores e inferiores. La controladora donde se encuentra el agregado ofrece rutas activas/optimizadas de mayor prioridad. Las rutas de prioridad más baja están activas pero no optimizadas debido a que se sirven con una controladora diferente. Las rutas no optimizadas solo se usan cuando las rutas optimizadas no están disponibles.
