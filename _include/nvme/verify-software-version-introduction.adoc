@@ -2,4 +2,4 @@
 :allow-uri-read: 
 
 
-Para configurar su host para NVMe-oF, debe instalar los paquetes de software de host y NVMe, habilitar las rutas múltiples y verificar la configuración NQN de su host.
+Para configurar su host para NVMe-oF, debe instalar los paquetes de software de host y NVMe, habilitar rutas múltiples y verificar la configuración NQN de su host.

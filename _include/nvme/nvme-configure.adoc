@@ -6,11 +6,10 @@ Configure NVMe/FC con adaptadores Broadcom/Emulex o Marvell/QLogic, o configure 
 
 [role="tabbed-block"]
 ====
-.FC - Broadcom/Emulex
+.NVMe/FC - Broadcom/Emulex
 --
 Configuración de NVMe/FC para un adaptador Broadcom/Emulex.
 
-.Pasos
 . Compruebe que está utilizando el modelo de adaptador admitido:
 +
 .. Mostrar los nombres de los modelos:
@@ -159,11 +158,10 @@ FCP CMPL: xb 000014a5 Err 0002149a
 
 
 --
-.FC - Marvell/QLogic
+.NVMe/FC - Marvell/QLogic
 --
 Configure NVMe/FC para un adaptador Marvell/QLogic.
 
-.Pasos
 . Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
 +
 [source, cli]
@@ -191,11 +189,10 @@ La salida esperada es 1.
 
 
 --
-.TCP
+.NVMe/TCP
 --
 El protocolo NVMe/TCP no admite la operación de conexión automática.  En su lugar, puede descubrir los subsistemas y espacios de nombres NVMe/TCP realizando la prueba NVMe/TCP. `connect` o `connect-all` operaciones manualmente.
 
-.Pasos
 . Verifique que el puerto iniciador pueda obtener los datos de la página de registro de descubrimiento a través de los LIF NVMe/TCP compatibles:
 +
 [listing]

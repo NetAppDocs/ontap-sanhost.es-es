@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: nvme-rockylinux-90.html 
+permalink: nvme-rockylinux-8x.html 
 keywords: nvme, linux, rocky linux, enterprise 
-summary: Cómo configurar el host NVMe-oF para Rocky Linux 9.0 con ONTAP 
+summary: Cómo configurar el host NVMe-oF para Rocky Linux 8.x con ONTAP 
 ---
-= Configurar Rocky Linux 9.0 para NVMe-oF con almacenamiento ONTAP
+= Configurar Rocky Linux 8.x para NVMe-oF con almacenamiento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -18,36 +18,23 @@ summary: Cómo configurar el host NVMe-oF para Rocky Linux 9.0 con ONTAP
 [role="lead"]
 Los hosts Rocky Linux admiten los protocolos NVMe sobre canal de fibra (NVMe/FC) y NVMe sobre TCP (NVMe/TCP) con acceso asimétrico al espacio de nombres (ANA). ANA proporciona una funcionalidad de múltiples rutas equivalente al acceso a unidad lógica asimétrica (ALUA) en entornos iSCSI y FCP.
 
-Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 9.0. Para obtener más información sobre asistencia y funciones, consulte link:nvme-rockylinux-supported-features.html["Compatibilidad y características de Rocky Linux ONTAP"].
+Aprenda a configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.x. Para obtener más información sobre asistencia y funciones, consulte link:nvme-rockylinux-supported-features.html["Compatibilidad y características de Rocky Linux ONTAP"].
 
-*NVMe-oF con Rocky Linux 9.0 tiene las siguientes limitaciones conocidas:*
+NVMe-oF con Rocky Linux 8.x tiene las siguientes limitaciones conocidas:
 
 * Actualmente no se admite el arranque SAN mediante el protocolo NVMe-oF.
+* La multiruta NVMe dentro del kernel está deshabilitada de manera predeterminada en los hosts NVMe-oF en Rocky Linux 8.x; debe habilitarla manualmente.
+* NVMe/TCP está disponible como una versión preliminar de tecnología debido a problemas conocidos.
 
 
 
 
-== Paso 1: Opcionalmente, habilite el arranque SAN
+== Paso 1: Instale el software Rocky Linux y NVMe y verifique su configuración
 
-Puede configurar su host para utilizar el arranque SAN para simplificar la implementación y mejorar la escalabilidad. Utilice ellink:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que su sistema operativo Linux, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admitan el arranque SAN.
-
-.Pasos
-. https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["Cree un espacio de nombres NVMe y asígnelo al host"^] .
-. Habilite el arranque SAN en el BIOS del servidor para los puertos a los que está asignado el espacio de nombres de arranque SAN.
-+
-Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
-
-. Reinicie el host y verifique que el sistema operativo esté funcionando.
-
-
-
-
-== Paso 2: Verifique la versión del software y la configuración de NVMe
-
-Para configurar su host para NVMe-oF, debe instalar los paquetes de software de host y NVMe, habilitar las rutas múltiples y verificar la configuración NQN de su host.
+Para configurar su host para NVMe-oF, debe instalar los paquetes de software de host y NVMe, habilitar rutas múltiples y verificar la configuración NQN de su host.
 
 .Pasos
-. Instalar Rocky Linux 9.0 en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 9.0 requerido:
+. Instalar Rocky Linux 8.x en el servidor.  Una vez completada la instalación, verifique que esté ejecutando el kernel Rocky Linux 8.x requerido:
 +
 [source, cli]
 ----
@@ -103,7 +90,7 @@ El siguiente ejemplo muestra un  `hostnqn` versión:
 ----
 nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
 ----
-. Compruebe que el `hostnqn` la cadena coincide con `hostnqn` Cadena para el subsistema correspondiente en la cabina de ONTAP:
+. En el sistema ONTAP , verifique que `hostnqn` La cadena coincide con la `hostnqn` cadena para el subsistema correspondiente en la matriz ONTAP :
 +
 [source, cli]
 ----
@@ -137,17 +124,16 @@ NOTE: Si la `hostnqn` las cadenas no coinciden, utilice `vserver modify` comando
 
 
 
-== Paso 3: Configurar NVMe/FC y NVMe/TCP
+== Paso 2: Configurar NVMe/FC y NVMe/TCP
 
 Configure NVMe/FC con adaptadores Broadcom/Emulex o Marvell/QLogic, o configure NVMe/TCP mediante operaciones de descubrimiento y conexión manuales.
 
 [role="tabbed-block"]
 ====
-.FC - Broadcom/Emulex
+.NVMe/FC - Broadcom/Emulex
 --
 Configuración de NVMe/FC para un adaptador Broadcom/Emulex.
 
-.Pasos
 . Compruebe que está utilizando el modelo de adaptador admitido:
 +
 .. Mostrar los nombres de los modelos:
@@ -296,11 +282,10 @@ FCP CMPL: xb 000014a5 Err 0002149a
 
 
 --
-.FC - Marvell/QLogic
+.NVMe/FC - Marvell/QLogic
 --
 Configure NVMe/FC para un adaptador Marvell/QLogic.
 
-.Pasos
 . Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
 +
 [source, cli]
@@ -328,11 +313,10 @@ La salida esperada es 1.
 
 
 --
-.TCP
+.NVMe/TCP
 --
 El protocolo NVMe/TCP no admite la operación de conexión automática.  En su lugar, puede descubrir los subsistemas y espacios de nombres NVMe/TCP realizando la prueba NVMe/TCP. `connect` o `connect-all` operaciones manualmente.
 
-.Pasos
 . Verifique que el puerto iniciador pueda obtener los datos de la página de registro de descubrimiento a través de los LIF NVMe/TCP compatibles:
 +
 [listing]
@@ -611,7 +595,7 @@ nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.25
 ====
 
 
-== Paso 4: Opcionalmente, habilite 1 MB de E/S para NVMe/FC
+== Paso 3: Opcionalmente, habilite 1 MB de E/S para NVMe/FC
 
 Puede habilitar solicitudes de E/S de 1 MB para NVMe/FC configurado con un adaptador Broadcom. ONTAP informa un tamaño máximo de transferencia de datos (MDTS) de 8 en los datos de identificación del controlador. Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1MB TB. Para emitir solicitudes de E/S de 1 MB, debe aumentar el valor lpfc de  `lpfc_sg_seg_cnt` parámetro a 256 desde el valor predeterminado de 64.
 
@@ -641,7 +625,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
-== Paso 5: Verificar la configuración de rutas múltiples
+== Paso 4: Verificar la configuración de rutas múltiples
 
 Verifique que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean correctos para la configuración de NVMe-oF.
 
@@ -827,7 +811,7 @@ nvme netapp ontapdevices -o json
 
 
 
-== Paso 6: Revise los problemas conocidos
+== Paso 5: Revisar los problemas conocidos
 
 Estos son los problemas conocidos:
 
@@ -836,5 +820,5 @@ Estos son los problemas conocidos:
 | ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Los hosts NVMe-oF de Rocky Linux 9.0 crean controladores de descubrimiento persistente duplicados | En los hosts NVMe-oF, puede usar el comando "nvme discover -p" para crear controladores de descubrimiento persistentes (PDC).  Cuando se utiliza este comando, solo se debe crear un PDC por combinación iniciador-destino.  Sin embargo, si está ejecutando ONTAP 9.10.1 y Rocky Linux 9.0 con un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p".  Esto genera un uso innecesario de recursos tanto en el host como en el destino. 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Los hosts NVMe-oF de Rocky Linux 8.x crean controladores de descubrimiento persistentes duplicados | En los hosts NVMe-oF, puede usar el comando "nvme discover -p" para crear controladores de descubrimiento persistentes (PDC).  Sin embargo, si está ejecutando Rocky Linux 8.x en un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p". Cuando se utiliza este comando, solo se debe crear un PDC por combinación iniciador-destino. Sin embargo, si está ejecutando Rocky Linux 8.x en un host NVMe-oF, se crea un PDC duplicado cada vez que se ejecuta "nvme discover -p". Esto genera un uso innecesario de recursos tanto en el host como en el destino. 
 |===
