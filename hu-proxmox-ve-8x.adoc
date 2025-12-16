@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu-proxmox-ve-9x.html 
-keywords: proxmox, VE, 9.x, netapp, ontap, iscsi, fcp 
-summary: Instale Linux Host Utilities en un host Proxmox VE 9.x para administrar operaciones de protocolo FCP e iSCSI con LUN de ONTAP . 
+permalink: hu-proxmox-ve-8x.html 
+keywords: host utilities, proxmox, linux, 8.x, netapp, ontap 
+summary: Instale las utilidades de host de Linux en un host Proxmox VE 8.x para administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP . 
 ---
-= Configurar Proxmox VE 9.x para FCP e iSCSI con almacenamiento ONTAP
+= Configurar Proxmox VE 8.x para FCP e iSCSI con almacenamiento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,11 +16,11 @@ summary: Instale Linux Host Utilities en un host Proxmox VE 9.x para administrar
 
 
 [role="lead"]
-Configure Proxmox VE 9.x para rutas múltiples y con parámetros y configuraciones específicos para operaciones de protocolo FCP e iSCSI con almacenamiento ONTAP .
+Configure Proxmox VE 8.x para rutas múltiples y con parámetros y configuraciones específicos para operaciones de protocolo FCP e iSCSI con almacenamiento ONTAP .
 
-FCP e iSCSI con Proxmox VE 9.x tienen las siguientes limitaciones conocidas:
+FCP e iSCSI con Proxmox VE 8.x tienen las siguientes limitaciones conocidas:
 
-* Las utilidades de host de Linux no son compatibles con los sistemas operativos Proxmox VE 9.x.
+* Las utilidades de host de Linux no son compatibles con los sistemas operativos Proxmox VE 8.x.
 * La configuración de arranque SAN no es compatible.
 
 
@@ -28,7 +28,7 @@ FCP e iSCSI con Proxmox VE 9.x tienen las siguientes limitaciones conocidas:
 
 == Paso 1: Confirme la configuración de múltiples rutas para su host
 
-Puede utilizar rutas múltiples con Proxmox VE 9.x para administrar LUN de ONTAP .
+Puede utilizar rutas múltiples con Proxmox VE 8.x para administrar LUN de ONTAP .
 
 Para garantizar que el acceso multivía esté configurado correctamente para el host, verifique que el `/etc/multipath.conf` archivo esté definido y que los ajustes recomendados de NetApp estén configurados para los LUN de ONTAP.
 

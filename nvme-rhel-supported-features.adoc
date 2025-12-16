@@ -85,13 +85,13 @@ NOTE: Para obtener detalles sobre las configuraciones admitidas, consulte lalink
 | Si su versión de RHEL es .. | Conozca más sobre.. 
 
 
-| Serie 10 | link:nvme-rhel-10x.html["Configuración de NVMe para RHEL 10x"] 
+| Serie 10 | link:nvme-rhel-10x.html["Configuración de NVMe para RHEL 10.x"] 
 
 
-| Serie 9 | link:nvme-rhel-9x.html["Configuración de NVMe para RHEL 9x"] 
+| Serie 9 | link:nvme-rhel-9x.html["Configuración de NVMe para RHEL 9.x"] 
 
 
-| Serie 8 | link:nvme-rhel-8x.html["Configuración de NVMe para RHEL 8x"] 
+| Serie 8 | link:nvme-rhel-8x.html["Configuración de NVMe para RHEL 8.x"] 
 |===
 .Información relacionada
 link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["Obtenga información sobre la gestión de protocolos NVMe"^]

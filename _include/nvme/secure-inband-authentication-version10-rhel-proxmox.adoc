@@ -1,0 +1,236 @@
+= 
+:allow-uri-read: 
+
+
+A partir de ONTAP 9.12.1, se admite la autenticación segura en banda a través de NVMe/TCP entre un host RHEL 10 y un controlador ONTAP .
+
+Cada host o controlador debe estar asociado con un  `DH-HMAC-CHAP` Clave para configurar la autenticación segura. A  `DH-HMAC-CHAP` La clave es una combinación del NQN del host o controlador NVMe y un secreto de autenticación configurado por el administrador. Para autenticar su par, un host o una controladora NVMe deben reconocer la clave asociada con el par.
+
+Configure la autenticación segura en banda mediante la CLI o un archivo JSON de configuración. Si necesita especificar diferentes claves dhchap para diferentes subsistemas, debe utilizar un archivo JSON de configuración.
+
+[role="tabbed-block"]
+====
+.CLI
+--
+Configure la autenticación segura en banda mediante la CLI.
+
+.Pasos
+. Obtenga el NQN del host:
++
+[source, cli]
+----
+cat /etc/nvme/hostnqn
+----
+. Genere la clave dhchap para el host RHEL 10.
++
+En el siguiente resultado, se describen `gen-dhchap-key` los parámetros de los comandos:
+
++
+[listing]
+----
+nvme gen-dhchap-key -s optional_secret -l key_length {32|48|64} -m HMAC_function {0|1|2|3} -n host_nqn
+•	-s secret key in hexadecimal characters to be used to initialize the host key
+•	-l length of the resulting key in bytes
+•	-m HMAC function to use for key transformation
+0 = none, 1- SHA-256, 2 = SHA-384, 3=SHA-512
+•	-n host NQN to use for key transformation
+----
++
+En el siguiente ejemplo, se genera una clave dhchap aleatoria con HMAC establecido en 3 (SHA-512).
+
++
+[listing]
+----
+nvme gen-dhchap-key -m 3 -n nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0035-5910-804b-c2c04f444d33
+DHHC-1:03:7zf8I9gaRcDWH3tCH5vLGaoyjzPIvwNWusBfKdpJa+hia1aKDKJQ2o53pX3wYM9xdv5DtKNNhJInZ7X8wU2RQpQIngc=:
+----
+. En la controladora ONTAP, añada el host y especifique ambas claves dhchap:
++
+[source, cli]
+----
+vserver nvme subsystem host add -vserver <svm_name> -subsystem <subsystem> -host-nqn <host_nqn> -dhchap-host-secret <authentication_host_secret> -dhchap-controller-secret <authentication_controller_secret> -dhchap-hash-function {sha-256|sha-512} -dhchap-group {none|2048-bit|3072-bit|4096-bit|6144-bit|8192-bit}
+----
+. Un host admite dos tipos de métodos de autenticación: Unidireccional y bidireccional. En el host, conéctese a la controladora ONTAP y especifique claves dhchap según el método de autenticación elegido:
++
+[source, cli]
+----
+nvme connect -t tcp -w <host-traddr> -a <tr-addr> -n <host_nqn> -S <authentication_host_secret> -C <authentication_controller_secret>
+----
+. Valide el `nvme connect authentication` comando mediante la verificación de las claves dhchap de host y controladora:
++
+.. Verifique las claves dhchap del host:
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/<nvme-subsysX>/nvme*/dhchap_secret
+----
++
+.Mostrar ejemplo de salida para una configuración unidireccional
+[%collapsible]
+=====
+[listing]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys1/nvme*/dhchap_secret
+DHHC- 1:03:fMCrJharXUOqRoIsOEaG6m2PH1yYvu5+z3jTmzEKUbcWu26I33b93b
+il2WR09XDho/ld3L45J+0FeCsStBEAfhYgkQU=:
+DHHC- 1:03:fMCrJharXUOqRoIsOEaG6m2PH1yYvu5+z3jTmzEKUbcWu26I33b93b
+il2WR09XDho/ld3L45J+0FeCsStBEAfhYgkQU=:
+DHHC- 1:03:fMCrJharXUOqRoIsOEaG6m2PH1yYvu5+z3jTmzEKUbcWu26I33b93b
+il2WR09XDho/ld3L45J+0FeCsStBEAfhYgkQU=:
+DHHC- 1:03:fMCrJharXUOqRoIsOEaG6m2PH1yYvu5+z3jTmzEKUbcWu26I33b93b
+il2WR09XDho/ld3L45J+0FeCsStBEAfhYgkQU=:
+----
+=====
+.. Compruebe las claves dhchap del controlador:
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/<nvme-subsysX>/nvme*/dhchap_ctrl_secret
+----
++
+.Mostrar ejemplo de salida para una configuración bidireccional
+[%collapsible]
+=====
+[listing]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys6/nvme*/dhchap_ctrl_secret
+DHHC- 1:03:7zf8I9gaRcDWH3tCH5vLGaoyjzPIvwNWusBfKdpJa+hia
+1aKDKJQ2o53pX3wYM9xdv5DtKNNhJInZ7X8wU2RQpQIngc=:
+
+DHHC- 1:03:7zf8I9gaRcDWH3tCH5vLGaoyjzPIvwNWusBfKdpJa+hia
+1aKDKJQ2o53pX3wYM9xdv5DtKNNhJInZ7X8wU2RQpQIngc=:
+
+DHHC- 1:03:7zf8I9gaRcDWH3tCH5vLGaoyjzPIvwNWusBfKdpJa+hia
+1aKDKJQ2o53pX3wYM9xdv5DtKNNhJInZ7X8wU2RQpQIngc=:
+
+DHHC- 1:03:7zf8I9gaRcDWH3tCH5vLGaoyjzPIvwNWusBfKdpJa+hia
+1aKDKJQ2o53pX3wYM9xdv5DtKNNhJInZ7X8wU2RQpQIngc=:
+----
+=====
+
+
+
+
+--
+.Archivo JSON
+--
+Cuando hay varios subsistemas NVMe disponibles en la configuración de la controladora ONTAP, se puede utilizar `/etc/nvme/config.json` el archivo con `nvme connect-all` el comando.
+
+Utilice el  `-o` Opción para generar el archivo JSON. Consulte las páginas del manual de NVMe connect-all para obtener más opciones de sintaxis.
+
+.Pasos
+. Configurar el archivo JSON.
++
+
+NOTE: En el siguiente ejemplo,  `dhchap_key` corresponde a  `dhchap_secret` y  `dhchap_ctrl_key` corresponde a  `dhchap_ctrl_secret` .
+
++
+.Muestra el ejemplo
+[%collapsible]
+=====
+[listing]
+----
+cat /etc/nvme/config.json
+[
+{
+"hostnqn":"nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0035-5910-804b-c2c04f444d33",
+"hostid":"4c4c4544-0035-5910-804b-c2c04f444d33",
+"dhchap_key":"DHHC-1:03:7zf8I9gaRcDWH3tCH5vLGaoyjzPIvwNWusBfKdpJa+hia1aKDKJQ2o53pX3wYM9xdv5DtKNNhJInZ7X8wU2RQpQIngc=:",
+"subsystems":[
+{
+"nqn":"nqn.1992-08.com.netapp:sn.127ade26168811f0a50ed039eab69ad3:subsystem.inband_unidirectional",
+"ports":[
+{
+"transport":"tcp",
+"traddr":"192.168.20.17",
+"host_traddr":"192.168.20.1",
+"trsvcid":"4420"
+},
+{
+"transport":"tcp",
+"traddr":"192.168.20.18",
+"host_traddr":"192.168.20.1",
+"trsvcid":"4420"
+},
+{
+"transport":"tcp",
+"traddr":"192.168.21.18",
+"host_traddr":"192.168.21.1",
+"trsvcid":"4420"
+},
+{
+"transport":"tcp",
+"traddr":"192.168.21.17",
+"host_traddr":"192.168.21.1",
+"trsvcid":"4420"
+}]
+----
+=====
+. Conéctese a la controladora ONTAP mediante el archivo JSON de configuración:
++
+[source, cli]
+----
+nvme connect-all -J /etc/nvme/config.json
+----
++
+.Muestra el ejemplo
+[%collapsible]
+=====
+[listing]
+----
+traddr=192.168.20.20 is already connected
+traddr=192.168.20.20 is already connected
+traddr=192.168.20.20 is already connected
+traddr=192.168.20.20 is already connected
+traddr=192.168.20.20 is already connected
+traddr=192.168.20.20 is already connected
+traddr=192.168.20.20 is already connected
+traddr=192.168.20.20 is already connected
+traddr=192.168.20.21 is already connected
+traddr=192.168.20.21 is already connected
+traddr=192.168.20.21 is already connected
+traddr=192.168.20.21 is already connected
+traddr=192.168.20.21 is already connected
+traddr=192.168.20.21 is already connected
+traddr=192.168.20.21 is already connected
+traddr=192.168.20.21 is already connected
+----
+=====
+. Verifique que los secretos dhchap se hayan habilitado para los controladores respectivos de cada subsistema.
++
+.. Verifique las claves dhchap del host:
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_secret
+----
++
+El siguiente ejemplo muestra una clave dhchap:
+
++
+[listing]
+----
+DHHC-1:03:7zf8I9gaRcDWH3tCH5vLGaoyjzPIvwNWusBfKdpJa+hia1
+aKDKJQ2o53pX3wYM9xdv5DtKNNhJInZ7X8wU2RQpQIngc=:
+----
+.. Compruebe las claves dhchap del controlador:
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_ctrl_secret
+----
++
+Debería ver un resultado similar al siguiente ejemplo:
+
++
+[listing]
+----
+DHHC-1:03:fMCrJharXUOqRoIsOEaG6m2PH1yYvu5+z3jT
+mzEKUbcWu26I33b93bil2WR09XDho/ld3L45J+0FeCsStBEAfhYgkQU=:
+----
+
+
+
+
+--
+====
