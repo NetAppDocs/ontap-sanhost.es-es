@@ -281,7 +281,7 @@ El host Oracle Linux 7.6 con almacenamiento ONTAP tiene los siguientes problemas
 == El futuro
 
 * link:hu-luhu-command-reference.html["Obtenga más información sobre el uso de la herramienta Linux Host Utilities"] .
-* Obtenga más información sobre la duplicación de ASM.
+* Obtenga más información sobre la duplicación de ASM
 +
 El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM de ONTAP utilizan redundancia externa, lo que significa que la protección de datos es proporcionada por la cabina externa y ASM no hace mirroring de los datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["Bases de datos de Oracle en ONTAP"^] para obtener más información.
 

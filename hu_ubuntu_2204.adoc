@@ -22,9 +22,6 @@ summary: Instale Linux Host Utilities en un host Ubuntu 24.04 para administrar o
 El software Linux Host Utilities proporciona herramientas de administración y diagnóstico para los hosts Linux que están conectados al almacenamiento ONTAP .  Al instalar las Utilidades de host de Linux en un host Ubuntu 22.04, puede usar las Utilidades de host para ayudarlo a administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP .
 
 
-NOTE: No es necesario configurar manualmente los ajustes de la máquina virtual basada en kernel (KVM) porque los LUN de ONTAP se asignan automáticamente al hipervisor.
-
-
 
 == Paso 1: Opcionalmente, habilite el arranque SAN
 
@@ -283,8 +280,12 @@ No hay problemas conocidos.
 == El futuro
 
 * link:hu-luhu-command-reference.html["Obtenga más información sobre el uso de la herramienta Linux Host Utilities"] .
-* Obtenga más información sobre la duplicación de ASM.
+* Obtenga más información sobre la duplicación de ASM
 +
 El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM de ONTAP utilizan redundancia externa, lo que significa que la protección de datos es proporcionada por la cabina externa y ASM no hace mirroring de los datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["Bases de datos de Oracle en ONTAP"^] para obtener más información.
+
+* Obtenga más información sobre la virtualización de Ubuntu Linux (KVM)
++
+Ubuntu Linux puede servir como host KVM. Esto le permite ejecutar varias máquinas virtuales en un solo servidor físico utilizando la tecnología de máquina virtual basada en kernel de Linux (KVM). El host KVM no requiere configuraciones de host explícitas para los LUN de ONTAP .
 
 

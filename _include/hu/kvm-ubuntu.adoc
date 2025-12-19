@@ -1,0 +1,9 @@
+= 
+:allow-uri-read: 
+
+
+* Obtenga más información sobre la virtualización de Ubuntu Linux (KVM)
++
+Ubuntu Linux puede servir como host KVM. Esto le permite ejecutar varias máquinas virtuales en un solo servidor físico utilizando la tecnología de máquina virtual basada en kernel de Linux (KVM). El host KVM no requiere configuraciones de host explícitas para los LUN de ONTAP .
+
+
