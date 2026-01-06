@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: nvme_ubuntu_2204.html 
+permalink: nvme-ubuntu-2204.html 
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: Cómo configurar el host NVMe-oF para Ubuntu 22,04 con ONTAP 
 ---
@@ -120,7 +120,6 @@ Puede configurar NVMe/FC para adaptadores Broadcom/Emulex o Marvell/Qlogic.
 ====
 .Broadcom/Emulex
 --
-.Pasos
 . Compruebe que está utilizando el modelo de adaptador admitido.
 +
 [listing]
@@ -221,7 +220,6 @@ FCP CMPL: xb 00000000 Err 00000000
 --
 El controlador de bandeja de entrada nativa qla2xxx incluido en el kernel Ubuntu 22,04 GA tiene las últimas correcciones ascendentes. Estas correcciones son esenciales para la compatibilidad con ONTAP.
 
-.Pasos
 . Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
 +
 [listing]

@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: nvme-sles-supported-features.html 
+keywords: nvme, linux, sles, SUSE Linux Enterprise Server, enterprise 
+summary: Obtenga información sobre el soporte y las características de ONTAP para SUSE Linux Enterprise Server 
+---
+= Obtenga información sobre el soporte y las características de ONTAP para SUSE Linux Enterprise Server
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Las características compatibles con la configuración del host con NVMe over Fabrics (NVMe-oF) varían según su versión de ONTAP y SUSE Linux Enterprise Server.
+
+[cols="50,25,25"]
+|===
+| Característica | Versión de host de SUSE Linux Enterprise Server | Versión ONTAP 
+
+
+| El cifrado de seguridad de la capa de transporte (TLS) 1.3 es compatible con NVMe/TCP  a| 
+15 SP6 o posterior
+| 9.16.1 o posterior 
+
+
+| Se admite la autenticación segura en banda a través de NVMe/TCP entre un host RHEL y un controlador ONTAP  a| 
+15 SP4 o posterior
+| 9.12.1 o posterior 
+
+
+| Los controladores de descubrimiento persistente (PDC) son compatibles mediante un NQN de descubrimiento único  a| 
+15 SP4 o posterior
+| 9.11.1 o posterior 
+
+
+| NVMe/TCP proporciona espacios de nombres utilizando el protocolo nativo `nvme-cli` paquete  a| 
+15 SP4 o posterior
+| 9.10.1 o posterior 
+
+
+| Se admite el tráfico NVMe y SCSI en el mismo host mediante NVMe multipath para espacios de nombres NVMe-oF y dm-multipath para LUN SCSI  a| 
+15 SP1 o posterior
+| 9.4 o posterior 
+|===
+ONTAP admite las siguientes funciones de host SAN independientemente de la versión de ONTAP que se ejecute en la configuración de su sistema.
+
+[cols="75,25"]
+|===
+| Característica | Versión de host de SUSE Linux Enterprise Server 
+
+
+| El arranque SAN se habilita mediante el protocolo NVMe/FC  a| 
+15 SP7 o posterior
+
+
+
+| La multirruta nativa de NVMe está habilitada de forma predeterminada  a| 
+15 SP1 o posterior
+
+
+
+| El `nvme-cli` El paquete incluye scripts de conexión automática que eliminan la necesidad de scripts de terceros.  a| 
+15 SP1 o posterior
+
+|===
+
+NOTE: Para obtener detalles sobre las configuraciones admitidas, consulte lalink:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^] .
+
+
+
+== ¿Qué sigue?
+
+[cols="50,50"]
+|===
+| Si su versión de SUSE Linux Enterprise Server es .. | Conozca más sobre.. 
+
+
+| Serie 15 SPx | link:nvme-sles15-spx.html["Configuración de NVMe para SUSE Linux Enterprise Server 15 SPx"] 
+|===
+.Información relacionada
+link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["Obtenga información sobre la gestión de protocolos NVMe"^]

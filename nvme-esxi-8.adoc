@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: nvme_esxi_8.html 
+permalink: nvme-esxi-8.html 
 keywords: nvme, esxi, ontap, nvme/fc, hypervisor 
 summary: 'Es posible configurar NVMe over Fabrics (NVMe-oF) en hosts del iniciador que ejecutan ESXi 8.x y ONTAP como destino.' 
 ---
