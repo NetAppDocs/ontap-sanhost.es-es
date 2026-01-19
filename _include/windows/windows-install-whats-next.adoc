@@ -6,4 +6,4 @@
 
 == El futuro
 
-link:hu_wuhu_hba_settings.html["Configurar los ajustes del registro para las utilidades de host de Windows"] .
+link:hu-wuhu-configuration.html["Obtenga información sobre la configuración de las utilidades de host de Windows para el almacenamiento ONTAP"]
