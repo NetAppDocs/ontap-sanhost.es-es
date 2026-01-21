@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: hu_hpux_60_cmd.html 
-keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
-summary: Describe cómo usar las utilidades del host de Linux 7,1 con ONTAP 
+keywords: host utilities, unified, oracle, hp-ux, 6.0, netapp, ontap 
+summary: Describe cómo utilizar HP-UX Host Utilities 6.0 con ONTAP 
 ---
 = Utilice los comandos de HP-UX Host Utilities para verificar la configuración de almacenamiento de ONTAP
 :hardbreaks:

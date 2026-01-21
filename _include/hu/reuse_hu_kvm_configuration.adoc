@@ -1,9 +1,0 @@
-= Configure los ajustes de KVM
-:allow-uri-read: 
-
-
-
-
-== Configure los ajustes de KVM
-
-No es necesario configurar ajustes para una máquina virtual basada en kernel porque la LUN está asignada al hipervisor.

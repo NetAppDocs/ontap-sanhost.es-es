@@ -62,14 +62,7 @@ system        tpgs_on         VMW_PSP_MRU       NetApp E-Series arrays with ALUA
 system        tpgs_on          MW_PSP_RR 	      NetApp arrays with ALUA support
 
 ----
-
-
-=== Configuraciones de cabinas All SAN
-
-Las configuraciones de cabinas All SAN (ASA) optimizan todas las rutas para un LUN determinado, manteniéndolas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
-
-.Ejemplo
-En el ejemplo siguiente se muestra el resultado correcto de una LUN de ONTAP.
+Directiva sin resolver en <stdin> - include::_include/hu/reuse_hu_asa_configuration.adoc[]
 
 *`esxcli storage nmp device list -d naa.600a098038304759563f4e7837574453`*
 

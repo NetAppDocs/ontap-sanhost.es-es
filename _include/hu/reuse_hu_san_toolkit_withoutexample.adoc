@@ -1,5 +1,0 @@
-= 
-:allow-uri-read: 
-
-
-La instalación del paquete de utilidades de host de NetApp instala automáticamente el kit de herramientas. Este kit proporciona la `sanlun` utilidad, que le ayuda a gestionar los LUN y los adaptadores de bus de host (HBA). El `sanlun` comando muestra información acerca de las LUN asignadas al host, la multivía y la información necesaria para crear iGroups.
