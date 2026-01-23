@@ -23,13 +23,13 @@ Las características compatibles con la configuración del host con NVMe over Fa
 | Función ONTAP | Versión del host de Proxmox | Versión ONTAP 
 
 
-| Proporciona detalles de ONTAP para los espacios de nombres NVMe/FC y NVMe/TCP utilizando el nativo `nvme-cli` paquete.  a| 
-8.0
+| NVMe/TCP es una función empresarial totalmente compatible  a| 
+9.0
 | 9.10.1 o posterior 
 
 
-| NVMe/TCP es una función empresarial totalmente compatible  a| 
-9.0
+| Proporciona detalles de ONTAP para los espacios de nombres NVMe/FC y NVMe/TCP utilizando el nativo `nvme-cli` paquete.  a| 
+8.0
 | 9.10.1 o posterior 
 
 
@@ -44,11 +44,6 @@ ONTAP admite las siguientes funciones de host SAN independientemente de la versi
 | Característica | Versión del host de Proxmox 
 
 
-| La multirruta nativa de NVMe está habilitada de forma predeterminada  a| 
-8.0
-
-
-
 | El `nvme-cli` El paquete incluye scripts de conexión automática que eliminan la necesidad de scripts de terceros.  a| 
 9.0
 
@@ -56,6 +51,11 @@ ONTAP admite las siguientes funciones de host SAN independientemente de la versi
 
 | La regla nativa de udev en `nvme-cli` El paquete proporciona equilibrio de carga round-robin para rutas múltiples NVMe  a| 
 9.0
+
+
+
+| La multirruta nativa de NVMe está habilitada de forma predeterminada  a| 
+8.0
 
 |===
 

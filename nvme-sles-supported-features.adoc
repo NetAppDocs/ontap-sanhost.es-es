@@ -23,6 +23,11 @@ Las características compatibles con la configuración del host con NVMe over Fa
 | Característica | Versión de host de SUSE Linux Enterprise Server | Versión ONTAP 
 
 
+| NVMe/TCP informa todas las rutas optimizadas para los sistemas ASA r2  a| 
+16
+| 9.16.1 o posterior 
+
+
 | El cifrado de seguridad de la capa de transporte (TLS) 1.3 es compatible con NVMe/TCP  a| 
 15 SP6 o posterior
 | 9.16.1 o posterior 
@@ -77,10 +82,15 @@ NOTE: Para obtener detalles sobre las configuraciones admitidas, consulte lalink
 
 [cols="50,50"]
 |===
-| Si su versión de SUSE Linux Enterprise Server es .. | Conozca más sobre.. 
+| Si tu versión de SUSE Linux Enterprise Server es ... | Aprende sobre ... 
+
+
+| 16 | link:nvme-sles16-spx.html["Configurar NVMe para SUSE Linux Enterprise Server 16"] 
 
 
 | Serie 15 SPx | link:nvme-sles15-spx.html["Configuración de NVMe para SUSE Linux Enterprise Server 15 SPx"] 
 |===
 .Información relacionada
-link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["Obtenga información sobre la gestión de protocolos NVMe"^]
+* link:https://docs.netapp.com/us-en/asa-r2/index.html["Conoce los sistemas ASA r2"^]
+* link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["Obtenga información sobre la gestión de protocolos NVMe"^]
+

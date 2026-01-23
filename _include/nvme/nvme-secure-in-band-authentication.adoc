@@ -6,7 +6,8 @@ A partir de ONTAP 9.12.1, se admite la autenticación segura en banda a través 
 
 Para configurar la autenticación segura, cada host o controladora debe estar asociado con a. `DH-HMAC-CHAP` Clave, que es una combinación de NQN del host o de la controladora NVMe y un secreto de autenticación configurado por el administrador. Para autenticar su par, un host o una controladora NVMe deben reconocer la clave asociada con el par.
 
-Puede configurar la autenticación segura en banda mediante la interfaz de línea de comandos o un archivo config JSON. Si necesita especificar diferentes claves dhchap para diferentes subsistemas, debe utilizar un archivo JSON de configuración.
+.Pasos
+Configure la autenticación segura en banda mediante la CLI o un archivo JSON de configuración. Si necesita especificar diferentes claves dhchap para diferentes subsistemas, debe utilizar un archivo JSON de configuración.
 
 [role="tabbed-block"]
 ====
@@ -14,7 +15,6 @@ Puede configurar la autenticación segura en banda mediante la interfaz de líne
 --
 Configure la autenticación segura en banda mediante la CLI.
 
-.Pasos
 . Obtenga el NQN del host:
 +
 [listing]
@@ -107,7 +107,6 @@ Cuando hay varios subsistemas NVMe disponibles en la configuración de la contro
 
 Utilice el  `-o` Opción para generar el archivo JSON. Consulte las páginas del manual de NVMe connect-all para obtener más opciones de sintaxis.
 
-.Pasos
 . Configure el archivo JSON:
 +
 

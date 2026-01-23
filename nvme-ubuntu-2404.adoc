@@ -217,6 +217,7 @@ El controlador de bandeja de entrada nativa qla2xxx incluido en el kernel Ubuntu
 
 Configure NVMe/FC para un adaptador Marvell/QLogic.
 
+.Pasos
 . Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
 +
 [listing]
