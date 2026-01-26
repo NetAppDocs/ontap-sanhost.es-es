@@ -54,7 +54,7 @@ ONTAP admite las siguientes funciones de host SAN independientemente de la versi
 
 
 
-| La regla nativa de udev en `nvme-cli` El paquete proporciona equilibrio de carga de profundidad de cola para rutas múltiples NVMe  a| 
+| La regla nativa udev en el paquete `nvme-cli` proporciona equilibrio de carga de profundidad de cola para multipathing NVMe  a| 
 9.6 o posterior
 
 
@@ -69,7 +69,7 @@ ONTAP admite las siguientes funciones de host SAN independientemente de la versi
 
 
 
-| La regla nativa de udev en `nvme-cli` El paquete proporciona equilibrio de carga round-robin para rutas múltiples NVMe  a| 
+| La regla nativa udev en el paquete  `nvme-cli` proporciona equilibrio de carga round-robin para multipathing NVMe  a| 
 8.2 o posterior
 
 |===
