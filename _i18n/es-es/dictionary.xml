@@ -1450,7 +1450,6 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="4e7edc1b273739c4e0cf624559752cf7" category="list-text">Verifique que el parámetro de anulación se haya aplicado correctamente:</block>
   <block id="91d4ed290eac3ea33698717e6417a540" category="example-title">Mostrar ejemplos</block>
   <block id="284801613cd78ddeda293c26f3fd32a1" category="list-text">Verifique que se admita la E/S alineada de 4 KB con zpools mediante LUN de ONTAP :</block>
-  <block id="f395cf214153c772fe5507e459520762" category="list-text">Verifique que su host Solaris tenga instalada la última actualización del repositorio de soporte (SRU):</block>
   <block id="edf9178dbbb459e80d1d207d18d48f2f" category="list-text">Verifique que el LUN de ONTAP tenga<block ref="0d6ab6a77645c5e5eca594cd0178560d" prefix=" " category="inline-code"></block> como "Solaris", independientemente del tamaño del LUN:</block>
   <block id="cae4163ed010ee60715200c59515dc8a" category="list-text">Verifique la salida de sus LUN de ONTAP :</block>
   <block id="7adfb96a556399d6e181729ca47b7ce2" category="paragraph">Debería ver una salida similar al siguiente ejemplo para una configuración ASA, AFF o FAS :</block>
@@ -1597,7 +1596,6 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="ee9cbd2f41fd41a7e2588a51ae1e1754" category="paragraph"><block ref="b257be9060a2c1f3e6322dd3d3fefe13" category="inline-link-macro-rx"></block> .</block>
   <block id="6d63013ee22aae73bdd25723fab1c18d" category="paragraph">Puede utilizar rutas múltiples con Solaris 11.4 para administrar LUN de ONTAP .</block>
   <block id="164773fb7eaf808b1c70f9b259f9f700" category="paragraph">La función de múltiples rutas le permite configurar múltiples rutas de red entre el host y los sistemas de almacenamiento.  Si una ruta falla, el tráfico continúa por las rutas restantes.  Oracle Solaris I/O Multipathing (MPxIO) está habilitado de forma predeterminada para los sistemas Solaris 11.4 y SPARC.</block>
-  <block id="55db8ab811ff4549089fb2e1b08b6772" category="paragraph">Para garantizar que los parámetros de rutas múltiples y tiempo de espera recomendados estén configurados correctamente para su host, verifique que esté usando las configuraciones recomendadas de NetApp para sus LUN de ONTAP .</block>
   <block id="2f6a6946081c522c311ad3411e8140c6" category="list-text">Si su host está configurado para FC, verifique que la configuración predeterminada en<block ref="ab59b9330e3576612c9d0cd036f54f6b" prefix=" " category="inline-code"></block> está configurado para<block ref="595ef2e626ebf085d7dc3c69011c027b" prefix=" " category="inline-code"></block> .</block>
   <block id="9f51b880a7e72dcf25ea35b72d41810b" category="list-text">Las utilidades de host de Solaris cargan la configuración de parámetros recomendada por NetApp para los procesadores SPARC y x86_64.</block>
   <block id="e3d6c5163a9e55ef95d36acb9813af8a" category="cell">ordenación de discos</block>
@@ -1900,8 +1898,6 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="7b38cd7357c50824c462a690ab2c7e64" category="paragraph">Ejemplo de versión del kernel RHEL:</block>
   <block id="7ca0b86a69f6feef87cf7c24a1422e47" category="admonition">Si el<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> Las cadenas no coinciden, utilice el<block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block> comando para actualizar el<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadena en el subsistema del sistema de almacenamiento ONTAP correspondiente para que coincida con el<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadena de<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> en el host.</block>
   <block id="0846f796a67ab827e48866ee9d867e7e" category="section-title">Paso 3: Configurar NVMe/FC y NVMe/TCP</block>
-  <block id="3a3389ef589dfce02feb77c9c8bf0726" category="paragraph">Debería ver un resultado similar al siguiente ejemplo:</block>
-  <block id="97f9a8bc058f969713afc7e49ff602ef" category="paragraph">Debería ver un resultado similar a este:</block>
   <block id="b6af11b3c0a8b80fb9689c4535f30828" category="list-text">Verifique que esté utilizando el controlador del adaptador y las versiones de firmware compatibles:</block>
   <block id="ecf2f5d54ee701fadaed20b14f41130d" category="paragraph">El siguiente ejemplo muestra las versiones del controlador y del firmware:</block>
   <block id="d6d1236e99f0a7666fc4dd786441dfb0" category="list-text">Verifique que las otras combinaciones de LIF de iniciador-destino NVMe/TCP puedan recuperar correctamente los datos de la página del registro de descubrimiento:</block>
@@ -2124,7 +2120,6 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="10a05c794bb693baf37296bc7742537e" category="example-title">Mostrar ejemplo de configuración de ASL y APM</block>
   <block id="324dba7e543516b17ebc8c6ea5a0d680" category="list-text">Para una configuración óptima del sistema en operaciones de conmutación por error de almacenamiento, verifique que tenga los siguientes parámetros ajustables de Veritas VxDMP:</block>
   <block id="f9881710eadb37ca910a4e0909ba6e35" category="list-text">Establezca los parámetros configurables de DMP en línea:</block>
-  <block id="38ddb6c41ccf214f71e9283fe7300f1b" category="list-text">Verifique que los parámetros ajustables estén configurados correctamente:</block>
   <block id="5622e8954310cf14c8453091c6741ea4" category="paragraph">El siguiente ejemplo muestra los parámetros ajustables VxDMP efectivos en un host SAN.</block>
   <block id="1d2df76115fa1f235d9567ef1d6832fa" category="list-text">Configure los valores de tiempo de espera del protocolo:</block>
   <block id="c982f804d02e2d7e937f125d2cac1024" category="open-title">FC/FCoE</block>
@@ -2425,4 +2420,25 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="2f2f70e91ff2172f6a78bf052b441f39" category="paragraph"><block ref="806369b10c4f480029bde19415f580b3" category="inline-link-macro-rx"></block>.</block>
   <block id="ae3361bffdcc882805368ae077d6fcaf" category="cell">La regla nativa udev en el paquete<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> proporciona equilibrio de carga de profundidad de cola para multipathing NVMe</block>
   <block id="a30e163e966b967193e35b02c3ab5b4b" category="cell">La regla nativa udev en el paquete <block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> proporciona equilibrio de carga round-robin para multipathing NVMe</block>
+  <block id="857fdbce46a79b2923f0c113869f92fd" category="paragraph">Para asegurarte de que la multivía está configurada correctamente para tu host, establece el parámetro<block ref="90272dda245ae1fb3cf197e91a8689dc" prefix=" " category="inline-code"></block> en tu host y confirma que el servicio iSCI está en ejecución y conectado a los objetivos iSCI.</block>
+  <block id="db69f2e21d32b6494100c9cdb558a83c" category="list-text">Verifica que el paquete del iniciador iSCSI (iscsi-initiator-utils) esté instalado:</block>
+  <block id="a954e7655cd30fb519546c3bddd798c0" category="list-text">Verifica el nombre de nodo del iniciador iSCSI, que se encuentra en el archivo <block ref="22565a44e8f73044eb2029acbb069639" prefix=" " category="inline-code"></block>:</block>
+  <block id="df97c673d70c90c6b63b61f2eaf4e2fe" category="list-text">Configura el parámetro de tiempo de espera de la sesión iSCSI que se encuentra en el archivo <block ref="104f48adc29dc1e1d7c9bbe7b5dd3f8d" prefix=" " category="inline-code"></block>:</block>
+  <block id="ff0698bf56c1c8f5b893561edc6c6a14" category="paragraph">El parámetro iSCSI<block ref="12cec018fb6c5d12b22cf69774a8c847" prefix=" " category="inline-code"></block> controla cuánto tiempo la capa iSCSI debe esperar a que una ruta o sesión con tiempo de espera se restablezca antes de fallar cualquier comando en ella. Debes establecer el valor de<block ref="12cec018fb6c5d12b22cf69774a8c847" prefix=" " category="inline-code"></block> en 5 en el archivo de configuración de iSCSI.</block>
+  <block id="f1e20222799b2bd3cf76a542a2fe0ac3" category="list-text">Activa el servicio iSCI:</block>
+  <block id="526d2f8b5bd4c2e1f94481a550f7f736" category="list-text">Inicia el servicio iSCI:</block>
+  <block id="5ca5039f3f4884d2bcc8a02564fe6f74" category="list-text">Verifica que el servicio iSCI está en funcionamiento:</block>
+  <block id="2cfaa468af4e9de7ba9933d9e0081572" category="list-text">Descubre los objetivos iSCSI:</block>
+  <block id="40db24297aca48f0e246d3f2422d9592" category="example-title">mostrar ejemplo</block>
+  <block id="2ff2f43d0dcaddf633e1da2869068dae" category="list-text">Inicia sesión en los objetivos:</block>
+  <block id="c735ea84bca1744486ccba502fb36b71" category="list-text">Configura iSCSI para que inicie sesión automáticamente cuando el host se inicie:</block>
+  <block id="3569a099b651e0fb38aef5fe85a63c97" category="list-text">Verifica las sesiones iSCSI:</block>
+  <block id="1a8b056a6d0893efafd2cf81bf3e08ff" category="list-text">Verifica que tu host Solaris tenga instalada la última Support Repository Update (SRU):</block>
+  <block id="89db609d4e43d3c1d8586be7ef84f8df" category="section-title">Paso 4: confirma la configuración iSCSI de tu host</block>
+  <block id="d4a1d1d4994064894346d939622598a0" category="section-title">Paso 5: opcionalmente, excluye un dispositivo de la multivía</block>
+  <block id="388aa30cbe0482688d6d91a540c54d60" category="section-title">Paso 6: personaliza los parámetros de multivía para los LUNs de ONTAP</block>
+  <block id="7aa8a009723869e0077d1b9c7c2f290b" category="section-title">Paso 7: revisa los problemas conocidos</block>
+  <block id="23c1ea572e54e8ef99ba3854342287ef" category="list-text">Verifica que la configuración de tunables es correcta:</block>
+  <block id="d2d78408224a25c9a69b27120ff6ebf8" category="section-title">Paso 3: confirma la configuración iSCSI de tu host</block>
+  <block id="420d2bbbb8503cb3e78d6abcb08fb101" category="paragraph">Deberías ver una salida similar a:</block>
 </blocks>

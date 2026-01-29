@@ -214,7 +214,7 @@ cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
 cat /sys/class/fc_host/host*/port_name
 ----
 +
-Debería ver un resultado similar a este:
+Deberías ver una salida similar a:
 
 +
 [listing]

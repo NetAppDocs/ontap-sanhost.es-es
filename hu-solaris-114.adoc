@@ -61,8 +61,6 @@ Puede utilizar rutas múltiples con Solaris 11.4 para administrar LUN de ONTAP .
 
 La función de múltiples rutas le permite configurar múltiples rutas de red entre el host y los sistemas de almacenamiento.  Si una ruta falla, el tráfico continúa por las rutas restantes.  Oracle Solaris I/O Multipathing (MPxIO) está habilitado de forma predeterminada para los sistemas Solaris 11.4 y SPARC.
 
-Para garantizar que los parámetros de rutas múltiples y tiempo de espera recomendados estén configurados correctamente para su host, verifique que esté usando las configuraciones recomendadas de NetApp para sus LUN de ONTAP .
-
 .Pasos
 . Si su host está configurado para FC, verifique que la configuración predeterminada en `/kernel/drv/fp.conf` está configurado para `mpxio-disable="no"` .
 . Las utilidades de host de Solaris cargan la configuración de parámetros recomendada por NetApp para los procesadores SPARC y x86_64.
@@ -199,7 +197,7 @@ NOTE: Después `scsi-vhci-failover-override` se ha aplicado, `conf` se agrega a.
 ====
 . Verifique que se admita la E/S alineada de 4 KB con zpools mediante LUN de ONTAP :
 +
-.. Verifique que su host Solaris tenga instalada la última actualización del repositorio de soporte (SRU):
+.. Verifica que tu host Solaris tenga instalada la última Support Repository Update (SRU):
 +
 [source, cli]
 ----

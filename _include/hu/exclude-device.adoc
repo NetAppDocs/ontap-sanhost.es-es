@@ -1,10 +1,6 @@
-= Paso 4: Opcionalmente, excluya un dispositivo de las rutas múltiples
+= 
 :allow-uri-read: 
 
-
-
-
-== Paso 4: Opcionalmente, excluya un dispositivo de las rutas múltiples
 
 Si es necesario, puede excluir un dispositivo del acceso múltiple agregando el WWID del dispositivo no deseado a la estrofa de la lista negra del `multipath.conf` archivo.
 

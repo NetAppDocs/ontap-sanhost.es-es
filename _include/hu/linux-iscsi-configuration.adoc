@@ -1,0 +1,135 @@
+= 
+:allow-uri-read: 
+
+
+Para asegurarte de que la multivía está configurada correctamente para tu host, establece el parámetro `timeout` en tu host y confirma que el servicio iSCI está en ejecución y conectado a los objetivos iSCI.
+
+.Pasos
+. Verifica que el paquete del iniciador iSCSI (iscsi-initiator-utils) esté instalado:
++
+[source, cli]
+----
+rpm -qa | grep iscsi-initiator-utils
+----
++
+Debería ver un resultado similar al siguiente ejemplo:
+
++
+[listing]
+----
+iscsi-initiator-utils-6.2.1.11-0.git4b3e853.el9.x86_64
+----
+. Verifica el nombre de nodo del iniciador iSCSI, que se encuentra en el archivo  `/etc/iscsi/initiatorname.iscsi`:
++
+[source, cli]
+----
+InitiatorName=iqn.YYYY-MM.com.<vendor>:<host_name>
+----
+. Configura el parámetro de tiempo de espera de la sesión iSCSI que se encuentra en el archivo  `/etc/iscsi/iscsid.conf`:
++
+[source, cli]
+----
+node.session.timeo.replacement_timeout = 5
+----
++
+El parámetro iSCSI `replacement_timeout` controla cuánto tiempo la capa iSCSI debe esperar a que una ruta o sesión con tiempo de espera se restablezca antes de fallar cualquier comando en ella. Debes establecer el valor de `replacement_timeout` en 5 en el archivo de configuración de iSCSI.
+
+. Activa el servicio iSCI:
++
+[source, cli]
+----
+$systemctl enable iscsid
+----
+. Inicia el servicio iSCI:
++
+[source, cli]
+----
+$systemctl start iscsid
+----
+. Verifica que el servicio iSCI está en funcionamiento:
++
+[source, cli]
+----
+$systemctl status iscsid
+----
++
+.Muestra el ejemplo
+[%collapsible]
+====
+[listing]
+----
+● iscsid.service - Open-iSCSI
+     Loaded: loaded (/usr/lib/systemd/system/iscsid.service; enabled; preset: disabled)
+     Active: active (running) since Tue 2025-12-02 11:36:21 EST; 2 weeks 1 day ago
+TriggeredBy: ● iscsid.socket
+       Docs: man:iscsid(8)
+             man:iscsiuio(8)
+             man:iscsiadm(8)
+   Main PID: 2263 (iscsid)
+     Status: "Ready to process requests"
+      Tasks: 1 (limit: 816061)
+     Memory: 18.5M
+        CPU: 14.480s
+     CGroup: /system.slice/iscsid.service
+             └─2263 /usr/sbin/iscsid -f -d2
+----
+====
+. Descubre los objetivos iSCSI:
++
+[source, cli]
+----
+$iscsiadm --mode discovery --op update --type sendtargets --portal <target_IP>
+----
++
+.mostrar ejemplo
+[%collapsible]
+====
+[listing]
+----
+iscsiadm --mode discovery --op update --type sendtargets --portal  192.168.30.87
+192.168.30.87:3260,1139 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
+192.168.31.97:3260,1142 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
+192.168.31.87:3260,1141 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
+192.168.30.97:3260,1140 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
+----
+====
+. Inicia sesión en los objetivos:
++
+[source, cli]
+----
+$iscsiadm --mode node -l all
+----
+. Configura iSCSI para que inicie sesión automáticamente cuando el host se inicie:
++
+[source, cli]
+----
+$iscsiadm --mode node -T <target_name> -p <ip:port> -o update -n node.startup -v automatic
+----
++
+Debería ver un resultado similar al siguiente ejemplo:
+
++
+[listing]
+----
+iscsiadm --mode node -T iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 -p 192.168.30.87:3260 -o update -n node.startup -v automatic
+----
+. Verifica las sesiones iSCSI:
++
+[source, cli]
+----
+$iscsiadm --mode session
+----
++
+.Muestra el ejemplo
+[%collapsible]
+====
+[listing]
+----
+iscsiadm --mode session
+tcp: [1] 192.168.30.87:3260,1139 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
+tcp: [2] 192.168.31.97:3260,1142 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
+tcp: [3] 192.168.31.87:3260,1141 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
+tcp: [4] 192.168.30.97:3260,1140 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
+----
+====
+
