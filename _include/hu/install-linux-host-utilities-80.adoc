@@ -1,10 +1,6 @@
-= Paso 2: Instale las utilidades del host de Linux
+= 
 :allow-uri-read: 
 
-
-
-
-== Paso 2: Instale las utilidades del host de Linux
 
 NetApp recomienda la instalación de las utilidades del host Linux para admitir la gestión de las LUN de ONTAP y ayudar al soporte técnico con la recopilación de datos de configuración.
 

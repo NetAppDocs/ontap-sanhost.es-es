@@ -2041,8 +2041,6 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="fc35bf5b5ac3f79b1fa6a280a58f05d4" category="summary">Obtenga información sobre la compatibilidad y las características de ONTAP para Rocky Linux</block>
   <block id="d4c250eac77deea13f8e9d9293a5aad2" category="paragraph">Las características compatibles con la configuración del host con NVMe over Fabrics (NVMe-oF) varían según su versión de ONTAP y Rocky Linux.</block>
   <block id="3127b50785e82cd676744d9673a7bb86" category="cell">Versión del host Rocky Linux</block>
-  <block id="e01b830a5cda09eafed964519b00a13a" category="doc">Paso 2: Opcionalmente, excluya un dispositivo de las rutas múltiples</block>
-  <block id="904cc9711392ab11f24202a7482e210d" category="doc">Paso 3: Personalizar los parámetros de rutas múltiples para los LUN de ONTAP</block>
   <block id="2589c63c17df176e198728a79c3e5212" category="cell">"siempre"</block>
   <block id="2f7bb230c70819aeb10b45a709bcf48f" category="cell">"1"</block>
   <block id="e937998e5a3fcf2887fa0312475809ad" category="list-text">Opcionalmente, anule el valor predeterminado para el<block ref="19b30dc119e514235b739e076be9b3cc" prefix=" " category="inline-code"></block> Parámetro para garantizar que los LUN de ONTAP sean detectados y administrados correctamente por multipathd:</block>
@@ -2420,7 +2418,6 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="2f2f70e91ff2172f6a78bf052b441f39" category="paragraph"><block ref="806369b10c4f480029bde19415f580b3" category="inline-link-macro-rx"></block>.</block>
   <block id="ae3361bffdcc882805368ae077d6fcaf" category="cell">La regla nativa udev en el paquete<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> proporciona equilibrio de carga de profundidad de cola para multipathing NVMe</block>
   <block id="a30e163e966b967193e35b02c3ab5b4b" category="cell">La regla nativa udev en el paquete <block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> proporciona equilibrio de carga round-robin para multipathing NVMe</block>
-  <block id="857fdbce46a79b2923f0c113869f92fd" category="paragraph">Para asegurarte de que la multivía está configurada correctamente para tu host, establece el parámetro<block ref="90272dda245ae1fb3cf197e91a8689dc" prefix=" " category="inline-code"></block> en tu host y confirma que el servicio iSCI está en ejecución y conectado a los objetivos iSCI.</block>
   <block id="db69f2e21d32b6494100c9cdb558a83c" category="list-text">Verifica que el paquete del iniciador iSCSI (iscsi-initiator-utils) esté instalado:</block>
   <block id="a954e7655cd30fb519546c3bddd798c0" category="list-text">Verifica el nombre de nodo del iniciador iSCSI, que se encuentra en el archivo <block ref="22565a44e8f73044eb2029acbb069639" prefix=" " category="inline-code"></block>:</block>
   <block id="df97c673d70c90c6b63b61f2eaf4e2fe" category="list-text">Configura el parámetro de tiempo de espera de la sesión iSCSI que se encuentra en el archivo <block ref="104f48adc29dc1e1d7c9bbe7b5dd3f8d" prefix=" " category="inline-code"></block>:</block>
@@ -2441,4 +2438,16 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="23c1ea572e54e8ef99ba3854342287ef" category="list-text">Verifica que la configuración de tunables es correcta:</block>
   <block id="d2d78408224a25c9a69b27120ff6ebf8" category="section-title">Paso 3: confirma la configuración iSCSI de tu host</block>
   <block id="420d2bbbb8503cb3e78d6abcb08fb101" category="paragraph">Deberías ver una salida similar a:</block>
+  <block id="1f2ff205b2373f4d3dc9e67a56302cb2" category="paragraph">Asegúrate de que iSCSI está configurado correctamente para tu host.</block>
+  <block id="c62246672e9db0a470a1737f3981fd84" category="paragraph">Realizas los siguientes pasos en el host iSCSI.</block>
+  <block id="a4e78cb06e95b1e477ba950ed0d21899" category="list-text">Verifica que el paquete iniciador iSCSI (open-iscsi) esté instalado:</block>
+  <block id="e9d889d6733c29a8b543d1e4184ea561" category="summary">Instala Linux Host Utilities en un host HPE VME 8.0.x para gestionar operaciones de protocolo FCP e iSCSI con ONTAP LUNs.</block>
+  <block id="32675cf731ec4c101dccd8c9fe7afc05" category="doc">Configura HPE VME 8.0.x para FCP e iSCSI con almacenamiento ONTAP</block>
+  <block id="f028e1c625f97738b44527c47b37e4c1" category="paragraph">El software Linux Host Utilities proporciona herramientas de gestión y diagnóstico para hosts Linux que están conectados al almacenamiento ONTAP. Cuando instalas Linux Host Utilities en un host HPE VME 8.0.x, puedes usar Host Utilities para ayudarte a gestionar operaciones de protocolo FCP e iSCSI con LUNs ONTAP.</block>
+  <block id="97408cde90bab4eb19f4acc146087555" category="section-title">Paso 1: instala las utilidades del host Linux</block>
+  <block id="2705574efbf0f795ad465bd636d7a681" category="paragraph">Puedes usar multivía con HPE VME 8.0.x para gestionar LUNs de ONTAP.</block>
+  <block id="958c6534e2a2911611cea8e9b8bd686b" category="list-text">Configura los almacenes de datos HPE VME en los LUN de ONTAP y luego configura la máquina virtual. Consulta la documentación de HPE del proveedor para más información.</block>
+  <block id="32b0b2fb94c023fc633bfa7c0caf801f" category="section-title">Paso 2: confirma la configuración iSCSI de tu host</block>
+  <block id="961c1419cfe8060ce390b232d6e264c5" category="sidebar">HPE VME</block>
+  <block id="c956a158e93a32e225bfb772f4b64394" category="sidebar">HPE VME 8.0.x</block>
 </blocks>

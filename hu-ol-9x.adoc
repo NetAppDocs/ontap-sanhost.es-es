@@ -205,7 +205,10 @@ size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 
 == Paso 4: confirma la configuración iSCSI de tu host
 
-Para asegurarte de que la multivía está configurada correctamente para tu host, establece el parámetro `timeout` en tu host y confirma que el servicio iSCI está en ejecución y conectado a los objetivos iSCI.
+Asegúrate de que iSCSI está configurado correctamente para tu host.
+
+.Acerca de esta tarea
+Realizas los siguientes pasos en el host iSCSI.
 
 .Pasos
 . Verifica que el paquete del iniciador iSCSI (iscsi-initiator-utils) esté instalado:

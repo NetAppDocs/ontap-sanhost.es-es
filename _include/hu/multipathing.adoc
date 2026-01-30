@@ -116,6 +116,9 @@ En el siguiente ejemplo, se muestran los ajustes de parámetros y el estado de l
 --
 Una configuración de ASA optimiza todas las rutas a una LUN determinada para mantenerlas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
+.Muestra el ejemplo
+[%collapsible]
+=====
 [listing]
 ----
 # multipath -ll
@@ -127,6 +130,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   |- 14:0:8:9   sdjq 65:320  active ready running
   `- 14:0:7:9   sdiw 8:256   active ready running
 ----
+=====
 --
 .Configuración de AFF o FAS
 --
@@ -134,6 +138,9 @@ Una configuración de AFF o FAS debe tener dos grupos de rutas con prioridades s
 
 En el siguiente ejemplo, se muestra el resultado de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizada:
 
+.Muestra el ejemplo
+[%collapsible]
+=====
 [listing]
 ----
 # multipath -ll
@@ -146,6 +153,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   |- 14:0:2:0   sdfk 130:96  active ready running
   `- 14:0:5:0   sdgz 132:240 active ready running
 ----
+=====
 --
 ====
 

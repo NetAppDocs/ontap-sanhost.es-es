@@ -108,6 +108,9 @@ En el siguiente ejemplo, se muestran los ajustes de parámetros y el estado de l
 --
 Una configuración de ASA optimiza todas las rutas a una LUN determinada para mantenerlas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
+.Muestra el ejemplo
+[%collapsible]
+=====
 [listing]
 ----
 /usr/sbin/mpathutil status
@@ -120,6 +123,7 @@ size=9.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_han
   |- 16:0:0:0  sdcf 69:48   active ready running
   `- 16:0:1:0  sdcg 69:64   active ready running
 ----
+=====
 --
 .Configuración de AFF o FAS
 --
@@ -127,6 +131,9 @@ Una configuración de AFF o FAS debe tener dos grupos de rutas con prioridades s
 
 En el siguiente ejemplo, se muestra el resultado de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizada:
 
+.Muestra el ejemplo
+[%collapsible]
+=====
 [listing]
 ----
 /usr/sbin/mpathutil status
@@ -140,6 +147,7 @@ size=9.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_han
      |- 16:0:0:0  sdcf 69:48   active ready running
      `- 16:0:1:0  sdcg 69:64   active ready running
 ----
+=====
 --
 ====
 

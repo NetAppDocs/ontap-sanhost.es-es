@@ -205,7 +205,144 @@ size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
 
 
 
-== Paso 2: Opcionalmente, excluya un dispositivo de las rutas múltiples
+== Paso 2: confirma la configuración iSCSI de tu host
+
+Asegúrate de que iSCSI está configurado correctamente para tu host.
+
+.Acerca de esta tarea
+Realizas los siguientes pasos en el host iSCSI.
+
+.Pasos
+. Verifica que el paquete iniciador iSCSI (open-iscsi) esté instalado:
++
+[source, cli]
+----
+$apt list |grep open-iscsi
+----
++
+Debería ver un resultado similar al siguiente ejemplo:
+
++
+[listing]
+----
+open-iscsi/noble-updates,noble-updates,now 2.1.9-3ubuntu5.4 amd64
+----
+. Verifica el nombre de nodo del iniciador iSCSI, que se encuentra en el archivo  `/etc/iscsi/initiatorname.iscsi`:
++
+[source, cli]
+----
+InitiatorName=iqn.YYYY-MM.com.<vendor>:<host_name>
+----
+. Configura el parámetro de tiempo de espera de la sesión iSCSI que se encuentra en el archivo  `/etc/iscsi/iscsid.conf`:
++
+[source, cli]
+----
+node.session.timeo.replacement_timeout = 5
+----
++
+El parámetro iSCSI `replacement_timeout` controla cuánto tiempo la capa iSCSI debe esperar a que una ruta o sesión con tiempo de espera se restablezca antes de fallar cualquier comando en ella. Debes establecer el valor de `replacement_timeout` en 5 en el archivo de configuración de iSCSI.
+
+. Activa el servicio iSCI:
++
+[source, cli]
+----
+$systemctl enable iscsid
+----
+. Inicia el servicio iSCI:
++
+[source, cli]
+----
+$systemctl start iscsid
+----
+. Verifica que el servicio iSCI está en funcionamiento:
++
+[source, cli]
+----
+$systemctl status iscsid
+----
++
+.Muestra el ejemplo
+[%collapsible]
+====
+[listing]
+----
+●iscsid.service - iSCSI initiator daemon (iscsid)
+     Loaded: loaded (/usr/lib/systemd/system/iscsid.service; enabled; preset: disabled)
+     Active: active (running) since Mon 2026-01-12 12:53:18 IST; 2 days ago
+TriggeredBy: ● iscsid.socket
+       Docs: man:iscsid(8)
+   Main PID: 1127419 (iscsid)
+      Tasks: 2 (limit: 76557)
+     Memory: 4.3M (peak: 8.8M)
+        CPU: 1.657s
+     CGroup: /system.slice/iscsid.service
+             ├─1127418 /usr/sbin/iscsid
+             └─1127419 /usr/sbin/iscsid
+----
+====
+. Descubre los objetivos iSCSI:
++
+[source, cli]
+----
+$iscsiadm --mode discovery --op update --type sendtargets --portal <target_IP>
+----
++
+.mostrar ejemplo
+[%collapsible]
+====
+[listing]
+----
+iscsiadm --mode discovery --op update --type sendtargets --portal  192.168.100.197
+192.168.100.197:3260,1046 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+192.168.200.199:3260,1049 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+192.168.100.199:3260,1048 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+192.168.200.197:3260,1047 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+----
+====
+. Inicia sesión en los objetivos:
++
+[source, cli]
+----
+$iscsiadm --mode node -l all
+----
+. Configura iSCSI para que inicie sesión automáticamente cuando el host se inicie:
++
+[source, cli]
+----
+$iscsiadm --mode node -T <target_name> -p <ip:port> -o update -n node.startup -v automatic
+----
++
+Debería ver un resultado similar al siguiente ejemplo:
+
++
+[listing]
+----
+iscsiadm --mode node -T iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 -p 192.168.100.197:3260 -o update -n node.startup -v automatic
+----
+. Verifica las sesiones iSCSI:
++
+[source, cli]
+----
+$iscsiadm --mode session
+----
++
+.Muestra el ejemplo
+[%collapsible]
+====
+[listing]
+----
+iscsiadm --mode session
+tcp: [1] 192.168.200.197:3260,1047 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+tcp: [2] 192.168.100.197:3260,1046 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+tcp: [3] 192.168.100.199:3260,1048 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+tcp: [4] 192.168.200.199:3260,1049 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+----
+====
+
+
+
+
+== Paso 3: Opcionalmente, excluya un dispositivo de las rutas múltiples
 
 Si es necesario, puede excluir un dispositivo del acceso múltiple agregando el WWID del dispositivo no deseado a la estrofa de la lista negra del `multipath.conf` archivo.
 
@@ -237,7 +374,7 @@ blacklist {
 
 
 
-== Paso 3: Personalizar los parámetros de rutas múltiples para los LUN de ONTAP
+== Paso 4: Personalizar los parámetros de rutas múltiples para los LUN de ONTAP
 
 Si su host está conectado a LUN de otros proveedores y cualquiera de la configuración de parámetros multivía se ha anulado, debe corregirlos agregando estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a LUN de ONTAP. Si no hace esto, es posible que las LUN de ONTAP no funcionen como se espera.
 
@@ -270,6 +407,6 @@ devices {
 ====
 
 
-== Paso 4: Revisar los problemas conocidos
+== Paso 5: Revisar los problemas conocidos
 
 No hay problemas conocidos.

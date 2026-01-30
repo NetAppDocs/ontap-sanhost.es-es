@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu-rockylinux-8x.html 
-keywords: host utilities, rocky, linux, 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0, netapp, ontap, fcp, iscsi 
-summary: Instale Linux Host Utilities en un host Rocky Linux 8.10 para administrar operaciones de protocolo FCP e iSCSI con LUN de ONTAP. 
+permalink: hu-hpe-vme-80x.html 
+keywords: host utilities, red hat, rhel, linux, 20.04, netapp, ontap, ubuntu 
+summary: Instala Linux Host Utilities en un host HPE VME 8.0.x para gestionar operaciones de protocolo FCP e iSCSI con ONTAP LUNs. 
 ---
-= Configurar Rocky Linux 8.x para FCP e iSCSI con almacenamiento ONTAP
+= Configura HPE VME 8.0.x para FCP e iSCSI con almacenamiento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,29 +16,11 @@ summary: Instale Linux Host Utilities en un host Rocky Linux 8.10 para administr
 
 
 [role="lead"]
-El software Linux Host Utilities proporciona herramientas de administración y diagnóstico para los hosts Linux que están conectados al almacenamiento ONTAP . Cuando instale Linux Host Utilities en un host Rocky Linux 8.x, podrá utilizar Host Utilities para ayudarle a gestionar las operaciones de los protocolos FCP e iSCSI con LUN de ONTAP .
+El software Linux Host Utilities proporciona herramientas de gestión y diagnóstico para hosts Linux que están conectados al almacenamiento ONTAP. Cuando instalas Linux Host Utilities en un host HPE VME 8.0.x, puedes usar Host Utilities para ayudarte a gestionar operaciones de protocolo FCP e iSCSI con LUNs ONTAP.
 
 
 
-== Paso 1: Opcionalmente, habilite el arranque SAN
-
-Puede configurar su host para que utilice el arranque SAN y simplificar la puesta en marcha y mejorar la escalabilidad.
-
-.Antes de empezar
-Utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que el sistema operativo Linux, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admiten el arranque SAN.
-
-.Pasos
-. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["Cree un LUN de arranque SAN y asígnelo al host"^].
-. Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
-+
-Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
-
-. Compruebe que la configuración se haya realizado correctamente. Para ello, reinicie el host y verifique que el sistema operativo esté activo y en ejecución.
-
-
-
-
-== Paso 2: Instale las utilidades del host de Linux
+== Paso 1: instala las utilidades del host Linux
 
 NetApp recomienda la instalación de las utilidades del host Linux para admitir la gestión de las LUN de ONTAP y ayudar al soporte técnico con la recopilación de datos de configuración.
 
@@ -49,22 +31,14 @@ NOTE: La instalación de Linux Host Utilities no cambia ninguna configuración d
 
 
 
-== Paso 3: Confirme la configuración multivía del host
+== Paso 2: Confirme la configuración de múltiples rutas para su host
 
-Puedes utilizar multipathing con Rocky Linux 8.x para gestionar LUN de ONTAP .
+Puedes usar multivía con HPE VME 8.0.x para gestionar LUNs de ONTAP.
 
 Para garantizar que el acceso multivía esté configurado correctamente para el host, verifique que el `/etc/multipath.conf` archivo esté definido y que los ajustes recomendados de NetApp estén configurados para los LUN de ONTAP.
 
 .Pasos
-. Compruebe que el `/etc/multipath.conf` archivo existe:
-+
-[source, cli]
-----
-ls /etc/multipath.conf
-----
-+
-Si el archivo no existe, cree un archivo vacío de cero bytes:
-
+. Verifique que el `/etc/multipath.conf` archivo salga. Si el archivo no existe, cree un archivo vacío de cero bytes:
 +
 [source, cli]
 ----
@@ -81,9 +55,9 @@ systemctl enable multipathd
 ----
 systemctl start multipathd
 ----
-. Cada vez que arranca el host, el archivo de cero bytes vacío `/etc/multipath.conf` carga automáticamente los parámetros multivía de host recomendados por NetApp como configuración predeterminada. No debería ser necesario realizar cambios en `/etc/multipath.conf` el archivo para el host ya que el sistema operativo del host está compilado con los parámetros multivía que reconocen y gestionan correctamente las LUN de ONTAP.
+. Cada vez que arranca el host, el archivo de cero bytes vacío `/etc/multipath.conf` carga automáticamente los parámetros multivía de host recomendados por NetApp como configuración predeterminada. No debería ser necesario realizar cambios en `/etc/multipath.conf` el archivo para el host ya que el sistema operativo está compilado con los parámetros multivía que reconocen y gestionan correctamente las LUN de ONTAP.
 +
-En la siguiente tabla se muestra la configuración de los parámetros multivía compilados por el sistema operativo Linux nativo para los LUN de ONTAP.
+En la siguiente tabla se muestra la configuración del parámetro multivía compilado nativo del sistema operativo Linux para los LUN de ONTAP.
 
 +
 .Muestra la configuración de los parámetros
@@ -173,8 +147,7 @@ Una configuración de ASA optimiza todas las rutas a una LUN determinada para ma
 [listing]
 ----
 # multipath -ll
-3600a098038314c4a433f577471797958 dm-2 NETAPP,LUN C-Mode
-size=180G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+3600a098038314c4a433f577471797958 dm-2 NETAPP,LUN C-Mode size=180G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
   |- 14:0:0:0  sdc  8:32   active ready running
   |- 17:0:0:0  sdas 66:192 active ready running
@@ -195,8 +168,7 @@ En el siguiente ejemplo, se muestra el resultado de una LUN de ONTAP con dos rut
 [listing]
 ----
 # multipath -ll
-3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode
-size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 |-+- policy='service-time 0' prio=50 status=active
 | |- 16:0:3:0  sdcg 69:64  active ready running
 | `- 10:0:0:0  sdb  8:16   active ready running
@@ -211,7 +183,7 @@ size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
 
 
 
-== Paso 4: confirma la configuración iSCSI de tu host
+== Paso 3: confirma la configuración iSCSI de tu host
 
 Asegúrate de que iSCSI está configurado correctamente para tu host.
 
@@ -219,11 +191,11 @@ Asegúrate de que iSCSI está configurado correctamente para tu host.
 Realizas los siguientes pasos en el host iSCSI.
 
 .Pasos
-. Verifica que el paquete del iniciador iSCSI (iscsi-initiator-utils) esté instalado:
+. Verifica que el paquete iniciador iSCSI (open-iscsi) esté instalado:
 +
 [source, cli]
 ----
-rpm -qa | grep iscsi-initiator-utils
+$apt list |grep open-iscsi
 ----
 +
 Debería ver un resultado similar al siguiente ejemplo:
@@ -231,7 +203,7 @@ Debería ver un resultado similar al siguiente ejemplo:
 +
 [listing]
 ----
-iscsi-initiator-utils-6.2.1.11-0.git4b3e853.el9.x86_64
+open-iscsi/noble-updates,noble-updates,now 2.1.9-3ubuntu5.4 amd64
 ----
 . Verifica el nombre de nodo del iniciador iSCSI, que se encuentra en el archivo  `/etc/iscsi/initiatorname.iscsi`:
 +
@@ -272,20 +244,18 @@ $systemctl status iscsid
 ====
 [listing]
 ----
-● iscsid.service - Open-iSCSI
+●iscsid.service - iSCSI initiator daemon (iscsid)
      Loaded: loaded (/usr/lib/systemd/system/iscsid.service; enabled; preset: disabled)
-     Active: active (running) since Tue 2025-12-02 11:36:21 EST; 2 weeks 1 day ago
+     Active: active (running) since Mon 2026-01-12 12:53:18 IST; 2 days ago
 TriggeredBy: ● iscsid.socket
        Docs: man:iscsid(8)
-             man:iscsiuio(8)
-             man:iscsiadm(8)
-   Main PID: 2263 (iscsid)
-     Status: "Ready to process requests"
-      Tasks: 1 (limit: 816061)
-     Memory: 18.5M
-        CPU: 14.480s
+   Main PID: 1127419 (iscsid)
+      Tasks: 2 (limit: 76557)
+     Memory: 4.3M (peak: 8.8M)
+        CPU: 1.657s
      CGroup: /system.slice/iscsid.service
-             └─2263 /usr/sbin/iscsid -f -d2
+             ├─1127418 /usr/sbin/iscsid
+             └─1127419 /usr/sbin/iscsid
 ----
 ====
 . Descubre los objetivos iSCSI:
@@ -300,11 +270,11 @@ $iscsiadm --mode discovery --op update --type sendtargets --portal <target_IP>
 ====
 [listing]
 ----
-iscsiadm --mode discovery --op update --type sendtargets --portal  192.168.30.87
-192.168.30.87:3260,1139 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
-192.168.31.97:3260,1142 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
-192.168.31.87:3260,1141 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
-192.168.30.97:3260,1140 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23
+iscsiadm --mode discovery --op update --type sendtargets --portal  192.168.100.197
+192.168.100.197:3260,1046 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+192.168.200.199:3260,1049 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+192.168.100.199:3260,1048 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
+192.168.200.197:3260,1047 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8
 ----
 ====
 . Inicia sesión en los objetivos:
@@ -325,7 +295,7 @@ Debería ver un resultado similar al siguiente ejemplo:
 +
 [listing]
 ----
-iscsiadm --mode node -T iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 -p 192.168.30.87:3260 -o update -n node.startup -v automatic
+iscsiadm --mode node -T iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 -p 192.168.100.197:3260 -o update -n node.startup -v automatic
 ----
 . Verifica las sesiones iSCSI:
 +
@@ -340,17 +310,17 @@ $iscsiadm --mode session
 [listing]
 ----
 iscsiadm --mode session
-tcp: [1] 192.168.30.87:3260,1139 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
-tcp: [2] 192.168.31.97:3260,1142 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
-tcp: [3] 192.168.31.87:3260,1141 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
-tcp: [4] 192.168.30.97:3260,1140 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 (non-flash)
+tcp: [1] 192.168.200.197:3260,1047 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+tcp: [2] 192.168.100.197:3260,1046 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+tcp: [3] 192.168.100.199:3260,1048 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
+tcp: [4] 192.168.200.199:3260,1049 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25ed039eaa95f59:vs.8 (non-flash)
 ----
 ====
 
 
 
 
-== Paso 5: opcionalmente, excluye un dispositivo de la multivía
+== Paso 4: Opcionalmente, excluya un dispositivo de las rutas múltiples
 
 Si es necesario, puede excluir un dispositivo del acceso múltiple agregando el WWID del dispositivo no deseado a la estrofa de la lista negra del `multipath.conf` archivo.
 
@@ -382,7 +352,7 @@ blacklist {
 
 
 
-== Paso 6: personaliza los parámetros de multivía para los LUNs de ONTAP
+== Paso 5: Personalice los parámetros multivía para las LUN de ONTAP
 
 Si su host está conectado a LUN de otros proveedores y cualquiera de la configuración de parámetros multivía se ha anulado, debe corregirlos agregando estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a LUN de ONTAP. Si no hace esto, es posible que las LUN de ONTAP no funcionen como se espera.
 
@@ -415,7 +385,7 @@ devices {
 ====
 
 
-== Paso 7: revisa los problemas conocidos
+== Paso 6: Revise los problemas conocidos
 
 No hay problemas conocidos.
 
@@ -424,12 +394,5 @@ No hay problemas conocidos.
 == El futuro
 
 * link:hu-luhu-command-reference.html["Obtenga más información sobre el uso de la herramienta Linux Host Utilities"] .
-* Obtenga más información sobre la duplicación de ASM
-+
-El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM de ONTAP utilizan redundancia externa, lo que significa que la protección de datos es proporcionada por la cabina externa y ASM no hace mirroring de los datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["Bases de datos de Oracle en ONTAP"^] para obtener más información.
-
-* Obtenga más información sobre Rocky Linux Virtualization (KVM)
-+
-Rocky Linux puede servir como host KVM. Esto le permite ejecutar varias máquinas virtuales en un solo servidor físico utilizando la tecnología de máquina virtual basada en kernel de Linux (KVM). El host KVM no requiere configuraciones de host explícitas para los LUN de ONTAP .
-
+* Configura los almacenes de datos HPE VME en los LUN de ONTAP y luego configura la máquina virtual. Consulta la documentación de HPE del proveedor para más información.
 
