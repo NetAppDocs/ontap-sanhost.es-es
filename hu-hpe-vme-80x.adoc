@@ -38,7 +38,7 @@ Puedes usar multivía con HPE VME 8.0.x para gestionar LUNs de ONTAP.
 Para garantizar que el acceso multivía esté configurado correctamente para el host, verifique que el `/etc/multipath.conf` archivo esté definido y que los ajustes recomendados de NetApp estén configurados para los LUN de ONTAP.
 
 .Pasos
-. Verifique que el `/etc/multipath.conf` archivo salga. Si el archivo no existe, cree un archivo vacío de cero bytes:
+. Verifica que el archivo `/etc/multipath.conf` existe. Si el archivo no existe, crea un archivo vacío de cero bytes:
 +
 [source, cli]
 ----

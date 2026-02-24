@@ -23,6 +23,11 @@ Las características compatibles con la configuración del host con NVMe over Fa
 | Característica | Versión de host de Oracle Linux | Versión ONTAP 
 
 
+| A partir de Oracle Linux 9.6, nvme admite la política de E/S "queue-depth" y está habilitada como opción predeterminada.  a| 
+9.6 o posterior
+| 9.10.1 o posterior 
+
+
 | Se admite la autenticación segura en banda a través de NVMe/TCP entre un host Oracle Linux y un controlador ONTAP  a| 
 9.4 o posterior
 | 9.12.1 o posterior 
@@ -88,6 +93,9 @@ NOTE: Para obtener detalles sobre las configuraciones admitidas, consulte lalink
 | Si su versión de Oracle Linux es .. | Conozca más sobre.. 
 
 
+| Serie 10 | link:nvme-ol-10x.html["Configurar NVMe para Oracle Linux 10"] 
+
+
 | Serie 9 | link:nvme-ol-9x.html["Configuración de NVMe para Oracle Linux 9.x"] 
 
 
@@ -97,4 +105,4 @@ NOTE: Para obtener detalles sobre las configuraciones admitidas, consulte lalink
 | Serie 7 | link:nvme-ol-7x.html["Configuración de NVMe para Oracle Linux 7.x"] 
 |===
 .Información relacionada
-link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["Obtenga información sobre la gestión de protocolos NVMe"^]
+link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["Obtenga información sobre la gestión de protocolos NVMe"^] link:https://docs.netapp.com/us-en/asa-r2/index.html["Conoce ASA R2"^]

@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu-centos-8x.html 
-keywords: host utilities, centos, linux, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0 netapp, ontap 
-summary: Instale las utilidades de host de Linux en un host CentOS 8.x para administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP . 
+permalink: hu-ol-10x.html 
+keywords: host utilities, oracle, linux, 10, netapp, ontap 
+summary: Instala las utilidades de host Linux en un host Oracle Linux 10 para gestionar las operaciones de los protocolos FCP e iSCSI con los LUN de ONTAP. 
 ---
-= Configure CentOS 8.x para FCP e iSCSI para el almacenamiento ONTAP
+= Configura Oracle Linux 10 para FCP e iSCSI con almacenamiento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,7 @@ summary: Instale las utilidades de host de Linux en un host CentOS 8.x para admi
 
 
 [role="lead"]
-El software Linux Host Utilities proporciona herramientas de administración y diagnóstico para los hosts Linux que están conectados al almacenamiento ONTAP . Cuando instale las utilidades de host de Linux en un host CentOS 8.x, podrá utilizarlas para ayudarle a gestionar las operaciones de los protocolos FCP e iSCSI con LUN de ONTAP .
+El software Linux Host Utilities proporciona herramientas de gestión y diagnóstico para hosts Linux que están conectados al almacenamiento ONTAP. Cuando instalas Linux Host Utilities en un host Oracle Linux 10, puedes usar Host Utilities para ayudarte a gestionar las operaciones de los protocolos FCP e iSCSI con LUNs ONTAP.
 
 
 
@@ -51,7 +51,7 @@ NOTE: La instalación de Linux Host Utilities no cambia ninguna configuración d
 
 == Paso 3: Confirme la configuración multivía del host
 
-Puedes utilizar multipathing con CentOS 8.x para gestionar LUN de ONTAP .
+Puedes usar multivía con Oracle Linux 10 para gestionar los LUN de ONTAP.
 
 Para garantizar que el acceso multivía esté configurado correctamente para el host, verifique que el `/etc/multipath.conf` archivo esté definido y que los ajustes recomendados de NetApp estén configurados para los LUN de ONTAP.
 
@@ -66,12 +66,12 @@ touch /etc/multipath.conf
 +
 [source, cli]
 ----
-chkconfig multipathd on
+systemctl enable multipathd
 ----
 +
 [source, cli]
 ----
-/etc/init.d/multipathd start
+systemctl start multipathd
 ----
 . Cada vez que arranca el host, el archivo de cero bytes vacío `/etc/multipath.conf` carga automáticamente los parámetros multivía de host recomendados por NetApp como configuración predeterminada. No debería ser necesario realizar cambios en `/etc/multipath.conf` el archivo para el host ya que el sistema operativo está compilado con los parámetros multivía que reconocen y gestionan correctamente las LUN de ONTAP.
 +
@@ -166,12 +166,12 @@ Una configuración de ASA optimiza todas las rutas a una LUN determinada para ma
 ----
 multipath -ll
 3600a098038303634722b4d59646c4436 dm-28 NETAPP,LUN C-Mode
-size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
-`-+- policy='service-time 0' prio=50 status=active
-  |- 11:0:7:1    sdfi   130:64   active ready running
-  |- 11:0:9:1    sdiy  8:288     active ready running
-  |- 11:0:10:1  sdml 69:464   active ready running
-  |- 11:0:11:1  sdpt  131:304  active ready running
+size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+  |- 11:0:7:6   sdbz 68:208  active ready running
+  |- 11:0:11:6  sddn 71:80   active ready running
+  |- 11:0:15:6  sdfb 129:208 active ready running
+  |- 12:0:1:6   sdgp 132:80  active ready running
 ----
 =====
 --
@@ -187,8 +187,8 @@ En el siguiente ejemplo, se muestra el resultado de una LUN de ONTAP con dos rut
 [listing]
 ----
 multipath -ll
-3600a098038303634722b4d59646c4436 dm-28 NETAPP,LUN C-Mode
-size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+3600a0980383036347ffb4d59646c4436 dm-28 NETAPP,LUN C-Mode
+size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 |-+- policy='service-time 0' prio=50 status=active
 | |- 16:0:6:35 sdwb  69:624  active ready running
 | |- 16:0:5:35 sdun  66:752  active ready running
@@ -411,8 +411,6 @@ devices {
 
 No hay problemas conocidos.
 
-Para los problemas conocidos del kernel compatible con CentOS Red Hat, consulta el link:hu-rhel-8x.html#step-7-review-the-known-issues["problemas conocidos"] para la serie Red Hat Enterprise Linux (RHEL) 8.x.
-
 
 
 == El futuro
@@ -422,8 +420,8 @@ Para los problemas conocidos del kernel compatible con CentOS Red Hat, consulta 
 +
 El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM de ONTAP utilizan redundancia externa, lo que significa que la protección de datos es proporcionada por la cabina externa y ASM no hace mirroring de los datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["Bases de datos de Oracle en ONTAP"^] para obtener más información.
 
-* Obtenga más información sobre la virtualización de CentOS Linux (KVM)
+* Obtenga más información sobre Oracle Linux KVM y virtualización
 +
-CentOS Linux puede servir como host KVM. Esto le permite ejecutar varias máquinas virtuales en un solo servidor físico utilizando la tecnología de máquina virtual basada en kernel de Linux (KVM). El host KVM no requiere configuraciones de host explícitas para los LUN de ONTAP .
+Oracle Linux puede servir como host KVM. Esto le permite ejecutar varias máquinas virtuales en un solo servidor físico utilizando la tecnología de máquina virtual basada en kernel de Linux (KVM). Puede administrar y dar soporte a varios hosts KVM de Oracle Linux mediante Oracle Linux Virtualization Manager, desarrollado a partir del proyecto de código abierto oVirt. El host KVM no requiere configuraciones de host explícitas para los LUN de ONTAP .
 
 

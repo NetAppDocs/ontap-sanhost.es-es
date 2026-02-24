@@ -144,7 +144,7 @@ Ninguno. Intente ejecutar el `nvme discover` comando de nuevo después de un tie
 
 == Cuándo ponerse en contacto con el soporte técnico
 
-Si continúa teniendo problemas, recopile los siguientes archivos y salidas de comandos y comuníquese con link:mysupport.netapp.com["Soporte de NetApp"^] Para mayor triaje:
+Si sigues teniendo problemas, recopila los siguientes archivos y salidas de comandos y contacta a link:https://mysupport.netapp.com["Soporte de NetApp"^] para una revisión adicional:
 
 [source, cli]
 ----
