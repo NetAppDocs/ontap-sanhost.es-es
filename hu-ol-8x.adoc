@@ -315,10 +315,10 @@ $iscsiadm --mode node -l all
 $iscsiadm --mode node -T <target_name> -p <ip:port> -o update -n node.startup -v automatic
 ----
 +
-Debería ver un resultado similar al siguiente ejemplo:
+Reemplaza `<target_name>` por el nombre del destino al que quieres iniciar sesión automáticamente cuando arranque el host. Reemplaza `<ip:port>` por la dirección IP y el número de puerto del destino. Por ejemplo:
 
 +
-[listing]
+[source, cli]
 ----
 iscsiadm --mode node -T iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 -p 192.168.30.87:3260 -o update -n node.startup -v automatic
 ----
