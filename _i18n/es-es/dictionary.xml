@@ -545,7 +545,6 @@
   <block id="8b6f93f33bce541c7f50f8aff637e2e1" category="sidebar">RHEL</block>
   <block id="1a0d3890b0eb9dc0c7e3f33e1b9f1865" category="sidebar">RHEL NVMeoF</block>
   <block id="796d3a90e43ce105cbf37298c5065f7e" category="sidebar">9.1</block>
-  <block id="cf5f238fca8b6e155078aa41c175743a" category="sidebar">9.0</block>
   <block id="7ceb3cac51dbf44c807f7e83fabc5016" category="sidebar">15 SP1</block>
   <block id="3a824154b16ed7dab899bf000b80eeee" category="sidebar">2022</block>
   <block id="ea6b2efbdd4255a9f1b3bbc6399b58f4" category="sidebar">2019</block>
@@ -2468,4 +2467,9 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="22429905973644b59fef5bc5f1de5cc0" category="doc">Configura Oracle Linux 10.x para FCP e iSCSI con almacenamiento ONTAP</block>
   <block id="c095933cd33553034e8d119262dd097b" category="paragraph">El software Linux Host Utilities proporciona herramientas de gestión y diagnóstico para hosts Linux que están conectados al almacenamiento ONTAP. Cuando instalas Linux Host Utilities en un host Oracle Linux 10.x, puedes usar Host Utilities para ayudarte a gestionar las operaciones de los protocolos FCP e iSCSI con LUNs ONTAP.</block>
   <block id="53b0cb8dd1f208321bcde1fc420505d1" category="paragraph">Puedes usar multivía con Oracle Linux 10.x para gestionar los LUN de ONTAP.</block>
+  <block id="6a2b4410790513f6bead3be5a1c5f033" category="paragraph">8.0 o posterior</block>
+  <block id="de99ebfc9b67fc827d4b885ffe66df51" category="section-title">Paso 3: Opcionalmente, modifica la iopolicy en las reglas udev</block>
+  <block id="6c3cb6f0244406645b054fde3485555c" category="paragraph">A partir de Proxmox VE 9.0, la iopolicy predeterminada para NVMe-oF es<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>. Si quieres cambiar la iopolicy a<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>, que también está disponible como opción configurable, modifica el archivo de reglas udev así:</block>
+  <block id="3261e25ecb6c10cb23753dafcc11d3f3" category="list-text">Modifica la regla para que<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block> se cambie a<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>, como se muestra en el siguiente ejemplo:</block>
+  <block id="306924ca750fad388254a44133cf90dd" category="list-text">Verifica la iopolicy actual de tu subsistema. Reemplaza &lt;subsystem&gt; por el nombre de tu subsistema, por ejemplo, nvme-subsys0.</block>
 </blocks>

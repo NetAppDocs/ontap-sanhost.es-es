@@ -24,17 +24,17 @@ Las características compatibles con la configuración del host con NVMe over Fa
 
 
 | NVMe/TCP es una función empresarial totalmente compatible  a| 
-9.0
+9.0 o posterior
 | 9.10.1 o posterior 
 
 
 | Proporciona detalles de ONTAP para los espacios de nombres NVMe/FC y NVMe/TCP utilizando el nativo `nvme-cli` paquete.  a| 
-8.0
+8.0 o posterior
 | 9.10.1 o posterior 
 
 
 | Se admite el tráfico NVMe y SCSI en el mismo host mediante NVMe multipath para espacios de nombres NVMe-oF y dm-multipath para LUN SCSI  a| 
-8.0
+8.0 o posterior
 | 9.4 o posterior 
 |===
 ONTAP admite las siguientes funciones de host SAN independientemente de la versión de ONTAP que se ejecute en la configuración de su sistema.
@@ -45,17 +45,22 @@ ONTAP admite las siguientes funciones de host SAN independientemente de la versi
 
 
 | El `nvme-cli` El paquete incluye scripts de conexión automática que eliminan la necesidad de scripts de terceros.  a| 
-9.0
+9.0 o posterior
+
+
+
+| La regla nativa udev en el paquete `nvme-cli` proporciona equilibrio de carga de profundidad de cola para multipathing NVMe  a| 
+9.0 o posterior
 
 
 
 | La regla nativa udev en el paquete  `nvme-cli` proporciona equilibrio de carga round-robin para multipathing NVMe  a| 
-9.0
+9.0 o posterior
 
 
 
 | La multirruta nativa de NVMe está habilitada de forma predeterminada  a| 
-8.0
+8.0 o posterior
 
 |===
 

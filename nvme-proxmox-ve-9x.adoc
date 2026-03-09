@@ -44,7 +44,7 @@ Ejemplo de versión del kernel de Proxmox VE 9.x:
 +
 [listing]
 ----
-6.14.8-2-pve
+6.17.2-2-pve
 ----
 . Instale el `nvme-cli` paquete:
 +
@@ -86,7 +86,7 @@ El siguiente ejemplo muestra una `hostnqn` valor:
 +
 [listing]
 ----
-nqn.2014-08.org.nvmexpress:uuid:39333550-3333-4753-4844-32594d4a524c
+nqn.2014-08.org.nvmexpress:uuid:39333550-3333-4753-4844-32594d4a5247
 ----
 . En el sistema ONTAP , verifique que `hostnqn` La cadena coincide con la `hostnqn` cadena para el subsistema correspondiente en la matriz ONTAP :
 +
@@ -191,7 +191,7 @@ El siguiente ejemplo muestra una versión del controlador:
 +
 [listing]
 ----
-0:14.4.0.7
+0:14.4.0.10
 ----
 
 
@@ -407,7 +407,66 @@ La configuración para NVMe/TCP `ctrl_loss_tmo timeout` se establece automática
 ====
 
 
-== Paso 3: Opcionalmente, habilite 1 MB de E/S para NVMe/FC
+== Paso 3: Opcionalmente, modifica la iopolicy en las reglas udev
+
+A partir de Proxmox VE 9.0, la iopolicy predeterminada para NVMe-oF es `queue-depth`. Si quieres cambiar la iopolicy a `round-robin`, que también está disponible como opción configurable, modifica el archivo de reglas udev así:
+
+.Pasos
+. Abra el archivo de reglas de udev en un editor de texto con privilegios de root:
++
+[source, cli]
+----
+/usr/lib/udev/rules.d/71-nvmf-netapp.rules
+----
++
+Debe ver la siguiente salida:
+
++
+[listing]
+----
+vi /usr/lib/udev/rules.d/71-nvmf-netapp.rules
+----
+. Busque la línea que establece iopolicy para el controlador NetApp ONTAP , como se muestra en la siguiente regla de ejemplo:
++
+[listing]
+----
+ACTION=="add", SUBSYSTEM=="nvme-subsystem", ATTR{subsystype}=="nvm", ATTR{model}=="NetApp ONTAP Controller", ATTR{iopolicy}="queue-depth"
+----
+. Modifica la regla para que `queue-depth` se cambie a `round-robin`, como se muestra en el siguiente ejemplo:
++
+[listing]
+----
+ACTION=="add", SUBSYSTEM=="nvme-subsystem", ATTR{subsystype}=="nvm", ATTR{model}=="NetApp ONTAP Controller", ATTR{iopolicy}="round-robin"
+----
+. Recargue las reglas udev y aplique los cambios:
++
+[source, cli]
+----
+udevadm control --reload
+udevadm trigger --subsystem-match=nvme-subsystem
+----
+. Verifica la iopolicy actual de tu subsistema. Reemplaza <subsystem> por el nombre de tu subsistema, por ejemplo, nvme-subsys0.
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/<subsystem>/iopolicy
+----
++
+Debe ver la siguiente salida:
+
++
+[listing]
+----
+round-robin
+----
+
+
+
+NOTE: La nueva iopolicy se aplica automáticamente a los dispositivos NetApp ONTAP Controller coincidentes. No es necesario reiniciar.
+
+
+
+== Paso 4: Opcionalmente, habilite 1 MB de E/S para NVMe/FC
 
 ONTAP informa un tamaño máximo de transferencia de datos (MDTS) de 8 en los datos del controlador de identificación.  Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1 MB.  Para emitir solicitudes de E/S de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar el `lpfc` valor de la `lpfc_sg_seg_cnt` parámetro a 256 desde el valor predeterminado de 64.
 
@@ -440,7 +499,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
-== Paso 4: Verificar los servicios de arranque NVMe
+== Paso 5: Verificar los servicios de arranque NVMe
 
 El `nvmefc-boot-connections.service` y `nvmf-autoconnect.service` Servicios de arranque incluidos en NVMe/FC `nvme-cli` Los paquetes se habilitan automáticamente cuando se inicia el sistema.
 
@@ -461,15 +520,12 @@ systemctl status nvmf-autoconnect.service
 ----
 ○ nvmf-autoconnect.service - Connect NVMe-oF subsystems automatically during boot
      Loaded: loaded (/usr/lib/systemd/system/nvmf-autoconnect.service; enabled; preset: enabled)
-     Active: inactive (dead) since Thu 2025-10-16 18:00:39 IST; 6 days ago
- Invocation: e146e0b2c339432aad6e0555a528872c
-    Process: 1787 ExecStart=/usr/sbin/nvme connect-all --context=autoconnect (code=exited, status=0/SUCCESS)
-   Main PID: 1787 (code=exited, status=0/SUCCESS)
-   Mem peak: 2.4M
-        CPU: 12ms
-Oct 16 18:00:39 HPE-DL365-14-176 systemd[1]: Starting nvmf-autoconnect.service - Connect NVMe-oF subsystems automatically during boot...
-Oct 16 18:00:39 HPE-DL365-14-176 systemd[1]: nvmf-autoconnect.service: Deactivated successfully.
-Oct 16 18:00:39 HPE-DL365-14-176 systemd[1]: Finished nvmf-autoconnect.service - Connect NVMe-oF subsystems automatically during boot.
+     Active: inactive (dead) since Fri 2026-02-20 22:00:40 IST; 2 days ago
+ Invocation: 48e3574eef064ff98928f840a62d787a
+    Process: 3507 ExecStart=/usr/sbin/nvme connect-all --context=autoconnect (code=exited, status=0/SUCCESS)
+   Main PID: 3507 (code=exited, status=0/SUCCESS)
+   Mem peak: 6.9M
+        CPU: 46ms
 ----
 ====
 . Compruebe que `nvmefc-boot-connections.service` está activado:
@@ -486,22 +542,22 @@ systemctl status nvmefc-boot-connections.service
 ----
 nvmefc-boot-connections.service - Auto-connect to subsystems on FC-NVME devices found during boot
      Loaded: loaded (/usr/lib/systemd/system/nvmefc-boot-connections.service; enabled; preset: enabled)
-     Active: inactive (dead) since Thu 2025-10-16 18:00:35 IST; 6 days ago
- Invocation: acf73ac1ef7a402198d6ecc4d075fab0
-    Process: 1173 ExecStart=/bin/sh -c echo add > /sys/class/fc/fc_udev_device/nvme_discovery (code=exited, status=0/SUCCESS)
-   Main PID: 1173 (code=exited, status=0/SUCCESS)
-   Mem peak: 2.1M
-        CPU: 11ms
+     Active: inactive (dead) since Fri 2026-02-20 22:00:11 IST; 2 days ago
+ Invocation: 6f6d180fdbcd4fa6ad861c50ba6a15e6
+    Process: 1193 ExecStart=/bin/sh -c echo add > /sys/class/fc/fc_udev_device/nvme_discovery (code=exited, status=0/SUCCESS)
+   Main PID: 1193 (code=exited, status=0/SUCCESS)
+   Mem peak: 2.2M
+        CPU: 10ms
 
-Oct 16 18:00:35 HPE-DL365-14-176 systemd[1]: nvmefc-boot-connections.service: Deactivated successfully.
-Oct 16 18:00:35 HPE-DL365-14-176 systemd[1]: Finished nvmefc-boot-connections.service - Auto-connect to subsystems on FC-NVME devices found during boot.
+Feb 20 22:00:11 HPE-DL365-14-176 systemd[1]: nvmefc-boot-connections.service: Deactivated successfully.
+Feb 20 22:00:11 HPE-DL365-14-176 systemd[1]: Finished nvmefc-boot-connections.service - Auto-connect to subsystems on FC-NVME devices found during boot.
 ----
 ====
 
 
 
 
-== Paso 5: Verificar la configuración de rutas múltiples
+== Paso 6: Verificar la configuración de rutas múltiples
 
 Verifique que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean correctos para la configuración de NVMe-oF.
 
@@ -573,15 +629,35 @@ Node          Generic     SN                   Model                    Namespac
 ====
 . Compruebe que el estado de la controladora de cada ruta sea activo y que tenga el estado de ANA correcto:
 +
+[source, cli]
+----
+nvme list-subsys /dev/<controller_ID>
+----
++
+
+NOTE: A partir de ONTAP 9.16.1, NVMe/FC y NVMe/TCP informan todas las rutas optimizadas en los sistemas ASA r2.
+
++
 [role="tabbed-block"]
 ====
 .NVMe/FC
 --
-[source, cli]
+Los siguientes ejemplos de salida muestran un espacio de nombres alojado en una controladora ONTAP de dos nodos para un sistema AFF, FAS, ASA o ASA r2 con NVMe/FC.
+
+.Mostrar salida de ejemplo de AFF, FAS y ASA
+[%collapsible]
+=====
+[listing, subs="+quotes"]
 ----
-nvme list-subsys /dev/nvme3n9
+ nvme-subsys114 - NQN=nqn.1992-08.com.netapp:sn.9e30b9760a4911f08c87d039eab67a95:subsystem.sles_161_27
+                 hostnqn=nqn.2014-08.org.nvmexpress:uuid:f6517cae-3133-11e8-bbff-7ed30aef123f iopolicy=round-robin\
++- nvme114 *fc* traddr=nn-0x234ed039ea359e4a:pn-0x2360d039ea359e4a,host_traddr=nn-0x20000090fae0ec88:pn-0x10000090fae0ec88 *live optimized*
++- nvme115 *fc* traddr=nn-0x234ed039ea359e4a:pn-0x2362d039ea359e4a,host_traddr=nn-0x20000090fae0ec88:pn-0x10000090fae0ec88 *live non-optimized*
++- nvme116 *fc* traddr=nn-0x234ed039ea359e4a:pn-0x2361d039ea359e4a,host_traddr=nn-0x20000090fae0ec89:pn-0x10000090fae0ec89 *live optimized*
++- nvme117 *fc* traddr=nn-0x234ed039ea359e4a:pn-0x2363d039ea359e4a,host_traddr=nn-0x20000090fae0ec89:pn-0x10000090fae0ec89 *live non-optimized*
 ----
-.Muestra el ejemplo
+=====
+.Mostrar un ejemplo de salida de ASA r2
 [%collapsible]
 =====
 [listing, subs="+quotes"]
@@ -589,20 +665,18 @@ nvme list-subsys /dev/nvme3n9
 nvme-subsys3 - NQN=nqn.1992-08.com.netapp:sn.94929fdb84eb11f0b624d039eac809ba:subsystem.sub_176
                hostnqn=nqn.2014-08.org.nvmexpress:uuid:39333550-3333-4753-4844-32594d4a524c
 \
- +- nvme1 *fc* traddr=nn-0x200dd039eac79573:pn-0x2010d039eac79573,host_traddr=nn-0x20005ced8c531949:pn-0x10005ced8c531949 *live optimized*
- +- nvme3 *fc* traddr=nn-0x200dd039eac79573:pn-0x200ed039eac79573,host_traddr=nn-0x20005ced8c531948:pn-0x10005ced8c531948 *live optimized*
-+- nvme5 *fc* traddr=nn-0x200dd039eac79573:pn-0x200fd039eac79573,host_traddr=nn-0x20005ced8c531949:pn-0x10005ced8c531949 *live non-optimized*
- +- nvme7 *fc* traddr=nn-0x200dd039eac79573:pn-0x2011d039eac79573,host_traddr=nn-0x20005ced8c531948:pn-0x10005ced8c531948 *live non-optimized*
++- nvme1 *fc* traddr=nn-0x200dd039eac79573:pn-0x2010d039eac79573,host_traddr=nn-0x20005ced8c531949:pn-0x10005ced8c531949 *live optimized*
++- nvme3 *fc* traddr=nn-0x200dd039eac79573:pn-0x200ed039eac79573,host_traddr=nn-0x20005ced8c531948:pn-0x10005ced8c531948 *live optimized*
++- nvme5 *fc* traddr=nn-0x200dd039eac79573:pn-0x200fd039eac79573,host_traddr=nn-0x20005ced8c531949:pn-0x10005ced8c531949 *live optimized*
++- nvme7 *fc* traddr=nn-0x200dd039eac79573:pn-0x2011d039eac79573,host_traddr=nn-0x20005ced8c531948:pn-0x10005ced8c531948 *live optimized*
 ----
 =====
 --
 .NVMe/TCP
 --
-[source, cli]
-----
-nvme list-subsys /dev/nvme2n3
-----
-.Muestra el ejemplo
+Las siguientes salidas de ejemplo muestran un espacio de nombres alojado en una controladora ONTAP de dos nodos para un sistema AFF, FAS, ASA o ASA r2 con NVMe/TCP.
+
+.Mostrar salida de ejemplo de AFF, FAS y ASA
 [%collapsible]
 =====
 [listing, subs="+quotes"]
@@ -610,10 +684,24 @@ nvme list-subsys /dev/nvme2n3
 nvme-subsys2 - NQN=nqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:subsystem.sub_176
                hostnqn=nqn.2014-08.org.nvmexpress:uuid:39333550-3333-4753-4844-32594d4a524c
 \
- +- nvme2 *tcp* traddr=192.168.166.50,trsvcid=4420,host_traddr=192.168.166.73,src_addr=192.168.166.73 *live optimized*
- +- nvme4 *tcp* traddr=192.168.165.51,trsvcid=4420,host_traddr=192.168.165.73,src_addr=192.168.165.73 *live optimized*
++- nvme2 *tcp* traddr=192.168.166.50,trsvcid=4420,host_traddr=192.168.166.73,src_addr=192.168.166.73 *live optimized*
++- nvme4 *tcp* traddr=192.168.165.51,trsvcid=4420,host_traddr=192.168.165.73,src_addr=192.168.165.73 *live optimized*
 +- nvme6 *tcp* traddr=192.168.166.51,trsvcid=4420,host_traddr=192.168.166.73,src_addr=192.168.166.73 *live non-optimized*
- +- nvme8 *tcp* traddr=192.168.165.50,trsvcid=4420,host_traddr=192.168.165.73,src_addr=192.168.165.73 *live non-optimized*
++- nvme8 *tcp* traddr=192.168.165.50,trsvcid=4420,host_traddr=192.168.165.73,src_addr=192.168.165.73 *live non-optimized*
+----
+=====
+.Mostrar un ejemplo de salida de ASA r2
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+nvme-subsys9 - NQN=nqn.1992-08.com.netapp:sn.9927e165694211f0b4f4d039eab31e9d:subsystem.nvme10
+               hostnqn=nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0035-5910-804b-b7c04f444d33
+\
+ +- nvme105 *tcp* traddr=192.168.39.10,trsvcid=4420,host_traddr=192.168.39.20,src_addr=192.168.39.20 *live optimized*
+ +- nvme153 *tcp* traddr=192.168.39.11,trsvcid=4420,host_traddr=192.168.39.20,src_addr=192.168.39.20 *live optimized*
+ +- nvme57 *tcp* traddr=192.168.38.11,trsvcid=4420,host_traddr=192.168.38.20,src_addr=192.168.38.20 *live optimized*
+ +- nvme9 *tcp* traddr=192.168.38.10,trsvcid=4420,host_traddr=192.168.38.20,src_addr=192.168.38.20 *live optimized*
 ----
 =====
 --
@@ -676,6 +764,6 @@ nvme netapp ontapdevices -o json
 
 
 
-== Paso 6: Revise los problemas conocidos
+== Paso 7: revisa los problemas conocidos
 
 No hay problemas conocidos.
