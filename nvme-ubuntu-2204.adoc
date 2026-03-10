@@ -26,6 +26,7 @@ Para obtener más detalles sobre las configuraciones compatibles, consulta la li
 
 Para configurar su host para NVMe-oF, debe instalar los paquetes de software de host y NVMe, habilitar rutas múltiples y verificar la configuración NQN de su host.
 
+.Pasos
 . Instale Ubuntu 22,04 en el servidor. Una vez completada la instalación, verifique que está ejecutando el kernel de Ubuntu 22,04 especificado:
 +
 [source, cli]
@@ -103,6 +104,7 @@ Configura NVMe/FC para adaptadores Broadcom/Emulex o Marvell/Qlogic, o configura
 --
 Configuración de NVMe/FC para un adaptador Broadcom/Emulex.
 
+.Pasos
 . Compruebe que está utilizando el modelo de adaptador admitido:
 +
 .. Mostrar los nombres de los modelos:
@@ -257,6 +259,7 @@ El controlador de bandeja de entrada nativa qla2xxx incluido en el kernel Ubuntu
 
 Configure NVMe/FC para un adaptador Marvell/QLogic.
 
+.Pasos
 . Compruebe que está ejecutando las versiones de firmware y controlador del adaptador compatibles:
 +
 [source, cli]
@@ -290,6 +293,7 @@ NVMe/TCP no tiene funcionalidad de conexión automática. En su lugar, puedes de
 
 Si una ruta se cae y no se restablece dentro del período de tiempo de espera predeterminado de 10 minutos, NVMe/TCP no puede reconectarse automáticamente. Para evitar un tiempo de espera, establece el período de reintento para eventos de conmutación por error en al menos 30 minutos.
 
+.Pasos
 . Verifica que el puerto iniciador puede obtener los datos de la página de registro de descubrimiento a través de los LIF NVMe/TCP compatibles:
 +
 [source, cli]

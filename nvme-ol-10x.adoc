@@ -101,7 +101,7 @@ El siguiente ejemplo muestra un  `hostnqn` versión:
 +
 [listing]
 ----
-nqn.2014-08.org.nvmexpress:uuid:8397cecc-30f0-11e8-850f-7ed30aef0cc7
+nqn.2014-08.org.nvmexpress:uuid:8397XXXX-30f0-XXXX-850f-7edXXXXf0cc7
 ----
 . En el sistema ONTAP , verifique que `hostnqn` La cadena coincide con la `hostnqn` cadena para el subsistema correspondiente en el sistema de almacenamiento ONTAP :
 +
@@ -119,9 +119,9 @@ Vserver Subsystem Priority  Host NQN
 ------- --------- --------
 -------------------------------------------------------------------vs_coexistence_emulex
 nvme1
-regular   nqn.2014-08.org.nvmexpress:uuid:8397cecc-30f0-11e8-850f-7ed30aef0cc7
+regular   nqn.2014-08.org.nvmexpress:uuid:8397XXXX-30f0-XXXX-850f-7edXXXXf0cc7
 nvme2
-regular    nqn.2014-08.org.nvmexpress:uuid:8397cecc-30f0-11e8-850f-7ed30aef0cc7
+regular    nqn.2014-08.org.nvmexpress:uuid:8397XXXX-30f0-XXXX-850f-7edXXXXf0cc7
 
 ----
 ====
@@ -725,9 +725,9 @@ NOTE: A partir de ONTAP 9.16.1, NVMe/FC y NVMe/TCP informan todas las rutas opti
 ====
 .NVMe/FC
 --
-Los siguientes ejemplos de salida muestran un espacio de nombres alojado en una controladora ONTAP de dos nodos para un sistema AFF, FAS, ASA o ASA r2 con NVMe/FC.
+Los siguientes ejemplos de salida muestran un espacio de nombres alojado en un controlador ONTAP de dos nodos para un sistema AFF, FAS, ASA o ASA r2 con NVMe/FC.
 
-.Mostrar salida de ejemplo de AFF, FAS y ASA
+.Mostrar ejemplo de salida para AFF, FAS o ASA
 [%collapsible]
 =====
 [listing, subs="+quotes"]
@@ -740,7 +740,7 @@ Los siguientes ejemplos de salida muestran un espacio de nombres alojado en una 
 +- nvme117 *fc* traddr=nn-0x234ed039ea359e4a:pn-0x2363d039ea359e4a,host_traddr=nn-0x20000090fae0ec89:pn-0x10000090fae0ec89 *live non-optimized*
 ----
 =====
-.Mostrar un ejemplo de salida de ASA r2
+.Mostrar ejemplo de salida para ASA r2
 [%collapsible]
 =====
 [listing, subs="+quotes"]
@@ -757,9 +757,9 @@ nvme-subsys96 - NQN=nqn.1992-08.om.netapp:sn.b351b2b6777b11f0b3c2d039ea5cfc91:su
 --
 .NVMe/TCP
 --
-Las siguientes salidas de ejemplo muestran un espacio de nombres alojado en una controladora ONTAP de dos nodos para un sistema AFF, FAS, ASA o ASA r2 con NVMe/TCP.
+Los siguientes ejemplos de salida muestran un namespace alojado en un controlador ONTAP de dos nodos para un sistema AFF, FAS, ASA o ASA r2 con NVMe/TCP.
 
-.Mostrar salida de ejemplo de AFF, FAS y ASA
+.Mostrar ejemplo de salida para AFF, FAS o ASA
 [%collapsible]
 =====
 [listing, subs="+quotes"]
@@ -773,7 +773,7 @@ nvme-subsys9 - NQN=nqn.1992-08.com.netapp:sn.9927e165694211f0b4f4d039eab31e9d:su
  +- nvme9 *tcp* traddr=192.168.38.10,trsvcid=4420,host_traddr=192.168.38.20,src_addr=192.168.38.20 *live optimized*
 ----
 =====
-.Mostrar un ejemplo de salida de ASA r2
+.Mostrar ejemplo de salida para ASA r2
 [%collapsible]
 =====
 [listing, subs="+quotes"]
@@ -884,7 +884,7 @@ En el siguiente ejemplo, se genera una clave dhchap aleatoria con HMAC estableci
 +
 [listing]
 ----
-# nvme gen-dhchap-key -m 3 -n nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-c4c04f425633
+# nvme gen-dhchap-key -m 3 -n nqn.2014-08.org.nvmexpress:uuid:4c4cXXXX-0035-XXXX-804b-b7cXXXX44d33
 DHHC-1:03:xhAfbAD5IVLZDxiVbmFEOA5JZ3F/ERqTXhHzZQJKgkYkTbPI9dhRyVtr4dBD+SGiAJO3by4FbnVtov1Lmk+86+nNc6k=:
 ----
 . En la controladora ONTAP, añada el host y especifique ambas claves dhchap:
@@ -959,8 +959,8 @@ Utilice el  `-o` Opción para generar el archivo JSON. Consulte las páginas del
 ----
 [
   {
-    "hostnqn":"nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-c4c04f425633",
-    "hostid":"4c4c4544-0056-5410-8048-c4c04f425633",
+    "hostnqn":"nqn.2014-08.org.nvmexpress:uuid:4c4cXXXX-0035-XXXX-804b-b7cXXXX44d33",
+    "hostid":"4c4cXXXX-0035-XXXX-804b-b7cXXXX44d33",
     "dhchap_key":"DHHC-1:01:nFg06gV0FNpXqoiLOF0L+swULQpZU/PjU9v/McDeJHjTZFlF:",
     "subsystems":[
       {
