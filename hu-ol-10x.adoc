@@ -223,7 +223,7 @@ Debería ver un resultado similar al siguiente ejemplo:
 +
 [listing]
 ----
-iscsi-initiator-utils-6.2.1.11-0.git4b3e853.el9.x86_64
+iscsi-initiator-utils-6.2.1.11-0.git4b3e853.0.1.el10.x86_64
 ----
 . Verifica el nombre de nodo del iniciador iSCSI, que se encuentra en el archivo  `/etc/iscsi/initiatorname.iscsi`:
 +
@@ -315,7 +315,7 @@ $iscsiadm --mode node -T <target_name> -p <ip:port> -o update -n node.startup -v
 Reemplaza `<target_name>` por el nombre del destino al que quieres iniciar sesión automáticamente cuando arranque el host. Reemplaza `<ip:port>` por la dirección IP y el número de puerto del destino. Por ejemplo:
 
 +
-[source, cli]
+[listing]
 ----
 iscsiadm --mode node -T iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 -p 192.168.30.87:3260 -o update -n node.startup -v automatic
 ----

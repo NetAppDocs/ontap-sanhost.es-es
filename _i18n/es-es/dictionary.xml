@@ -2417,7 +2417,6 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="026e7910f8597707ea78ced9009402b0" category="paragraph">El host Oracle Linux 10.x establece la iopolicy predeterminada para NVMe-oF en<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>. Puedes cambiar la iopolicy a<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block> modificando el archivo rules de udev.</block>
   <block id="93653ae68b7f62e4baef589277623491" category="paragraph">Los siguientes ejemplos de salida muestran un espacio de nombres alojado en una controladora ONTAP de dos nodos para un sistema AFF, FAS, ASA o ASA r2 con NVMe/FC.</block>
   <block id="6f412196079d9e58544081f4700ce25f" category="paragraph">Las siguientes salidas de ejemplo muestran un espacio de nombres alojado en una controladora ONTAP de dos nodos para un sistema AFF, FAS, ASA o ASA r2 con NVMe/TCP.</block>
-  <block id="74ef0cdc12fc9f4e8b83d1a035e4f577" category="paragraph">Se admite la autenticación segura en banda mediante NVMe/TCP entre un host Oracle Linux 10.x y un controlador ONTAP.</block>
   <block id="8ae4d61c82b1c9b58e4acbd1373806b2" category="cell">A partir de Oracle Linux 9.6, nvme admite la política de E/S "queue-depth" y está habilitada como opción predeterminada.</block>
   <block id="d3c49c5822283d264df05a1fd8b0870e" category="inline-link-macro">Configurar NVMe para Oracle Linux 10</block>
   <block id="7d3306fa564ca0cc7f3c887e0359e138" category="cell"><block ref="7d3306fa564ca0cc7f3c887e0359e138" category="inline-link-macro-rx"></block></block>
@@ -2477,4 +2476,5 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="508e93b6f899f26c01374d86f06060a5" category="list-text">Exporta el TLS PSK del llavero del kernel. Esto asegura que la clave persista durante un reinicio del host:</block>
   <block id="1b569e78f049cfc0d5612ae09602f392" category="paragraph">Los siguientes ejemplos de salida muestran un espacio de nombres alojado en un controlador ONTAP de dos nodos para AFF, FAS, ASA o ASA r2 con NVMe/FC.</block>
   <block id="6d984a3ecdb3a900adb251dd0b78d708" category="paragraph">Los siguientes ejemplos de salida muestran un espacio de nombres alojado en un controlador ONTAP de dos nodos para sistemas AFF, FAS, ASA o ASA r2 con NVMe/TCP.</block>
+  <block id="8e9aa976f7a8a387e926c6bbb8588831" category="paragraph">Se admite la autenticación segura en banda mediante NVMe/TCP entre un host Oracle Linux 10.x y un controlador ONTAP.</block>
 </blocks>
