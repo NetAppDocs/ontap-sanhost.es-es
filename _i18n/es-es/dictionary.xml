@@ -2477,4 +2477,5 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="1b569e78f049cfc0d5612ae09602f392" category="paragraph">Los siguientes ejemplos de salida muestran un espacio de nombres alojado en un controlador ONTAP de dos nodos para AFF, FAS, ASA o ASA r2 con NVMe/FC.</block>
   <block id="6d984a3ecdb3a900adb251dd0b78d708" category="paragraph">Los siguientes ejemplos de salida muestran un espacio de nombres alojado en un controlador ONTAP de dos nodos para sistemas AFF, FAS, ASA o ASA r2 con NVMe/TCP.</block>
   <block id="8e9aa976f7a8a387e926c6bbb8588831" category="paragraph">Se admite la autenticación segura en banda mediante NVMe/TCP entre un host Oracle Linux 10.x y un controlador ONTAP.</block>
+  <block id="e7f67da4e95cce9c0568e2b8ad82a925" category="paragraph">Rocky Linux es una distribución compatible con RHEL y no tiene un paquete Linux Host Utilities independiente. Usa el paquete Linux Host Utilities para la versión de RHEL correspondiente.</block>
 </blocks>
