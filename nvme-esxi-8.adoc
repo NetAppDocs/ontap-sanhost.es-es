@@ -311,11 +311,11 @@ La configuración de host de NVMe-oF para ESXi 8.x con ONTAP tiene los siguiente
 | ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1420654["1420654"^] | Nodo de ONTAP no operativo cuando se utiliza el protocolo NVMe/FC con la versión 9.9.1 de ONTAP | ONTAP 9.9.1 ha introducido compatibilidad con el comando «abort» de NVMe. Cuando ONTAP recibe el comando «abort» para anular un comando NVMe fusionado que está esperando su comando de partner, se produce una interrupción en el nodo de ONTAP. El problema solo se observa con los hosts que usan comandos fusionados de NVMe (por ejemplo, ESX) y transporte de Fibre Channel (FC). 
+| link:https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1420654["1420654"^] | Nodo ONTAP no operativo cuando se utiliza el protocolo NVMe/FC con ONTAP versión 9.9.1 | ONTAP 9.9.1 ha introducido compatibilidad con el comando "abort" de NVMe. Cuando ONTAP recibe el comando "abort" para abortar un comando fusionado de NVMe que está esperando su comando asociado, se produce una interrupción del nodo ONTAP. El problema solo se observa con hosts que usan comandos fusionados de NVMe (por ejemplo, ESX) y transporte Fibre Channel (FC). 
 
 
-| 1543660 | Se produce un error de I/O cuando las máquinas virtuales de Linux que utilizan adaptadores vNVMe encuentran una ventana larga Todas las rutas inactivas (APD)  a| 
-Las máquinas virtuales de Linux que ejecutan vSphere 8.x y versiones posteriores, y que utilizan adaptadores NVMe virtuales (vNVME) encuentran un error de I/O porque la operación de reintento de vNVMe está deshabilitada de forma predeterminada. Para evitar una interrupción en las VM de Linux que ejecutan kernels antiguos durante una parada de todas las rutas (APD) o una carga de I/O pesada, VMware ha introducido un «VSCSIDisableNvmeRetry» ajustable para deshabilitar la operación de reintento de vNVMe.
+| link:https://jira.ngage.netapp.com/browse/CONTAPEXT-1126["CONTAPEXT-1126"^] | Se produce un error de I/O cuando las máquinas virtuales de Linux que utilizan adaptadores vNVMe encuentran una ventana larga Todas las rutas inactivas (APD)  a| 
+Las máquinas virtuales Linux que ejecutan vSphere 8.x y versiones posteriores y que utilizan adaptadores virtuales NVMe (vNVME) se encuentran con un error de E/S porque la operación de reintento de vNVMe está desactivada de forma predeterminada. Para evitar una interrupción en las máquinas virtuales Linux que ejecutan kernels más antiguos durante una caída de todas las rutas (APD) o una carga de E/S pesada, VMware ha introducido un ajuste "VSCSIDisableNvmeRetry" para desactivar la operación de reintento de vNVMe.
 
 |===
 .Información relacionada

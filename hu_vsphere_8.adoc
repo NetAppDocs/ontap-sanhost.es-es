@@ -348,7 +348,7 @@ La versión de VMware vSphere 8.x con ONTAP tiene los siguientes problemas conoc
 | ID de error de NetApp | Título | Descripción 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1543660["1543660"^] | Se produce un error de I/O cuando las máquinas virtuales de Linux que utilizan adaptadores vNVMe encuentran una ventana larga Todas las rutas inactivas (APD)  a| 
+| link:https://jira.ngage.netapp.com/browse/CONTAPEXT-1126["CONTAPEXT-1126"^] | Se produce un error de I/O cuando las máquinas virtuales de Linux que utilizan adaptadores vNVMe encuentran una ventana larga Todas las rutas inactivas (APD)  a| 
 Las máquinas virtuales de Linux que ejecutan vSphere 8.x y versiones posteriores, y que utilizan adaptadores NVMe virtuales (vNVME) encuentran un error de I/O porque la operación de reintento de vNVMe está deshabilitada de forma predeterminada. Para evitar una interrupción en las VM de Linux que ejecutan kernels antiguos durante una parada de todas las rutas (APD) o una carga de I/O pesada, VMware ha introducido un «VSCSIDisableNvmeRetry» ajustable para deshabilitar la operación de reintento de vNVMe.
 
 |===
