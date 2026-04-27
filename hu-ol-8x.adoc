@@ -56,10 +56,14 @@ Puede utilizar rutas múltiples con Oracle Linux 8.x para administrar LUN de ONT
 
 NOTE: Puedes usar el link:hu-rhel-8x.html#rhel-rhck["Configuración recomendada para Red Hat Enterprise Linux (RHEL) 8.x"] Configurar el kernel compatible con Red Hat para Oracle Linux 8.x.
 
-Para garantizar que el acceso multivía esté configurado correctamente para el host, verifique que el `/etc/multipath.conf` archivo esté definido y que los ajustes recomendados de NetApp estén configurados para los LUN de ONTAP.
+[role="tabbed-block"]
+====
+.Host Oracle Linux
+--
+Para asegurarte de que la multivía está configurada correctamente para tu host, verifica que `/etc/multipath.conf` está definido y que los ajustes recomendados por NetApp están configurados para tus LUNs de ONTAP.
 
 .Pasos
-. Verifique que el `/etc/multipath.conf` archivo salga. Si el archivo no existe, cree un archivo vacío de cero bytes:
+. Verifica que el archivo `/etc/multipath.conf` existe. Si el archivo no existe, crea un archivo vacío de cero bytes:
 +
 [source, cli]
 ----
@@ -78,12 +82,12 @@ systemctl start multipathd
 ----
 . Cada vez que arranca el host, el archivo de cero bytes vacío `/etc/multipath.conf` carga automáticamente los parámetros multivía de host recomendados por NetApp como configuración predeterminada. No debería ser necesario realizar cambios en `/etc/multipath.conf` el archivo para el host ya que el sistema operativo está compilado con los parámetros multivía que reconocen y gestionan correctamente las LUN de ONTAP.
 +
-En la siguiente tabla se muestra la configuración del parámetro multivía compilado nativo del sistema operativo Linux para los LUN de ONTAP.
+En la siguiente tabla se muestra la configuración de los parámetros multivía compilados por el sistema operativo Linux nativo para los LUN de ONTAP.
 
 +
 .Muestra la configuración de los parámetros
-[%collapsible]
-====
+[#multipath-parameter-settings%collapsible]
+=====
 [cols="2"]
 |===
 | Parámetro | Ajuste 
@@ -142,7 +146,7 @@ En la siguiente tabla se muestra la configuración del parámetro multivía comp
 
 | proveedor | NETAPP 
 |===
-====
+=====
 . Compruebe la configuración de parámetros y el estado de la ruta de sus LUN de ONTAP:
 +
 [source, cli]
@@ -156,12 +160,12 @@ Los parámetros multiruta predeterminados admiten configuraciones ASA, AFF y FAS
 En el siguiente ejemplo, se muestran los ajustes de parámetros y el estado de la ruta correctos para las LUN de ONTAP en una configuración de ASA, AFF o FAS.
 
 +
-[role="tabbed-block"]
-====
-.Configuración de ASA
---
+*Configuración de ASA*
+
++
 Una configuración de ASA optimiza todas las rutas a una LUN determinada para mantenerlas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
 
++
 .Muestra el ejemplo
 [%collapsible]
 =====
@@ -177,13 +181,16 @@ size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   |- 12:0:1:6   sdgp 132:80  active ready running
 ----
 =====
---
-.Configuración de AFF o FAS
---
++
+*Configuración AFF o FAS*
+
++
 Una configuración de AFF o FAS debe tener dos grupos de rutas con prioridades superiores e inferiores. La controladora donde se encuentra el agregado ofrece rutas activas/optimizadas de mayor prioridad. Las rutas de prioridad más baja están activas pero no optimizadas debido a que se sirven con una controladora diferente. Las rutas no optimizadas solo se usan cuando las rutas optimizadas no están disponibles.
 
++
 En el siguiente ejemplo, se muestra el resultado de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizada:
 
++
 .Muestra el ejemplo
 [%collapsible]
 =====
@@ -200,10 +207,59 @@ size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   |- 15:0:1:35 sdbx  68:176  active ready running
 ----
 =====
+
+
+--
+.OLVM - ONTAP HA
+--
+En Oracle Linux Virtualization Manager (OLVM), el demonio VDSM controla los parámetros predeterminados de multivía en el hipervisor. No edites `/etc/multipath.conf` directamente. En su lugar, anula los valores predeterminados usando un archivo drop-in de multivía.
+
+Para configuraciones ONTAP de alta disponibilidad (HA), NetApp recomienda el siguiente archivo drop-in para anular `dev_loss_tmo` y `no_path_retry`. Todos los demás parámetros de multivía deben coincidir con la configuración de la tabla de configuración de parámetros de Oracle Linux Host.
+
+.Pasos
+. Crea el archivo drop-in:
++
+[source, cli]
+----
+cat <<'EOF' > /etc/multipath/conf.d/ontap-ha-mpath-netapp.conf
+# Finite multipath retry window aligned with sanlock io_timeout
+# default sanlock:io_timeout=10s, polling_interval=5s => no_path_retry = (8*10)/5 = 16
+
+devices {
+  device {
+    vendor "NETAPP"
+    product "LUN"
+    no_path_retry 16
+    dev_loss_tmo "infinity"
+  }
+}
+EOF
+----
+. Recarga el demonio de multivía:
++
+[source, cli]
+----
+systemctl reload multipathd
+----
+. Verifica la configuración de multivía actualizada:
++
+[source, cli]
+----
+multipathd -k"show config"
+----
+
+
+--
+.OLVM - sincronización activa de ONTAP SnapMirror
+--
+En Oracle Linux Virtualization Manager (OLVM), el demonio VDSM controla los parámetros predeterminados de multivía en el hipervisor. No edites `/etc/multipath.conf` directamente. En su lugar, anula los valores predeterminados usando un archivo drop-in de multivía.
+
+Cuando los hosts OLVM utilizan ONTAP SnapMirror active sync, debes ajustar los parámetros de tiempo de espera de sanlock y multivía para asegurar el comportamiento correcto del host y de la máquina virtual durante eventos de conmutación por error de almacenamiento. Los valores de tiempo de espera predeterminados de OLVM pueden causar conmutaciones por error no intencionadas de máquinas virtuales de alta disponibilidad durante conmutaciones por error no planificadas del sitio, porque la ventana de renovación del contrato de arrendamiento puede expirar antes de que se complete la recuperación de multivía.
+
+Sigue los pasos de configuración en el artículo de base de conocimientos de NetApp https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/Oracle_Linux_Virtualization_Manager_-_Sanlock_Settings_for_ONTAP_SnapMirror_Active_Sync["Oracle Linux Virtualization Manager - Configuración de Sanlock para ONTAP SnapMirror Active Sync"] para actualizar los valores de tiempo de espera de sanlock y multivía, así la ventana de renovación del lease sigue siendo suficiente para que la recuperación de multivía se complete durante un evento de conmutación por error de almacenamiento.
+
 --
 ====
-
-
 
 
 == Paso 4: confirma la configuración iSCSI de tu host
