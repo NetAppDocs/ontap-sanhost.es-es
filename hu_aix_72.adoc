@@ -131,11 +131,11 @@ De forma predeterminada, el sistema operativo AIX aplica un tiempo de espera de 
 --
 .Sincronización activa de SnapMirror
 --
-A partir de ONTAP 9.11.1, la sincronización activa de SnapMirror es compatible con un host AIX.  El clúster principal en una configuración AIX es el clúster "activo".
+SnapMirror active sync es compatible con un host AIX. El comportamiento de soporte difiere según la versión de ONTAP:
 
-En una configuración AIX, las conmutaciones por error son disruptivas.  Con cada conmutación por error, es necesario volver a realizar un escaneo en el host para que se reanuden las operaciones de E/S.
+** A partir de ONTAP 9.19.1, SnapMirror active sync es compatible con la configuración Active/Active, lo que permite realizar operaciones de SnapMirror active sync sin interrupciones. Consulta el artículo de base de conocimientos link:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/SnapMirror_active_sync_support_for_AIX%3A_behavior_by_ONTAP_release_and_migration_guidance["SnapMirror compatibilidad de active sync con AIX: comportamiento por versión de ONTAP y guía de migración"^].
+** Para ONTAP 9.11.1 a 9.18.1, SnapMirror active sync es compatible en la configuración Active/Standby. Consulta el artículo de base de conocimientos link:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/How_to_configure_AIX_Host_for_SnapMirror_active_sync_in_ONTAP["Cómo configurar un host AIX para SnapMirror active sync en ONTAP 9.11.1 a 9.18.1"^].
 
-Consulte el artículo de la base de conocimientoslink:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/How_to_configure_AIX_Host_for_SnapMirror_active_sync_in_ONTAP["Cómo configurar un host AIX para la sincronización activa de SnapMirror"^] .
 
 --
 ====
