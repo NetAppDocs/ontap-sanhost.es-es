@@ -1199,7 +1199,6 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="411779633a68ad8ff4bb5f0b84de0e3d" category="doc">Paso 1: Instale HP-UX Host Utilities</block>
   <block id="7a5a6ee53a3c56e370cff4e4cb600d3a" category="paragraph">NetApp recomienda la instalación de las utilidades del host Linux para admitir la gestión de las LUN de ONTAP y ayudar al soporte técnico con la recopilación de datos de configuración.</block>
   <block id="5d17e83279fd5189b40ec31e6e0efc6c" category="inline-link-macro">Instale HP-UX Host Utilities 6,0</block>
-  <block id="7b3d6a6184bc8044fb4eaa2361a0c137" category="paragraph"><block ref="a1822c628e463c7a9fa61c1a4713b4ef" category="inline-link-macro-rx"></block>.</block>
   <block id="cd30444b7075100f9dce64caf41ba2b7" category="doc">Paso 2: Instale las utilidades del host de Linux</block>
   <block id="a9764a4b476a4ae40670f2b10ab9b4aa" category="admonition">La instalación de Linux Host Utilities no cambia ninguna configuración de tiempo de espera del host en el host Linux.</block>
   <block id="0f8e25d5af08d115d6410aa42fa8c1e8" category="doc">Paso 5: Personalice los parámetros multivía para las LUN de ONTAP</block>
@@ -2505,4 +2504,5 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="510d8f08b1bcd3d37f5f38838ba87607" category="list-text">A partir de ONTAP 9.19.1, SnapMirror active sync es compatible con la configuración Active/Active, lo que permite realizar operaciones de SnapMirror active sync sin interrupciones. Consulta el artículo de base de conocimientos <block ref="689132335b86d0a731403daf22970080" category="inline-link-macro-rx"></block>.</block>
   <block id="58d09565b9d76aa8df134a3c88f349ef" category="inline-link-macro">Cómo configurar un host AIX para SnapMirror active sync en ONTAP 9.11.1 a 9.18.1</block>
   <block id="edef79d6486b82062ad7b8f2b46174e2" category="list-text">Para ONTAP 9.11.1 a 9.18.1, SnapMirror active sync es compatible en la configuración Active/Standby. Consulta el artículo de base de conocimientos <block ref="170dab56a652357d4fe24ca37b0b9eea" category="inline-link-macro-rx"></block>.</block>
+  <block id="d260773137ad0fe3e74f84c49c4bb99c" category="paragraph"><block ref="d91927ac11d01a60b7823e550f2dd7fb" category="inline-link-macro-rx"></block>.</block>
 </blocks>
