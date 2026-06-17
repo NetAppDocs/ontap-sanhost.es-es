@@ -30,6 +30,9 @@ Puede configurar su host para utilizar el arranque SAN para simplificar la imple
 --
 El arranque SAN es el proceso de configurar un disco conectado a SAN (un LUN) como dispositivo de arranque para un host AIX/PowerVM.  Puede configurar un LUN de arranque SAN para que funcione en un entorno AIX Multipath I/O (MPIO) que utilice el protocolo FC y ejecute AIX Host Utilities con el protocolo FC o FCoE.  El método que utiliza para crear un LUN de arranque SAN e instalar una nueva imagen del sistema operativo en un entorno AIX MPIO depende del protocolo que esté utilizando.
 
+
+NOTE: AIX requiere que solo haya una ruta visible para un disco de arranque SAN hasta que se habilite MPIO. La instalación o migración de un disco de arranque AIX suele requerir restringir temporalmente la división en zonas FC del host para que incluya un único iniciador FC y un único destino FC. Una vez instaladas las utilidades del host, incluido el paquete PCM, puedes reiniciar el sistema operativo para habilitar MPIO por completo. En ese momento, añade los iniciadores FC y los destinos FC adicionales a la zona. Luego, ejecuta `cfgmgr -v` y `bosboot -a` para actualizar la configuración de arranque e incluir todas las rutas disponibles.
+
 .Pasos
 . Utilice ellink:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que su sistema operativo AIX, su protocolo y la versión de ONTAP admitan el arranque SAN.
 . Siga las mejores prácticas para configurar un arranque SAN en la documentación del proveedor.
