@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: hu-rhel-9x.html 
-keywords: host utilities, red hat, rhel, linux, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0, netapp, ontap, rhel 
+keywords: host utilities, red hat, rhel, linux, 9.8, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0, netapp, ontap 
 summary: Instale las utilidades de host de Linux en un host RHEL 9.x para administrar las operaciones de protocolo FCP e iSCSI con LUN de ONTAP . 
 ---
 = Configurar RHEL 9.x para FCP e iSCSI con almacenamiento ONTAP
@@ -266,18 +266,18 @@ $systemctl status iscsid
 ----
 ● iscsid.service - Open-iSCSI
      Loaded: loaded (/usr/lib/systemd/system/iscsid.service; enabled; preset: disabled)
-     Active: active (running) since Tue 2025-12-02 11:36:21 EST; 2 weeks 1 day ago
+     Active: active (running) Tue 2026-05-12 06:29:55 EDT; 2 weeks 1 day ago
 TriggeredBy: ● iscsid.socket
        Docs: man:iscsid(8)
              man:iscsiuio(8)
              man:iscsiadm(8)
-   Main PID: 2263 (iscsid)
+   Main PID: 2021 (iscsid)
      Status: "Ready to process requests"
       Tasks: 1 (limit: 816061)
      Memory: 18.5M
         CPU: 14.480s
      CGroup: /system.slice/iscsid.service
-             └─2263 /usr/sbin/iscsid -f -d2
+             └─2021 /usr/sbin/iscsid -f -d2
 ----
 ====
 . Descubre los objetivos iSCSI:
@@ -409,47 +409,8 @@ devices {
 
 == Paso 7: revisa los problemas conocidos
 
-RHEL 9.x con almacenamiento ONTAP tiene los siguientes problemas conocidos.
+No hay problemas conocidos.
 
-[role="tabbed-block"]
-====
-.9,3
---
-[cols="20, 20, 50,20"]
-|===
-| ID de error de NetApp | Título | Descripción | ID DE JIRA 
-
-
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554"^] | La interfaz de línea de comandos de utilidades de host Linux de NetApp requiere dependencias adicionales del paquete de biblioteca para admitir la detección del adaptador de bus de host (HBA) Emulex | En RHEL 9.x, se produce un error en la interfaz de línea de comandos de utilidades del host SAN de Linux de NetApp `sanlun fcp show adapter -v` porque no se pueden encontrar las dependencias del paquete de la biblioteca para admitir la detección del adaptador de bus de host (HBA) Emulex. | No aplicable 
-
-
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1593771["1593771"^] | Un host SAN de Red Hat Enterprise Linux 9,3 QLogic detecta una pérdida parcial de varias rutas durante las operaciones de movilidad del almacenamiento | Durante la operación de toma de control de la controladora de almacenamiento de ONTAP, se espera que la mitad de las multirutas dejen de funcionar o cambien a un modo de conmutación por error y, a continuación, se recuperen al número de rutas completas durante el flujo de trabajo de devolución. Sin embargo, con un host QLogic Red Hat Enterprise Linux (RHEL) 9,3, solo se recuperan las rutas múltiples parciales tras una operación de devolución al nodo de respaldo del almacenamiento. | RHEL 17811 
-|===
---
-.9,2
---
-[cols="20,40,40"]
-|===
-| ID de error de NetApp | Título | Descripción 
-
-
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554"^] | La CLI de NetApp Linux Host Utilities requiere dependencias de paquetes de biblioteca adicionales para admitir la detección del adaptador de bus de host de Emulex | En RHEL 9,2, se produce un error en la interfaz de línea de comandos de utilidades del host SAN de NetApp Linux `sanlun fcp show adapter -v` debido a que no se pueden encontrar las dependencias del paquete de la biblioteca para admitir la detección de HBA. 
-
-
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1537359["1537359"^] | Un host arrancado SAN de Red Hat Linux 9,2 con HBA Emulex se encuentra con tareas paralizadas que conducen a la interrupción del kernel | Durante una operación de devolución de la conmutación al nodo de respaldo del almacenamiento, un host SAN Red Hat Linux 9,2 arrancó con un adaptador de bus de host (HBA) Emulex encuentra tareas paralizadas que conducen a la interrupción del kernel. La interrupción del kernel hace que el sistema operativo se reinicie y si `kdump` está configurado, genera el `vmcore` en la `/var/crash/` directorio. El problema se está clasificando con el `lpfc` controlador, pero no se puede reproducir de forma consistente. 
-|===
---
-.9.1
---
-[cols="20,40,40"]
-|===
-| ID de error de NetApp | Título | Descripción 
-
-
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554"^] | La CLI de NetApp Linux Host Utilities requiere dependencias de paquetes de biblioteca adicionales para admitir la detección del adaptador de bus de host de Emulex | En RHEL 9,1, se produce un error en la interfaz de línea de comandos de utilidades del host SAN de NetApp Linux `sanlun fcp show adapter -v` debido a que no se pueden encontrar las dependencias del paquete de la biblioteca para admitir la detección de HBA. 
-|===
---
-====
 
 
 == El futuro
