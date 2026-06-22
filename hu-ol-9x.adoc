@@ -465,15 +465,8 @@ devices {
 
 == Paso 7: revisa los problemas conocidos
 
-Oracle Linux 9.3, 9.2, 9.1 y 9.0 con almacenamiento ONTAP presenta el siguiente problema conocido:
+No hay problemas conocidos.
 
-[cols="20,40,40"]
-|===
-| ID de error de NetApp | Título | Descripción 
-
-
-| https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1508554["1508554"^] | La utilidad de SAN LUN con HBA de Emulex necesita enlaces simbólicos de paquetes de la biblioteca | Al ejecutar el comando de la CLI de Linux Host Utilities, "sanlun fcp show adapter -v", en un host SAN, el comando falla con un mensaje de error que indica que no se encuentran las dependencias de biblioteca necesarias para la detección de un adaptador de bus de host (HBA): ---- [root@hostname ~]# sanlun fcp show adapter -v No se pudo encontrar la biblioteca /usr/lib64/libHBAAPI.so. Asegúrese de que el paquete que instala la biblioteca esté instalado y cargado. ---- 
-|===
 
 
 == El futuro
