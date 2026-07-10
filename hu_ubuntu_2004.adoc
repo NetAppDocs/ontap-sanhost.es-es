@@ -27,6 +27,7 @@ No es necesario configurar manualmente los ajustes de la máquina virtual basada
 ====
 
 
+[[step-1-optionally-enable-san-booting]]
 == Paso 1: Opcionalmente, habilite el arranque SAN
 
 Puede configurar su host para que utilice el arranque SAN y simplificar la puesta en marcha y mejorar la escalabilidad.
@@ -45,6 +46,7 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 
 
+[[step-2-confirm-the-multipath-configuration-for-your-host]]
 == Paso 2: Confirme la configuración de múltiples rutas para su host
 
 Puede utilizar rutas múltiples con Ubuntu 20.04 para administrar LUN de ONTAP .
@@ -77,6 +79,7 @@ En la siguiente tabla se muestra la configuración del parámetro multivía comp
 .Muestra la configuración de los parámetros
 [%collapsible]
 ====
+[[multipath-parameter-settings]]
 [cols="2"]
 |===
 | Parámetro | Ajuste 
@@ -199,6 +202,7 @@ size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
 
 
 
+[[step-3-confirm-the-iscsi-configuration-for-your-host]]
 == Paso 3: confirma la configuración iSCSI de tu host
 
 Asegúrate de que iSCSI está configurado correctamente para tu host.
@@ -336,6 +340,7 @@ tcp: [4] 192.168.166.70:3260,1042 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624
 
 
 
+[[step-4-optionally-exclude-a-device-from-multipathing]]
 == Paso 4: Opcionalmente, excluya un dispositivo de las rutas múltiples
 
 Si es necesario, puede excluir un dispositivo del acceso múltiple agregando el WWID del dispositivo no deseado a la estrofa de la lista negra del `multipath.conf` archivo.
@@ -368,6 +373,7 @@ blacklist {
 
 
 
+[[step-5-customize-multipath-parameters-for-ontap-luns]]
 == Paso 5: Personalice los parámetros multivía para las LUN de ONTAP
 
 Si su host está conectado a LUN de otros proveedores y cualquiera de la configuración de parámetros multivía se ha anulado, debe corregirlos agregando estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a LUN de ONTAP. Si no hace esto, es posible que las LUN de ONTAP no funcionen como se espera.
@@ -401,12 +407,14 @@ devices {
 ====
 
 
+[[step-6-review-the-known-issues]]
 == Paso 6: Revise los problemas conocidos
 
 No hay problemas conocidos.
 
 
 
+[[whats-next]]
 == El futuro
 
 * Obtenga más información sobre la virtualización de Ubuntu Linux (KVM)

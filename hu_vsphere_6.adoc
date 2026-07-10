@@ -20,6 +20,7 @@ Es posible usar las opciones de configuración del host de SAN de ONTAP para las
 
 
 
+[[hypervisor-san-booting]]
 == Arranque SAN de hipervisores
 
 .Antes de empezar
@@ -41,6 +42,7 @@ Para obtener información acerca de cómo activar el BIOS HBA, consulte la docum
 
 
 
+[[multipathing]]
 == Accesos múltiples
 
 ESXi proporciona un módulo multivía ampliable llamado complemento nativo multivía (NMP) que gestiona los subplugins, los complementos de tipo de cabina de almacenamiento (SATP) y los complementos de selección de rutas (PSP). Estas reglas SATP están disponibles de forma predeterminada en ESXi.
@@ -108,6 +110,7 @@ En el ejemplo anterior, se ha asignado la LUN del almacenamiento de NetApp con 4
 
 
 
+[[non-asa-configurations]]
 === Configuraciones que no son ASA
 
 En el caso de configuraciones que no sean ASA, debe haber dos grupos de rutas con distintas prioridades. Las rutas con prioridades más altas son Active-Optimized. Esto significa que reciben servicio de la controladora donde se encuentra el agregado. Las rutas con prioridades más bajas están activas pero no optimizadas porque se ofrecen desde una controladora diferente. Las rutas no optimizadas sólo se utilizan cuando las rutas optimizadas no están disponibles.
@@ -159,6 +162,7 @@ En el ejemplo anterior, se ha asignado la LUN del almacenamiento de NetApp con 4
 
 
 
+[[vvol]]
 == VVol
 
 Virtual Volumes (vVols) es un tipo de objeto de VMware que corresponde a un disco de máquina virtual (VM), así como a sus snapshots y clones rápidos.
@@ -186,10 +190,12 @@ Para obtener información detallada sobre el aprovisionamiento y la gestión de 
 
 
 
+[[recommended-settings]]
 == Configuración recomendada
 
 
 
+[[ats-locking]]
 === Bloqueo ATS
 
 El bloqueo ATS es *obligatorio* para almacenamiento compatible con VAAI y VMFS5 actualizado, y es necesario para obtener una interoperabilidad adecuada y un rendimiento de E/S de almacenamiento compartido VMFS óptimo con LUN de ONTAP. Consulte la documentación de VMware para obtener más información sobre cómo habilitar el bloqueo ATS.
@@ -212,6 +218,7 @@ NOTE: Habilite la configuración Space-alloc para que funcione LA FUNCIÓN UNMAP
 
 
 
+[[guest-os-timeouts]]
 === Tiempos de espera del sistema operativo invitado
 
 Puede configurar manualmente las máquinas virtuales con los ajustes del sistema operativo invitado recomendados. Tras actualizar los ajustes, deberá reiniciar el invitado para que las actualizaciones surtan efecto.
@@ -233,6 +240,7 @@ Puede configurar manualmente las máquinas virtuales con los ajustes del sistema
 |===
 
 
+[[validate-the-vsphere-tunable]]
 === Valide el ajuste de vSphere
 
 Utilice el siguiente comando para comprobar el `HardwareAcceleratedLocking` ajuste:
@@ -254,6 +262,7 @@ Utilice el siguiente comando para comprobar el `HardwareAcceleratedLocking` ajus
 ----
 
 
+[[validate-the-disk-iops-setting]]
 === Valide la configuración de IOPS del disco
 
 Utilice el siguiente comando para verificar la configuración de IOPS:
@@ -274,6 +283,7 @@ naa.600a098038304731783f506670553355
 ----
 
 
+[[validate-the-qfullsamplesize]]
 === Valide la configuración QFullSampleSize
 
 Utilice el siguiente comando para verificar QFullSampleSize:
@@ -295,6 +305,7 @@ Utilice el siguiente comando para verificar QFullSampleSize:
 ----
 
 
+[[known-issues]]
 == Problemas conocidos
 
 La versión de VMware vSphere 6,5 y 6,7 con ONTAP tiene los siguientes problemas conocidos:

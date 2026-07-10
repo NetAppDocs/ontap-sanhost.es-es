@@ -25,6 +25,7 @@ NOTE: Las instrucciones de solución de problemas no se aplican a los hosts AIX,
 
 
 
+[[enable-verbose-logging]]
 == Active el registro detallado
 
 Si tiene algún problema con la configuración, el registro detallado puede proporcionar información esencial para la solución de problemas.
@@ -87,6 +88,7 @@ options qla2xxx ql2xnvmeenable=1 ql2xextended_error_logging=0x1e400000
 ====
 
 
+[[common-nvme-cli-errors-and-workarounds]]
 == Errores comunes de "nvme-cli" y soluciones alternativas
 
 Los errores mostrados por `nvme-cli` durante `nvme discover`, `nvme connect`, o. `nvme connect-all` las operaciones y las soluciones alternativas se muestran en la siguiente tabla:
@@ -142,6 +144,7 @@ Ninguno. Intente ejecutar el `nvme discover` comando de nuevo después de un tie
 |===
 
 
+[[when-to-contact-technical-support]]
 == Cuándo ponerse en contacto con el soporte técnico
 
 Si sigues teniendo problemas, recopila los siguientes archivos y salidas de comandos y contacta a link:https://mysupport.netapp.com["Soporte de NetApp"^] para una revisión adicional:

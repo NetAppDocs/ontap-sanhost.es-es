@@ -22,6 +22,7 @@ Si quiere más información sobre las configuraciones compatibles, consulte la l
 
 
 
+[[step-1-install-ubuntu-and-nvme-software-and-verify-your-configuration]]
 == Paso 1: instala Ubuntu y el software NVMe y verifica tu configuración
 
 Para configurar su host para NVMe-oF, debe instalar los paquetes de software de host y NVMe, habilitar rutas múltiples y verificar la configuración NQN de su host.
@@ -94,6 +95,7 @@ NOTE: Si las cadenas `hostnqn` no coinciden, usa el comando `vserver modify` par
 
 
 
+[[step-2-configure-nvmefc-and-nvmetcp]]
 == Paso 2: Configurar NVMe/FC y NVMe/TCP
 
 Configura NVMe/FC para adaptadores Broadcom/Emulex o Marvell/Qlogic, o configura NVMe/TCP usando descubrimiento y operaciones de conexión manuales.
@@ -440,6 +442,7 @@ NOTE: A partir de Ubuntu 24,04, la configuración predeterminada de tiempo de es
 ====
 
 
+[[step-3-optionally-enable-1mb-io-for-nvmefc]]
 == Paso 3: Opcionalmente, habilite 1 MB de E/S para NVMe/FC
 
 ONTAP informa un tamaño máximo de transferencia de datos (MDTS) de 8 en los datos del controlador de identificación.  Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1 MB.  Para emitir solicitudes de E/S de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar el `lpfc` valor de la `lpfc_sg_seg_cnt` parámetro a 256 desde el valor predeterminado de 64.
@@ -473,6 +476,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
+[[step-4-verify-multipathing-configuration]]
 == Paso 4: verifica la configuración de multivía
 
 Verifique que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean correctos para la configuración de NVMe-oF.

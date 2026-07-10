@@ -30,6 +30,7 @@ En la siguiente tabla se muestra la configuración del parámetro multivía comp
 .Muestra la configuración de los parámetros
 [%collapsible]
 ====
+[[multipath-parameter-settings]]
 [cols="2"]
 |===
 | Parámetro | Ajuste 

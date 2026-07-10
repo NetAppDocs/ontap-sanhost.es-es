@@ -20,6 +20,7 @@ Utilice la referencia de comandos de muestra de HP-UX Host Utilities 6.0 para un
 
 
 
+[[list-all-host-initiators-mapped-to-host]]
 == Enumere todos los iniciadores de hosts asignados al host
 
 Recupere una lista de todos los iniciadores de host asignados a un host.
@@ -70,6 +71,7 @@ OS device name:    /dev/fclp3
 ====
 
 
+[[list-all-luns-mapped-to-host]]
 == Enumere todas las LUN asignadas al host
 
 Recupere una lista de todos los LUN asignados a un host.
@@ -105,6 +107,7 @@ up       secondary  /dev/dsk/c44t6d7     fclp1   hpux_6                         
 ====
 
 
+[[list-all-luns-mapped-to-host-from-a-given-svm]]
 == Enumere todas las LUN asignadas al host desde una SVM determinada
 
 Recupere una lista de todos los LUN asignados a un host desde un SVM específico.
@@ -139,6 +142,7 @@ up       secondary  /dev/dsk/c44t6d7     fclp1   hpux_6                         
 ====
 
 
+[[list-all-attributes-of-a-given-lun-mapped-to-host]]
 == Enumere todos los atributos de una LUN asignada al host
 
 Recupere una lista de todos los atributos de un LUN específico asignado a un host.
@@ -174,6 +178,7 @@ up       secondary  /dev/dsk/c44t6d1     fclp1   hpux_6                         
 ====
 
 
+[[list-ontap-lun-attributes-by-host-device-filename]]
 == Muestra los atributos de los LUN de ONTAP por nombre de archivo del dispositivo host
 
 Recupere una lista de atributos LUN de ONTAP por un nombre de archivo de dispositivo host especificado.
@@ -207,6 +212,7 @@ vs_hp_cluster        /vol/chathpux_217_vol_en_1_14/hp_en_217_lun /dev/rdisk/disk
 ====
 
 
+[[list-all-svm-target-lif-wwpns-attached-to-host]]
 == Enumere todos los WWPN de LIF de destino de SVM asociados al host
 
 Recupere una lista de todos los WWPN LIF de destino de SVM conectados a un host.

@@ -4,6 +4,7 @@
 
 
 
+[[step-4-confirm-the-multipath-configuration-for-your-host]]
 == Paso 4: Confirme la configuración de múltiples rutas para su host
 
 Instale el software Microsoft Multipath I/O (MPIO) y habilite el multipath si su host Windows tiene más de una ruta al sistema de almacenamiento.

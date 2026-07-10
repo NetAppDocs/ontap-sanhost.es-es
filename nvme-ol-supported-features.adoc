@@ -86,6 +86,7 @@ NOTE: Para obtener detalles sobre las configuraciones admitidas, consulte lalink
 
 
 
+[[whats-next]]
 == ¿Qué sigue?
 
 [cols="50,50"]

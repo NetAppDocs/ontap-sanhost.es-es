@@ -30,6 +30,7 @@ NVMe-oF con Oracle Linux 8.x tiene las siguientes limitaciones conocidas:
 
 
 
+[[step-1-install-oracle-linux-and-nvme-software-and-verify-your-configuration]]
 == Paso 1: Instale el software Oracle Linux y NVMe y verifique su configuración
 
 Utilice el siguiente procedimiento para validar las versiones mínimas compatibles del software Oracle Linux 8.x.
@@ -138,6 +139,7 @@ systemctl restart multipathd
 
 
 
+[[step-2-configure-nvmefc-and-nvmetcp]]
 == Paso 2: Configurar NVMe/FC y NVMe/TCP
 
 Configure NVMe/FC con adaptadores Broadcom/Emulex o Marvell/QLogic, o configure NVMe/TCP mediante operaciones de descubrimiento y conexión manuales.
@@ -451,6 +453,7 @@ NetApp recomienda configurar el `ctrl-loss-tmo option` a `-1` para que el inicia
 ====
 
 
+[[step-3-optionally-enable-1mb-io-for-nvmefc]]
 == Paso 3: Opcionalmente, habilite 1 MB de E/S para NVMe/FC
 
 ONTAP informa un tamaño máximo de transferencia de datos (MDTS) de 8 en los datos del controlador de identificación.  Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1 MB.  Para emitir solicitudes de E/S de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar el `lpfc` valor de la `lpfc_sg_seg_cnt` parámetro a 256 desde el valor predeterminado de 64.
@@ -484,6 +487,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
+[[step-4-verify-the-multipathing-configuration]]
 == Paso 4: Verificar la configuración de rutas múltiples
 
 Verifique que el estado de multivía de NVMe en kernel, el estado de ANA y los espacios de nombres de ONTAP sean correctos para la configuración de NVMe-oF.
@@ -670,6 +674,7 @@ nvme netapp ontapdevices -o json
 
 
 
+[[step-5-optionally-enable-1mb-io-size]]
 == Paso 5: Opcionalmente, habilite un tamaño de E/S de 1 MB
 
 ONTAP informa un tamaño máximo de transferencia de datos (MDTS) de 8 en los datos del controlador de identificación.  Esto significa que el tamaño máximo de solicitud de E/S puede ser de hasta 1 MB.  Para emitir solicitudes de E/S de tamaño 1 MB para un host Broadcom NVMe/FC, debe aumentar el `lpfc` valor de la `lpfc_sg_seg_cnt` parámetro a 256 desde el valor predeterminado de 64.
@@ -703,6 +708,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
+[[step-6-review-the-known-issues]]
 == Paso 6: Revise los problemas conocidos
 
 Estos son los problemas conocidos:

@@ -53,6 +53,7 @@ Para Linux Host Utilities 7.1, la utilidad "sanlun" no es compatible con Citrix 
 ====
 
 
+[[whats-next]]
 == El futuro
 
 link:hu-luhu-command-reference.html["Obtenga más información sobre el uso de la herramienta Linux Host Utilities"] .

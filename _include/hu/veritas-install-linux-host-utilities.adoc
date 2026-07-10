@@ -4,6 +4,7 @@
 
 
 
+[[step-2-install-the-linux-host-utilities]]
 == Paso 2: Instale las utilidades del host de Linux
 
 NetApp recomienda encarecidamente link:hu-luhu-release-notes.html["Instalación de las utilidades de host de Linux"] para respaldar la administración de LUN de ONTAP y ayudar al soporte técnico con la recopilación de datos de configuración.

@@ -4,6 +4,7 @@
 
 
 
+[[whats-next]]
 == El futuro
 
 * Configuración de controlador recomendada con el kernel de Linux

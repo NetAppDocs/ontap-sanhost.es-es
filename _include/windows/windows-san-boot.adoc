@@ -4,6 +4,7 @@
 
 
 
+[[step-1-optionally-enable-san-booting]]
 == Paso 1: Opcionalmente, habilite el arranque SAN
 
 Puede arrancar el sistema operativo Windows utilizando un arranque local o un arranque SAN.  NetApp recomienda utilizar un arranque SAN para simplificar la implementación y mejorar la escalabilidad.

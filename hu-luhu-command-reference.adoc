@@ -20,6 +20,7 @@ Puede utilizar la referencia de comandos de muestra de Linux Host Utilities para
 
 
 
+[[list-all-host-initiators-mapped-to-host]]
 == Enumere todos los iniciadores de hosts asignados al host
 
 Puede recuperar una lista de todos los iniciadores de host asignados a un host.
@@ -70,6 +71,7 @@ OS device name:    /sys/class/scsi_host/host16
 ====
 
 
+[[list-all-luns-mapped-to-host]]
 == Enumere todas las LUN asignadas al host
 
 Puede recuperar una lista de todas las LUN asignadas a un host.
@@ -110,6 +112,7 @@ active      up        secondary  sdan   16:0:6:0     lif_28      66:112
 ====
 
 
+[[list-all-luns-mapped-to-host-from-a-given-svm]]
 == Enumere todas las LUN asignadas al host desde una SVM determinada
 
 Puede recuperar una lista de todas las LUN asignadas a un host de una máquina virtual de almacenamiento específica (SVM).
@@ -150,6 +153,7 @@ active      up        secondary  sdfl    16:0:6:0     lif_16g_4       130:112
 ====
 
 
+[[list-all-attributes-of-a-given-lun-mapped-to-host]]
 == Enumere todos los atributos de una LUN asignada al host
 
 Puede recuperar una lista de todos los atributos de una LUN especificada asignada a un host.
@@ -190,6 +194,7 @@ active      up        secondary  sdfl    16:0:6:0     lif_16g_4         130:112
 ====
 
 
+[[list-the-ontap-svm-identity-from-which-a-given-lun-is-mapped-to-host]]
 == Enumere la identidad de la SVM de la ONTAP a partir de la que se asigna una LUN determinada al host
 
 Puede recuperar una lista de identidad de ONTAP SVM de la que se asigne un LUN concreto a un hist.
@@ -221,6 +226,7 @@ vs_sanboot                    /vol/sanboot_169/lun           /dev/sdfm       hos
 ====
 
 
+[[list-ontap-lun-attributes-by-host-device-filename]]
 == Muestra los atributos de los LUN de ONTAP por nombre de archivo del dispositivo host
 
 Puede recuperar una lista de atributos de LUN de ONTAP por nombre de archivo de dispositivo host.
@@ -243,6 +249,7 @@ vs_sanboot                 /vol/sanboot_169/lun    /dev/sdce     host15     FCP 
 ====
 
 
+[[list-all-svm-target-lif-wwpns-attached-to-host]]
 == Enumere todos los WWPN de LIF de destino de SVM asociados al host
 
 Puede recuperar una lista de todos los WWPN de LIF de destino de SVM que están conectados a un host.
@@ -267,6 +274,7 @@ vs_169_16gEmu                 202cd039ea1308e5   /vol/VOL_8g_169_2_5/lun        
 ====
 
 
+[[list-ontap-luns-seen-on-host-by-a-given-svm-target-lif-wwpn]]
 == Enumere las LUN de ONTAP que se ven en el host de un determinado WWPN de LIF de destino de SVM
 
 Puede recuperar una lista de LUN de ONTAP detectados en un host por un WWPN de LIF de destino de SVM especificado.

@@ -20,6 +20,7 @@ Es posible configurar NVMe over Fabrics (NVMe-oF) en hosts del iniciador que eje
 
 
 
+[[supportability]]
 == Compatibilidad
 
 * A partir de ONTAP 9.7, se admite NVMe over Fibre Channel (NVMe/FC) en las versiones VMware vSphere.
@@ -29,6 +30,7 @@ Es posible configurar NVMe over Fabrics (NVMe-oF) en hosts del iniciador que eje
 
 
 
+[[features]]
 == Funciones
 
 * El host iniciador ESXi puede ejecutar tráfico NVMe/FC y FCP a través de los mismos puertos de adaptador. Consulte la link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obtener una lista de los adaptadores y controladoras de FC compatibles. Consulte link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^]la para obtener la lista actual de configuraciones y versiones compatibles.
@@ -38,6 +40,7 @@ Es posible configurar NVMe over Fabrics (NVMe-oF) en hosts del iniciador que eje
 
 
 
+[[known-limitations]]
 == Limitaciones conocidas
 
 No se admiten las siguientes configuraciones:
@@ -48,6 +51,7 @@ No se admiten las siguientes configuraciones:
 
 
 
+[[enable-nvmefc]]
 == Habilite NVMe/FC
 
 . Compruebe la cadena del host ESXi NQN y verifique que coincide con la cadena de host NQN para el subsistema correspondiente en la cabina de ONTAP:
@@ -66,6 +70,7 @@ Host NQN: nqn.2014-08.com.vmware:nvme:nvme-esx
 
 
 
+[[configure-broadcomemulex]]
 === Configure Broadcom/Emulex
 
 . Compruebe si la configuración es compatible con el controlador/firmware necesario consultando link:https://mysupport.netapp.com/matrix/["Herramienta de matriz de interoperabilidad"^].
@@ -95,6 +100,7 @@ vmhba65   lpfc     link-up     fc.200000109b954570:100000109b954570             
 ----
 
 
+[[configure-marvellqlogic]]
 === Configuración de Marvell/QLogic
 
 .Pasos
@@ -129,6 +135,7 @@ vmhba65   qlnativefc  link-up     fc.20000024ff1817af:21000024ff1817af          
 
 
 
+[[validate-nvmefc]]
 == Valide NVMe/FC
 
 . Compruebe que el adaptador NVMe/FC aparezca en el host ESXi:
@@ -207,12 +214,14 @@ fc.200034800d6d7268:210034800d6d7268-fc.201700a098dfe3d1:201900a098dfe3d1-uuid.5
 
 
 
+[[configure-nvmetcp]]
 == Configure NVMe/TCP
 
 A partir del 7.0U3c, se cargarán de forma predeterminada los módulos NVMe/TCP necesarios. Para configurar la red y el adaptador NVMe/TCP, consulte la documentación de VMware vSphere.
 
 
 
+[[validate-nvmetcp]]
 == Valide NVMe/TCP
 
 .Pasos
@@ -269,6 +278,7 @@ tcp.vmnic3:34:80:Od:30:ca:el-tcp.unknown-uuid.400bf333abf74ab8b96dc18ffadc3f99
 
 
 
+[[known-issues]]
 == Problemas conocidos
 
 La configuración de host de NVMe-oF para ESXi 7.x con ONTAP tiene los siguientes problemas conocidos:

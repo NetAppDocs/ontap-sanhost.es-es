@@ -20,6 +20,7 @@ Las utilidades de host de Windows son un conjunto de programas de software con d
 
 
 
+[[step-1-optionally-enable-san-booting]]
 == Paso 1: Opcionalmente, habilite el arranque SAN
 
 Puede arrancar el sistema operativo Windows utilizando un arranque local o un arranque SAN.  NetApp recomienda utilizar un arranque SAN para simplificar la implementación y mejorar la escalabilidad.
@@ -51,6 +52,7 @@ Realice un arranque local instalando el sistema operativo Windows en el disco du
 ====
 
 
+[[step-2-install-windows-hotfixes]]
 == Paso 2: Instalar las revisiones de Windows
 
 NetApp recomienda instalar la *última actualización acumulativa* disponible en el catálogo de actualizaciones de Microsoft en el servidor host.
@@ -70,6 +72,7 @@ TIP: Muchas correcciones urgentes requieren reiniciar el sistema Windows.  Puede
 
 
 
+[[step-3-install-the-windows-host-utilities]]
 == Paso 3: Instalar las utilidades de host de Windows
 
 Las utilidades de host de Windows son un conjunto de programas de software con documentación que le permiten conectar computadoras host a discos virtuales (LUN) en una SAN NetApp .  NetApp recomienda descargar e instalar las últimas utilidades de host de Windows para admitir la administración de LUN de ONTAP y ayudar al soporte técnico a recopilar datos de configuración.
@@ -78,6 +81,7 @@ Para obtener información sobre la configuración e instalación de las utilidad
 
 
 
+[[step-4-confirm-the-multipath-configuration-for-your-host]]
 == Paso 4: Confirme la configuración de múltiples rutas para su host
 
 Instale el software Microsoft Multipath I/O (MPIO) y habilite el multipath si su host Windows tiene más de una ruta al sistema de almacenamiento.
@@ -156,12 +160,14 @@ image::nonasa.png[Captura de pantalla de un LUN de ONTAP con dos rutas activas/o
 
 
 
+[[step-5-review-the-known-issues]]
 == Paso 5: Revisar los problemas conocidos
 
 No hay problemas conocidos.
 
 
 
+[[whats-next]]
 == El futuro
 
 link:hu-wuhu-configuration.html["Obtenga información sobre la configuración de las utilidades de host de Windows para el almacenamiento ONTAP"]

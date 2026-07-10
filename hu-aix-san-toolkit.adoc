@@ -36,6 +36,7 @@ NOTE: El kit de herramientas SAN es común en todas las configuraciones de host 
 
 
 
+[[whats-next]]
 == El futuro
 
 link:hu-aix-command-reference.html["Obtenga información sobre el uso de la herramienta Utilidades de host de AIX"] .

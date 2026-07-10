@@ -42,6 +42,7 @@ El kit de herramientas SAN es compatible con las versiones del sistema operativo
 ====
 
 
+[[whats-next]]
 == El futuro
 
 link:hu_hpux_60_cmd.html["Obtenga información sobre el uso de la herramienta HP-UX Host Utilities"] .

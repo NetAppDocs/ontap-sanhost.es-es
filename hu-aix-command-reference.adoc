@@ -20,6 +20,7 @@ Puede usar la referencia de comando de muestra de AIX Host Utilities para una va
 
 
 
+[[list-all-host-initiators-mapped-to-host]]
 == Enumere todos los iniciadores de hosts asignados al host
 
 Puede recuperar una lista de iniciadores de host asignados a un host.
@@ -120,6 +121,7 @@ bash-3.2#
 ====
 
 
+[[list-all-luns-mapped-to-host]]
 == Enumere todas las LUN asignadas al host
 
 Puede recuperar una lista de todas las LUN asignadas a un host.
@@ -184,6 +186,7 @@ up     secondary path3   fcs1    fc_aix_4     1
 ====
 
 
+[[list-all-luns-mapped-to-host-from-a-given-svm]]
 == Enumere todas las LUN asignadas al host desde una SVM determinada
 
 Puede recuperar una lista de todas las LUN asignadas a un host de una SVM especificada.
@@ -249,6 +252,7 @@ up      secondary  path3 fcs1    sanboot_4   1
 ====
 
 
+[[list-all-attributes-of-a-given-lun-mapped-to-host]]
 == Enumere todos los atributos de una LUN asignada al host
 
 Puede recuperar una lista de todos los atributos de una LUN especificada asignada a un host.
@@ -314,6 +318,7 @@ up       secondary path3 fcs1    fc_aix_4   1
 ====
 
 
+[[list-ontap-lun-attributes-by-host-device-filename]]
 == Muestra los atributos de los LUN de ONTAP por nombre de archivo del dispositivo host
 
 Puede recuperar una lista de atributos de LUN de ONTAP especificando un nombre de archivo de dispositivo host.
@@ -365,6 +370,7 @@ hdisk1    fcs0    FCP     15g  C
 ====
 
 
+[[list-all-svm-target-lif-wwpns-attached-to-host]]
 == Enumere todos los WWPN de LIF de destino de SVM asociados al host
 
 Puede recuperar una lista de todos los WWPN de LIF de destino de SVM que están conectados a un host.

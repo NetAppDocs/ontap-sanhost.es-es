@@ -4,6 +4,7 @@
 
 
 
+[[step-1-optionally-enable-san-booting]]
 == Paso 1: Opcionalmente, habilite el arranque SAN
 
 Puede configurar su host para utilizar el arranque SAN para simplificar la implementación y mejorar la escalabilidad.  Si su configuración no admite el arranque SAN, puede utilizar un arranque local.

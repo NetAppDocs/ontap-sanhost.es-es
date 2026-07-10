@@ -41,6 +41,7 @@ NOTE: Este kit de herramientas es común en todas las configuraciones y protocol
 
 
 
+[[whats-next]]
 == El futuro
 
 link:hu-solaris-command-reference.html["Obtenga información sobre el uso de la herramienta Utilidades de host de Solaris"] .

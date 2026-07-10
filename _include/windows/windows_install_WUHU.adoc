@@ -4,6 +4,7 @@
 
 
 
+[[step-3-install-the-windows-host-utilities]]
 == Paso 3: Instalar las utilidades de host de Windows
 
 Las utilidades de host de Windows son un conjunto de programas de software con documentación que le permiten conectar computadoras host a discos virtuales (LUN) en una SAN NetApp .  NetApp recomienda descargar e instalar las últimas utilidades de host de Windows para admitir la administración de LUN de ONTAP y ayudar al soporte técnico a recopilar datos de configuración.

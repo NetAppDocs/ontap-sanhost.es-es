@@ -11,6 +11,7 @@ Consulte la https://docs.netapp.com/us-en/ontap/san-config/index.html["Referenci
 
 
 
+[[step-2-configure-fc-hbas-and-switches]]
 == Paso 2: Configurar los HBA y conmutadores FC
 
 Instale y configure uno o más adaptadores de bus de host (HBA) FC compatibles para las conexiones FC al sistema de almacenamiento.

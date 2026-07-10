@@ -22,6 +22,7 @@ Para obtener información específica sobre las versiones y actualizaciones del 
 
 
 
+[[whats-new]]
 == Novedades
 
 Las versiones de AIX Host Utilities contienen las siguientes nuevas funciones y mejoras:
@@ -32,6 +33,7 @@ Las versiones de AIX Host Utilities contienen las siguientes nuevas funciones y 
 
 
 
+[[known-problems-and-limitations]]
 == Problemas y limitaciones conocidos
 
 Debe conocer los siguientes problemas y limitaciones conocidos que pueden afectar el rendimiento en el host específico.

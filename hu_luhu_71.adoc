@@ -94,6 +94,7 @@ sanlun version 7.1.386.1644
 
 
 
+[[whats-next]]
 == El futuro
 
 * Configuración de controlador recomendada con el kernel de Linux

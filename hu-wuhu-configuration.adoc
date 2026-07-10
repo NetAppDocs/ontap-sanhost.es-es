@@ -42,6 +42,7 @@ Para todos los demás parámetros y claves de registro de Windows Host Utilities
 ====
 
 
+[[review-the-configuration-settings-for-windows-host-utilities-8-0]]
 == Revise la configuración de Windows Host Utilities 8.0
 
 El instalador de Windows Host Utilities establece automáticamente los valores del registro de Windows y los parámetros HBA iSCSI y NVMe en función de las opciones que realice durante la instalación. Revise estos valores y la versión del sistema operativo.
@@ -156,6 +157,7 @@ Windows Host Utilities 8.0 actualiza los siguientes parámetros del controlador 
 ====
 
 
+[[review-the-configuration-settings-for-windows-host-utilities-7-2]]
 == Revise la configuración de Windows Host Utilities 7.2
 
 El instalador de Windows Host Utilities establece automáticamente los valores del registro de Windows y los parámetros HBA iSCSI y NVMe en función de las opciones que realice durante la instalación. Revise estos valores y la versión del sistema operativo.
@@ -274,6 +276,7 @@ El parámetro LimTransferSize se establece automáticamente en "1" cuando instal
 ====
 
 
+[[review-the-configuration-settings-for-windows-host-utilities-7-1]]
 == Revise la configuración de Windows Host Utilities 7.1
 
 El instalador de Windows Host Utilities establece automáticamente los valores de registro en función de las opciones que usted elija durante la instalación. Revise estos valores de registro y la versión del sistema operativo. Todos los valores están en decimales a menos que se indique lo contrario.
@@ -382,6 +385,7 @@ Consulte https://docs.microsoft.com/en-us/troubleshoot/windows-server/performanc
 
 
 
+[[learn-about-the-fc-hba-values-set-by-windows-host-utilities]]
 == Obtenga información sobre los valores HBA FC establecidos por Windows Host Utilities
 
 El instalador de Windows Host Utilities establece los valores de tiempo de espera necesarios para los HBA FC Emulex y QLogic en sistemas que utilizan FC.
@@ -449,6 +453,7 @@ NOTE: Los nombres de los parámetros pueden variar ligeramente según el program
 
 
 
+[[learn-about-the-host-utilities-changes-to-fc-hba-driver-settings]]
 == Obtenga información sobre los cambios de Host Utilities en la configuración del controlador HBA FC
 
 Durante la instalación de los controladores HBA Emulex o QLogic necesarios en un sistema FC, Windows Host Utilities verifica varios parámetros y, en algunos casos, los modifica.
