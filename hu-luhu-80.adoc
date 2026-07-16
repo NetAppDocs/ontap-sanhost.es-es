@@ -16,7 +16,7 @@ summary: Describe cómo utilizar Linux Host Utilities 8.0 con ONTAP
 
 
 [role="lead"]
-Las utilidades de host de Linux le ayudan a administrar el almacenamiento ONTAP conectado a un host de Linux.  NetApp recomienda encarecidamente instalar Linux Host Utilities, pero no es obligatorio.  Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre su configuración.
+Las utilidades para hosts Linux te ayudan a gestionar el almacenamiento ONTAP conectado a un host Linux. NetApp recomienda encarecidamente instalar las utilidades para hosts Linux, pero no es obligatorio. Las utilidades para hosts Linux mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre tu configuración.
 
 Linux Host Utilities 8.0 admite los siguientes tipos de distribución:
 
@@ -30,7 +30,7 @@ Linux Host Utilities 8.0 admite los siguientes tipos de distribución:
 NOTE: El software Linux Host Utilities no es compatible con los protocolos de host NVMe over Fibre Channel (NVMe/FC) y NVMe over TCP (NVMe/TCP).
 
 .Acerca de esta tarea
-Cuando instala Linux Host Utilities, no cambia ninguna configuración en su host Linux.
+Cuando instalas las utilidades de host de Linux, no se cambia ninguna configuración ni el comportamiento de tu host.
 
 .Antes de empezar
 * Para un funcionamiento confiable, utilice ellink:https://imt.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que su configuración iSCSI, FC o FCoE sea compatible.
@@ -41,6 +41,10 @@ Consulte la documentación del proveedor para verificar que los siguientes paque
 +
 ** Marvell QLogic HBA: CLI de QConvergeConsole
 ** HBA de Broadcom Emulex: CLI de aplicación central de OneCommand Manager
++
+
+NOTE: Las utilidades de host de Linux tienen una dependencia de instalación con la biblioteca libHBAAPI.so. Necesitas instalar uno de los paquetes mencionados arriba, incluso si un host está destinado solo a una configuración iSCSI. O también puedes usar herramientas a nivel del sistema operativo para la gestión de LUN y rutas.
+
 
 
 

@@ -2,4 +2,4 @@
 :allow-uri-read: 
 
 
-Las utilidades de host de Linux le ayudan a administrar el almacenamiento ONTAP conectado a un host de Linux.  NetApp recomienda encarecidamente instalar Linux Host Utilities, pero no es obligatorio.  Las utilidades mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre su configuración.
+Las utilidades para hosts Linux te ayudan a gestionar el almacenamiento ONTAP conectado a un host Linux. NetApp recomienda encarecidamente instalar las utilidades para hosts Linux, pero no es obligatorio. Las utilidades para hosts Linux mejoran la gestión y ayudan al soporte al cliente de NetApp a recopilar información sobre tu configuración.
