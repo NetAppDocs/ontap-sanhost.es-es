@@ -5,13 +5,59 @@
 Para garantizar que el acceso multivía esté configurado correctamente para el host, verifique que el `/etc/multipath.conf` archivo esté definido y que los ajustes recomendados de NetApp estén configurados para los LUN de ONTAP.
 
 .Pasos
-. Verificar que el  `/etc/multipath.conf` El archivo existe. Si el archivo no existe, cree un archivo vacío de cero bytes:
+. Ubica el archivo  `/etc/multipath.conf`.
 +
+Si el archivo de referencia `/etc/multipath.conf` no contiene los parámetros de configuración específicos del dispositivo NetApp, añádelos usando el siguiente archivo personalizado `.conf drop-in`. Puedes encontrar este archivo en `/etc/multipath/conf.d/`:
+
++
+
+NOTE: No realices cambios en el archivo  `/etc/multipath.conf` porque el contenido del archivo podría sobrescribirse durante una actualización del sistema.
+
++
+.Mostrar el contenido del archivo
+[%collapsible]
+====
 [source, cli]
 ----
-touch /etc/multipath.conf
+$sudo tee -a /etc/multipath/conf.d/custom.conf >/dev/null <<'EOF'
+
+defaults {
+    polling_interval 5
+}
+
+blacklist {
+    wwid <Insert_LUN_wwid_string>
+    devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+    devnode "^hd[a-z]"
+    devnode "^cciss.*"
+}
+
+devices {
+    device {
+    vendor "NETAPP"
+    product "LUN.*"
+    user_friendly_names no
+    path_checker "tur"
+    prio "ontap"
+    detect_prio yes
+    path_grouping_policy "group_by_prio"
+    path_selector "service-time 0"
+    failback immediate
+    fast_io_fail_tmo 5
+    dev_loss_tmo infinity
+    no_path_retry queue
+    features "3 queue_if_no_path pg_init_retries 50"
+    flush_on_last_del yes
+    hardware_handler "0"
+    retain_attached_hw_handler yes
+    rr_weight uniform
+  }
+}
+
+EOF
 ----
-. La primera vez que `multipath.conf` se crea el archivo, es posible que deba habilitar e iniciar los servicios multivía para cargar la configuración recomendada:
+====
+. La primera vez que configures multivía, es posible que tengas que activar e iniciar los servicios de multivía para cargar la configuración recomendada:
 +
 [source, cli]
 ----
@@ -22,7 +68,7 @@ systemctl enable multipathd
 ----
 systemctl start multipathd
 ----
-. Cada vez que arranca el host, el archivo de cero bytes vacío `/etc/multipath.conf` carga automáticamente los parámetros multivía de host recomendados por NetApp como configuración predeterminada. No debería ser necesario realizar cambios en `/etc/multipath.conf` el archivo para el host ya que el sistema operativo del host está compilado con los parámetros multivía que reconocen y gestionan correctamente las LUN de ONTAP.
+. Cada vez que inicias el host, el archivo  `/etc/multipath/conf.d/custom.conf` carga automáticamente los parámetros multivía recomendados por NetApp para el host como configuración predeterminada.
 +
 En la siguiente tabla se muestra la configuración de los parámetros multivía compilados por el sistema operativo Linux nativo para los LUN de ONTAP.
 
@@ -94,7 +140,7 @@ En la siguiente tabla se muestra la configuración de los parámetros multivía 
 +
 [source, cli]
 ----
-/sbin/mpathutil list
+/sbin/mpathutil status
 ----
 +
 Los parámetros multiruta predeterminados admiten configuraciones ASA, AFF y FAS . En estas configuraciones, un solo LUN de ONTAP no debería requerir más de cuatro rutas. Tener más de cuatro rutas puede causar problemas durante una falla de almacenamiento.

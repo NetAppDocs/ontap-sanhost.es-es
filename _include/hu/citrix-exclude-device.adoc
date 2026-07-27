@@ -2,7 +2,7 @@
 :allow-uri-read: 
 
 
-Si es necesario, puede excluir un dispositivo del acceso múltiple agregando el WWID del dispositivo no deseado a la estrofa de la lista negra del `multipath.conf` archivo.
+Si es necesario, puedes excluir un dispositivo de la multivía añadiendo el WWID del dispositivo que no quieres a la sección "blacklist" del archivo  `/etc/multipath/conf.d/custom.conf`.
 
 .Pasos
 . Determine el WWID:

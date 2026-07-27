@@ -360,7 +360,7 @@ blacklist {
 [[step-5-customize-multipath-parameters-for-ontap-luns]]
 == Paso 5: Personalice los parámetros multivía para las LUN de ONTAP
 
-Si su host está conectado a LUN de otros proveedores y cualquiera de la configuración de parámetros multivía se ha anulado, debe corregirlos agregando estrofas más adelante en `multipath.conf` el archivo que se aplican específicamente a LUN de ONTAP. Si no hace esto, es posible que las LUN de ONTAP no funcionen como se espera.
+Si tu host está conectado a LUNs de otros proveedores y se ha anulado alguna de las configuraciones de los parámetros de multivía, debes corregirlas añadiendo estrofas en el archivo  `multipath.conf` que se apliquen específicamente a los LUNs de ONTAP. Desplázate hacia abajo en el archivo para añadir estas estrofas. Si no corriges los parámetros, es posible que los LUNs de ONTAP no funcionen como esperas.
 
 Compruebe el `/etc/multipath.conf` archivo, especialmente en la sección de valores predeterminados, para ver los ajustes que podrían estar anulando el <<multipath-parameter-settings,configuración predeterminada para parámetros multivía>>.
 
