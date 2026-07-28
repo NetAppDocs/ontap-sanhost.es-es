@@ -57,7 +57,7 @@ devices {
 EOF
 ----
 ====
-. La primera vez que configures multivía, es posible que tengas que activar e iniciar los servicios de multivía para cargar la configuración recomendada:
+. La primera vez que configures la multivía, puede que necesites habilitar e iniciar los servicios de multivía para cargar la configuración recomendada:
 +
 [source, cli]
 ----
