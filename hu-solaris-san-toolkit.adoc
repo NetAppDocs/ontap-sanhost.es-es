@@ -39,9 +39,5 @@ data_vserver                     /vol/vol3/lun4     /dev/rdsk/c0t600A09803830443
 
 NOTE: Este kit de herramientas es común en todas las configuraciones y protocolos de Host Utilities.  Como resultado, no todos los componentes se aplican a todas las configuraciones.  Los componentes no utilizados no afectan el rendimiento del sistema.
 
-
-
-[[whats-next]]
-== El futuro
-
+.¿Qué sigue?
 link:hu-solaris-command-reference.html["Obtenga información sobre el uso de la herramienta Utilidades de host de Solaris"] .

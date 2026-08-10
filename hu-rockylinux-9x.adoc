@@ -460,11 +460,7 @@ Rocky Linux 9.x con almacenamiento ONTAP tiene los siguientes problemas conocido
 |===
 --
 ====
-
-
-[[whats-next]]
-== El futuro
-
+.¿Qué sigue?
 * link:hu-luhu-command-reference.html["Obtenga más información sobre el uso de la herramienta Linux Host Utilities"] .
 * Obtenga más información sobre la duplicación de ASM
 +

@@ -272,10 +272,6 @@ sdea  ENABLED     Active/Non-Optimized c14   SFRAC       sfrac0     -      -
 
 No hay problemas conocidos.
 
-
-
-[[whats-next]]
-== El futuro
-
+.¿Qué sigue?
 * link:hu-luhu-command-reference.html["Obtenga más información sobre el uso de la herramienta Linux Host Utilities"] .
 

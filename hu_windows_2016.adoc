@@ -226,9 +226,5 @@ image::nonasa.png[Captura de pantalla de un LUN de ONTAP con dos rutas activas/o
 
 No hay problemas conocidos.
 
-
-
-[[whats-next]]
-== El futuro
-
+.¿Qué sigue?
 link:hu-wuhu-configuration.html["Obtenga información sobre la configuración de las utilidades de host de Windows para el almacenamiento ONTAP"]

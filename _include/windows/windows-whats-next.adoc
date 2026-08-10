@@ -1,10 +1,6 @@
-= ¿Que sigue?
+= 
 :allow-uri-read: 
 
 
-
-
-[[whats-next]]
-== El futuro
-
+.¿Qué sigue?
 link:hu-wuhu-configuration.html["Obtenga información sobre la configuración de las utilidades de host de Windows para el almacenamiento ONTAP"]

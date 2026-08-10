@@ -135,11 +135,7 @@ sanlun version 8.0.386.1644
 ----
 
 
-
-
-[[whats-next]]
-== El futuro
-
+.¿Qué sigue?
 * Configuración de controlador recomendada con el kernel de Linux
 +
 Cuando configura un entorno FC que utiliza controladores de bandeja de entrada nativos que se incluyen en el núcleo de Linux, puede utilizar los valores predeterminados para los controladores.

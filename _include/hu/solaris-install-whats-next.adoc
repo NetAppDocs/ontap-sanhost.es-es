@@ -1,10 +1,6 @@
-= ¿Que sigue?
+= 
 :allow-uri-read: 
 
 
-
-
-[[whats-next]]
-== El futuro
-
+.¿Qué sigue?
 link:hu-solaris-san-toolkit.html["Obtenga más información sobre el kit de herramientas SAN"] .

@@ -34,9 +34,5 @@ data_vserver   /vol/vol4/lun4 hdisk14 fcs0   FCP      20g C
 
 NOTE: El kit de herramientas SAN es común en todas las configuraciones de host y protocolos de transporte de AIX.  Como resultado, no todos los componentes se aplican a todas las configuraciones.  Los componentes no utilizados no afectan el rendimiento del sistema.  El kit de herramientas SAN es compatible con las versiones del sistema operativo AIX y PowerVM/VIOS.
 
-
-
-[[whats-next]]
-== El futuro
-
+.¿Qué sigue?
 link:hu-aix-command-reference.html["Obtenga información sobre el uso de la herramienta Utilidades de host de AIX"] .

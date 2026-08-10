@@ -23,9 +23,9 @@ Es posible configurar NVMe over Fabrics (NVMe-oF) en hosts del iniciador que eje
 [[supportability]]
 == Compatibilidad
 
-* A partir de ONTAP 9.16,1 la asignación de espacio está habilitada de forma predeterminada en todos los espacios de nombres NVMe recién creados.
-* A partir de ONTAP 9.9.1 P3, el protocolo NVMe/FC es compatible con ESXi 8 y versiones posteriores.
-* A partir de la versión 9.10.1 de ONTAP, el protocolo NVMe/TCP es compatible con ONTAP.
+* A partir de ONTAP 9.16.1, la asignación de espacio está habilitada de forma predeterminada para todos los espacios de nombres NVMe de nueva creación.
+* A partir de ONTAP 9.9.1 P3, el protocolo NVMe/FC es compatible con ESXi 8.
+* A partir de ONTAP 9.10.1, se admite el protocolo NVMe/TCP para ONTAP.
 
 
 

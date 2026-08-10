@@ -38,9 +38,5 @@ HP-UX Host Utilities 6.0 admite las siguientes versiones del sistema operativo H
 
 No hay problemas ni limitaciones conocidos.
 
-
-
-[[whats-next]]
-== El futuro
-
+.¿Qué sigue?
 link:hu_hpux_60.html["Obtenga información sobre la instalación de HP-UX Host Utilities"]

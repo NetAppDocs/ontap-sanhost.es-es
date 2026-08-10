@@ -421,11 +421,7 @@ No hay problemas conocidos.
 
 Para los problemas conocidos del kernel compatible con CentOS Red Hat, consulta el link:hu-rhel-8x.html#step-7-review-the-known-issues["problemas conocidos"] para la serie Red Hat Enterprise Linux (RHEL) 8.x.
 
-
-
-[[whats-next]]
-== El futuro
-
+.¿Qué sigue?
 * link:hu-luhu-command-reference.html["Obtenga más información sobre el uso de la herramienta Linux Host Utilities"] .
 * Obtenga más información sobre la duplicación de ASM
 +
