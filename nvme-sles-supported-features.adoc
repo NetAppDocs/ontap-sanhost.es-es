@@ -16,14 +16,14 @@ summary: Obtenga información sobre el soporte y las características de ONTAP p
 
 
 [role="lead"]
-Las características compatibles con la configuración del host con NVMe over Fabrics (NVMe-oF) varían según su versión de ONTAP y SUSE Linux Enterprise Server.
+Las funciones compatibles con la configuración del host mediante NVMe over Fabrics (NVMe-oF) varían según tu versión de ONTAP y SUSE Linux Enterprise Server.
 
 [cols="50,25,25"]
 |===
 | Característica | Versión de host de SUSE Linux Enterprise Server | Versión ONTAP 
 
 
-| NVMe/TCP informa todas las rutas optimizadas para los sistemas ASA r2  a| 
+| NVMe/FC y NVMe/TCP informan de todas las rutas optimizadas en los sistemas ASA r2  a| 
 16
 | 9.16.1 o posterior 
 

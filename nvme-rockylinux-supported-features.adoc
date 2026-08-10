@@ -16,7 +16,7 @@ summary: Obtenga información sobre la compatibilidad y las características de 
 
 
 [role="lead"]
-Las características compatibles con la configuración del host con NVMe over Fabrics (NVMe-oF) varían según su versión de ONTAP y Rocky Linux.
+Las funciones compatibles con la configuración del host mediante NVMe over Fabrics (NVMe-oF) varían según tu versión de ONTAP y Rocky Linux.
 
 [cols="50,25,25"]
 |===

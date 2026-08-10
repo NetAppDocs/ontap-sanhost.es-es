@@ -16,11 +16,16 @@ summary: Obtenga información sobre la compatibilidad y las funciones de ONTAP p
 
 
 [role="lead"]
-Las características compatibles con la configuración del host con NVMe over Fabrics (NVMe-oF) varían según su versión de ONTAP y Proxmox.
+Las funciones compatibles con la configuración del host mediante NVMe over Fabrics (NVMe-oF) varían según tu versión de ONTAP y Proxmox.
 
 [cols="30,20,20"]
 |===
 | Función ONTAP | Versión del host de Proxmox | Versión ONTAP 
+
+
+| NVMe/FC y NVMe/TCP informan de todas las rutas optimizadas en los sistemas ASA r2  a| 
+9.0 o posterior
+| 9.16.1 o posterior 
 
 
 | NVMe/TCP es una función empresarial totalmente compatible  a| 

@@ -16,11 +16,16 @@ summary: Obtenga información sobre la compatibilidad y las funciones de ONTAP p
 
 
 [role="lead"]
-Las características compatibles con la configuración del host con NVMe over Fabrics (NVMe-oF) varían según su versión de ONTAP y RHEL.
+Las funciones compatibles con la configuración del host mediante NVMe over Fabrics (NVMe-oF) varían según tu versión de ONTAP y RHEL.
 
 [cols="50,25,25"]
 |===
 | Característica | Versión del host RHEL | Versión ONTAP 
+
+
+| NVMe/FC y NVMe/TCP informan de todas las rutas optimizadas en los sistemas ASA r2  a| 
+9.0 o posterior
+| 9.16.1 o posterior 
 
 
 | Se admite la autenticación segura en banda a través de NVMe/TCP entre un host RHEL y un controlador ONTAP  a| 

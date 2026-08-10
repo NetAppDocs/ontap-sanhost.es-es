@@ -18,7 +18,7 @@ indexpage:
       url: "/overview.html"
     - title: Notas de la versión de AIX Host Utilities
       url: "/hu-aix-release-notes.html"
-    - title: Notas de la versión de HP-UX Host Utilities
+    - title: Notas de la versión de las utilidades de host de HP-UX
       url: "/hu-hpux-release-notes.html"
     - title: Notas de la versión de Linux Host Utilities
       url: "/hu-luhu-release-notes.html"
