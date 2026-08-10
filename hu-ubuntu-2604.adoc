@@ -1,0 +1,434 @@
+---
+sidebar: sidebar 
+permalink: hu-ubuntu-2604.html 
+keywords: host utilities, linux, ubuntu, 26.04, netapp, ontap, fcp, iscsi 
+summary: Instala las utilidades de host de Linux en un host Ubuntu 26.04 para gestionar las operaciones de los protocolos FCP e iSCSI con los LUN de ONTAP. 
+---
+= Configurar Ubuntu 26.04 para FCP e iSCSI con almacenamiento ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+El software Linux Host Utilities proporciona herramientas de gestión y diagnóstico para hosts Linux conectados al almacenamiento ONTAP. Cuando instalas Linux Host Utilities en un host Ubuntu 26.04, puedes usar las utilidades para ayudarte a gestionar las operaciones de los protocolos FCP e iSCSI con los LUN de ONTAP.
+
+
+
+[[step-1-optionally-enable-san-booting]]
+== Paso 1: Opcionalmente, habilite el arranque SAN
+
+Puede configurar su host para que utilice el arranque SAN y simplificar la puesta en marcha y mejorar la escalabilidad.
+
+.Antes de empezar
+Utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que el sistema operativo Linux, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admiten el arranque SAN.
+
+.Pasos
+. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["Cree un LUN de arranque SAN y asígnelo al host"^].
+. Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
++
+Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
+
+. Compruebe que la configuración se haya realizado correctamente. Para ello, reinicie el host y verifique que el sistema operativo esté activo y en ejecución.
+
+
+
+
+[[step-2-install-the-linux-host-utilities]]
+== Paso 2: Instale las utilidades del host de Linux
+
+NetApp recomienda la instalación de las utilidades del host Linux para admitir la gestión de las LUN de ONTAP y ayudar al soporte técnico con la recopilación de datos de configuración.
+
+link:hu-luhu-80.html["Instalar Linux Host Utilities 8.0"] .
+
+
+NOTE: La instalación de Linux Host Utilities no cambia ninguna configuración de tiempo de espera del host en el host Linux.
+
+
+
+[[step-3-confirm-the-multipath-configuration-for-your-host]]
+== Paso 3: Confirme la configuración multivía del host
+
+Puedes utilizar multipathing con Ubuntu 26.04 para gestionar los LUN de ONTAP.
+
+Para garantizar que el acceso multivía esté configurado correctamente para el host, verifique que el `/etc/multipath.conf` archivo esté definido y que los ajustes recomendados de NetApp estén configurados para los LUN de ONTAP.
+
+.Pasos
+. Verifique que el `/etc/multipath.conf` archivo salga. Si el archivo no existe, cree un archivo vacío de cero bytes:
++
+[source, cli]
+----
+touch /etc/multipath.conf
+----
+. La primera vez que `multipath.conf` se crea el archivo, es posible que deba habilitar e iniciar los servicios multivía para cargar la configuración recomendada:
++
+[source, cli]
+----
+systemctl enable multipathd
+----
++
+[source, cli]
+----
+systemctl start multipathd
+----
+. Cada vez que arranca el host, el archivo de cero bytes vacío `/etc/multipath.conf` carga automáticamente los parámetros multivía de host recomendados por NetApp como configuración predeterminada. No debería ser necesario realizar cambios en `/etc/multipath.conf` el archivo para el host ya que el sistema operativo está compilado con los parámetros multivía que reconocen y gestionan correctamente las LUN de ONTAP.
++
+En la siguiente tabla se muestra la configuración del parámetro multivía compilado nativo del sistema operativo Linux para los LUN de ONTAP.
+
++
+.Muestra la configuración de los parámetros
+[%collapsible]
+====
+[[multipath-parameter-settings]]
+[cols="2"]
+|===
+| Parámetro | Ajuste 
+
+
+| detect_prio | sí 
+
+
+| dev_loss_tmo | "infinito" 
+
+
+| conmutación tras recuperación | inmediata 
+
+
+| fast_io_fail_tmo | 5 
+
+
+| funciones | "2 pg_init_retries 50" 
+
+
+| flush_on_last_del | "sí" 
+
+
+| manipulador_hardware | "0" 
+
+
+| no_path_retry | cola 
+
+
+| comprobador_de_rutas | "tur" 
+
+
+| política_agrupación_ruta | "group_by_prio" 
+
+
+| selector_de_rutas | "tiempo de servicio 0" 
+
+
+| intervalo_sondeo | 5 
+
+
+| prioridad | "ONTAP" 
+
+
+| producto | LUN 
+
+
+| retain_attached_hw_handler | sí 
+
+
+| rr_weight | "uniforme" 
+
+
+| nombres_descriptivos_usuario | no 
+
+
+| proveedor | NETAPP 
+|===
+====
+. Compruebe la configuración de parámetros y el estado de la ruta de sus LUN de ONTAP:
++
+[source, cli]
+----
+multipath -ll
+----
++
+Los parámetros multiruta predeterminados admiten configuraciones ASA, AFF y FAS . En estas configuraciones, un solo LUN de ONTAP no debería requerir más de cuatro rutas. Tener más de cuatro rutas puede causar problemas durante una falla de almacenamiento.
+
++
+En el siguiente ejemplo, se muestran los ajustes de parámetros y el estado de la ruta correctos para las LUN de ONTAP en una configuración de ASA, AFF o FAS.
+
++
+[role="tabbed-block"]
+====
+.Configuración de ASA
+--
+Una configuración de ASA optimiza todas las rutas a una LUN determinada para mantenerlas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
+
+.Muestra el ejemplo
+[%collapsible]
+=====
+[listing]
+----
+# multipath -ll
+3600a098038314559533f524d6c652f62 dm-24 NETAPP,LUN C-Mode
+size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 11:0:1:13 sdm  8:192  active ready running
+  |- 11:0:3:13 sdah 66:16  active ready running
+  |- 12:0:1:13 sdbc 67:96  active ready running
+  `- 12:0:3:13 sdbx 68:176 active ready running
+----
+=====
+--
+.Configuración de AFF o FAS
+--
+Una configuración de AFF o FAS debe tener dos grupos de rutas con prioridades superiores e inferiores. La controladora donde se encuentra el agregado ofrece rutas activas/optimizadas de mayor prioridad. Las rutas de prioridad más baja están activas pero no optimizadas debido a que se sirven con una controladora diferente. Las rutas no optimizadas solo se usan cuando las rutas optimizadas no están disponibles.
+
+En el siguiente ejemplo, se muestra el resultado de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizada:
+
+.Muestra el ejemplo
+[%collapsible]
+=====
+[listing]
+----
+# multipath -ll
+3600a098038314837352453694b542f4a dm-0 NETAPP,LUN C-Mode
+size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 14:0:3:0 sdbk 67:224 active ready running
+| `- 15:0:2:0 sdbl 67:240 active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+  |- 14:0:0:0 sda  8:0    active ready running
+  `- 15:0:1:0 sdv  65:80  active ready running
+----
+=====
+--
+====
+
+
+
+
+[[step-4-confirm-the-iscsi-configuration-for-your-host]]
+== Paso 4: confirma la configuración iSCSI de tu host
+
+Asegúrate de que iSCSI está configurado correctamente para tu host.
+
+.Acerca de esta tarea
+Realizas los siguientes pasos en el host iSCSI.
+
+.Pasos
+. Verifica que el paquete iniciador iSCSI (open-iscsi) esté instalado:
++
+[source, cli]
+----
+$apt list |grep open-iscsi
+----
++
+Debería ver un resultado similar al siguiente ejemplo:
+
++
+[listing]
+----
+open-iscsi/noble-updates,noble-updates,now 2.1.9-3ubuntu5.4 amd64
+----
+. Verifica el nombre de nodo del iniciador iSCSI, que se encuentra en el archivo  `/etc/iscsi/initiatorname.iscsi`:
++
+[source, cli]
+----
+InitiatorName=iqn.YYYY-MM.com.<vendor>:<host_name>
+----
+. Configura el parámetro de tiempo de espera de la sesión iSCSI que se encuentra en el archivo  `/etc/iscsi/iscsid.conf`:
++
+[source, cli]
+----
+node.session.timeo.replacement_timeout = 5
+----
++
+El parámetro iSCSI `replacement_timeout` controla cuánto tiempo la capa iSCSI debe esperar a que una ruta o sesión con tiempo de espera se restablezca antes de fallar cualquier comando en ella. Debes establecer el valor de `replacement_timeout` en 5 en el archivo de configuración de iSCSI.
+
+. Activa el servicio iSCI:
++
+[source, cli]
+----
+$systemctl enable iscsid
+----
+. Inicia el servicio iSCI:
++
+[source, cli]
+----
+$systemctl start iscsid
+----
+. Verifica que el servicio iSCI está en funcionamiento:
++
+[source, cli]
+----
+$systemctl status iscsid
+----
++
+.Muestra el ejemplo
+[%collapsible]
+====
+[listing]
+----
+●iscsid.service - iSCSI initiator daemon (iscsid)
+     Loaded: loaded (/usr/lib/systemd/system/iscsid.service; enabled; preset: disabled)
+     Active: active (running) since Mon 2026-01-12 12:53:18 IST; 2 days ago
+TriggeredBy: ● iscsid.socket
+       Docs: man:iscsid(8)
+   Main PID: 1127419 (iscsid)
+      Tasks: 2 (limit: 76557)
+     Memory: 4.3M (peak: 8.8M)
+        CPU: 1.657s
+     CGroup: /system.slice/iscsid.service
+             ├─1127418 /usr/sbin/iscsid
+             └─1127419 /usr/sbin/iscsid
+----
+====
+. Descubre los objetivos iSCSI:
++
+[source, cli]
+----
+$iscsiadm --mode discovery --op update --type sendtargets --portal <target_IP>
+----
++
+.mostrar ejemplo
+[%collapsible]
+====
+[listing]
+----
+iscsiadm --mode discovery --op update --type sendtargets --portal 192.168.166.70
+192.168.166.70:3260,1042 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5
+192.168.165.71:3260,1045 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5
+192.168.165.70:3260,1044 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5
+192.168.166.71:3260,1043 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5
+----
+====
+. Inicia sesión en los objetivos:
++
+[source, cli]
+----
+$iscsiadm --mode node -l all
+----
+. Configura iSCSI para que inicie sesión automáticamente cuando el host se inicie:
++
+[source, cli]
+----
+$iscsiadm --mode node -T <target_name> -p <ip:port> -o update -n node.startup -v automatic
+----
++
+Reemplaza `<target_name>` por el nombre del destino al que quieres iniciar sesión automáticamente cuando arranque el host. Reemplaza `<ip:port>` por la dirección IP y el número de puerto del destino. Por ejemplo:
+
++
+[source, cli]
+----
+iscsiadm --mode node -T iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5 -p 192.168.166.70:3260 -o update -n node.startup -v automatic
+----
+. Verifica las sesiones iSCSI:
++
+[source, cli]
+----
+$iscsiadm --mode session
+----
++
+.Muestra el ejemplo
+[%collapsible]
+====
+[listing]
+----
+iscsiadm --mode session
+tcp: [1] 192.168.166.71:3260,1043 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5 (non-flash)
+tcp: [2] 192.168.165.71:3260,1045 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5 (non-flash)
+tcp: [3] 192.168.165.70:3260,1044 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5 (non-flash)
+tcp: [4] 192.168.166.70:3260,1042 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624d039eac809ba:vs.5 (non-flash)
+----
+====
+
+
+
+
+[[step-5-optionally-exclude-a-device-from-multipathing]]
+== Paso 5: opcionalmente, excluye un dispositivo de la multivía
+
+Si es necesario, puede excluir un dispositivo del acceso múltiple agregando el WWID del dispositivo no deseado a la estrofa de la lista negra del `multipath.conf` archivo.
+
+.Pasos
+. Determine el WWID:
++
+[source, cli]
+----
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+“sda” es el disco SCSI local que desea agregar a la lista negra.
+
++
+Un ejemplo de WWID es `360030057024d0730239134810c0cb833`.
+
+. Añada el WWID a la estrofa «blacklist»:
++
+[source, cli]
+----
+blacklist {
+        wwid   360030057024d0730239134810c0cb833
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+----
+
+
+
+
+[[step-6-customize-multipath-parameters-for-ontap-luns]]
+== Paso 6: personaliza los parámetros de multivía para los LUNs de ONTAP
+
+Si tu host está conectado a LUN de otros proveedores y se ha anulado alguna de las configuraciones de los parámetros multivía, debes corregirlas modificando una estrofa existente o añadiendo una nueva en el archivo  `multipath.conf` que se aplique específicamente a las LUN de ONTAP. Debes desplazarte hacia abajo en el archivo para revisar los cambios que se aplican a tu host. Si no corriges los parámetros, es posible que las LUN de ONTAP no funcionen como esperas.
+
+Compruebe el `/etc/multipath.conf` archivo, especialmente en la sección de valores predeterminados, para ver los ajustes que podrían estar anulando el <<multipath-parameter-settings,configuración predeterminada para parámetros multivía>>.
+
+
+CAUTION: No debe anular la configuración de parámetros recomendada para las LUN de ONTAP. Estos ajustes se requieren para el rendimiento óptimo de la configuración del host. Póngase en contacto con el soporte de NetApp, con su proveedor de SO o con ambos para obtener más información.
+
+El ejemplo siguiente muestra cómo corregir un valor predeterminado anulado. En este ejemplo, el `multipath.conf` archivo define valores para `path_checker` y `no_path_retry` que no son compatibles con LUN de ONTAP, y no puede quitar estos parámetros porque las cabinas de almacenamiento ONTAP siguen conectadas al host. En su lugar, corrija los valores para `path_checker` y `no_path_retry` agregando una estrofa de dispositivo al `multipath.conf` archivo que se aplica específicamente a los LUN de ONTAP.
+
+.Muestra el ejemplo
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+defaults {
+   path_checker      *readsector0*
+   no_path_retry     *fail*
+}
+
+devices {
+   device {
+      vendor          "NETAPP"
+      product         "LUN"
+      no_path_retry   *queue*
+      path_checker    *tur*
+   }
+}
+----
+====
+
+
+[[step-7-review-the-known-issues]]
+== Paso 7: revisa los problemas conocidos
+
+No hay problemas conocidos.
+
+
+
+[[whats-next]]
+== El futuro
+
+* link:hu-luhu-command-reference.html["Obtenga más información sobre el uso de la herramienta Linux Host Utilities"] .
+* Obtenga más información sobre la duplicación de ASM
++
+El mirroring de Gestión Automática de Almacenamiento (ASM) puede requerir cambios en la configuración de multivía de Linux para permitir que ASM reconozca un problema y realice el cambio a un grupo de fallos alternativo. La mayoría de las configuraciones de ASM de ONTAP utilizan redundancia externa, lo que significa que la protección de datos es proporcionada por la cabina externa y ASM no hace mirroring de los datos. Algunos sitios utilizan ASM con redundancia normal para proporcionar duplicación bidireccional, normalmente en diferentes sitios. Consulte link:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["Bases de datos de Oracle en ONTAP"^] para obtener más información.
+
+* Obtenga más información sobre la virtualización de Ubuntu Linux (KVM)
++
+Ubuntu Linux puede servir como host KVM. Esto le permite ejecutar varias máquinas virtuales en un solo servidor físico utilizando la tecnología de máquina virtual basada en kernel de Linux (KVM). El host KVM no requiere configuraciones de host explícitas para los LUN de ONTAP .
+
+

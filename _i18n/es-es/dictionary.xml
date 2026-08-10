@@ -2516,4 +2516,9 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="ff77ba7bf94da41f58968cd6238bef1b" category="admonition">La política MPIO recomendada es Round Robin con subconjunto.</block>
   <block id="93499fb92b162d002d9b600c8e5d0fc9" category="example-title">Mostrar ejemplo de CLI</block>
   <block id="ba15363da34b1cb74efc52c7595d9fcc" category="example-title">Mostrar ejemplo de interfaz de usuario</block>
+  <block id="9a10cb01a5cb2622f636682b5ef50282" category="summary">Instala las utilidades de host de Linux en un host Ubuntu 26.04 para gestionar las operaciones de los protocolos FCP e iSCSI con los LUN de ONTAP.</block>
+  <block id="625b4ec3300a714a63eb09a27822f147" category="doc">Configurar Ubuntu 26.04 para FCP e iSCSI con almacenamiento ONTAP</block>
+  <block id="488a9fd122ccd8a3550ceee0ebaee2d4" category="paragraph">El software Linux Host Utilities proporciona herramientas de gestión y diagnóstico para hosts Linux conectados al almacenamiento ONTAP. Cuando instalas Linux Host Utilities en un host Ubuntu 26.04, puedes usar las utilidades para ayudarte a gestionar las operaciones de los protocolos FCP e iSCSI con los LUN de ONTAP.</block>
+  <block id="418d880dfd6db1f0486f40a57a8c26ed" category="paragraph">Puedes utilizar multipathing con Ubuntu 26.04 para gestionar los LUN de ONTAP.</block>
+  <block id="7f61a1ef5c19b945998122fe336af401" category="sidebar">26,04</block>
 </blocks>
