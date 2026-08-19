@@ -227,7 +227,7 @@ Debería ver un resultado similar al siguiente ejemplo:
 +
 [listing]
 ----
-open-iscsi/stable,now 2.1.11-1+deb13u1 amd64
+open-iscsi/stable,now 2.1.11-1+deb13u2 amd64
 ----
 . Verifica el nombre de nodo del iniciador iSCSI, que se encuentra en el archivo  `/etc/iscsi/initiatorname.iscsi`:
 +
