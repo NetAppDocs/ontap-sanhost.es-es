@@ -4,7 +4,7 @@ permalink: hu-aix-command-reference.html
 keywords: host utilities, aix, powervm, vios, 3.1, 7.2, 7.0, netapp, ontap 
 summary: Puede usar la referencia de comando de muestra de AIX Host Utilities para una validación integral de la configuración del almacenamiento de NetApp mediante la herramienta Host Utilities. 
 ---
-= Utilice los comandos de AIX Host Utilities para verificar la configuración de almacenamiento de ONTAP
+= Comandos de AIX Host Utilities para la configuración del almacenamiento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

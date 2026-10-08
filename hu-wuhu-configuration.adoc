@@ -4,7 +4,7 @@ permalink: hu-wuhu-configuration.html
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Windows Host Utilities incluye un programa de instalación que establece los parámetros de registro de Windows y HBA necesarios para que el host Windows controle correctamente los comportamientos del sistema de almacenamiento para las plataformas ONTAP y E-Series. 
 ---
-= Revise la configuración de las utilidades de host de Windows para el almacenamiento ONTAP
+= Configuración de Windows Host Utilities para el almacenamiento ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1

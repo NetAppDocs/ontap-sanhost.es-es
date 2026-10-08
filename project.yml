@@ -29,7 +29,7 @@ sidebar:
           url: "/hu-aix-70.html"
         - title: Instalar AIX Host Utilities 6.1
           url: "/hu_aix_61.html"
-      - title: Obtenga más información sobre el AIX SAN Tollkit
+      - title: Más información sobre el SAN Tollkit
         url: "/hu-aix-san-toolkit.html"
       - title: Referencia de comandos de utilidades de host de AIX
         url: "/hu-aix-command-reference.html"
@@ -93,7 +93,7 @@ sidebar:
         url: "/hu_wuhu_troubleshoot.html"
   - title: Configurar hosts con FCP e iSCSI
     entries:
-    - title: Infórmate sobre cómo configurar hosts con FCP e iSCSI
+    - title: Infórmate sobre la configuración de FCP e iSCSI
       url: "/hu_fcp_scsi_index.html"
     - title: AIX y PowerVM/VIOS
       entries:
@@ -216,7 +216,7 @@ sidebar:
         url: "/hu_windows_2012r2.html"
   - title: Configure los hosts con NVMe-oF
     entries:
-    - title: Infórmate sobre cómo configurar un host con NVMe-oF
+    - title: Más información sobre la configuración de NVMe-oF
       url: "/hu-nvme-index.html"
     - title: AIX
       url: "/nvme-aix.html"
