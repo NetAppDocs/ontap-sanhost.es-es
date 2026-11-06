@@ -1,0 +1,319 @@
+---
+sidebar: sidebar 
+permalink: hu-citrix-90.html 
+keywords: host utilities, citrix, Xenserver, 9 series, netapp, ontap, san, boot 
+summary: Configurar Citrix Xenserver 9.0 para multirruta y con parámetros y ajustes específicos para el funcionamiento de los protocolos FCP e iSCSI con el almacenamiento ONTAP. 
+---
+= Configurar Citrix Xenserver 9.0 para FCP e iSCSI con almacenamiento ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Configurar Citrix Xenserver 9.0 para multirruta y con parámetros y ajustes específicos para el funcionamiento de los protocolos FCP e iSCSI con el almacenamiento ONTAP.
+
+[NOTE]
+====
+El paquete de software Linux Host Utilities no es compatible con los sistemas operativos Citrix Xenserver.
+
+====
+
+
+[[step-1-optionally-enable-san-booting]]
+== Paso 1: Opcionalmente, habilite el arranque SAN
+
+Puede configurar su host para que utilice el arranque SAN y simplificar la puesta en marcha y mejorar la escalabilidad.
+
+.Antes de empezar
+Utilice link:https://mysupport.netapp.com/matrix/#welcome["Herramienta de matriz de interoperabilidad"^] para verificar que el sistema operativo Linux, el adaptador de bus de host (HBA), el firmware del HBA, el BIOS de arranque del HBA y la versión de ONTAP admiten el arranque SAN.
+
+.Pasos
+. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["Cree un LUN de arranque SAN y asígnelo al host"^].
+. Habilite el arranque SAN en el BIOS del servidor para los puertos a los que se asigna la LUN de arranque SAN.
++
+Para obtener información acerca de cómo activar el BIOS HBA, consulte la documentación específica de su proveedor.
+
+. Compruebe que la configuración se haya realizado correctamente. Para ello, reinicie el host y verifique que el sistema operativo esté activo y en ejecución.
+
+
+
+
+[[step-2-confirm-the-multipath-configuration-for-your-host]]
+== Paso 2: Confirme la configuración de múltiples rutas para su host
+
+Puedes usar multivía con Citrix Xenserver 9.0 para gestionar los LUN de ONTAP.
+
+Para garantizar que el acceso multivía esté configurado correctamente para el host, verifique que el `/etc/multipath.conf` archivo esté definido y que los ajustes recomendados de NetApp estén configurados para los LUN de ONTAP.
+
+.Pasos
+. Ubica el archivo  `/etc/multipath.conf`.
++
+Si el archivo de referencia `/etc/multipath.conf` no contiene los parámetros de configuración específicos del dispositivo NetApp, añádelos usando el siguiente archivo personalizado `.conf drop-in`. Puedes encontrar este archivo en `/etc/multipath/conf.d/`:
+
++
+
+NOTE: No realices cambios en el archivo  `/etc/multipath.conf` porque el contenido del archivo podría sobrescribirse durante una actualización del sistema.
+
++
+.Mostrar el contenido del archivo
+[%collapsible]
+====
+[source, cli]
+----
+$sudo tee -a /etc/multipath/conf.d/custom.conf >/dev/null <<'EOF'
+
+defaults {
+    polling_interval 5
+}
+
+blacklist {
+    wwid <Insert_LUN_wwid_string>
+    devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+    devnode "^hd[a-z]"
+    devnode "^cciss.*"
+}
+
+devices {
+    device {
+    vendor "NETAPP"
+    product "LUN.*"
+    user_friendly_names no
+    path_checker "tur"
+    prio "ontap"
+    detect_prio yes
+    path_grouping_policy "group_by_prio"
+    path_selector "service-time 0"
+    failback immediate
+    fast_io_fail_tmo 5
+    dev_loss_tmo infinity
+    no_path_retry queue
+    features "3 queue_if_no_path pg_init_retries 50"
+    flush_on_last_del yes
+    hardware_handler "0"
+    retain_attached_hw_handler yes
+    rr_weight uniform
+  }
+}
+
+EOF
+----
+====
+. La primera vez que configures la multivía, puede que necesites habilitar e iniciar los servicios de multivía para cargar la configuración recomendada:
++
+[source, cli]
+----
+systemctl enable multipathd
+----
++
+[source, cli]
+----
+systemctl start multipathd
+----
+. Cada vez que inicias el host, el archivo  `/etc/multipath/conf.d/custom.conf` carga automáticamente los parámetros multivía recomendados por NetApp para el host como configuración predeterminada.
++
+En la siguiente tabla se muestra la configuración de los parámetros multivía compilados por el sistema operativo Linux nativo para los LUN de ONTAP.
+
++
+.Muestra la configuración de los parámetros
+[%collapsible]
+====
+[[multipath-parameter-settings]]
+[cols="2"]
+|===
+| Parámetro | Ajuste 
+
+
+| detect_prio | sí 
+
+
+| dev_loss_tmo | "infinito" 
+
+
+| conmutación tras recuperación | inmediata 
+
+
+| fast_io_fail_tmo | 5 
+
+
+| funciones | "3 queue_if_no_path pg_init_retries 50" 
+
+
+| flush_on_last_del | "sí" 
+
+
+| manipulador_hardware | "0" 
+
+
+| no_path_retry | cola 
+
+
+| comprobador_de_rutas | "tur" 
+
+
+| política_agrupación_ruta | "group_by_prio" 
+
+
+| selector_de_rutas | "tiempo de servicio 0" 
+
+
+| intervalo_sondeo | 5 
+
+
+| prioridad | "ONTAP" 
+
+
+| producto | LUN 
+
+
+| retain_attached_hw_handler | sí 
+
+
+| rr_weight | "uniforme" 
+
+
+| nombres_descriptivos_usuario | no 
+
+
+| proveedor | NETAPP 
+|===
+====
+. Compruebe la configuración de parámetros y el estado de la ruta de sus LUN de ONTAP:
++
+[source, cli]
+----
+multipath -ll
+----
++
+Los parámetros multiruta predeterminados admiten configuraciones ASA, AFF y FAS . En estas configuraciones, un solo LUN de ONTAP no debería requerir más de cuatro rutas. Tener más de cuatro rutas puede causar problemas durante una falla de almacenamiento.
+
++
+En el siguiente ejemplo, se muestran los ajustes de parámetros y el estado de la ruta correctos para las LUN de ONTAP en una configuración de ASA, AFF o FAS.
+
++
+[role="tabbed-block"]
+====
+.Configuración de ASA
+--
+Una configuración de ASA optimiza todas las rutas a una LUN determinada para mantenerlas activas. Esto mejora el rendimiento, ya que sirve operaciones de I/O en todas las rutas al mismo tiempo.
+
+.Muestra el ejemplo
+[%collapsible]
+=====
+[listing]
+----
+/usr/sbin/mpathutil status
+show topology
+create: 3600a098038315045572b5930646f4b63 dm-1 NETAPP  ,LUN C-Mode
+size=9.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 15:0:0:0  sdb  8:16    active ready running
+  |- 15:0:1:0  sdc  8:32    active ready running
+  |- 16:0:0:0  sdcf 69:48   active ready running
+  `- 16:0:1:0  sdcg 69:64   active ready running
+----
+=====
+--
+.Configuración de AFF o FAS
+--
+Una configuración AFF o FAS debe tener dos grupos de rutas con prioridades más altas y más bajas. Las rutas activas/optimizadas de mayor prioridad son gestionadas por el controlador en el que se encuentra el agregado. Las rutas de menor prioridad están activas pero no optimizadas, ya que son gestionadas por un controlador diferente. Las rutas no optimizadas solo se utilizan cuando las rutas optimizadas no están disponibles.
+
+En el siguiente ejemplo, se muestra el resultado de una LUN de ONTAP con dos rutas activa/optimizada y dos rutas activa/no optimizada:
+
+.Muestra el ejemplo
+[%collapsible]
+=====
+[listing]
+----
+/usr/sbin/mpathutil status
+show topology
+create: 3600a098038315045572b5930646f4b63 dm-1 NETAPP  ,LUN C-Mode
+size=9.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+  |- 15:0:0:0  sdb  8:16    active ready running
+  `- 15:0:1:0  sdc  8:32    active ready running
+`-+- policy='service-time 0' prio=50 status=active
+     |- 16:0:0:0  sdcf 69:48   active ready running
+     `- 16:0:1:0  sdcg 69:64   active ready running
+----
+=====
+--
+====
+
+
+
+
+[[step-3-optionally-exclude-a-device-from-multipathing]]
+== Paso 3: Opcionalmente, excluya un dispositivo de las rutas múltiples
+
+Si es necesario, puedes excluir un dispositivo de la multivía añadiendo el WWID del dispositivo que no quieres a la sección "blacklist" del archivo  `/etc/multipath/conf.d/custom.conf`.
+
+.Pasos
+. Determine el WWID:
++
+[source, cli]
+----
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+“sda” es el disco SCSI local que desea agregar a la lista negra.
+
++
+Un ejemplo de WWID es `360030057024d0730239134810c0cb833`.
+
+. Añada el WWID a la estrofa «blacklist»:
++
+[source, cli]
+----
+blacklist {
+        wwid   360030057024d0730239134810c0cb833
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+----
+
+
+
+
+[[step-4-customize-multipath-parameters-for-ontap-luns]]
+== Paso 4: Personalizar los parámetros de rutas múltiples para los LUN de ONTAP
+
+Si tu host está conectado a LUN de otros proveedores y se ha anulado alguna de las configuraciones de los parámetros multivía, debes corregirlas modificando una estrofa existente o añadiendo una nueva en el archivo  `/etc/multipath/conf.d/custom.conf` que se aplique específicamente a los LUN de ONTAP. Debes desplazarte hacia abajo en el archivo para revisar los cambios que se aplican a tu host. Si no corriges los parámetros, es posible que los LUN de ONTAP no funcionen como se espera.
+
+
+CAUTION: No debe anular la configuración de parámetros recomendada para las LUN de ONTAP. Estos ajustes se requieren para el rendimiento óptimo de la configuración del host. Póngase en contacto con el soporte de NetApp, con su proveedor de SO o con ambos para obtener más información.
+
+El siguiente ejemplo muestra cómo corregir un valor predeterminado sobrescrito. En este ejemplo, el archivo  `custom.conf drop-in` define valores para  `path_checker` y  `no_path_retry` que no son compatibles con los LUN de ONTAP, y no puedes eliminar estos parámetros porque las matrices de almacenamiento ONTAP siguen conectadas al host. En su lugar, corriges los valores de  `path_checker` y  `no_path_retry` añadiendo una estrofa de dispositivo al archivo  `custom.conf drop-in` que se aplica específicamente a los LUN de ONTAP.
+
+.Muestra el ejemplo
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+defaults {
+   path_checker      *readsector0*
+   no_path_retry     *fail*
+}
+
+devices {
+   device {
+      vendor          "NETAPP"
+      product         "LUN"
+      no_path_retry   *queue*
+      path_checker    *tur*
+   }
+}
+----
+====
+
+
+[[step-5-review-the-known-issues]]
+== Paso 5: Revisar los problemas conocidos
+
+No hay problemas conocidos.

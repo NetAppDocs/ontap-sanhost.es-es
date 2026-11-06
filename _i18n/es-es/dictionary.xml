@@ -2537,4 +2537,9 @@ Se ha cambiado el enlace al controlador FC de<block ref="b9ca0a083600812be33f42f
   <block id="2577436e0a1529b400f7af13bf054dd3" category="sidebar">Más información sobre la configuración de NVMe-oF</block>
   <block id="e00f09f4cda9392c891c49988b80edc8" category="sidebar">SLES-FCP</block>
   <block id="8becbe3ee64db6f436bf244fb25c7f57" category="sidebar">SLES-NVMe</block>
+  <block id="b69bffb1a1f55594751fbc58f7abb114" category="summary">Configurar Citrix Xenserver 9.0 para multirruta y con parámetros y ajustes específicos para el funcionamiento de los protocolos FCP e iSCSI con el almacenamiento ONTAP.</block>
+  <block id="f52d84b92b78c6dad322e059e6943904" category="doc">Configurar Citrix Xenserver 9.0 para FCP e iSCSI con almacenamiento ONTAP</block>
+  <block id="aa6f72aa4dad8dc14f65a49c7b60982a" category="paragraph">Puedes usar multivía con Citrix Xenserver 9.0 para gestionar los LUN de ONTAP.</block>
+  <block id="3f6d8773170dd1c73493c97ee36bb40a" category="paragraph">Una configuración AFF o FAS debe tener dos grupos de rutas con prioridades más altas y más bajas. Las rutas activas/optimizadas de mayor prioridad son gestionadas por el controlador en el que se encuentra el agregado. Las rutas de menor prioridad están activas pero no optimizadas, ya que son gestionadas por un controlador diferente. Las rutas no optimizadas solo se utilizan cuando las rutas optimizadas no están disponibles.</block>
+  <block id="1d5076606adf1177c26a3f206e21498e" category="sidebar">Xenserver 9.0</block>
 </blocks>
