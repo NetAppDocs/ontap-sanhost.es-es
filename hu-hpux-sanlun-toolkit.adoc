@@ -4,7 +4,7 @@ permalink: hu-hpux-sanlun-toolkit.html
 keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
 summary: Describe cómo usar HP-UX Host Utilities 6,0 con almacenamiento ONTAP 
 ---
-= Más información sobre HP-UX SAN Toolkit para el almacenamiento ONTAP
+= Obtén información sobre HP-UX Host Utilities SAN Toolkit para el almacenamiento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

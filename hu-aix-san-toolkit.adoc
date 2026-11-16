@@ -4,7 +4,7 @@ permalink: hu-aix-san-toolkit.html
 keywords: san, toolkit, command, line, AIX, hot, utilities 
 summary: El software de host AIX Host Utilities proporciona un kit de herramientas de línea de comandos en su host IBM AIX. 
 ---
-= Obtenga más información sobre el kit de herramientas AIX SAN para el almacenamiento ONTAP
+= Más información sobre el kit de herramientas SAN de AIX Host Utilities para el almacenamiento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
